@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvqk2lysu02gf"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.gd" id="1_6dcsj"]
+[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="2_yo2b7"]
+
+[sub_resource type="Gradient" id="Gradient_kkqms"]
+offsets = PackedFloat32Array(0.00591716, 1)
+colors = PackedColorArray(0.898039, 0.447059, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gpquw"]
+gradient = SubResource("Gradient_kkqms")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nhns"]
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+damping_min = 4.464
+damping_max = 4.464
+color_ramp = SubResource("GradientTexture1D_gpquw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yd7w"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q83y7"]
+material = SubResource("StandardMaterial3D_2yd7w")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vck5q"]
+size = Vector3(2.145, 3.125, 2.415)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("shapecast", "particlesystem", "model")]
+script = ExtResource("1_6dcsj")
+shapecast = NodePath("Model/Node3D/ShapeCast3D")
+particlesystem = NodePath("Model/Node3D/GPUParticles3D")
+status_stats = ExtResource("2_yo2b7")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.569646, 0)
+size = Vector3(1, 1.78698, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00567371, -0.274218, -0.514041)
+size = Vector3(0.481654, 0.427749, 1.38438)
+
+[node name="Node3D" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.301084, -1.2154)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Model/Node3D"]
+amount = 48
+visibility_aabb = AABB(-2.2922, -3.14731, -1.92995, 4.5844, 6.29461, 3.85991)
+process_material = SubResource("ParticleProcessMaterial_2nhns")
+draw_pass_1 = SubResource("BoxMesh_q83y7")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Model/Node3D"]
+shape = SubResource("BoxShape3D_vck5q")
+target_position = Vector3(0, 1.51, 0)
+collision_mask = 4

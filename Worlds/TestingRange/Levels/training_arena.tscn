@@ -1,0 +1,139 @@
+[gd_scene load_steps=24 format=3 uid="uid://uv7hjsgisy31"]
+
+[ext_resource type="Texture2D" uid="uid://r8cr41blojpm" path="res://Assets/Textures/stone wall 7.png" id="1_45ikc"]
+[ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="2_w387b"]
+[ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_y4upj"]
+[ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="4_i7krx"]
+[ext_resource type="Script" path="res://Scripts/Resources/enemy.gd" id="4_ucmnf"]
+[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="5_15cd7"]
+[ext_resource type="Resource" uid="uid://bmoreipvttks8" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="5_806m0"]
+[ext_resource type="Resource" uid="uid://cvf5bxtu6er17" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="6_evvng"]
+[ext_resource type="Resource" uid="uid://q23ludhji5p4" path="res://PCs/Universal/ClassCards/Gatling/card_gatling.tres" id="8_k80ff"]
+[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/tower_base.tscn" id="9_imodf"]
+[ext_resource type="Resource" uid="uid://bvpkvmda845o5" path="res://PCs/Universal/ClassCards/BombLauncher/card_grenade_launcher.tres" id="10_g0syk"]
+[ext_resource type="Resource" uid="uid://1xke2uy2vfuf" path="res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres" id="11_d3sci"]
+[ext_resource type="Resource" uid="uid://dh5fjnbp8auw1" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="11_jk0fe"]
+[ext_resource type="Resource" uid="uid://bhmbk26whdsys" path="res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres" id="12_7lpov"]
+[ext_resource type="PackedScene" uid="uid://cgcslt0rsg6e3" path="res://Worlds/TestingRange/Enemies/target_dummy.tscn" id="14_rvk27"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mqtlc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75uqo"]
+albedo_texture = ExtResource("1_45ikc")
+uv1_scale = Vector3(30, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mcyj"]
+size = Vector3(15, 1, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx270"]
+resource_local_to_scene = true
+atlas = ExtResource("5_15cd7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_dn3eg"]
+resource_local_to_scene = true
+script = ExtResource("4_ucmnf")
+title = "dog"
+target_type = 0
+sprite = SubResource("AtlasTexture_jx270")
+spawn_power = 10
+health = 100
+penalty = 10
+movement_speed = 1.0
+spawn_cooldown = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwrm2"]
+resource_local_to_scene = true
+atlas = ExtResource("5_15cd7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_bb3cf"]
+resource_local_to_scene = true
+script = ExtResource("4_ucmnf")
+title = "dog"
+target_type = 0
+sprite = SubResource("AtlasTexture_qwrm2")
+spawn_power = 10
+health = 100
+penalty = 10
+movement_speed = 1.0
+spawn_cooldown = 1.0
+
+[sub_resource type="Curve3D" id="Curve3D_3hq0c"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3, 0, 0, -3.045, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, -3, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, -3, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_mqtlc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+size = Vector3(15, 1, 30)
+material = SubResource("StandardMaterial3D_75uqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3mcyj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.503804, 0.863818, 0, -0.863818, 0.503804, 0.00649166, 26.8242, 4.02927e-05)
+
+[node name="Character" parent="." instance=ExtResource("2_w387b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805513, 0.5, 2.30163)
+
+[node name="Enemy" parent="." instance=ExtResource("3_y4upj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28337, 0.601179, -1.23188)
+stats = SubResource("Resource_dn3eg")
+
+[node name="Enemy2" parent="." instance=ExtResource("3_y4upj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26298, 0.601179, -3.22988)
+stats = SubResource("Resource_bb3cf")
+
+[node name="assaultcard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7802, 0.5, 3.16356)
+card = ExtResource("5_806m0")
+
+[node name="acceleratorcard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11938, 0.5, 4.73946)
+card = ExtResource("8_k80ff")
+
+[node name="snipercard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1017, 0.5, 5.17215)
+card = ExtResource("6_evvng")
+
+[node name="grenadecard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385228, 0.5, 6.25718)
+card = ExtResource("10_g0syk")
+
+[node name="grenadecard2" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51176, 0.499999, -5.26455)
+card = ExtResource("11_d3sci")
+
+[node name="rocketcard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13185, 0.5, 6.25718)
+card = ExtResource("11_jk0fe")
+
+[node name="gluecard" parent="." instance=ExtResource("4_i7krx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12773, 0.5, 6.25718)
+card = ExtResource("12_7lpov")
+
+[node name="towerbase" parent="." instance=ExtResource("9_imodf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77234, 0.5, 2.6958)
+
+[node name="towerbase2" parent="." node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon") instance=ExtResource("9_imodf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766634, 0.5, -9.7488)
+inventory = NodePath("../towerbase/Inventory")
+block = NodePath("../towerbase/CSGBox3D")
+collider = NodePath("../towerbase/CollisionShape3D")
+minimap_icon = NodePath("../towerbase/Sprite3D")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -9.72541)
+curve = SubResource("Curve3D_3hq0c")
+
+[node name="PathFollow3D" parent="Path3D" instance=ExtResource("14_rvk27")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3, 0, 0)

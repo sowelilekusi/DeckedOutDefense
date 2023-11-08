@@ -1,0 +1,268 @@
+[gd_scene load_steps=3 format=3 uid="uid://clulh7v8c7h85"]
+
+[ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_bievw"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
+
+[node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "vsync_dropdown", "aa_dropdown", "window_dropdown", "invert_lookY", "invert_lookX", "fov_input", "fov_slider")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bievw")
+look_sens_slider = NodePath("VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/HSlider")
+look_sens_input = NodePath("VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/SpinBox")
+toggle_sprint_checkbox = NodePath("VBoxContainer/TabContainer/Gameplay/ToggleSprint/CenterContainer/CheckButton")
+vsync_dropdown = NodePath("VBoxContainer/TabContainer/Graphics/VSync/OptionButton")
+aa_dropdown = NodePath("VBoxContainer/TabContainer/Graphics/AntiAliasing/OptionButton")
+window_dropdown = NodePath("VBoxContainer/TabContainer/Graphics/Windowed/OptionButton")
+invert_lookY = NodePath("VBoxContainer/TabContainer/Gameplay/InvertMouseY/CenterContainer/CheckButton")
+invert_lookX = NodePath("VBoxContainer/TabContainer/Gameplay/InvertMouseX/CenterContainer/CheckButton")
+fov_input = NodePath("VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/SpinBox")
+fov_slider = NodePath("VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/HSlider")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gameplay" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="MouseSens" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Gameplay/MouseSens"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Look Sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay/MouseSens"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+step = 0.01
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 0.01
+scrollable = false
+
+[node name="ToggleSprint" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Gameplay/ToggleSprint"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Toggle Sprint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/TabContainer/Gameplay/ToggleSprint"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Gameplay/ToggleSprint/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InvertMouseY" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseY"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Invert Look Y"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseY"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseY/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InvertMouseX" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Invert Look X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseX/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Graphics" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="FOV" type="HBoxContainer" parent="VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Graphics/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Field Of View"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Graphics/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+min_value = 40.0
+max_value = 160.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 40.0
+max_value = 160.0
+value = 100.0
+scrollable = false
+
+[node name="VSync" type="HBoxContainer" parent="VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Graphics/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "V-Sync"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/Graphics/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 1
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "On"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Triple Buffered"
+popup/item_3/id = 3
+
+[node name="AntiAliasing" type="HBoxContainer" parent="VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Graphics/AntiAliasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Anti-Aliasing
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/Graphics/AntiAliasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "FXAA"
+popup/item_1/id = 1
+popup/item_2/text = "TAA"
+popup/item_2/id = 2
+
+[node name="Windowed" type="HBoxContainer" parent="VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Graphics/Windowed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/Graphics/Windowed"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="Keybinds" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/Keybinds"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Keybinds/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Audio" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Discard"
+
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="value_changed" from="VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/SpinBox" to="." method="_on_mouse_sens_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/HSlider" to="." method="_on_mouse_sens_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/SpinBox" to="." method="_on_fov_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/HSlider" to="." method="_on_fov_h_slider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/TabContainer/Graphics/VSync/OptionButton" to="." method="_on_vsync_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/TabContainer/Graphics/AntiAliasing/OptionButton" to="." method="_on_AA_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

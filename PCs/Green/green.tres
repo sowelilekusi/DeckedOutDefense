@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeroClass" load_steps=6 format=3 uid="uid://ogbkbf1v7j7l"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_class.gd" id="1_cpfpk"]
+[ext_resource type="Resource" uid="uid://cvf5bxtu6er17" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="1_hv6hq"]
+[ext_resource type="Texture2D" uid="uid://bgt3j4cuq814m" path="res://Assets/TextureAtlases/green.tres" id="2_4p73e"]
+[ext_resource type="Resource" uid="uid://dh5fjnbp8auw1" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="2_jdi4m"]
+[ext_resource type="Resource" uid="uid://bmoreipvttks8" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="3_f04lj"]
+
+[resource]
+script = ExtResource("1_cpfpk")
+hero_name = "Green"
+texture = ExtResource("2_4p73e")
+deck = Array[Resource("res://Scripts/Resources/card.gd")]([ExtResource("1_hv6hq"), ExtResource("2_jdi4m"), ExtResource("3_f04lj")])

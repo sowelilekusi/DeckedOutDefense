@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp45xkbsslr0k"]
+
+[ext_resource type="Texture2D" uid="uid://bpixdxdjnr5tw" path="res://Assets/Textures/glue_icon.png" id="1_d3stl"]
+
+[node name="StatusIcon" type="TextureRect"]
+texture_filter = 1
+texture = ExtResource("1_d3stl")

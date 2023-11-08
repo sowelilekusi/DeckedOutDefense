@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://br3bd1jmi235x"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/RocketLauncher/rockettower.gd" id="1_8hb2v"]
+[ext_resource type="PackedScene" uid="uid://hr0dw2533tsl" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket.tscn" id="2_by0gu"]
+[ext_resource type="Resource" uid="uid://duofn25nuu84q" path="res://Resources/TurretStats/rocketlauncher.tres" id="3_ynh7l"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_8hb2v")
+rocket_scene = ExtResource("2_by0gu")
+stats = ExtResource("3_ynh7l")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97939, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65)
+size = Vector3(0.805859, 0.771887, 1.04243)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20204)
+size = Vector3(0.597715, 0.561942, 0.242169)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsasunnk47n8o"]
+
+[ext_resource type="Script" path="res://Scripts/item_card.gd" id="1_f3ek5"]
+[ext_resource type="Script" path="res://Scripts/float_and_spin.gd" id="2_yfdc3"]
+
+[sub_resource type="Curve" id="Curve_qb7ge"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bf4ou"]
+height = 1.0
+
+[node name="Node3D" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_f3ek5")
+
+[node name="model" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+target_position = Vector3(0, -10, 0)
+script = ExtResource("2_yfdc3")
+float_height = 0.7
+curve = SubResource("Curve_qb7ge")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="model"]
+radius = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CapsuleShape3D_bf4ou")

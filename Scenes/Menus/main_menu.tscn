@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://8yv7excojcg0"]
+
+[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_p1cib"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="2_ivytu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p1cib")
+script = ExtResource("2_ivytu")
+
+[node name="Title" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -559.5
+offset_top = 25.0
+offset_right = 559.5
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 2
+text = "MULTIPLAYER TOWER DEFENSE CARD GAME ROGUELIKE !!!"
+horizontal_alignment = 1
+
+[node name="MainControls" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -81.0
+offset_right = 71.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainControls"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MainControls/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="MultiplayerButton" type="Button" parent="MainControls/VBoxContainer"]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="OptionsButton" type="Button" parent="MainControls/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="QuitButton" type="Button" parent="MainControls/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="ProfileEditor" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -181.5
+offset_top = -140.0
+offset_right = 181.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProfileEditor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ProfileEditor/VBoxContainer"]
+layout_mode = 2
+text = "Display Name
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ProfileEditor/VBoxContainer"]
+layout_mode = 2
+
+[node name="DisplayName" type="Label" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Dummy Name"
+
+[node name="DisplayNameEdit" type="Button" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Change"
+
+[connection signal="pressed" from="MainControls/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainControls/VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainControls/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainControls/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]

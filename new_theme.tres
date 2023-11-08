@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b6a0ip4p72tgx"]
+
+[ext_resource type="StyleBox" uid="uid://de3eok2g4r2k" path="res://button_stylebox.tres" id="1_jlhwk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2xpa"]
+content_margin_left = 10.0
+bg_color = Color(0.505882, 0.678431, 0.901961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06uvd"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.14902, 0.380392, 0.635294, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.505882, 0.678431, 0.901961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(7, 7)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.113725, 0.113725, 0.113725, 1)
+Button/font_sizes/font_size = 24
+Button/styles/normal = ExtResource("1_jlhwk")
+HBoxContainer/constants/separation = 10
+Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 32
+LineEdit/colors/font_color = Color(0.113725, 0.113725, 0.113725, 1)
+LineEdit/colors/font_placeholder_color = Color(0.243137, 0.243137, 0.243137, 0.6)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_c2xpa")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_06uvd")

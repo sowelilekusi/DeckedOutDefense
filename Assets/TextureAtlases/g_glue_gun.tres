@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://jmxhiwsiw1f5"]
+
+[ext_resource type="Texture2D" uid="uid://oblavj8vj30n" path="res://Assets/Textures/glue_gun.png" id="1_2wjjm"]
+
+[resource]
+atlas = ExtResource("1_2wjjm")
+region = Rect2(0, 0, 64, 64)

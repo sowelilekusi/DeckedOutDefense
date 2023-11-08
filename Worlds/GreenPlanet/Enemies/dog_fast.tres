@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://cvehqh4tt28g7"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/enemy.gd" id="1_k5sd1"]
+[ext_resource type="Texture2D" uid="uid://cv5p03aw78vwd" path="res://Assets/Textures/icon_eye_dog_fast.png" id="1_xgen5"]
+[ext_resource type="Texture2D" uid="uid://dd212gh03wloa" path="res://Assets/TextureAtlases/dog_fast.tres" id="2_mkbm6"]
+
+[resource]
+script = ExtResource("1_k5sd1")
+title = "fast dog"
+target_type = 1
+icon = ExtResource("1_xgen5")
+sprite = ExtResource("2_mkbm6")
+spawn_power = 16
+health = 100
+penalty = 4
+movement_speed = 3.5
+spawn_cooldown = 0.7

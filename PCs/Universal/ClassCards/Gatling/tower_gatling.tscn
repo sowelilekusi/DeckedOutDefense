@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwcdgglljbmot"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Gatling/speedytower.gd" id="1_26he3"]
+[ext_resource type="Resource" uid="uid://cc20tomywj0jm" path="res://Resources/TurretStats/accelerator.tres" id="2_puwlv"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_26he3")
+stats = ExtResource("2_puwlv")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00131059, 0.27342, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226066, 0.0918715, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227674, -0.174673, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00246562, -0.314903, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259054, -0.125834, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26701, 0.102116, -0.880753)
+size = Vector3(0.177, 0.148, 0.929)

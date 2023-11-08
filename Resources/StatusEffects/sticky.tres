@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://d0643gfp52x3s"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/status_stats.gd" id="1_57gd1"]
+[ext_resource type="Texture2D" uid="uid://bpixdxdjnr5tw" path="res://Assets/Textures/glue_icon.png" id="1_b1meh"]
+
+[resource]
+script = ExtResource("1_57gd1")
+unique = true
+proc_frequency = 0.0
+duration = 5.0
+potency = 0.3
+icon = ExtResource("1_b1meh")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://clbw3osqy2ww2"]
+
+[ext_resource type="Script" path="res://Scripts/path_visual_thing.gd" id="1_pgun7"]
+[ext_resource type="Texture2D" uid="uid://cy786nrpcdr5o" path="res://Assets/Textures/minimap_path_visual.png" id="2_0gsds"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lutld"]
+albedo_color = Color(0.0509804, 0.337255, 0.709804, 1)
+
+[node name="PathFollow3D" type="PathFollow3D" node_paths=PackedStringArray("world_model", "minimap_model")]
+use_model_front = true
+script = ExtResource("1_pgun7")
+world_model = NodePath("CSGSphere3D")
+minimap_model = NodePath("Sprite3D")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+radius = 0.05
+material = SubResource("StandardMaterial3D_lutld")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.385229, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("2_0gsds")

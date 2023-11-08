@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ff3cys53p37j"]
+
+[ext_resource type="Texture2D" uid="uid://c070a2dbkw55e" path="res://Assets/Textures/eye_dog_boss.png" id="1_emrg4"]
+
+[resource]
+atlas = ExtResource("1_emrg4")
+region = Rect2(0, 0, 32, 32)

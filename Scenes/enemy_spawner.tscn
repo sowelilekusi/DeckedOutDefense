@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2yv447trxkwt"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_23wuv"]
+[ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="2_muaoj"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_23wuv")
+land_enemy_scene = ExtResource("2_muaoj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

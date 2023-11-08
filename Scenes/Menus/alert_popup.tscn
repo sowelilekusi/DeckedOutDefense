@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://6a277g802os0"]
+
+[ext_resource type="Script" path="res://Scripts/alert_popup.gd" id="1_cac03"]
+
+[node name="Control" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cac03")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Unable to connect to server"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "OK"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

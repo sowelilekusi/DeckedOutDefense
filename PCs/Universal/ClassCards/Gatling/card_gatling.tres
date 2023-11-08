@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://q23ludhji5p4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_5html"]
+[ext_resource type="Texture2D" uid="uid://d1am28tgvwaa0" path="res://Assets/TextureAtlases/g_accelerator.tres" id="2_a3hso"]
+[ext_resource type="Resource" uid="uid://cc20tomywj0jm" path="res://Resources/TurretStats/accelerator.tres" id="3_yj53i"]
+[ext_resource type="PackedScene" uid="uid://rcqf3vangjlp" path="res://PCs/Universal/ClassCards/Gatling/weapon_gatling.tscn" id="4_4xp1m"]
+[ext_resource type="PackedScene" uid="uid://bwcdgglljbmot" path="res://PCs/Universal/ClassCards/Gatling/tower_gatling.tscn" id="4_maix8"]
+[ext_resource type="Resource" uid="uid://ouwge5etb4me" path="res://Resources/WeaponStats/accelerator.tres" id="5_hguan"]
+
+[resource]
+script = ExtResource("1_5html")
+title = "Accelerator"
+rarity = 0
+faction = 0
+sprite = ExtResource("2_a3hso")
+turret = ExtResource("4_maix8")
+weapon = ExtResource("4_4xp1m")
+weapon_stats = ExtResource("5_hguan")
+tower_stats = ExtResource("3_yj53i")

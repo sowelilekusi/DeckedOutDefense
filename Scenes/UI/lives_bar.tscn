@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=3 uid="uid://24x18qxqhy0i"]
+
+[ext_resource type="Texture2D" uid="uid://dvy2lvtotaxb3" path="res://Assets/Textures/lifebar_bg.png" id="1_x27cx"]
+[ext_resource type="Script" path="res://Scripts/lives_bar.gd" id="2_lqe7s"]
+[ext_resource type="PackedScene" uid="uid://dko38egcaxubd" path="res://Scenes/UI/lifebar_segment.tscn" id="3_6hp86"]
+
+[node name="LivesBar" type="TextureRect" node_paths=PackedStringArray("segments")]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x27cx")
+stretch_mode = 2
+script = ExtResource("2_lqe7s")
+segments = [NodePath("Control"), NodePath("Control2"), NodePath("Control3"), NodePath("Control4"), NodePath("Control5"), NodePath("Control6"), NodePath("Control7"), NodePath("Control8"), NodePath("Control9"), NodePath("Control10"), NodePath("Control11"), NodePath("Control12"), NodePath("Control13"), NodePath("Control14"), NodePath("Control15"), NodePath("Control16"), NodePath("Control17"), NodePath("Control18"), NodePath("Control19"), NodePath("Control20")]
+
+[node name="Control" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 28.0
+offset_top = 10.0
+offset_right = 28.0
+offset_bottom = 10.0
+
+[node name="Control2" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 37.0
+offset_top = 10.0
+offset_right = 37.0
+offset_bottom = 10.0
+
+[node name="Control3" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 46.0
+offset_top = 10.0
+offset_right = 46.0
+offset_bottom = 10.0
+
+[node name="Control4" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 55.0
+offset_top = 10.0
+offset_right = 55.0
+offset_bottom = 10.0
+
+[node name="Control5" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 64.0
+offset_top = 10.0
+offset_right = 64.0
+offset_bottom = 10.0
+
+[node name="Control6" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 73.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 10.0
+
+[node name="Control7" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 82.0
+offset_top = 10.0
+offset_right = 82.0
+offset_bottom = 10.0
+
+[node name="Control8" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 91.0
+offset_top = 10.0
+offset_right = 91.0
+offset_bottom = 10.0
+
+[node name="Control9" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 10.0
+
+[node name="Control10" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 109.0
+offset_top = 10.0
+offset_right = 109.0
+offset_bottom = 10.0
+
+[node name="Control11" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 118.0
+offset_top = 10.0
+offset_right = 118.0
+offset_bottom = 10.0
+
+[node name="Control12" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 127.0
+offset_top = 10.0
+offset_right = 127.0
+offset_bottom = 10.0
+
+[node name="Control13" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 136.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 10.0
+
+[node name="Control14" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 145.0
+offset_top = 10.0
+offset_right = 145.0
+offset_bottom = 10.0
+
+[node name="Control15" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 154.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 10.0
+
+[node name="Control16" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 163.0
+offset_top = 10.0
+offset_right = 163.0
+offset_bottom = 10.0
+
+[node name="Control17" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 172.0
+offset_top = 10.0
+offset_right = 172.0
+offset_bottom = 10.0
+
+[node name="Control18" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 181.0
+offset_top = 10.0
+offset_right = 181.0
+offset_bottom = 10.0
+
+[node name="Control19" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 190.0
+offset_top = 10.0
+offset_right = 190.0
+offset_bottom = 10.0
+
+[node name="Control20" parent="." instance=ExtResource("3_6hp86")]
+offset_left = 199.0
+offset_top = 10.0
+offset_right = 199.0
+offset_bottom = 10.0

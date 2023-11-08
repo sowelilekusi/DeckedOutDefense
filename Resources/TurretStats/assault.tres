@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=2 format=3 uid="uid://cktq4o3yuxgsa"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TowerStats.gd" id="1_ujduk"]
+
+[resource]
+script = ExtResource("1_ujduk")
+can_target = 1
+damage = 1.0
+fire_range = 15.0
+fire_rate = 5.0

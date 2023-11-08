@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://c4ihsd13o1esd"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/WeaponStats.gd" id="1_kt5ga"]
+
+[resource]
+script = ExtResource("1_kt5ga")
+damage = 0
+fire_rate = 0.0
+fire_range = 0.0

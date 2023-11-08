@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://bmoreipvttks8"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_yqa4b"]
+[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_8j5h0"]
+[ext_resource type="PackedScene" uid="uid://fernyl7fsifv" path="res://PCs/Universal/ClassCards/Assault/tower_assault.tscn" id="3_0r6s7"]
+[ext_resource type="Resource" uid="uid://w15ojqyxd72q" path="res://Resources/WeaponStats/assault.tres" id="3_k2yr3"]
+[ext_resource type="Resource" uid="uid://cktq4o3yuxgsa" path="res://Resources/TurretStats/assault.tres" id="3_p4byc"]
+[ext_resource type="PackedScene" uid="uid://d1xe6hsq05110" path="res://PCs/Universal/ClassCards/Assault/weapon_assault.tscn" id="3_wj5gm"]
+
+[resource]
+script = ExtResource("1_yqa4b")
+title = "Assault"
+rarity = 0
+faction = 0
+sprite = ExtResource("2_8j5h0")
+turret = ExtResource("3_0r6s7")
+weapon = ExtResource("3_wj5gm")
+weapon_stats = ExtResource("3_k2yr3")
+tower_stats = ExtResource("3_p4byc")

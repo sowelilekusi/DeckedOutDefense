@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://1xke2uy2vfuf"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_xmwih"]
+[ext_resource type="Resource" uid="uid://5ywipj3632u8" path="res://Resources/TurretStats/flametower.tres" id="2_80w0f"]
+[ext_resource type="PackedScene" uid="uid://dvqk2lysu02gf" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.tscn" id="3_yfmjg"]
+[ext_resource type="Resource" uid="uid://c4ihsd13o1esd" path="res://Resources/WeaponStats/flamethrower.tres" id="4_rdoaa"]
+
+[resource]
+script = ExtResource("1_xmwih")
+title = "Flamethrower"
+rarity = 3
+faction = 0
+turret = ExtResource("3_yfmjg")
+weapon_stats = ExtResource("4_rdoaa")
+tower_stats = ExtResource("2_80w0f")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://iohlxrso4bl8"]
+
+[ext_resource type="Texture2D" uid="uid://dy2ukmg6koun1" path="res://Assets/Textures/tree.png" id="1_sisdp"]
+[ext_resource type="Texture2D" uid="uid://dg47vgt0uccw1" path="res://Assets/Textures/minimap_tree.png" id="2_85nm0"]
+
+[node name="Tree" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15464, 0)
+pixel_size = 0.05
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_sisdp")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.15464, 0)
+pixel_size = 0.05
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_sisdp")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(7.5, 0, 0, 0, -3.27835e-07, 7.5, 0, -7.5, -3.27835e-07, 0, 5.98547, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("2_85nm0")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ryhc48vl36fc"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Assault/tower.gd" id="1_tmpm5"]
+[ext_resource type="Resource" uid="uid://ddw7pj1ckwmp8" path="res://Resources/TurretStats/sniper.tres" id="2_opda8"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_tmpm5")
+stats = ExtResource("2_opda8")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.776406)
+size = Vector3(0.481654, 0.427749, 1.38438)

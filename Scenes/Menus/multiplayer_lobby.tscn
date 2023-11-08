@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwvprrvk4l2k0"]
+
+[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_l1spu"]
+[ext_resource type="Script" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
+[ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="3_f6bia"]
+[ext_resource type="PackedScene" uid="uid://3kcl30sump8c" path="res://Scenes/Menus/LoadoutEditor.tscn" id="4_bmg55"]
+[ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
+[ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
+
+[node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "loadout_editor", "chatbox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_l1spu")
+script = ExtResource("2_nb860")
+server_form = NodePath("ServerForm")
+scoreboard = NodePath("Scoreboard")
+loadout_editor = NodePath("Panel")
+chatbox = NodePath("Chatbox")
+
+[node name="ServerForm" parent="." instance=ExtResource("5_bqbwv")]
+layout_mode = 1
+offset_left = -151.0
+offset_top = -112.0
+offset_right = 151.0
+offset_bottom = 112.0
+
+[node name="Scoreboard" parent="." instance=ExtResource("3_f6bia")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -472.0
+offset_right = -50.0
+grow_horizontal = 0
+
+[node name="Panel" parent="." instance=ExtResource("4_bmg55")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_right = 455.0
+
+[node name="ReadyButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = 311.0
+offset_right = -240.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Ready"
+
+[node name="Chatbox" parent="." instance=ExtResource("6_wtqwd")]
+layout_mode = 1
+offset_bottom = -507.0
+
+[connection signal="player_connected" from="." to="Scoreboard" method="add_player"]
+[connection signal="player_disconnected" from="." to="Scoreboard" method="remove_player"]
+[connection signal="connect_button_pressed" from="ServerForm" to="." method="connect_to_server"]
+[connection signal="connect_button_pressed" from="ServerForm" to="ServerForm" method="set_visible" binds= [false]]
+[connection signal="host_button_pressed" from="ServerForm" to="." method="create_server"]
+[connection signal="host_button_pressed" from="ServerForm" to="ServerForm" method="set_visible" binds= [false]]
+[connection signal="pressed" from="ReadyButton" to="." method="ready_player"]
+[connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]

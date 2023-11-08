@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="PlayerKeymap" load_steps=14 format=3 uid="uid://g02ll7a7urwl"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/player_keymap.gd" id="1_pf0gk"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ikcft"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="InputEventKey" id="InputEventKey_bg51j"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="InputEventKey" id="InputEventKey_2hgt5"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_lc0ss"]
+device = -1
+keycode = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_lei27"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_7juwk"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_qfke7"]
+device = -1
+keycode = 72
+unicode = 104
+
+[sub_resource type="InputEventKey" id="InputEventKey_tbuvp"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_tm5f1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventKey" id="InputEventKey_krad3"]
+device = -1
+keycode = 84
+unicode = 116
+
+[sub_resource type="InputEventKey" id="InputEventKey_bnnig"]
+device = -1
+keycode = 4194325
+
+[sub_resource type="InputEventKey" id="InputEventKey_tajfr"]
+device = -1
+keycode = 4194306
+
+[resource]
+script = ExtResource("1_pf0gk")
+title = "WORKMAN"
+move_forward = SubResource("InputEventKey_lei27")
+move_backward = SubResource("InputEventKey_lc0ss")
+move_left = SubResource("InputEventKey_7juwk")
+move_right = SubResource("InputEventKey_qfke7")
+jump = SubResource("InputEventKey_2hgt5")
+sprint = SubResource("InputEventKey_bnnig")
+interact = SubResource("InputEventKey_bg51j")
+open_text_chat = SubResource("InputEventKey_tbuvp")
+ready = SubResource("InputEventKey_krad3")
+pause = SubResource("InputEventKey_tm5f1")
+equip_card_in_gauntlet = SubResource("InputEventKey_ikcft")
+view_map = SubResource("InputEventKey_tajfr")

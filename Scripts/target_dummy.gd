@@ -1,0 +1,14 @@
+extends EnemyController
+class_name Dummy
+
+func _on_health_health_depleted() -> void:
+	$Dog/Health.max_health = stats.health
+	$Dog/Health.current_health = stats.health
+	$Dog/SubViewport/ProgressBar.max_value = stats.health
+	$Dog/SubViewport/ProgressBar.value = stats.health
+
+
+func _physics_process(delta: float) -> void:
+	progress += movement_speed * delta
+	if progress_ratio >= 1:
+		progress_ratio = 0

@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0m8vbjbng6o"]
+
+[ext_resource type="Script" path="res://Scripts/won_game_screen.gd" id="1_oa7nq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oa7nq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.486275)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 260.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "You WIN :3"
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_top = 300.0
+offset_right = -173.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "play again :3"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 348.0
+offset_top = 300.0
+offset_right = -173.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "quit to main menu :<"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

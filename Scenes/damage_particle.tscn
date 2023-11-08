@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqtew0t8sttpm"]
+
+[ext_resource type="Script" path="res://Scripts/damage_particle.gd" id="1_lgvaq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ppqlh"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Sprite3D"]
+pixel_size = 0.0006
+billboard = 1
+fixed_size = true
+render_priority = 1
+texture = SubResource("ViewportTexture_ppqlh")
+script = ExtResource("1_lgvaq")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(172, 57)
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1

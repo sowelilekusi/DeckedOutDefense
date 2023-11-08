@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://dnucn65m12dmq"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/WeaponStats.gd" id="1_s171y"]
+
+[resource]
+script = ExtResource("1_s171y")
+damage = 0
+fire_rate = 2.0
+fire_range = 20.0

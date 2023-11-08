@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://dh5fjnbp8auw1"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_dg0td"]
+[ext_resource type="Texture2D" uid="uid://clr6kfyci5jqb" path="res://Assets/TextureAtlases/g_rocket_launcher.tres" id="2_duef5"]
+[ext_resource type="Resource" uid="uid://duofn25nuu84q" path="res://Resources/TurretStats/rocketlauncher.tres" id="3_tj17y"]
+[ext_resource type="Resource" uid="uid://dtfgyt85mp1ar" path="res://Resources/WeaponStats/rocketlauncher.tres" id="4_hwkrq"]
+[ext_resource type="PackedScene" uid="uid://cbmoi73hquaer" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_rocket_launcher.tscn" id="4_ioexd"]
+[ext_resource type="PackedScene" uid="uid://br3bd1jmi235x" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_rocket_launcher.tscn" id="4_mvvp4"]
+
+[resource]
+script = ExtResource("1_dg0td")
+title = "Rocket Launcher"
+rarity = 2
+faction = 0
+sprite = ExtResource("2_duef5")
+turret = ExtResource("4_mvvp4")
+weapon = ExtResource("4_ioexd")
+weapon_stats = ExtResource("4_hwkrq")
+tower_stats = ExtResource("3_tj17y")

@@ -1,0 +1,425 @@
+[gd_scene load_steps=29 format=3 uid="uid://dxgxbtf68lcv5"]
+
+[ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
+[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
+[ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
+[ext_resource type="Texture2D" uid="uid://dkbkam81k355s" path="res://Assets/TextureAtlases/gauntlet.tres" id="3_5myy0"]
+[ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/pause_menu.tscn" id="3_avnsx"]
+[ext_resource type="PackedScene" uid="uid://d1xe6hsq05110" path="res://PCs/Universal/ClassCards/Assault/weapon_assault.tscn" id="4_b0lpv"]
+[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
+[ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="6_cf5ap"]
+[ext_resource type="Texture2D" uid="uid://hxev3a2ktya" path="res://Assets/TextureAtlases/red.tres" id="6_loffy"]
+[ext_resource type="Texture2D" uid="uid://d0btebva6djdl" path="res://Assets/Textures/crosshair.png" id="8_fq3f6"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="8_yl6ka"]
+[ext_resource type="Script" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
+[ext_resource type="Script" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
+[ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
+[ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="15_cqpib"]
+[ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
+[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
+[ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
+[ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
+
+[sub_resource type="Environment" id="Environment_ekmug"]
+
+[sub_resource type="Animation" id="Animation_2q50p"]
+resource_name = "weapon_sway"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.615, -0.275, -1, 0.2, 1, 0.59, -0.255, -1, 0.4, 1, 0.615, -0.275, -1, 0.6, 1, 0.66, -0.255, -1, 0.8, 1, 0.615, -0.275, -1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wknc"]
+_data = {
+"weapon_sway": SubResource("Animation_2q50p")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8f12g"]
+viewport_path = NodePath("SubViewport/Head2/LeftHand/SubViewport")
+
+[sub_resource type="Environment" id="Environment_cilxe"]
+background_mode = 1
+background_color = Color(0.282353, 0.615686, 0.278431, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mk87g"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_574jy"]
+viewport_path = NodePath("MiniMapViewport")
+
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "interaction_raycast", "inventory", "card", "hud", "movement")]
+collision_layer = 2
+collision_mask = 37
+script = ExtResource("1_pihpe")
+hero_class = ExtResource("2_dbyo0")
+camera = NodePath("Head")
+left_hand = NodePath("SubViewport/Head2/LeftHand")
+right_hand = NodePath("SubViewport/Head2/RightHand")
+right_hand_animator = NodePath("SubViewport/Head2/RightHand/AnimationPlayer")
+edit_tool = NodePath("Head/EditTool")
+gauntlet_sprite = NodePath("SubViewport/Head2/RightHand/Gauntlet")
+sprite = NodePath("EightDirectionSprite")
+interaction_raycast = NodePath("Head/RayCast3D")
+inventory = NodePath("Inventory")
+card = NodePath("SubViewport/Head2/LeftHand/SubViewport/Node2D")
+pause_menu_scene = ExtResource("3_avnsx")
+weapon_scene = ExtResource("4_b0lpv")
+hud = NodePath("HUD")
+movement = NodePath("PlayerMovement")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_jbu13")
+
+[node name="Head" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+keep_aspect = 0
+cull_mask = 1048569
+fov = 100.0
+
+[node name="EditTool" parent="Head" node_paths=PackedStringArray("hero", "inventory") instance=ExtResource("5_jlxb3")]
+hero = NodePath("../..")
+inventory = NodePath("../../Inventory")
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 24
+
+[node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
+texture = ExtResource("6_loffy")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("6_cf5ap")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Head2" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("clone_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cull_mask = 2
+environment = SubResource("Environment_ekmug")
+projection = 1
+script = ExtResource("11_4sdwe")
+clone_camera = NodePath("../../Head")
+
+[node name="RightHand" type="Node3D" parent="SubViewport/Head2"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.66, -0.255, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Head2/RightHand"]
+libraries = {
+"": SubResource("AnimationLibrary_2wknc")
+}
+
+[node name="Gauntlet" type="Sprite3D" parent="SubViewport/Head2/RightHand"]
+layers = 2
+texture_filter = 0
+texture = ExtResource("3_5myy0")
+
+[node name="LeftHand" type="Node3D" parent="SubViewport/Head2"]
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -1)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewport/Head2/LeftHand"]
+transparent_bg = true
+size = Vector2i(192, 192)
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewport/Head2/LeftHand"]
+layers = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_8f12g")
+
+[node name="MiniMapViewport" type="SubViewport" parent="."]
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="MiniMapViewport" node_paths=PackedStringArray("anchor")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.28551, 0)
+cull_mask = 4
+environment = SubResource("Environment_cilxe")
+projection = 1
+size = 15.0
+script = ExtResource("12_3hpi3")
+anchor = NodePath("../..")
+face_north = true
+
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "enemy_sprites", "enemy_counts")]
+script = ExtResource("8_yl6ka")
+wave_count = NodePath("WaveCount")
+lives_count = NodePath("LivesCount")
+enemy_count = NodePath("EnemyCount")
+currency_count = NodePath("Currency")
+crosshair = NodePath("Crosshair")
+minimap = NodePath("TextureRect2")
+minimap_cam = NodePath("../MiniMapViewport/Camera3D")
+minimap_viewport = NodePath("../MiniMapViewport")
+fps_label = NodePath("Label")
+enemy_sprites = [NodePath("TextureRect4/TextureRect"), NodePath("TextureRect4/TextureRect2"), NodePath("TextureRect4/TextureRect3"), NodePath("TextureRect4/TextureRect4"), NodePath("TextureRect4/TextureRect5")]
+enemy_counts = [NodePath("TextureRect4/TextureRect/Label"), NodePath("TextureRect4/TextureRect2/Label2"), NodePath("TextureRect4/TextureRect3/Label3"), NodePath("TextureRect4/TextureRect4/Label4"), NodePath("TextureRect4/TextureRect5/Label5")]
+
+[node name="TextureRect4" type="TextureRect" parent="HUD"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.0
+offset_top = 22.0
+offset_right = 154.0
+offset_bottom = 116.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("14_l34nu")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TextureRect4"]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("15_q3yot")
+
+[node name="Label" type="Label" parent="HUD/TextureRect4/TextureRect"]
+layout_mode = 0
+offset_left = 28.01
+offset_top = 41.81
+offset_right = 68.01
+offset_bottom = 66.8101
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/TextureRect4"]
+visible = false
+layout_mode = 0
+offset_left = 61.0
+offset_right = 125.0
+offset_bottom = 64.0
+texture = ExtResource("15_q3yot")
+
+[node name="Label2" type="Label" parent="HUD/TextureRect4/TextureRect2"]
+layout_mode = 0
+offset_left = 28.745
+offset_top = 41.81
+offset_right = 68.7451
+offset_bottom = 66.8101
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HUD/TextureRect4"]
+visible = false
+layout_mode = 0
+offset_left = 122.0
+offset_right = 186.0
+offset_bottom = 64.0
+texture = ExtResource("15_q3yot")
+
+[node name="Label3" type="Label" parent="HUD/TextureRect4/TextureRect3"]
+layout_mode = 0
+offset_left = 29.29
+offset_top = 41.81
+offset_right = 69.2901
+offset_bottom = 66.8101
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="HUD/TextureRect4"]
+visible = false
+layout_mode = 0
+offset_left = 183.0
+offset_right = 247.0
+offset_bottom = 64.0
+texture = ExtResource("15_q3yot")
+
+[node name="Label4" type="Label" parent="HUD/TextureRect4/TextureRect4"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 41.81
+offset_right = 69.0
+offset_bottom = 66.8101
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="HUD/TextureRect4"]
+visible = false
+layout_mode = 0
+offset_left = 244.0
+offset_right = 308.0
+offset_bottom = 64.0
+texture = ExtResource("15_q3yot")
+
+[node name="Label5" type="Label" parent="HUD/TextureRect4/TextureRect5"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 41.81
+offset_right = 69.0
+offset_bottom = 66.8101
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveCount" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 83.0
+offset_right = 30.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyCount" type="Label" parent="HUD"]
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 123.0
+offset_bottom = 106.0
+text = "Enemies left: 0"
+
+[node name="Crosshair" type="TextureRect" parent="HUD"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_fq3f6")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_mk87g")
+
+[node name="TextureRect2" type="TextureRect" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = 256.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_574jy")
+
+[node name="Label" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "FPS: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LivesBar" parent="HUD" instance=ExtResource("15_cqpib")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 214.0
+offset_bottom = 32.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(3, 3)
+mouse_filter = 2
+
+[node name="LivesCount" type="Label" parent="HUD"]
+offset_left = -5.0
+offset_top = 15.0
+offset_right = 100.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.65098, 0.227451, 0.243137, 1)
+theme_override_font_sizes/font_size = 37
+text = "120
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HUD"]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -262.0
+offset_top = 37.0
+offset_right = -37.0
+offset_bottom = 336.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("16_x1xjr")
+
+[node name="Currency" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_top = 298.0
+offset_right = -57.0
+offset_bottom = 352.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
+theme_override_font_sizes/font_size = 37
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("15_nhlam")
+
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "head")]
+script = ExtResource("20_cfhw8")
+player = NodePath("..")
+head = NodePath("../Head")

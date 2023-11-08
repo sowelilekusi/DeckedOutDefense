@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgcslt0rsg6e3"]
+
+[ext_resource type="Script" path="res://Scripts/target_dummy.gd" id="1_f72ee"]
+[ext_resource type="Resource" uid="uid://bdkcwve6d35gl" path="res://Worlds/TestingRange/Enemies/dummy.tres" id="2_7pldl"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="3_8hqew"]
+[ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_0ruff"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_yinjs"]
+[ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_t0dpu"]
+[ext_resource type="Texture2D" uid="uid://brjk5pu0up85s" path="res://Assets/TextureAtlases/dummy.tres" id="6_agkvc"]
+[ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_m8sgd"]
+[ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="8_melp1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
+radius = 0.7173
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ieafj"]
+viewport_path = NodePath("Dog/SubViewport")
+
+[node name="PathFollow3D" type="PathFollow3D" node_paths=PackedStringArray("status_manager") groups=["Enemies"]]
+loop = false
+script = ExtResource("1_f72ee")
+stats = ExtResource("2_7pldl")
+status_manager = NodePath("Dog/StatusEffector")
+
+[node name="Dog" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204674, 0)
+collision_layer = 4
+collision_mask = 3
+
+[node name="Health" type="Node" parent="Dog"]
+script = ExtResource("3_8hqew")
+damage_particle_scene = ExtResource("4_0ruff")
+
+[node name="Hitbox" type="CollisionShape3D" parent="Dog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527022, 0)
+shape = SubResource("SphereShape3D_21dgw")
+script = ExtResource("4_yinjs")
+
+[node name="DirectionSprite" parent="Dog" instance=ExtResource("5_t0dpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642479, 0)
+pixel_size = 0.04
+texture = ExtResource("6_agkvc")
+
+[node name="Sprite3D" type="Sprite3D" parent="Dog"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.47182, 0)
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_ieafj")
+
+[node name="StatusEffector" type="Node3D" parent="Dog" node_paths=PackedStringArray("hbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18114, 0)
+script = ExtResource("8_melp1")
+hbox = NodePath("../SubViewport/HBoxContainer")
+
+[node name="SubViewport" type="SubViewport" parent="Dog"]
+transparent_bg = true
+size = Vector2i(200, 55)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dog/SubViewport"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Dog/SubViewport"]
+visible = false
+offset_top = 36.0
+offset_right = 200.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+value = 100.0
+fill_mode = 6
+texture_progress = ExtResource("8_m8sgd")
+tint_progress = Color(0, 1, 0, 1)
+
+[connection signal="health_changed" from="Dog/Health" to="." method="_on_health_health_changed"]
+[connection signal="health_depleted" from="Dog/Health" to="." method="_on_health_health_depleted"]
+[connection signal="took_damage" from="Dog/Hitbox" to="Dog/Health" method="take_damage"]

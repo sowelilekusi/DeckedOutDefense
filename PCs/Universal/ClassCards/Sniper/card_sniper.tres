@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://cvf5bxtu6er17"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_5vmtk"]
+[ext_resource type="Texture2D" uid="uid://fmqq24n7rwvm" path="res://Assets/TextureAtlases/g_sniper.tres" id="2_skiu7"]
+[ext_resource type="Resource" uid="uid://85iany3x0uv2" path="res://Resources/WeaponStats/sniper.tres" id="3_acfmb"]
+[ext_resource type="PackedScene" uid="uid://v21rc7vtqp8l" path="res://Scenes/Weapons/scopedweapon.tscn" id="3_i0e3w"]
+[ext_resource type="Resource" uid="uid://ddw7pj1ckwmp8" path="res://Resources/TurretStats/sniper.tres" id="3_tfyul"]
+[ext_resource type="PackedScene" uid="uid://ryhc48vl36fc" path="res://Scenes/Towers/snipertower.tscn" id="4_kbb6b"]
+
+[resource]
+script = ExtResource("1_5vmtk")
+title = "Sniper"
+rarity = 4
+faction = 0
+sprite = ExtResource("2_skiu7")
+turret = ExtResource("4_kbb6b")
+weapon = ExtResource("3_i0e3w")
+weapon_stats = ExtResource("3_acfmb")
+tower_stats = ExtResource("3_tfyul")

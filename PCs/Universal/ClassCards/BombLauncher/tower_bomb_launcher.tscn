@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwc8y1nv53btu"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/bombtower.gd" id="1_u2hyk"]
+[ext_resource type="PackedScene" uid="uid://d147iwg2wcqc5" path="res://PCs/Universal/ClassCards/BombLauncher/bomb.tscn" id="2_n307r"]
+[ext_resource type="Resource" uid="uid://crmsk6lvp5i4e" path="res://Resources/TurretStats/bomblauncher.tres" id="3_xv5rx"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+script = ExtResource("1_u2hyk")
+bomb_scene = ExtResource("2_n307r")
+stats = ExtResource("3_xv5rx")
+model = NodePath("Model")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13842, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65)
+size = Vector3(0.596453, 0.632841, 0.539216)

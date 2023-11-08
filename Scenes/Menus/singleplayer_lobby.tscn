@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://176c6fuhg5ic"]
+
+[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_2aur6"]
+[ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="1_423py"]
+[ext_resource type="Script" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
+[ext_resource type="PackedScene" uid="uid://3kcl30sump8c" path="res://Scenes/Menus/LoadoutEditor.tscn" id="2_wpyw5"]
+[ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="3_l8xy3"]
+
+[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("scoreboard", "loadout_editor", "chatbox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_2aur6")
+script = ExtResource("1_nd17k")
+scoreboard = NodePath("Scoreboard")
+loadout_editor = NodePath("Panel")
+chatbox = NodePath("Chatbox")
+
+[node name="Scoreboard" parent="." instance=ExtResource("1_423py")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -472.0
+offset_right = -50.0
+grow_horizontal = 0
+
+[node name="Panel" parent="." instance=ExtResource("2_wpyw5")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_right = 455.0
+
+[node name="ReadyButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = 311.0
+offset_right = -240.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Ready"
+
+[node name="Chatbox" parent="." instance=ExtResource("3_l8xy3")]
+visible = false
+layout_mode = 1
+offset_bottom = -507.0
+
+[connection signal="pressed" from="ReadyButton" to="Scoreboard" method="set_player_ready_state" binds= [1, true]]
+[connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]
