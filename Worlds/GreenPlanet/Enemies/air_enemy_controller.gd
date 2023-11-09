@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name AirEnemyController
 
-signal reached_goal(penalty)
-signal died
+signal reached_goal(enemy, penalty)
+signal died(enemy)
 
 var alive = true
 
@@ -32,12 +32,12 @@ func _physics_process(delta: float) -> void:
 	velocity = global_position.direction_to(destination.global_position) * movement_speed
 	move_and_slide()
 	if global_position.distance_to(destination.global_position) <= 1.0:
-		reached_goal.emit(stats.penalty)
+		reached_goal.emit(stats, stats.penalty)
 		queue_free()
 
 
 func die():
-	died.emit()
+	died.emit(stats)
 	queue_free()
 
 

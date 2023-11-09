@@ -12,6 +12,7 @@ var last_lives_count = 120
 @export var minimap_viewport : SubViewport
 @export var fps_label : Label
 var minimap_anchor : Node3D
+var enemy_names = []
 @export var enemy_sprites : Array[TextureRect]
 @export var enemy_counts : Array[Label]
 
@@ -35,12 +36,23 @@ func set_enemy_count(value):
 	enemy_count.text = "Enemies Remaining: " + str(value)
 
 
+func enemy_count_down(enemy):
+	var index = enemy_names.find(enemy.title)
+	var num = enemy_counts[index].text.to_int() - 1
+	enemy_counts[index].text = str(num)
+	if num == 0:
+		enemy_counts[index].set_visible(false)
+		enemy_sprites[index].set_visible(false)
+
+
 func set_upcoming_wave(value):
 	var frame_count = 0
+	enemy_names = []
 	for x in enemy_sprites.size():
 		enemy_sprites[x].set_visible(false)
 		enemy_counts[x].set_visible(false)
 	for enemy in value:
+		enemy_names.append(enemy.title)
 		enemy_sprites[frame_count].texture = enemy.icon
 		enemy_counts[frame_count].text = str(value[enemy])
 		enemy_sprites[frame_count].set_visible(true)

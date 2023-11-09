@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://clulh7v8c7h85"]
+[gd_scene load_steps=4 format=3 uid="uid://clulh7v8c7h85"]
 
 [ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_bievw"]
+[ext_resource type="PackedScene" uid="uid://clsdko6ttudu8" path="res://Scenes/UI/keybind_popup.tscn" id="2_bq25i"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 
-[node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "vsync_dropdown", "aa_dropdown", "window_dropdown", "invert_lookY", "invert_lookX", "fov_input", "fov_slider")]
+[node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "vsync_dropdown", "aa_dropdown", "window_dropdown", "invert_lookY", "invert_lookX", "fov_input", "fov_slider", "fixed_minimap")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +16,7 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bievw")
+keybind_popup = ExtResource("2_bq25i")
 look_sens_slider = NodePath("VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/HSlider")
 look_sens_input = NodePath("VBoxContainer/TabContainer/Gameplay/MouseSens/HBoxContainer/SpinBox")
 toggle_sprint_checkbox = NodePath("VBoxContainer/TabContainer/Gameplay/ToggleSprint/CenterContainer/CheckButton")
@@ -25,6 +27,7 @@ invert_lookY = NodePath("VBoxContainer/TabContainer/Gameplay/InvertMouseY/Center
 invert_lookX = NodePath("VBoxContainer/TabContainer/Gameplay/InvertMouseX/CenterContainer/CheckButton")
 fov_input = NodePath("VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/SpinBox")
 fov_slider = NodePath("VBoxContainer/TabContainer/Graphics/FOV/HBoxContainer/HSlider")
+fixed_minimap = NodePath("VBoxContainer/TabContainer/Gameplay/FixedMinimap/CenterContainer/CheckButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -118,6 +121,23 @@ size_flags_horizontal = 3
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Gameplay/InvertMouseX/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="FixedMinimap" type="HBoxContainer" parent="VBoxContainer/TabContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Gameplay/FixedMinimap"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fixed Minimap"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/TabContainer/Gameplay/FixedMinimap"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Gameplay/FixedMinimap/CenterContainer"]
+layout_mode = 2
 
 [node name="Graphics" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
 visible = false

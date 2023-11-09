@@ -34,7 +34,7 @@ func _ready() -> void:
 	
 	cards.append(preload("res://PCs/Universal/ClassCards/Assault/card_assault.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/BombLauncher/card_grenade_launcher.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/Gatling/card_gatling.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))

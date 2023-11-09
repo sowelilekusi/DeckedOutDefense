@@ -153,7 +153,6 @@ projection = 1
 size = 15.0
 script = ExtResource("12_3hpi3")
 anchor = NodePath("../..")
-face_north = true
 
 [node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "enemy_sprites", "enemy_counts")]
 script = ExtResource("8_yl6ka")
@@ -306,6 +305,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnemyCount" type="Label" parent="HUD"]
+visible = false
 offset_left = 10.0
 offset_top = 80.0
 offset_right = 123.0

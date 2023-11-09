@@ -11,6 +11,7 @@ const SAVE_PATH := "user://preferences.tres"
 @export var aa_mode := 0
 @export var windowed_mode := 0
 @export var hfov := 100.0
+@export var fixed_minimap := false
 
 
 func apply_graphical_settings(viewport):

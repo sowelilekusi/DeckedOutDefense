@@ -10,7 +10,7 @@ class_name EditTool
 
 var enabled := true
 var point_id := -1
-var obstacle_last_point : int
+var obstacle_last_point := -1
 var valid_point := false
 var is_looking_at_tower_base := false
 var ray_collider

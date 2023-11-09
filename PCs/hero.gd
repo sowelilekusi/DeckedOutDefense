@@ -40,6 +40,10 @@ var currency := 0 :
 @export var sprint_zoom_speed := 0.2
 
 
+func set_zoom_factor(value):
+	movement.zoom_factor = value
+
+
 func _ready() -> void:
 	if is_multiplayer_authority():
 		right_hand_animator.play("weapon_sway")
@@ -149,11 +153,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func unpause():
 	paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	movement.set_process(true)
+	movement.set_physics_process(true)
 
 
 func pause():
 	paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	movement.set_process(false)
+	movement.set_physics_process(false)
 
 
 func enter_editing_mode(value):

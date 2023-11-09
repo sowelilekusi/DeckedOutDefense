@@ -99,9 +99,11 @@ func increase_enemy_count():
 	enemy_number_changed.emit(enemies)
 
 
-func enemy_died():
+func enemy_died(enemy):
 	enemies -= 1
 	enemy_number_changed.emit(enemies)
+	for key in connected_players_nodes:
+		connected_players_nodes[key].hud.enemy_count_down(enemy)
 	for x in level.enemy_spawns:
 		if !x.done_spawning:
 			return
@@ -111,9 +113,11 @@ func enemy_died():
 			win_game()
 
 
-func damage_goal(penalty):
+func damage_goal(enemy, penalty):
 	enemies -= 1
 	enemy_number_changed.emit(enemies)
+	for key in connected_players_nodes:
+		connected_players_nodes[key].hud.enemy_count_down(enemy)
 	objective_health -= penalty
 	base_took_damage.emit(objective_health)
 	if objective_health <= 0:

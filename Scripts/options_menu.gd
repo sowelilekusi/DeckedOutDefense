@@ -1,6 +1,7 @@
 extends Control
 class_name OptionsMenu
 
+@export var keybind_popup : PackedScene
 @export var look_sens_slider : HSlider
 @export var look_sens_input : SpinBox
 @export var toggle_sprint_checkbox : CheckButton
@@ -11,6 +12,7 @@ class_name OptionsMenu
 @export var invert_lookX : CheckButton
 @export var fov_input : SpinBox
 @export var fov_slider : HSlider
+@export var fixed_minimap : CheckButton
 var keybind_boxes = []
 var keybind_buttons = {}
 var key_event
@@ -28,6 +30,7 @@ func _ready():
 	invert_lookX.button_pressed = Data.preferences.invert_lookX
 	fov_input.value = Data.preferences.hfov
 	fov_slider.value = Data.preferences.hfov
+	fixed_minimap.button_pressed = Data.preferences.fixed_minimap
 	
 	for index in Data.keymaps.size():
 		var map = Data.keymaps[index]
@@ -81,6 +84,7 @@ func _on_confirm_pressed() -> void:
 	Data.preferences.windowed_mode = window_dropdown.selected
 	Data.preferences.invert_lookY = invert_lookY.button_pressed
 	Data.preferences.invert_lookX = invert_lookX.button_pressed
+	Data.preferences.fixed_minimap = fixed_minimap.button_pressed
 	Data.preferences.apply_graphical_settings(get_viewport())
 	Data.preferences.save_profile_to_disk()
 	Data.player_keymap.save_profile_to_disk()
@@ -112,12 +116,11 @@ func _on_fov_h_slider_value_changed(value: float) -> void:
 func _on_keybind_button_pressed(value: Button) -> void:
 	selected_button = keybind_buttons[value]
 	selected_button_button = value
-	listening_for_key = true
+	var popup = keybind_popup.instantiate()
+	popup.event_detected.connect(change_key)
+	add_child(popup)
 
 
-func _input(event: InputEvent) -> void:
-	if listening_for_key and (event is InputEventKey or event is InputEventMouseButton or event is InputEventJoypadButton):
-		key_event = event
-		listening_for_key = false
-		Data.player_keymap.replace_action_event(selected_button, key_event)
-		selected_button_button.text = key_event.as_text()
+func change_key(event: InputEvent):
+	Data.player_keymap.replace_action_event(selected_button, event)
+	selected_button_button.text = event.as_text()

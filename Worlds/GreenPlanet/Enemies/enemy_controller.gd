@@ -1,8 +1,8 @@
 extends PathFollow3D
 class_name EnemyController
 
-signal reached_goal(penalty)
-signal died
+signal reached_goal(enemy, penalty)
+signal died(enemy)
 
 var alive = true
 
@@ -26,12 +26,12 @@ func damage(amount):
 func _physics_process(delta: float) -> void:
 	progress += movement_speed * delta
 	if progress_ratio >= 1:
-		reached_goal.emit(stats.penalty)
+		reached_goal.emit(stats, stats.penalty)
 		queue_free()
 
 
 func die():
-	died.emit()
+	died.emit(stats)
 	queue_free()
 
 
