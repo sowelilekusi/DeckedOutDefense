@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvqk2lysu02gf"]
+[gd_scene load_steps=10 format=3 uid="uid://dvqk2lysu02gf"]
 
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.gd" id="1_6dcsj"]
 [ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="2_yo2b7"]
@@ -30,12 +30,20 @@ size = Vector3(0.3, 0.3, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vck5q"]
 size = Vector3(2.145, 3.125, 2.415)
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("shapecast", "particlesystem", "model")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imgrm"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.686275, 0, 0, 0.278431)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("shapecast", "particlesystem", "model", "range_sphere", "minimap_range_sphere")]
 script = ExtResource("1_6dcsj")
 shapecast = NodePath("Model/Node3D/ShapeCast3D")
 particlesystem = NodePath("Model/Node3D/GPUParticles3D")
 status_stats = ExtResource("2_yo2b7")
 model = NodePath("Model")
+range_sphere = NodePath("Model/CSGSphere3D")
+minimap_range_sphere = NodePath("Model/CSGSphere3D2")
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -61,3 +69,14 @@ draw_pass_1 = SubResource("BoxMesh_q83y7")
 shape = SubResource("BoxShape3D_vck5q")
 target_position = Vector3(0, 1.51, 0)
 collision_mask = 4
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
+visible = false
+radius = 7.5
+material = SubResource("StandardMaterial3D_imgrm")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
+visible = false
+layers = 4
+radius = 7.5
+material = SubResource("StandardMaterial3D_imgrm")

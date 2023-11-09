@@ -81,6 +81,11 @@ func _process(delta: float) -> void:
 			movement.zoom_factor = 1.0
 	
 	if editing_mode:
+		if interaction_raycast.is_colliding() and interaction_raycast.get_collider() is InteractButton:
+			hud.set_hover_text(interaction_raycast.get_collider().hover_text)
+		else:
+			hud.unset_hover_text()
+		
 		if edit_tool.is_looking_at_tower_base:
 			card.view_tower()
 		else:
@@ -176,11 +181,14 @@ func enter_editing_mode(value):
 func exit_editing_mode(value):
 	hud.set_wave_count(value)
 	edit_tool.enabled = false
+	edit_tool.delete_tower_preview()
 	left_hand.set_visible(false)
 	editing_mode = false
 
 
 func check_left_hand_valid():
+	if !editing_mode:
+		return
 	if inventory.contents.size() == 0:
 		left_hand.set_visible(false)
 		#gauntlet.texture.region = Rect2(64, 0, 64, 64)

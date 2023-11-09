@@ -17,6 +17,7 @@ func _input(event: InputEvent) -> void:
 		return
 	if text_selected and event is InputEventKey and event.pressed == true:
 		if event.keycode == KEY_ENTER:
+			get_viewport().set_input_as_handled()
 			closed.emit()
 			$VBoxContainer/LineEdit.deselect()
 			$VBoxContainer/LineEdit.visible = false
@@ -28,6 +29,7 @@ func _input(event: InputEvent) -> void:
 					rpc("append_message", username, $VBoxContainer/LineEdit.text)
 			$VBoxContainer/LineEdit.clear()
 		if event.keycode == KEY_ESCAPE:
+			get_viewport().set_input_as_handled()
 			closed.emit()
 			$VBoxContainer/LineEdit.deselect()
 			$VBoxContainer/LineEdit.visible = false

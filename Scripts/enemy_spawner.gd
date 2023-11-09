@@ -40,6 +40,10 @@ func _process(delta: float) -> void:
 				signal_for_when_enemy_spawns.emit()
 			if type == Data.EnemyType.AIR:
 				var enemy = air_enemy_scene.instantiate() as AirEnemyController
+				var radius = 10.0
+				var random_dir = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
+				var random_pos = randf_range(0, radius) * random_dir.normalized()
+				enemy.position = random_pos
 				enemy.stats = enemy_stats
 				enemy.destination = dest
 				enemy.died.connect(signal_for_after_enemy_died)

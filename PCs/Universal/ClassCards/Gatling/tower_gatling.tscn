@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwcdgglljbmot"]
+[gd_scene load_steps=4 format=3 uid="uid://bwcdgglljbmot"]
 
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Gatling/speedytower.gd" id="1_26he3"]
 [ext_resource type="Resource" uid="uid://cc20tomywj0jm" path="res://Resources/TurretStats/accelerator.tres" id="2_puwlv"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73y0x"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.686275, 0, 0, 0.278431)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
 script = ExtResource("1_26he3")
 stats = ExtResource("2_puwlv")
 model = NodePath("Model")
+range_sphere = NodePath("Model/CSGSphere3D")
+minimap_range_sphere = NodePath("Model/CSGSphere3D2")
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -36,3 +44,14 @@ size = Vector3(0.177, 0.148, 0.929)
 [node name="CSGBox3D7" type="CSGBox3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26701, 0.102116, -0.880753)
 size = Vector3(0.177, 0.148, 0.929)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
+visible = false
+radius = 7.5
+material = SubResource("StandardMaterial3D_73y0x")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
+visible = false
+layers = 4
+radius = 7.5
+material = SubResource("StandardMaterial3D_73y0x")

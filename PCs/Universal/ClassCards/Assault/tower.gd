@@ -3,6 +3,8 @@ class_name Tower
 
 @export var stats : TowerStats
 @export var model : Node3D
+@export var range_sphere : CSGSphere3D
+@export var minimap_range_sphere : CSGSphere3D
 
 var targeted_enemy
 var cooldown := 0.0
@@ -10,6 +12,13 @@ var other_cooldown := 0.0
 
 func _ready() -> void:
 	cooldown = 1.0 / stats.fire_rate
+	range_sphere.radius = stats.fire_range
+	minimap_range_sphere.radius = stats.fire_range
+	minimap_range_sphere.set_visible(true)
+
+
+func preview_range(value):
+	range_sphere.set_visible(value)
 
 
 func _process(delta: float) -> void:

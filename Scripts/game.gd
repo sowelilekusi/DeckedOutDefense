@@ -200,10 +200,10 @@ func quit_to_desktop():
 
 
 func scene_switch_main_menu():
-	multiplayer.multiplayer_peer.close()
-	multiplayer.multiplayer_peer = null
 	for node in get_children():
 		node.queue_free()
+	multiplayer.multiplayer_peer.close()
+	multiplayer.multiplayer_peer = null
 	get_tree().change_scene_to_file(main_menu_scene_path)
 
 

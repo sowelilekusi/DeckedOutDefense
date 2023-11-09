@@ -154,7 +154,7 @@ size = 15.0
 script = ExtResource("12_3hpi3")
 anchor = NodePath("../..")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "enemy_sprites", "enemy_counts")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts")]
 script = ExtResource("8_yl6ka")
 wave_count = NodePath("WaveCount")
 lives_count = NodePath("LivesCount")
@@ -165,6 +165,7 @@ minimap = NodePath("TextureRect2")
 minimap_cam = NodePath("../MiniMapViewport/Camera3D")
 minimap_viewport = NodePath("../MiniMapViewport")
 fps_label = NodePath("Label")
+hover_text = NodePath("Label2")
 enemy_sprites = [NodePath("TextureRect4/TextureRect"), NodePath("TextureRect4/TextureRect2"), NodePath("TextureRect4/TextureRect3"), NodePath("TextureRect4/TextureRect4"), NodePath("TextureRect4/TextureRect5")]
 enemy_counts = [NodePath("TextureRect4/TextureRect/Label"), NodePath("TextureRect4/TextureRect2/Label2"), NodePath("TextureRect4/TextureRect3/Label3"), NodePath("TextureRect4/TextureRect4/Label4"), NodePath("TextureRect4/TextureRect5/Label5")]
 
@@ -410,6 +411,27 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
 theme_override_font_sizes/font_size = 37
 text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.5
+offset_top = 167.0
+offset_right = 93.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "Press button to do thing"
 horizontal_alignment = 1
 vertical_alignment = 1
 

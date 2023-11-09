@@ -11,6 +11,7 @@ var last_lives_count = 120
 @export var minimap_cam : MinimapCamera3D
 @export var minimap_viewport : SubViewport
 @export var fps_label : Label
+@export var hover_text : Label
 var minimap_anchor : Node3D
 var enemy_names = []
 @export var enemy_sprites : Array[TextureRect]
@@ -19,6 +20,15 @@ var enemy_names = []
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+
+
+func set_hover_text(text):
+	hover_text.text = text
+	hover_text.set_visible(true)
+
+
+func unset_hover_text():
+	hover_text.set_visible(false)
 
 
 func set_wave_count(value):

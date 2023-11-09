@@ -6,4 +6,4 @@
 script = ExtResource("1_sg2a6")
 damage = 8
 fire_rate = 0.5
-fire_range = 40.0
+fire_range = 80.0

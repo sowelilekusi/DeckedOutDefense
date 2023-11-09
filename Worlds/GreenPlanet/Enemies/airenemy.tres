@@ -14,4 +14,4 @@ spawn_power = 4
 health = 40
 penalty = 4
 movement_speed = 1.5
-spawn_cooldown = 1.0
+spawn_cooldown = 0.5

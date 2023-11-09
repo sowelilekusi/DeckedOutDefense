@@ -7,6 +7,10 @@ var connected_players_profiles = {}
 
 
 func _ready() -> void:
+	var enet_peer = ENetMultiplayerPeer.new()
+	enet_peer.create_server(58008, 1)
+	multiplayer.multiplayer_peer = enet_peer
+	enet_peer.refuse_new_connections = true
 	setup_game()
 
 

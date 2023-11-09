@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://fernyl7fsifv"]
+[gd_scene load_steps=4 format=3 uid="uid://fernyl7fsifv"]
 
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Assault/tower.gd" id="1_c2874"]
 [ext_resource type="Resource" uid="uid://cktq4o3yuxgsa" path="res://Resources/TurretStats/assault.tres" id="2_t516u"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llb88"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.686275, 0, 0, 0.278431)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
 script = ExtResource("1_c2874")
 stats = ExtResource("2_t516u")
 model = NodePath("Model")
+range_sphere = NodePath("Model/CSGSphere3D")
+minimap_range_sphere = NodePath("Model/CSGSphere3D2")
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -20,3 +28,14 @@ size = Vector3(0.481654, 0.427749, 1.38438)
 [node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.715, 0, -0.424)
 size = Vector3(0.481654, 0.427749, 1.38438)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
+visible = false
+radius = 7.5
+material = SubResource("StandardMaterial3D_llb88")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
+visible = false
+layers = 4
+radius = 7.5
+material = SubResource("StandardMaterial3D_llb88")

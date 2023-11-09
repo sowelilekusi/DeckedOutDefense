@@ -88,6 +88,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
 press_cost = 10
+hover_text = "Spend 10 Coins to print card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_ikdwj")
@@ -100,10 +101,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.756734, 1.15772, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
+hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
+disabled = true
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0672475, 1.15772, 0.610684)
@@ -111,10 +114,12 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
 button_press_value = 1
+hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
+disabled = true
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.883877, 1.15772, 0.610684)
@@ -122,10 +127,12 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
 button_press_value = 2
+hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
+disabled = true
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]
 [connection signal="button_interacted" from="StaticBody3D2" to="." method="retrieve_card"]

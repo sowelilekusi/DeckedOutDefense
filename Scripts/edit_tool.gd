@@ -13,6 +13,9 @@ var point_id := -1
 var obstacle_last_point := -1
 var valid_point := false
 var is_looking_at_tower_base := false
+var tower_preview
+var last_tower_base
+var last_card
 var ray_collider
 var ray_point
 
@@ -54,6 +57,11 @@ func _process(delta: float) -> void:
 			ray_point = ray.get_collision_point()
 		
 		is_looking_at_tower_base = ray_collider is TowerBase
+		if is_looking_at_tower_base and inventory.contents.size() > 0 and !ray_collider.has_card:
+			if ray_collider != last_tower_base or inventory.selected_item != last_card:
+				spawn_tower_preview()
+		elif tower_preview:
+			delete_tower_preview()
 		if Game.level:
 			point_id = Game.level.a_star_graph_3d.astar.get_closest_point(ray_point)
 			if !Game.level.a_star_graph_3d.point_is_build_location(point_id) or hero.currency < Data.wall_cost:
@@ -76,7 +84,27 @@ func _process(delta: float) -> void:
 		ray_collider = null
 		ray_point = null
 		is_looking_at_tower_base = false
+		delete_tower_preview()
 		wall_preview.set_visible(false)
+
+
+func spawn_tower_preview():
+	delete_tower_preview()
+	last_tower_base = ray_collider
+	var card = inventory.selected_item
+	last_card = card
+	tower_preview = card.turret.instantiate() as Tower
+	tower_preview.stats = card.tower_stats
+	tower_preview.preview_range(true)
+	ray_collider.add_child(tower_preview)
+
+
+func delete_tower_preview():
+	last_tower_base = null
+	last_card = null
+	if tower_preview:
+		tower_preview.queue_free()
+		tower_preview = null
 
 
 func interact():
