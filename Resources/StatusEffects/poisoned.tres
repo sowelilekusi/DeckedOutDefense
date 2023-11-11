@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://cbskijhnnj3kw"]
+
+[ext_resource type="Texture2D" uid="uid://cqah4a2pp40jt" path="res://Assets/Textures/poison.png" id="1_730i6"]
+[ext_resource type="Script" path="res://Scripts/Resources/status_stats.gd" id="1_e1nii"]
+
+[resource]
+script = ExtResource("1_e1nii")
+name = "Poisoned"
+max_stacks = 0
+proc_cd = 0.5
+duration = 5.0
+potency = 1.0
+icon = ExtResource("1_730i6")

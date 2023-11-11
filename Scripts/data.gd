@@ -14,10 +14,10 @@ enum TargetType {LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {LAND = 1, AIR = 2}
 enum Rarity {COMMON, UNCOMMON, RARE, EPIC, LEGENDARY}
 var rarity_weights = {
-	"COMMON" = 100,
-	"UNCOMMON" = 60,
-	"RARE" = 20,
-	"EPIC" = 8,
+	"COMMON" = 50,
+	"UNCOMMON" = 30,
+	"RARE" = 10,
+	"EPIC" = 4,
 	"LEGENDARY" = 1
 }
 
@@ -38,6 +38,12 @@ func _ready() -> void:
 	cards.append(preload("res://PCs/Universal/ClassCards/Gatling/card_gatling.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Fireball/card_fireball.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Icicle/card_icicle.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Reactor/card_reactor.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Refridgerator/card_refridgerator.tres"))
 	
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/dog.tres"))
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/dog_fast.tres"))

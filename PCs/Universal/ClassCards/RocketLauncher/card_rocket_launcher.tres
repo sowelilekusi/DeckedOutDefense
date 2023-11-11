@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("1_dg0td")
 title = "Rocket Launcher"
-rarity = 2
+rarity = 0
 faction = 0
 sprite = ExtResource("2_duef5")
 turret = ExtResource("4_mvvp4")

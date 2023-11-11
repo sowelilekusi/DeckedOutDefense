@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("1_57gd1")
-unique = true
-proc_frequency = 0.0
+name = "Sticky"
+max_stacks = 1
+proc_cd = 0.0
 duration = 5.0
 potency = 0.3
 icon = ExtResource("1_b1meh")

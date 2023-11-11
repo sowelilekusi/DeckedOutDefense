@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://y1qa1g3ic8sp"]
+[gd_scene load_steps=21 format=3 uid="uid://y1qa1g3ic8sp"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ws6nn"]
 [ext_resource type="PackedScene" uid="uid://d2yv447trxkwt" path="res://Scenes/enemy_spawner.tscn" id="3_5imwp"]
@@ -9,10 +9,10 @@
 [ext_resource type="Resource" uid="uid://dsgkwh3opyqtx" path="res://Worlds/GreenPlanet/Enemies/airenemy.tres" id="7_07st7"]
 [ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Worlds/GreenPlanet/Enemies/airenemy2.tres" id="8_sf1ao"]
 [ext_resource type="PackedScene" uid="uid://1b2ikdanl66b" path="res://Scenes/card_constructor.tscn" id="9_r25gu"]
+[ext_resource type="Script" path="res://Scripts/enemy_goal.gd" id="9_s3rd7"]
 [ext_resource type="PackedScene" uid="uid://iohlxrso4bl8" path="res://Worlds/GreenPlanet/Decorations/tree.tscn" id="10_7v1co"]
 [ext_resource type="Script" path="res://Scripts/AStarGraph3D.gd" id="11_07ukk"]
 [ext_resource type="Script" path="res://Scripts/visualized_path.gd" id="11_d7ofl"]
-[ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="12_tqi5x"]
 [ext_resource type="MeshLibrary" uid="uid://jfr8j8kycfa5" path="res://Worlds/GreenPlanet/tilemap.tres" id="12_ywwug"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_h1csw"]
@@ -24,6 +24,8 @@ sky_material = SubResource("PhysicalSkyMaterial_h1csw")
 [sub_resource type="Environment" id="Environment_l41d0"]
 background_mode = 2
 sky = SubResource("Sky_t42h5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awjk1"]
 
 [sub_resource type="Curve3D" id="Curve3D_suxqu"]
 
@@ -56,9 +58,17 @@ environment = SubResource("Environment_l41d0")
 
 [node name="EnemyGoal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0.5, 0)
+script = ExtResource("9_s3rd7")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnemyGoal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Area3D" type="Area3D" parent="EnemyGoal"]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyGoal/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_awjk1")
 
 [node name="VisualizedPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_suxqu")
@@ -69,13 +79,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
 path = NodePath("../VisualizedPath")
 type = 1
 dest = NodePath("../EnemyGoal")
-air_enemy_scene = ExtResource("12_tqi5x")
 
 [node name="AirSpawn" parent="." node_paths=PackedStringArray("dest") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.0801, 22.5492, 0)
 type = 2
 dest = NodePath("../EnemyGoal")
-air_enemy_scene = ExtResource("12_tqi5x")
 
 [node name="CardPrinter" parent="." instance=ExtResource("9_r25gu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.1496, 0.499996, 5.79039)
@@ -564,3 +572,5 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/StaticBody3D4"]
 shape = SubResource("BoxShape3D_kkwvm")
+
+[connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://0p0i7m5ciwtq"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_hj6hq"]
+[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_irvam"]
+
+[resource]
+script = ExtResource("1_hj6hq")
+title = "Damage Enhancer"
+rarity = 2
+faction = 0
+sprite = ExtResource("2_irvam")

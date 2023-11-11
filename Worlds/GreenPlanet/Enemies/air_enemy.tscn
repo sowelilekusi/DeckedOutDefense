@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bjo2q6vca5qlv"]
 
-[ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/air_enemy_controller.gd" id="1_lyo1o"]
-[ext_resource type="Resource" uid="uid://dsgkwh3opyqtx" path="res://Worlds/GreenPlanet/Enemies/airenemy.tres" id="2_6qx4a"]
+[ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_m83kr"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="3_wiose"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_mhq3m"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="5_433ie"]
@@ -9,19 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_77uyi"]
 [ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="9_7hati"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_7yfyh"]
+[ext_resource type="Script" path="res://Scripts/beelining_controller.gd" id="9_cx8mv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ss5ir"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager") groups=["Enemies"]]
+[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_lyo1o")
-stats = ExtResource("2_6qx4a")
+script = ExtResource("1_m83kr")
 status_manager = NodePath("StatusEffector")
+movement_controller = NodePath("BeeliningController")
+health = NodePath("Health")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_wiose")
@@ -32,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527022, 0)
 shape = SubResource("SphereShape3D_21dgw")
 script = ExtResource("5_433ie")
 
-[node name="Sprite3D3" type="Sprite3D" parent="."]
+[node name="DirectionSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, 0, 0.546419, 0)
 billboard = 1
 texture_filter = 0
@@ -51,9 +52,10 @@ layers = 4
 texture_filter = 0
 texture = ExtResource("9_7yfyh")
 
-[node name="StatusEffector" type="Node3D" parent="." node_paths=PackedStringArray("hbox")]
+[node name="StatusEffector" type="Node3D" parent="." node_paths=PackedStringArray("hbox", "enemy")]
 script = ExtResource("9_7hati")
 hbox = NodePath("../SubViewport/HBoxContainer")
+enemy = NodePath("..")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -80,6 +82,10 @@ fill_mode = 6
 texture_progress = ExtResource("8_77uyi")
 tint_progress = Color(0, 1, 0, 1)
 
+[node name="BeeliningController" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("9_cx8mv")
+character = NodePath("..")
+
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
-[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="health_depleted" from="Health" to="." method="die"]
 [connection signal="took_damage" from="Hitbox" to="Health" method="take_damage"]

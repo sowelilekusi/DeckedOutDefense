@@ -9,8 +9,8 @@
 
 [resource]
 script = ExtResource("1_bscy2")
-title = "Grenade Launcher"
-rarity = 1
+title = "Bomb Launcher"
+rarity = 0
 faction = 0
 sprite = ExtResource("2_xtrq2")
 turret = ExtResource("4_ux0v3")

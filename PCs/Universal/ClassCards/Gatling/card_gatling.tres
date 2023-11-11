@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_5html")
-title = "Accelerator"
+title = "Gatling"
 rarity = 0
 faction = 0
 sprite = ExtResource("2_a3hso")

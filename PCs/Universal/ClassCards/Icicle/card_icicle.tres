@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://bceyh6nn6h15y"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_g0mbh"]
+[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_gnblw"]
+[ext_resource type="Resource" uid="uid://cdmkajdgfpk6h" path="res://Resources/TurretStats/icicle.tres" id="3_fgq80"]
+[ext_resource type="PackedScene" uid="uid://clabvrajn6k3r" path="res://PCs/Universal/ClassCards/Icicle/tower_icicle.tscn" id="4_jwh3d"]
+[ext_resource type="PackedScene" uid="uid://dvfpqrrmjfco4" path="res://PCs/Universal/ClassCards/Icicle/weapon_icicle.tscn" id="5_appk0"]
+[ext_resource type="Resource" uid="uid://dsmlqik586soo" path="res://Resources/WeaponStats/icicle.tres" id="6_mfnfc"]
+
+[resource]
+script = ExtResource("1_g0mbh")
+title = "Icicle"
+rarity = 3
+faction = 0
+sprite = ExtResource("2_gnblw")
+turret = ExtResource("4_jwh3d")
+weapon = ExtResource("5_appk0")
+weapon_stats = ExtResource("6_mfnfc")
+tower_stats = ExtResource("3_fgq80")

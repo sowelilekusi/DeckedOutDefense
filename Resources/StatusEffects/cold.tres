@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://fed6kimfbcwv"]
+
+[ext_resource type="Texture2D" uid="uid://vmcidp1sk5ns" path="res://Assets/Textures/cold.png" id="1_0gkew"]
+[ext_resource type="Script" path="res://Scripts/Resources/status_stats.gd" id="1_krmeh"]
+
+[resource]
+script = ExtResource("1_krmeh")
+name = "Cold"
+max_stacks = 10
+proc_cd = 0.0
+duration = 2.0
+potency = 0.05
+icon = ExtResource("1_0gkew")

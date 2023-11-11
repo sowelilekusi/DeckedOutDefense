@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d24q8j53oiyd4"]
+[gd_scene load_steps=8 format=3 uid="uid://d24q8j53oiyd4"]
 
 [ext_resource type="Texture2D" uid="uid://jmxhiwsiw1f5" path="res://Assets/TextureAtlases/g_glue_gun.tres" id="1_pl6t8"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Sniper/scopedweapon.gd" id="2_8m6e6"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/GlueLauncher/stickyweapon.gd" id="2_dnhqb"]
+[ext_resource type="Resource" uid="uid://d0643gfp52x3s" path="res://Resources/StatusEffects/sticky.tres" id="3_4t7ku"]
 [ext_resource type="Resource" uid="uid://dnucn65m12dmq" path="res://Resources/WeaponStats/glue.tres" id="3_li2dn"]
 
 [sub_resource type="Animation" id="Animation_n8b32"]
@@ -46,7 +47,8 @@ layers = 2
 billboard = 1
 texture_filter = 0
 texture = ExtResource("1_pl6t8")
-script = ExtResource("2_8m6e6")
+script = ExtResource("2_dnhqb")
+status_stats = ExtResource("3_4t7ku")
 stats = ExtResource("3_li2dn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

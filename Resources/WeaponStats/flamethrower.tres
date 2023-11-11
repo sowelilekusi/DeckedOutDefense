@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_kt5ga")
 damage = 0
-fire_rate = 0.0
-fire_range = 0.0
+fire_rate = 2.0
+fire_range = 3.0

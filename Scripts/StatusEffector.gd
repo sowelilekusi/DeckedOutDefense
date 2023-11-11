@@ -2,35 +2,59 @@ extends Node3D
 class_name StatusEffector
 
 @export var hbox : HBoxContainer
+@export var enemy : EnemyController
 
 var icon_scene = preload("res://Scenes/status_icon.tscn")
-var effects : Array[StatusEffect]
-var icons : Array[TextureRect]
+var immune : Array[StatusEffect] = []
+var effects = {}
+var icons = {}
+
+
+func _process(delta: float) -> void:
+	for effect in effects:
+		if effects[effect] == 0:
+			continue
+		effect.time_since_proc += delta
+		effect.time_existed += delta
+		if effect.stats.duration > 0.0 and effect.time_existed >= effect.stats.duration:
+			effect.time_existed -= effect.stats.duration
+			effects[effect] -= 1
+			effect.on_removed(enemy, effects)
+		if effects[effect] == 0:
+			icons[effect].set_visible(false)
+		if effect.time_since_proc >= effect.stats.proc_cd:
+			effect.proc(enemy, effects[effect], effects)
+			effect.time_since_proc -= effect.stats.proc_cd
+
+
+func force_proc(effect_to_proc : StatusEffect):
+	for effect in effects:
+		if effect.stats == effect_to_proc.stats:
+			effect.proc(enemy, effects[effect], effects)
 
 
 func add_effect(new_effect : StatusEffect):
-	var icon_present = false
+	for effect in immune:
+		if effect.stats == new_effect.stats:
+			return
+			
+	var existing_effect
 	for effect in effects:
 		if effect.stats == new_effect.stats:
-			icon_present = true
-	new_effect.expired.connect(remove_effect)
-	effects.append(new_effect)
-	if !icon_present:
+			existing_effect = effect
+	if !existing_effect:
+		existing_effect = new_effect
+		effects[new_effect] = 0
 		var icon = icon_scene.instantiate()
 		icon.texture = new_effect.stats.icon
-		icons.append(icon)
+		icon.set_visible(false)
+		icons[new_effect] = icon
 		hbox.add_child(icon)
-
-
-func remove_effect(expiring_effect : StatusEffect):
-	effects.erase(expiring_effect)
-	var has_remaining_stack = false
-	for effect in effects:
-		if effect.stats == expiring_effect.stats:
-			has_remaining_stack = true
-	if !has_remaining_stack:
-		for icon in icons:
-			if icon.texture == expiring_effect.stats.icon:
-				icons.erase(icon)
-				icon.queue_free()
-				break
+	
+	if existing_effect.stats.max_stacks == 0 or effects[existing_effect] < existing_effect.stats.max_stacks:
+		existing_effect.on_attached(enemy, effects)
+		icons[existing_effect].set_visible(true)
+		effects[existing_effect] += 1
+		existing_effect.time_existed = 0.0
+	if existing_effect.stats.max_stacks != 0 and effects[existing_effect] > existing_effect.stats.max_stacks:
+		effects[existing_effect] = existing_effect.stats.max_stacks

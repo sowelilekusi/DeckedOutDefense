@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("1_4m1rh")
 title = "Glue Gun"
-rarity = 3
+rarity = 1
 faction = 0
 sprite = ExtResource("2_xsq3l")
 turret = ExtResource("4_1nhoo")

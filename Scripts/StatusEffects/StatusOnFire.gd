@@ -2,5 +2,5 @@ extends StatusEffect
 class_name StatusOnFire
 
 
-func proc():
-	affected.damage(stats.potency)
+func proc(affected, stacks, existing_effects):
+	affected.damage(stats.potency * stacks)

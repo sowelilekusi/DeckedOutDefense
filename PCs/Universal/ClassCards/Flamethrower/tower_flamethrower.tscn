@@ -5,9 +5,9 @@
 
 [sub_resource type="Gradient" id="Gradient_kkqms"]
 offsets = PackedFloat32Array(0.00591716, 1)
-colors = PackedColorArray(0.898039, 0.447059, 0, 1, 1, 0, 0, 1)
+colors = PackedColorArray(0.898039, 0.447059, 0, 1, 1, 0, 0, 0.34902)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gpquw"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4cwgw"]
 gradient = SubResource("Gradient_kkqms")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nhns"]
@@ -18,13 +18,14 @@ initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 damping_min = 4.464
 damping_max = 4.464
-color_ramp = SubResource("GradientTexture1D_gpquw")
+color_ramp = SubResource("GradientTexture1D_4cwgw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yd7w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycjd1"]
+transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_q83y7"]
-material = SubResource("StandardMaterial3D_2yd7w")
+material = SubResource("StandardMaterial3D_ycjd1")
 size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vck5q"]
@@ -49,15 +50,15 @@ minimap_range_sphere = NodePath("Model/CSGSphere3D2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.569646, 0)
-size = Vector3(1, 1.78698, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.968366, 0)
+size = Vector3(1, 1.25244, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00567371, -0.274218, -0.514041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00567371, -0.780982, -0.514041)
 size = Vector3(0.481654, 0.427749, 1.38438)
 
 [node name="Node3D" type="Node3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.301084, -1.2154)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.807848, -1.2154)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Model/Node3D"]
 amount = 48

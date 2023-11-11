@@ -10,6 +10,7 @@ var alive = true
 @export var status_manager : StatusEffector
 
 var movement_speed
+var movement_speed_penalty := 1.0
 var progress := 0.0
 var progress_ratio := 0.0
 var destination : Node3D
@@ -28,8 +29,8 @@ func damage(amount):
 
 
 func _physics_process(delta: float) -> void:
-	progress += movement_speed * delta
-	velocity = global_position.direction_to(destination.global_position) * movement_speed
+	progress += (movement_speed * clampf(movement_speed_penalty, 0.0, 1.0)) * delta
+	velocity = global_position.direction_to(destination.global_position) * (movement_speed * clampf(movement_speed_penalty, 0.0, 1.0))
 	move_and_slide()
 	if global_position.distance_to(destination.global_position) <= 1.0:
 		reached_goal.emit(stats, stats.penalty)

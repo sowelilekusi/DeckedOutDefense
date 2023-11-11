@@ -14,6 +14,4 @@ func shoot():
 				if target_hitbox is Hitbox:
 					var status = StatusSticky.new()
 					status.stats = status_stats
-					status.affected = target.get_parent()
-					status.affected.status_manager.add_effect(status)
-					target.add_child(status)
+					target.status_manager.add_effect(status)

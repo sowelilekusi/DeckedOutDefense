@@ -14,11 +14,12 @@ func _ready() -> void:
 	cooldown = 1.0 / stats.fire_rate
 	range_sphere.radius = stats.fire_range
 	minimap_range_sphere.radius = stats.fire_range
-	minimap_range_sphere.set_visible(true)
+	#minimap_range_sphere.set_visible(true)
 
 
 func preview_range(value):
 	range_sphere.set_visible(value)
+	minimap_range_sphere.set_visible(value)
 
 
 func _process(delta: float) -> void:
@@ -48,7 +49,11 @@ func acquire_target():
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		if model.global_position.distance_to(enemy.global_position) > stats.fire_range:
 			continue
-		if (most_progressed_enemy == null or enemy.progress >= most_progressed_enemy.progress) and enemy.stats.target_type & stats.can_target:
+		var em_1 = enemy.movement_controller as EnemyMovement
+		var em_2 : EnemyMovement
+		if most_progressed_enemy != null:
+			em_2 = most_progressed_enemy.movement_controller as EnemyMovement
+		if (most_progressed_enemy == null or em_1.distance_remaining < em_2.distance_remaining) and enemy.stats.target_type & stats.can_target:
 			most_progressed_enemy = enemy
 	if most_progressed_enemy != null:
 		targeted_enemy = most_progressed_enemy

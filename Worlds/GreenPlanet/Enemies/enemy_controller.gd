@@ -1,48 +1,48 @@
-extends PathFollow3D
+extends CharacterBody3D
 class_name EnemyController
 
 signal reached_goal(enemy, penalty)
 signal died(enemy)
 
-var alive = true
-
 @export var stats : Enemy
 @export var status_manager : StatusEffector
+@export var movement_controller : EnemyMovement
+@export var health : Health
+
 var movement_speed
+var movement_speed_penalty := 1.0
+var alive = true
+
 
 func _ready() -> void:
-	$Dog/Health.max_health = stats.health
-	$Dog/Health.current_health = stats.health
-	$Dog/SubViewport/ProgressBar.max_value = stats.health
-	$Dog/SubViewport/ProgressBar.value = stats.health
-	$Dog/DirectionSprite.texture = stats.sprite.duplicate()
+	health.max_health = stats.health
+	health.current_health = stats.health
+	$SubViewport/ProgressBar.max_value = stats.health
+	$SubViewport/ProgressBar.value = stats.health
+	$DirectionSprite.texture = stats.sprite.duplicate()
 	movement_speed = stats.movement_speed
 
 
 func damage(amount):
-	$Dog/Hitbox.damage(amount)
+	$Hitbox.damage(amount)
 
 
-func _physics_process(delta: float) -> void:
-	progress += movement_speed * delta
-	if progress_ratio >= 1:
+func goal_entered():
+	if alive:
+		alive = false
 		reached_goal.emit(stats, stats.penalty)
 		queue_free()
 
 
 func die():
-	died.emit(stats)
-	queue_free()
-
-
-func _on_health_health_depleted() -> void:
 	if alive:
 		alive = false
-		die()
+		died.emit(stats)
+		queue_free()
 
 
-func _on_health_health_changed(health) -> void:
-	$Dog/SubViewport/ProgressBar.value = health
-	var percent = float($Dog/Health.current_health) / float($Dog/Health.max_health)
-	$Dog/SubViewport/ProgressBar.tint_progress = Color(1 - percent, percent, 0.0)
-	$Dog/SubViewport/ProgressBar.set_visible(true)
+func _on_health_health_changed(value) -> void:
+	$SubViewport/ProgressBar.value = value
+	var percent = float(health.current_health) / float(health.max_health)
+	$SubViewport/ProgressBar.tint_progress = Color(1 - percent, percent, 0.0)
+	$SubViewport/ProgressBar.set_visible(true)

@@ -24,6 +24,13 @@ var objective_health := 120
 var wave := 0
 var upcoming_wave
 var pot : int
+var UILayer : CanvasLayer
+
+
+func _ready() -> void:
+	UILayer = CanvasLayer.new()
+	UILayer.layer = 2
+	get_tree().root.add_child.call_deferred(UILayer)
 
 
 func parse_command(text : String, peer_id : int):
@@ -174,7 +181,7 @@ func lose_game():
 		return
 	game_active = false
 	var menu = lose_game_scene.instantiate()
-	add_child(menu)
+	UILayer.add_child(menu)
 	lost_game.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	for peer_id in connected_players_nodes:
@@ -186,7 +193,7 @@ func win_game():
 		return
 	game_active = false
 	var menu = won_game_scene.instantiate()
-	add_child(menu)
+	UILayer.add_child(menu)
 	won_game.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	for peer_id in connected_players_nodes:

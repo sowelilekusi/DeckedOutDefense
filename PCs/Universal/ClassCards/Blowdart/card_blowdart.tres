@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://dnoi0fx0ppsrf"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_vm4gs"]
+[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_lyppa"]
+[ext_resource type="Resource" uid="uid://by1gyra5a4aks" path="res://Resources/TurretStats/blowdart.tres" id="3_ybbbf"]
+[ext_resource type="PackedScene" uid="uid://qkvo6ibgfrlb" path="res://PCs/Universal/ClassCards/Blowdart/tower_blowdart.tscn" id="4_55xb7"]
+[ext_resource type="PackedScene" uid="uid://cqo6wwf5vbilg" path="res://PCs/Universal/ClassCards/Blowdart/weapon_blowdart.tscn" id="5_c4q5e"]
+[ext_resource type="Resource" uid="uid://dhegsd45xi7na" path="res://Resources/WeaponStats/blowdart.tres" id="6_ii6x2"]
+
+[resource]
+script = ExtResource("1_vm4gs")
+title = "Blowdart"
+rarity = 1
+faction = 0
+sprite = ExtResource("2_lyppa")
+turret = ExtResource("4_55xb7")
+weapon = ExtResource("5_c4q5e")
+weapon_stats = ExtResource("6_ii6x2")
+tower_stats = ExtResource("3_ybbbf")

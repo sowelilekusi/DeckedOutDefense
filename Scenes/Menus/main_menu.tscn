@@ -21,13 +21,14 @@ anchor_right = 0.5
 offset_left = -559.5
 offset_top = 25.0
 offset_right = 559.5
-offset_bottom = 88.0
+offset_bottom = 113.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="Title"]
 layout_mode = 2
 text = "MULTIPLAYER TOWER DEFENSE CARD GAME ROGUELIKE !!!"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainControls" type="PanelContainer" parent="."]
 layout_mode = 1

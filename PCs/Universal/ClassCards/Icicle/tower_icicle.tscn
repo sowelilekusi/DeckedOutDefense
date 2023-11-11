@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://clabvrajn6k3r"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Icicle/icicletower.gd" id="1_diocy"]
+[ext_resource type="PackedScene" uid="uid://cdme5v2sq7u3p" path="res://PCs/Universal/ClassCards/Icicle/icicle.tscn" id="2_706hd"]
+[ext_resource type="Resource" uid="uid://fed6kimfbcwv" path="res://Resources/StatusEffects/cold.tres" id="3_ei6qp"]
+[ext_resource type="Resource" uid="uid://cdmkajdgfpk6h" path="res://Resources/TurretStats/icicle.tres" id="4_vyj5f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fouf8"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.686275, 0, 0, 0.278431)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
+script = ExtResource("1_diocy")
+icicle_scene = ExtResource("2_706hd")
+status_stats = ExtResource("3_ei6qp")
+stats = ExtResource("4_vyj5f")
+model = NodePath("Model")
+range_sphere = NodePath("Model/CSGSphere3D")
+minimap_range_sphere = NodePath("Model/CSGSphere3D2")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97939, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.486166)
+size = Vector3(1.10238, 1.08881, 1.04243)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
+visible = false
+radius = 7.5
+material = SubResource("StandardMaterial3D_fouf8")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
+visible = false
+layers = 4
+radius = 7.5
+material = SubResource("StandardMaterial3D_fouf8")

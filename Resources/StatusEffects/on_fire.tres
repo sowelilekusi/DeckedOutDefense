@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("1_ogrf4")
+name = "Burning"
 unique = false
-proc_frequency = 1.0
+proc_cd = 1.0
 duration = 3.0
 potency = 2.0
 icon = ExtResource("1_ebohu")

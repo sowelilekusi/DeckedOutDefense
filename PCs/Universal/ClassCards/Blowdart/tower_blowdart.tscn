@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://qkvo6ibgfrlb"]
+
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Blowdart/blowdarttower.gd" id="1_ah52c"]
+[ext_resource type="Resource" uid="uid://cbskijhnnj3kw" path="res://Resources/StatusEffects/poisoned.tres" id="2_vfr4o"]
+[ext_resource type="Resource" uid="uid://by1gyra5a4aks" path="res://Resources/TurretStats/blowdart.tres" id="3_m1c6u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrhfj"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.686275, 0, 0, 0.278431)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
+script = ExtResource("1_ah52c")
+status_stats = ExtResource("2_vfr4o")
+stats = ExtResource("3_m1c6u")
+model = NodePath("Model")
+range_sphere = NodePath("Model/CSGSphere3D")
+minimap_range_sphere = NodePath("Model/CSGSphere3D2")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0158235, 0, -0.623444)
+size = Vector3(0.481654, 0.427749, 1.38438)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+visible = false
+radius = 7.5
+material = SubResource("StandardMaterial3D_mrhfj")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+visible = false
+layers = 4
+radius = 7.5
+material = SubResource("StandardMaterial3D_mrhfj")

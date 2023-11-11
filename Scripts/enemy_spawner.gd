@@ -35,19 +35,20 @@ func _process(delta: float) -> void:
 				enemy.stats = enemy_stats
 				enemy.died.connect(signal_for_after_enemy_died)
 				enemy.reached_goal.connect(signal_for_after_enemy_reached_goal)
-				path.add_child(enemy)
+				enemy.movement_controller.path = path.curve
+				add_child(enemy)
 				enemy_spawn_timers[x] -= enemy_stats.spawn_cooldown
 				signal_for_when_enemy_spawns.emit()
 			if type == Data.EnemyType.AIR:
-				var enemy = air_enemy_scene.instantiate() as AirEnemyController
+				var enemy = air_enemy_scene.instantiate() as EnemyController
 				var radius = 10.0
 				var random_dir = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
 				var random_pos = randf_range(0, radius) * random_dir.normalized()
 				enemy.position = random_pos
 				enemy.stats = enemy_stats
-				enemy.destination = dest
 				enemy.died.connect(signal_for_after_enemy_died)
 				enemy.reached_goal.connect(signal_for_after_enemy_reached_goal)
+				enemy.movement_controller.goal = dest
 				add_child(enemy)
 				enemy_spawn_timers[x] -= enemy_stats.spawn_cooldown
 				signal_for_when_enemy_spawns.emit()
