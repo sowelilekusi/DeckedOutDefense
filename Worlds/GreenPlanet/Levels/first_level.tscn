@@ -74,16 +74,19 @@ shape = SubResource("BoxShape3D_awjk1")
 curve = SubResource("Curve3D_suxqu")
 script = ExtResource("11_d7ofl")
 
-[node name="GroundSpawn" parent="." node_paths=PackedStringArray("path", "dest") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn" parent="." node_paths=PackedStringArray("path", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
 path = NodePath("../VisualizedPath")
 type = 1
 dest = NodePath("../EnemyGoal")
+enemy_path = NodePath("../Enemies")
 
-[node name="AirSpawn" parent="." node_paths=PackedStringArray("dest") instance=ExtResource("3_5imwp")]
+[node name="AirSpawn" parent="." node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.0801, 22.5492, 0)
+own_id = 1
 type = 2
 dest = NodePath("../EnemyGoal")
+enemy_path = NodePath("../Enemies")
 
 [node name="CardPrinter" parent="." instance=ExtResource("9_r25gu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.1496, 0.499996, 5.79039)
@@ -530,7 +533,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
 [node name="PlayerSpawn4" type="Node3D" parent="PlayerSpawnLocations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
-[node name="AStarGraph3D" type="Node3D" parent="." node_paths=PackedStringArray("start", "end", "spawner", "visualized_path")]
+[node name="AStarGraph3D" type="Node3D" parent="." node_paths=PackedStringArray("start", "end", "spawner", "visualized_path", "tower_path")]
 script = ExtResource("11_07ukk")
 grid_size = Vector2(19, 9)
 point_gap = 1.5
@@ -538,6 +541,7 @@ start = NodePath("../GroundSpawn")
 end = NodePath("../EnemyGoal")
 spawner = NodePath("../GroundSpawn")
 visualized_path = NodePath("../VisualizedPath")
+tower_path = NodePath("../Towers")
 
 [node name="InvisibleWalls" type="Node3D" parent="."]
 
@@ -572,5 +576,9 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InvisibleWalls/StaticBody3D4"]
 shape = SubResource("BoxShape3D_kkwvm")
+
+[node name="Towers" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
 
 [connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]

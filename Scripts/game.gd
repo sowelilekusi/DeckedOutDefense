@@ -81,8 +81,6 @@ func ready_player(_value):
 	for key in connected_players_nodes:
 		if connected_players_nodes[key].ready_state == false:
 			return
-	for key in connected_players_nodes:
-		connected_players_nodes[key].ready_state = false
 	spawn_enemy_wave()
 
 
@@ -96,9 +94,18 @@ func spawn_enemy_wave():
 
 
 func set_upcoming_wave():
-	var spawn_power = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
-	upcoming_wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-	pot = 6 + (spawn_power / 100)
+	if is_multiplayer_authority():
+		var spawn_power = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
+		var new_wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+		networked_set_upcoming_wave.rpc(new_wave, 6 + (spawn_power / 100))
+
+
+@rpc("reliable", "call_local")
+func networked_set_upcoming_wave(wave_dict, coins):
+	upcoming_wave = wave_dict
+	pot = coins
+	for key in connected_players_nodes:
+		connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
 
 
 func increase_enemy_count():
@@ -137,13 +144,11 @@ func damage_goal(enemy, penalty):
 
 func end_wave():
 	for peer_id in connected_players_nodes:
-		connected_players_nodes[peer_id].currency += pot / connected_players_nodes.size()
+		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
+		connected_players_nodes[peer_id].ready_state = false
 	level.a_star_graph_3d.visualized_path.enable_visualization()
 	wave_finished.emit(wave)
 	set_upcoming_wave()
-	if wave < 20:
-		for key in connected_players_nodes:
-			connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
 
 
 func remove_player(peer_id):
@@ -158,7 +163,6 @@ func start_game():
 	set_upcoming_wave()
 	for peer_id in connected_players_nodes:
 		connected_players_nodes[peer_id].currency = 20
-		connected_players_nodes[peer_id].hud.set_upcoming_wave(upcoming_wave)
 	game_started.emit()
 
 

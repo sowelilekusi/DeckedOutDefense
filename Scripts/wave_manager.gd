@@ -15,7 +15,7 @@ func generate_wave(spawn_power : int, spawn_pool : Array[Enemy]) -> Dictionary:
 		var choice = enemy_choices.pick_random()
 		enemy_choices.erase(choice)
 		if sp_allotment / choice.spawn_power > 0:
-			wave[choice] = sp_allotment / choice.spawn_power
+			wave[Data.enemies.find(choice)] = sp_allotment / choice.spawn_power
 			#sp_used += wave[choice] * choice.spawn_power
 	#print("tried to generate wave with " + str(spawn_power) + " spawn power, used " + str(sp_used))
 	return wave

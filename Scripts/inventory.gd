@@ -9,7 +9,7 @@ var contents : Array[Card] = []
 var selected_index := 0
 var selected_item : Card :
 	get:
-		return contents[selected_index]
+		return contents[selected_index] if contents.size() > 0 else null
 	set(_value):
 		return
 
@@ -44,6 +44,7 @@ func increment_selected():
 		selected_index += 1
 		if selected_index >= contents.size():
 			selected_index = 0
+	networked_set_selected.rpc(selected_index)
 
 
 func decrement_selected():
@@ -51,16 +52,22 @@ func decrement_selected():
 		selected_index -= 1
 		if selected_index < 0:
 			selected_index = contents.size() - 1
+	networked_set_selected.rpc(selected_index)
 
 
-@rpc("reliable")
+@rpc("reliable", "any_peer")
 func networked_add(value):
 	contents.append(Data.cards[value])
 	item_added.emit(Data.cards[value])
 
 
-@rpc("reliable")
+@rpc("reliable", "any_peer")
 func networked_remove_at(value):
 	var item = contents[value]
 	contents.remove_at(value)
 	item_removed.emit(item)
+
+
+@rpc("reliable", "any_peer")
+func networked_set_selected(value):
+	selected_index = value

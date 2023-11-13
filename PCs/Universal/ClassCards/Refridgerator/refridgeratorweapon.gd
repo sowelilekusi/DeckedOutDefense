@@ -9,7 +9,7 @@ func _ready() -> void:
 	cooldown = 1.0 / stats.fire_rate
 
 
-func set_raycast_origin(node):
+func set_raycast_origin(_node):
 	pass
 
 

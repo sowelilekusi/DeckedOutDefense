@@ -14,13 +14,15 @@ var sprint_zoom_factor := 0.08
 var sprinting := false
 var head_angle := 0.0
 var look_sens : float :
-	set(value):
+	set(_value):
 		return
 	get:
 		return Data.preferences.mouse_sens / 40000.0
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	var accel = acceleration
 	if sprinting:
 		accel = acceleration + sprint_boost
@@ -35,7 +37,9 @@ func _physics_process(delta: float) -> void:
 	sync_rotation.rpc(player.rotation)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	can_sprint = true
 	input_vector = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
 	if input_vector.y >= 0:
@@ -52,6 +56,8 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		player.rotation.y -= event.relative.x * (look_sens / zoom_factor) * (-1 if Data.preferences.invert_lookX else 1)
 		head_angle -= event.relative.y * (look_sens / zoom_factor) * (-1 if Data.preferences.invert_lookY else 1)

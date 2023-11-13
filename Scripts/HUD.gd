@@ -58,13 +58,16 @@ func enemy_count_down(enemy):
 func set_upcoming_wave(value):
 	var frame_count = 0
 	enemy_names = []
+	var wave = {}
+	for index in value:
+		wave[Data.enemies[index]] = value[index]
 	for x in enemy_sprites.size():
 		enemy_sprites[x].set_visible(false)
 		enemy_counts[x].set_visible(false)
-	for enemy in value:
+	for enemy in wave:
 		enemy_names.append(enemy.title)
 		enemy_sprites[frame_count].texture = enemy.icon
-		enemy_counts[frame_count].text = str(value[enemy])
+		enemy_counts[frame_count].text = str(wave[enemy])
 		enemy_sprites[frame_count].set_visible(true)
 		enemy_counts[frame_count].set_visible(true)
 		frame_count += 1
@@ -87,6 +90,8 @@ func maximise_minimap(anchor):
 	minimap.offset_right = -40
 	minimap_viewport.size = Vector2(1840, 1000)
 	minimap_cam.size = 30
+	$TextureRect3.set_visible(false)
+	$Currency.set_visible(false)
 
 
 func minimize_minimap(anchor):
@@ -98,3 +103,5 @@ func minimize_minimap(anchor):
 	minimap.offset_bottom = 256
 	minimap_viewport.size = Vector2(256, 256)
 	minimap_cam.size = 15
+	$TextureRect3.set_visible(true)
+	$Currency.set_visible(true)

@@ -7,6 +7,7 @@ signal died
 
 @export var hero_class: HeroClass
 @export var camera : Camera3D
+@export var gun_camera : Camera3D
 @export var left_hand : Node3D
 @export var right_hand : Node3D
 @export var right_hand_animator : AnimationPlayer
@@ -21,23 +22,22 @@ signal died
 @export var weapon_scene : PackedScene
 @export var hud : HUD
 @export var movement : PlayerMovement
+@export var sprint_zoom_speed := 0.2
 
 var equipped_card : Card
 var paused := false
 var editing_mode := true
 var profile: PlayerProfile
-var ready_state := false :
+var ready_state := false : 
 	set(value):
 		ready_state = value
-		networked_set_ready_state.rpc(ready_state)
-		ready_state_changed.emit(ready_state)
+		ready_state_changed.emit(value)
 var currency := 0 : 
 	set(value):
 		currency = value
 		hud.set_currency_count(value)
 	get:
 		return currency
-@export var sprint_zoom_speed := 0.2
 
 
 func set_zoom_factor(value):
@@ -48,11 +48,12 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		right_hand_animator.play("weapon_sway")
 		right_hand_animator.speed_scale = 0
-		hud.set_visible(true)
 		camera.make_current()
 		sprite.queue_free()
 	else:
 		camera.set_visible(false)
+		gun_camera.set_visible(false)
+		hud.set_visible(false)
 	if weapon != null:
 		weapon.set_raycast_origin(camera)
 	inventory.contents.append_array(hero_class.deck)
@@ -61,7 +62,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !is_multiplayer_authority() or paused:
 		return
 	if movement.input_vector == Vector2.ZERO:
@@ -147,7 +148,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if editing_mode and event.is_action_pressed("Ready"):
 		edit_tool.interact_key_held = false
-		ready_state = true
+		if !ready_state:
+			ready_state = true
+			networked_set_ready_state.rpc(ready_state)
 	if event.is_action_pressed("Pause"):
 		var menu = pause_menu_scene.instantiate() as PauseMenu
 		pause()
@@ -203,8 +206,11 @@ func equip_weapon():
 		unequip_weapon()
 		return
 	if inventory.contents.size() > 0:
+		networked_equip_weapon.rpc()
 		equipped_card = inventory.remove()
 		weapon = equipped_card.weapon.instantiate()
+		weapon.name = "weapon"
+		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
 		right_hand.add_child(weapon)
 		gauntlet_sprite.set_visible(false)
 		weapon.set_raycast_origin(camera)
@@ -213,6 +219,7 @@ func equip_weapon():
 
 
 func unequip_weapon():
+	networked_unequip_weapon.rpc()
 	gauntlet_sprite.set_visible(true)
 	weapon.queue_free()
 	inventory.add(equipped_card)
@@ -224,4 +231,21 @@ func unequip_weapon():
 @rpc("reliable")
 func networked_set_ready_state(state: bool):
 	ready_state = state
-	ready_state_changed.emit(state)
+
+
+@rpc("reliable")
+func networked_equip_weapon():
+	equipped_card = inventory.remove()
+	weapon = equipped_card.weapon.instantiate()
+	weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
+	weapon.name = "weapon"
+	right_hand.add_child(weapon)
+	weapon.set_raycast_origin(camera)
+	weapon.set_hero(self)
+
+
+@rpc("reliable")
+func networked_unequip_weapon():
+	weapon.queue_free()
+	inventory.add(equipped_card)
+	equipped_card = null

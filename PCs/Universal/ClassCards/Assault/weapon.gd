@@ -59,8 +59,15 @@ func shoot():
 				var target_hitbox = target.shape_owner_get_owner($RayCast3D.get_collider_shape())
 				if target_hitbox is Hitbox:
 					target_hitbox.damage(stats.damage)
+					networked_hit.rpc(get_tree().root.get_path_to(target_hitbox))
+
 
 @rpc
 func networked_shoot():
 	$AnimationPlayer.play("shoot")
-	
+
+
+@rpc("reliable")
+func networked_hit(target_node_path : String):
+	var target_node = get_tree().root.get_node(target_node_path)
+	target_node.damage(stats.damage)

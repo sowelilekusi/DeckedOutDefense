@@ -10,10 +10,10 @@ signal health_changed(health)
 var current_health
 
 func take_damage(damage):
-	var marker = damage_particle_scene.instantiate()
-	get_tree().root.add_child(marker)
-	marker.set_number(damage)
-	marker.position = get_parent().global_position + Vector3.UP
+	#var marker = damage_particle_scene.instantiate()
+	#get_tree().root.add_child(marker)
+	#marker.set_number(damage)
+	#marker.position = get_parent().global_position + Vector3.UP
 	
 	current_health -= damage
 	health_changed.emit(current_health)
@@ -25,3 +25,4 @@ func heal_damage(healing):
 	current_health += healing
 	if current_health > max_health:
 		current_health = max_health
+	health_changed.emit(current_health)

@@ -17,17 +17,12 @@ var has_card : bool :
 func add_card(card: Card) -> bool:
 	var result = inventory.add(card)
 	if result:
-		tower = card.turret.instantiate() as Tower
-		tower.stats = card.tower_stats
-		minimap_icon.modulate = Color.RED
-		add_child(tower)
+		networked_spawn_tower.rpc()
 	return result
 
 
 func remove_card() -> Card:
-	tower.queue_free()
-	tower = null
-	minimap_icon.modulate = Color.GREEN
+	networked_remove_tower.rpc()
 	return inventory.remove()
 
 
@@ -37,3 +32,19 @@ func set_material(value: StandardMaterial3D):
 
 func toggle_collision():
 	collider.disabled = !collider.disabled
+
+
+@rpc("reliable", "call_local", "any_peer")
+func networked_spawn_tower():
+	tower = inventory.selected_item.turret.instantiate() as Tower
+	tower.stats = inventory.selected_item.tower_stats
+	tower.name = "tower"
+	minimap_icon.modulate = Color.RED
+	add_child(tower)
+
+
+@rpc("reliable", "call_local", "any_peer")
+func networked_remove_tower():
+	tower.queue_free()
+	tower = null
+	minimap_icon.modulate = Color.GREEN

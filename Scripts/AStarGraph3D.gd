@@ -11,9 +11,11 @@ var astar := AStar3D.new()
 @export var end : Node3D
 @export var spawner : EnemySpawner
 @export var visualized_path : VisualizedPath
+@export var tower_path : Node
 var tower_base_scene = load("res://Scenes/tower_base.tscn")
 var tower_frame_scene = load("res://Scenes/tower_frame.tscn")
 var tower_bases = []
+var wall_id = 0
 
 
 func toggle_point(point_id):
@@ -43,11 +45,19 @@ func networked_toggle_point(point_id):
 		astar.set_point_disabled(point_id, false)
 	else:
 		astar.set_point_disabled(point_id, true)
-	var base = tower_base_scene.instantiate()
-	base.position = astar.get_point_position(point_id)
-	tower_bases.append(base)
-	add_child(base)
 	find_path()
+	if is_multiplayer_authority():
+		networked_spawn_wall.rpc(astar.get_point_position(point_id), wall_id)
+		wall_id += 1
+
+
+@rpc("reliable", "call_local")
+func networked_spawn_wall(pos : Vector3, name_id : int):
+	var base = tower_base_scene.instantiate()
+	base.position = pos
+	base.name = "Wall" + str(name_id)
+	tower_bases.append(base)
+	tower_path.add_child(base)
 
 
 func find_path() -> bool:
