@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://ouwge5etb4me"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/WeaponStats.gd" id="1_lgw1t"]
-
-[resource]
-script = ExtResource("1_lgw1t")
-damage = 1
-fire_rate = 12.0
-fire_range = 25.0

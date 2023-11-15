@@ -16,15 +16,14 @@ signal died
 @export var sprite : EightDirectionSprite3D
 @export var interaction_raycast : RayCast3D
 @export var inventory : Inventory
-@export var weapon : Weapon
 @export var card : CardInHand
 @export var pause_menu_scene : PackedScene
-@export var weapon_scene : PackedScene
 @export var hud : HUD
 @export var movement : PlayerMovement
 @export var sprint_zoom_speed := 0.2
 
 var equipped_card : Card
+var weapon : Weapon
 var paused := false
 var editing_mode := true
 var profile: PlayerProfile
@@ -206,15 +205,14 @@ func equip_weapon():
 		unequip_weapon()
 		return
 	if inventory.contents.size() > 0:
-		networked_equip_weapon.rpc()
 		equipped_card = inventory.remove()
-		weapon = equipped_card.weapon.instantiate()
+		networked_equip_weapon.rpc(Data.cards.find(equipped_card))
+		weapon = equipped_card.weapon_scene.instantiate()
 		weapon.name = "weapon"
 		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
-		right_hand.add_child(weapon)
 		gauntlet_sprite.set_visible(false)
-		weapon.set_raycast_origin(camera)
 		weapon.set_hero(self)
+		right_hand.add_child(weapon)
 		check_left_hand_valid()
 
 
@@ -234,14 +232,13 @@ func networked_set_ready_state(state: bool):
 
 
 @rpc("reliable")
-func networked_equip_weapon():
-	equipped_card = inventory.remove()
-	weapon = equipped_card.weapon.instantiate()
+func networked_equip_weapon(card_index):
+	equipped_card = Data.cards[card_index]
+	weapon = equipped_card.weapon_scene.instantiate()
 	weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
 	weapon.name = "weapon"
-	right_hand.add_child(weapon)
-	weapon.set_raycast_origin(camera)
 	weapon.set_hero(self)
+	right_hand.add_child(weapon)
 
 
 @rpc("reliable")

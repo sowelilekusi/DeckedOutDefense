@@ -4,16 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dlqnhs8or4ik2" path="res://Assets/Textures/cardhand.png" id="1_d5oo3"]
 [ext_resource type="Texture2D" uid="uid://buf8t5gc7iw3a" path="res://Assets/TextureAtlases/rarityborders.tres" id="3_pclfx"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "damage_text_text", "damage_text", "fire_rate_text_text", "fire_rate_text", "range_text_text", "range_text")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "description")]
 script = ExtResource("1_2cfmh")
 rarity_sprite = NodePath("Sprite2D2")
 title_text = NodePath("Title")
-damage_text_text = NodePath("DamageText")
-damage_text = NodePath("Damage")
-fire_rate_text_text = NodePath("FireRateText")
-fire_rate_text = NodePath("FireRate")
-range_text_text = NodePath("RangeText")
-range_text = NodePath("Range")
+description = NodePath("Description")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -38,56 +33,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "spider queen"
 horizontal_alignment = 1
 
-[node name="DamageText" type="Label" parent="."]
-offset_left = 30.0
-offset_top = 65.0
-offset_right = 132.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Damage: "
-horizontal_alignment = 1
-
-[node name="Damage" type="Label" parent="."]
-offset_left = 78.0
-offset_top = 65.0
-offset_right = 180.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "45"
-horizontal_alignment = 1
-
-[node name="FireRateText" type="Label" parent="."]
-offset_left = 31.0
-offset_top = 89.0
-offset_right = 133.0
-offset_bottom = 115.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Fire Rate: "
-horizontal_alignment = 1
-
-[node name="FireRate" type="Label" parent="."]
-offset_left = 77.0
-offset_top = 90.0
-offset_right = 179.0
-offset_bottom = 116.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "3"
-horizontal_alignment = 1
-
-[node name="RangeText" type="Label" parent="."]
-offset_left = 44.0
-offset_top = 111.0
-offset_right = 146.0
-offset_bottom = 137.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Range: "
-horizontal_alignment = 1
-
-[node name="Range" type="Label" parent="."]
-offset_left = 87.0
-offset_top = 111.0
-offset_right = 189.0
-offset_bottom = 137.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "55"
-horizontal_alignment = 1
+[node name="Description" type="RichTextLabel" parent="."]
+offset_left = 66.0
+offset_top = 42.0
+offset_right = 167.0
+offset_bottom = 178.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "In here goes some card text that really be quite long sometimes if you're not really really careful to describe the card's effects concisely"
+fit_content = true

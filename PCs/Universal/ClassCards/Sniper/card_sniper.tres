@@ -1,19 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://cvf5bxtu6er17"]
+[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://ckm88acryitl4"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_5vmtk"]
-[ext_resource type="Texture2D" uid="uid://fmqq24n7rwvm" path="res://Assets/TextureAtlases/g_sniper.tres" id="2_skiu7"]
-[ext_resource type="Resource" uid="uid://85iany3x0uv2" path="res://Resources/WeaponStats/sniper.tres" id="3_acfmb"]
-[ext_resource type="PackedScene" uid="uid://v21rc7vtqp8l" path="res://Scenes/Weapons/scopedweapon.tscn" id="3_i0e3w"]
-[ext_resource type="Resource" uid="uid://ddw7pj1ckwmp8" path="res://Resources/TurretStats/sniper.tres" id="3_tfyul"]
-[ext_resource type="PackedScene" uid="uid://ryhc48vl36fc" path="res://Scenes/Towers/snipertower.tscn" id="4_kbb6b"]
+[ext_resource type="Texture2D" uid="uid://cv2eycs1j0ho7" path="res://PCs/Universal/ClassCards/Sniper/g_sniper.png" id="2_go86x"]
+[ext_resource type="Resource" uid="uid://eb0by6ba1d43" path="res://PCs/Universal/ClassCards/Sniper/tower_stats.tres" id="3_6i55t"]
+[ext_resource type="PackedScene" uid="uid://bd65e03fscyxr" path="res://PCs/Universal/ClassCards/Sniper/weapon_sniper.tscn" id="3_qfpvu"]
+[ext_resource type="Resource" uid="uid://3y7n1vdvf822" path="res://PCs/Universal/ClassCards/Sniper/weapon_stats.tres" id="4_7kvq1"]
+[ext_resource type="PackedScene" uid="uid://bt4qbc5lp4nhr" path="res://PCs/Universal/ClassCards/Sniper/tower_sniper.tscn" id="4_k5nhs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fckie"]
+atlas = ExtResource("2_go86x")
+region = Rect2(0, 0, 64, 64)
 
 [resource]
 script = ExtResource("1_5vmtk")
 title = "Sniper"
 rarity = 4
 faction = 0
-sprite = ExtResource("2_skiu7")
-turret = ExtResource("4_kbb6b")
-weapon = ExtResource("3_i0e3w")
-weapon_stats = ExtResource("3_acfmb")
-tower_stats = ExtResource("3_tfyul")
+sprite = SubResource("AtlasTexture_fckie")
+turret_scene = ExtResource("4_k5nhs")
+weapon_scene = ExtResource("3_qfpvu")
+weapon_stats = ExtResource("4_7kvq1")
+tower_stats = ExtResource("3_6i55t")

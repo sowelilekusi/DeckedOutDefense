@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://clr6kfyci5jqb"]
-
-[ext_resource type="Texture2D" uid="uid://by1y15lm0bppe" path="res://Assets/Textures/rocket_launcher.png" id="1_0bxom"]
-
-[resource]
-atlas = ExtResource("1_0bxom")
-region = Rect2(0, 0, 64, 64)

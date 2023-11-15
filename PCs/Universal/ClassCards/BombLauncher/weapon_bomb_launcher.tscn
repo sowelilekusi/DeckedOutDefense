@@ -1,59 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://6ckryuql3bh8"]
+[gd_scene load_steps=5 format=3 uid="uid://c3fqlkytyc62u"]
 
-[ext_resource type="Texture2D" uid="uid://bwufgga1pjyt" path="res://Assets/TextureAtlases/g_grenade_launcher.tres" id="1_n7mif"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/bombweapon.gd" id="2_4iyo6"]
-[ext_resource type="PackedScene" uid="uid://d147iwg2wcqc5" path="res://PCs/Universal/ClassCards/BombLauncher/bomb.tscn" id="3_506dv"]
-[ext_resource type="Resource" uid="uid://kbaiy5u6imtu" path="res://Resources/WeaponStats/bomblauncher.tres" id="4_45cu2"]
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_gbycb"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/weapon_bomb_launcher.gd" id="2_g5ihb"]
+[ext_resource type="Resource" uid="uid://co6eorobj1xuu" path="res://PCs/Universal/ClassCards/BombLauncher/weapon_stats.tres" id="3_73ol1"]
+[ext_resource type="PackedScene" uid="uid://c8oq5unisjqne" path="res://PCs/Universal/ClassCards/BombLauncher/bomb_projectile.tscn" id="3_jxt6m"]
 
-[sub_resource type="Animation" id="Animation_n8b32"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 64)]
-}
-
-[sub_resource type="Animation" id="Animation_g0h8q"]
-resource_name = "shoot"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(0, 0),
-"update": 0,
-"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntl6p"]
-_data = {
-"RESET": SubResource("Animation_n8b32"),
-"shoot": SubResource("Animation_g0h8q")
-}
-
-[node name="Weapon" type="Sprite3D"]
-layers = 2
-billboard = 1
-texture_filter = 0
-texture = ExtResource("1_n7mif")
-script = ExtResource("2_4iyo6")
-bomb_scene = ExtResource("3_506dv")
-stats = ExtResource("4_45cu2")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ntl6p")
-}
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="BombLauncherWeapon" instance=ExtResource("1_gbycb")]
+script = ExtResource("2_g5ihb")
+projectile_scene = ExtResource("3_jxt6m")
+stats = ExtResource("3_73ol1")

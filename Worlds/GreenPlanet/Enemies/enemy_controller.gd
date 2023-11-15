@@ -8,6 +8,7 @@ signal died(enemy)
 @export var status_manager : StatusEffector
 @export var movement_controller : EnemyMovement
 @export var health : Health
+@export var sprite : Sprite3D
 
 var movement_speed
 var movement_speed_penalty := 1.0
@@ -19,7 +20,7 @@ func _ready() -> void:
 	health.current_health = stats.health
 	$SubViewport/ProgressBar.max_value = stats.health
 	$SubViewport/ProgressBar.value = stats.health
-	$DirectionSprite.texture = stats.sprite.duplicate()
+	sprite.texture = stats.sprite.duplicate()
 	movement_speed = stats.movement_speed
 
 

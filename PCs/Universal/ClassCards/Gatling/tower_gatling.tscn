@@ -1,57 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwcdgglljbmot"]
+[gd_scene load_steps=4 format=3 uid="uid://bjuc3x7u3f271"]
 
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Gatling/speedytower.gd" id="1_26he3"]
-[ext_resource type="Resource" uid="uid://cc20tomywj0jm" path="res://Resources/TurretStats/accelerator.tres" id="2_puwlv"]
+[ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_su74p"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Gatling/tower_gatling.gd" id="2_ipjp1"]
+[ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://PCs/Universal/ClassCards/Gatling/tower_stats.tres" id="3_oicqw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73y0x"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.686275, 0, 0, 0.278431)
-
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
-script = ExtResource("1_26he3")
-stats = ExtResource("2_puwlv")
-model = NodePath("Model")
-range_sphere = NodePath("Model/CSGSphere3D")
-minimap_range_sphere = NodePath("Model/CSGSphere3D2")
-
-[node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00131059, 0.27342, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226066, 0.0918715, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227674, -0.174673, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00246562, -0.314903, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259054, -0.125834, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26701, 0.102116, -0.880753)
-size = Vector3(0.177, 0.148, 0.929)
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
-visible = false
-radius = 7.5
-material = SubResource("StandardMaterial3D_73y0x")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
-visible = false
-layers = 4
-radius = 7.5
-material = SubResource("StandardMaterial3D_73y0x")
+[node name="GatlingTower" instance=ExtResource("1_su74p")]
+script = ExtResource("2_ipjp1")
+stats = ExtResource("3_oicqw")

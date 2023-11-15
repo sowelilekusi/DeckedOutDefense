@@ -1,0 +1,2 @@
+extends ProjectileWeapon
+class_name IcicleWeapon

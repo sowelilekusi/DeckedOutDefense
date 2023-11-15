@@ -1,19 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://dh5fjnbp8auw1"]
+[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://b37r54q84vqoi"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_dg0td"]
-[ext_resource type="Texture2D" uid="uid://clr6kfyci5jqb" path="res://Assets/TextureAtlases/g_rocket_launcher.tres" id="2_duef5"]
-[ext_resource type="Resource" uid="uid://duofn25nuu84q" path="res://Resources/TurretStats/rocketlauncher.tres" id="3_tj17y"]
-[ext_resource type="Resource" uid="uid://dtfgyt85mp1ar" path="res://Resources/WeaponStats/rocketlauncher.tres" id="4_hwkrq"]
-[ext_resource type="PackedScene" uid="uid://cbmoi73hquaer" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_rocket_launcher.tscn" id="4_ioexd"]
-[ext_resource type="PackedScene" uid="uid://br3bd1jmi235x" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_rocket_launcher.tscn" id="4_mvvp4"]
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_ly0o5"]
+[ext_resource type="Texture2D" uid="uid://by1y15lm0bppe" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket_launcher.png" id="2_iqnic"]
+[ext_resource type="Resource" uid="uid://c65rq455ma8f6" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_stats.tres" id="3_06my6"]
+[ext_resource type="PackedScene" uid="uid://bdp7icdejayvr" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_rocket_launcher.tscn" id="3_qo5gv"]
+[ext_resource type="Resource" uid="uid://d2yo07m2mp2mp" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_stats.tres" id="4_cmvfg"]
+[ext_resource type="PackedScene" uid="uid://b3q0f6w30nwsh" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_rocket_launcher.tscn" id="4_hff2k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u80vk"]
+atlas = ExtResource("2_iqnic")
+region = Rect2(0, 0, 64, 64)
 
 [resource]
-script = ExtResource("1_dg0td")
+script = ExtResource("1_ly0o5")
 title = "Rocket Launcher"
 rarity = 0
 faction = 0
-sprite = ExtResource("2_duef5")
-turret = ExtResource("4_mvvp4")
-weapon = ExtResource("4_ioexd")
-weapon_stats = ExtResource("4_hwkrq")
-tower_stats = ExtResource("3_tj17y")
+sprite = SubResource("AtlasTexture_u80vk")
+turret_scene = ExtResource("4_hff2k")
+weapon_scene = ExtResource("3_qo5gv")
+weapon_stats = ExtResource("4_cmvfg")
+tower_stats = ExtResource("3_06my6")

@@ -1,19 +1,19 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://b1gd7d12pr52k"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bibx2my7igspq"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_opk1n"]
-[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_51tvo"]
-[ext_resource type="Resource" uid="uid://b8a635kajtq6" path="res://Resources/TurretStats/fireball.tres" id="3_8w2yo"]
-[ext_resource type="PackedScene" uid="uid://dr2bmfj8fquxr" path="res://PCs/Universal/ClassCards/Fireball/tower_fireball.tscn" id="4_cxojl"]
-[ext_resource type="PackedScene" uid="uid://cxlr31wydvroj" path="res://PCs/Universal/ClassCards/Fireball/weapon_fireball.tscn" id="5_47hbf"]
-[ext_resource type="Resource" uid="uid://c473xvhm2g6m0" path="res://Resources/WeaponStats/fireball.tres" id="6_05wvy"]
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_qktm8"]
+[ext_resource type="Texture2D" uid="uid://mwgpnnm3g3re" path="res://PCs/Universal/ClassCards/Fireball/fireball.png" id="2_lfltq"]
+[ext_resource type="PackedScene" uid="uid://dnwjfb4fexr0o" path="res://PCs/Universal/ClassCards/Fireball/weapon_fireball.tscn" id="3_4c0mu"]
+[ext_resource type="Resource" uid="uid://dhwhwicgpw7yh" path="res://PCs/Universal/ClassCards/Fireball/weapon_stats.tres" id="4_folo6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvh1s"]
+atlas = ExtResource("2_lfltq")
+region = Rect2(0, 0, 64, 64)
 
 [resource]
-script = ExtResource("1_opk1n")
+script = ExtResource("1_qktm8")
 title = "Fireball"
 rarity = 3
 faction = 0
-sprite = ExtResource("2_51tvo")
-turret = ExtResource("4_cxojl")
-weapon = ExtResource("5_47hbf")
-weapon_stats = ExtResource("6_05wvy")
-tower_stats = ExtResource("3_8w2yo")
+sprite = SubResource("AtlasTexture_wvh1s")
+weapon_scene = ExtResource("3_4c0mu")
+weapon_stats = ExtResource("4_folo6")

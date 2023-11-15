@@ -1,39 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwc8y1nv53btu"]
+[gd_scene load_steps=5 format=3 uid="uid://d2cch7qrwocg8"]
 
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/bombtower.gd" id="1_u2hyk"]
-[ext_resource type="PackedScene" uid="uid://d147iwg2wcqc5" path="res://PCs/Universal/ClassCards/BombLauncher/bomb.tscn" id="2_n307r"]
-[ext_resource type="Resource" uid="uid://crmsk6lvp5i4e" path="res://Resources/TurretStats/bomblauncher.tres" id="3_xv5rx"]
+[ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_r8hbo"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/tower_bomb_launcher.gd" id="2_vlaa6"]
+[ext_resource type="PackedScene" uid="uid://c8oq5unisjqne" path="res://PCs/Universal/ClassCards/BombLauncher/bomb_projectile.tscn" id="3_562if"]
+[ext_resource type="Resource" uid="uid://8eaecilvan23" path="res://PCs/Universal/ClassCards/BombLauncher/tower_stats.tres" id="4_xgwj1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nr2od"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.686275, 0, 0, 0.278431)
-
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
-script = ExtResource("1_u2hyk")
-bomb_scene = ExtResource("2_n307r")
-stats = ExtResource("3_xv5rx")
-model = NodePath("Model")
-range_sphere = NodePath("Model/CSGSphere3D")
-minimap_range_sphere = NodePath("Model/CSGSphere3D2")
-
-[node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13842, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.65)
-size = Vector3(0.596453, 0.632841, 0.539216)
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
-visible = false
-radius = 7.5
-material = SubResource("StandardMaterial3D_nr2od")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
-visible = false
-layers = 4
-radius = 7.5
-material = SubResource("StandardMaterial3D_nr2od")
+[node name="BombLauncherTower" instance=ExtResource("1_r8hbo")]
+script = ExtResource("2_vlaa6")
+projectile_scene = ExtResource("3_562if")
+stats = ExtResource("4_xgwj1")

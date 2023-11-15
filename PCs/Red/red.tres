@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="HeroClass" load_steps=6 format=3 uid="uid://b5pc3frhx467q"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/hero_class.gd" id="1_1wkap"]
-[ext_resource type="Resource" uid="uid://bmoreipvttks8" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="1_iiksa"]
-[ext_resource type="Resource" uid="uid://cvf5bxtu6er17" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="2_hkiwr"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="1_iiksa"]
+[ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="2_hkiwr"]
 [ext_resource type="Texture2D" uid="uid://hxev3a2ktya" path="res://Assets/TextureAtlases/red.tres" id="2_kjc7g"]
-[ext_resource type="Resource" uid="uid://dh5fjnbp8auw1" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="3_ruhqi"]
+[ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="3_ruhqi"]
 
 [resource]
 script = ExtResource("1_1wkap")
 hero_name = "Red"
 texture = ExtResource("2_kjc7g")
-deck = Array[Resource("res://Scripts/Resources/card.gd")]([ExtResource("1_iiksa"), ExtResource("2_hkiwr"), ExtResource("3_ruhqi")])
+deck = Array[Resource("res://Scripts/Resources/card.gd")]([ExtResource("2_hkiwr"), ExtResource("3_ruhqi"), ExtResource("1_iiksa")])

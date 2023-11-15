@@ -93,7 +93,7 @@ func spawn_tower_preview():
 	last_tower_base = ray_collider
 	var card = inventory.selected_item
 	last_card = card
-	tower_preview = card.turret.instantiate() as Tower
+	tower_preview = card.turret_scene.instantiate() as Tower
 	tower_preview.stats = card.tower_stats
 	tower_preview.preview_range(true)
 	ray_collider.add_child(tower_preview)

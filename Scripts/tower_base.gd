@@ -36,9 +36,11 @@ func toggle_collision():
 
 @rpc("reliable", "call_local", "any_peer")
 func networked_spawn_tower():
-	tower = inventory.selected_item.turret.instantiate() as Tower
+	tower = inventory.selected_item.turret_scene.instantiate() as Tower
 	tower.stats = inventory.selected_item.tower_stats
 	tower.name = "tower"
+	tower.base_name = name
+	tower.position = Vector3.UP
 	minimap_icon.modulate = Color.RED
 	add_child(tower)
 

@@ -1,0 +1,2 @@
+extends HitscanWeapon
+class_name AssaultWeapon

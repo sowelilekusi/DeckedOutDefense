@@ -1,85 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://v21rc7vtqp8l"]
+[gd_scene load_steps=7 format=3 uid="uid://bd65e03fscyxr"]
 
-[ext_resource type="Texture2D" uid="uid://fmqq24n7rwvm" path="res://Assets/TextureAtlases/g_sniper.tres" id="1_6a01i"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Sniper/scopedweapon.gd" id="2_qemq6"]
-[ext_resource type="Resource" uid="uid://85iany3x0uv2" path="res://Resources/WeaponStats/sniper.tres" id="3_3c36k"]
-[ext_resource type="Texture2D" uid="uid://bepgxu7wtcl1i" path="res://Assets/Textures/scopetest.png" id="3_pyugo"]
+[ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_6ph0d"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Sniper/weapon_sniper.gd" id="2_r0w4v"]
+[ext_resource type="Texture2D" uid="uid://bepgxu7wtcl1i" path="res://PCs/Universal/ClassCards/Sniper/scopetest.png" id="3_fhx8q"]
+[ext_resource type="Resource" uid="uid://3y7n1vdvf822" path="res://PCs/Universal/ClassCards/Sniper/weapon_stats.tres" id="3_mmfq3"]
+[ext_resource type="Texture2D" uid="uid://cv2eycs1j0ho7" path="res://PCs/Universal/ClassCards/Sniper/g_sniper.png" id="4_ub37g"]
 
-[sub_resource type="Animation" id="Animation_n8b32"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 64)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_cussn"]
+atlas = ExtResource("4_ub37g")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="Animation" id="Animation_g0h8q"]
-resource_name = "shoot"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(0, 0),
-"update": 0,
-"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
-}
+[node name="HitscanWeapon" node_paths=PackedStringArray("scope_mask") instance=ExtResource("1_6ph0d")]
+script = ExtResource("2_r0w4v")
+scope_mask = NodePath("CanvasLayer")
+stats = ExtResource("3_mmfq3")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntl6p"]
-_data = {
-"RESET": SubResource("Animation_n8b32"),
-"shoot": SubResource("Animation_g0h8q")
-}
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_cussn")
 
-[node name="Weapon" type="Sprite3D"]
-layers = 2
-billboard = 1
-texture_filter = 0
-texture = ExtResource("1_6a01i")
-script = ExtResource("2_qemq6")
-stats = ExtResource("3_3c36k")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ntl6p")
-}
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 4
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-clip_children = 1
-visibility_layer = 2
-texture_filter = 1
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_pyugo")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("3_fhx8q")

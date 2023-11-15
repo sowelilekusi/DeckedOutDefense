@@ -1,13 +1,13 @@
 extends Resource
 class_name Card
 
-enum Faction {GENERIC}
+enum Faction {GENERIC = 0}
 
 @export var title : String
 @export var rarity : Data.Rarity
-@export var faction : Faction 
+@export var faction : Faction
 @export var sprite : AtlasTexture
-@export var turret : PackedScene
-@export var weapon : PackedScene
-@export var weapon_stats : WeaponStats
-@export var tower_stats : TowerStats
+@export var turret_scene : PackedScene
+@export var weapon_scene : PackedScene
+@export var weapon_stats : CardText
+@export var tower_stats : CardText

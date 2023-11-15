@@ -1,79 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvfpqrrmjfco4"]
+[gd_scene load_steps=7 format=3 uid="uid://v3iuf4lt2iff"]
 
-[ext_resource type="Texture2D" uid="uid://clr6kfyci5jqb" path="res://Assets/TextureAtlases/g_rocket_launcher.tres" id="1_23r2a"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Icicle/icicleweapon.gd" id="2_j3c63"]
-[ext_resource type="PackedScene" uid="uid://cdme5v2sq7u3p" path="res://PCs/Universal/ClassCards/Icicle/icicle.tscn" id="3_hgb5e"]
-[ext_resource type="Resource" uid="uid://fed6kimfbcwv" path="res://Resources/StatusEffects/cold.tres" id="4_hsh8q"]
-[ext_resource type="Resource" uid="uid://dsmlqik586soo" path="res://Resources/WeaponStats/icicle.tres" id="5_wivww"]
-[ext_resource type="Texture2D" uid="uid://bgeu8dnqaxq7v" path="res://Assets/TextureAtlases/target_list.tres" id="6_mqgqx"]
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_oi7x1"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Icicle/weapon_icicle.gd" id="2_6wbx0"]
+[ext_resource type="PackedScene" uid="uid://dyurjxotdkf1u" path="res://PCs/Universal/ClassCards/Icicle/icicle_projectile.tscn" id="3_cwl2u"]
+[ext_resource type="Resource" uid="uid://ckjmym1ofww4" path="res://PCs/Universal/ClassCards/Icicle/weapon_stats.tres" id="4_r8ss5"]
+[ext_resource type="Texture2D" uid="uid://mqo5qcghfit8" path="res://PCs/Universal/ClassCards/Icicle/icicle.png" id="5_iremk"]
 
-[sub_resource type="Animation" id="Animation_n8b32"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 64)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uf3s"]
+atlas = ExtResource("5_iremk")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="Animation" id="Animation_g0h8q"]
-resource_name = "shoot"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(0, 0),
-"update": 0,
-"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
-}
+[node name="IcicleWeapon" instance=ExtResource("1_oi7x1")]
+script = ExtResource("2_6wbx0")
+projectile_scene = ExtResource("3_cwl2u")
+stats = ExtResource("4_r8ss5")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntl6p"]
-_data = {
-"RESET": SubResource("Animation_n8b32"),
-"shoot": SubResource("Animation_g0h8q")
-}
-
-[node name="Weapon" type="Sprite3D"]
-layers = 2
-billboard = 1
-texture_filter = 0
-texture = ExtResource("1_23r2a")
-script = ExtResource("2_j3c63")
-icicle_scene = ExtResource("3_hgb5e")
-status_stats = ExtResource("4_hsh8q")
-stats = ExtResource("5_wivww")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ntl6p")
-}
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 4
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_mqgqx")
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_7uf3s")

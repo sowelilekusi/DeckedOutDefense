@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvqu1heobgboe"]
+
+[ext_resource type="Script" path="res://Scripts/Towers/tower.gd" id="1_u8bfo"]
+
+[sub_resource type="Animation" id="Animation_vk4a8"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cebsq"]
+_data = {
+"shoot": SubResource("Animation_vk4a8")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_42byu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ucq4"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0.415686, 0.223529)
+
+[node name="Tower" type="Node3D" node_paths=PackedStringArray("animator", "pitch_model", "yaw_model", "range_indicator")]
+script = ExtResource("1_u8bfo")
+animator = NodePath("AnimationPlayer")
+pitch_model = NodePath("Pitch")
+yaw_model = NodePath("Yaw")
+range_indicator = NodePath("CSGSphere3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cebsq")
+}
+
+[node name="Pitch" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_42byu")
+
+[node name="Yaw" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_42byu")
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 4
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+visible = false
+radius = 10.0
+radial_segments = 16
+rings = 16
+material = SubResource("StandardMaterial3D_1ucq4")

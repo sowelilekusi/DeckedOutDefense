@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=2 format=3 uid="uid://ckjmym1ofww4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_fpi27"]
+
+[resource]
+script = ExtResource("1_fpi27")
+attributes = Array[Resource("res://Scripts/Resources/stat_attribute.gd")]([])
+text = ""

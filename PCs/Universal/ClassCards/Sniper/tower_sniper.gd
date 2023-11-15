@@ -1,0 +1,2 @@
+extends HitscanTower
+class_name SniperTower

@@ -8,14 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_77uyi"]
 [ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="9_7hati"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_7yfyh"]
-[ext_resource type="Script" path="res://Scripts/beelining_controller.gd" id="9_cx8mv"]
+[ext_resource type="Script" path="res://Scripts/EnemyAI/beelining_controller.gd" id="9_cx8mv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ss5ir"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health") groups=["Enemies"]]
+[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
@@ -23,6 +23,7 @@ script = ExtResource("1_m83kr")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("BeeliningController")
 health = NodePath("Health")
+sprite = NodePath("DirectionSprite")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_wiose")

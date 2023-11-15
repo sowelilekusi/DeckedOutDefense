@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://di2wwvkv4wov1"]
+
+[ext_resource type="PackedScene" uid="uid://7f4dfphgiswr" path="res://Scenes/Projectiles/explosive_projectile.tscn" id="1_it3tw"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/homing_projectile.gd" id="2_etdxg"]
+
+[node name="HomingProjectile" instance=ExtResource("1_it3tw")]
+script = ExtResource("2_etdxg")
+acceleration = 30.0
+max_speed = 15.0
+explosion_range = 6.0

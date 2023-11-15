@@ -1,7 +1,7 @@
 extends Node3D
 class_name AStarGraph3D
 
-@export var grid_size := Vector2(21, 13)
+@export var grid_size := Vector2i(21, 13)
 @export var point_gap := 1.2
 var non_build_locations = []
 var astar := AStar3D.new()

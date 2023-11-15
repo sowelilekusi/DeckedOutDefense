@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8qjlgam6wuo0"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/projectile.gd" id="1_k4v4y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fgj4t"]
+radius = 0.2
+
+[node name="Projectile" type="RigidBody3D" node_paths=PackedStringArray("collision_shape")]
+collision_layer = 0
+collision_mask = 5
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_k4v4y")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fgj4t")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

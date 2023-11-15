@@ -1,79 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxlr31wydvroj"]
+[gd_scene load_steps=7 format=3 uid="uid://dnwjfb4fexr0o"]
 
-[ext_resource type="Texture2D" uid="uid://clr6kfyci5jqb" path="res://Assets/TextureAtlases/g_rocket_launcher.tres" id="1_jmfbt"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Fireball/fireballweapon.gd" id="2_rmmdm"]
-[ext_resource type="PackedScene" uid="uid://dyglfv8lh2rbg" path="res://PCs/Universal/ClassCards/Fireball/fireball.tscn" id="3_xtqoc"]
-[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="4_a0kl2"]
-[ext_resource type="Resource" uid="uid://c473xvhm2g6m0" path="res://Resources/WeaponStats/fireball.tres" id="5_n36an"]
-[ext_resource type="Texture2D" uid="uid://bgeu8dnqaxq7v" path="res://Assets/TextureAtlases/target_list.tres" id="6_bpghv"]
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_7k6fb"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Fireball/weapon_fireball.gd" id="2_nprco"]
+[ext_resource type="PackedScene" uid="uid://ddpixntjsbpqp" path="res://PCs/Universal/ClassCards/Fireball/fireball_projectile.tscn" id="3_2j1mm"]
+[ext_resource type="Resource" uid="uid://dhwhwicgpw7yh" path="res://PCs/Universal/ClassCards/Fireball/weapon_stats.tres" id="4_rqdnu"]
+[ext_resource type="Texture2D" uid="uid://mwgpnnm3g3re" path="res://PCs/Universal/ClassCards/Fireball/fireball.png" id="5_r42ic"]
 
-[sub_resource type="Animation" id="Animation_n8b32"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 64)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfmm6"]
+atlas = ExtResource("5_r42ic")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="Animation" id="Animation_g0h8q"]
-resource_name = "shoot"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(0, 0),
-"update": 0,
-"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
-}
+[node name="FireballWeapon" instance=ExtResource("1_7k6fb")]
+script = ExtResource("2_nprco")
+projectile_scene = ExtResource("3_2j1mm")
+stats = ExtResource("4_rqdnu")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntl6p"]
-_data = {
-"RESET": SubResource("Animation_n8b32"),
-"shoot": SubResource("Animation_g0h8q")
-}
-
-[node name="Weapon" type="Sprite3D"]
-layers = 2
-billboard = 1
-texture_filter = 0
-texture = ExtResource("1_jmfbt")
-script = ExtResource("2_rmmdm")
-fireball_scene = ExtResource("3_xtqoc")
-status_stats = ExtResource("4_a0kl2")
-stats = ExtResource("5_n36an")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ntl6p")
-}
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 4
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_bpghv")
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_hfmm6")

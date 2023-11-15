@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://3y7n1vdvf822"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_7xbx2"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_t3oy2"]
+
+[sub_resource type="Resource" id="Resource_58kde"]
+script = ExtResource("1_7xbx2")
+key = "Fire Delay"
+value = 1.2
+
+[sub_resource type="Resource" id="Resource_jl4jv"]
+script = ExtResource("1_7xbx2")
+key = "Damage"
+value = 30.0
+
+[sub_resource type="Resource" id="Resource_28kyj"]
+script = ExtResource("1_7xbx2")
+key = "Range"
+value = 50.0
+
+[resource]
+script = ExtResource("1_t3oy2")
+target_type = 0
+attributes = Array[ExtResource("1_7xbx2")]([SubResource("Resource_58kde"), SubResource("Resource_jl4jv"), SubResource("Resource_28kyj")])
+text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m"

@@ -1,19 +1,9 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://bhmbk26whdsys"]
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://fwsg5av1egp2"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_4m1rh"]
-[ext_resource type="Texture2D" uid="uid://jmxhiwsiw1f5" path="res://Assets/TextureAtlases/g_glue_gun.tres" id="2_xsq3l"]
-[ext_resource type="Resource" uid="uid://dhcukj44khkd7" path="res://Resources/TurretStats/glue.tres" id="3_tb5qj"]
-[ext_resource type="PackedScene" uid="uid://d24q8j53oiyd4" path="res://PCs/Universal/ClassCards/GlueLauncher/weapon_glue_launcher.tscn" id="4_0jn1x"]
-[ext_resource type="PackedScene" uid="uid://dja1b2ke8clo5" path="res://PCs/Universal/ClassCards/GlueLauncher/tower_glue_launcher.tscn" id="4_1nhoo"]
-[ext_resource type="Resource" uid="uid://dnucn65m12dmq" path="res://Resources/WeaponStats/glue.tres" id="5_qk2lw"]
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_tdu8a"]
 
 [resource]
-script = ExtResource("1_4m1rh")
-title = "Glue Gun"
-rarity = 1
+script = ExtResource("1_tdu8a")
+title = ""
+rarity = 0
 faction = 0
-sprite = ExtResource("2_xsq3l")
-turret = ExtResource("4_1nhoo")
-weapon = ExtResource("4_0jn1x")
-weapon_stats = ExtResource("5_qk2lw")
-tower_stats = ExtResource("3_tb5qj")

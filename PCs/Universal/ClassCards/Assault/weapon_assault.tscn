@@ -1,58 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1xe6hsq05110"]
+[gd_scene load_steps=5 format=3 uid="uid://2eehfcrsednw"]
 
-[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="1_117ne"]
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Assault/weapon.gd" id="2_4ie8w"]
-[ext_resource type="Resource" uid="uid://w15ojqyxd72q" path="res://Resources/WeaponStats/assault.tres" id="3_s4ckt"]
+[ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_wkxf7"]
+[ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://PCs/Universal/ClassCards/Assault/weapon_stats.tres" id="2_fnp5x"]
+[ext_resource type="Texture2D" uid="uid://celay30i4soud" path="res://PCs/Universal/ClassCards/Assault/g_assault.png" id="3_kuj4t"]
 
-[sub_resource type="Animation" id="Animation_n8b32"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 64, 64)]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_604rb"]
+atlas = ExtResource("3_kuj4t")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="Animation" id="Animation_g0h8q"]
-resource_name = "shoot"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(0, 0),
-"update": 0,
-"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
-}
+[node name="HitscanWeapon" instance=ExtResource("1_wkxf7")]
+stats = ExtResource("2_fnp5x")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntl6p"]
-_data = {
-"RESET": SubResource("Animation_n8b32"),
-"shoot": SubResource("Animation_g0h8q")
-}
-
-[node name="Weapon" type="Sprite3D"]
-layers = 2
-billboard = 1
-texture_filter = 0
-texture = ExtResource("1_117ne")
-script = ExtResource("2_4ie8w")
-stats = ExtResource("3_s4ckt")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ntl6p")
-}
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 4
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_604rb")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://nrdexcyatika"]
+
+[ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_uolyx"]
+[ext_resource type="Script" path="res://Scripts/Weapons/status_applying_weapon.gd" id="2_iq7bw"]
+
+[node name="StatusApplyingWeapon" instance=ExtResource("1_uolyx")]
+script = ExtResource("2_iq7bw")
+status_stats = null

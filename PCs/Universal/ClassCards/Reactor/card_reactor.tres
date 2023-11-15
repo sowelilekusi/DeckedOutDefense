@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://dra640am6ykri"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_7065k"]
-[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://Assets/TextureAtlases/g_assault.tres" id="2_8hvde"]
+[ext_resource type="Texture2D" uid="uid://ca4lwwd3e0y73" path="res://PCs/Universal/ClassCards/Assault/g_assault.tres" id="2_8hvde"]
 [ext_resource type="Resource" uid="uid://baa8sauri4218" path="res://Resources/TurretStats/reactor.tres" id="3_ikj6b"]
 [ext_resource type="PackedScene" uid="uid://byglhh0etuy6" path="res://PCs/Universal/ClassCards/Reactor/tower_reactor.tscn" id="4_y3lkh"]
 [ext_resource type="PackedScene" uid="uid://cpe3b700kwj48" path="res://PCs/Universal/ClassCards/Reactor/weapon_reactor.tscn" id="5_atmmn"]

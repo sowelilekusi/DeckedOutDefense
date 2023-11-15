@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://co6eorobj1xuu"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_8i32s"]
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_kj8v0"]
+
+[sub_resource type="Resource" id="Resource_yb48y"]
+script = ExtResource("1_kj8v0")
+key = "Fire Delay"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_ewwvw"]
+script = ExtResource("1_kj8v0")
+key = "Damage"
+value = 10.0
+
+[sub_resource type="Resource" id="Resource_qu5dv"]
+script = ExtResource("1_kj8v0")
+key = "Range"
+value = 10.0
+
+[resource]
+script = ExtResource("1_8i32s")
+target_type = 0
+attributes = Array[ExtResource("1_kj8v0")]([SubResource("Resource_yb48y"), SubResource("Resource_ewwvw"), SubResource("Resource_qu5dv")])
+text = "Launch a bomb that deals /Damage\\ damage every /Fire Delay\\ seconds"

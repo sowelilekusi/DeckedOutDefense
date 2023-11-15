@@ -23,7 +23,7 @@ var enemies := 0
 var objective_health := 120
 var wave := 0
 var upcoming_wave
-var pot : int
+var pot : float
 var UILayer : CanvasLayer
 
 
@@ -97,7 +97,7 @@ func set_upcoming_wave():
 	if is_multiplayer_authority():
 		var spawn_power = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
 		var new_wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		networked_set_upcoming_wave.rpc(new_wave, 6 + (spawn_power / 100))
+		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 100))
 
 
 @rpc("reliable", "call_local")
@@ -158,6 +158,9 @@ func remove_player(peer_id):
 
 func start_game():
 	game_active = true
+	enemies = 0
+	objective_health = 100
+	wave = 0
 	level.a_star_graph_3d.make_grid()
 	level.a_star_graph_3d.find_path()
 	set_upcoming_wave()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://t0b32qb8eub2"]
+
+[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_yagdr"]
+[ext_resource type="Script" path="res://Scripts/Towers/projectile_tower.gd" id="2_fqi5p"]
+
+[node name="ProjectileTower" instance=ExtResource("1_yagdr")]
+script = ExtResource("2_fqi5p")
+projectile_scene = null
