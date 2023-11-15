@@ -1,8 +1,25 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=2 format=3 uid="uid://dhwhwicgpw7yh"]
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://dhwhwicgpw7yh"]
 
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_80jfw"]
 [ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_hmbwy"]
+
+[sub_resource type="Resource" id="Resource_68ba3"]
+script = ExtResource("1_80jfw")
+key = "Fire Delay"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_gogvm"]
+script = ExtResource("1_80jfw")
+key = "Damage"
+value = 5.0
+
+[sub_resource type="Resource" id="Resource_pswb4"]
+script = ExtResource("1_80jfw")
+key = "Range"
+value = 15.0
 
 [resource]
 script = ExtResource("1_hmbwy")
-attributes = Array[Resource("res://Scripts/Resources/stat_attribute.gd")]([])
-text = ""
+target_type = 0
+attributes = Array[ExtResource("1_80jfw")]([SubResource("Resource_68ba3"), SubResource("Resource_gogvm"), SubResource("Resource_pswb4")])
+text = "Conjure a fireball every /Fire Delay\\s that can be thrown to deal /Damage\\ and apply Burning to enemies caught in its blast"

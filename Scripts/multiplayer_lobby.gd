@@ -28,11 +28,11 @@ func _ready():
 
 func _on_player_connected(peer_id):
 	add_player.rpc_id(peer_id, Data.player_profile.to_dict())
-	if multiplayer.get_unique_id() == 1:
-		print("Player connected with id: " + str(peer_id))
 
 
 func _on_player_disconnected(peer_id):
+	if chatbox:
+		chatbox.append_message("SERVER", connected_players_profiles[peer_id].display_name + " has disconnected!")
 	connected_players_profiles.erase(peer_id)
 	player_disconnected.emit(peer_id)
 
@@ -115,6 +115,8 @@ func networked_edit_player_profile(peer_id, new_profile_dict):
 func add_player(new_player_profile_dict):
 	var new_player_peer_id = multiplayer.get_remote_sender_id()
 	var new_player_profile = PlayerProfile.from_dict(new_player_profile_dict)
+	if chatbox:
+		chatbox.append_message("SERVER", new_player_profile.display_name + " has connected!")
 	connected_players_profiles[new_player_peer_id] = new_player_profile
 	player_connected.emit(new_player_peer_id, new_player_profile)
 

@@ -4,42 +4,59 @@
 [ext_resource type="Texture2D" uid="uid://dlqnhs8or4ik2" path="res://Assets/Textures/cardhand.png" id="1_d5oo3"]
 [ext_resource type="Texture2D" uid="uid://buf8t5gc7iw3a" path="res://Assets/TextureAtlases/rarityborders.tres" id="3_pclfx"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "description")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "description", "target_label")]
 script = ExtResource("1_2cfmh")
 rarity_sprite = NodePath("Sprite2D2")
 title_text = NodePath("Title")
 description = NodePath("Description")
+target_label = NodePath("Title2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(96, 96)
-scale = Vector2(3, 3)
+position = Vector2(256, 256)
+scale = Vector2(8, 8)
 texture = ExtResource("1_d5oo3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(96, 96)
-scale = Vector2(3, 3)
+position = Vector2(256, 256)
+scale = Vector2(8, 8)
 texture = ExtResource("3_pclfx")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
 
 [node name="Title" type="Label" parent="."]
-offset_left = 48.0
-offset_top = 20.0
-offset_right = 150.0
-offset_bottom = 46.0
+offset_left = 89.0
+offset_top = 56.0
+offset_right = 373.0
+offset_bottom = 96.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "spider queen"
+theme_override_font_sizes/font_size = 27
+text = "Rocket Launcher 50"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="."]
+offset_left = 183.0
+offset_top = 424.0
+offset_right = 296.0
+offset_bottom = 464.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "Land
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Description" type="RichTextLabel" parent="."]
-offset_left = 66.0
-offset_top = 42.0
-offset_right = 167.0
-offset_bottom = 178.0
+offset_left = 107.0
+offset_top = 144.0
+offset_right = 357.0
+offset_bottom = 389.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/normal_font_size = 17
 bbcode_enabled = true
-text = "In here goes some card text that really be quite long sometimes if you're not really really careful to describe the card's effects concisely"
+text = "In here goes some card text that really be quite long sometimes if you're not really really careful to describe the card's effects concisely
+
+In fact, sometimes its really really really rediculously long, when it needs to be and im too dumb to shorten it"
 fit_content = true

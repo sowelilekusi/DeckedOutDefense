@@ -11,7 +11,7 @@ value = 1.0
 [sub_resource type="Resource" id="Resource_2e75s"]
 script = ExtResource("1_cwxf1")
 key = "Damage"
-value = 1.0
+value = 0.5
 
 [sub_resource type="Resource" id="Resource_1vpnf"]
 script = ExtResource("1_cwxf1")

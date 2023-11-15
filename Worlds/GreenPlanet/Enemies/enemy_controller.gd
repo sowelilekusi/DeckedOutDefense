@@ -9,6 +9,7 @@ signal died(enemy)
 @export var movement_controller : EnemyMovement
 @export var health : Health
 @export var sprite : Sprite3D
+@export var health_bar_gradient : Gradient
 
 var movement_speed
 var movement_speed_penalty := 1.0
@@ -45,5 +46,5 @@ func die():
 func _on_health_health_changed(value) -> void:
 	$SubViewport/ProgressBar.value = value
 	var percent = float(health.current_health) / float(health.max_health)
-	$SubViewport/ProgressBar.tint_progress = Color(1 - percent, percent, 0.0)
+	$SubViewport/ProgressBar.tint_progress = health_bar_gradient.sample(percent)
 	$SubViewport/ProgressBar.set_visible(true)

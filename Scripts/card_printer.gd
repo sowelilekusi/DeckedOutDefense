@@ -33,6 +33,8 @@ func randomize_cards():
 			card = card_array.pick_random()
 			card_array.erase(card)
 		x.set_card(card)
+		#TODO: in reality this should just show the icon and then hovering over it lets you see either side at the players own discretion
+		x.view_tower()
 	$Node3D.set_visible(true)
 	for x in choice_colliders:
 		x.disabled = false

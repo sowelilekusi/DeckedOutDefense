@@ -23,6 +23,8 @@ func shoot():
 			var target_hitbox = target.shape_owner_get_owner(raycast.get_collider_shape())
 			if target_hitbox is Hitbox:
 				hit(target, target_hitbox)
+				if Data.preferences.display_self_damage_indicators:
+					spawn_damage_indicator(raycast.get_collision_point())
 				networked_hit.rpc(get_tree().root.get_path_to(target), get_tree().root.get_path_to(target_hitbox))
 
 
@@ -35,3 +37,5 @@ func networked_hit(target_path : String, target_hitbox_path : String):
 	var target = get_tree().root.get_node(target_path)
 	var target_hitbox = get_tree().root.get_node(target_hitbox_path) as Hitbox
 	hit(target, target_hitbox)
+	if Data.preferences.display_party_damage_indicators:
+		spawn_damage_indicator(target.sprite.global_position)

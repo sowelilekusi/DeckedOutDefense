@@ -1,9 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bywwtjdjsgdsj"]
+[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://bywwtjdjsgdsj"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_nobd8"]
+[ext_resource type="Texture2D" uid="uid://dnlplq8duves3" path="res://PCs/Universal/ClassCards/Blowdart/blowdart.png" id="2_jglqy"]
+[ext_resource type="PackedScene" uid="uid://cy05ssd52exf0" path="res://PCs/Universal/ClassCards/Blowdart/weapon_blowdart.tscn" id="3_shm45"]
+[ext_resource type="Resource" uid="uid://cfbap4o68urti" path="res://PCs/Universal/ClassCards/Blowdart/tower_stats.tres" id="3_t7ppb"]
+[ext_resource type="PackedScene" uid="uid://cq5q6c28pwi47" path="res://PCs/Universal/ClassCards/Blowdart/tower_blowdart.tscn" id="4_wvh75"]
+[ext_resource type="Resource" uid="uid://c6e50linnk2i7" path="res://PCs/Universal/ClassCards/Blowdart/weapon_stats.tres" id="4_x71t4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl74p"]
+atlas = ExtResource("2_jglqy")
+region = Rect2(0, 0, 64, 64)
 
 [resource]
 script = ExtResource("1_nobd8")
 title = "Blowdart"
-rarity = 0
+rarity = 2
 faction = 0
+sprite = SubResource("AtlasTexture_jl74p")
+turret_scene = ExtResource("4_wvh75")
+weapon_scene = ExtResource("3_shm45")
+weapon_stats = ExtResource("4_x71t4")
+tower_stats = ExtResource("3_t7ppb")

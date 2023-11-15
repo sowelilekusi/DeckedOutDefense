@@ -3,7 +3,7 @@ class_name ProjectileTower
 
 @export var projectile_scene : PackedScene
 
-var force := 2.0
+var force := 20.0
 var projectile_id := 0
 
 

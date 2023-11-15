@@ -4,6 +4,5 @@
 [ext_resource type="Script" path="res://Scripts/Projectiles/status_applying_projectile.gd" id="2_4p44n"]
 
 [node name="StatusApplyingProjectile" instance=ExtResource("1_atrjq")]
-max_contacts_reported = 0
 script = ExtResource("2_4p44n")
 status_stats = null

@@ -32,6 +32,6 @@ value = 3.0
 script = ExtResource("1_630yu")
 target_type = 0
 attributes = Array[ExtResource("1_vpmor")]([SubResource("Resource_fi7tc"), SubResource("Resource_r6h5d"), SubResource("Resource_gwg1i"), SubResource("Resource_ogk1x"), SubResource("Resource_wdp3h")])
-text = "Fires a shot every [Fire Delay] seconds dealing [Damage] damage at a range of [Range]m
+text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m
 
-While held, gradually accelerates to [Speed Multiplier] times the fire rate over [Speed Time]"
+While held, gradually accelerates to /Speed Multiplier\\x the fire rate over /Speed Time\\"

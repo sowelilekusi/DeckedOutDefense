@@ -15,15 +15,20 @@
 [ext_resource type="Script" path="res://Scripts/visualized_path.gd" id="11_d7ofl"]
 [ext_resource type="MeshLibrary" uid="uid://jfr8j8kycfa5" path="res://Worlds/GreenPlanet/tilemap.tres" id="12_ywwug"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_h1csw"]
-energy_multiplier = 3.0
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6p0p"]
+sky_top_color = Color(0.333333, 0.447059, 0.658824, 1)
+sky_curve = 0.0349887
 
 [sub_resource type="Sky" id="Sky_t42h5"]
-sky_material = SubResource("PhysicalSkyMaterial_h1csw")
+sky_material = SubResource("ProceduralSkyMaterial_w6p0p")
 
 [sub_resource type="Environment" id="Environment_l41d0"]
 background_mode = 2
 sky = SubResource("Sky_t42h5")
+ssao_radius = 0.01
+fog_light_energy = 1.1
+fog_density = 0.0416
+adjustment_contrast = 2.18
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_awjk1"]
 
@@ -92,6 +97,7 @@ enemy_path = NodePath("../Enemies")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.1496, 0.499996, 5.79039)
 
 [node name="Trees" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
 
 [node name="Tree" parent="Trees" instance=ExtResource("10_7v1co")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9581, 0.5, -4.16029)
@@ -535,7 +541,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="AStarGraph3D" type="Node3D" parent="." node_paths=PackedStringArray("start", "end", "spawner", "visualized_path", "tower_path")]
 script = ExtResource("11_07ukk")
-grid_size = Vector2(19, 9)
+grid_size = Vector2i(19, 9)
 point_gap = 1.5
 start = NodePath("../GroundSpawn")
 end = NodePath("../EnemyGoal")

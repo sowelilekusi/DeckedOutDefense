@@ -1,0 +1,2 @@
+extends ProjectileTower
+class_name IcicleTower

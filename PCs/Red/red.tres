@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Resources/hero_class.gd" id="1_1wkap"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="1_iiksa"]
 [ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="2_hkiwr"]
-[ext_resource type="Texture2D" uid="uid://hxev3a2ktya" path="res://Assets/TextureAtlases/red.tres" id="2_kjc7g"]
 [ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="3_ruhqi"]
+[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Red/red.png" id="5_raux1"]
 
 [resource]
 script = ExtResource("1_1wkap")
 hero_name = "Red"
-texture = ExtResource("2_kjc7g")
+texture = ExtResource("5_raux1")
 deck = Array[Resource("res://Scripts/Resources/card.gd")]([ExtResource("2_hkiwr"), ExtResource("3_ruhqi"), ExtResource("1_iiksa")])

@@ -7,7 +7,7 @@ func calculate_spawn_power(wave_number : int, number_of_players : int) -> int:
 
 func generate_wave(spawn_power : int, spawn_pool : Array[Enemy]) -> Dictionary:
 	var wave = {}
-	var sp_used = 0
+	#var sp_used = 0
 	var enemy_types = randi_range(1, 5)
 	var enemy_choices = spawn_pool.duplicate()
 	var sp_allotment = floori(spawn_power / enemy_types)
@@ -16,6 +16,6 @@ func generate_wave(spawn_power : int, spawn_pool : Array[Enemy]) -> Dictionary:
 		enemy_choices.erase(choice)
 		if sp_allotment / choice.spawn_power > 0:
 			wave[Data.enemies.find(choice)] = sp_allotment / choice.spawn_power
-			sp_used += wave[Data.enemies.find(choice)] * choice.spawn_power
-	print("tried to generate wave with " + str(spawn_power) + " spawn power, used " + str(sp_used))
+			#sp_used += wave[Data.enemies.find(choice)] * choice.spawn_power
+	#print("Generated wave with spawn power: " + str(sp_used) + "/" + str(spawn_power))
 	return wave

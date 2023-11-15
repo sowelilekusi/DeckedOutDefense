@@ -59,9 +59,11 @@ func spawn_players(player_array, player_profiles, chatbox_open_signal, chatbox_c
 	for peer_id in player_array:
 		var player = player_scene.instantiate() as Hero
 		player.name = str(peer_id)
+		player.player_name_tag.text = player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = player_profiles[peer_id]
 		player.hero_class = Data.characters[player_profiles[peer_id].preferred_class]
+		print(player.hero_class.hero_name)
 		player.ready_state_changed.connect(ready_player)
 		if peer_id == multiplayer.get_unique_id():
 			chatbox_open_signal.connect(player.pause)
@@ -152,14 +154,15 @@ func end_wave():
 
 
 func remove_player(peer_id):
-	connected_players_nodes[peer_id].queue_free()
-	connected_players_nodes.erase(peer_id)
+	if connected_players_nodes.has(peer_id):
+		connected_players_nodes[peer_id].queue_free()
+		connected_players_nodes.erase(peer_id)
 
 
 func start_game():
 	game_active = true
 	enemies = 0
-	objective_health = 100
+	objective_health = 120
 	wave = 0
 	level.a_star_graph_3d.make_grid()
 	level.a_star_graph_3d.find_path()
@@ -176,7 +179,7 @@ func restart_game():
 	connected_players_nodes.clear()
 	level.queue_free()
 	enemies = 0
-	objective_health = 100
+	objective_health = 120
 	wave = 0
 	spawn_level()
 	game_restarted.emit()

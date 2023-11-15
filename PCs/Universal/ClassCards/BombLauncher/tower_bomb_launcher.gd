@@ -11,7 +11,7 @@ func aim():
 	var pos = Vector2(global_position.x, global_position.z)
 	var t_pos = Vector2(targeted_enemy.global_position.x, targeted_enemy.global_position.z)
 	var x = pos.distance_to(t_pos)
-	var y = targeted_enemy.global_position.y - (global_position.y + 1)
+	var y = targeted_enemy.global_position.y - global_position.y
 	var v = force
 	var g = ProjectSettings.get_setting("physics/3d/default_gravity")
 	var v2 = pow(v, 2)

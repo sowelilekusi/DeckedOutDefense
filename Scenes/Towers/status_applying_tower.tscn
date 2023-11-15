@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxwtlvv632ae8"]
+
+[ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_suc1i"]
+[ext_resource type="Script" path="res://Scripts/Towers/status_applying_tower.gd" id="2_rd0fq"]
+
+[node name="StatusApplyingTower" instance=ExtResource("1_suc1i")]
+script = ExtResource("2_rd0fq")
+status_stats = null

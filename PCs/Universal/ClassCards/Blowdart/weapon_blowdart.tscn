@@ -13,15 +13,7 @@ region = Rect2(0, 0, 64, 64)
 [node name="BlowdartWeapon" instance=ExtResource("1_t3gfv")]
 script = ExtResource("2_g1m1f")
 status_stats = ExtResource("3_wculg")
-raycast = Object(RayCast3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"enabled":true,"exclude_parent":true,"target_position":Vector3(0, 0, -1),"collision_mask":4,"hit_from_inside":false,"collide_with_areas":false,"collide_with_bodies":true,"debug_shape_custom_color":Color(0, 0, 0, 1),"debug_shape_thickness":2,"script":null)
-
-range_debug_indicator = Object(CSGSphere3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":false,"visibility_parent":NodePath(""),"layers":1,"sorting_offset":0.0,"sorting_use_aabb_center":true,"material_override":null,"material_overlay":null,"transparency":0.0,"cast_shadow":1,"extra_cull_margin":0.0,"custom_aabb":AABB(0, 0, 0, 0, 0, 0),"lod_bias":1.0,"ignore_occlusion_culling":false,"gi_mode":1,"gi_lightmap_scale":0,"visibility_range_begin":0.0,"visibility_range_begin_margin":0.0,"visibility_range_end":0.0,"visibility_range_end_margin":0.0,"visibility_range_fade_mode":0,"operation":0,"snap":0.001,"calculate_tangents":true,"use_collision":false,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"flip_faces":false,"radius":4.104,"radial_segments":16,"rings":16,"smooth_faces":true,"material":null,"script":null)
-
 stats = ExtResource("4_dwqec")
-animator = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","root_node":NodePath(".."),"autoplay":"","reset_on_save":true,"playback_process_mode":1,"playback_default_blend_time":0.0,"speed_scale":1.0,"method_call_mode":0,"audio_max_polyphony":32,"movie_quit_on_finish":false,"libraries":{
-"": null
-},"blend_times":[],"script":null)
-
 
 [node name="Sprite3D" parent="." index="0"]
 texture = SubResource("AtlasTexture_85web")

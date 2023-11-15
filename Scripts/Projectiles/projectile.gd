@@ -10,6 +10,10 @@ var lifetime := 10.0
 var time_alive := 0.0
 
 
+func _ready() -> void:
+	apply_central_impulse(direction * force)
+
+
 func _process(delta: float) -> void:
 	time_alive += delta
 

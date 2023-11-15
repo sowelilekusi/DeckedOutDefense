@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/Resources/hero_class.gd" id="1_cpfpk"]
 [ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="1_hv6hq"]
-[ext_resource type="Texture2D" uid="uid://bgt3j4cuq814m" path="res://Assets/TextureAtlases/green.tres" id="2_4p73e"]
 [ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="2_jdi4m"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="3_f04lj"]
+[ext_resource type="Texture2D" uid="uid://dyqh1uu4pocv1" path="res://PCs/Green/green.png" id="5_vhx4f"]
 
 [resource]
 script = ExtResource("1_cpfpk")
 hero_name = "Green"
-texture = ExtResource("2_4p73e")
+texture = ExtResource("5_vhx4f")
 deck = Array[Resource("res://Scripts/Resources/card.gd")]([ExtResource("3_f04lj"), ExtResource("1_hv6hq"), ExtResource("2_jdi4m")])

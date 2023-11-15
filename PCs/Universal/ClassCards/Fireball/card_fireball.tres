@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bibx2my7igspq"]
+[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://bibx2my7igspq"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_qktm8"]
 [ext_resource type="Texture2D" uid="uid://mwgpnnm3g3re" path="res://PCs/Universal/ClassCards/Fireball/fireball.png" id="2_lfltq"]
+[ext_resource type="Resource" uid="uid://dnvqghpwyuw84" path="res://PCs/Universal/ClassCards/Fireball/tower_stats.tres" id="3_1l6fp"]
 [ext_resource type="PackedScene" uid="uid://dnwjfb4fexr0o" path="res://PCs/Universal/ClassCards/Fireball/weapon_fireball.tscn" id="3_4c0mu"]
+[ext_resource type="PackedScene" uid="uid://dwwgvgn0ds8tk" path="res://PCs/Universal/ClassCards/Fireball/tower_fireball.tscn" id="4_e3adw"]
 [ext_resource type="Resource" uid="uid://dhwhwicgpw7yh" path="res://PCs/Universal/ClassCards/Fireball/weapon_stats.tres" id="4_folo6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvh1s"]
@@ -15,5 +17,7 @@ title = "Fireball"
 rarity = 3
 faction = 0
 sprite = SubResource("AtlasTexture_wvh1s")
+turret_scene = ExtResource("4_e3adw")
 weapon_scene = ExtResource("3_4c0mu")
 weapon_stats = ExtResource("4_folo6")
+tower_stats = ExtResource("3_1l6fp")

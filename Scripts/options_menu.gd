@@ -13,6 +13,10 @@ class_name OptionsMenu
 @export var fov_input : SpinBox
 @export var fov_slider : HSlider
 @export var fixed_minimap : CheckButton
+@export var tower_damage : Button
+@export var self_damage : Button
+@export var party_damage : Button
+@export var status_damage : Button
 var keybind_boxes = []
 var keybind_buttons = {}
 var key_event
@@ -31,7 +35,10 @@ func _ready():
 	fov_input.value = Data.preferences.hfov
 	fov_slider.value = Data.preferences.hfov
 	fixed_minimap.button_pressed = Data.preferences.fixed_minimap
-	
+	tower_damage.button_pressed = Data.preferences.display_tower_damage_indicators
+	self_damage.button_pressed = Data.preferences.display_self_damage_indicators
+	party_damage.button_pressed = Data.preferences.display_party_damage_indicators
+	status_damage.button_pressed = Data.preferences.display_status_effect_damage_indicators
 	for index in Data.keymaps.size():
 		var map = Data.keymaps[index]
 		var button = Button.new()
@@ -85,6 +92,10 @@ func _on_confirm_pressed() -> void:
 	Data.preferences.invert_lookY = invert_lookY.button_pressed
 	Data.preferences.invert_lookX = invert_lookX.button_pressed
 	Data.preferences.fixed_minimap = fixed_minimap.button_pressed
+	Data.preferences.display_tower_damage_indicators = tower_damage.button_pressed
+	Data.preferences.display_self_damage_indicators = self_damage.button_pressed
+	Data.preferences.display_party_damage_indicators = party_damage.button_pressed
+	Data.preferences.display_status_effect_damage_indicators = status_damage.button_pressed
 	Data.preferences.apply_graphical_settings(get_viewport())
 	Data.preferences.save_profile_to_disk()
 	Data.player_keymap.save_profile_to_disk()

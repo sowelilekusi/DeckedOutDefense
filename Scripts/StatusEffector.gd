@@ -55,6 +55,6 @@ func add_effect(new_effect : StatusEffect):
 		existing_effect.on_attached(enemy, effects)
 		icons[existing_effect].set_visible(true)
 		effects[existing_effect] += 1
-		existing_effect.time_existed = 0.0
+	existing_effect.time_existed = 0.0
 	if existing_effect.stats.max_stacks != 0 and effects[existing_effect] > existing_effect.stats.max_stacks:
 		effects[existing_effect] = existing_effect.stats.max_stacks

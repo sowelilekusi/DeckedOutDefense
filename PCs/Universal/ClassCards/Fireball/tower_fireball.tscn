@@ -1,41 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr2bmfj8fquxr"]
+[gd_scene load_steps=5 format=3 uid="uid://dwwgvgn0ds8tk"]
 
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Fireball/fireballtower.gd" id="1_076bl"]
-[ext_resource type="PackedScene" uid="uid://dyglfv8lh2rbg" path="res://PCs/Universal/ClassCards/Fireball/fireball.tscn" id="2_0kqdt"]
-[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="3_88y8d"]
-[ext_resource type="Resource" uid="uid://b8a635kajtq6" path="res://Resources/TurretStats/fireball.tres" id="4_cd3q3"]
+[ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_rkdu6"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Fireball/tower_fireball.gd" id="2_td8dh"]
+[ext_resource type="PackedScene" uid="uid://ddpixntjsbpqp" path="res://PCs/Universal/ClassCards/Fireball/fireball_projectile.tscn" id="3_1akv8"]
+[ext_resource type="Resource" uid="uid://dnvqghpwyuw84" path="res://PCs/Universal/ClassCards/Fireball/tower_stats.tres" id="4_uu77s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fouf8"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.686275, 0, 0, 0.278431)
-
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("model", "range_sphere", "minimap_range_sphere")]
-script = ExtResource("1_076bl")
-fireball_scene = ExtResource("2_0kqdt")
-status_stats = ExtResource("3_88y8d")
-stats = ExtResource("4_cd3q3")
-model = NodePath("Model")
-range_sphere = NodePath("Model/CSGSphere3D")
-minimap_range_sphere = NodePath("Model/CSGSphere3D2")
-
-[node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97939, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.486166)
-size = Vector3(1.10238, 1.08881, 1.04243)
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
-visible = false
-radius = 7.5
-material = SubResource("StandardMaterial3D_fouf8")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
-visible = false
-layers = 4
-radius = 7.5
-material = SubResource("StandardMaterial3D_fouf8")
+[node name="FireballTower" instance=ExtResource("1_rkdu6")]
+script = ExtResource("2_td8dh")
+projectile_scene = ExtResource("3_1akv8")
+stats = ExtResource("4_uu77s")

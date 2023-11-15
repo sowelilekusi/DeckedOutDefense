@@ -10,11 +10,6 @@ signal health_changed(health)
 var current_health
 
 func take_damage(damage):
-	#var marker = damage_particle_scene.instantiate()
-	#get_tree().root.add_child(marker)
-	#marker.set_number(damage)
-	#marker.position = get_parent().global_position + Vector3.UP
-	
 	current_health -= damage
 	health_changed.emit(current_health)
 	if current_health <= 0:

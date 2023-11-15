@@ -20,5 +20,6 @@ value = 0.5
 
 [resource]
 script = ExtResource("1_8sdo4")
+target_type = 0
 attributes = Array[ExtResource("1_gheu8")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0")])
-text = "Fires every [Fire Delay]s, making the target Sticky at a range of [Range]m"
+text = "Fires every /Fire Delay\\s, making the target Sticky at a range of /Range\\m"

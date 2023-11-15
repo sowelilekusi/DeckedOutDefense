@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0nady5xm88bo"]
+[gd_scene load_steps=15 format=3 uid="uid://b0nady5xm88bo"]
 
 [ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_fwsjt"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="2_j8yin"]
+[ext_resource type="Gradient" uid="uid://dx7auy3oqw82t" path="res://health_bar_gradient.tres" id="2_jn5to"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_o7jmg"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="2_swu53"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="3_naknq"]
@@ -13,7 +14,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sn7du"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4568"]
 resource_local_to_scene = true
 atlas = ExtResource("3_naknq")
 region = Rect2(0, 0, 32, 32)
@@ -29,6 +30,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 health = NodePath("Health")
 sprite = NodePath("DirectionSprite")
+health_bar_gradient = ExtResource("2_jn5to")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_swu53")
@@ -42,10 +44,11 @@ script = ExtResource("2_j8yin")
 [node name="DirectionSprite" parent="." instance=ExtResource("2_o7jmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642479, 0)
 pixel_size = 0.04
-texture = SubResource("AtlasTexture_sn7du")
+texture = SubResource("AtlasTexture_s4568")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
+sorting_offset = 1.0
 pixel_size = 0.02
 billboard = 1
 texture_filter = 0

@@ -4,6 +4,7 @@ class_name Weapon
 @export var stats : CardText
 @export var animator : AnimationPlayer
 
+var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
 var hero : Hero
 var trigger_held := false
 var second_trigger_held := false
@@ -47,6 +48,14 @@ func hold_second_trigger():
 
 func release_second_trigger():
 	second_trigger_held = false
+
+
+func spawn_damage_indicator(pos):
+	if damage > 0:
+		var marker = damage_particle_scene.instantiate()
+		get_tree().root.add_child(marker)
+		marker.set_number(damage)
+		marker.position = pos
 
 
 func shoot():

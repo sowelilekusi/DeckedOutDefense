@@ -38,16 +38,16 @@ func _ready() -> void:
 	cards.append(preload("res://PCs/Universal/ClassCards/Gatling/card_gatling.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
 	#Uncommon
-	#cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/Refridgerator/card_refridgerator.tres"))
-	#cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
 	#Rare
 	#cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/DamageEnhancer/card_damage_enhancer.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/SpeedEnhancer/card_speed_enhancer.tres"))
 	#Epic
-	#cards.append(preload("res://PCs/Universal/ClassCards/Icicle/card_icicle.tres"))
-	#cards.append(preload("res://PCs/Universal/ClassCards/Fireball/card_fireball.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Icicle/card_icicle.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Fireball/card_fireball.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/GammaLaser/card_gamma_laser.tres"))
 	#Legendary
 	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))

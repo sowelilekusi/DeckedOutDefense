@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjo2q6vca5qlv"]
+[gd_scene load_steps=13 format=3 uid="uid://bjo2q6vca5qlv"]
 
 [ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_m83kr"]
+[ext_resource type="Gradient" uid="uid://dx7auy3oqw82t" path="res://health_bar_gradient.tres" id="2_ql1oc"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="3_wiose"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_mhq3m"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="5_433ie"]
@@ -24,6 +25,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("BeeliningController")
 health = NodePath("Health")
 sprite = NodePath("DirectionSprite")
+health_bar_gradient = ExtResource("2_ql1oc")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_wiose")
@@ -42,6 +44,7 @@ texture = ExtResource("6_ke2c8")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.15918, 0)
+sorting_offset = 1.0
 pixel_size = 0.02
 billboard = 1
 texture_filter = 0

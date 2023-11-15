@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=30 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="6_cf5ap"]
-[ext_resource type="Texture2D" uid="uid://hxev3a2ktya" path="res://Assets/TextureAtlases/red.tres" id="6_loffy"]
+[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Red/red.png" id="6_yyp8i"]
 [ext_resource type="Texture2D" uid="uid://d0btebva6djdl" path="res://Assets/Textures/crosshair.png" id="8_fq3f6"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="8_yl6ka"]
 [ext_resource type="Script" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
@@ -21,6 +21,11 @@
 [ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyv4e"]
+resource_local_to_scene = true
+atlas = ExtResource("6_yyp8i")
+region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="Environment" id="Environment_ekmug"]
 
@@ -54,7 +59,10 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_574jy"]
 viewport_path = NodePath("MiniMapViewport")
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "interaction_raycast", "inventory", "card", "hud", "movement")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3ots"]
+viewport_path = NodePath("Nametag")
+
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "interaction_raycast", "inventory", "card", "hud", "movement", "player_name_tag")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -73,6 +81,7 @@ card = NodePath("SubViewport/Head2/LeftHand/SubViewport/Node2D")
 pause_menu_scene = ExtResource("3_avnsx")
 hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
+player_name_tag = NodePath("Nametag/Label")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -94,7 +103,7 @@ collision_mask = 24
 
 [node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = ExtResource("6_loffy")
+texture = SubResource("AtlasTexture_oyv4e")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("6_cf5ap")
@@ -130,12 +139,12 @@ transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -
 
 [node name="SubViewport" type="SubViewport" parent="SubViewport/Head2/LeftHand"]
 transparent_bg = true
-size = Vector2i(192, 192)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
 
 [node name="Sprite3D" type="Sprite3D" parent="SubViewport/Head2/LeftHand"]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.2, 0.19, 0)
 layers = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_8f12g")
@@ -167,20 +176,6 @@ fps_label = NodePath("Label")
 hover_text = NodePath("Label2")
 enemy_sprites = [NodePath("TextureRect4/TextureRect"), NodePath("TextureRect4/TextureRect2"), NodePath("TextureRect4/TextureRect3"), NodePath("TextureRect4/TextureRect4"), NodePath("TextureRect4/TextureRect5")]
 enemy_counts = [NodePath("TextureRect4/TextureRect/Label"), NodePath("TextureRect4/TextureRect2/Label2"), NodePath("TextureRect4/TextureRect3/Label3"), NodePath("TextureRect4/TextureRect4/Label4"), NodePath("TextureRect4/TextureRect5/Label5")]
-
-[node name="WaveCount" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_top = 83.0
-offset_right = 30.0
-offset_bottom = 26.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="EnemyCount" type="Label" parent="HUD"]
 visible = false
@@ -434,6 +429,20 @@ text = "Press button to do thing"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WaveCount" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 83.0
+offset_right = 30.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
 layers = 4
@@ -444,3 +453,28 @@ texture = ExtResource("15_nhlam")
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../Head")
+
+[node name="Nametag" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(300, 40)
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="Nametag"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUITE LONG PLAYER NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 5
+sorting_offset = 500.0
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture = SubResource("ViewportTexture_m3ots")

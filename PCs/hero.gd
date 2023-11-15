@@ -21,12 +21,13 @@ signal died
 @export var hud : HUD
 @export var movement : PlayerMovement
 @export var sprint_zoom_speed := 0.2
+@export var player_name_tag : Label
 
 var equipped_card : Card
 var weapon : Weapon
 var paused := false
 var editing_mode := true
-var profile: PlayerProfile
+var profile : PlayerProfile
 var ready_state := false : 
 	set(value):
 		ready_state = value
@@ -49,6 +50,7 @@ func _ready() -> void:
 		right_hand_animator.speed_scale = 0
 		camera.make_current()
 		sprite.queue_free()
+		player_name_tag.queue_free()
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
@@ -56,7 +58,7 @@ func _ready() -> void:
 	if weapon != null:
 		weapon.set_raycast_origin(camera)
 	inventory.contents.append_array(hero_class.deck)
-	sprite.texture = hero_class.texture
+	sprite.texture.atlas = hero_class.texture
 	check_left_hand_valid()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
