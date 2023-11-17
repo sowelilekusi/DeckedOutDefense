@@ -32,7 +32,7 @@ func _on_player_connected(peer_id):
 
 func _on_player_disconnected(peer_id):
 	if chatbox:
-		chatbox.append_message("SERVER", connected_players_profiles[peer_id].display_name + " has disconnected!")
+		chatbox.append_message("SERVER", Color.TOMATO, connected_players_profiles[peer_id].display_name + " has disconnected!")
 	connected_players_profiles.erase(peer_id)
 	player_disconnected.emit(peer_id)
 
@@ -64,6 +64,7 @@ func setup_game(peer_id):
 	Game.spawn_level()
 	scoreboard.all_players_ready.connect(start_game)
 	Game.game_restarted.connect(setup_the_ui)
+	Game.chatbox = chatbox
 	setup_the_ui()
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
@@ -116,7 +117,7 @@ func add_player(new_player_profile_dict):
 	var new_player_peer_id = multiplayer.get_remote_sender_id()
 	var new_player_profile = PlayerProfile.from_dict(new_player_profile_dict)
 	if chatbox:
-		chatbox.append_message("SERVER", new_player_profile.display_name + " has connected!")
+		chatbox.append_message("SERVER", Color.TOMATO, new_player_profile.display_name + " has connected!")
 	connected_players_profiles[new_player_peer_id] = new_player_profile
 	player_connected.emit(new_player_peer_id, new_player_profile)
 

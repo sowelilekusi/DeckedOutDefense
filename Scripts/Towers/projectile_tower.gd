@@ -28,3 +28,4 @@ func networked_spawn_projectile(peer_id):
 	projectile.name = base_name + str(peer_id) + str(projectile_id)
 	get_tree().root.add_child(projectile)
 	projectile_id += 1
+	return projectile

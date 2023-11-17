@@ -26,6 +26,15 @@ func explode():
 
 func hit(target):
 	target.damage(damage)
+	if owner_id == 0:
+		if Data.preferences.display_tower_damage_indicators:
+			spawn_damage_indicator(target.sprite.global_position)
+	if owner_id == multiplayer.get_unique_id():
+		if Data.preferences.display_self_damage_indicators:
+			spawn_damage_indicator(target.sprite.global_position)
+	if owner_id != 0 and owner_id != multiplayer.get_unique_id():
+		if Data.preferences.display_party_damage_indicators:
+			spawn_damage_indicator(target.sprite.global_position)
 
 
 @rpc("reliable")

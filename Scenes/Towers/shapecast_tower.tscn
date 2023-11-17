@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://8uxu72vjo0cv"]
+
+[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_ljc02"]
+[ext_resource type="Script" path="res://Scripts/Towers/shapecast_tower.gd" id="2_qh834"]
+
+[node name="ShapecastTower" node_paths=PackedStringArray("shapecast", "particlesystem") instance=ExtResource("1_ljc02")]
+script = ExtResource("2_qh834")
+shapecast = NodePath("Yaw/ShapeCast3D")
+particlesystem = NodePath("Yaw/ShapeCast3D/GPUParticles3D")
+status_stats = null
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Yaw" index="0"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Yaw/ShapeCast3D" index="0"]

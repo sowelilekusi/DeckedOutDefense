@@ -133,7 +133,7 @@ func _process(delta: float) -> void:
 		movement.zoom_factor -= sprint_zoom_speed * delta
 		if movement.zoom_factor <= 1.0 - movement.sprint_zoom_factor:
 			movement.zoom_factor = 1.0 - movement.sprint_zoom_factor
-	camera.fov = Data.preferences.hfov * (1.0 / movement.zoom_factor)
+	camera.fov = Data.graphics.hfov * (1.0 / movement.zoom_factor)
 	
 	if Input.is_action_just_pressed("View Map"):
 		hud.maximise_minimap(Game.level)

@@ -7,6 +7,7 @@ class_name Tower
 @export var yaw_model : MeshInstance3D
 @export var range_indicator : CSGSphere3D
 
+var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
 var base_name
 var targeted_enemy
 var time_since_firing := 0.0
@@ -80,6 +81,14 @@ func shoot():
 	animator.play("shoot")
 	if is_multiplayer_authority():
 		networked_shoot.rpc()
+
+
+func spawn_damage_indicator(pos):
+	if damage > 0:
+		var marker = damage_particle_scene.instantiate()
+		get_tree().root.add_child(marker)
+		marker.set_number(damage)
+		marker.position = pos
 
 
 @rpc("reliable")

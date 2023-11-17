@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi6b2r6wek7he"]
+
+[ext_resource type="PackedScene" uid="uid://dxwtlvv632ae8" path="res://Scenes/Towers/status_applying_tower.tscn" id="1_x852w"]
+[ext_resource type="Script" path="res://Scripts/Towers/range_affecting_tower.gd" id="2_wc1xf"]
+
+[node name="RangeAffectingTower" instance=ExtResource("1_x852w")]
+script = ExtResource("2_wc1xf")

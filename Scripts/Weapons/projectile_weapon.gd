@@ -24,6 +24,7 @@ func networked_spawn_projectile(peer_id, direction):
 	projectile.damage = damage
 	projectile.direction = direction
 	projectile.force = force
+	projectile.owner_id = peer_id
 	projectile.name = str(peer_id) + str(projectile_id)
 	get_tree().root.add_child(projectile)
 	projectile_id += 1

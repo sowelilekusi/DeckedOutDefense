@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddmg342ff2qaq"]
+[gd_scene load_steps=3 format=3 uid="uid://ddmg342ff2qaq"]
 
 [ext_resource type="Script" path="res://Scripts/chatbox.gd" id="1_k3g22"]
 
-[node name="Chatbox" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3kb6"]
+bg_color = Color(0.223529, 0.211765, 0.184314, 0.462745)
+
+[node name="Chatbox" type="Control" node_paths=PackedStringArray("input_line", "textbox", "text_panel", "fade_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,24 +14,32 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_k3g22")
+input_line = NodePath("VBoxContainer/LineEdit")
+textbox = NodePath("VBoxContainer/PanelContainer/RichTextLabel")
+text_panel = NodePath("VBoxContainer/PanelContainer")
+fade_timer = NodePath("Timer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -210.0
-offset_right = 350.0
-offset_bottom = -10.0
-grow_vertical = 0
+layout_mode = 2
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 375.0
+offset_bottom = 300.0
 mouse_filter = 2
 alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c3kb6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+bbcode_enabled = true
 scroll_following = true
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
@@ -37,3 +48,8 @@ layout_mode = 2
 mouse_filter = 2
 context_menu_enabled = false
 selecting_enabled = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

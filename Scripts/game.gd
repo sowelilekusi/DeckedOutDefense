@@ -25,6 +25,7 @@ var wave := 0
 var upcoming_wave
 var pot : float
 var UILayer : CanvasLayer
+var chatbox : Chatbox
 
 
 func _ready() -> void:
@@ -41,6 +42,12 @@ func parse_command(text : String, peer_id : int):
 			if x.title == gift_name:
 				gift = x
 		connected_players_nodes[peer_id].inventory.add(gift)
+	if text.substr(1, 2) == "tr":
+		chatbox.append_message("SERVER", Color.TOMATO, "[color=#f7a8b8]t[color=#55cdfc]r[color=#ffffff]a[color=#55cdfc]n[color=#f7a8b8]s [color=#e50000]r[color=#ff8d00]i[color=#ffee00]g[color=#028121]h[color=#004cff]t[color=#760088]s[color=white]!!")
+#	if text.substr(1, 17) == "show tower ranges":
+#		pass
+#	if text.substr(1, 20) = "show gauntlet ranges":
+#		pass
 
 
 func spawn_level():
@@ -63,7 +70,6 @@ func spawn_players(player_array, player_profiles, chatbox_open_signal, chatbox_c
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = player_profiles[peer_id]
 		player.hero_class = Data.characters[player_profiles[peer_id].preferred_class]
-		print(player.hero_class.hero_name)
 		player.ready_state_changed.connect(ready_player)
 		if peer_id == multiplayer.get_unique_id():
 			chatbox_open_signal.connect(player.pause)
@@ -99,7 +105,7 @@ func set_upcoming_wave():
 	if is_multiplayer_authority():
 		var spawn_power = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
 		var new_wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 100))
+		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 50))
 
 
 @rpc("reliable", "call_local")

@@ -80,7 +80,7 @@ curve = SubResource("Curve3D_suxqu")
 script = ExtResource("11_d7ofl")
 
 [node name="GroundSpawn" parent="." node_paths=PackedStringArray("path", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9396, 0.5, 0)
 path = NodePath("../VisualizedPath")
 type = 1
 dest = NodePath("../EnemyGoal")
@@ -541,8 +541,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="AStarGraph3D" type="Node3D" parent="." node_paths=PackedStringArray("start", "end", "spawner", "visualized_path", "tower_path")]
 script = ExtResource("11_07ukk")
-grid_size = Vector2i(19, 9)
-point_gap = 1.5
+grid_size = Vector2i(15, 7)
+point_gap = 2.0
 start = NodePath("../GroundSpawn")
 end = NodePath("../EnemyGoal")
 spawner = NodePath("../GroundSpawn")

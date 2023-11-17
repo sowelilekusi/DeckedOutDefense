@@ -54,9 +54,7 @@ grow_vertical = 2
 text = "Ready"
 
 [node name="Chatbox" parent="." instance=ExtResource("3_l8xy3")]
-visible = false
 layout_mode = 1
-offset_bottom = -507.0
 
 [connection signal="pressed" from="ReadyButton" to="Scoreboard" method="set_player_ready_state" binds= [1, true]]
 [connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]

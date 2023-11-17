@@ -7,6 +7,8 @@ var bounces := 0
 
 func _ready() -> void:
 	apply_central_impulse(direction * force)
+	if owner_id == 0:
+		max_bounces = 0
 
 
 func _on_body_entered(_body: Node) -> void:

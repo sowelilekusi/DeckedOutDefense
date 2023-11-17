@@ -1,0 +1,125 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmd4mawasoc11"]
+
+[ext_resource type="Script" path="res://Scripts/graphics_options.gd" id="1_85rh6"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
+
+[node name="Graphics" type="VBoxContainer" node_paths=PackedStringArray("fov_input", "fov_slider", "vsync_dropdown", "aa_dropdown", "window_dropdown")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_85rh6")
+fov_input = NodePath("FOV/HBoxContainer/SpinBox")
+fov_slider = NodePath("FOV/HBoxContainer/HSlider")
+vsync_dropdown = NodePath("VSync/OptionButton")
+aa_dropdown = NodePath("AntiAliasing/OptionButton")
+window_dropdown = NodePath("Windowed/OptionButton")
+
+[node name="FOV" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Field Of View"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="FOV/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+min_value = 40.0
+max_value = 160.0
+value = 100.0
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="FOV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 40.0
+max_value = 160.0
+value = 100.0
+scrollable = false
+
+[node name="VSync" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "V-Sync"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 1
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "On"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Triple Buffered"
+popup/item_3/id = 3
+
+[node name="AntiAliasing" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AntiAliasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Anti-Aliasing
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="AntiAliasing"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "FXAA"
+popup/item_1/id = 1
+popup/item_2/text = "TAA"
+popup/item_2/id = 2
+
+[node name="Windowed" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Windowed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Windowed"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[connection signal="value_changed" from="FOV/HBoxContainer/SpinBox" to="." method="_on_fov_spin_box_value_changed"]
+[connection signal="value_changed" from="FOV/HBoxContainer/HSlider" to="." method="_on_fov_h_slider_value_changed"]

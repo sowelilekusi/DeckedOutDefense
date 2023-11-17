@@ -1,0 +1,167 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjk7jf0bau5lv"]
+
+[ext_resource type="Script" path="res://Scripts/gameplay_options.gd" id="1_sy26f"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
+
+[node name="Gameplay" type="VBoxContainer" node_paths=PackedStringArray("look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "invert_lookY", "invert_lookX", "fixed_minimap", "tower_damage", "self_damage", "party_damage", "status_damage")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sy26f")
+look_sens_slider = NodePath("MouseSens/HBoxContainer/HSlider")
+look_sens_input = NodePath("MouseSens/HBoxContainer/SpinBox")
+toggle_sprint_checkbox = NodePath("ToggleSprint/CenterContainer/CheckButton")
+invert_lookY = NodePath("InvertMouseY/CenterContainer/CheckButton")
+invert_lookX = NodePath("InvertMouseX/CenterContainer/CheckButton")
+fixed_minimap = NodePath("FixedMinimap/CenterContainer/CheckButton")
+tower_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/TowerDamage")
+self_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/SelfDamage")
+party_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/PartyDamage")
+status_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/StatusDamage")
+
+[node name="MouseSens" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MouseSens"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Look Sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MouseSens"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="MouseSens/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+step = 0.01
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="MouseSens/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 0.01
+scrollable = false
+
+[node name="ToggleSprint" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ToggleSprint"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Toggle Sprint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="ToggleSprint"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="ToggleSprint/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InvertMouseY" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InvertMouseY"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Invert Look Y"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="InvertMouseY"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="InvertMouseY/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InvertMouseX" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InvertMouseX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Invert Look X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="InvertMouseX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="InvertMouseX/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FixedMinimap" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FixedMinimap"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fixed Minimap"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="FixedMinimap"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="FixedMinimap/CenterContainer"]
+layout_mode = 2
+
+[node name="FloatingDamageIndicators" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FloatingDamageIndicators"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Floating Damage Indicators"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="FloatingDamageIndicators"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FloatingDamageIndicators/CenterContainer"]
+layout_mode = 2
+
+[node name="TowerDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Tower Damage"
+
+[node name="SelfDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Self Damage"
+
+[node name="PartyDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Party Damage"
+
+[node name="StatusDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Status Effect Damage"
+
+[connection signal="value_changed" from="MouseSens/HBoxContainer/SpinBox" to="." method="_on_mouse_sens_spin_box_value_changed"]
+[connection signal="value_changed" from="MouseSens/HBoxContainer/HSlider" to="." method="_on_mouse_sens_h_slider_value_changed"]

@@ -30,4 +30,4 @@ func view_weapon():
 
 func view_tower():
 	description.text = process_card_text(stats.tower_stats)
-	target_label.text = str(stats.tower_stats.target_type)
+	target_label.text = str(Data.TargetType.keys()[stats.tower_stats.target_type])

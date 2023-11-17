@@ -14,7 +14,7 @@ region = Rect2(0, 0, 64, 64)
 [resource]
 script = ExtResource("1_nobd8")
 title = "Blowdart"
-rarity = 2
+rarity = 1
 faction = 0
 sprite = SubResource("AtlasTexture_jl74p")
 turret_scene = ExtResource("4_wvh75")

@@ -2,7 +2,7 @@ extends StaticBody3D
 class_name TowerBase
 
 @export var inventory : Inventory
-@export var block : CSGBox3D
+@export var block : Node3D
 @export var collider : CollisionShape3D
 @export var minimap_icon : Sprite3D
 
@@ -27,7 +27,7 @@ func remove_card() -> Card:
 
 
 func set_material(value: StandardMaterial3D):
-	block.material = value
+	block.material_override = value
 
 
 func toggle_collision():
@@ -40,7 +40,7 @@ func networked_spawn_tower():
 	tower.stats = inventory.selected_item.tower_stats
 	tower.name = "tower"
 	tower.base_name = name
-	tower.position = Vector3.UP
+	tower.position = Vector3(0, 1.2, 0)
 	minimap_icon.modulate = Color.RED
 	add_child(tower)
 

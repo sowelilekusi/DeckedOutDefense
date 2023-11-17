@@ -64,7 +64,6 @@ text = "Ready"
 
 [node name="Chatbox" parent="." instance=ExtResource("6_wtqwd")]
 layout_mode = 1
-offset_bottom = -507.0
 
 [connection signal="player_connected" from="." to="Scoreboard" method="add_player"]
 [connection signal="player_disconnected" from="." to="Scoreboard" method="remove_player"]

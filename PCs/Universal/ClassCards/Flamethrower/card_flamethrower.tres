@@ -1,19 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://1xke2uy2vfuf"]
+[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://dg4pjt47q8xpw"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_xmwih"]
-[ext_resource type="Resource" uid="uid://5ywipj3632u8" path="res://Resources/TurretStats/flametower.tres" id="2_80w0f"]
-[ext_resource type="Texture2D" uid="uid://jmxhiwsiw1f5" path="res://Assets/TextureAtlases/g_glue_gun.tres" id="2_ukaax"]
-[ext_resource type="PackedScene" uid="uid://dvqk2lysu02gf" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.tscn" id="3_yfmjg"]
-[ext_resource type="Resource" uid="uid://c4ihsd13o1esd" path="res://Resources/WeaponStats/flamethrower.tres" id="4_rdoaa"]
-[ext_resource type="PackedScene" uid="uid://cprppqfd2wf6s" path="res://PCs/Universal/ClassCards/Flamethrower/weapon_flamethrower.tscn" id="5_6v5br"]
+[ext_resource type="Texture2D" uid="uid://oblavj8vj30n" path="res://PCs/Universal/ClassCards/GlueLauncher/glue_gun.png" id="2_ocjdv"]
+[ext_resource type="Resource" uid="uid://cdtjbxs21peqg" path="res://PCs/Universal/ClassCards/Flamethrower/tower_stats.tres" id="3_sjxkl"]
+[ext_resource type="PackedScene" uid="uid://dhv7m4lky7bd8" path="res://PCs/Universal/ClassCards/Flamethrower/weapon_flamethrower.tscn" id="4_800j1"]
+[ext_resource type="PackedScene" uid="uid://dkoj1766ygo3f" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.tscn" id="4_rgkdc"]
+[ext_resource type="Resource" uid="uid://yjknwdimtm8g" path="res://PCs/Universal/ClassCards/Flamethrower/weapon_stats.tres" id="5_qi4e4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcolm"]
+atlas = ExtResource("2_ocjdv")
+region = Rect2(0, 0, 64, 64)
 
 [resource]
 script = ExtResource("1_xmwih")
 title = "Flamethrower"
 rarity = 2
 faction = 0
-sprite = ExtResource("2_ukaax")
-turret = ExtResource("3_yfmjg")
-weapon = ExtResource("5_6v5br")
-weapon_stats = ExtResource("4_rdoaa")
-tower_stats = ExtResource("2_80w0f")
+sprite = SubResource("AtlasTexture_bcolm")
+turret_scene = ExtResource("4_rgkdc")
+weapon_scene = ExtResource("4_800j1")
+weapon_stats = ExtResource("5_qi4e4")
+tower_stats = ExtResource("3_sjxkl")

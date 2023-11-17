@@ -1,72 +1,43 @@
-[gd_scene load_steps=10 format=3 uid="uid://byglhh0etuy6"]
+[gd_scene load_steps=10 format=3 uid="uid://dqrkn0vp2tmrh"]
 
-[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Reactor/reactortower.gd" id="1_rb733"]
-[ext_resource type="Resource" uid="uid://dxlisoas4xlmo" path="res://Resources/StatusEffects/radioactive.tres" id="2_vyodb"]
-[ext_resource type="Resource" uid="uid://baa8sauri4218" path="res://Resources/TurretStats/reactor.tres" id="3_a6b2i"]
+[ext_resource type="PackedScene" uid="uid://bi6b2r6wek7he" path="res://Scenes/Towers/range_affecting_tower.tscn" id="1_afsqn"]
+[ext_resource type="Script" path="res://PCs/Universal/ClassCards/Reactor/tower_reactor.gd" id="2_6w83m"]
+[ext_resource type="Resource" uid="uid://dxlisoas4xlmo" path="res://Resources/StatusEffects/radioactive.tres" id="3_xhrj0"]
+[ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://PCs/Universal/ClassCards/Reactor/tower_stats.tres" id="4_rkhup"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imgrm"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.686275, 0, 0, 0.278431)
+[sub_resource type="Gradient" id="Gradient_ranod"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.252033, 1)
+colors = PackedColorArray(0, 0.533333, 0, 1, 0, 1, 0, 0.34902)
 
-[sub_resource type="Gradient" id="Gradient_kkqms"]
-colors = PackedColorArray(0.376471, 0.976471, 0, 0.435294, 0.127613, 0.391512, 0, 0.870588)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iinp2"]
+gradient = SubResource("Gradient_ranod")
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4cwgw"]
-gradient = SubResource("Gradient_kkqms")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2nhns"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q1hpa"]
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.5
-emission_ring_radius = 20.0
+emission_ring_height = 0.1
+emission_ring_radius = 30.0
 emission_ring_inner_radius = 0.0
-gravity = Vector3(0, 1, 0)
-color_ramp = SubResource("GradientTexture1D_4cwgw")
+gravity = Vector3(0, 3, 0)
+color_ramp = SubResource("GradientTexture1D_iinp2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycjd1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rl0f7"]
 transparency = 1
 vertex_color_use_as_albedo = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_q83y7"]
-material = SubResource("StandardMaterial3D_ycjd1")
+[sub_resource type="BoxMesh" id="BoxMesh_fr4f1"]
+material = SubResource("StandardMaterial3D_rl0f7")
 size = Vector3(0.3, 0.3, 0.3)
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("particlesystem", "model", "range_sphere", "minimap_range_sphere")]
-script = ExtResource("1_rb733")
-status_stats = ExtResource("2_vyodb")
-particlesystem = NodePath("Model/GPUParticles3D")
-stats = ExtResource("3_a6b2i")
-model = NodePath("Model")
-range_sphere = NodePath("Model/CSGSphere3D")
-minimap_range_sphere = NodePath("Model/CSGSphere3D2")
+[node name="ReactorTower" node_paths=PackedStringArray("particles") instance=ExtResource("1_afsqn")]
+script = ExtResource("2_6w83m")
+particles = NodePath("GPUParticles3D")
+status_stats = ExtResource("3_xhrj0")
+stats = ExtResource("4_rkhup")
 
-[node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.968366, 0)
-size = Vector3(1, 1.25244, 1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.426601, 0)
-size = Vector3(0.661144, 1.25244, 0.721315)
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
-visible = false
-radius = 7.5
-material = SubResource("StandardMaterial3D_imgrm")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Model"]
-visible = false
-layers = 4
-radius = 7.5
-material = SubResource("StandardMaterial3D_imgrm")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5"]
 amount = 12
-visibility_aabb = AABB(-110.773, -4, -105.31, 221.547, 8, 210.62)
-process_material = SubResource("ParticleProcessMaterial_2nhns")
-draw_pass_1 = SubResource("BoxMesh_q83y7")
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_q1hpa")
+draw_pass_1 = SubResource("BoxMesh_fr4f1")

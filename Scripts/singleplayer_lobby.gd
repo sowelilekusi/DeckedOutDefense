@@ -19,6 +19,7 @@ func setup_game():
 	scoreboard.add_player(1, Data.player_profile)
 	scoreboard.all_players_ready.connect(start_game)
 	Game.game_restarted.connect(setup_the_ui)
+	Game.chatbox = chatbox
 	setup_the_ui()
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)

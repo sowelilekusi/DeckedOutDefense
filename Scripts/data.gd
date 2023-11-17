@@ -4,6 +4,7 @@ var characters : Array[HeroClass]
 var cards : Array[Card]
 var enemies : Array[Enemy]
 var keymaps : Array[PlayerKeymap]
+var graphics : PlayerGraphicsSettings
 var preferences : PlayerPreferences
 var player_profile : PlayerProfile
 var player_keymap : PlayerKeymap
@@ -22,10 +23,11 @@ var rarity_weights = {
 }
 
 func _ready() -> void:
+	graphics = PlayerGraphicsSettings.load_profile_from_disk()
+	graphics.apply_graphical_settings(get_viewport())
 	player_profile = PlayerProfile.load_profile_from_disk()
 	preferences = PlayerPreferences.load_profile_from_disk()
 	player_keymap = PlayerKeymap.load_profile_from_disk()
-	preferences.apply_graphical_settings(get_viewport())
 	player_keymap.apply()
 	
 	characters.append(preload("res://PCs/Red/red.tres"))
@@ -39,10 +41,10 @@ func _ready() -> void:
 	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
 	#Uncommon
 	cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
-	#cards.append(preload("res://PCs/Universal/ClassCards/Refridgerator/card_refridgerator.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Refrigerator/card_refrigerator.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
 	#Rare
-	#cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/DamageEnhancer/card_damage_enhancer.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/SpeedEnhancer/card_speed_enhancer.tres"))
 	#Epic
@@ -51,7 +53,7 @@ func _ready() -> void:
 	#cards.append(preload("res://PCs/Universal/ClassCards/GammaLaser/card_gamma_laser.tres"))
 	#Legendary
 	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))
-	#cards.append(preload("res://PCs/Universal/ClassCards/Reactor/card_reactor.tres"))
+	cards.append(preload("res://PCs/Universal/ClassCards/Reactor/card_reactor.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/Lightning/card_lightning.tres"))
 	
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/dog.tres"))

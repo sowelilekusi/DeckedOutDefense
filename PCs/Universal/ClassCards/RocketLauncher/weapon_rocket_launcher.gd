@@ -66,6 +66,7 @@ func networked_spawn_rocket(target_node_path, peer_id):
 	projectile.position = global_position
 	projectile.damage = damage
 	projectile.target = target
+	projectile.owner_id = peer_id
 	projectile.name = str(peer_id) + str(projectile_id)
 	get_tree().root.add_child(projectile)
 	projectile.apply_central_impulse(Vector3.UP * 3.0)
