@@ -37,6 +37,7 @@ status_stats = ExtResource("3_xhrj0")
 stats = ExtResource("4_rkhup")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 amount = 12
 lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_q1hpa")

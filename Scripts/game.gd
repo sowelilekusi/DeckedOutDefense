@@ -105,7 +105,7 @@ func set_upcoming_wave():
 	if is_multiplayer_authority():
 		var spawn_power = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
 		var new_wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 50))
+		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70))
 
 
 @rpc("reliable", "call_local")

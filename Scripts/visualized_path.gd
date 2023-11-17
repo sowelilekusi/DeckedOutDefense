@@ -7,11 +7,12 @@ var visualizer_points = []
 
 func spawn_visualizer_points() -> void:
 	var new_length = curve.get_baked_length()
-	for x in new_length - length:
+	for x in floori(new_length) - visualizer_points.size():
 		var point = visual_scene.instantiate()
 		visualizer_points.append(point)
 		add_child(point)
 	length = new_length
+	#print(str(int(length)) + " / " + str(visualizer_points.size()) + ", diff: " + str(visualizer_points.size() - length))
 	for x in visualizer_points.size():
 		visualizer_points[x].progress_ratio = float(x) / visualizer_points.size()
 

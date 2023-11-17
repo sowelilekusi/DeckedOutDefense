@@ -9,7 +9,8 @@ func _physics_process(_delta: float) -> void:
 	for enemy in get_tree().get_nodes_in_group("Enemies"):
 		if !is_instance_valid(enemy) or !enemy.alive or global_position.distance_to(enemy.global_position) > target_range:
 			continue
-		enemies_in_range.append(enemy)
+		if enemy.stats.target_type & stats.target_type:
+			enemies_in_range.append(enemy)
 	if time_since_firing >= time_between_shots:
 		time_since_firing -= time_between_shots
 		for enemy in enemies_in_range:
