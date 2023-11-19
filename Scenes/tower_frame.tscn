@@ -3,37 +3,37 @@
 [ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="1_phew5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xt3aj"]
-albedo_color = Color(0.0980392, 0.309804, 0.180392, 1)
+albedo_color = Color(0.356863, 0.87451, 0.94902, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbm1j"]
-albedo_color = Color(0.0980392, 0.309804, 0.180392, 1)
+albedo_color = Color(0.356863, 0.87451, 0.94902, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18qg8"]
-albedo_color = Color(0.0980392, 0.309804, 0.180392, 1)
+albedo_color = Color(0.356863, 0.87451, 0.94902, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip8b2"]
-albedo_color = Color(0.0980392, 0.309804, 0.180392, 1)
+albedo_color = Color(0.356863, 0.87451, 0.94902, 1)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.575)
-size = Vector3(0.525, 0.04, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.475)
+size = Vector3(1, 0.04, 0.05)
 material = SubResource("StandardMaterial3D_xt3aj")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -0.575)
-size = Vector3(0.525, 0.04, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -0.475)
+size = Vector3(1, 0.04, 0.05)
 material = SubResource("StandardMaterial3D_gbm1j")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575, 0.02, 0)
-size = Vector3(0.05, 0.04, 0.525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, 0.02, 0)
+size = Vector3(0.05, 0.04, 1)
 material = SubResource("StandardMaterial3D_18qg8")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575, 0.02, 0)
-size = Vector3(0.05, 0.04, 0.525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.475, 0.02, 0)
+size = Vector3(0.05, 0.04, 1)
 material = SubResource("StandardMaterial3D_ip8b2")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

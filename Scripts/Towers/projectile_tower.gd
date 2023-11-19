@@ -3,7 +3,7 @@ class_name ProjectileTower
 
 @export var projectile_scene : PackedScene
 
-var force := 20.0
+var force := 150.0
 var projectile_id := 0
 
 
@@ -21,7 +21,7 @@ func networked_shoot():
 @rpc("reliable", "call_local")
 func networked_spawn_projectile(peer_id):
 	var projectile = projectile_scene.instantiate() as Projectile
-	projectile.position = global_position + Vector3.UP
+	projectile.position = yaw_model.global_position
 	projectile.damage = damage
 	projectile.direction = -yaw_model.global_transform.basis.z
 	projectile.force = force

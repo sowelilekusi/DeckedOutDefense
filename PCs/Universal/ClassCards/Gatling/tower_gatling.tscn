@@ -1,9 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjuc3x7u3f271"]
+[gd_scene load_steps=5 format=3 uid="uid://bjuc3x7u3f271"]
 
 [ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_su74p"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Gatling/tower_gatling.gd" id="2_ipjp1"]
 [ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://PCs/Universal/ClassCards/Gatling/tower_stats.tres" id="3_oicqw"]
+[ext_resource type="ArrayMesh" uid="uid://dler7wcqj0bm6" path="res://gattlemesh.res" id="4_wihc0"]
 
 [node name="GatlingTower" instance=ExtResource("1_su74p")]
 script = ExtResource("2_ipjp1")
 stats = ExtResource("3_oicqw")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.426474, 0)
+mesh = ExtResource("4_wihc0")

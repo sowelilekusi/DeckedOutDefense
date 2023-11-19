@@ -21,12 +21,12 @@ value = 20.0
 [sub_resource type="Resource" id="Resource_ogk1x"]
 script = ExtResource("1_vpmor")
 key = "Speed Multiplier"
-value = 2.0
+value = 2.5
 
 [sub_resource type="Resource" id="Resource_wdp3h"]
 script = ExtResource("1_vpmor")
 key = "Speed Time"
-value = 3.0
+value = 4.0
 
 [resource]
 script = ExtResource("1_630yu")
@@ -34,4 +34,4 @@ target_type = 0
 attributes = Array[ExtResource("1_vpmor")]([SubResource("Resource_fi7tc"), SubResource("Resource_r6h5d"), SubResource("Resource_gwg1i"), SubResource("Resource_ogk1x"), SubResource("Resource_wdp3h")])
 text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m
 
-While held, gradually accelerates to /Speed Multiplier\\x the fire rate over /Speed Time\\"
+While held, gradually accelerates to /Speed Multiplier\\x the fire rate over /Speed Time\\s"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene load_steps=13 format=3 uid="uid://1b2ikdanl66b"]
 
 [ext_resource type="Script" path="res://Scripts/card_printer.gd" id="1_7rhtj"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="2_7ouw1"]
@@ -10,6 +10,9 @@ albedo_color = Color(0.203922, 0.592157, 0.592157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ebt5"]
 size = Vector3(2.672, 1.75, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_und3g"]
+size = Vector3(0.816972, 0.233429, 0.632978)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf4je"]
 viewport_path = NodePath("SubViewport")
@@ -42,6 +45,10 @@ material = SubResource("StandardMaterial3D_s02au")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 shape = SubResource("BoxShape3D_0ebt5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6825, 0.484672, 0)
+shape = SubResource("BoxShape3D_und3g")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -84,8 +91,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444448, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
-press_cost = 10
-hover_text = "Spend 10 Coins to print card"
+press_cost = 20
+hover_text = "Spend 20 Coins to print card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_ikdwj")
@@ -130,6 +137,11 @@ hover_text = "Select card"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
 disabled = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6825, 0.484672, 0)
+size = Vector3(0.816972, 0.233429, 0.632978)
+material = SubResource("StandardMaterial3D_s02au")
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]
 [connection signal="button_interacted" from="StaticBody3D2" to="." method="retrieve_card"]

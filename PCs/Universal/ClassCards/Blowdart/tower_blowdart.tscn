@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq5q6c28pwi47"]
+[gd_scene load_steps=6 format=3 uid="uid://cq5q6c28pwi47"]
 
 [ext_resource type="PackedScene" uid="uid://dxwtlvv632ae8" path="res://Scenes/Towers/status_applying_tower.tscn" id="1_lnpfa"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Blowdart/tower_blowdart.gd" id="2_s3qd0"]
 [ext_resource type="Resource" uid="uid://cbskijhnnj3kw" path="res://Resources/StatusEffects/poisoned.tres" id="3_ix50y"]
 [ext_resource type="Resource" uid="uid://cfbap4o68urti" path="res://PCs/Universal/ClassCards/Blowdart/tower_stats.tres" id="4_1w7pa"]
+[ext_resource type="ArrayMesh" uid="uid://yxho5jipkwi2" path="res://blowdart.res" id="5_2kqqw"]
 
 [node name="BlowdartTower" instance=ExtResource("1_lnpfa")]
 script = ExtResource("2_s3qd0")
 status_stats = ExtResource("3_ix50y")
 stats = ExtResource("4_1w7pa")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.614838, 0)
+mesh = ExtResource("5_2kqqw")

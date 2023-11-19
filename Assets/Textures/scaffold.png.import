@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r8cr41blojpm"
-path.s3tc="res://.godot/imported/stone wall 7.png-469dc03eddd8a7dadec795871754c70e.s3tc.ctex"
+uid="uid://4gff4l03ibpm"
+path="res://.godot/imported/scaffold.png-6a95d279ff88a2151679f6aebd1fade4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/stone wall 7.png"
-dest_files=["res://.godot/imported/stone wall 7.png-469dc03eddd8a7dadec795871754c70e.s3tc.ctex"]
+source_file="res://Assets/Textures/scaffold.png"
+dest_files=["res://.godot/imported/scaffold.png-6a95d279ff88a2151679f6aebd1fade4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

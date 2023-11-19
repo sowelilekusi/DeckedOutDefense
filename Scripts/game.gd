@@ -22,10 +22,13 @@ var level : Level
 var enemies := 0
 var objective_health := 120
 var wave := 0
+var endless_mode := false
 var upcoming_wave
 var pot : float
 var UILayer : CanvasLayer
 var chatbox : Chatbox
+var wave_limit := 20
+var starting_cash := 16
 
 
 func _ready() -> void:
@@ -44,6 +47,20 @@ func parse_command(text : String, peer_id : int):
 		connected_players_nodes[peer_id].inventory.add(gift)
 	if text.substr(1, 2) == "tr":
 		chatbox.append_message("SERVER", Color.TOMATO, "[color=#f7a8b8]t[color=#55cdfc]r[color=#ffffff]a[color=#55cdfc]n[color=#f7a8b8]s [color=#e50000]r[color=#ff8d00]i[color=#ffee00]g[color=#028121]h[color=#004cff]t[color=#760088]s[color=white]!!")
+	if text.substr(1, 11) == "random_maze":
+		level.a_star_graph_3d.build_random_maze(50)
+	if text.substr(1, 13) == "random_towers":
+		level.a_star_graph_3d.place_random_towers(level.a_star_graph_3d.tower_bases.size() / 3.0)
+	if text.substr(1, 11) == "set_endless":
+		if is_multiplayer_authority():
+			networked_set_endless.rpc(true)
+		else:
+			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
+	if text.substr(1, 12) == "set_standard":
+		if is_multiplayer_authority():
+			networked_set_endless.rpc(false)
+		else:
+			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
 #	if text.substr(1, 17) == "show tower ranges":
 #		pass
 #	if text.substr(1, 20) = "show gauntlet ranges":
@@ -82,6 +99,7 @@ func spawn_players(player_array, player_profiles, chatbox_open_signal, chatbox_c
 		enemy_number_changed.connect(player.hud.set_enemy_count)
 		add_child(player)
 		p_i += 1
+	level.cinematic_cam.does_its_thing = false
 	start_game()
 
 
@@ -116,6 +134,15 @@ func networked_set_upcoming_wave(wave_dict, coins):
 		connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
 
 
+@rpc("reliable", "call_local")
+func networked_set_endless(value):
+	endless_mode = value
+	if endless_mode:
+		chatbox.append_message("SERVER", Color.TOMATO, "Endless mode enabled!")
+	else:
+		chatbox.append_message("SERVER", Color.TOMATO, "Endless mode disabled!")
+
+
 func increase_enemy_count():
 	enemies += 1
 	enemy_number_changed.emit(enemies)
@@ -131,7 +158,7 @@ func enemy_died(enemy):
 			return
 	if enemies == 0:
 		end_wave()
-		if wave >= 20:
+		if !endless_mode and wave >= wave_limit:
 			win_game()
 
 
@@ -146,7 +173,7 @@ func damage_goal(enemy, penalty):
 		lose_game()
 	elif enemies == 0:
 		end_wave()
-		if wave >= 20:
+		if !endless_mode and wave >= wave_limit:
 			win_game()
 
 
@@ -174,7 +201,7 @@ func start_game():
 	level.a_star_graph_3d.find_path()
 	set_upcoming_wave()
 	for peer_id in connected_players_nodes:
-		connected_players_nodes[peer_id].currency = 20
+		connected_players_nodes[peer_id].currency = starting_cash / connected_players_nodes.size()
 	game_started.emit()
 
 

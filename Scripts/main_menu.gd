@@ -4,9 +4,28 @@ var confirmation_popup_scene = preload("res://Scenes/Menus/confirmation_popup.ts
 var text_input_popup_scene = preload("res://Scenes/Menus/text_input_popup.tscn")
 var multiplayer_lobby_scene_path = "res://Scenes/multiplayer_lobby.tscn"
 var options_menu_scene = preload("res://Scenes/Menus/options_menu.tscn")
+@export var bg_level : Level
+
 
 func _ready() -> void:
 	$ProfileEditor/VBoxContainer/HBoxContainer/DisplayName.text = Data.player_profile.display_name
+	bg_level.a_star_graph_3d.make_grid()
+	bg_level.a_star_graph_3d.find_path()
+	bg_level.a_star_graph_3d.build_random_maze(50)
+	bg_level.a_star_graph_3d.place_random_towers(20)
+	var new_wave = WaveManager.generate_wave(400, bg_level.enemy_pool)
+	for spawn in bg_level.enemy_spawns:
+		spawn.signal_for_after_enemy_died = enemy_died
+		spawn.signal_for_after_enemy_reached_goal = damage_goal
+		spawn.signal_for_when_enemy_spawns.connect(increase_enemy_count)
+		spawn.spawn_wave(new_wave)
+
+func enemy_died(some_arg):
+	pass
+func damage_goal():
+	pass
+func increase_enemy_count():
+	pass
 
 
 func _on_display_name_edit_pressed() -> void:

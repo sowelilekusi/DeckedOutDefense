@@ -1,9 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3q0f6w30nwsh"]
+[gd_scene load_steps=5 format=3 uid="uid://b3q0f6w30nwsh"]
 
 [ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_su4lx"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_rocket_launcher.gd" id="2_33124"]
 [ext_resource type="PackedScene" uid="uid://p2vwo8ivben6" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket_projectile.tscn" id="3_8kvhb"]
+[ext_resource type="ArrayMesh" uid="uid://buyx8g4vlh7g7" path="res://rocket_launcher_model.res" id="4_ahc6v"]
 
 [node name="RocketLauncherTower" instance=ExtResource("1_su4lx")]
 script = ExtResource("2_33124")
 projectile_scene = ExtResource("3_8kvhb")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.667653, 0)
+mesh = ExtResource("4_ahc6v")

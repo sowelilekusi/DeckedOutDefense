@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt4qbc5lp4nhr"]
+[gd_scene load_steps=5 format=3 uid="uid://bt4qbc5lp4nhr"]
 
 [ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_x1nem"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Sniper/tower_sniper.gd" id="2_v5fr7"]
 [ext_resource type="Resource" uid="uid://eb0by6ba1d43" path="res://PCs/Universal/ClassCards/Sniper/tower_stats.tres" id="3_a0vis"]
+[ext_resource type="ArrayMesh" uid="uid://b4vwe267lt1ua" path="res://snipermodel.res" id="4_pwbtb"]
 
 [node name="HitscanTower" instance=ExtResource("1_x1nem")]
 script = ExtResource("2_v5fr7")
-target_type = 3
 stats = ExtResource("3_a0vis")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.765984, 0)
+mesh = ExtResource("4_pwbtb")

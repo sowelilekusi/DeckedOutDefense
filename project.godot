@@ -30,6 +30,10 @@ window/size/viewport_height=1080
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom="res://new_theme.tres"
+
 [input]
 
 "Move Forward"={

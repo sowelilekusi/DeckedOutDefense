@@ -5,8 +5,8 @@ signal completed(outcome)
 
 func set_popup(prompt_text, confirm_text, cancel_text):
 	$VBoxContainer/Label.text = prompt_text
-	$VBoxContainer/HBoxContainer/Confirm.text = confirm_text
-	$VBoxContainer/HBoxContainer/Cancel.text = cancel_text
+	$VBoxContainer/HBoxContainer/MarginContainer/Confirm.text = confirm_text
+	$VBoxContainer/HBoxContainer/MarginContainer2/Cancel.text = cancel_text
 
 
 func _on_confirm_pressed() -> void:

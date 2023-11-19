@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://8yv7excojcg0"]
+[gd_scene load_steps=6 format=3 uid="uid://8yv7excojcg0"]
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_p1cib"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="2_ivytu"]
+[ext_resource type="Texture2D" uid="uid://lvvnrb5jugum" path="res://Assets/Textures/logo_title.png" id="3_8jkeb"]
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/first_level.tscn" id="3_l8r4a"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
+viewport_path = NodePath("SubViewport")
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,55 +17,84 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_p1cib")
 script = ExtResource("2_ivytu")
+bg_level = NodePath("SubViewport/GridMap")
 
-[node name="Title" type="PanelContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -559.5
-offset_top = 25.0
-offset_right = 559.5
-offset_bottom = 113.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="Title"]
-layout_mode = 2
-text = "MULTIPLAYER TOWER DEFENSE CARD GAME ROGUELIKE !!!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MainControls" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -71.0
-offset_top = -81.0
-offset_right = 71.0
-offset_bottom = 81.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("ViewportTexture_5u75i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainControls"]
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -627.0
+offset_top = 73.0
+offset_right = 1293.0
+offset_bottom = 1153.0
+grow_horizontal = 2
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("3_8jkeb")
+expand_mode = 1
+
+[node name="MainControls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = -188.0
+offset_right = 143.0
+offset_bottom = -80.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControls"]
 layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 3
 
-[node name="PlayButton" type="Button" parent="MainControls/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MainControls/MarginContainer"]
 layout_mode = 2
 text = "Play"
 
-[node name="MultiplayerButton" type="Button" parent="MainControls/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainControls"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 3
+
+[node name="MultiplayerButton" type="Button" parent="MainControls/MarginContainer2"]
 layout_mode = 2
 text = "Multiplayer"
 
-[node name="OptionsButton" type="Button" parent="MainControls/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MainControls"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 3
+
+[node name="OptionsButton" type="Button" parent="MainControls/MarginContainer3"]
 layout_mode = 2
 text = "Options
 "
 
-[node name="QuitButton" type="Button" parent="MainControls/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="MainControls"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 3
+
+[node name="QuitButton" type="Button" parent="MainControls/MarginContainer4"]
 layout_mode = 2
 text = "Quit
 "
@@ -68,15 +102,15 @@ text = "Quit
 [node name="ProfileEditor" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -181.5
+offset_left = -429.0
 offset_top = -140.0
-offset_right = 181.5
-offset_bottom = -30.0
-grow_horizontal = 2
+offset_right = -55.0
+offset_bottom = -40.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ProfileEditor"]
@@ -92,14 +126,28 @@ layout_mode = 2
 
 [node name="DisplayName" type="Label" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Dummy Name"
 
-[node name="DisplayNameEdit" type="Button" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 29
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 31
+theme_override_constants/margin_bottom = 4
+
+[node name="DisplayNameEdit" type="Button" parent="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Change"
 
-[connection signal="pressed" from="MainControls/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainControls/VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
-[connection signal="pressed" from="MainControls/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MainControls/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+
+[node name="GridMap" parent="SubViewport" instance=ExtResource("3_l8r4a")]
+
+[connection signal="pressed" from="MainControls/MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainControls/MarginContainer2/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainControls/MarginContainer3/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainControls/MarginContainer4/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]

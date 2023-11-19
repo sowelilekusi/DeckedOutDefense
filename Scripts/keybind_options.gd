@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name KeybindsOptionsMenu
 
 var keybind_popup = load("res://Scenes/UI/keybind_popup.tscn")
 var keybind_boxes = []

@@ -26,7 +26,7 @@ func point_is_build_location(point_id):
 	return !non_build_locations.has(point_id)
 
 
-func test_path_if_point_toggled(point_id):
+func test_path_if_point_toggled(point_id) -> bool:
 	if astar.is_point_disabled(point_id):
 		astar.set_point_disabled(point_id, false)
 	else:
@@ -58,6 +58,29 @@ func networked_spawn_wall(pos : Vector3, name_id : int):
 	base.name = "Wall" + str(name_id)
 	tower_bases.append(base)
 	tower_path.add_child(base)
+
+
+func build_random_maze(block_limit):
+	var untested_point_ids = []
+	for index in (grid_size.x * grid_size.y):
+		untested_point_ids.append(index)
+	if block_limit <= 0 or block_limit > untested_point_ids.size():
+		block_limit = untested_point_ids.size()
+	for index in block_limit:
+		var random_point = untested_point_ids.pick_random()
+		untested_point_ids.erase(random_point)
+		if test_path_if_point_toggled(random_point):
+			networked_toggle_point.rpc(random_point)
+
+
+func place_random_towers(tower_limit):
+	var untowered_bases = tower_bases.duplicate()
+	if tower_limit <= 0 or tower_limit > untowered_bases.size():
+		tower_limit = untowered_bases.size()
+	for index in tower_limit:
+		var random_base = untowered_bases.pick_random() as TowerBase
+		untowered_bases.erase(random_base)
+		random_base.add_card(Data.cards.pick_random())
 
 
 func find_path() -> bool:

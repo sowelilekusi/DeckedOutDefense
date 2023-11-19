@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkoj1766ygo3f"]
+[gd_scene load_steps=12 format=3 uid="uid://dkoj1766ygo3f"]
 
 [ext_resource type="PackedScene" uid="uid://8uxu72vjo0cv" path="res://Scenes/Towers/shapecast_tower.tscn" id="1_jagpf"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.gd" id="2_7vewc"]
 [ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="3_aop2h"]
 [ext_resource type="Resource" uid="uid://cdtjbxs21peqg" path="res://PCs/Universal/ClassCards/Flamethrower/tower_stats.tres" id="4_by7c8"]
+[ext_resource type="ArrayMesh" uid="uid://p2jerp4ab8ch" path="res://flamethrower_mesh.res" id="5_tc7nr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r367g"]
-size = Vector3(2, 2, 3)
+size = Vector3(3, 2, 3)
 
 [sub_resource type="Gradient" id="Gradient_ay233"]
 offsets = PackedFloat32Array(0, 0.178862, 0.455285, 1)
@@ -35,6 +36,12 @@ script = ExtResource("2_7vewc")
 status_stats = ExtResource("3_aop2h")
 stats = ExtResource("4_by7c8")
 
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+mesh = null
+
 [node name="ShapeCast3D" parent="Yaw" index="0"]
 shape = SubResource("BoxShape3D_r367g")
 target_position = Vector3(0, 0, -2)
@@ -45,3 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.534666)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_r7587")
 draw_pass_1 = SubResource("BoxMesh_h4c6o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Yaw" index="1"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = ExtResource("5_tc7nr")

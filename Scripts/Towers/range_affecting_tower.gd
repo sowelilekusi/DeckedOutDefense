@@ -17,6 +17,10 @@ func _physics_process(_delta: float) -> void:
 			fire(enemy)
 
 
+func aim():
+	pass
+
+
 func fire(target):
 	if is_instance_valid(target) and target.alive:
 		target.damage(damage)

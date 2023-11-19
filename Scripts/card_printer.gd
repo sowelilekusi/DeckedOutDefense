@@ -49,8 +49,8 @@ func retrieve_card(i):
 		var card = cards[i].stats
 		var item = item_card_scene.instantiate() as ItemCard
 		item.card = card
+		item.position = Vector3(1.683, 0, 0)
 		add_child(item)
-		item.position += -transform.basis.z * 2
 	button_collider.disabled = false
 	button_box.position = Vector3(0,0,0)
 

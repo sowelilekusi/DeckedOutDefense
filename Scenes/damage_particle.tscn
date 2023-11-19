@@ -8,6 +8,7 @@ viewport_path = NodePath("SubViewport")
 [node name="Node3D" type="Sprite3D"]
 pixel_size = 0.0006
 billboard = 1
+no_depth_test = true
 fixed_size = true
 render_priority = 1
 texture = SubResource("ViewportTexture_ppqlh")

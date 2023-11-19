@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqrkn0vp2tmrh"]
+[gd_scene load_steps=11 format=3 uid="uid://dqrkn0vp2tmrh"]
 
 [ext_resource type="PackedScene" uid="uid://bi6b2r6wek7he" path="res://Scenes/Towers/range_affecting_tower.tscn" id="1_afsqn"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Reactor/tower_reactor.gd" id="2_6w83m"]
 [ext_resource type="Resource" uid="uid://dxlisoas4xlmo" path="res://Resources/StatusEffects/radioactive.tres" id="3_xhrj0"]
 [ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://PCs/Universal/ClassCards/Reactor/tower_stats.tres" id="4_rkhup"]
+[ext_resource type="ArrayMesh" uid="uid://d280k3kx6hh7h" path="res://reactor_mesh.res" id="5_it8eo"]
 
 [sub_resource type="Gradient" id="Gradient_ranod"]
 interpolation_color_space = 2
@@ -35,6 +36,13 @@ script = ExtResource("2_6w83m")
 particles = NodePath("GPUParticles3D")
 status_stats = ExtResource("3_xhrj0")
 stats = ExtResource("4_rkhup")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.13062, 0)
+mesh = ExtResource("5_it8eo")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
