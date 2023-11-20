@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://y1qa1g3ic8sp"]
+[gd_scene load_steps=40 format=3 uid="uid://y1qa1g3ic8sp"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ws6nn"]
 [ext_resource type="PackedScene" uid="uid://d2yv447trxkwt" path="res://Scenes/enemy_spawner.tscn" id="3_5imwp"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://4gff4l03ibpm" path="res://Assets/Textures/scaffold.png" id="15_61y1c"]
 [ext_resource type="PackedScene" uid="uid://d3h3lmlf3hljl" path="res://Worlds/GreenPlanet/Decorations/bush.tscn" id="16_lhsvw"]
 [ext_resource type="Texture2D" uid="uid://cnvndwp3q7rke" path="res://Assets/Textures/dirt.png" id="17_oq0rj"]
+[ext_resource type="PackedScene" uid="uid://7g3jev3v6d3l" path="res://Scenes/shop_stand.tscn" id="19_h6brl"]
 
 [sub_resource type="Curve3D" id="Curve3D_3rdl2"]
 _data = {
@@ -112,7 +113,7 @@ texture_filter = 0
 [sub_resource type="QuadMesh" id="QuadMesh_dyydf"]
 material = SubResource("StandardMaterial3D_sugxr")
 
-[node name="GridMap" type="GridMap" node_paths=PackedStringArray("player_spawns", "enemy_spawns", "enemy_goals", "a_star_graph_3d", "cinematic_cam")]
+[node name="GridMap" type="GridMap" node_paths=PackedStringArray("player_spawns", "enemy_spawns", "enemy_goals", "a_star_graph_3d", "cinematic_cam", "printer", "shop")]
 mesh_library = ExtResource("12_ywwug")
 cell_size = Vector3(1, 1, 1)
 cell_center_x = false
@@ -127,6 +128,8 @@ enemy_spawns = [NodePath("GroundSpawn"), NodePath("AirSpawn")]
 enemy_goals = [NodePath("EnemyGoal")]
 a_star_graph_3d = NodePath("AStarGraph3D")
 cinematic_cam = NodePath("CinemaCam")
+printer = NodePath("CardPrinter")
+shop = NodePath("ShopStand")
 metadata/_editor_floor_ = Vector3(-15, 0, 0)
 
 [node name="CinemaCam" type="Node3D" parent="." node_paths=PackedStringArray("path_follows", "cameras")]
@@ -1087,5 +1090,8 @@ mesh = SubResource("QuadMesh_dyydf")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.24537e-06, 30, 4.37114e-08, 0, -1.31134e-06, 1, 120, 1.31134e-06, 1.91069e-15, 0.297939, -9.5, 0)
 mesh = SubResource("QuadMesh_dyydf")
+
+[node name="ShopStand" parent="." instance=ExtResource("19_h6brl")]
+transform = Transform3D(0.675552, 0, -0.737313, 0, 1, 0, 0.737313, 0, 0.675552, 21.8477, 0.5, -5.74175)
 
 [connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]

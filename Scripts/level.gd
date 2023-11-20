@@ -7,3 +7,5 @@ class_name Level
 @export var enemy_goals : Array[Node3D] = []
 @export var a_star_graph_3d : AStarGraph3D
 @export var cinematic_cam : CinematicCamManager
+@export var printer : CardPrinter
+@export var shop : ShopStand

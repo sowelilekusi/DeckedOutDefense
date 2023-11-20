@@ -29,6 +29,7 @@ var UILayer : CanvasLayer
 var chatbox : Chatbox
 var wave_limit := 20
 var starting_cash := 16
+var shop_chance := 0.0
 
 
 func _ready() -> void:
@@ -61,6 +62,13 @@ func parse_command(text : String, peer_id : int):
 			networked_set_endless.rpc(false)
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
+	if text.substr(1, 11) == "spawn_print":
+		level.printer._on_static_body_3d_button_interacted(0)
+	if text.substr(1, 10) == "spawn_shop":
+		level.shop.randomize_cards()
+	if text.substr(1, 7) == "prosper":
+		for id in connected_players_nodes:
+			connected_players_nodes[id].currency += 50
 #	if text.substr(1, 17) == "show tower ranges":
 #		pass
 #	if text.substr(1, 20) = "show gauntlet ranges":
@@ -111,6 +119,7 @@ func ready_player(_value):
 
 
 func spawn_enemy_wave():
+	level.shop.close()
 	wave += 1
 	level.a_star_graph_3d.find_path()
 	level.a_star_graph_3d.visualized_path.disable_visualization()
@@ -182,8 +191,20 @@ func end_wave():
 		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
 		connected_players_nodes[peer_id].ready_state = false
 	level.a_star_graph_3d.visualized_path.enable_visualization()
+	if is_multiplayer_authority():
+		if randf() <= shop_chance:
+			networked_spawn_shop.rpc()
+			shop_chance = 0.0
+		else:
+			shop_chance += 0.05
 	wave_finished.emit(wave)
 	set_upcoming_wave()
+
+
+@rpc("reliable", "call_local")
+func networked_spawn_shop():
+	level.shop.randomize_cards()
+	chatbox.append_message("SERVER", Color.TOMATO, "A shopkeeper has arrived!")
 
 
 func remove_player(peer_id):

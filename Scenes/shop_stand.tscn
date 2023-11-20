@@ -1,0 +1,213 @@
+[gd_scene load_steps=16 format=3 uid="uid://7g3jev3v6d3l"]
+
+[ext_resource type="Script" path="res://Scripts/shop_stand.gd" id="1_4in53"]
+[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="1_x8sts"]
+[ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="2_qh00w"]
+[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="3_u7x2f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhc2g"]
+albedo_color = Color(0.313726, 0.180392, 0.00392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tn6ej"]
+albedo_color = Color(0.313726, 0.180392, 0.00392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tjcf"]
+albedo_color = Color(0.313726, 0.180392, 0.00392157, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3a288"]
+size = Vector3(2.95542, 2.01704, 1.92446)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3r1g8"]
+size = Vector3(0.69, 0.665, 0.34)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5mbfv"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cfv1i"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1rey7"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rlwso"]
+viewport_path = NodePath("SubViewport4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a6401"]
+viewport_path = NodePath("SubViewport5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rnm0u"]
+viewport_path = NodePath("SubViewport6")
+
+[node name="ShopStand" type="Node3D" node_paths=PackedStringArray("cards", "choice_colliders", "choice_buttons")]
+script = ExtResource("1_4in53")
+cards = [NodePath("SubViewport/Node2D"), NodePath("SubViewport2/Node2D"), NodePath("SubViewport3/Node2D"), NodePath("SubViewport4/Node2D"), NodePath("SubViewport5/Node2D"), NodePath("SubViewport6/Node2D")]
+choice_colliders = [NodePath("InteractButton/CollisionShape3D"), NodePath("InteractButton2/CollisionShape3D2"), NodePath("InteractButton3/CollisionShape3D3"), NodePath("InteractButton6/CollisionShape3D6"), NodePath("InteractButton5/CollisionShape3D5"), NodePath("InteractButton4/CollisionShape3D4")]
+choice_buttons = [NodePath("InteractButton"), NodePath("InteractButton2"), NodePath("InteractButton3"), NodePath("InteractButton6"), NodePath("InteractButton5"), NodePath("InteractButton4")]
+item_card_scene = ExtResource("2_qh00w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(2.95902, 1, 1)
+material = SubResource("StandardMaterial3D_lhc2g")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453776, -0.485039)
+size = Vector3(2.95902, 1, 1)
+material = SubResource("StandardMaterial3D_tn6ej")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491623, -0.927363)
+size = Vector3(2.95902, 1.96606, 1)
+material = SubResource("StandardMaterial3D_4tjcf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502094, -0.465026)
+shape = SubResource("BoxShape3D_3a288")
+
+[node name="InteractButton" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08327, 0.835364, 0.235621)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButton"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="InteractButton2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0897942, 0.854733, 0.276212)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+button_press_value = 1
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractButton2"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="InteractButton3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.982556, 0.839111, 0.270489)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+button_press_value = 2
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="InteractButton3"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="InteractButton4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.964396, 1.2947, -0.222282)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+button_press_value = 5
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="InteractButton4"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="InteractButton5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0971891, 1.30596, -0.223896)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+button_press_value = 4
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="InteractButton5"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="InteractButton6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01936, 1.30134, -0.249066)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+button_press_value = 3
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="InteractButton6"]
+shape = SubResource("BoxShape3D_3r1g8")
+disabled = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport" instance=ExtResource("3_u7x2f")]
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport2" instance=ExtResource("3_u7x2f")]
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport3" instance=ExtResource("3_u7x2f")]
+
+[node name="SubViewport4" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport4" instance=ExtResource("3_u7x2f")]
+
+[node name="SubViewport5" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport5" instance=ExtResource("3_u7x2f")]
+
+[node name="SubViewport6" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport6" instance=ExtResource("3_u7x2f")]
+
+[node name="Sprites" type="Node3D" parent="."]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05174, 0.845052, 0.31035)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_5mbfv")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0552108, 0.842029, 0.32352)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_cfv1i")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02516, 0.816916, 0.304008)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_1rey7")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.947595, 1.28234, -0.191499)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_rlwso")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401761, 1.28234, -0.191499)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_a6401")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0227, 1.28234, -0.191499)
+pixel_size = 0.0015
+texture_filter = 0
+texture = SubResource("ViewportTexture_rnm0u")
+
+[connection signal="button_interacted" from="InteractButton" to="." method="retrieve_card"]
+[connection signal="button_interacted" from="InteractButton2" to="." method="retrieve_card"]
+[connection signal="button_interacted" from="InteractButton3" to="." method="retrieve_card"]
+[connection signal="button_interacted" from="InteractButton4" to="." method="retrieve_card"]
+[connection signal="button_interacted" from="InteractButton5" to="." method="retrieve_card"]
+[connection signal="button_interacted" from="InteractButton6" to="." method="retrieve_card"]

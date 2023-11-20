@@ -2,7 +2,8 @@ extends Control
 
 
 func _on_quit_button_pressed() -> void:
-	Game.quit_to_desktop()
+	Game.scene_switch_main_menu()
+	queue_free()
 
 
 func _on_restart_button_pressed() -> void:

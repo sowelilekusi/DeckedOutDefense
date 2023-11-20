@@ -54,7 +54,7 @@ offset_top = 270.0
 offset_right = 21.0
 offset_bottom = 31.0
 grow_horizontal = 2
-text = "Quit"
+text = "Quit to main menu"
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -22,7 +22,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66cl7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5vl4"]
 resource_local_to_scene = true
 atlas = ExtResource("6_yyp8i")
 region = Rect2(0, 0, 96, 96)
@@ -103,7 +103,7 @@ collision_mask = 24
 
 [node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_66cl7")
+texture = SubResource("AtlasTexture_a5vl4")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("6_cf5ap")
@@ -394,13 +394,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Currency" type="Label" parent="HUD"]
-anchors_preset = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -99.0
-offset_top = 298.0
-offset_right = -57.0
-offset_bottom = 352.0
+offset_left = -101.0
+offset_top = 300.0
+offset_right = -40.0
+offset_bottom = 54.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
 theme_override_font_sizes/font_size = 37
@@ -430,7 +430,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WaveCount" type="Label" parent="HUD"]
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -30.0
