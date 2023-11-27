@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://c6e50linnk2i7"]
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://c6e50linnk2i7"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_5ldx7"]
 [ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_pw5it"]
@@ -18,8 +18,13 @@ script = ExtResource("1_pw5it")
 key = "Fire Delay"
 value = 0.8
 
+[sub_resource type="Resource" id="Resource_dtjel"]
+script = ExtResource("1_pw5it")
+key = "Energy"
+value = 15.0
+
 [resource]
 script = ExtResource("1_5ldx7")
 target_type = 0
-attributes = Array[ExtResource("1_pw5it")]([SubResource("Resource_1txa7"), SubResource("Resource_46kv2"), SubResource("Resource_gb76x")])
+attributes = Array[ExtResource("1_pw5it")]([SubResource("Resource_1txa7"), SubResource("Resource_46kv2"), SubResource("Resource_gb76x"), SubResource("Resource_dtjel")])
 text = "Fires every /Fire Delay\\s, applying one stack of Poison at a range of /Range\\m"

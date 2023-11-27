@@ -44,7 +44,9 @@ func _process(delta: float) -> void:
 
 func release_trigger():
 	super.release_trigger()
-	if targets.size() > 0 and time_since_firing >= time_between_shots:
+	if targets.size() > 0 and current_energy >= energy_cost and time_since_firing >= time_between_shots:
+		current_energy -= energy_cost
+		energy_changed.emit(current_energy)
 		time_since_firing -= time_between_shots
 		shoot()
 

@@ -40,6 +40,7 @@ func _ready() -> void:
 	cards.append(preload("res://PCs/Universal/ClassCards/Gatling/card_gatling.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
 	#Uncommon
+	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/Refrigerator/card_refrigerator.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
@@ -52,7 +53,6 @@ func _ready() -> void:
 	cards.append(preload("res://PCs/Universal/ClassCards/Fireball/card_fireball.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/GammaLaser/card_gamma_laser.tres"))
 	#Legendary
-	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))
 	cards.append(preload("res://PCs/Universal/ClassCards/Reactor/card_reactor.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/Lightning/card_lightning.tres"))
 	

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=8 format=3 uid="uid://cj2x1jvo8l4ot"]
+[gd_resource type="Resource" script_class="CardText" load_steps=9 format=3 uid="uid://cj2x1jvo8l4ot"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_630yu"]
 [ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_vpmor"]
@@ -28,10 +28,15 @@ script = ExtResource("1_vpmor")
 key = "Speed Time"
 value = 4.0
 
+[sub_resource type="Resource" id="Resource_d1lvi"]
+script = ExtResource("1_vpmor")
+key = "Energy"
+value = 4.0
+
 [resource]
 script = ExtResource("1_630yu")
 target_type = 0
-attributes = Array[ExtResource("1_vpmor")]([SubResource("Resource_fi7tc"), SubResource("Resource_r6h5d"), SubResource("Resource_gwg1i"), SubResource("Resource_ogk1x"), SubResource("Resource_wdp3h")])
+attributes = Array[ExtResource("1_vpmor")]([SubResource("Resource_fi7tc"), SubResource("Resource_r6h5d"), SubResource("Resource_gwg1i"), SubResource("Resource_ogk1x"), SubResource("Resource_wdp3h"), SubResource("Resource_d1lvi")])
 text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m
 
 While held, gradually accelerates to /Speed Multiplier\\x the fire rate over /Speed Time\\s"

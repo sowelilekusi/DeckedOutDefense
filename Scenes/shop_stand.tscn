@@ -38,11 +38,12 @@ viewport_path = NodePath("SubViewport5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_rnm0u"]
 viewport_path = NodePath("SubViewport6")
 
-[node name="ShopStand" type="Node3D" node_paths=PackedStringArray("cards", "choice_colliders", "choice_buttons")]
+[node name="ShopStand" type="Node3D" node_paths=PackedStringArray("cards", "choice_colliders", "choice_buttons", "choice_sprites")]
 script = ExtResource("1_4in53")
 cards = [NodePath("SubViewport/Node2D"), NodePath("SubViewport2/Node2D"), NodePath("SubViewport3/Node2D"), NodePath("SubViewport4/Node2D"), NodePath("SubViewport5/Node2D"), NodePath("SubViewport6/Node2D")]
 choice_colliders = [NodePath("InteractButton/CollisionShape3D"), NodePath("InteractButton2/CollisionShape3D2"), NodePath("InteractButton3/CollisionShape3D3"), NodePath("InteractButton6/CollisionShape3D6"), NodePath("InteractButton5/CollisionShape3D5"), NodePath("InteractButton4/CollisionShape3D4")]
 choice_buttons = [NodePath("InteractButton"), NodePath("InteractButton2"), NodePath("InteractButton3"), NodePath("InteractButton6"), NodePath("InteractButton5"), NodePath("InteractButton4")]
+choice_sprites = [NodePath("Sprites/Sprite3D"), NodePath("Sprites/Sprite3D2"), NodePath("Sprites/Sprite3D3"), NodePath("Sprites/Sprite3D4"), NodePath("Sprites/Sprite3D5"), NodePath("Sprites/Sprite3D6")]
 item_card_scene = ExtResource("2_qh00w")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -167,40 +168,45 @@ render_target_update_mode = 4
 [node name="Node2D" parent="SubViewport6" instance=ExtResource("3_u7x2f")]
 
 [node name="Sprites" type="Node3D" parent="."]
-visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05174, 0.845052, 0.31035)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_5mbfv")
 
 [node name="Sprite3D2" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0552108, 0.842029, 0.32352)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_cfv1i")
 
 [node name="Sprite3D3" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02516, 0.816916, 0.304008)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_1rey7")
 
 [node name="Sprite3D4" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.947595, 1.28234, -0.191499)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_rlwso")
 
 [node name="Sprite3D5" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401761, 1.28234, -0.191499)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_a6401")
 
 [node name="Sprite3D6" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0227, 1.28234, -0.191499)
+visible = false
 pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_rnm0u")

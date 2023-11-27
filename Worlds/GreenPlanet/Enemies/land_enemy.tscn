@@ -14,7 +14,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4568"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bx6y"]
 resource_local_to_scene = true
 atlas = ExtResource("3_naknq")
 region = Rect2(0, 0, 32, 32)
@@ -44,7 +44,7 @@ script = ExtResource("2_j8yin")
 [node name="DirectionSprite" parent="." instance=ExtResource("2_o7jmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642479, 0)
 pixel_size = 0.04
-texture = SubResource("AtlasTexture_s4568")
+texture = SubResource("AtlasTexture_0bx6y")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)

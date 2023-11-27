@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://boj1ho5x0sxtq"]
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://boj1ho5x0sxtq"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="1_8sdo4"]
 [ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_gheu8"]
@@ -18,8 +18,13 @@ script = ExtResource("1_gheu8")
 key = "Fire Delay"
 value = 0.5
 
+[sub_resource type="Resource" id="Resource_o1b5x"]
+script = ExtResource("1_gheu8")
+key = "Energy"
+value = 8.0
+
 [resource]
 script = ExtResource("1_8sdo4")
 target_type = 0
-attributes = Array[ExtResource("1_gheu8")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0")])
+attributes = Array[ExtResource("1_gheu8")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0"), SubResource("Resource_o1b5x")])
 text = "Fires every /Fire Delay\\s, making the target Sticky at a range of /Range\\m"

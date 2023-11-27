@@ -14,7 +14,7 @@ region = Rect2(0, 0, 64, 64)
 [resource]
 script = ExtResource("1_5vmtk")
 title = "Sniper"
-rarity = 4
+rarity = 1
 faction = 0
 sprite = SubResource("AtlasTexture_fckie")
 turret_scene = ExtResource("4_k5nhs")

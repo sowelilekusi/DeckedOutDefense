@@ -22,7 +22,7 @@ var ray_point
 var interact_key_held := false
 var interacted_once := false
 var interact_held_time := 0.0
-var interact_hold_time := 0.5
+var interact_hold_time := 0.4
 
 
 func _ready() -> void:

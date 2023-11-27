@@ -1,6 +1,8 @@
 extends Node3D
 class_name Weapon
 
+signal energy_changed(energy)
+
 @export var stats : CardText
 @export var animator : AnimationPlayer
 
@@ -11,11 +13,15 @@ var second_trigger_held := false
 var time_since_firing := 0.0
 var time_between_shots := 0.0
 var damage := 0.0
+var max_energy := 100.0
+var current_energy := 100.0
+var energy_cost := 1.0
 
 
 func _ready() -> void:
 	time_between_shots = stats.get_attribute("Fire Delay")
 	damage = stats.get_attribute("Damage")
+	energy_cost = stats.get_attribute("Energy")
 
 
 func set_hero(value):
@@ -23,13 +29,19 @@ func set_hero(value):
 
 
 func _process(delta: float) -> void:
+	current_energy += 5.0 * delta
+	if current_energy >= max_energy:
+		current_energy = max_energy
+	energy_changed.emit(current_energy)
 	if time_since_firing < time_between_shots:
 		time_since_firing += delta
 
 
 func _physics_process(_delta: float) -> void:
-	if trigger_held and time_since_firing >= time_between_shots:
+	if trigger_held and current_energy >= energy_cost and time_since_firing >= time_between_shots:
 		time_since_firing -= time_between_shots
+		current_energy -= energy_cost
+		energy_changed.emit(current_energy)
 		shoot()
 		networked_shoot.rpc()
 

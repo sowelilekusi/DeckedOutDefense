@@ -6,7 +6,7 @@ var last_lives_count = 120
 @export var lives_count : Label
 @export var enemy_count : Label
 @export var currency_count : Label
-@export var crosshair : TextureRect
+@export var crosshair : Control
 @export var minimap : TextureRect
 @export var minimap_cam : MinimapCamera3D
 @export var minimap_viewport : SubViewport
@@ -16,6 +16,11 @@ var minimap_anchor : Node3D
 var enemy_names = []
 @export var enemy_sprites : Array[TextureRect]
 @export var enemy_counts : Array[Label]
+@export var weapon_energy_bar : TextureProgressBar
+
+
+func set_energy_visible(value):
+	weapon_energy_bar.set_visible(value)
 
 
 func _process(_delta: float) -> void:
@@ -79,6 +84,10 @@ func set_currency_count(value):
 
 func set_crosshair_visible(value : bool):
 	crosshair.set_visible(value)
+
+
+func set_weapon_energy(value):
+	weapon_energy_bar.value = value
 
 
 func maximise_minimap(anchor):

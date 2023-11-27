@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://5l758yxfpi1e"]
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://5l758yxfpi1e"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_v7ces"]
 [ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="2_1d5nm"]
@@ -18,8 +18,13 @@ script = ExtResource("1_v7ces")
 key = "Range"
 value = 3.0
 
+[sub_resource type="Resource" id="Resource_voaa5"]
+script = ExtResource("1_v7ces")
+key = "Energy"
+value = 7.0
+
 [resource]
 script = ExtResource("2_1d5nm")
 target_type = 0
-attributes = Array[ExtResource("1_v7ces")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
+attributes = Array[ExtResource("1_v7ces")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk"), SubResource("Resource_voaa5")])
 text = "Hold to apply Cold to enemies in front of you"

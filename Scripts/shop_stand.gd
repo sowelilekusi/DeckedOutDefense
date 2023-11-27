@@ -4,6 +4,7 @@ class_name ShopStand
 @export var cards : Array[CardInHand]
 @export var choice_colliders : Array[CollisionShape3D]
 @export var choice_buttons : Array[InteractButton]
+@export var choice_sprites : Array[Sprite3D]
 @export var item_card_scene : PackedScene
 var price_dict = {
 	Data.Rarity.UNCOMMON : 30,
@@ -16,7 +17,8 @@ var price_dict = {
 func close():
 	for x in choice_colliders:
 		x.disabled = true
-	$Sprites.set_visible(false)
+	for x in choice_sprites:
+		x.set_visible(false)
 
 
 func randomize_cards():
@@ -49,13 +51,16 @@ func randomize_cards():
 		cards[x+5].view_tower()
 		choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
 		choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.title + "?"
-	$Sprites.set_visible(true)
 	for x in choice_colliders:
 		x.disabled = false
+	for x in choice_sprites:
+		x.set_visible(true)
 
 
 func retrieve_card(i):
-	close()
+	#close()
+	choice_colliders[i].disabled = true
+	choice_sprites[i].set_visible(false)
 	var card = cards[i].stats
 	var item = item_card_scene.instantiate() as ItemCard
 	item.card = card

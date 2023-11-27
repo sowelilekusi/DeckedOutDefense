@@ -175,6 +175,7 @@ func pause():
 
 func enter_editing_mode(value):
 	hud.set_wave_count(value + 1)
+	hud.set_energy_visible(false)
 	editing_mode = true
 	edit_tool.enabled = true
 	check_left_hand_valid()
@@ -184,10 +185,14 @@ func enter_editing_mode(value):
 
 func exit_editing_mode(value):
 	hud.set_wave_count(value)
+	hud.set_energy_visible(true)
 	edit_tool.enabled = false
 	edit_tool.delete_tower_preview()
 	left_hand.set_visible(false)
 	editing_mode = false
+	if weapon:
+		weapon.current_energy = weapon.max_energy
+		weapon.energy_changed.emit(weapon.current_energy)
 
 
 func check_left_hand_valid():
@@ -210,6 +215,7 @@ func equip_weapon():
 		equipped_card = inventory.remove()
 		networked_equip_weapon.rpc(Data.cards.find(equipped_card))
 		weapon = equipped_card.weapon_scene.instantiate()
+		weapon.energy_changed.connect(hud.set_weapon_energy)
 		weapon.name = "weapon"
 		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
 		gauntlet_sprite.set_visible(false)

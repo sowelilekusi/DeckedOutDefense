@@ -21,11 +21,13 @@ func _process(delta: float) -> void:
 		time_since_firing_started += delta
 		var progress = clamp(time_since_firing_started / time_to_reach_max_speed, 0, 1.0)
 		current_time_between_shots = lerpf(time_between_shots, final_time_between_shots, progress)
+	if current_energy < energy_cost:
+		time_since_firing_started = 0.0
+		current_time_between_shots = time_between_shots
 
 
 func _physics_process(_delta: float) -> void:
 	if trigger_held and time_since_firing >= current_time_between_shots:
-		print(current_time_between_shots)
 		time_since_firing -= current_time_between_shots
 		shoot()
 		networked_shoot.rpc()
