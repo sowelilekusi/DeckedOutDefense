@@ -1,8 +1,8 @@
 extends Node3D
 class_name AStarGraph3D
 
-@export var grid_size := Vector2i(21, 13)
-@export var point_gap := 1.2
+@export var grid_size := Vector2i(15, 7)
+@export var point_gap := 2.0
 var non_build_locations = []
 var astar := AStar3D.new()
 
@@ -15,6 +15,8 @@ var astar := AStar3D.new()
 var tower_base_scene = load("res://Scenes/tower_base.tscn")
 var tower_frame_scene = load("res://Scenes/tower_frame.tscn")
 var tower_bases = []
+var tower_base_ids = {}
+var tower_frames = []
 var wall_id = 0
 
 
@@ -46,18 +48,113 @@ func networked_toggle_point(point_id):
 	else:
 		astar.set_point_disabled(point_id, true)
 	find_path()
+	disable_path_tower_frames()
 	if is_multiplayer_authority():
 		networked_spawn_wall.rpc(astar.get_point_position(point_id), wall_id)
 		wall_id += 1
 
 
+func get_north_point(point_id) -> int:
+	var x = point_id / grid_size.y
+	var y = point_id % grid_size.y
+	if x - 1 >= 0: #if the north point id could possibly exist as a neighbor
+		return (x - 1) * grid_size.y + y
+	return -1
+
+
+func get_south_point(point_id) -> int:
+	var x = point_id / grid_size.y
+	var y = point_id % grid_size.y
+	if x + 1 <= grid_size.x - 1: #if the south point id could possibly exist as a neighbor
+		return (x + 1) * grid_size.y + y
+	return -1
+
+
+func get_west_point(point_id) -> int:
+	var x = point_id / grid_size.y
+	var y = point_id % grid_size.y
+	if y + 1 <= grid_size.y - 1: #if the east point id could possibly exist as a neighbor
+		return x * grid_size.y + y + 1
+	return -1
+
+
+func get_east_point(point_id) -> int:
+	var x = point_id / grid_size.y
+	var y = point_id % grid_size.y
+	if y - 1 >= 0: #if the west point id could possibly exist as a neighbor
+		return x * grid_size.y + y - 1
+	return -1
+
+
+func count_valid_neighbours(point_id) -> int:
+	if !point_id:
+		return 0
+	var valid_neighbours = 0
+	var north_point = get_north_point(point_id)
+	var south_point = get_south_point(point_id)
+	var east_point = get_east_point(point_id)
+	var west_point = get_west_point(point_id)
+	
+	if north_point and !astar.is_point_disabled(north_point):
+		valid_neighbours += 1
+	else: #add the spawn point which is always valid
+		valid_neighbours += 1
+	
+	if south_point and !astar.is_point_disabled(south_point):
+		valid_neighbours += 1
+	else: #add the goal point which is always valid
+		valid_neighbours += 1
+	
+	if east_point and !astar.is_point_disabled(east_point):
+		valid_neighbours += 1
+	
+	if west_point and !astar.is_point_disabled(west_point):
+		valid_neighbours += 1
+	return valid_neighbours
+
+
+func disable_all_tower_frames():
+	for frame in tower_frames:
+		frame.set_visible(false)
+
+
+func enable_non_path_tower_frames():
+	for frame in tower_frames:
+		frame.set_visible(true)
+	disable_path_tower_frames()
+
+
+func disable_path_tower_frames():
+	for id in astar.get_id_path(astar.get_point_count() - 2, astar.get_point_count() - 1):
+		if id < (grid_size.x * grid_size.y) and !test_path_if_point_toggled(id):
+			tower_frames[id].set_visible(false)
+
+
 @rpc("reliable", "call_local")
 func networked_spawn_wall(pos : Vector3, name_id : int):
-	var base = tower_base_scene.instantiate()
+	var base = tower_base_scene.instantiate() as TowerBase
 	base.position = pos
 	base.name = "Wall" + str(name_id)
+	var point_id = astar.get_closest_point(pos, true)
+	tower_base_ids[point_id] = base
 	tower_bases.append(base)
 	tower_path.add_child(base)
+	var north_point = get_north_point(point_id)
+	var south_point = get_south_point(point_id)
+	var east_point = get_east_point(point_id)
+	var west_point = get_west_point(point_id)
+	if north_point >= 0 and astar.is_point_disabled(north_point):
+		base.set_north_wall(true)
+		tower_base_ids[north_point].set_south_wall(true)
+	if south_point >= 0 and astar.is_point_disabled(south_point):
+		base.set_south_wall(true)
+		tower_base_ids[south_point].set_north_wall(true)
+	if east_point >= 0 and astar.is_point_disabled(east_point):
+		base.set_east_wall(true)
+		tower_base_ids[east_point].set_west_wall(true)
+	if west_point >= 0 and astar.is_point_disabled(west_point):
+		base.set_west_wall(true)
+		tower_base_ids[west_point].set_east_wall(true)
 
 
 func build_random_maze(block_limit):
@@ -102,6 +199,7 @@ func make_grid():
 			astar.add_point(int(x * grid_size.y + y), point_position)
 			var frame = tower_frame_scene.instantiate()
 			frame.position = point_position
+			tower_frames.append(frame)
 			add_child(frame)
 	
 	for x in grid_size.x:

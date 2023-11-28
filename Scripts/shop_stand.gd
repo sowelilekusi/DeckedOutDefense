@@ -52,7 +52,7 @@ func randomize_cards():
 		choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
 		choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.title + "?"
 	for x in choice_colliders:
-		x.disabled = false
+		x.set_deferred("disabled", false)
 	for x in choice_sprites:
 		x.set_visible(true)
 

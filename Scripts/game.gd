@@ -69,10 +69,24 @@ func parse_command(text : String, peer_id : int):
 	if text.substr(1, 7) == "prosper":
 		for id in connected_players_nodes:
 			connected_players_nodes[id].currency += 50
+	if text.substr(1, 8) == "set_wave":
+		if is_multiplayer_authority():
+			networked_set_wave.rpc(int(text.substr(10)))
+		else:
+			chatbox.append_message("SERVER", Color.TOMATO, "Unable to set wave")
 #	if text.substr(1, 17) == "show tower ranges":
 #		pass
 #	if text.substr(1, 20) = "show gauntlet ranges":
 #		pass
+
+
+@rpc("reliable", "call_local")
+func networked_set_wave(wave_number):
+	chatbox.append_message("SERVER", Color.TOMATO, "Set to wave " + str(wave_number))
+	for player in connected_players_nodes:
+		connected_players_nodes[player].hud.set_wave_count(wave_number)
+	wave = wave_number
+	set_upcoming_wave()
 
 
 func spawn_level():
@@ -123,6 +137,7 @@ func spawn_enemy_wave():
 	wave += 1
 	level.a_star_graph_3d.find_path()
 	level.a_star_graph_3d.visualized_path.disable_visualization()
+	level.a_star_graph_3d.disable_all_tower_frames()
 	for spawn in level.enemy_spawns:
 		spawn.spawn_wave(upcoming_wave)
 	wave_started.emit(wave)
@@ -191,6 +206,7 @@ func end_wave():
 		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
 		connected_players_nodes[peer_id].ready_state = false
 	level.a_star_graph_3d.visualized_path.enable_visualization()
+	level.a_star_graph_3d.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
 		if randf() <= shop_chance:
 			networked_spawn_shop.rpc()

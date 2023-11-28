@@ -5,6 +5,14 @@ class_name TowerBase
 @export var block : Node3D
 @export var collider : CollisionShape3D
 @export var minimap_icon : Sprite3D
+@export var north_mesh : CSGBox3D
+@export var south_mesh : CSGBox3D
+@export var east_mesh : CSGBox3D
+@export var west_mesh : CSGBox3D
+@export var north_collider : CollisionShape3D
+@export var south_collider : CollisionShape3D
+@export var east_collider : CollisionShape3D
+@export var west_collider : CollisionShape3D
 
 var tower = null
 var has_card : bool :
@@ -32,6 +40,26 @@ func set_material(value: StandardMaterial3D):
 
 func toggle_collision():
 	collider.disabled = !collider.disabled
+
+
+func set_north_wall(value : bool):
+	north_mesh.set_visible(value)
+	north_collider.disabled = !value
+
+
+func set_south_wall(value : bool):
+	south_mesh.set_visible(value)
+	south_collider.disabled = !value
+
+
+func set_east_wall(value : bool):
+	east_mesh.set_visible(value)
+	east_collider.disabled = !value
+
+
+func set_west_wall(value : bool):
+	west_mesh.set_visible(value)
+	west_collider.disabled = !value
 
 
 @rpc("reliable", "call_local", "any_peer")

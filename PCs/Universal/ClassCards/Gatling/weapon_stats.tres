@@ -21,7 +21,7 @@ value = 20.0
 [sub_resource type="Resource" id="Resource_ogk1x"]
 script = ExtResource("1_vpmor")
 key = "Speed Multiplier"
-value = 2.5
+value = 3.0
 
 [sub_resource type="Resource" id="Resource_wdp3h"]
 script = ExtResource("1_vpmor")
@@ -31,7 +31,7 @@ value = 4.0
 [sub_resource type="Resource" id="Resource_d1lvi"]
 script = ExtResource("1_vpmor")
 key = "Energy"
-value = 4.0
+value = 1.0
 
 [resource]
 script = ExtResource("1_630yu")

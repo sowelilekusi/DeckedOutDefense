@@ -6,6 +6,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36ot1"]
 transparency = 1
+depth_draw_mode = 1
 
 [node name="EditTool" type="Node3D" node_paths=PackedStringArray("ray", "wall_preview", "progress_bar")]
 script = ExtResource("1_yf8lt")

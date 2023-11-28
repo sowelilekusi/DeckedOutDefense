@@ -39,9 +39,10 @@ _data = {
 "shoot": SubResource("Animation_0rgpe")
 }
 
-[node name="Weapon" type="Node3D" node_paths=PackedStringArray("animator")]
+[node name="Weapon" type="Node3D" node_paths=PackedStringArray("animator", "recharge_timer")]
 script = ExtResource("1_yo2gh")
 animator = NodePath("AnimationPlayer")
+recharge_timer = NodePath("Timer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 layers = 2
@@ -52,3 +53,9 @@ texture_filter = 0
 libraries = {
 "": SubResource("AnimationLibrary_fs82p")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

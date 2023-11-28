@@ -5,6 +5,7 @@ signal energy_changed(energy)
 
 @export var stats : CardText
 @export var animator : AnimationPlayer
+@export var recharge_timer : Timer
 
 var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
 var hero : Hero
@@ -16,6 +17,10 @@ var damage := 0.0
 var max_energy := 100.0
 var current_energy := 100.0
 var energy_cost := 1.0
+var recharging := false
+var recharge_speed := 0.0
+var recharge_acceleration = 2.0
+var recharge_max_speed = 20.0
 
 
 func _ready() -> void:
@@ -29,9 +34,13 @@ func set_hero(value):
 
 
 func _process(delta: float) -> void:
-	current_energy += 5.0 * delta
-	if current_energy >= max_energy:
-		current_energy = max_energy
+	if recharging:
+		recharge_speed += recharge_acceleration * delta
+		if recharge_speed > recharge_max_speed:
+			recharge_speed = recharge_max_speed
+		current_energy += recharge_speed * delta
+		if current_energy >= max_energy:
+			current_energy = max_energy
 	energy_changed.emit(current_energy)
 	if time_since_firing < time_between_shots:
 		time_since_firing += delta
@@ -52,6 +61,7 @@ func hold_trigger():
 
 func release_trigger():
 	trigger_held = false
+	recharge_timer.start()
 
 
 func hold_second_trigger():
@@ -72,8 +82,14 @@ func spawn_damage_indicator(pos):
 
 func shoot():
 	animator.play("shoot")
+	recharging = false
+	recharge_timer.stop()
 
 
 @rpc
 func networked_shoot():
 	animator.play("shoot")
+
+
+func _on_timer_timeout() -> void:
+	recharging = true

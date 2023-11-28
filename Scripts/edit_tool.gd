@@ -27,6 +27,8 @@ var interact_hold_time := 0.4
 
 func _ready() -> void:
 	wall_preview.set_material(build_preview_material)
+	build_preview_material.albedo_color = Color.GREEN
+	build_preview_material.albedo_color.a = 0.8
 	wall_preview.toggle_collision()
 
 
@@ -73,18 +75,20 @@ func _process(delta: float) -> void:
 				if obstacle_last_point != point_id:
 					obstacle_last_point = point_id
 					if Game.level.a_star_graph_3d.test_path_if_point_toggled(point_id):
-						build_preview_material.albedo_color = Color.GREEN
-						build_preview_material.albedo_color.a = 0.8
+						#build_preview_material.albedo_color = Color.GREEN
+						#build_preview_material.albedo_color.a = 0.8
 						valid_point = true
 					else:
-						build_preview_material.albedo_color = Color.RED
-						build_preview_material.albedo_color.a = 0.8
+						#build_preview_material.albedo_color = Color.RED
+						#build_preview_material.albedo_color.a = 0.8
 						valid_point = false
 	else:
 		ray_collider = null
 		ray_point = null
 		is_looking_at_tower_base = false
 		delete_tower_preview()
+		wall_preview.set_visible(false)
+	if !valid_point:
 		wall_preview.set_visible(false)
 
 

@@ -17,10 +17,15 @@ var enemy_names = []
 @export var enemy_sprites : Array[TextureRect]
 @export var enemy_counts : Array[Label]
 @export var weapon_energy_bar : TextureProgressBar
+@export var offhand_energy_bar : TextureProgressBar
 
 
 func set_energy_visible(value):
 	weapon_energy_bar.set_visible(value)
+
+
+func set_offhand_energy_visible(value):
+	offhand_energy_bar.set_visible(value)
 
 
 func _process(_delta: float) -> void:
@@ -88,6 +93,10 @@ func set_crosshair_visible(value : bool):
 
 func set_weapon_energy(value):
 	weapon_energy_bar.value = value
+
+
+func set_offhand_energy(value):
+	offhand_energy_bar.value = value
 
 
 func maximise_minimap(anchor):

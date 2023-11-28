@@ -67,7 +67,7 @@ size = Vector3(58.5693, 9.50003, 1)
 size = Vector3(29, 10, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqnu2"]
-transparency = 1
+transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("15_61y1c")
 uv1_scale = Vector3(8, 29, 1)
@@ -92,7 +92,9 @@ size = Vector2(2, 18)
 size = Vector3(18, 5, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3k34"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("15_61y1c")
 uv1_scale = Vector3(2, 8, 0)
@@ -885,8 +887,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="AStarGraph3D" type="Node3D" parent="." node_paths=PackedStringArray("start", "end", "spawner", "visualized_path", "tower_path")]
 script = ExtResource("11_07ukk")
-grid_size = Vector2i(15, 7)
-point_gap = 2.0
 start = NodePath("../GroundSpawn")
 end = NodePath("../EnemyGoal")
 spawner = NodePath("../GroundSpawn")

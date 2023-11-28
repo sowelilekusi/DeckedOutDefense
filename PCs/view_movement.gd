@@ -10,9 +10,9 @@ class_name ViewMovement
 @export_category("Tilting")
 @export var enable_tilt := true
 
-var head_bob_amplitude := 0.002
+var head_bob_amplitude := 0.001
 var head_bob_frequency := 0.015
-var tilt_amount := 0.04
+var tilt_amount := 0.03
 var head_bob_start_position : Vector3
 
 

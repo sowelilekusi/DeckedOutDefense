@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=36 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="6_cf5ap"]
 [ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Red/red.png" id="6_yyp8i"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="8_yl6ka"]
+[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://PCs/Red/red_hand.png" id="9_gxh2h"]
 [ext_resource type="Script" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
 [ext_resource type="Script" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
@@ -23,11 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4d5kf"]
-resource_local_to_scene = true
-atlas = ExtResource("6_yyp8i")
-region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="Environment" id="Environment_ekmug"]
 
@@ -51,9 +47,20 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_8f12g"]
 viewport_path = NodePath("SubViewport/Head2/LeftHand/SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_v8f6r"]
+viewport_path = NodePath("SubViewport/Head2/LeftHand/SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xme80"]
+viewport_path = NodePath("SubViewport/Head2/LeftHand/SubViewport3")
+
 [sub_resource type="Environment" id="Environment_cilxe"]
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tsug"]
+resource_local_to_scene = true
+atlas = ExtResource("6_yyp8i")
+region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m3ots"]
 viewport_path = NodePath("Nametag")
@@ -79,26 +86,31 @@ shader_parameter/len = 0.015
 shader_parameter/spacing = 0.008
 shader_parameter/spread = 1.0
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "interaction_raycast", "inventory", "card", "hud", "movement", "player_name_tag")]
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "card", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
 hero_class = ExtResource("2_dbyo0")
 camera = NodePath("ViewMovement/Head")
 gun_camera = NodePath("SubViewport/Head2")
+left_hand_sprite = NodePath("SubViewport/Head2/LeftHand/Sprite3D")
 left_hand = NodePath("SubViewport/Head2/LeftHand")
 right_hand = NodePath("SubViewport/Head2/RightHand")
 right_hand_animator = NodePath("SubViewport/Head2/RightHand/AnimationPlayer")
 edit_tool = NodePath("ViewMovement/Head/EditTool")
 gauntlet_sprite = NodePath("SubViewport/Head2/RightHand/Gauntlet")
 sprite = NodePath("EightDirectionSprite")
+hand_sprite = NodePath("SubViewport/Head2/LeftHand/SubViewport/Sprite2D")
 interaction_raycast = NodePath("ViewMovement/Head/RayCast3D")
 inventory = NodePath("Inventory")
 card = NodePath("SubViewport/Head2/LeftHand/SubViewport/Node2D")
+gauntlet_card_1 = NodePath("SubViewport/Head2/LeftHand/SubViewport2/Node2D")
+gauntlet_card_2 = NodePath("SubViewport/Head2/LeftHand/SubViewport3/Node2D")
 pause_menu_scene = ExtResource("3_avnsx")
 hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
 player_name_tag = NodePath("Nametag/Label")
+weapon_swap_timer = NodePath("Timer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -127,10 +139,6 @@ collision_mask = 24
 [node name="RayCast3D" type="RayCast3D" parent="ViewMovement"]
 target_position = Vector3(0, 0, -100)
 collision_mask = 65535
-
-[node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_4d5kf")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -167,11 +175,45 @@ render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
 
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Head2/LeftHand/SubViewport"]
+texture_filter = 1
+position = Vector2(256, 256)
+scale = Vector2(8, 8)
+texture = ExtResource("9_gxh2h")
+
+[node name="SubViewport2" type="SubViewport" parent="SubViewport/Head2/LeftHand"]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport/Head2/LeftHand/SubViewport2" instance=ExtResource("4_mwtvp")]
+visible = false
+
+[node name="SubViewport3" type="SubViewport" parent="SubViewport/Head2/LeftHand"]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewport/Head2/LeftHand/SubViewport3" instance=ExtResource("4_mwtvp")]
+visible = false
+
 [node name="Sprite3D" type="Sprite3D" parent="SubViewport/Head2/LeftHand"]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.2, 0.19, 0)
 layers = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_8f12g")
+
+[node name="Sprite3D2" type="Sprite3D" parent="SubViewport/Head2/LeftHand"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 4.74969, -0.0599999, 0.0158834)
+layers = 2
+sorting_offset = 1.0
+texture_filter = 0
+texture = SubResource("ViewportTexture_v8f6r")
+
+[node name="Sprite3D3" type="Sprite3D" parent="SubViewport/Head2/LeftHand"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 6.03, -0.0599999, 0.0158834)
+layers = 2
+sorting_offset = 1.0
+texture_filter = 0
+texture = SubResource("ViewportTexture_xme80")
 
 [node name="MiniMapViewport" type="SubViewport" parent="."]
 size = Vector2i(256, 256)
@@ -185,12 +227,6 @@ projection = 1
 size = 15.0
 script = ExtResource("12_3hpi3")
 anchor = NodePath("../..")
-
-[node name="MinimapIcon" type="Sprite3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
-layers = 4
-texture_filter = 0
-texture = ExtResource("15_nhlam")
 
 [node name="Nametag" type="SubViewport" parent="."]
 transparent_bg = true
@@ -206,6 +242,16 @@ grow_vertical = 2
 text = "QUITE LONG PLAYER NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
+texture = SubResource("AtlasTexture_4tsug")
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("15_nhlam")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -225,7 +271,7 @@ script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "enemy_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar")]
 script = ExtResource("8_yl6ka")
 wave_count = NodePath("WaveCount")
 lives_count = NodePath("LivesCount")
@@ -239,7 +285,8 @@ fps_label = NodePath("Label")
 hover_text = NodePath("Label2")
 enemy_sprites = [NodePath("TextureRect4/TextureRect"), NodePath("TextureRect4/TextureRect2"), NodePath("TextureRect4/TextureRect3"), NodePath("TextureRect4/TextureRect4"), NodePath("TextureRect4/TextureRect5")]
 enemy_counts = [NodePath("TextureRect4/TextureRect/Label"), NodePath("TextureRect4/TextureRect2/Label2"), NodePath("TextureRect4/TextureRect3/Label3"), NodePath("TextureRect4/TextureRect4/Label4"), NodePath("TextureRect4/TextureRect5/Label5")]
-weapon_energy_bar = NodePath("TextureProgressBar")
+weapon_energy_bar = NodePath("PrimaryEnergyBar")
+offhand_energy_bar = NodePath("OffhandEnergyBar")
 
 [node name="EnemyCount" type="Label" parent="HUD"]
 visible = false
@@ -501,9 +548,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD"]
+[node name="PrimaryEnergyBar" type="TextureProgressBar" parent="HUD"]
 visible = false
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -520,3 +567,30 @@ texture_under = ExtResource("21_apps2")
 texture_progress = ExtResource("21_apps2")
 tint_under = Color(0, 1, 1, 0.168627)
 tint_progress = Color(0, 1, 1, 1)
+
+[node name="OffhandEnergyBar" type="TextureProgressBar" parent="HUD"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -379.0
+offset_top = -50.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+step = 0.01
+value = 100.0
+fill_mode = 1
+nine_patch_stretch = true
+texture_under = ExtResource("21_apps2")
+texture_progress = ExtResource("21_apps2")
+tint_under = Color(0, 1, 1, 0.168627)
+tint_progress = Color(0, 1, 1, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

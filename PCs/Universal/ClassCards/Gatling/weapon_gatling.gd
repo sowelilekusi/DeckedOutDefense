@@ -27,8 +27,10 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if trigger_held and time_since_firing >= current_time_between_shots:
+	if trigger_held and current_energy >= energy_cost and time_since_firing >= current_time_between_shots:
 		time_since_firing -= current_time_between_shots
+		current_energy -= energy_cost
+		energy_changed.emit(current_energy)
 		shoot()
 		networked_shoot.rpc()
 

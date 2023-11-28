@@ -13,6 +13,7 @@ func _ready() -> void:
 	bg_level.a_star_graph_3d.find_path()
 	bg_level.a_star_graph_3d.build_random_maze(50)
 	bg_level.a_star_graph_3d.place_random_towers(20)
+	bg_level.a_star_graph_3d.disable_all_tower_frames()
 	var new_wave = WaveManager.generate_wave(400, bg_level.enemy_pool)
 	for spawn in bg_level.enemy_spawns:
 		spawn.signal_for_after_enemy_died = enemy_died
@@ -20,7 +21,7 @@ func _ready() -> void:
 		spawn.signal_for_when_enemy_spawns.connect(increase_enemy_count)
 		spawn.spawn_wave(new_wave)
 
-func enemy_died(some_arg):
+func enemy_died(_some_arg):
 	pass
 func damage_goal():
 	pass
