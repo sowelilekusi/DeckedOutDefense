@@ -6,10 +6,13 @@ var path_progress = 0.0
 
 
 func _ready() -> void:
-	distance_remaining = path.get_baked_length()
+	if path:
+		distance_remaining = path.get_baked_length()
 
 
 func _physics_process(delta: float) -> void:
+	if !path:
+		return
 	var distance_travelled = (character.stats.movement_speed * clampf(character.movement_speed_penalty, 0.0, 1.0)) * delta
 	distance_remaining -= distance_travelled
 	path_progress += distance_travelled

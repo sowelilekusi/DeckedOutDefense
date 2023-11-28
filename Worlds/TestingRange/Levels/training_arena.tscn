@@ -1,26 +1,26 @@
-[gd_scene load_steps=24 format=3 uid="uid://uv7hjsgisy31"]
+[gd_scene load_steps=22 format=3 uid="uid://uv7hjsgisy31"]
 
-[ext_resource type="Texture2D" uid="uid://r8cr41blojpm" path="res://Assets/Textures/stone wall 7.png" id="1_45ikc"]
+[ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="1_45ikc"]
 [ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="2_w387b"]
 [ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_y4upj"]
 [ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="4_i7krx"]
 [ext_resource type="Script" path="res://Scripts/Resources/enemy.gd" id="4_ucmnf"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="5_15cd7"]
-[ext_resource type="Resource" uid="uid://bmoreipvttks8" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="5_806m0"]
-[ext_resource type="Resource" uid="uid://cvf5bxtu6er17" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="6_evvng"]
-[ext_resource type="Resource" uid="uid://q23ludhji5p4" path="res://PCs/Universal/ClassCards/Gatling/card_gatling.tres" id="8_k80ff"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="5_806m0"]
+[ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://PCs/Universal/ClassCards/Sniper/card_sniper.tres" id="6_evvng"]
+[ext_resource type="Resource" uid="uid://cvto66tp7rrst" path="res://PCs/Universal/ClassCards/Gatling/card_gatling.tres" id="8_k80ff"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/tower_base.tscn" id="9_imodf"]
-[ext_resource type="Resource" uid="uid://bvpkvmda845o5" path="res://PCs/Universal/ClassCards/BombLauncher/card_grenade_launcher.tres" id="10_g0syk"]
-[ext_resource type="Resource" uid="uid://1xke2uy2vfuf" path="res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres" id="11_d3sci"]
-[ext_resource type="Resource" uid="uid://dh5fjnbp8auw1" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="11_jk0fe"]
-[ext_resource type="Resource" uid="uid://bhmbk26whdsys" path="res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres" id="12_7lpov"]
-[ext_resource type="PackedScene" uid="uid://cgcslt0rsg6e3" path="res://Worlds/TestingRange/Enemies/target_dummy.tscn" id="14_rvk27"]
+[ext_resource type="Resource" uid="uid://blgngx360vff1" path="res://PCs/Universal/ClassCards/BombLauncher/card_bomb_launcher.tres" id="10_g0syk"]
+[ext_resource type="Resource" uid="uid://dg4pjt47q8xpw" path="res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres" id="11_d3sci"]
+[ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="11_jk0fe"]
+[ext_resource type="Resource" uid="uid://fwsg5av1egp2" path="res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres" id="12_7lpov"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mqtlc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75uqo"]
 albedo_texture = ExtResource("1_45ikc")
 uv1_scale = Vector3(30, 15, 1)
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mcyj"]
 size = Vector3(15, 1, 30)
@@ -58,13 +58,6 @@ health = 100
 penalty = 10
 movement_speed = 1.0
 spawn_cooldown = 1.0
-
-[sub_resource type="Curve3D" id="Curve3D_3hq0c"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3, 0, 0, -3.045, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, -3, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, -3, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
-}
-point_count = 5
 
 [node name="Node3D" type="Node3D"]
 
@@ -124,16 +117,7 @@ card = ExtResource("12_7lpov")
 [node name="towerbase" parent="." instance=ExtResource("9_imodf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77234, 0.5, 2.6958)
 
-[node name="towerbase2" parent="." node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon") instance=ExtResource("9_imodf")]
+[node name="towerbase2" parent="." node_paths=PackedStringArray("inventory", "collider") instance=ExtResource("9_imodf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766634, 0.5, -9.7488)
 inventory = NodePath("../towerbase/Inventory")
-block = NodePath("../towerbase/CSGBox3D")
 collider = NodePath("../towerbase/CollisionShape3D")
-minimap_icon = NodePath("../towerbase/Sprite3D")
-
-[node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -9.72541)
-curve = SubResource("Curve3D_3hq0c")
-
-[node name="PathFollow3D" parent="Path3D" instance=ExtResource("14_rvk27")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3, 0, 0)

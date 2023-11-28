@@ -4,7 +4,6 @@ class_name HUD
 var last_lives_count = 120
 @export var wave_count : Label
 @export var lives_count : Label
-@export var enemy_count : Label
 @export var currency_count : Label
 @export var crosshair : Control
 @export var minimap : TextureRect
@@ -50,10 +49,6 @@ func set_lives_count(value):
 	for x in last_lives_count - value:
 		$LivesBar.take_life()
 	last_lives_count = value
-
-
-func set_enemy_count(value):
-	enemy_count.text = "Enemies Remaining: " + str(value)
 
 
 func enemy_count_down(enemy):

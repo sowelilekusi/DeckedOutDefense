@@ -6,7 +6,9 @@ var bounces := 0
 
 
 func _ready() -> void:
-	apply_central_impulse(direction * force)
+	apply_central_impulse(direction.normalized() * force)
+	#print(direction.length())
+	#print(force)
 	if owner_id == 0:
 		max_bounces = 0
 

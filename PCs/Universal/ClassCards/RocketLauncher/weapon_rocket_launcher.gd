@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if !trigger_held or time_since_firing < time_between_shots:
+	if !trigger_held or time_since_firing < time_between_shots or current_energy < energy_cost:
 		return
 	var target_list = targets.duplicate()
 	for target in target_list:
