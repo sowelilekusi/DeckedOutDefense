@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_su4lx"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/RocketLauncher/tower_rocket_launcher.gd" id="2_33124"]
 [ext_resource type="PackedScene" uid="uid://p2vwo8ivben6" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket_projectile.tscn" id="3_8kvhb"]
-[ext_resource type="ArrayMesh" uid="uid://buyx8g4vlh7g7" path="res://rocket_launcher_model.res" id="4_ahc6v"]
+[ext_resource type="ArrayMesh" uid="uid://dltxsh8ppubj3" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket_launcher_model.res" id="4_1rycx"]
 
 [node name="RocketLauncherTower" instance=ExtResource("1_su4lx")]
 script = ExtResource("2_33124")
@@ -14,4 +14,4 @@ visible = false
 
 [node name="Yaw" parent="." index="2"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.667653, 0)
-mesh = ExtResource("4_ahc6v")
+mesh = ExtResource("4_1rycx")

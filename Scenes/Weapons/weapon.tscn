@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7nargdyg28fj"]
+[gd_scene load_steps=7 format=3 uid="uid://b7nargdyg28fj"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/weapon.gd" id="1_yo2gh"]
+[ext_resource type="AudioStream" uid="uid://chrf1dcq2ujw0" path="res://PCs/Universal/ClassCards/Assault/shot1.wav" id="2_2a041"]
 
 [sub_resource type="Animation" id="Animation_5krlx"]
 length = 0.001
@@ -39,9 +40,16 @@ _data = {
 "shoot": SubResource("Animation_0rgpe")
 }
 
-[node name="Weapon" type="Node3D" node_paths=PackedStringArray("animator", "recharge_timer")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_leqfx"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("2_2a041")
+stream_0/weight = 1.0
+
+[node name="Weapon" type="Node3D" node_paths=PackedStringArray("animator", "audio_player", "recharge_timer")]
 script = ExtResource("1_yo2gh")
 animator = NodePath("AnimationPlayer")
+audio_player = NodePath("AudioStreamPlayer3D")
 recharge_timer = NodePath("Timer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -57,5 +65,8 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_leqfx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

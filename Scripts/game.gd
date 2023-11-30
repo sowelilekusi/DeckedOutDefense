@@ -7,7 +7,6 @@ signal game_started
 signal game_restarted
 signal lost_game
 signal won_game
-signal enemy_number_changed(number_of_enemies)
 
 var level_scene = load("res://Worlds/GreenPlanet/Levels/first_level.tscn")
 var player_scene = load("res://PCs/hero.tscn")
@@ -118,7 +117,6 @@ func spawn_players(player_array, player_profiles, chatbox_open_signal, chatbox_c
 		wave_started.connect(player.exit_editing_mode)
 		wave_finished.connect(player.enter_editing_mode)
 		base_took_damage.connect(player.hud.set_lives_count)
-		enemy_number_changed.connect(player.hud.set_enemy_count)
 		add_child(player)
 		p_i += 1
 	level.cinematic_cam.does_its_thing = false
@@ -169,12 +167,10 @@ func networked_set_endless(value):
 
 func increase_enemy_count():
 	enemies += 1
-	enemy_number_changed.emit(enemies)
 
 
 func enemy_died(enemy):
 	enemies -= 1
-	enemy_number_changed.emit(enemies)
 	for key in connected_players_nodes:
 		connected_players_nodes[key].hud.enemy_count_down(enemy)
 	for x in level.enemy_spawns:
@@ -188,7 +184,6 @@ func enemy_died(enemy):
 
 func damage_goal(enemy, penalty):
 	enemies -= 1
-	enemy_number_changed.emit(enemies)
 	for key in connected_players_nodes:
 		connected_players_nodes[key].hud.enemy_count_down(enemy)
 	objective_health -= penalty

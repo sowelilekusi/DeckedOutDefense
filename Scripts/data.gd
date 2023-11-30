@@ -10,7 +10,7 @@ var player_profile : PlayerProfile
 var player_keymap : PlayerKeymap
 
 var wall_cost := 1
-var printer_cost := 20
+var printer_cost := 15
 enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}

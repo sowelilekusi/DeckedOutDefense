@@ -6,6 +6,7 @@ class_name Tower
 @export var pitch_model : MeshInstance3D
 @export var yaw_model : MeshInstance3D
 @export var range_indicator : CSGSphere3D
+@export var audio_player : AudioStreamPlayer3D
 
 var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
 var base_name
@@ -79,6 +80,7 @@ func acquire_target():
 
 func shoot():
 	animator.play("shoot")
+	audio_player.play()
 	if is_multiplayer_authority():
 		networked_shoot.rpc()
 

@@ -57,7 +57,7 @@ viewport_path = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3")
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mac51"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_npkso"]
 resource_local_to_scene = true
 atlas = ExtResource("6_yyp8i")
 region = Rect2(0, 0, 96, 96)
@@ -86,7 +86,7 @@ shader_parameter/len = 0.015
 shader_parameter/spacing = 0.008
 shader_parameter/spread = 1.0
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "card", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer")]
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "card", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -111,6 +111,7 @@ hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
 player_name_tag = NodePath("NametagViewport/Label")
 weapon_swap_timer = NodePath("WeaponSwapTimer")
+ears = NodePath("AudioListener3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -154,7 +155,7 @@ script = ExtResource("11_4sdwe")
 clone_camera = NodePath("../../ViewMovement/Head")
 
 [node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.66, -0.255, -1)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.66, -0.255, -0.221557)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FirstPersonViewport/Head2/RightHand"]
 libraries = {
@@ -167,7 +168,7 @@ texture_filter = 0
 texture = ExtResource("3_5myy0")
 
 [node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2"]
-transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -1)
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -0.221557)
 
 [node name="SubViewport" type="SubViewport" parent="FirstPersonViewport/Head2/LeftHand"]
 transparent_bg = true
@@ -245,7 +246,7 @@ vertical_alignment = 1
 
 [node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_mac51")
+texture = SubResource("AtlasTexture_npkso")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
@@ -271,11 +272,12 @@ script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar")]
 script = ExtResource("8_yl6ka")
 wave_count = NodePath("WaveCount")
 lives_count = NodePath("LivesCount")
 currency_count = NodePath("CurrencyCount")
+minimap_outline = NodePath("MinimapBorder")
 crosshair = NodePath("Crosshair")
 minimap = NodePath("Minimap")
 minimap_cam = NodePath("../MiniMapViewport/Camera3D")
@@ -583,5 +585,8 @@ tint_progress = Color(0, 1, 1, 1)
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.9
 one_shot = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]

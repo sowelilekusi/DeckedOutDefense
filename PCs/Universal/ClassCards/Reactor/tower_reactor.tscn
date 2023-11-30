@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Reactor/tower_reactor.gd" id="2_6w83m"]
 [ext_resource type="Resource" uid="uid://dxlisoas4xlmo" path="res://Resources/StatusEffects/radioactive.tres" id="3_xhrj0"]
 [ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://PCs/Universal/ClassCards/Reactor/tower_stats.tres" id="4_rkhup"]
-[ext_resource type="ArrayMesh" uid="uid://d280k3kx6hh7h" path="res://reactor_mesh.res" id="5_it8eo"]
+[ext_resource type="ArrayMesh" uid="uid://d280k3kx6hh7h" path="res://PCs/Universal/ClassCards/Reactor/reactor_mesh.res" id="5_it8eo"]
 
 [sub_resource type="Gradient" id="Gradient_ranod"]
 interpolation_color_space = 2

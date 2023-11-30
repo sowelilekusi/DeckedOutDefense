@@ -27,6 +27,7 @@ signal died
 @export var sprint_zoom_speed := 0.2
 @export var player_name_tag : Label
 @export var weapon_swap_timer : Timer
+@export var ears : AudioListener3D
 
 var equipped_card : Card
 var offhand_card : Card
@@ -60,6 +61,7 @@ func _ready() -> void:
 		sprite.queue_free()
 		hand_sprite.texture = hero_class.hand_texture
 		player_name_tag.queue_free()
+		ears.make_current()
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)

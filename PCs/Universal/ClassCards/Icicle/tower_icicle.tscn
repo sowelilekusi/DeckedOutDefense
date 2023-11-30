@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Icicle/tower_icicle.gd" id="2_qcpgh"]
 [ext_resource type="PackedScene" uid="uid://dyurjxotdkf1u" path="res://PCs/Universal/ClassCards/Icicle/icicle_projectile.tscn" id="3_o4uqf"]
 [ext_resource type="Resource" uid="uid://d34bfj5togyyt" path="res://PCs/Universal/ClassCards/Icicle/tower_stats.tres" id="4_3il5a"]
-[ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://magetowermesh.res" id="5_soa3a"]
+[ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://PCs/Universal/ClassCards/Fireball/magetowermesh.res" id="5_soa3a"]
 
 [node name="IcicleTower" instance=ExtResource("1_d6g88")]
 script = ExtResource("2_qcpgh")

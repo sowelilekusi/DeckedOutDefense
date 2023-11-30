@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/BombLauncher/tower_bomb_launcher.gd" id="2_vlaa6"]
 [ext_resource type="PackedScene" uid="uid://c8oq5unisjqne" path="res://PCs/Universal/ClassCards/BombLauncher/bomb_projectile.tscn" id="3_562if"]
 [ext_resource type="Resource" uid="uid://8eaecilvan23" path="res://PCs/Universal/ClassCards/BombLauncher/tower_stats.tres" id="4_xgwj1"]
-[ext_resource type="ArrayMesh" uid="uid://ckst32066g4vg" path="res://bombamodel.res" id="5_yixga"]
+[ext_resource type="ArrayMesh" uid="uid://cbuu5w43qins8" path="res://PCs/Universal/ClassCards/BombLauncher/bombamodel.res" id="5_yixga"]
 
 [node name="BombLauncherTower" instance=ExtResource("1_r8hbo")]
 script = ExtResource("2_vlaa6")

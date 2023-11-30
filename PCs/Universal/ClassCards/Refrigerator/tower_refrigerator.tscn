@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://fed6kimfbcwv" path="res://Resources/StatusEffects/cold.tres" id="2_u4dux"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Refrigerator/tower_refrigerator.gd" id="2_yhcmv"]
 [ext_resource type="Resource" uid="uid://st0qrut5nxrm" path="res://PCs/Universal/ClassCards/Refrigerator/tower_stats.tres" id="3_jjh3a"]
-[ext_resource type="ArrayMesh" uid="uid://bwvls7rj0oqyv" path="res://fridge_mesh.res" id="5_mrvl8"]
+[ext_resource type="ArrayMesh" uid="uid://bwvls7rj0oqyv" path="res://PCs/Universal/ClassCards/Refrigerator/fridge_mesh.res" id="5_mrvl8"]
 
 [sub_resource type="Gradient" id="Gradient_lm6vx"]
 offsets = PackedFloat32Array(0, 0.682927, 1)
@@ -16,9 +16,9 @@ gradient = SubResource("Gradient_lm6vx")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijefe"]
 spread = 180.0
 flatness = 1.0
-gravity = Vector3(0, -8, 0)
 initial_velocity_min = 7.0
 initial_velocity_max = 7.0
+gravity = Vector3(0, -8, 0)
 tangential_accel_min = 6.0
 tangential_accel_max = 6.0
 damping_min = 10.0

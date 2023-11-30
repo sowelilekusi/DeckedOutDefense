@@ -91,8 +91,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444448, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_iia6u")
-press_cost = 20
-hover_text = "Spend 20 Coins to print card"
+press_cost = 15
+hover_text = "Spend 15 Coins to print card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_ikdwj")

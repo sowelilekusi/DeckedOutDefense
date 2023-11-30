@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_uadu5"]
 [ext_resource type="Resource" uid="uid://bdmsiw45xxhiv" path="res://PCs/Universal/ClassCards/Assault/tower_stats.tres" id="2_gg1gn"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Assault/tower_assault.gd" id="2_olbck"]
-[ext_resource type="ArrayMesh" uid="uid://bmejdnnnuroll" path="res://assaultmod.res" id="4_1d5pl"]
+[ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://PCs/Universal/ClassCards/Assault/assaultmod.res" id="4_1d5pl"]
 
 [node name="AssaultTower" instance=ExtResource("1_uadu5")]
 script = ExtResource("2_olbck")

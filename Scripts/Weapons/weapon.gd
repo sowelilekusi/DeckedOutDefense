@@ -5,6 +5,7 @@ signal energy_changed(energy)
 
 @export var stats : CardText
 @export var animator : AnimationPlayer
+@export var audio_player : AudioStreamPlayer3D
 @export var recharge_timer : Timer
 
 var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
@@ -82,6 +83,7 @@ func spawn_damage_indicator(pos):
 
 func shoot():
 	animator.play("shoot")
+	audio_player.play()
 	recharging = false
 	recharge_timer.stop()
 
@@ -89,6 +91,7 @@ func shoot():
 @rpc
 func networked_shoot():
 	animator.play("shoot")
+	audio_player.play()
 
 
 func _on_timer_timeout() -> void:

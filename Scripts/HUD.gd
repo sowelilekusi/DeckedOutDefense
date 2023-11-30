@@ -5,6 +5,7 @@ var last_lives_count = 120
 @export var wave_count : Label
 @export var lives_count : Label
 @export var currency_count : Label
+@export var minimap_outline : TextureRect
 @export var crosshair : Control
 @export var minimap : TextureRect
 @export var minimap_cam : MinimapCamera3D
@@ -103,8 +104,8 @@ func maximise_minimap(anchor):
 	minimap.offset_right = -40
 	minimap_viewport.size = Vector2(1840, 1000)
 	minimap_cam.size = 30
-	$TextureRect3.set_visible(false)
-	$Currency.set_visible(false)
+	minimap_outline.set_visible(false)
+	currency_count.set_visible(false)
 
 
 func minimize_minimap(anchor):
@@ -116,5 +117,5 @@ func minimize_minimap(anchor):
 	minimap.offset_bottom = 256
 	minimap_viewport.size = Vector2(256, 256)
 	minimap_cam.size = 15
-	$TextureRect3.set_visible(true)
-	$Currency.set_visible(true)
+	minimap_outline.set_visible(true)
+	currency_count.set_visible(true)

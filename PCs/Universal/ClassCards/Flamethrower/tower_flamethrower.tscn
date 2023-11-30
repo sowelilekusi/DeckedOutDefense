@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Flamethrower/tower_flamethrower.gd" id="2_7vewc"]
 [ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="3_aop2h"]
 [ext_resource type="Resource" uid="uid://cdtjbxs21peqg" path="res://PCs/Universal/ClassCards/Flamethrower/tower_stats.tres" id="4_by7c8"]
-[ext_resource type="ArrayMesh" uid="uid://p2jerp4ab8ch" path="res://flamethrower_mesh.res" id="5_tc7nr"]
+[ext_resource type="ArrayMesh" uid="uid://b4p0d4y8fdeox" path="res://PCs/Universal/ClassCards/Flamethrower/flamethrower_mesh.res" id="5_tc7nr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r367g"]
 size = Vector3(3, 2, 3)
@@ -19,9 +19,9 @@ gradient = SubResource("Gradient_ay233")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r7587"]
 direction = Vector3(0, 0, -1)
 spread = 15.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 3.0
 initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_7rrxx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8aw8"]
