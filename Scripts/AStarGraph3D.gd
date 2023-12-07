@@ -53,7 +53,7 @@ func networked_toggle_point(point_id, caller_id):
 	else:
 		astar.set_point_disabled(point_id, true)
 	find_path()
-	disable_path_tower_frames()
+	enable_non_path_tower_frames()
 	if is_multiplayer_authority() and astar.is_point_disabled(point_id):
 		networked_spawn_wall.rpc(astar.get_point_position(point_id), wall_id, caller_id)
 		wall_id += 1

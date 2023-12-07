@@ -21,7 +21,7 @@ var energy_cost := 1.0
 var recharging := false
 var recharge_speed := 0.0
 var recharge_acceleration = 2.0
-var recharge_max_speed = 20.0
+var recharge_max_speed = 25.0
 
 
 func _ready() -> void:
@@ -85,6 +85,7 @@ func shoot():
 	animator.play("shoot")
 	audio_player.play()
 	recharging = false
+	recharge_speed = 0.0
 	recharge_timer.stop()
 
 

@@ -45,30 +45,32 @@ func parse_command(text : String, peer_id : int):
 			if x.title == gift_name:
 				gift = x
 		connected_players_nodes[peer_id].inventory.add(gift)
-	if text.substr(1, 2) == "tr":
+	elif text.substr(1, 2) == "tr":
 		chatbox.append_message("SERVER", Color.TOMATO, "[color=#f7a8b8]t[color=#55cdfc]r[color=#ffffff]a[color=#55cdfc]n[color=#f7a8b8]s [color=#e50000]r[color=#ff8d00]i[color=#ffee00]g[color=#028121]h[color=#004cff]t[color=#760088]s[color=white]!!")
-	if text.substr(1, 11) == "random_maze":
+	elif text.substr(1, 6) == "length":
+		chatbox.append_message("SERVER", Color.TOMATO, str(level.a_star_graph_3d.visualized_path.curve.get_baked_length()))
+	elif text.substr(1, 11) == "random_maze":
 		level.a_star_graph_3d.build_random_maze(50)
-	if text.substr(1, 13) == "random_towers":
+	elif text.substr(1, 13) == "random_towers":
 		level.a_star_graph_3d.place_random_towers(level.a_star_graph_3d.tower_bases.size() / 3.0)
-	if text.substr(1, 11) == "set_endless":
+	elif text.substr(1, 11) == "set_endless":
 		if is_multiplayer_authority():
 			networked_set_endless.rpc(true)
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
-	if text.substr(1, 12) == "set_standard":
+	elif text.substr(1, 12) == "set_standard":
 		if is_multiplayer_authority():
 			networked_set_endless.rpc(false)
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
-	if text.substr(1, 11) == "spawn_print":
+	elif text.substr(1, 11) == "spawn_print":
 		level.printer._on_static_body_3d_button_interacted(0)
-	if text.substr(1, 10) == "spawn_shop":
+	elif text.substr(1, 10) == "spawn_shop":
 		level.shop.randomize_cards()
-	if text.substr(1, 7) == "prosper":
+	elif text.substr(1, 7) == "prosper":
 		for id in connected_players_nodes:
 			connected_players_nodes[id].currency += 50
-	if text.substr(1, 8) == "set_wave":
+	elif text.substr(1, 8) == "set_wave":
 		if is_multiplayer_authority():
 			networked_set_wave.rpc(int(text.substr(10)))
 		else:

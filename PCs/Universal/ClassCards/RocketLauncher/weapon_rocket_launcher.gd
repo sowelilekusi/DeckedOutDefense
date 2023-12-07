@@ -54,6 +54,7 @@ func release_trigger():
 func shoot():
 	animator.play("shoot")
 	recharging = false
+	recharge_speed = 0.0
 	for target in targets:
 		networked_spawn_rocket.rpc(get_tree().root.get_path_to(target), multiplayer.get_unique_id())
 	targets.clear()
