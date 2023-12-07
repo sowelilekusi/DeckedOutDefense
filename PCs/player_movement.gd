@@ -9,9 +9,10 @@ class_name PlayerMovement
 @export var sprint_boost := 1.3
 @export var acceleration := 0.8
 @export var friction_percentage := 0.1
+@export var max_look_down_angle := 90.0
+@export var max_look_up_angle := 90.0
 
 @export_category("Jump")
-var jump_held = false
 @export var min_height := 0.8
 @export var max_height := 1.3
 @export var time_to_peak := 0.5
@@ -22,11 +23,13 @@ var jump_held = false
 @onready var time_to_min_peak : float = (clampf(min_height, 0.0, max_height) / max_height) * time_to_peak
 @onready var min_jump_gravity : float = (-2 * clampf(min_height, 0.0, max_height)) / pow(time_to_min_peak, 2)
 
+var paused := false
 var zoom_factor := 1.0
 var input_vector : Vector2
 var can_sprint := true
 var sprint_zoom_factor := 0.08
 var sprinting := false
+var jump_held = false
 var head_angle := 0.0
 var look_sens : float :
 	set(_value):
@@ -53,12 +56,13 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.limit_length(movement_speed * sprint_boost if sprinting else movement_speed)
 	player.velocity = Vector3(velocity.x, down_velocity + (get_gravity() * delta), velocity.y)
 	player.move_and_slide()
-	sync_position.rpc(player.position)
-	sync_rotation.rpc(player.rotation)
 
 
 func _process(_delta: float) -> void:
 	if !is_multiplayer_authority():
+		return
+	if paused:
+		input_vector = Vector2.ZERO
 		return
 	can_sprint = true
 	input_vector = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
@@ -84,15 +88,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		player.rotation.y -= event.relative.x * (look_sens / zoom_factor) * (-1 if Data.preferences.invert_lookX else 1)
 		head_angle -= event.relative.y * (look_sens / zoom_factor) * (-1 if Data.preferences.invert_lookY else 1)
-		head_angle = clamp(head_angle, -1.5, 1.5)
+		head_angle = clamp(head_angle, deg_to_rad(-max_look_down_angle), deg_to_rad(max_look_up_angle))
 		head.rotation.x = head_angle
-
-
-@rpc
-func sync_position(vec):
-	player.position = vec
-
-
-@rpc
-func sync_rotation(rot):
-	player.rotation = rot

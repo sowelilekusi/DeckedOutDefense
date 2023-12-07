@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=37 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
@@ -86,6 +86,14 @@ shader_parameter/len = 0.015
 shader_parameter/spacing = 0.008
 shader_parameter/spread = 1.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tsiqi"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
 [node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "card", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears")]
 collision_layer = 2
 collision_mask = 37
@@ -112,6 +120,9 @@ movement = NodePath("PlayerMovement")
 player_name_tag = NodePath("NametagViewport/Label")
 weapon_swap_timer = NodePath("WeaponSwapTimer")
 ears = NodePath("AudioListener3D")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -231,7 +242,7 @@ anchor = NodePath("../..")
 
 [node name="NametagViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(300, 40)
+size = Vector2i(1000, 40)
 render_target_update_mode = 4
 
 [node name="Label" type="Label" parent="NametagViewport"]
@@ -240,7 +251,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "QUITE LONG PLAYER NAME"
+text = "xXx_TransgenderHyena_xXx"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -271,6 +282,8 @@ script = ExtResource("6_cf5ap")
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
+max_look_down_angle = 80.0
+max_look_up_angle = 80.0
 
 [node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar")]
 script = ExtResource("8_yl6ka")
@@ -586,7 +599,7 @@ tint_progress = Color(0, 1, 1, 1)
 wait_time = 0.9
 one_shot = true
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_tsiqi")
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]

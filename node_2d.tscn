@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://52e5sm81wqjh"]
+
+[ext_resource type="Texture2D" uid="uid://cy786nrpcdr5o" path="res://Assets/Textures/minimap_path_visual.png" id="1_7omn8"]
+[ext_resource type="Script" path="res://motion_test.gd" id="2_3ps2v"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u1ue0"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7omn8")
+script = ExtResource("2_3ps2v")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_u1ue0")
+lifetime = 2.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_7omn8")

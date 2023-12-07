@@ -14,6 +14,8 @@ class_name TowerBase
 @export var east_collider : CollisionShape3D
 @export var west_collider : CollisionShape3D
 
+var owner_id : int
+var point_id : int
 var tower = null
 var has_card : bool :
 	set(_value):
@@ -22,16 +24,16 @@ var has_card : bool :
 		return inventory.contents.size() != 0
 
 
-func add_card(card: Card) -> bool:
+func add_card(card: Card, caller_id: int) -> bool:
 	var result = inventory.add(card)
 	if result:
-		networked_spawn_tower.rpc()
+		networked_spawn_tower.rpc(caller_id)
 	return result
 
 
-func remove_card() -> Card:
+func remove_card():
+	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove())
 	networked_remove_tower.rpc()
-	return inventory.remove()
 
 
 func set_material(value: StandardMaterial3D):
@@ -42,7 +44,7 @@ func toggle_collision():
 	collider.disabled = !collider.disabled
 
 
-func set_north_wall(value : bool):
+func set_north_wall(value: bool):
 	north_mesh.set_visible(value)
 	north_collider.disabled = !value
 
@@ -63,11 +65,12 @@ func set_west_wall(value : bool):
 
 
 @rpc("reliable", "call_local", "any_peer")
-func networked_spawn_tower():
+func networked_spawn_tower(caller_id : int):
 	tower = inventory.selected_item.turret_scene.instantiate() as Tower
 	tower.stats = inventory.selected_item.tower_stats
 	tower.name = "tower"
 	tower.base_name = name
+	tower.owner_id = caller_id
 	tower.position = Vector3(0, 1.2, 0)
 	minimap_icon.modulate = Color.RED
 	add_child(tower)

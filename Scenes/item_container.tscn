@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://8d452unjpoiu"]
+
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_6ftnx"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="2_hayav"]
+[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://PCs/Universal/ClassCards/Fireball/card_fireball.tres" id="3_sq8ai"]
+[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://PCs/Universal/ClassCards/Reactor/card_reactor.tres" id="4_3jmlk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lscco"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3jqa"]
+albedo_color = Color(0.509804, 0.505882, 0, 1)
+
+[node name="ItemContainer" type="StaticBody3D"]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("1_6ftnx")
+contents = Array[Resource("res://Scripts/Resources/item.gd")]([ExtResource("2_hayav"), ExtResource("3_sq8ai"), ExtResource("4_3jmlk")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_lscco")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material = SubResource("StandardMaterial3D_b3jqa")

@@ -9,7 +9,7 @@ var stats : Card
 
 func set_card(value):
 	stats = value
-	title_text.text = stats.title
+	title_text.text = stats.display_name
 	target_label.text = str(Data.TargetType.keys()[stats.tower_stats.target_type])
 	rarity_sprite.region_rect = Rect2(64 * stats.rarity, 0, 64, 64)
 

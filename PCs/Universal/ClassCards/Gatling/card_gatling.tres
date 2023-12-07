@@ -1,23 +1,17 @@
-[gd_resource type="Resource" script_class="Card" load_steps=8 format=3 uid="uid://cvto66tp7rrst"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://cvto66tp7rrst"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_5html"]
-[ext_resource type="Texture2D" uid="uid://bjh6e8t8br6rq" path="res://PCs/Universal/ClassCards/Gatling/gatling.png" id="2_rof1s"]
 [ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://PCs/Universal/ClassCards/Gatling/tower_stats.tres" id="3_4hykq"]
 [ext_resource type="PackedScene" uid="uid://dkxi1ssoa44jn" path="res://PCs/Universal/ClassCards/Gatling/weapon_gatling.tscn" id="3_wkjyf"]
 [ext_resource type="Resource" uid="uid://cj2x1jvo8l4ot" path="res://PCs/Universal/ClassCards/Gatling/weapon_stats.tres" id="4_76fd1"]
 [ext_resource type="PackedScene" uid="uid://bjuc3x7u3f271" path="res://PCs/Universal/ClassCards/Gatling/tower_gatling.tscn" id="4_thk7u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rwa4l"]
-atlas = ExtResource("2_rof1s")
-region = Rect2(0, 0, 64, 64)
-
 [resource]
 script = ExtResource("1_5html")
-title = "Gatling"
 rarity = 0
 faction = 0
-sprite = SubResource("AtlasTexture_rwa4l")
 turret_scene = ExtResource("4_thk7u")
 weapon_scene = ExtResource("3_wkjyf")
 weapon_stats = ExtResource("4_76fd1")
 tower_stats = ExtResource("3_4hykq")
+display_name = "Gatling"

@@ -20,7 +20,6 @@ target_position = Vector3(0, 0, -20)
 collision_mask = 25
 
 [node name="WallPreview" parent="." instance=ExtResource("2_r3632")]
-visible = false
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 8

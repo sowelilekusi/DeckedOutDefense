@@ -26,6 +26,17 @@ WaveManager="*res://Scripts/wave_manager.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "purple",
+"res://PCs/": "blue",
+"res://Resources/": "green",
+"res://Scenes/": "yellow",
+"res://Scripts/": "red",
+"res://Worlds/": "teal"
+}
+
 [filesystem]
 
 import/blender/enabled=false

@@ -38,19 +38,19 @@ func randomize_cards():
 		cards[x].set_card(chosen_card)
 		cards[x].view_tower()
 		choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.title + "?"
+		choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name + "?"
 	for x in 2:
 		var chosen_card = medium_cards.pick_random()
 		cards[x+3].set_card(chosen_card)
 		cards[x+3].view_tower()
 		choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.title + "?"
+		choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name + "?"
 	for x in 1:
 		var chosen_card = pricey_cards.pick_random()
 		cards[x+5].set_card(chosen_card)
 		cards[x+5].view_tower()
 		choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.title + "?"
+		choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name + "?"
 	for x in choice_colliders:
 		x.set_deferred("disabled", false)
 	for x in choice_sprites:

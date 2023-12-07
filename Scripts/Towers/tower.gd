@@ -8,6 +8,7 @@ class_name Tower
 @export var range_indicator : CSGSphere3D
 @export var audio_player : AudioStreamPlayer3D
 
+var owner_id : int
 var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
 var base_name
 var targeted_enemy

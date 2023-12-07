@@ -5,37 +5,37 @@ signal item_added(item)
 signal item_removed(item)
 
 @export var max_size := 0
-var contents : Array[Card] = []
+@export var contents : Array[Item] = []
 var selected_index := 0
-var selected_item : Card :
+var selected_item : Item :
 	get:
 		return contents[selected_index] if contents.size() > 0 else null
 	set(_value):
 		return
 
 
-func add(card : Card) -> bool:
-	if card != null and contents.size() < max_size or max_size == 0:
-		contents.append(card)
-		item_added.emit(card)
-		networked_add.rpc(Data.cards.find(card))
+func add(item : Item) -> bool:
+	if item != null and contents.size() < max_size or max_size == 0:
+		contents.append(item)
+		item_added.emit(item)
+		networked_add.rpc(Data.cards.find(item))
 		return true
 	return false
 
 
-func remove_at(index : int) -> Card:
+func remove_at(index : int) -> Item:
 	if contents.size() <= 0:
 		return null
-	var card = contents[index]
+	var item = contents[index]
 	contents.remove_at(index)
 	if selected_index >= contents.size() and selected_index > 0:
 		selected_index -= 1
-	item_removed.emit(card)
+	item_removed.emit(item)
 	networked_remove_at.rpc(index)
-	return card
+	return item
 
 
-func remove() -> Card:
+func remove() -> Item:
 	return remove_at(selected_index)
 
 

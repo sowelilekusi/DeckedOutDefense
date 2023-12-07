@@ -6,18 +6,12 @@ class_name ViewMovement
 @export var head_bob_camera : Camera3D
 @export var head_bob_focus_raycast : RayCast3D
 @export var enable_head_bob := true
+@export var head_bob_amplitude := 0.040
+@export var head_bob_frequency := 0.015
 @export var target_stabilisation := false
 @export_category("Tilting")
 @export var enable_tilt := true
-
-var head_bob_amplitude := 0.001
-var head_bob_frequency := 0.015
-var tilt_amount := 0.03
-var head_bob_start_position : Vector3
-
-
-func _ready() -> void:
-	head_bob_start_position = head_bob_camera.position
+@export var tilt_amount := 0.02
 
 
 func _process(delta: float) -> void:
@@ -37,23 +31,24 @@ func check_motion(delta) -> void:
 	if !player.is_on_floor():
 		reset_position(delta)
 		return
-	play_motion(foot_step_motion())
+	play_motion(sample_lemniscate(Time.get_ticks_msec() * head_bob_frequency), delta)
 
 
 func reset_position(delta) -> void:
-	if head_bob_camera.position != head_bob_start_position:
-		head_bob_camera.position = lerp(head_bob_camera.position, head_bob_start_position, 10.0 * delta)
+	if head_bob_camera.position != Vector3.ZERO:
+		head_bob_camera.position = lerp(head_bob_camera.position, Vector3.ZERO, 7.0 * delta)
 
 
-func foot_step_motion() -> Vector3:
-	var pos := Vector3.ZERO
-	pos.y += cos(Time.get_ticks_msec() * head_bob_frequency) * head_bob_amplitude
-	pos.x += cos(Time.get_ticks_msec() * head_bob_frequency / 2.0) * head_bob_amplitude * 2.0
+func sample_lemniscate(t: float) -> Vector2:
+	var pos := Vector2.ZERO
+	pos.y += sin(t) * head_bob_amplitude
+	pos.x += cos(t / 2.0) * head_bob_amplitude * 2.0
 	return pos
 
 
-func play_motion(motion: Vector3) -> void:
-	head_bob_camera.position += motion
+func play_motion(motion: Vector2, delta) -> void:
+	var motion3d = Vector3(motion.x, motion.y, 0.0)
+	head_bob_camera.position = lerp(head_bob_camera.position, motion3d, 7.0 * delta)
 
 
 func focus_target() -> Vector3:

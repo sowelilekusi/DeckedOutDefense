@@ -29,8 +29,8 @@ signal died
 @export var weapon_swap_timer : Timer
 @export var ears : AudioListener3D
 
-var equipped_card : Card
-var offhand_card : Card
+var equipped_card
+var offhand_card
 var weapon : Weapon
 var offhand_weapon : Weapon
 var weapons_active = false
@@ -175,18 +175,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		hud.add_child(menu)
 
 
+func add_card(card: Card):
+	inventory.add(card)
+
+
 func unpause():
 	paused = false
+	movement.paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	movement.set_process(true)
-	movement.set_physics_process(true)
 
 
 func pause():
 	paused = true
+	movement.paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	movement.set_process(false)
-	movement.set_physics_process(false)
 
 
 func enter_editing_mode(value):

@@ -20,8 +20,13 @@ var tower_frames = []
 var wall_id = 0
 
 
-func toggle_point(point_id):
-	networked_toggle_point.rpc(point_id)
+func toggle_point(point_id, caller_id):
+	networked_toggle_point.rpc(point_id, caller_id)
+
+
+func remove_wall(wall : TowerBase):
+	networked_remove_wall.rpc(wall.point_id)
+	toggle_point(wall.point_id, multiplayer.get_unique_id())
 
 
 func point_is_build_location(point_id):
@@ -42,15 +47,15 @@ func test_path_if_point_toggled(point_id) -> bool:
 
 
 @rpc("reliable", "any_peer", "call_local")
-func networked_toggle_point(point_id):
+func networked_toggle_point(point_id, caller_id):
 	if astar.is_point_disabled(point_id):
 		astar.set_point_disabled(point_id, false)
 	else:
 		astar.set_point_disabled(point_id, true)
 	find_path()
 	disable_path_tower_frames()
-	if is_multiplayer_authority():
-		networked_spawn_wall.rpc(astar.get_point_position(point_id), wall_id)
+	if is_multiplayer_authority() and astar.is_point_disabled(point_id):
+		networked_spawn_wall.rpc(astar.get_point_position(point_id), wall_id, caller_id)
 		wall_id += 1
 
 
@@ -131,11 +136,13 @@ func disable_path_tower_frames():
 
 
 @rpc("reliable", "call_local")
-func networked_spawn_wall(pos : Vector3, name_id : int):
+func networked_spawn_wall(pos : Vector3, name_id : int, caller_id : int):
 	var base = tower_base_scene.instantiate() as TowerBase
 	base.position = pos
 	base.name = "Wall" + str(name_id)
+	base.owner_id = caller_id
 	var point_id = astar.get_closest_point(pos, true)
+	base.point_id = point_id
 	tower_base_ids[point_id] = base
 	tower_bases.append(base)
 	tower_path.add_child(base)
@@ -157,6 +164,27 @@ func networked_spawn_wall(pos : Vector3, name_id : int):
 		tower_base_ids[west_point].set_east_wall(true)
 
 
+@rpc("reliable", "call_local", "any_peer")
+func networked_remove_wall(wall_id: int):
+	var wall = tower_base_ids[wall_id]
+	Game.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
+	tower_bases.erase(wall)
+	tower_base_ids.erase(wall_id)
+	wall.queue_free()
+	var north_point = get_north_point(wall_id)
+	var south_point = get_south_point(wall_id)
+	var east_point = get_east_point(wall_id)
+	var west_point = get_west_point(wall_id)
+	if north_point >= 0 and astar.is_point_disabled(north_point):
+		tower_base_ids[north_point].set_south_wall(false)
+	if south_point >= 0 and astar.is_point_disabled(south_point):
+		tower_base_ids[south_point].set_north_wall(false)
+	if east_point >= 0 and astar.is_point_disabled(east_point):
+		tower_base_ids[east_point].set_west_wall(false)
+	if west_point >= 0 and astar.is_point_disabled(west_point):
+		tower_base_ids[west_point].set_east_wall(false)
+
+
 func build_random_maze(block_limit):
 	var untested_point_ids = []
 	for index in (grid_size.x * grid_size.y):
@@ -167,7 +195,7 @@ func build_random_maze(block_limit):
 		var random_point = untested_point_ids.pick_random()
 		untested_point_ids.erase(random_point)
 		if test_path_if_point_toggled(random_point):
-			networked_toggle_point.rpc(random_point)
+			networked_toggle_point.rpc(random_point, multiplayer.get_unique_id())
 
 
 func place_random_towers(tower_limit):
@@ -177,7 +205,7 @@ func place_random_towers(tower_limit):
 	for index in tower_limit:
 		var random_base = untowered_bases.pick_random() as TowerBase
 		untowered_bases.erase(random_base)
-		random_base.add_card(Data.cards.pick_random())
+		random_base.add_card(Data.cards.pick_random(), multiplayer.get_unique_id())
 
 
 func find_path() -> bool:
