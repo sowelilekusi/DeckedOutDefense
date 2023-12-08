@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=38 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
+[ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://Scenes/UI/pickup_notification.tscn" id="17_oyeww"]
 [ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
 [ext_resource type="Shader" path="res://crosshair.gdshader" id="20_gxpgc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
@@ -82,7 +83,7 @@ shader_parameter/color_1 = Vector4(1, 0, 0, 1)
 shader_parameter/color_2 = Vector4(0, 0, 1, 1)
 shader_parameter/center_radius = 0.002
 shader_parameter/width = 0.002
-shader_parameter/len = 0.015
+shader_parameter/len = 0.012
 shader_parameter/spacing = 0.008
 shader_parameter/spread = 1.0
 
@@ -301,6 +302,7 @@ enemy_sprites = [NodePath("EnemyTracker/TextureRect"), NodePath("EnemyTracker/Te
 enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTracker/TextureRect2/Label2"), NodePath("EnemyTracker/TextureRect3/Label3"), NodePath("EnemyTracker/TextureRect4/Label4"), NodePath("EnemyTracker/TextureRect5/Label5")]
 weapon_energy_bar = NodePath("PrimaryEnergyBar")
 offhand_energy_bar = NodePath("OffhandEnergyBar")
+pickup_notif_scene = ExtResource("17_oyeww")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -594,6 +596,17 @@ texture_under = ExtResource("21_apps2")
 texture_progress = ExtResource("21_apps2")
 tint_under = Color(0, 1, 1, 0.168627)
 tint_progress = Color(0, 1, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -295.0
+offset_right = 445.0
+offset_bottom = -40.0
+grow_vertical = 0
+alignment = 2
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.9

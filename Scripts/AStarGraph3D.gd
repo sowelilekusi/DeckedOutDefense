@@ -165,16 +165,16 @@ func networked_spawn_wall(pos : Vector3, name_id : int, caller_id : int):
 
 
 @rpc("reliable", "call_local", "any_peer")
-func networked_remove_wall(wall_id: int):
-	var wall = tower_base_ids[wall_id]
+func networked_remove_wall(new_wall_id: int):
+	var wall = tower_base_ids[new_wall_id]
 	Game.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
 	tower_bases.erase(wall)
-	tower_base_ids.erase(wall_id)
+	tower_base_ids.erase(new_wall_id)
 	wall.queue_free()
-	var north_point = get_north_point(wall_id)
-	var south_point = get_south_point(wall_id)
-	var east_point = get_east_point(wall_id)
-	var west_point = get_west_point(wall_id)
+	var north_point = get_north_point(new_wall_id)
+	var south_point = get_south_point(new_wall_id)
+	var east_point = get_east_point(new_wall_id)
+	var west_point = get_west_point(new_wall_id)
 	if north_point >= 0 and astar.is_point_disabled(north_point):
 		tower_base_ids[north_point].set_south_wall(false)
 	if south_point >= 0 and astar.is_point_disabled(south_point):

@@ -18,6 +18,7 @@ var enemy_names = []
 @export var enemy_counts : Array[Label]
 @export var weapon_energy_bar : TextureProgressBar
 @export var offhand_energy_bar : TextureProgressBar
+@export var pickup_notif_scene : PackedScene
 
 
 func set_energy_visible(value):
@@ -119,3 +120,9 @@ func minimize_minimap(anchor):
 	minimap_cam.size = 15
 	minimap_outline.set_visible(true)
 	currency_count.set_visible(true)
+
+
+func pickup(card: Card) -> void:
+	var notif = pickup_notif_scene.instantiate()
+	notif.set_card(card)
+	$VBoxContainer.add_child(notif)

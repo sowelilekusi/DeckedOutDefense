@@ -38,6 +38,9 @@ func _process(delta: float) -> void:
 		ray_collider = null
 		ray_point = null
 		wall_preview.set_visible(false)
+		if is_instance_valid(last_collider):
+			Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_material(null)
+			last_collider = null
 		return
 	
 	if interact_key_held and !interacted_once and valid_point and hero.currency >= Data.wall_cost and ray.is_colliding() and Game.level.a_star_graph_3d.point_is_build_location(point_id):

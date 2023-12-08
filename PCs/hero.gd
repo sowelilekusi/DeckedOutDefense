@@ -6,37 +6,37 @@ signal spawned
 signal died
 
 @export var hero_class: HeroClass
-@export var camera : Camera3D
-@export var gun_camera : Camera3D
-@export var left_hand_sprite : Sprite3D
-@export var left_hand : Node3D
-@export var right_hand : Node3D
-@export var right_hand_animator : AnimationPlayer
-@export var edit_tool : EditTool
-@export var gauntlet_sprite : Sprite3D
-@export var sprite : EightDirectionSprite3D
-@export var hand_sprite : Sprite2D
-@export var interaction_raycast : RayCast3D
-@export var inventory : Inventory
-@export var card : CardInHand
-@export var gauntlet_card_1 : CardInHand
-@export var gauntlet_card_2 : CardInHand
-@export var pause_menu_scene : PackedScene
-@export var hud : HUD
-@export var movement : PlayerMovement
+@export var camera: Camera3D
+@export var gun_camera: Camera3D
+@export var left_hand_sprite: Sprite3D
+@export var left_hand: Node3D
+@export var right_hand: Node3D
+@export var right_hand_animator: AnimationPlayer
+@export var edit_tool: EditTool
+@export var gauntlet_sprite: Sprite3D
+@export var sprite: EightDirectionSprite3D
+@export var hand_sprite: Sprite2D
+@export var interaction_raycast: RayCast3D
+@export var inventory: Inventory
+@export var card: CardInHand
+@export var gauntlet_card_1: CardInHand
+@export var gauntlet_card_2: CardInHand
+@export var pause_menu_scene: PackedScene
+@export var hud: HUD
+@export var movement: PlayerMovement
 @export var sprint_zoom_speed := 0.2
-@export var player_name_tag : Label
-@export var weapon_swap_timer : Timer
-@export var ears : AudioListener3D
+@export var player_name_tag: Label
+@export var weapon_swap_timer: Timer
+@export var ears: AudioListener3D
 
 var equipped_card
 var offhand_card
-var weapon : Weapon
-var offhand_weapon : Weapon
+var weapon: Weapon
+var offhand_weapon: Weapon
 var weapons_active = false
 var paused := false
 var editing_mode := true
-var profile : PlayerProfile
+var profile: PlayerProfile
 var ready_state := false : 
 	set(value):
 		ready_state = value
@@ -111,7 +111,9 @@ func _process(delta: float) -> void:
 					button.press()
 					currency -= button.press_cost
 			if interaction_raycast.get_collider() is ItemCard:
-				inventory.add(interaction_raycast.get_collider().pick_up())
+				var pickup = interaction_raycast.get_collider().pick_up()
+				inventory.add(pickup)
+				hud.pickup(pickup)
 		if Input.is_action_just_pressed("Equip In Gauntlet"):
 			equip_weapon()
 		if Input.is_action_just_pressed("Secondary Fire"):
@@ -175,8 +177,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		hud.add_child(menu)
 
 
-func add_card(card: Card):
-	inventory.add(card)
+func add_card(new_card: Card):
+	inventory.add(new_card)
+	hud.pickup(new_card)
 
 
 func unpause():
