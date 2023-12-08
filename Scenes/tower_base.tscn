@@ -20,13 +20,17 @@ albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t32n1"]
 albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
 
-[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider")]
+[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_icon", "south_icon", "east_icon", "west_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider")]
 collision_layer = 17
 script = ExtResource("1_tghvd")
 inventory = NodePath("Inventory")
 block = NodePath("MeshInstance3D")
 collider = NodePath("CollisionShape3D")
 minimap_icon = NodePath("MinimapIcon")
+north_icon = NodePath("North/NorthMinimapIcon")
+south_icon = NodePath("South/SouthMinimapIcon")
+east_icon = NodePath("East/EastMinimapIcon")
+west_icon = NodePath("West/WestMinimapIcon")
 north_mesh = NodePath("North")
 south_mesh = NodePath("South")
 east_mesh = NodePath("East")

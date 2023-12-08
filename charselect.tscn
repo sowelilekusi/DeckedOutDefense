@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqqitmhu66a7d"]
+
+[ext_resource type="Script" path="res://charselect.gd" id="1_h2h26"]
+[ext_resource type="PackedScene" uid="uid://bnsf2degj5tio" path="res://Scenes/UI/hero_card.tscn" id="1_v2mfo"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("hbox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_h2h26")
+hero_card_scene = ExtResource("1_v2mfo")
+hbox = NodePath("CenterContainer/VBoxContainer/HBoxContainer")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Choose your hero"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1

@@ -5,6 +5,10 @@ class_name TowerBase
 @export var block : Node3D
 @export var collider : CollisionShape3D
 @export var minimap_icon : Sprite3D
+@export var north_icon : Sprite3D
+@export var south_icon : Sprite3D
+@export var east_icon : Sprite3D
+@export var west_icon : Sprite3D
 @export var north_mesh : CSGBox3D
 @export var south_mesh : CSGBox3D
 @export var east_mesh : CSGBox3D
@@ -73,6 +77,10 @@ func networked_spawn_tower(caller_id : int):
 	tower.owner_id = caller_id
 	tower.position = Vector3(0, 1.2, 0)
 	minimap_icon.modulate = Color.RED
+	north_icon.modulate = Color.RED
+	south_icon.modulate = Color.RED
+	west_icon.modulate = Color.RED
+	east_icon.modulate = Color.RED
 	add_child(tower)
 
 
@@ -81,3 +89,7 @@ func networked_remove_tower():
 	tower.queue_free()
 	tower = null
 	minimap_icon.modulate = Color.GREEN
+	north_icon.modulate = Color.GREEN
+	south_icon.modulate = Color.GREEN
+	west_icon.modulate = Color.GREEN
+	east_icon.modulate = Color.GREEN

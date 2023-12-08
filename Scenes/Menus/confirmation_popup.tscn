@@ -26,23 +26,13 @@ text = "Some Text?"
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
-
-[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Confirm"
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
-
-[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Cancel"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/Confirm" to="." method="_on_confirm_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer2/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_l1spu"]
 [ext_resource type="Script" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
 [ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="3_f6bia"]
-[ext_resource type="PackedScene" uid="uid://3kcl30sump8c" path="res://Scenes/Menus/LoadoutEditor.tscn" id="4_bmg55"]
 [ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
+[ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://charselect.tscn" id="5_lvoo2"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
 
 [node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "loadout_editor", "chatbox")]
@@ -19,7 +19,7 @@ theme = ExtResource("1_l1spu")
 script = ExtResource("2_nb860")
 server_form = NodePath("ServerForm")
 scoreboard = NodePath("Scoreboard")
-loadout_editor = NodePath("Panel")
+loadout_editor = NodePath("Control")
 chatbox = NodePath("Chatbox")
 
 [node name="ServerForm" parent="." instance=ExtResource("5_bqbwv")]
@@ -39,12 +39,9 @@ offset_left = -472.0
 offset_right = -50.0
 grow_horizontal = 0
 
-[node name="Panel" parent="." instance=ExtResource("4_bmg55")]
+[node name="Control" parent="." instance=ExtResource("5_lvoo2")]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-offset_left = 50.0
-offset_right = 455.0
 
 [node name="ReadyButton" type="Button" parent="."]
 visible = false

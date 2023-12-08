@@ -286,7 +286,7 @@ head = NodePath("../ViewMovement")
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label")]
 script = ExtResource("8_yl6ka")
 wave_count = NodePath("WaveCount")
 lives_count = NodePath("LivesCount")
@@ -303,6 +303,7 @@ enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTrack
 weapon_energy_bar = NodePath("PrimaryEnergyBar")
 offhand_energy_bar = NodePath("OffhandEnergyBar")
 pickup_notif_scene = ExtResource("17_oyeww")
+wave_start_label = NodePath("Label")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -607,6 +608,20 @@ offset_right = 445.0
 offset_bottom = -40.0
 grow_vertical = 0
 alignment = 2
+
+[node name="Label" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 110.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+text = "Press [Button] to start wave"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.9

@@ -1,7 +1,7 @@
 extends Control
 
 @export var scoreboard : Scoreboard
-@export var loadout_editor : LoadoutEditor
+@export var loadout_editor : HeroSelector
 @export var chatbox : Chatbox
 var connected_players_profiles = {}
 
@@ -23,8 +23,8 @@ func setup_game():
 	setup_the_ui()
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
-	loadout_editor.character_selected.connect(Data.player_profile.set_preferred_class)
-	loadout_editor.character_selected.connect(edit_player_profile)
+	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
+	loadout_editor.hero_selected.connect(edit_player_profile)
 	connected_players_profiles[1] = Data.player_profile
 
 

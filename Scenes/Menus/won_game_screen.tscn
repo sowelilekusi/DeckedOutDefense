@@ -32,29 +32,27 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "You WIN :3"
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -312.0
-offset_top = 331.0
-offset_right = -157.0
-offset_bottom = 369.0
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -20.0
+offset_right = 298.0
+offset_bottom = 20.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
 text = "play again :3"
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 11.0
-offset_top = 331.0
-offset_right = 262.0
-offset_bottom = 369.0
-grow_horizontal = 2
+[node name="QuitButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
 text = "quit to main menu :<"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

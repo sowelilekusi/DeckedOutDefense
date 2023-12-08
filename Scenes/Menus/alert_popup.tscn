@@ -19,13 +19,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Unable to connect to server"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_right = 28
-
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "OK"
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

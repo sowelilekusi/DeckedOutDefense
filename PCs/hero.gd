@@ -111,9 +111,7 @@ func _process(delta: float) -> void:
 					button.press()
 					currency -= button.press_cost
 			if interaction_raycast.get_collider() is ItemCard:
-				var pickup = interaction_raycast.get_collider().pick_up()
-				inventory.add(pickup)
-				hud.pickup(pickup)
+				add_card(interaction_raycast.get_collider().pick_up())
 		if Input.is_action_just_pressed("Equip In Gauntlet"):
 			equip_weapon()
 		if Input.is_action_just_pressed("Secondary Fire"):
@@ -200,6 +198,7 @@ func enter_editing_mode(value):
 	hud.set_wave_count(value + 1)
 	hud.set_energy_visible(false)
 	hud.set_offhand_energy_visible(false)
+	hud.grow_wave_start_label()
 	editing_mode = true
 	edit_tool.enabled = true
 	left_hand.set_visible(true)
@@ -212,6 +211,7 @@ func exit_editing_mode(value):
 	gauntlet_sprite.set_visible(false)
 	weapons_active = false
 	hud.set_wave_count(value)
+	hud.shrink_wave_start_label()
 	if !weapon and offhand_weapon:
 		swap_weapons()
 	if weapon:

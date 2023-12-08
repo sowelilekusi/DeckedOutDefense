@@ -23,14 +23,9 @@ layout_mode = 2
 layout_mode = 2
 placeholder_text = "Dummy Text"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
-
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Confirm
 "
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

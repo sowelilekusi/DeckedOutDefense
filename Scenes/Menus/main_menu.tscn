@@ -53,48 +53,20 @@ offset_right = 143.0
 offset_bottom = -80.0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MainControls"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 3
-
-[node name="PlayButton" type="Button" parent="MainControls/MarginContainer"]
+[node name="PlayButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Play"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MainControls"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 3
-
-[node name="MultiplayerButton" type="Button" parent="MainControls/MarginContainer2"]
+[node name="MultiplayerButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Multiplayer"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MainControls"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 3
-
-[node name="OptionsButton" type="Button" parent="MainControls/MarginContainer3"]
+[node name="OptionsButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Options
 "
 
-[node name="MarginContainer4" type="MarginContainer" parent="MainControls"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 3
-
-[node name="QuitButton" type="Button" parent="MainControls/MarginContainer4"]
+[node name="QuitButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Quit
 "
@@ -146,8 +118,8 @@ size = Vector2i(1920, 1080)
 
 [node name="GridMap" parent="SubViewport" instance=ExtResource("3_l8r4a")]
 
-[connection signal="pressed" from="MainControls/MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainControls/MarginContainer2/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
-[connection signal="pressed" from="MainControls/MarginContainer3/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MainControls/MarginContainer4/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainControls/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainControls/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainControls/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainControls/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]

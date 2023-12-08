@@ -31,7 +31,7 @@ func _ready() -> void:
 	player_keymap.apply()
 	
 	characters.append(preload("res://PCs/Red/red.tres"))
-	characters.append(preload("res://PCs/Green/green.tres"))
+	#characters.append(preload("res://PCs/Green/green.tres"))
 	characters.append(preload("res://PCs/Blue/blue.tres"))
 	
 	#Common

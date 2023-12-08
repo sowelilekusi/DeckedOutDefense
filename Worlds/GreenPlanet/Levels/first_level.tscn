@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://y1qa1g3ic8sp"]
+[gd_scene load_steps=42 format=3 uid="uid://y1qa1g3ic8sp"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ws6nn"]
 [ext_resource type="PackedScene" uid="uid://d2yv447trxkwt" path="res://Scenes/enemy_spawner.tscn" id="3_5imwp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://d3h3lmlf3hljl" path="res://Worlds/GreenPlanet/Decorations/bush.tscn" id="16_lhsvw"]
 [ext_resource type="Texture2D" uid="uid://cnvndwp3q7rke" path="res://Assets/Textures/dirt.png" id="17_oq0rj"]
 [ext_resource type="PackedScene" uid="uid://7g3jev3v6d3l" path="res://Scenes/shop_stand.tscn" id="19_h6brl"]
+[ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_flsqn"]
 
 [sub_resource type="Curve3D" id="Curve3D_3rdl2"]
 _data = {
@@ -1098,5 +1099,17 @@ mesh = SubResource("QuadMesh_dyydf")
 
 [node name="ShopStand" parent="." instance=ExtResource("19_h6brl")]
 transform = Transform3D(0.675552, 0, -0.737313, 0, 1, 0, 0.737313, 0, 0.675552, 21.8477, 0.5, -5.74175)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(14.5, 0, 0, 0, -3.71547e-07, 1, 0, -8.5, -4.37114e-08, 0, 0.0347266, 0)
+layers = 4
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+texture = ExtResource("21_flsqn")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(14.5, 0, 0, 0, -2.756e-06, 1, 0, -63.05, -4.37114e-08, 0, -9.85039, 0)
+layers = 4
+modulate = Color(0.32549, 0.25098, 0.180392, 1)
+texture = ExtResource("21_flsqn")
 
 [connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]

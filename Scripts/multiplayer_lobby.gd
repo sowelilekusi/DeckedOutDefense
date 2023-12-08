@@ -12,7 +12,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 @export var server_form : ServerForm
 @export var scoreboard : Scoreboard
-@export var loadout_editor : LoadoutEditor
+@export var loadout_editor : HeroSelector
 @export var chatbox : Chatbox
 var alert_popup_scene = preload("res://Scenes/Menus/alert_popup.tscn")
 var connected_players_profiles = {}
@@ -68,8 +68,8 @@ func setup_game(peer_id):
 	setup_the_ui()
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
-	loadout_editor.character_selected.connect(Data.player_profile.set_preferred_class)
-	loadout_editor.character_selected.connect(edit_player_profile)
+	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
+	loadout_editor.hero_selected.connect(edit_player_profile)
 	connected_players_profiles[peer_id] = Data.player_profile
 	player_connected.emit(peer_id, Data.player_profile)
 

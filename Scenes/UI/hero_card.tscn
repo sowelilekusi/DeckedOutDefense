@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnsf2degj5tio"]
+
+[ext_resource type="Script" path="res://hero_select_card.gd" id="1_rqutp"]
+[ext_resource type="Texture2D" uid="uid://bskg4kgoi576f" path="res://Assets/Textures/Sprite-0001.png" id="2_gly1b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihqrr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l67bw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_af3d2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00m4l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rg2u8"]
+
+[node name="HeroCard" type="PanelContainer"]
+custom_minimum_size = Vector2(360, 600)
+offset_right = 360.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_rqutp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Character name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_gly1b")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ihqrr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l67bw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_af3d2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_00m4l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rg2u8")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
