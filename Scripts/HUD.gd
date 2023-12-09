@@ -23,8 +23,8 @@ var enemy_names = []
 
 var wave_start_label_shrinking := false
 var wave_start_label_growing := false
-var wave_start_label_acceleration := 200.0
-var wave_start_label_speed := 0.0
+var wave_start_label_ease_time := 1.0
+var wave_start_label_ease_progress := 0.0
 
 
 func set_energy_visible(value):
@@ -35,29 +35,30 @@ func set_offhand_energy_visible(value):
 	offhand_energy_bar.set_visible(value)
 
 
+func ease_in_out_quart(x : float) -> float:
+	return 8.0 * x * x * x * x if x < 0.5 else 1 - pow(-2.0 * x + 2.0, 4) / 2.0
+
+
 func _process(delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+	
 	wave_start_label.text = "Press [" + Data.player_keymap.ready.as_text_key_label() + "] to start wave"
-	if wave_start_label_growing:
-		wave_start_label.set_visible(true)
-		wave_start_label_speed += wave_start_label_acceleration * delta
-		wave_start_label.offset_left -= wave_start_label_speed * delta
-		wave_start_label.offset_right += wave_start_label_speed * delta
-		if wave_start_label.offset_left <= -300:
-			wave_start_label.offset_left = -300
-			wave_start_label.offset_right = 300
-			wave_start_label_growing = false
-			wave_start_label_speed = 0.0
-	if wave_start_label_shrinking:
-		wave_start_label_speed += wave_start_label_acceleration * delta
-		wave_start_label.offset_left += wave_start_label_speed * delta
-		wave_start_label.offset_right -= wave_start_label_speed * delta
-		if wave_start_label.offset_left >= 0:
-			wave_start_label.set_visible(false)
-			wave_start_label.offset_left = 0
-			wave_start_label.offset_right = 0
-			wave_start_label_shrinking = false
-			wave_start_label_speed = 0.0
+	if wave_start_label_growing or wave_start_label_shrinking:
+		wave_start_label_ease_progress += delta
+		if wave_start_label_growing:
+			wave_start_label.set_visible(true)
+			wave_start_label.offset_left = lerp(0.0, -300.0, ease_in_out_quart(wave_start_label_ease_progress / wave_start_label_ease_time))
+			wave_start_label.offset_right = lerp(0.0, 300.0, ease_in_out_quart(wave_start_label_ease_progress / wave_start_label_ease_time))
+			if wave_start_label_ease_progress >= wave_start_label_ease_time:
+				wave_start_label_growing = false
+				wave_start_label_ease_progress = 0.0
+		elif wave_start_label_shrinking:
+			wave_start_label.offset_left = lerp(-300.0, 0.0, ease_in_out_quart(wave_start_label_ease_progress / wave_start_label_ease_time))
+			wave_start_label.offset_right = lerp(300.0, 0.0, ease_in_out_quart(wave_start_label_ease_progress / wave_start_label_ease_time))
+			if wave_start_label_ease_progress >= wave_start_label_ease_time:
+				wave_start_label.set_visible(false)
+				wave_start_label_shrinking = false
+				wave_start_label_ease_progress = 0.0
 
 
 func grow_wave_start_label():
