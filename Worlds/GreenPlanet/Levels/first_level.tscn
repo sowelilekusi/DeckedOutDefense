@@ -117,7 +117,7 @@ texture_filter = 0
 [sub_resource type="QuadMesh" id="QuadMesh_dyydf"]
 material = SubResource("StandardMaterial3D_sugxr")
 
-[node name="GridMap" type="GridMap" node_paths=PackedStringArray("player_spawns", "enemy_spawns", "enemy_goals", "a_star_graph_3d", "cinematic_cam", "printer", "shop")]
+[node name="GridMap" type="GridMap" node_paths=PackedStringArray("player_spawns", "enemy_spawns", "enemy_goals", "corpses", "a_star_graph_3d", "cinematic_cam", "printer", "shop")]
 mesh_library = ExtResource("12_ywwug")
 cell_size = Vector3(1, 1, 1)
 cell_center_x = false
@@ -130,6 +130,7 @@ enemy_pool = Array[Resource("res://Scripts/Resources/enemy.gd")]([ExtResource("3
 player_spawns = [NodePath("PlayerSpawnLocations/PlayerSpawn1"), NodePath("PlayerSpawnLocations/PlayerSpawn2"), NodePath("PlayerSpawnLocations/PlayerSpawn3"), NodePath("PlayerSpawnLocations/PlayerSpawn4")]
 enemy_spawns = [NodePath("GroundSpawn"), NodePath("AirSpawn")]
 enemy_goals = [NodePath("EnemyGoal")]
+corpses = NodePath("Corpses")
 a_star_graph_3d = NodePath("AStarGraph3D")
 cinematic_cam = NodePath("CinemaCam")
 printer = NodePath("CardPrinter")
@@ -1111,5 +1112,7 @@ transform = Transform3D(14.5, 0, 0, 0, -2.756e-06, 1, 0, -63.05, -4.37114e-08, 0
 layers = 4
 modulate = Color(0.32549, 0.25098, 0.180392, 1)
 texture = ExtResource("21_flsqn")
+
+[node name="Corpses" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]

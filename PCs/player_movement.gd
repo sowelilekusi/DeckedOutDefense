@@ -17,6 +17,7 @@ class_name PlayerMovement
 @export var max_height := 1.3
 @export var time_to_peak := 0.5
 @export var time_to_floor := 0.35
+
 @onready var jump_velocity : float = (2 * max_height) / time_to_peak
 @onready var jump_gravity : float = (-2 * max_height) / pow(time_to_peak, 2)
 @onready var fall_gravity : float = (-2 * max_height) / pow(time_to_floor, 2)

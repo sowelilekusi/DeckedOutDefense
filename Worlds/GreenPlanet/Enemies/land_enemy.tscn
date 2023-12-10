@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_fwsjt"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="2_j8yin"]
-[ext_resource type="Gradient" uid="uid://dx7auy3oqw82t" path="res://health_bar_gradient.tres" id="2_jn5to"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_o7jmg"]
 [ext_resource type="Script" path="res://Scripts/health.gd" id="2_swu53"]
+[ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_y7h25"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="3_naknq"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_tn1tu"]
-[ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_5ba7s"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_f8btv"]
 [ext_resource type="Script" path="res://Scripts/EnemyAI/pathing_controller.gd" id="10_gljle"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="10_or8n6"]
 [ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="10_txouh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
@@ -30,7 +30,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 health = NodePath("Health")
 sprite = NodePath("DirectionSprite")
-health_bar_gradient = ExtResource("2_jn5to")
+corpse_scene = ExtResource("2_y7h25")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_swu53")
@@ -78,23 +78,15 @@ offset_bottom = 32.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="ProgressBar" type="TextureProgressBar" parent="SubViewport"]
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("10_or8n6")]
 visible = false
 offset_top = 36.0
-offset_right = 200.0
 offset_bottom = 236.0
-grow_horizontal = 2
-grow_vertical = 2
-step = 0.0
-value = 100.0
-fill_mode = 6
-texture_progress = ExtResource("8_5ba7s")
-tint_progress = Color(0, 1, 0, 1)
 
 [node name="PathingController" type="Node" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("10_gljle")
 character = NodePath("..")
 
-[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]
 [connection signal="took_damage" from="Hitbox" to="Health" method="take_damage"]

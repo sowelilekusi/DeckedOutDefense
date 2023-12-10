@@ -14,6 +14,7 @@ func _ready() -> void:
 	bg_level.a_star_graph_3d.build_random_maze(50)
 	bg_level.a_star_graph_3d.place_random_towers(20)
 	bg_level.a_star_graph_3d.disable_all_tower_frames()
+	Game.level = bg_level
 	var new_wave = WaveManager.generate_wave(400, bg_level.enemy_pool)
 	for spawn in bg_level.enemy_spawns:
 		spawn.signal_for_after_enemy_died = enemy_died

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://boik1gnpl4v0a"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://boik1gnpl4v0a"]
 
 [ext_resource type="Texture2D" uid="uid://cde0voyrwnqkl" path="res://Assets/Textures/icon_eye_dog_boss.png" id="1_2o720"]
+[ext_resource type="Texture2D" uid="uid://bp3njt3h0qfbg" path="res://Assets/Textures/dead_eye_dog_boss.png" id="1_5xm32"]
 [ext_resource type="Script" path="res://Scripts/Resources/enemy.gd" id="1_euaab"]
 [ext_resource type="Texture2D" uid="uid://ff3cys53p37j" path="res://Assets/TextureAtlases/dog_fast_boss.tres" id="2_1m62w"]
 
@@ -9,6 +10,7 @@ script = ExtResource("1_euaab")
 title = "boss dog"
 target_type = 1
 icon = ExtResource("1_2o720")
+death_sprite = ExtResource("1_5xm32")
 sprite = ExtResource("2_1m62w")
 spawn_power = 100
 health = 1000

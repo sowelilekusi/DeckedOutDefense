@@ -5,7 +5,6 @@ class_name EditTool
 @export var inventory : Inventory
 @export var ray : RayCast3D
 @export var wall_preview : TowerBase
-@export var build_preview_material : StandardMaterial3D
 @export var progress_bar : TextureProgressBar
 
 var enabled := true
@@ -27,9 +26,10 @@ var interact_hold_time := 0.4
 
 
 func _ready() -> void:
-	wall_preview.set_material(build_preview_material)
-	build_preview_material.albedo_color = Color.GREEN
-	build_preview_material.albedo_color.a = 0.8
+	var c = Color.GREEN
+	c.a = 0.8
+	wall_preview.set_color(c)
+	wall_preview.set_float(0.0)
 	wall_preview.toggle_collision()
 
 
@@ -39,13 +39,14 @@ func _process(delta: float) -> void:
 		ray_point = null
 		wall_preview.set_visible(false)
 		if is_instance_valid(last_collider):
-			Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_material(null)
+			Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_float(1.0)
 			last_collider = null
 		return
 	
 	if interact_key_held and !interacted_once and valid_point and hero.currency >= Data.wall_cost and ray.is_colliding() and Game.level.a_star_graph_3d.point_is_build_location(point_id):
 		interact_held_time += delta
 		set_progress_percent(interact_held_time / interact_hold_time)
+		wall_preview.set_float(interact_held_time / interact_hold_time)
 		if interact_held_time >= interact_hold_time:
 			set_progress_percent(0)
 			interacted_once = true
@@ -61,6 +62,7 @@ func _process(delta: float) -> void:
 		interact_held_time = 0.0
 		interacted_once = false
 		set_progress_percent(0)
+		wall_preview.set_float(0.0)
 	
 	point_id = -1
 	if !interacted_once and ray.is_colliding():
@@ -76,21 +78,20 @@ func _process(delta: float) -> void:
 			if obstacle_last_point != point_id:
 				obstacle_last_point = point_id
 				if is_instance_valid(last_collider):
-					Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_material(null)
+					Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_float(1.0)
 					last_collider = null
 			if tower_preview:
 				delete_tower_preview()
 			wall_preview.set_visible(false)
 			last_collider = ray_collider
-			ray_collider.set_material(build_preview_material)
-			build_preview_material.albedo_color = Color.RED
-			build_preview_material.albedo_color.a = 1.0
+			ray_collider.set_color(Color.RED)
+			ray_collider.set_float(0.0)
 			if inventory.contents.size() > 0 and !ray_collider.has_card:
 				if ray_collider != last_tower_base or inventory.selected_item != last_card:
 					spawn_tower_preview()
 		elif Game.level:
 			if is_instance_valid(last_collider):
-				Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_material(null)
+				Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_float(1.0)
 				last_collider = null
 			if tower_preview:
 				delete_tower_preview()
@@ -104,8 +105,10 @@ func _process(delta: float) -> void:
 				if obstacle_last_point != point_id:
 					obstacle_last_point = point_id
 					if Game.level.a_star_graph_3d.test_path_if_point_toggled(point_id):
-						build_preview_material.albedo_color = Color.GREEN
-						build_preview_material.albedo_color.a = 0.8
+						var c = Color.GREEN
+						c.a = 0.8
+						wall_preview.set_color(c)
+						wall_preview.set_float(0.0)
 						valid_point = true
 					else:
 						#build_preview_material.albedo_color = Color.RED

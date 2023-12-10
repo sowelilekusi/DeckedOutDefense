@@ -28,6 +28,14 @@ var has_card : bool :
 		return inventory.contents.size() != 0
 
 
+func set_color(color: Color):
+	$MeshInstance3D.set_instance_shader_parameter("Color", color)
+
+
+func set_float(value: float):
+	$MeshInstance3D.set_instance_shader_parameter("Float", value)
+
+
 func add_card(card: Card, caller_id: int) -> bool:
 	var result = inventory.add(card)
 	if result:
@@ -38,10 +46,6 @@ func add_card(card: Card, caller_id: int) -> bool:
 func remove_card():
 	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove())
 	networked_remove_tower.rpc()
-
-
-func set_material(value: StandardMaterial3D):
-	block.material_override = value
 
 
 func toggle_collision():
