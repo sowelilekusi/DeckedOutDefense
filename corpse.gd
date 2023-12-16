@@ -7,7 +7,7 @@ func set_sprite(tex: Texture):
 
 func _ready() -> void:
 	var tween = create_tween()
-	tween.tween_interval(15.0)
+	tween.tween_interval(20.0)
 	tween.tween_property($Sprite3D, "modulate", Color(1.0, 1.0, 1.0, 0.0), 4.0)
 	tween.tween_callback(queue_free)
 

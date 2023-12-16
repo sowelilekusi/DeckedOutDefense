@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdp7icdejayvr"]
+[gd_scene load_steps=12 format=3 uid="uid://bdp7icdejayvr"]
 
 [ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_gxaua"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_rocket_launcher.gd" id="2_8x1tf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://d2yo07m2mp2mp" path="res://PCs/Universal/ClassCards/RocketLauncher/weapon_stats.tres" id="3_i1hxj"]
 [ext_resource type="Texture2D" uid="uid://by1y15lm0bppe" path="res://PCs/Universal/ClassCards/RocketLauncher/rocket_launcher.png" id="4_iygkf"]
 [ext_resource type="Texture2D" uid="uid://cc2umukpibmx1" path="res://PCs/Universal/ClassCards/RocketLauncher/target_list.png" id="6_jlv88"]
+[ext_resource type="AudioStream" uid="uid://n0w2kj5j2x4e" path="res://PCs/Universal/ClassCards/RocketLauncher/shot1.wav" id="8_genbv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f4p4w"]
 atlas = ExtResource("4_iygkf")
@@ -15,6 +16,12 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewxon"]
 atlas = ExtResource("6_jlv88")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5w2i3"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_genbv")
+stream_0/weight = 1.0
 
 [node name="RocketLauncher" node_paths=PackedStringArray("targeting_raycast", "targeting_ui_rect") instance=ExtResource("1_gxaua")]
 script = ExtResource("2_8x1tf")
@@ -44,3 +51,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ewxon")
+
+[node name="AudioStreamPlayer3D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_5w2i3")

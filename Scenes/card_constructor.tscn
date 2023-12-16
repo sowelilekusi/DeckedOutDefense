@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene load_steps=15 format=3 uid="uid://1b2ikdanl66b"]
 
 [ext_resource type="Script" path="res://Scripts/card_printer.gd" id="1_7rhtj"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="2_7ouw1"]
 [ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="2_356ip"]
 [ext_resource type="Script" path="res://Scripts/interact_button.gd" id="3_iia6u"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="5_pf7c7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s02au"]
 albedo_color = Color(0.203922, 0.592157, 0.592157, 1)
@@ -28,6 +29,12 @@ size = Vector3(1.29447, 0.342125, 0.277604)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gv3t5"]
 size = Vector3(0.763889, 0.773027, 0.0570252)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73g2w"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_pf7c7")
+stream_0/weight = 1.0
 
 [node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("cards", "button_collider", "button_box", "choice_colliders")]
 script = ExtResource("1_7rhtj")
@@ -142,6 +149,11 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6825, 0.484672, 0)
 size = Vector3(0.816972, 0.233429, 0.632978)
 material = SubResource("StandardMaterial3D_s02au")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433459, 0.524183)
+stream = SubResource("AudioStreamRandomizer_73g2w")
+bus = &"SFX"
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]
 [connection signal="button_interacted" from="StaticBody3D2" to="." method="retrieve_card"]

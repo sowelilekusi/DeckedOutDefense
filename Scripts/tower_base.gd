@@ -25,7 +25,7 @@ var has_card : bool :
 	set(_value):
 		return
 	get:
-		return inventory.contents.size() != 0
+		return inventory.size != 0
 
 
 func set_color(color: Color):
@@ -44,7 +44,7 @@ func add_card(card: Card, caller_id: int) -> bool:
 
 
 func remove_card():
-	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove())
+	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
 	networked_remove_tower.rpc()
 
 
@@ -74,8 +74,8 @@ func set_west_wall(value : bool):
 
 @rpc("reliable", "call_local", "any_peer")
 func networked_spawn_tower(caller_id : int):
-	tower = inventory.selected_item.turret_scene.instantiate() as Tower
-	tower.stats = inventory.selected_item.tower_stats
+	tower = inventory.contents.keys()[0].turret_scene.instantiate() as Tower
+	tower.stats = inventory.contents.keys()[0].tower_stats
 	tower.name = "tower"
 	tower.base_name = name
 	tower.owner_id = caller_id

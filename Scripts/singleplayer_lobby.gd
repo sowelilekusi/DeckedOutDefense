@@ -44,3 +44,7 @@ func setup_the_ui():
 	loadout_editor.set_visible(true)
 	$ReadyButton.set_visible(true)
 	chatbox.set_visible(true)
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

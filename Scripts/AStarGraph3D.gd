@@ -125,7 +125,8 @@ func disable_all_tower_frames():
 
 func enable_non_path_tower_frames():
 	for frame in tower_frames:
-		frame.set_visible(true)
+		if !astar.is_point_disabled(tower_frames.find(frame)):
+			frame.set_visible(true)
 	disable_path_tower_frames()
 
 

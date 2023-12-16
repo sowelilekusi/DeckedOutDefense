@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://miawrarbb1up"]
+[gd_scene load_steps=8 format=3 uid="uid://miawrarbb1up"]
 
 [ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_d6g88"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Icicle/tower_icicle.gd" id="2_qcpgh"]
 [ext_resource type="PackedScene" uid="uid://dyurjxotdkf1u" path="res://PCs/Universal/ClassCards/Icicle/icicle_projectile.tscn" id="3_o4uqf"]
 [ext_resource type="Resource" uid="uid://d34bfj5togyyt" path="res://PCs/Universal/ClassCards/Icicle/tower_stats.tres" id="4_3il5a"]
 [ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://PCs/Universal/ClassCards/Fireball/magetowermesh.res" id="5_soa3a"]
+[ext_resource type="AudioStream" uid="uid://dgqmtmty7ekmc" path="res://PCs/Universal/ClassCards/Icicle/shot1.wav" id="6_ce8qo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wmia4"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_ce8qo")
+stream_0/weight = 1.0
 
 [node name="IcicleTower" instance=ExtResource("1_d6g88")]
 script = ExtResource("2_qcpgh")
@@ -17,3 +24,6 @@ mesh = ExtResource("5_soa3a")
 
 [node name="Yaw" parent="." index="2"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.745, 0)
+
+[node name="AudioStreamPlayer3D" parent="Yaw" index="0"]
+stream = SubResource("AudioStreamRandomizer_wmia4")

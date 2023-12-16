@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="2_6ext7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_shai7"]
+radius = 0.200919
 
 [node name="Node3D" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -16,7 +17,6 @@ script = ExtResource("1_hdqtp")
 shape = SubResource("SphereShape3D_shai7")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.355108, 0)
 pixel_size = 0.04
 billboard = 1
 texture_filter = 0

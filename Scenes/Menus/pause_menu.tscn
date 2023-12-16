@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://buvgdem68wtev"]
+[gd_scene load_steps=5 format=3 uid="uid://buvgdem68wtev"]
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_gaupv"]
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="2_4pn2l"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="3_q3xhn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n6ixr"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_q3xhn")
+stream_0/weight = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,7 +62,15 @@ text = "Quit to main menu"
 layout_mode = 2
 text = "Quit to desktop"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_n6ixr")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Options" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/QuitToMainMenu" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/QuitToDesktop" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/QuitToDesktop" to="." method="_on_quit_to_desktop_pressed"]

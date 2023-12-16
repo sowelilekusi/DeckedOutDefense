@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsasunnk47n8o"]
+[gd_scene load_steps=7 format=3 uid="uid://dsasunnk47n8o"]
 
 [ext_resource type="Script" path="res://Scripts/item_card.gd" id="1_f3ek5"]
 [ext_resource type="Script" path="res://Scripts/float_and_spin.gd" id="2_yfdc3"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="3_om63b"]
 
 [sub_resource type="Curve" id="Curve_qb7ge"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -9,6 +10,12 @@ point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bf4ou"]
 height = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ixwn8"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_om63b")
+stream_0/weight = 1.0
 
 [node name="Node3D" type="StaticBody3D"]
 collision_layer = 8
@@ -28,3 +35,10 @@ radius = 0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape3D_bf4ou")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.701401, 0)
+stream = SubResource("AudioStreamRandomizer_ixwn8")
+bus = &"SFX"
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

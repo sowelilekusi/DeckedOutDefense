@@ -61,8 +61,9 @@ func hold_trigger():
 
 
 func release_trigger():
+	if trigger_held:
+		recharge_timer.start()
 	trigger_held = false
-	recharge_timer.start()
 
 
 func hold_second_trigger():

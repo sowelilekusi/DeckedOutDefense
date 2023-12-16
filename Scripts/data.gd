@@ -1,13 +1,15 @@
 extends Node
 
-var characters : Array[HeroClass]
-var cards : Array[Card]
-var enemies : Array[Enemy]
-var keymaps : Array[PlayerKeymap]
-var graphics : PlayerGraphicsSettings
-var preferences : PlayerPreferences
-var player_profile : PlayerProfile
-var player_keymap : PlayerKeymap
+var characters: Array[HeroClass]
+var cards: Array[Card]
+var enemies: Array[Enemy]
+var keymaps: Array[PlayerKeymap]
+var graphics: PlayerGraphicsSettings
+var audio: PlayerAudioSettings
+var preferences: PlayerPreferences
+var player_profile: PlayerProfile
+var player_keymap: PlayerKeymap
+var save_stats: SaveStats
 
 var wall_cost := 1
 var printer_cost := 15
@@ -25,10 +27,13 @@ var rarity_weights = {
 func _ready() -> void:
 	graphics = PlayerGraphicsSettings.load_profile_from_disk()
 	graphics.apply_graphical_settings(get_viewport())
+	audio = PlayerAudioSettings.load_profile_from_disk()
+	audio.apply_audio_settings()
 	player_profile = PlayerProfile.load_profile_from_disk()
 	preferences = PlayerPreferences.load_profile_from_disk()
 	player_keymap = PlayerKeymap.load_profile_from_disk()
 	player_keymap.apply()
+	save_stats = SaveStats.load_profile_from_disk()
 	
 	characters.append(preload("res://PCs/Red/red.tres"))
 	#characters.append(preload("res://PCs/Green/green.tres"))

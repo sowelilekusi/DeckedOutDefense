@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjvgqek2phoq1"]
+
+[ext_resource type="MeshLibrary" uid="uid://jfr8j8kycfa5" path="res://Worlds/GreenPlanet/tilemap.tres" id="1_5n7rt"]
+
+[node name="Node3D" type="GridMap"]
+mesh_library = ExtResource("1_5n7rt")
+cell_size = Vector3(1, 1, 1)
+cell_center_x = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 1, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 1, 0, 65534, 0, 0, 65534, 65535, 0, 65535, 65535, 0, 0, 65535, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65535, 0, 0)
+}

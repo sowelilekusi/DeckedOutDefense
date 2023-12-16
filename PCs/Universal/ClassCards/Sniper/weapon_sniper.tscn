@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd65e03fscyxr"]
+[gd_scene load_steps=9 format=3 uid="uid://bd65e03fscyxr"]
 
 [ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_6ph0d"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Sniper/weapon_sniper.gd" id="2_r0w4v"]
 [ext_resource type="Texture2D" uid="uid://bepgxu7wtcl1i" path="res://PCs/Universal/ClassCards/Sniper/scopetest.png" id="3_fhx8q"]
 [ext_resource type="Resource" uid="uid://3y7n1vdvf822" path="res://PCs/Universal/ClassCards/Sniper/weapon_stats.tres" id="3_mmfq3"]
 [ext_resource type="Texture2D" uid="uid://cv2eycs1j0ho7" path="res://PCs/Universal/ClassCards/Sniper/g_sniper.png" id="4_ub37g"]
+[ext_resource type="AudioStream" uid="uid://bixe14jkki8be" path="res://PCs/Universal/ClassCards/Sniper/shot1.wav" id="6_pd8iu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cussn"]
 atlas = ExtResource("4_ub37g")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x11yr"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_pd8iu")
+stream_0/weight = 1.0
 
 [node name="HitscanWeapon" node_paths=PackedStringArray("scope_mask") instance=ExtResource("1_6ph0d")]
 script = ExtResource("2_r0w4v")
@@ -28,3 +35,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_fhx8q")
+
+[node name="AudioStreamPlayer3D" parent="." index="6"]
+stream = SubResource("AudioStreamRandomizer_x11yr")

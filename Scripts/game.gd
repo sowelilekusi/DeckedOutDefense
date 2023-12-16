@@ -42,7 +42,7 @@ func parse_command(text : String, peer_id : int):
 		var gift_name = text.substr(6) as String
 		var gift = Data.cards[0]
 		for x in Data.cards:
-			if x.title == gift_name:
+			if x.display_name == gift_name:
 				gift = x
 		connected_players_nodes[peer_id].inventory.add(gift)
 	elif text.substr(1, 2) == "tr":
@@ -232,6 +232,9 @@ func start_game():
 	objective_health = 120
 	wave = 0
 	level.a_star_graph_3d.make_grid()
+	level.generate_obstacles()
+	level.a_star_graph_3d.disable_all_tower_frames()
+	level.a_star_graph_3d.enable_non_path_tower_frames()
 	level.a_star_graph_3d.find_path()
 	set_upcoming_wave()
 	for peer_id in connected_players_nodes:
@@ -257,6 +260,8 @@ func lose_game():
 	if game_active == false:
 		return
 	game_active = false
+	Data.save_stats.add_game_outcome(false)
+	Data.save_stats.save_profile_to_disk()
 	var menu = lose_game_scene.instantiate()
 	UILayer.add_child(menu)
 	lost_game.emit()
@@ -269,6 +274,8 @@ func win_game():
 	if game_active == false:
 		return
 	game_active = false
+	Data.save_stats.add_game_outcome(true)
+	Data.save_stats.save_profile_to_disk()
 	var menu = won_game_scene.instantiate()
 	UILayer.add_child(menu)
 	won_game.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwvprrvk4l2k0"]
+[gd_scene load_steps=9 format=3 uid="uid://cwvprrvk4l2k0"]
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_l1spu"]
 [ext_resource type="Script" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
 [ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://charselect.tscn" id="5_lvoo2"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="7_npnbo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cwnde"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("7_npnbo")
+stream_0/weight = 1.0
 
 [node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "loadout_editor", "chatbox")]
 layout_mode = 3
@@ -62,11 +69,16 @@ text = "Ready"
 [node name="Chatbox" parent="." instance=ExtResource("6_wtqwd")]
 layout_mode = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_cwnde")
+bus = &"SFX"
+
 [connection signal="player_connected" from="." to="Scoreboard" method="add_player"]
 [connection signal="player_disconnected" from="." to="Scoreboard" method="remove_player"]
 [connection signal="connect_button_pressed" from="ServerForm" to="." method="connect_to_server"]
 [connection signal="connect_button_pressed" from="ServerForm" to="ServerForm" method="set_visible" binds= [false]]
 [connection signal="host_button_pressed" from="ServerForm" to="." method="create_server"]
 [connection signal="host_button_pressed" from="ServerForm" to="ServerForm" method="set_visible" binds= [false]]
+[connection signal="mouse_entered" from="ReadyButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ReadyButton" to="." method="ready_player"]
 [connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]

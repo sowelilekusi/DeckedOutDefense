@@ -44,3 +44,7 @@ func _on_quit_to_desktop_pressed() -> void:
 func quit_game(confirmation):
 	if confirmation:
 		Game.quit_to_desktop()
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

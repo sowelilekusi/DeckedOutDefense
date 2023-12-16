@@ -44,4 +44,5 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_af3d2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_00m4l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rg2u8")
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

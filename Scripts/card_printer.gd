@@ -53,9 +53,11 @@ func retrieve_card(i):
 		add_child(item)
 	button_collider.disabled = false
 	button_box.position = Vector3(0,0,0)
+	$AudioStreamPlayer3D.play()
 
 
 func _on_static_body_3d_button_interacted(_value) -> void:
 	button_collider.disabled = true
 	button_box.position = Vector3(0,0,-0.2)
+	$AudioStreamPlayer3D.play()
 	randomize_cards()

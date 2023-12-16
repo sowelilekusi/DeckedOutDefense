@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dccsyymk4uko6"]
+[gd_scene load_steps=4 format=3 uid="uid://dccsyymk4uko6"]
 
 [ext_resource type="Script" path="res://Scripts/text_input_popup.gd" id="1_ve6eb"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_eqkxc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w0x7l"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_eqkxc")
+stream_0/weight = 1.0
 
 [node name="TextInputPopup" type="PanelContainer"]
 anchors_preset = 8
@@ -28,4 +35,9 @@ layout_mode = 2
 text = "Confirm
 "
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_w0x7l")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

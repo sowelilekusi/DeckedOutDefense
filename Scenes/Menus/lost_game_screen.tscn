@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsydnch32qh2h"]
+[gd_scene load_steps=4 format=3 uid="uid://dsydnch32qh2h"]
 
 [ext_resource type="Script" path="res://Scripts/lost_game_screen.gd" id="1_1pne8"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_sjvor"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ddnd1"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_sjvor")
+stream_0/weight = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -32,6 +39,54 @@ offset_bottom = 26.0
 grow_horizontal = 2
 text = "You Lost"
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 305.0
+offset_right = 38.0
+offset_bottom = 350.0
+grow_horizontal = 2
+text = "You Lost"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -897.0
+offset_top = 120.0
+offset_right = -509.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "Total games played: 315"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -901.0
+offset_top = 178.0
+offset_right = -513.0
+offset_bottom = 223.0
+grow_horizontal = 2
+text = "Total wins"
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -874.0
+offset_top = 239.0
+offset_right = -486.0
+offset_bottom = 284.0
+grow_horizontal = 2
+text = "Total losses"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -54,5 +109,11 @@ text = "Play Again"
 layout_mode = 2
 text = "Quit to main menu"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ddnd1")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="HBoxContainer/RestartButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/QuitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

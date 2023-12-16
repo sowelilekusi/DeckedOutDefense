@@ -22,9 +22,10 @@ func _ready() -> void:
 		spawn.signal_for_when_enemy_spawns.connect(increase_enemy_count)
 		spawn.spawn_wave(new_wave)
 
+#these exist purely to make the enemies that spawn on the main menu happy
 func enemy_died(_some_arg):
 	pass
-func damage_goal():
+func damage_goal(_some_arg1, _some_arg2):
 	pass
 func increase_enemy_count():
 	pass
@@ -65,3 +66,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_multiplayer_button_pressed() -> void:
 	Game.scene_switch_to_multiplayer_lobby()
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

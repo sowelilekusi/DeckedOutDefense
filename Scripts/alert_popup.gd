@@ -11,3 +11,7 @@ func set_popup(prompt_text, dismiss_text):
 func _on_button_pressed() -> void:
 	completed.emit()
 	queue_free()
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

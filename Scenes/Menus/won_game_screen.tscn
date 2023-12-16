@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce0m8vbjbng6o"]
+[gd_scene load_steps=4 format=3 uid="uid://ce0m8vbjbng6o"]
 
 [ext_resource type="Script" path="res://Scripts/won_game_screen.gd" id="1_oa7nq"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_553mv"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dram5"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_553mv")
+stream_0/weight = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -32,6 +39,54 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "You WIN :3"
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.0
+offset_top = 359.0
+offset_right = 186.0
+offset_bottom = 404.0
+grow_horizontal = 2
+text = "Your winrate is now: 80%"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -897.0
+offset_top = 120.0
+offset_right = -509.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "Total games played: 315"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -901.0
+offset_top = 178.0
+offset_right = -513.0
+offset_bottom = 223.0
+grow_horizontal = 2
+text = "Total wins"
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -874.0
+offset_top = 239.0
+offset_right = -486.0
+offset_bottom = 284.0
+grow_horizontal = 2
+text = "Total losses"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -54,5 +109,11 @@ text = "play again :3"
 layout_mode = 2
 text = "quit to main menu :<"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dram5")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="HBoxContainer/PlayButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/QuitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

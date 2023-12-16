@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvfit0sy2tnw4"]
+[gd_scene load_steps=4 format=3 uid="uid://bvfit0sy2tnw4"]
 
 [ext_resource type="Script" path="res://Scripts/server_form.gd" id="1_43oaq"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_2xblc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3o7ni"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_2xblc")
+stream_0/weight = 1.0
 
 [node name="ServerForm" type="PanelContainer"]
 anchors_preset = 8
@@ -19,6 +26,10 @@ script = ExtResource("1_43oaq")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -52,5 +63,13 @@ text = "Connect"
 layout_mode = 2
 text = "Host"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_3o7ni")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Connect" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Connect" to="." method="_on_connect_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Host" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=40 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
 [ext_resource type="Shader" path="res://crosshair.gdshader" id="20_gxpgc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="24_gg2dy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 
@@ -95,7 +96,13 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 2
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "card", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyb7c"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("24_gg2dy")
+stream_0/weight = 1.0
+
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "card_sprites", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -103,6 +110,7 @@ hero_class = ExtResource("2_dbyo0")
 camera = NodePath("ViewMovement/Head")
 gun_camera = NodePath("FirstPersonViewport/Head2")
 left_hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/Sprite3D")
+card_sprites = [NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D3"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D2")]
 left_hand = NodePath("FirstPersonViewport/Head2/LeftHand")
 right_hand = NodePath("FirstPersonViewport/Head2/RightHand")
 right_hand_animator = NodePath("FirstPersonViewport/Head2/RightHand/AnimationPlayer")
@@ -112,7 +120,6 @@ sprite = NodePath("EightDirectionSprite")
 hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Sprite2D")
 interaction_raycast = NodePath("ViewMovement/Head/RayCast3D")
 inventory = NodePath("Inventory")
-card = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D")
 gauntlet_card_1 = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport2/Node2D")
 gauntlet_card_2 = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3/Node2D")
 pause_menu_scene = ExtResource("3_avnsx")
@@ -184,13 +191,21 @@ transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -
 
 [node name="SubViewport" type="SubViewport" parent="FirstPersonViewport/Head2/LeftHand"]
 transparent_bg = true
+size = Vector2i(512, 1024)
 render_target_update_mode = 4
 
+[node name="Node2D2" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+position = Vector2(0, 48)
+
+[node name="Node2D3" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+position = Vector2(0, 152)
+
 [node name="Node2D" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+position = Vector2(0, 256)
 
 [node name="Sprite2D" type="Sprite2D" parent="FirstPersonViewport/Head2/LeftHand/SubViewport"]
 texture_filter = 1
-position = Vector2(256, 256)
+position = Vector2(256, 512)
 scale = Vector2(8, 8)
 texture = ExtResource("9_gxh2h")
 
@@ -629,5 +644,9 @@ one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_tsiqi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_wyb7c")
+bus = &"SFX"
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]

@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://176c6fuhg5ic"]
+[gd_scene load_steps=8 format=3 uid="uid://176c6fuhg5ic"]
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_2aur6"]
 [ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="1_423py"]
 [ext_resource type="Script" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="3_l8xy3"]
 [ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://charselect.tscn" id="5_vg5y0"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="6_qgq1v"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g5har"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_qgq1v")
+stream_0/weight = 1.0
 
 [node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("scoreboard", "loadout_editor", "chatbox")]
 layout_mode = 3
@@ -53,5 +60,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_g5har")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="ReadyButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ReadyButton" to="Scoreboard" method="set_player_ready_state" binds= [1, true]]
 [connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]

@@ -12,4 +12,9 @@ func _ready() -> void:
 		var card = hero_card_scene.instantiate()
 		card.set_hero(hero)
 		card.pressed.connect(func(x): hero_selected.emit(Data.characters.find(x)))
+		card.button_mouse_entered.connect(_on_button_mouse_entered)
 		hbox.add_child(card)
+
+
+func _on_button_mouse_entered():
+	$AudioStreamPlayer.play()

@@ -16,3 +16,11 @@ func get_server_ip() -> String:
 	return $VBoxContainer/HBoxContainer/ServerIP.text
 func get_server_port() -> String:
 	return $VBoxContainer/HBoxContainer2/ServerPort.text
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()
+
+
+func _on_button_pressed() -> void:
+	Game.scene_switch_main_menu()

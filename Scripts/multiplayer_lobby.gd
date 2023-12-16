@@ -125,3 +125,7 @@ func add_player(new_player_profile_dict):
 @rpc("any_peer", "reliable", "call_local")
 func networked_ready_player(peer_id):
 	scoreboard.set_player_ready_state(peer_id, true)
+
+
+func _on_button_mouse_entered() -> void:
+	$AudioStreamPlayer.play()

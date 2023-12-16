@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://6a277g802os0"]
+[gd_scene load_steps=4 format=3 uid="uid://6a277g802os0"]
 
 [ext_resource type="Script" path="res://Scripts/alert_popup.gd" id="1_cac03"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_h7kij"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_veol0"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_h7kij")
+stream_0/weight = 1.0
 
 [node name="Control" type="PanelContainer"]
 anchors_preset = 8
@@ -24,4 +31,9 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "OK"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_veol0")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

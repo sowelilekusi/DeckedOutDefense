@@ -7,6 +7,7 @@ var stats : Card
 @export var description : RichTextLabel
 @export var target_label : Label
 
+
 func set_card(value):
 	stats = value
 	title_text.text = stats.display_name

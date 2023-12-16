@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwwgvgn0ds8tk"]
+[gd_scene load_steps=8 format=3 uid="uid://dwwgvgn0ds8tk"]
 
 [ext_resource type="PackedScene" uid="uid://t0b32qb8eub2" path="res://Scenes/Towers/projectile_tower.tscn" id="1_rkdu6"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/Fireball/tower_fireball.gd" id="2_td8dh"]
 [ext_resource type="PackedScene" uid="uid://ddpixntjsbpqp" path="res://PCs/Universal/ClassCards/Fireball/fireball_projectile.tscn" id="3_1akv8"]
 [ext_resource type="Resource" uid="uid://dnvqghpwyuw84" path="res://PCs/Universal/ClassCards/Fireball/tower_stats.tres" id="4_uu77s"]
 [ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://PCs/Universal/ClassCards/Fireball/magetowermesh.res" id="5_7rkfh"]
+[ext_resource type="AudioStream" uid="uid://cxiluyamsxson" path="res://PCs/Universal/ClassCards/Fireball/shot1.wav" id="6_201kn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gwg27"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_201kn")
+stream_0/weight = 1.0
 
 [node name="FireballTower" instance=ExtResource("1_rkdu6")]
 script = ExtResource("2_td8dh")
@@ -17,3 +24,6 @@ mesh = ExtResource("5_7rkfh")
 
 [node name="Yaw" parent="." index="2"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.74532, 0)
+
+[node name="AudioStreamPlayer3D" parent="Yaw" index="0"]
+stream = SubResource("AudioStreamRandomizer_gwg27")

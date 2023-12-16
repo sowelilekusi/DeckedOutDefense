@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://8yv7excojcg0"]
+[gd_scene load_steps=8 format=3 uid="uid://8yv7excojcg0"]
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_p1cib"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="2_ivytu"]
 [ext_resource type="Texture2D" uid="uid://lvvnrb5jugum" path="res://Assets/Textures/logo_title.png" id="3_8jkeb"]
 [ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/first_level.tscn" id="3_l8r4a"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="5_4c4cl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jyua"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_4c4cl")
+stream_0/weight = 1.0
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level")]
 layout_mode = 3
@@ -118,8 +125,21 @@ size = Vector2i(1920, 1080)
 
 [node name="GridMap" parent="SubViewport" instance=ExtResource("3_l8r4a")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_2jyua")
+bus = &"SFX"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+current = true
+
+[connection signal="mouse_entered" from="MainControls/PlayButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="MainControls/MultiplayerButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="mouse_entered" from="MainControls/OptionsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="MainControls/QuitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]

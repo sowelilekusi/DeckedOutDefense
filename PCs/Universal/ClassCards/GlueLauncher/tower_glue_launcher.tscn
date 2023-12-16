@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb44pintbwdcf"]
+[gd_scene load_steps=8 format=3 uid="uid://bb44pintbwdcf"]
 
 [ext_resource type="PackedScene" uid="uid://dxwtlvv632ae8" path="res://Scenes/Towers/status_applying_tower.tscn" id="1_r1dvg"]
 [ext_resource type="Script" path="res://PCs/Universal/ClassCards/GlueLauncher/tower_glue_launcher.gd" id="2_ot8fu"]
 [ext_resource type="Resource" uid="uid://d0643gfp52x3s" path="res://Resources/StatusEffects/sticky.tres" id="3_ibb53"]
 [ext_resource type="Resource" uid="uid://bvkwgmbxje0dp" path="res://PCs/Universal/ClassCards/GlueLauncher/tower_stats.tres" id="4_etcd4"]
 [ext_resource type="ArrayMesh" uid="uid://cehyrhbd7pu83" path="res://PCs/Universal/ClassCards/GlueLauncher/glue_launcher_model.res" id="5_dsftx"]
+[ext_resource type="AudioStream" uid="uid://v3j5lw827y85" path="res://PCs/Universal/ClassCards/GlueLauncher/shot1.wav" id="6_lntow"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r4ak7"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_lntow")
+stream_0/weight = 1.0
 
 [node name="GlueLauncherTower" instance=ExtResource("1_r1dvg")]
 script = ExtResource("2_ot8fu")
@@ -17,3 +24,6 @@ visible = false
 [node name="Yaw" parent="." index="2"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.484804, 0)
 mesh = ExtResource("5_dsftx")
+
+[node name="AudioStreamPlayer3D" parent="Yaw" index="0"]
+stream = SubResource("AudioStreamRandomizer_r4ak7")

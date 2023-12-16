@@ -1,4 +1,110 @@
-[gd_scene format=3 uid="uid://bwc45ogto8thn"]
+[gd_scene load_steps=3 format=3 uid="uid://bwc45ogto8thn"]
 
-[node name="Audio" type="VBoxContainer"]
-visible = false
+[ext_resource type="Script" path="res://Scripts/audio_options.gd" id="1_avc0j"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hvvdd"]
+
+[node name="Audio" type="VBoxContainer" node_paths=PackedStringArray("master_input", "master_slider", "music_input", "music_slider", "sfx_input", "sfx_slider")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_avc0j")
+master_input = NodePath("Master/HBoxContainer/SpinBox")
+master_slider = NodePath("Master/HBoxContainer/HSlider")
+music_input = NodePath("Music/HBoxContainer/SpinBox")
+music_slider = NodePath("Music/HBoxContainer/HSlider")
+sfx_input = NodePath("SFX/HBoxContainer/SpinBox")
+sfx_slider = NodePath("SFX/HBoxContainer/HSlider")
+
+[node name="Master" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Master/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
+value = 100.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="Master/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[node name="Music" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Music/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
+value = 100.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="Music/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[node name="SFX" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="SFX/HBoxContainer"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
+value = 100.0
+rounded = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="SFX/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[connection signal="value_changed" from="Master/HBoxContainer/SpinBox" to="." method="_on_master_spin_box_value_changed"]
+[connection signal="value_changed" from="Master/HBoxContainer/HSlider" to="." method="_on_master_h_slider_value_changed"]
+[connection signal="value_changed" from="Music/HBoxContainer/SpinBox" to="." method="_on_music_spin_box_value_changed"]
+[connection signal="value_changed" from="Music/HBoxContainer/HSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="SFX/HBoxContainer/SpinBox" to="." method="_on_sfx_spin_box_value_changed"]
+[connection signal="value_changed" from="SFX/HBoxContainer/HSlider" to="." method="_on_sfx_h_slider_value_changed"]

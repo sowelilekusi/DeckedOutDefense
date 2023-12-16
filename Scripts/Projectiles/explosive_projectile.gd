@@ -3,10 +3,14 @@ class_name ExplosiveProjectile
 
 @export var explosion_range := 3.0
 
+var exploded := false
+var sound_done := false
+var particles_done := false
+
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if time_alive >= lifetime:
+	if !exploded and time_alive >= lifetime:
 		explode()
 
 
@@ -15,13 +19,18 @@ func _on_body_entered(_body: Node) -> void:
 
 
 func explode():
-	if is_multiplayer_authority():
+	if is_multiplayer_authority() and !exploded:
+		freeze = true
+		exploded = true
+		$CollisionShape3D.call_deferred("set_disabled", true)
 		for enemy in get_tree().get_nodes_in_group("Enemies"):
 			if global_position.distance_to(enemy.global_position) <= explosion_range:
 				hit(enemy)
 				networked_hit.rpc(get_tree().root.get_path_to(enemy))
 		networked_kill.rpc()
-		queue_free()
+		$Sprite3D.set_visible(false)
+		$GPUParticles3D.emitting = true
+		$AudioStreamPlayer.play()
 
 
 func hit(target):
@@ -41,3 +50,22 @@ func hit(target):
 func networked_hit(target_node_path):
 	var target = get_tree().root.get_node(target_node_path)
 	hit(target)
+
+
+@rpc("reliable")
+func networked_kill():
+	$Sprite3D.set_visible(false)
+	$GPUParticles3D.emitting = true
+	$AudioStreamPlayer.play()
+
+
+func _on_audio_stream_player_finished() -> void:
+	sound_done = true
+	if sound_done and particles_done:
+		queue_free()
+
+
+func _on_gpu_particles_3d_finished() -> void:
+	particles_done = true
+	if sound_done and particles_done:
+		queue_free()

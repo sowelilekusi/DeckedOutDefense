@@ -127,7 +127,7 @@ func _process(delta: float) -> void:
 func spawn_tower_preview():
 	delete_tower_preview()
 	last_tower_base = ray_collider
-	var card = inventory.selected_item
+	var card = inventory.contents.keys()[hero.inventory_selected_index]
 	last_card = card
 	tower_preview = card.turret_scene.instantiate() as Tower
 	tower_preview.stats = card.tower_stats
@@ -168,7 +168,10 @@ func put_card_in_tower_base(tower_base: TowerBase):
 	if tower_base.has_card:
 		tower_base.remove_card()
 	else:
-		tower_base.add_card(inventory.remove(), multiplayer.get_unique_id())
+		var card = inventory.remove_at(hero.inventory_selected_index)
+		if !inventory.contents.has(card):
+			hero.decrement_selected()
+		tower_base.add_card(card, multiplayer.get_unique_id())
 
 
 func set_progress_percent(value: float):

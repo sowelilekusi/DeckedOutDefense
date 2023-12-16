@@ -9,6 +9,7 @@ signal died
 @export var camera: Camera3D
 @export var gun_camera: Camera3D
 @export var left_hand_sprite: Sprite3D
+@export var card_sprites: Array[CardInHand]
 @export var left_hand: Node3D
 @export var right_hand: Node3D
 @export var right_hand_animator: AnimationPlayer
@@ -18,7 +19,6 @@ signal died
 @export var hand_sprite: Sprite2D
 @export var interaction_raycast: RayCast3D
 @export var inventory: Inventory
-@export var card: CardInHand
 @export var gauntlet_card_1: CardInHand
 @export var gauntlet_card_2: CardInHand
 @export var pause_menu_scene: PackedScene
@@ -29,6 +29,7 @@ signal died
 @export var weapon_swap_timer: Timer
 @export var ears: AudioListener3D
 
+var inventory_selected_index := 0
 var equipped_card
 var offhand_card
 var weapon: Weapon
@@ -68,7 +69,8 @@ func _ready() -> void:
 		hud.set_visible(false)
 	if weapon != null:
 		weapon.set_raycast_origin(camera)
-	inventory.contents.append_array(hero_class.deck)
+	for card in hero_class.deck:
+		inventory.add(card)
 	sprite.texture.atlas = hero_class.texture
 	check_left_hand_valid()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -100,9 +102,9 @@ func _process(delta: float) -> void:
 			hud.unset_hover_text()
 		
 		if edit_tool.is_looking_at_tower_base:
-			card.view_tower()
+			card_sprites[0].view_tower()
 		else:
-			card.view_weapon()
+			card_sprites[0].view_weapon()
 		if Input.is_action_just_pressed("Interact"):
 			edit_tool.interact()
 			if interaction_raycast.get_collider() is InteractButton:
@@ -117,9 +119,11 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("Secondary Fire"):
 			swap_weapons()
 		if Input.is_action_just_pressed("Select Next Card"):
-			inventory.increment_selected()
+			increment_selected()
+			$AudioStreamPlayer.play()
 		if Input.is_action_just_pressed("Select Previous Card"):
-			inventory.decrement_selected()
+			decrement_selected()
+			$AudioStreamPlayer.play()
 		if Input.is_action_just_pressed("Primary Fire"):
 			edit_tool.interact_key_held = true
 		if Input.is_action_just_released("Primary Fire"):
@@ -160,6 +164,18 @@ func _process(delta: float) -> void:
 	check_left_hand_valid()
 
 
+func increment_selected():
+	inventory_selected_index += 1
+	if inventory_selected_index >= inventory.contents.keys().size():
+		inventory_selected_index = 0
+
+
+func decrement_selected():
+	inventory_selected_index -= 1
+	if inventory_selected_index < 0:
+		inventory_selected_index = inventory.contents.keys().size() - 1
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if !is_multiplayer_authority() or paused:
 		return
@@ -167,6 +183,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		edit_tool.interact_key_held = false
 		if !ready_state:
 			ready_state = true
+			hud.shrink_wave_start_label()
+			$AudioStreamPlayer.play()
 			networked_set_ready_state.rpc(ready_state)
 	if event.is_action_pressed("Pause"):
 		var menu = pause_menu_scene.instantiate() as PauseMenu
@@ -211,7 +229,6 @@ func exit_editing_mode(value):
 	gauntlet_sprite.set_visible(false)
 	weapons_active = false
 	hud.set_wave_count(value)
-	hud.shrink_wave_start_label()
 	if !weapon and offhand_weapon:
 		swap_weapons()
 	if weapon:
@@ -233,21 +250,31 @@ func exit_editing_mode(value):
 func check_left_hand_valid():
 	if !editing_mode:
 		return
-	if inventory.contents.size() == 0:
+	if inventory.size == 0:
 		left_hand_sprite.set_visible(false)
 		#gauntlet.texture.region = Rect2(64, 0, 64, 64)
 	else:
 		left_hand_sprite.set_visible(true)
 		#gauntlet.texture.region = Rect2(0, 0, 64, 64)
-		card.set_card(inventory.selected_item)
+		var selected_card = inventory.contents.keys()[inventory_selected_index]
+		for index in card_sprites.size():
+			if index < inventory.contents[selected_card]:
+				card_sprites[index].set_visible(true)
+				card_sprites[index].set_card(selected_card)
+				#card_sprites[index].view_weapon()
+			else:
+				card_sprites[index].set_visible(false)
 
 
 func equip_weapon():
 	if weapon != null:
 		unequip_weapon()
 		return
-	if inventory.contents.size() > 0:
-		equipped_card = inventory.remove()
+	if inventory.size > 0:
+		$AudioStreamPlayer.play()
+		equipped_card = inventory.remove_at(inventory_selected_index)
+		if !inventory.contents.has(equipped_card):
+			decrement_selected()
 		networked_equip_weapon.rpc(Data.cards.find(equipped_card))
 		weapon = equipped_card.weapon_scene.instantiate()
 		weapon.energy_changed.connect(hud.set_weapon_energy)
@@ -263,30 +290,11 @@ func equip_weapon():
 		check_left_hand_valid()
 
 
-func equip_in_offhand():
-	if offhand_weapon != null:
-		unequip_weapon()
-		return
-	if inventory.contents.size() > 0:
-		offhand_card = inventory.remove()
-		networked_equip_offhand_weapon.rpc(Data.cards.find(offhand_card))
-		offhand_weapon = offhand_card.weapon_scene.instantiate()
-		offhand_weapon.energy_changed.connect(hud.set_weapon_energy)
-		#offhand_weapon.name = "weapon"
-		offhand_weapon.set_multiplayer_authority(multiplayer.get_unique_id())
-		#gauntlet_sprite.set_visible(false)
-		gauntlet_card_2.set_card(offhand_card)
-		gauntlet_card_2.view_weapon()
-		gauntlet_card_2.set_visible(true)
-		offhand_weapon.set_hero(self)
-		offhand_weapon.set_visible(false)
-		right_hand.add_child(offhand_weapon)
-		check_left_hand_valid()
-
-
 func swap_weapons():
 	if !editing_mode:
 		weapons_active = false
+	if weapon or offhand_weapon:
+		$AudioStreamPlayer.play()
 	var temp = offhand_weapon
 	var temp_card = offhand_card
 	if weapon:
@@ -327,6 +335,7 @@ func swap_weapons():
 func _on_timer_timeout() -> void:
 	weapons_active = true
 	if weapon:
+		$AudioStreamPlayer.play()
 		weapon.set_visible(true)
 
 
@@ -338,17 +347,7 @@ func unequip_weapon():
 	weapon = null
 	inventory.add(equipped_card)
 	equipped_card = null
-	check_left_hand_valid()
-
-
-func unequip_offhand_weapon():
-	networked_unequip_offhand_weapon.rpc()
-	gauntlet_card_2.set_visible(false)
-	#gauntlet_sprite.set_visible(true)
-	offhand_weapon.queue_free()
-	offhand_weapon = null
-	inventory.add(offhand_card)
-	offhand_card = null
+	$AudioStreamPlayer.play()
 	check_left_hand_valid()
 
 
@@ -369,26 +368,8 @@ func networked_equip_weapon(card_index):
 
 
 @rpc("reliable")
-func networked_equip_offhand_weapon(card_index):
-	equipped_card = Data.cards[card_index]
-	offhand_weapon = equipped_card.weapon_scene.instantiate()
-	offhand_weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
-	#weapon.name = "weapon"
-	offhand_weapon.set_hero(self)
-	right_hand.add_child(offhand_weapon)
-
-
-@rpc("reliable")
 func networked_unequip_weapon():
 	weapon.queue_free()
 	weapon = null
 	inventory.add(equipped_card)
 	equipped_card = null
-
-
-@rpc("reliable")
-func networked_unequip_offhand_weapon():
-	offhand_weapon.queue_free()
-	offhand_weapon = null
-	inventory.add(equipped_card)
-	offhand_card = null
