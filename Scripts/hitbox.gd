@@ -1,8 +1,7 @@
-extends CollisionShape3D
-class_name Hitbox
+class_name Hitbox extends CollisionShape3D
 
-signal took_damage(amount)
+signal took_damage(amount: float)
 
 
-func damage(amount):
+func damage(amount: float) -> void:
 	took_damage.emit(amount)

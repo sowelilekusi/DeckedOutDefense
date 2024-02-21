@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://8d452unjpoiu"]
 
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_6ftnx"]
-[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Universal/ClassCards/Assault/card_assault.tres" id="2_hayav"]
-[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://PCs/Universal/ClassCards/Fireball/card_fireball.tres" id="3_sq8ai"]
-[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://PCs/Universal/ClassCards/Reactor/card_reactor.tres" id="4_3jmlk"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Mechanic/ClassCards/Assault/card_assault.tres" id="2_hayav"]
+[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://PCs/Mage/ClassCards/Fireball/card_fireball.tres" id="3_sq8ai"]
+[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://PCs/Mechanic/ClassCards/Reactor/card_reactor.tres" id="4_3jmlk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lscco"]
 

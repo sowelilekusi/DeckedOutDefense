@@ -1,20 +1,19 @@
-extends Control
-class_name Chatbox
+class_name Chatbox extends Control
 
 signal opened
 signal closed
 
-@export var input_line : LineEdit
-@export var textbox : RichTextLabel
-@export var text_panel : PanelContainer
-@export var fade_timer : Timer
+@export var input_line: LineEdit
+@export var textbox: RichTextLabel
+@export var text_panel: PanelContainer
+@export var fade_timer: Timer
 
-var text_selected := false
-var username := "default"
-var color = Color.TOMATO
-var fading = true
-var time_to_fade = 2.0
-var time_since_started_fading = 2.0
+var text_selected: bool = false
+var username: String = "default"
+var color: Color = Color.TOMATO
+var fading: bool = true
+var time_to_fade: float = 2.0
+var time_since_started_fading:float = 2.0
 
 
 func _process(delta: float) -> void:
@@ -58,12 +57,12 @@ func _input(event: InputEvent) -> void:
 			fade_timer.start()
 
 
-func change_username(old_name, new_name):
+func change_username(old_name: String, new_name: String) -> void:
 	append_message("SERVER", Color.TOMATO, old_name + " has changed their display name to " + new_name)
 
 
 @rpc("reliable","call_local","any_peer")
-func append_message(user, user_color, content):
+func append_message(user: String, user_color: Color, content: String) -> void:
 	textbox.append_text("[[color=" + user_color.to_html() + "]" + user + "[color=white]] " + content + "\n")
 	fading = false
 	fade_timer.start()

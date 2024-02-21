@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name EnemyController
 
-signal reached_goal(enemy, penalty)
-signal died(enemy)
+signal reached_goal(enemy: Enemy, penalty: int)
+signal died(enemy: Enemy)
 
 @export var stats: Enemy
 @export var status_manager: StatusEffector
@@ -12,8 +12,8 @@ signal died(enemy)
 @export var corpse_scene: PackedScene
 
 var movement_speed: float
-var movement_speed_penalty := 1.0
-var alive = true
+var movement_speed_penalty: float = 1.0
+var alive: bool = true
 
 
 func _ready() -> void:
@@ -24,22 +24,22 @@ func _ready() -> void:
 	movement_speed = stats.movement_speed
 
 
-func damage(amount):
+func damage(amount: float) -> void:
 	$Hitbox.damage(amount)
 
 
-func goal_entered():
+func goal_entered() -> void:
 	if alive:
 		alive = false
 		reached_goal.emit(stats, stats.penalty)
 		queue_free()
 
 
-func die():
+func die() -> void:
 	if alive:
 		alive = false
 		died.emit(stats)
-		var corpse = corpse_scene.instantiate()
+		var corpse: RigidBody3D = corpse_scene.instantiate()
 		corpse.set_sprite(stats.death_sprite)
 		corpse.position = global_position
 		Game.level.corpses.add_child(corpse)

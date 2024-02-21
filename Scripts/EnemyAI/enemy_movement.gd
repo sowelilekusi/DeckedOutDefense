@@ -1,6 +1,5 @@
-extends Node
-class_name EnemyMovement
+class_name EnemyMovement extends Node
 
-@export var character : CharacterBody3D
+@export var character: CharacterBody3D
 
-var distance_remaining := 0.0
+var distance_remaining: float = 0.0

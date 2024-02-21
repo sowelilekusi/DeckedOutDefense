@@ -1,12 +1,12 @@
 extends PanelContainer
 
-signal pressed(hero_class)
+signal pressed(hero_class: int)
 signal button_mouse_entered()
 
 var hero_class: HeroClass
 
 
-func set_hero(hero: HeroClass):
+func set_hero(hero: HeroClass) -> void:
 	hero_class = hero
 	$VBoxContainer/Label.text = hero.hero_name
 	$VBoxContainer/TextureRect.texture = hero.texture

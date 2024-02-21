@@ -1,9 +1,8 @@
-extends PanelContainer
-class_name ConfirmationPopup
+class_name ConfirmationPopup extends PanelContainer
 
-signal completed(outcome)
+signal completed(outcome: bool)
 
-func set_popup(prompt_text, confirm_text, cancel_text):
+func set_popup(prompt_text: String, confirm_text: String, cancel_text: String) -> void:
 	$VBoxContainer/Label.text = prompt_text
 	$VBoxContainer/HBoxContainer/Confirm.text = confirm_text
 	$VBoxContainer/HBoxContainer/Cancel.text = cancel_text

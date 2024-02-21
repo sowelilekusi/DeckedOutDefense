@@ -1,9 +1,8 @@
-extends Tower
-class_name ShapecastTower
+class_name ShapecastTower extends Tower
 
-@export var shapecast : ShapeCast3D
-@export var particlesystem : GPUParticles3D
-@export var status_stats : StatusStats
+@export var shapecast: ShapeCast3D
+@export var particlesystem: GPUParticles3D
+@export var status_stats: StatusStats
 
 
 func _process(delta: float) -> void:
@@ -14,19 +13,19 @@ func _process(delta: float) -> void:
 		particlesystem.emitting = false
 
 
-func shoot():
-	for index in shapecast.get_collision_count():
-		var target = shapecast.get_collider(index) as CharacterBody3D
+func shoot() -> void:
+	for index: int in shapecast.get_collision_count():
+		var target: CharacterBody3D = shapecast.get_collider(index) as CharacterBody3D
 		hit(target)
 
 
-func aim():
+func aim() -> void:
 	yaw_model.look_at(targeted_enemy.global_position)
 	pitch_model.look_at(targeted_enemy.global_position)
 	pitch_model.rotation.x = 0.0
 
 
-func hit(target):
+func hit(target: CharacterBody3D) -> void:
 	if is_instance_valid(target) and target.alive:
 		target.damage(damage)
 		if Data.preferences.display_tower_damage_indicators:
@@ -37,12 +36,12 @@ func hit(target):
 
 
 func build_status_object() -> StatusEffect:
-	var status = StatusEffect.new()
+	var status: StatusEffect = StatusEffect.new()
 	status.stats = status_stats
 	return status
 
 
 @rpc("reliable")
-func networked_hit(target_node_path):
-	var target = get_tree().root.get_node(target_node_path)
+func networked_hit(target_node_path: String) -> void:
+	var target: CharacterBody3D = get_tree().root.get_node(target_node_path) as CharacterBody3D
 	hit(target)

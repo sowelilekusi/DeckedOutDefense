@@ -1,32 +1,31 @@
-extends Node3D
-class_name EditTool
+class_name EditTool extends Node3D
 
-@export var hero : Hero
-@export var inventory : Inventory
-@export var ray : RayCast3D
-@export var wall_preview : TowerBase
-@export var progress_bar : TextureProgressBar
+@export var hero: Hero
+@export var inventory: Inventory
+@export var ray: RayCast3D
+@export var wall_preview: TowerBase
+@export var progress_bar: TextureProgressBar
 
-var enabled := true
-var point_id := -1
-var obstacle_last_point := -1
-var valid_point := false
-var is_looking_at_tower_base := false
-var tower_preview
-var last_tower_base
-var last_collider
-var last_card
-var ray_collider
-var ray_point
+var enabled: bool = true
+var point_id: int = -1
+var obstacle_last_point: int = -1
+var valid_point: bool = false
+var is_looking_at_tower_base: bool = false
+var tower_preview: Tower
+var last_tower_base: TowerBase
+var last_collider: Object
+var last_card: Card
+var ray_collider: Object
+var ray_point: Vector3
 
-var interact_key_held := false
-var interacted_once := false
-var interact_held_time := 0.0
-var interact_hold_time := 0.4
+var interact_key_held: bool = false
+var interacted_once: bool = false
+var interact_held_time: float = 0.0
+var interact_hold_time: float = 0.4
 
 
 func _ready() -> void:
-	var c = Color.GREEN
+	var c: Color = Color.GREEN
 	c.a = 0.8
 	wall_preview.set_color(c)
 	wall_preview.set_float(0.0)
@@ -36,7 +35,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !enabled:
 		ray_collider = null
-		ray_point = null
 		wall_preview.set_visible(false)
 		if is_instance_valid(last_collider):
 			Game.level.a_star_graph_3d.tower_base_ids[last_collider.point_id].set_float(1.0)
@@ -99,13 +97,13 @@ func _process(delta: float) -> void:
 			if !Game.level.a_star_graph_3d.point_is_build_location(point_id) or hero.currency < Data.wall_cost:
 				wall_preview.set_visible(false)
 			else:
-				var point_position = Game.level.a_star_graph_3d.astar.get_point_position(point_id)
+				var point_position: Vector3 = Game.level.a_star_graph_3d.astar.get_point_position(point_id)
 				wall_preview.global_position = point_position
 				wall_preview.global_rotation = Vector3.ZERO
 				if obstacle_last_point != point_id:
 					obstacle_last_point = point_id
 					if Game.level.a_star_graph_3d.test_path_if_point_toggled(point_id):
-						var c = Color.GREEN
+						var c: Color = Color.GREEN
 						c.a = 0.8
 						wall_preview.set_color(c)
 						wall_preview.set_float(0.0)
@@ -116,7 +114,6 @@ func _process(delta: float) -> void:
 						valid_point = false
 	else:
 		ray_collider = null
-		ray_point = null
 		is_looking_at_tower_base = false
 		delete_tower_preview()
 		wall_preview.set_visible(false)
@@ -124,10 +121,10 @@ func _process(delta: float) -> void:
 		wall_preview.set_visible(false)
 
 
-func spawn_tower_preview():
+func spawn_tower_preview() -> void:
 	delete_tower_preview()
 	last_tower_base = ray_collider
-	var card = inventory.contents.keys()[hero.inventory_selected_index]
+	var card: Card = inventory.contents.keys()[hero.inventory_selected_index]
 	last_card = card
 	tower_preview = card.turret_scene.instantiate() as Tower
 	tower_preview.stats = card.tower_stats
@@ -136,7 +133,7 @@ func spawn_tower_preview():
 	ray_collider.add_child(tower_preview)
 
 
-func delete_tower_preview():
+func delete_tower_preview() -> void:
 	last_tower_base = null
 	last_card = null
 	if is_instance_valid(tower_preview):
@@ -144,35 +141,35 @@ func delete_tower_preview():
 		tower_preview = null
 
 
-func interact():
+func interact() -> void:
 	if ray_collider is TowerBase:
-		var tower_base = ray_collider as TowerBase
+		var tower_base: TowerBase = ray_collider as TowerBase
 		put_card_in_tower_base(tower_base)
 
 
-func build_wall():
+func build_wall() -> void:
 	if point_id >= 0 and valid_point and hero.currency >= Data.wall_cost:
 		hero.currency -= Data.wall_cost
 		Game.level.a_star_graph_3d.toggle_point(point_id, multiplayer.get_unique_id())
 	wall_preview.set_visible(false)
 
 
-func refund_wall(wall: TowerBase):
+func refund_wall(wall: TowerBase) -> void:
 	last_collider = null
 	if wall.has_card:
 		wall.remove_card()
 	Game.level.a_star_graph_3d.remove_wall(wall)
 
 
-func put_card_in_tower_base(tower_base: TowerBase):
+func put_card_in_tower_base(tower_base: TowerBase) -> void:
 	if tower_base.has_card:
 		tower_base.remove_card()
 	else:
-		var card = inventory.remove_at(hero.inventory_selected_index)
+		var card: Card = inventory.remove_at(hero.inventory_selected_index)
 		if !inventory.contents.has(card):
 			hero.decrement_selected()
 		tower_base.add_card(card, multiplayer.get_unique_id())
 
 
-func set_progress_percent(value: float):
+func set_progress_percent(value: float) -> void:
 	progress_bar.value = progress_bar.max_value * value

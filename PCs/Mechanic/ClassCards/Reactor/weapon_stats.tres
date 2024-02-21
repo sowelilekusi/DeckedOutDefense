@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://ipfr7emuarbj"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_b6ubt"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="2_ahbcx"]
+
+[sub_resource type="Resource" id="Resource_j28f4"]
+script = ExtResource("1_b6ubt")
+key = "Fire Delay"
+value = 0.5
+
+[sub_resource type="Resource" id="Resource_likes"]
+script = ExtResource("1_b6ubt")
+key = "Damage"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_b65mk"]
+script = ExtResource("1_b6ubt")
+key = "Range"
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_b4805"]
+script = ExtResource("1_b6ubt")
+key = "Energy"
+value = 11.0
+
+[resource]
+script = ExtResource("2_ahbcx")
+target_type = 0
+attributes = Array[ExtResource("1_b6ubt")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk"), SubResource("Resource_b4805")])
+text = "Hold to apply Radioactive to enemies in front of you"

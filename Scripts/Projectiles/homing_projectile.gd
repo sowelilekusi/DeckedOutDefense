@@ -1,9 +1,8 @@
-extends ExplosiveProjectile
-class_name HomingProjectile
+class_name HomingProjectile extends ExplosiveProjectile
 
-var target : Node3D
-var acceleration := 50.0
-var max_speed := 13.0
+var target: Node3D
+var acceleration: float = 50.0
+var max_speed: float = 13.0
 
 
 func _physics_process(_delta: float) -> void:

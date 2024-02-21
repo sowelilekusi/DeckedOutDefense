@@ -1,64 +1,67 @@
 extends VBoxContainer
 class_name KeybindsOptionsMenu
 
-var keybind_popup = load("res://Scenes/UI/keybind_popup.tscn")
-var keybind_boxes = []
-var keybind_buttons = {}
-var key_event
-var selected_button
-var selected_button_button
-var listening_for_key := false
+var keybind_entry_scene: PackedScene = load("res://Scenes/UI/keybind_entry.tscn")
+var keybind_popup: PackedScene = load("res://Scenes/UI/keybind_popup.tscn")
+var keybind_boxes: Array[KeybindEntry] = []
+var key_event: InputEvent
+var selected_entry: KeybindEntry
+var listening_for_key: bool = false
 
 
 func _ready() -> void:
-	for index in Data.keymaps.size():
-		var map = Data.keymaps[index]
-		var button = Button.new()
+	for index: int in Data.keymaps.size():
+		var map: PlayerKeymap = Data.keymaps[index]
+		var button: Button = Button.new()
 		button.text = map.title
 		button.pressed.connect(set_keymap.bind(index))
 		$HBoxContainer.add_child(button)
 	load_keybind_labels()
 
 
-func set_keymap(keymap_index):
+func set_keymap(keymap_index: int) -> void:
 	Data.player_keymap = Data.keymaps[keymap_index]
 	Data.player_keymap.apply()
 	load_keybind_labels()
 
 
-func load_keybind_labels():
-	for box in keybind_boxes:
+func load_keybind_labels() -> void:
+	for box: KeybindEntry in keybind_boxes:
 		box.queue_free()
 	keybind_boxes.clear()
-	for action in InputMap.get_actions():
+	for action: StringName in InputMap.get_actions():
 		if !action.begins_with("ui_"):
-			var box = HBoxContainer.new()
-			var alabel = Label.new()
-			var elabel = Button.new()
-			alabel.text = action
+			var entry: KeybindEntry = keybind_entry_scene.instantiate() as KeybindEntry
+			entry.set_action_name(action)
 			if InputMap.action_get_events(action).size() > 0:
-				elabel.text = InputMap.action_get_events(action)[0].as_text()
-			elabel.size_flags_horizontal += Control.SIZE_EXPAND
-			alabel.size_flags_horizontal += Control.SIZE_EXPAND
-			alabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			alabel.size_flags_stretch_ratio = 2.0
-			#elabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-			box.add_child(alabel)
-			box.add_child(elabel)
-			elabel.pressed.connect(_on_keybind_button_pressed.bind(elabel))
-			keybind_buttons[elabel] = action
-			$ScrollContainer/VBoxContainer.add_child(box)
-			keybind_boxes.append(box)
+				entry.set_primary_bind(InputMap.action_get_events(action)[0])
+			if InputMap.action_get_events(action).size() > 1:
+				entry.set_secondary_bind(InputMap.action_get_events(action)[1])
+			keybind_boxes.append(entry)
+			entry.primary_bind_pressed.connect(_on_primary_keybind_button_pressed.bind(entry))
+			entry.secondary_bind_pressed.connect(_on_secondary_keybind_button_pressed.bind(entry))
+			$ScrollContainer/VBoxContainer.add_child(entry)
 
 
-func _on_keybind_button_pressed(value: Button) -> void:
-	selected_button = keybind_buttons[value]
-	selected_button_button = value
-	var popup = keybind_popup.instantiate()
-	popup.event_detected.connect(change_key)
+func _on_primary_keybind_button_pressed(keybind_entry: KeybindEntry) -> void:
+	selected_entry = keybind_entry
+	var popup: Control = keybind_popup.instantiate()
+	popup.event_detected.connect(change_primary_key)
 	Game.UILayer.add_child(popup)
 
 
-func change_key(event: InputEvent):
-	Data.player_keymap.replace_action_event(selected_button, event)
-	selected_button_button.text = event.as_text()
+func _on_secondary_keybind_button_pressed(keybind_entry: KeybindEntry) -> void:
+	selected_entry = keybind_entry
+	var popup: Control = keybind_popup.instantiate()
+	popup.event_detected.connect(change_secondary_key)
+	Game.UILayer.add_child(popup)
+
+
+func change_primary_key(event: InputEvent) -> void:
+	Data.player_keymap.set_primary_action_event(selected_entry.action_string, event)
+	selected_entry.set_primary_bind(event)
+
+
+func change_secondary_key(event: InputEvent) -> void:
+	Data.player_keymap.set_secondary_action_event(selected_entry.action_string, event)
+	selected_entry.set_secondary_bind(event)

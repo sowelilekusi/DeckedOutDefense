@@ -1,17 +1,16 @@
-extends Node3D
-class_name StatusEffector
+class_name StatusEffector extends Node3D
 
-@export var hbox : HBoxContainer
-@export var enemy : EnemyController
+@export var hbox: HBoxContainer
+@export var enemy: EnemyController
 
-var icon_scene = preload("res://Scenes/status_icon.tscn")
-var immune : Array[StatusEffect] = []
-var effects = {}
-var icons = {}
+var icon_scene: PackedScene = preload("res://Scenes/status_icon.tscn")
+var immune: Array[StatusEffect] = []
+var effects: Dictionary = {}
+var icons: Dictionary = {}
 
 
 func _process(delta: float) -> void:
-	for effect in effects:
+	for effect: StatusEffect in effects:
 		if effects[effect] == 0:
 			continue
 		effect.time_since_proc += delta
@@ -27,25 +26,25 @@ func _process(delta: float) -> void:
 			effect.time_since_proc -= effect.stats.proc_cd
 
 
-func force_proc(effect_to_proc : StatusEffect):
-	for effect in effects:
+func force_proc(effect_to_proc: StatusEffect) -> void:
+	for effect: StatusEffect in effects:
 		if effect.stats == effect_to_proc.stats:
 			effect.proc(enemy, effects[effect], effects)
 
 
-func add_effect(new_effect : StatusEffect):
-	for effect in immune:
+func add_effect(new_effect: StatusEffect) -> void:
+	for effect: StatusEffect in immune:
 		if effect.stats == new_effect.stats:
 			return
 			
-	var existing_effect
-	for effect in effects:
+	var existing_effect: StatusEffect
+	for effect: StatusEffect in effects:
 		if effect.stats == new_effect.stats:
 			existing_effect = effect
 	if !existing_effect:
 		existing_effect = new_effect
 		effects[new_effect] = 0
-		var icon = icon_scene.instantiate()
+		var icon: TextureRect = icon_scene.instantiate()
 		icon.texture = new_effect.stats.icon
 		icon.set_visible(false)
 		icons[new_effect] = icon

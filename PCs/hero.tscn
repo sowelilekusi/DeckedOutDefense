@@ -1,7 +1,7 @@
 [gd_scene load_steps=40 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
-[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Red/red.tres" id="2_dbyo0"]
+[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Mechanic/red.tres" id="2_dbyo0"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
 [ext_resource type="Texture2D" uid="uid://dkbkam81k355s" path="res://Assets/TextureAtlases/gauntlet.tres" id="3_5myy0"]
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/pause_menu.tscn" id="3_avnsx"]
@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="6_cf5ap"]
-[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Red/red.png" id="6_yyp8i"]
+[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Mechanic/red.png" id="6_yyp8i"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="8_yl6ka"]
-[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://PCs/Red/red_hand.png" id="9_gxh2h"]
+[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://PCs/Mechanic/red_hand.png" id="9_gxh2h"]
 [ext_resource type="Script" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
 [ext_resource type="Script" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
@@ -26,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="24_gg2dy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
+radius = 0.3
+height = 1.8
 
 [sub_resource type="Environment" id="Environment_ekmug"]
 
@@ -110,7 +112,7 @@ hero_class = ExtResource("2_dbyo0")
 camera = NodePath("ViewMovement/Head")
 gun_camera = NodePath("FirstPersonViewport/Head2")
 left_hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/Sprite3D")
-card_sprites = [NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D3"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Node2D2")]
+card_sprites = [NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card1"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card2"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card3"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card4"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card5"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card6"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card7"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card8"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card9"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Card10")]
 left_hand = NodePath("FirstPersonViewport/Head2/LeftHand")
 right_hand = NodePath("FirstPersonViewport/Head2/RightHand")
 right_hand_animator = NodePath("FirstPersonViewport/Head2/RightHand/AnimationPlayer")
@@ -125,6 +127,7 @@ gauntlet_card_2 = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3/Node
 pause_menu_scene = ExtResource("3_avnsx")
 hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
+sprint_zoom_speed = null
 player_name_tag = NodePath("NametagViewport/Label")
 weapon_swap_timer = NodePath("WeaponSwapTimer")
 ears = NodePath("AudioListener3D")
@@ -133,15 +136,15 @@ ears = NodePath("AudioListener3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_jbu13")
 
-[node name="ViewMovement" type="Node3D" parent="." node_paths=PackedStringArray("player", "head_bob_camera", "head_bob_focus_raycast")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="ViewMovement" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera", "focus_raycast")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 script = ExtResource("4_mhexa")
 player = NodePath("..")
-head_bob_camera = NodePath("Head")
-head_bob_focus_raycast = NodePath("RayCast3D")
+camera = NodePath("Head")
+focus_raycast = NodePath("Head/RayCast3D")
 
 [node name="Head" type="Camera3D" parent="ViewMovement"]
 keep_aspect = 0
@@ -166,7 +169,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Head2" type="Camera3D" parent="FirstPersonViewport" node_paths=PackedStringArray("clone_camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 cull_mask = 2
 environment = SubResource("Environment_ekmug")
 projection = 1
@@ -191,21 +194,52 @@ transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -
 
 [node name="SubViewport" type="SubViewport" parent="FirstPersonViewport/Head2/LeftHand"]
 transparent_bg = true
-size = Vector2i(512, 1024)
+size = Vector2i(1024, 512)
 render_target_update_mode = 4
 
-[node name="Node2D2" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
-position = Vector2(0, 48)
+[node name="Card10" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(544, 0)
 
-[node name="Node2D3" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
-position = Vector2(0, 152)
+[node name="Card9" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(512, 0)
 
-[node name="Node2D" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
-position = Vector2(0, 256)
+[node name="Card8" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(480, 0)
+
+[node name="Card7" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(448, 0)
+
+[node name="Card6" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(416, 0)
+
+[node name="Card5" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(384, 0)
+
+[node name="Card4" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(352, 0)
+
+[node name="Card3" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(320, 0)
+
+[node name="Card2" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(288, 0)
+
+[node name="Card1" parent="FirstPersonViewport/Head2/LeftHand/SubViewport" instance=ExtResource("4_mwtvp")]
+visible = false
+position = Vector2(256, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="FirstPersonViewport/Head2/LeftHand/SubViewport"]
 texture_filter = 1
-position = Vector2(256, 512)
+position = Vector2(512, 256)
 scale = Vector2(8, 8)
 texture = ExtResource("9_gxh2h")
 

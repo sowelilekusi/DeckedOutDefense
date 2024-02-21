@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://cssdyxk8oefsd"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_peekg"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="2_8w61k"]
+
+[sub_resource type="Resource" id="Resource_j28f4"]
+script = ExtResource("1_peekg")
+key = "Fire Delay"
+value = 2.5
+
+[sub_resource type="Resource" id="Resource_likes"]
+script = ExtResource("1_peekg")
+key = "Damage"
+value = 0.0
+
+[sub_resource type="Resource" id="Resource_b65mk"]
+script = ExtResource("1_peekg")
+key = "Range"
+value = 20.0
+
+[resource]
+script = ExtResource("2_8w61k")
+target_type = 1
+attributes = Array[ExtResource("1_peekg")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
+text = "Slowly applies Radioactive to enemies around itself at a range of /Range\\m"

@@ -1,7 +1,6 @@
-extends Resource
-class_name SaveStats
+class_name SaveStats extends Resource
 
-const SAVE_PATH := "user://save_stats.tres"
+const SAVE_PATH: String = "user://save_stats.tres"
 
 @export var wins: int
 @export var losses: int
@@ -18,7 +17,7 @@ func add_game_outcome(outcome: bool) -> void:
 		twenty_game_history.pop_front()
 
 
-func save_profile_to_disk():
+func save_profile_to_disk() -> void:
 	ResourceSaver.save(self, SAVE_PATH)
 static func load_profile_from_disk() -> SaveStats:
 	if ResourceLoader.exists(SAVE_PATH):

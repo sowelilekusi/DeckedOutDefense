@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/AStarGraph3D.gd" id="11_07ukk"]
 [ext_resource type="Script" path="res://Scripts/visualized_path.gd" id="11_d7ofl"]
 [ext_resource type="PackedScene" uid="uid://ds4sa5xyfgyo0" path="res://obstacle3.tscn" id="11_dfexu"]
-[ext_resource type="AudioStream" uid="uid://chrf1dcq2ujw0" path="res://PCs/Universal/ClassCards/Assault/shot1.wav" id="11_l537x"]
+[ext_resource type="AudioStream" uid="uid://chrf1dcq2ujw0" path="res://PCs/Mechanic/ClassCards/Assault/shot1.wav" id="11_l537x"]
 [ext_resource type="PackedScene" uid="uid://sud13mytdwhv" path="res://obstacle4.tscn" id="12_mctwo"]
 [ext_resource type="MeshLibrary" uid="uid://jfr8j8kycfa5" path="res://Worlds/GreenPlanet/tilemap.tres" id="12_ywwug"]
 [ext_resource type="Texture2D" uid="uid://4gff4l03ibpm" path="res://Assets/Textures/scaffold.png" id="15_61y1c"]

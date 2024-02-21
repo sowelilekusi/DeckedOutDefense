@@ -1,21 +1,20 @@
-extends VBoxContainer
-class_name GraphicsOptionsMenu
+class_name GraphicsOptionsMenu extends VBoxContainer
 
-@export var fov_input : SpinBox
-@export var fov_slider : HSlider
-@export var vsync_dropdown : OptionButton
-@export var aa_dropdown : OptionButton
-@export var window_dropdown : OptionButton
+@export var fov_input: SpinBox
+@export var fov_slider: HSlider
+@export var vsync_dropdown: OptionButton
+@export var aa_dropdown: OptionButton
+@export var window_dropdown: OptionButton
 
 
-func _ready():
+func _ready() -> void:
 	fov_input.value = Data.graphics.hfov
 	fov_slider.value = Data.graphics.hfov
 	vsync_dropdown.selected = Data.graphics.vsync_mode
 	aa_dropdown.selected = Data.graphics.aa_mode
 
 
-func save():
+func save() -> void:
 	Data.graphics.hfov = fov_slider.value
 	Data.graphics.vsync_mode = vsync_dropdown.selected
 	Data.graphics.aa_mode = aa_dropdown.selected

@@ -1,15 +1,14 @@
-extends RigidBody3D
-class_name Projectile
+class_name Projectile extends RigidBody3D
 
-@export var collision_shape : CollisionShape3D
+@export var collision_shape: CollisionShape3D
 
-var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
-var owner_id = 0 #should be left unchanged by towers, 1 for host, peer_id on peers
-var direction := Vector3.FORWARD
-var force := 2.0
-var damage := 0.0
-var lifetime := 10.0
-var time_alive := 0.0
+var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
+var owner_id: int = 0 #should be left unchanged by towers, 1 for host, peer_id on peers
+var direction: Vector3= Vector3.FORWARD
+var force: float = 2.0
+var damage: float = 0.0
+var lifetime: float = 10.0
+var time_alive: float = 0.0
 
 
 func _ready() -> void:
@@ -20,9 +19,9 @@ func _process(delta: float) -> void:
 	time_alive += delta
 
 
-func spawn_damage_indicator(pos):
+func spawn_damage_indicator(pos: Vector3) -> void:
 	if damage > 0:
-		var marker = damage_particle_scene.instantiate()
+		var marker: Node3D = damage_particle_scene.instantiate()
 		get_tree().root.add_child(marker)
 		marker.set_number(damage)
 		marker.position = pos
@@ -33,5 +32,5 @@ func _on_body_entered(_body: Node) -> void:
 
 
 @rpc("reliable")
-func networked_kill():
+func networked_kill() -> void:
 	queue_free()

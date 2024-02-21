@@ -1,15 +1,14 @@
-extends Node3D
-class_name CinematicCamManager
+class_name CinematicCamManager extends Node3D
 
-@export var path_follows : Array[PathFollow3D]
-@export var cameras : Array[Camera3D]
-@export var pan_speed := 1.0
-var current_cam := 0
-var does_its_thing := true
+@export var path_follows: Array[PathFollow3D]
+@export var cameras: Array[Camera3D]
+@export var pan_speed: float = 1.0
+var current_cam: int = 0
+var does_its_thing: bool = true
 
 
 func _ready() -> void:
-	for path_follow in path_follows:
+	for path_follow: PathFollow3D in path_follows:
 		path_follow.progress_ratio = 0.0
 	if does_its_thing:
 		cameras[0].make_current()

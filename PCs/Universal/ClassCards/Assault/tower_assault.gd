@@ -1,2 +1,0 @@
-extends HitscanTower
-class_name AssaultTower

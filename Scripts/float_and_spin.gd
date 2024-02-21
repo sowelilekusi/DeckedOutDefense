@@ -1,16 +1,17 @@
-extends RayCast3D
+class_name FloatAndSpin extends RayCast3D
 
-@export_range(0.0, 3.0) var float_height := 1.5
-@export_range(0.0, 2.0) var bounce_dist := 0.5
-@export_range(0.0, 2.0) var bounce_speed := 0.4
-@export_range(0.0, 4.0) var spin_speed := 0.5
+@export_range(0.0, 3.0) var float_height: float = 1.5
+@export_range(0.0, 2.0) var bounce_dist: float = 0.5
+@export_range(0.0, 2.0) var bounce_speed: float = 0.4
+@export_range(0.0, 4.0) var spin_speed: float = 0.5
 @export var curve: Curve
 
-var start_height                     = 0.0
-var dest_height                      = 0.0
-var t                                = 0.0
+var start_height: float = 0.0
+var dest_height: float = 0.0
+var t: float = 0.0
 
-func _ready():
+
+func _ready() -> void:
 	start_height = position.y
 	
 	#raycast downwards and position the item at a set height above the ground that the raycast
@@ -27,7 +28,8 @@ func _ready():
 		start_height = get_collision_point().y + (1 * float_height) - (bounce_dist / 2.0)
 	dest_height  = start_height + (bounce_dist / 2.0)
 
-func _process(delta):
+
+func _process(delta: float) -> void:
 	t += bounce_speed * delta
 	position.y = start_height + (dest_height - start_height) * curve.sample(t)
 	if t >= 1.0:

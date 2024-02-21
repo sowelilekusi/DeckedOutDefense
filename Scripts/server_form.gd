@@ -1,5 +1,4 @@
-extends PanelContainer
-class_name ServerForm
+class_name ServerForm extends PanelContainer
 
 signal connect_button_pressed
 signal host_button_pressed

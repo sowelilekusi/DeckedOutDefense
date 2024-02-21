@@ -1,10 +1,9 @@
-extends StatusEffect
-class_name StatusSlow
+class_name StatusSlow extends StatusEffect
 
 
-func on_attached(affected, _existing_effects):
+func on_attached(affected: EnemyController, _existing_effects: Dictionary) -> void:
 	affected.movement_speed_penalty -= stats.potency
 
 
-func on_removed(affected, _existing_effects):
+func on_removed(affected: EnemyController, _existing_effects: Dictionary) -> void:
 	affected.movement_speed_penalty += stats.potency

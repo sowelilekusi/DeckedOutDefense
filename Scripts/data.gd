@@ -9,14 +9,15 @@ var audio: PlayerAudioSettings
 var preferences: PlayerPreferences
 var player_profile: PlayerProfile
 var player_keymap: PlayerKeymap
+var player_controller_keymap: PlayerKeymap = preload("res://Resources/Keymaps/controller.tres")
 var save_stats: SaveStats
 
-var wall_cost := 1
-var printer_cost := 15
+var wall_cost: int = 1
+var printer_cost: int = 15
 enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
-var rarity_weights = {
+var rarity_weights: Dictionary = {
 	"COMMON" = 50,
 	"UNCOMMON" = 30,
 	"RARE" = 10,
@@ -33,32 +34,33 @@ func _ready() -> void:
 	preferences = PlayerPreferences.load_profile_from_disk()
 	player_keymap = PlayerKeymap.load_profile_from_disk()
 	player_keymap.apply()
+	player_controller_keymap.append_input_map()
 	save_stats = SaveStats.load_profile_from_disk()
 	
-	characters.append(preload("res://PCs/Red/red.tres"))
+	characters.append(preload("res://PCs/Mechanic/red.tres"))
 	#characters.append(preload("res://PCs/Green/green.tres"))
-	characters.append(preload("res://PCs/Blue/blue.tres"))
+	characters.append(preload("res://PCs/Mage/blue.tres"))
 	
 	#Common
-	cards.append(preload("res://PCs/Universal/ClassCards/Assault/card_assault.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/BombLauncher/card_bomb_launcher.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/Gatling/card_gatling.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/Assault/card_assault.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/BombLauncher/card_bomb_launcher.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/Gatling/card_gatling.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/RocketLauncher/card_rocket_launcher.tres"))
 	#Uncommon
-	cards.append(preload("res://PCs/Universal/ClassCards/Sniper/card_sniper.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/Blowdart/card_blowdart.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/Refrigerator/card_refrigerator.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/GlueLauncher/card_glue_launcher.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/Sniper/card_sniper.tres"))
+	cards.append(preload("res://PCs/Entomologist/ClassCards/Blowdart/card_blowdart.tres"))
+	cards.append(preload("res://PCs/Mage/ClassCards/Refrigerator/card_refrigerator.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/GlueLauncher/card_glue_launcher.tres"))
 	#Rare
-	cards.append(preload("res://PCs/Universal/ClassCards/Flamethrower/card_flamethrower.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/Flamethrower/card_flamethrower.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/DamageEnhancer/card_damage_enhancer.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/SpeedEnhancer/card_speed_enhancer.tres"))
 	#Epic
-	cards.append(preload("res://PCs/Universal/ClassCards/Icicle/card_icicle.tres"))
-	cards.append(preload("res://PCs/Universal/ClassCards/Fireball/card_fireball.tres"))
+	cards.append(preload("res://PCs/Mage/ClassCards/Icicle/card_icicle.tres"))
+	cards.append(preload("res://PCs/Mage/ClassCards/Fireball/card_fireball.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/GammaLaser/card_gamma_laser.tres"))
 	#Legendary
-	cards.append(preload("res://PCs/Universal/ClassCards/Reactor/card_reactor.tres"))
+	cards.append(preload("res://PCs/Mechanic/ClassCards/Reactor/card_reactor.tres"))
 	#cards.append(preload("res://PCs/Universal/ClassCards/Lightning/card_lightning.tres"))
 	
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/dog.tres"))

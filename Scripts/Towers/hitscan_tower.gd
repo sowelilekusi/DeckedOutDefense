@@ -1,8 +1,7 @@
-extends Tower
-class_name HitscanTower
+class_name HitscanTower extends Tower
 
 
-func shoot():
+func shoot() -> void:
 	super.shoot()
 	if targeted_enemy and is_instance_valid(targeted_enemy) and targeted_enemy.alive:
 		targeted_enemy.damage(damage)
@@ -11,5 +10,5 @@ func shoot():
 
 
 @rpc("reliable")
-func networked_shoot():
+func networked_shoot() -> void:
 	super.networked_shoot()

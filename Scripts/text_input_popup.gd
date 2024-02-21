@@ -1,9 +1,9 @@
-extends PanelContainer
-class_name TextInputPopup
+class_name TextInputPopup extends PanelContainer
 
-signal completed(outcome)
+signal completed(outcome: bool)
 
-func set_popup(prompt_text, placeholder_text, confirm_text):
+
+func set_popup(prompt_text: String, placeholder_text: String, confirm_text: String) -> void:
 	$VBoxContainer/LineEdit.text = prompt_text
 	$VBoxContainer/LineEdit.placeholder_text = placeholder_text
 	$VBoxContainer/Button.text = confirm_text

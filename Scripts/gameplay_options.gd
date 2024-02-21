@@ -1,16 +1,15 @@
-extends VBoxContainer
-class_name GameplayOptionsMenu
+class_name GameplayOptionsMenu extends VBoxContainer
 
-@export var look_sens_slider : HSlider
-@export var look_sens_input : SpinBox
-@export var toggle_sprint_checkbox : CheckButton
-@export var invert_lookY : CheckButton
-@export var invert_lookX : CheckButton
-@export var fixed_minimap : CheckButton
-@export var tower_damage : Button
-@export var self_damage : Button
-@export var party_damage : Button
-@export var status_damage : Button
+@export var look_sens_slider: HSlider
+@export var look_sens_input: SpinBox
+@export var toggle_sprint_checkbox: CheckButton
+@export var invert_lookY: CheckButton
+@export var invert_lookX: CheckButton
+@export var fixed_minimap: CheckButton
+@export var tower_damage: Button
+@export var self_damage: Button
+@export var party_damage: Button
+@export var status_damage: Button
 
 
 func _ready() -> void:

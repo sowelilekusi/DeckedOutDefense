@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerKeymap" load_steps=14 format=3 uid="uid://qgpkrp08tx5l"]
+[gd_resource type="Resource" script_class="PlayerKeymap" load_steps=18 format=3 uid="uid://qgpkrp08tx5l"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/player_keymap.gd" id="1_e3tjt"]
 
@@ -6,6 +6,12 @@
 device = -1
 keycode = 39
 unicode = 39
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_gd1dk"]
+button_index = 1
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_eqrpb"]
+button_index = 2
 
 [sub_resource type="InputEventKey" id="InputEventKey_x2isa"]
 device = -1
@@ -50,6 +56,12 @@ device = -1
 keycode = 85
 unicode = 117
 
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_tu87m"]
+button_index = 5
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_3ufg1"]
+button_index = 4
+
 [sub_resource type="InputEventKey" id="InputEventKey_3m66q"]
 device = -1
 keycode = 4194325
@@ -73,3 +85,7 @@ ready = SubResource("InputEventKey_drnpm")
 pause = SubResource("InputEventKey_itl5r")
 equip_card_in_gauntlet = SubResource("InputEventKey_62tdh")
 view_map = SubResource("InputEventKey_docp6")
+fire1 = SubResource("InputEventMouseButton_gd1dk")
+fire2 = SubResource("InputEventMouseButton_eqrpb")
+select_next_card = SubResource("InputEventMouseButton_tu87m")
+select_prev_card = SubResource("InputEventMouseButton_3ufg1")

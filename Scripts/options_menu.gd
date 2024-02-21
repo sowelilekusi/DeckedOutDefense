@@ -1,9 +1,8 @@
-extends Control
-class_name OptionsMenu
+class_name OptionsMenu extends Control
 
-@export var gameplay : GameplayOptionsMenu
-@export var graphics : GraphicsOptionsMenu
-@export var keybinds : KeybindsOptionsMenu
+@export var gameplay: GameplayOptionsMenu
+@export var graphics: GraphicsOptionsMenu
+@export var keybinds: KeybindsOptionsMenu
 
 
 func _on_cancel_pressed() -> void:
@@ -19,4 +18,5 @@ func _on_confirm_pressed() -> void:
 	Data.audio.save_profile_to_disk()
 	Data.preferences.save_profile_to_disk()
 	Data.player_keymap.save_profile_to_disk()
+	Data.player_controller_keymap.append_input_map()
 	queue_free()

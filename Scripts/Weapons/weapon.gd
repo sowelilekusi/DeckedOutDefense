@@ -1,27 +1,26 @@
-extends Node3D
-class_name Weapon
+class_name Weapon extends Node3D
 
-signal energy_changed(energy)
+signal energy_changed(energy: int)
 
-@export var stats : CardText
-@export var animator : AnimationPlayer
-@export var audio_player : AudioStreamPlayer3D
-@export var recharge_timer : Timer
+@export var stats: CardText
+@export var animator: AnimationPlayer
+@export var audio_player: AudioStreamPlayer3D
+@export var recharge_timer: Timer
 
-var damage_particle_scene = preload("res://Scenes/damage_particle.tscn")
-var hero : Hero
-var trigger_held := false
-var second_trigger_held := false
-var time_since_firing := 0.0
-var time_between_shots := 0.0
-var damage := 0.0
-var max_energy := 100.0
-var current_energy := 100.0
-var energy_cost := 1.0
-var recharging := false
-var recharge_speed := 0.0
-var recharge_acceleration = 2.0
-var recharge_max_speed = 25.0
+var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
+var hero: Hero
+var trigger_held: bool = false
+var second_trigger_held: bool = false
+var time_since_firing: float = 0.0
+var time_between_shots: float = 0.0
+var damage: float = 0.0
+var max_energy: float = 100.0
+var current_energy: float = 100.0
+var energy_cost: float = 1.0
+var recharging: bool = false
+var recharge_speed: float = 0.0
+var recharge_acceleration: float = 2.0
+var recharge_max_speed: float = 25.0
 
 
 func _ready() -> void:
@@ -30,7 +29,7 @@ func _ready() -> void:
 	energy_cost = stats.get_attribute("Energy")
 
 
-func set_hero(value):
+func set_hero(value: Hero) -> void:
 	hero = value
 
 
@@ -56,33 +55,33 @@ func _physics_process(_delta: float) -> void:
 		networked_shoot.rpc()
 
 
-func hold_trigger():
+func hold_trigger() -> void:
 	trigger_held = true
 
 
-func release_trigger():
+func release_trigger() -> void:
 	if trigger_held:
 		recharge_timer.start()
 	trigger_held = false
 
 
-func hold_second_trigger():
+func hold_second_trigger() -> void:
 	second_trigger_held = true
 
 
-func release_second_trigger():
+func release_second_trigger() -> void:
 	second_trigger_held = false
 
 
-func spawn_damage_indicator(pos):
+func spawn_damage_indicator(pos: Vector3) -> void:
 	if damage > 0:
-		var marker = damage_particle_scene.instantiate()
+		var marker: Node3D = damage_particle_scene.instantiate()
 		get_tree().root.add_child(marker)
 		marker.set_number(damage)
 		marker.position = pos
 
 
-func shoot():
+func shoot() -> void:
 	animator.play("shoot")
 	audio_player.play()
 	recharging = false
@@ -91,7 +90,7 @@ func shoot():
 
 
 @rpc
-func networked_shoot():
+func networked_shoot() -> void:
 	animator.play("shoot")
 	audio_player.play()
 

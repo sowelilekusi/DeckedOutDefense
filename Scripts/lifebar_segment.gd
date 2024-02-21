@@ -1,10 +1,10 @@
 extends Control
 class_name LivesBarSegment
 
-var lives_left := 6
+var lives_left: int = 6
 
-func take_life(value : int):
-	for x in value:
+func take_life(value: int) -> void:
+	for x: int in value:
 		lives_left -= 1
 		if lives_left == 5:
 			$AnimationPlayer.play("lose1")

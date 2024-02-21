@@ -1,2 +1,0 @@
-extends HomingProjectile
-class_name RocketProjectile

@@ -1,15 +1,14 @@
-extends Resource
-class_name PlayerGraphicsSettings
+class_name PlayerGraphicsSettings extends Resource
 
-const SAVE_PATH := "user://graphics_settings.tres"
+const SAVE_PATH: String = "user://graphics_settings.tres"
 
-@export var hfov := 100.0
-@export var vsync_mode := 1
-@export var aa_mode := 0
-@export var windowed_mode := 0
+@export var hfov: float = 100.0
+@export var vsync_mode: int = 1
+@export var aa_mode: int = 0
+@export var windowed_mode: int = 0
 
 
-func apply_graphical_settings(viewport):
+func apply_graphical_settings(viewport: Viewport) -> void:
 	DisplayServer.window_set_vsync_mode(vsync_mode)
 	match aa_mode:
 		0:
@@ -30,7 +29,7 @@ func apply_graphical_settings(viewport):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 
-func save_profile_to_disk():
+func save_profile_to_disk() -> void:
 	ResourceSaver.save(self, SAVE_PATH)
 static func load_profile_from_disk() -> PlayerGraphicsSettings:
 	if ResourceLoader.exists(SAVE_PATH):

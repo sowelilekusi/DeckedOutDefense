@@ -1,26 +1,25 @@
-extends Tower
-class_name ProjectileTower
+class_name ProjectileTower extends Tower
 
-@export var projectile_scene : PackedScene
+@export var projectile_scene: PackedScene
 
-var force := 150.0
-var projectile_id := 0
+var force: float = 150.0
+var projectile_id: int = 0
 
 
-func shoot():
+func shoot() -> void:
 	if is_multiplayer_authority():
 		networked_spawn_projectile.rpc(multiplayer.get_unique_id())
 
 
 @rpc("reliable")
-func networked_shoot():
+func networked_shoot() -> void:
 	super.networked_shoot()
 	shoot()
 
 
 @rpc("reliable", "call_local")
-func networked_spawn_projectile(peer_id):
-	var projectile = projectile_scene.instantiate() as Projectile
+func networked_spawn_projectile(peer_id: int) -> Projectile:
+	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = yaw_model.global_position
 	projectile.damage = damage
 	projectile.direction = -yaw_model.global_transform.basis.z

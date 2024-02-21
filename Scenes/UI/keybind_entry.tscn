@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckuu2y4kymshy"]
+
+[ext_resource type="Script" path="res://KeybindEntry.gd" id="1_it8q2"]
+
+[node name="KeybindEntry" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_it8q2")
+
+[node name="ActionName" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Action Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrimaryBind" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon_alignment = 1
+expand_icon = true
+
+[node name="SecondaryBind" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Buttons/PrimaryBind" to="." method="_on_primary_bind_pressed"]
+[connection signal="pressed" from="Buttons/SecondaryBind" to="." method="_on_secondary_bind_pressed"]

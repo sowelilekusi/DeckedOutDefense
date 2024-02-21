@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnwjfb4fexr0o"]
+
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_7k6fb"]
+[ext_resource type="Script" path="res://PCs/Mage/ClassCards/Fireball/weapon_fireball.gd" id="2_nprco"]
+[ext_resource type="PackedScene" uid="uid://ddpixntjsbpqp" path="res://PCs/Mage/ClassCards/Fireball/fireball_projectile.tscn" id="3_2j1mm"]
+[ext_resource type="Resource" uid="uid://dhwhwicgpw7yh" path="res://PCs/Mage/ClassCards/Fireball/weapon_stats.tres" id="4_rqdnu"]
+[ext_resource type="Texture2D" uid="uid://mwgpnnm3g3re" path="res://PCs/Mage/ClassCards/Fireball/fireball.png" id="5_r42ic"]
+[ext_resource type="AudioStream" uid="uid://cxiluyamsxson" path="res://PCs/Mage/ClassCards/Fireball/shot1.wav" id="6_o5rjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfmm6"]
+atlas = ExtResource("5_r42ic")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6xq8y"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_o5rjg")
+stream_0/weight = 1.0
+
+[node name="FireballWeapon" instance=ExtResource("1_7k6fb")]
+script = ExtResource("2_nprco")
+projectile_scene = ExtResource("3_2j1mm")
+stats = ExtResource("4_rqdnu")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_hfmm6")
+
+[node name="AudioStreamPlayer3D" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_6xq8y")

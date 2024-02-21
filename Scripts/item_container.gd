@@ -1,1 +1,1 @@
-extends StaticBody3D
+class_name ItemContainer extends StaticBody3D

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://ckjmym1ofww4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_nkpmf"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="2_5m6w7"]
+
+[sub_resource type="Resource" id="Resource_68ba3"]
+script = ExtResource("1_nkpmf")
+key = "Fire Delay"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_gogvm"]
+script = ExtResource("1_nkpmf")
+key = "Damage"
+value = 5.0
+
+[sub_resource type="Resource" id="Resource_pswb4"]
+script = ExtResource("1_nkpmf")
+key = "Range"
+value = 15.0
+
+[sub_resource type="Resource" id="Resource_cfu7u"]
+script = ExtResource("1_nkpmf")
+key = "Energy"
+value = 20.0
+
+[resource]
+script = ExtResource("2_5m6w7")
+target_type = 0
+attributes = Array[ExtResource("1_nkpmf")]([SubResource("Resource_68ba3"), SubResource("Resource_gogvm"), SubResource("Resource_pswb4"), SubResource("Resource_cfu7u")])
+text = "Conjure an icicle every /Fire Delay\\s that can be thrown to deal /Damage\\ and apply Cold to enemies caught in its blast"

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://boj1ho5x0sxtq"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/stat_attribute.gd" id="1_8ysxs"]
+[ext_resource type="Script" path="res://Scripts/Resources/card_text.gd" id="2_nlx26"]
+
+[sub_resource type="Resource" id="Resource_gbocu"]
+script = ExtResource("1_8ysxs")
+key = "Damage"
+value = 0.0
+
+[sub_resource type="Resource" id="Resource_6a2im"]
+script = ExtResource("1_8ysxs")
+key = "Range"
+value = 13.0
+
+[sub_resource type="Resource" id="Resource_7npe0"]
+script = ExtResource("1_8ysxs")
+key = "Fire Delay"
+value = 0.5
+
+[sub_resource type="Resource" id="Resource_o1b5x"]
+script = ExtResource("1_8ysxs")
+key = "Energy"
+value = 8.0
+
+[resource]
+script = ExtResource("2_nlx26")
+target_type = 0
+attributes = Array[ExtResource("1_8ysxs")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0"), SubResource("Resource_o1b5x")])
+text = "Fires every /Fire Delay\\s, making the target Sticky at a range of /Range\\m"

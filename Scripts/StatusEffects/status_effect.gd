@@ -1,19 +1,18 @@
-extends RefCounted
-class_name StatusEffect
+class_name StatusEffect extends RefCounted
 
-var stats : StatusStats
+var stats: StatusStats
 
-var time_since_proc := 0.0
-var time_existed := 0.0
+var time_since_proc: float = 0.0
+var time_existed: float = 0.0
 
 
-func on_attached(_affected, _existing_effects):
+func on_attached(_affected: EnemyController, _existing_effects: Dictionary) -> void:
 	pass
 
 
-func on_removed(_affected, _existing_effects):
+func on_removed(_affected: EnemyController, _existing_effects: Dictionary) -> void:
 	pass
 
 
-func proc(_affected, _stacks, _existing_effects):
+func proc(_affected: EnemyController, _stacks: int, _existing_effects: Dictionary) -> void:
 	pass

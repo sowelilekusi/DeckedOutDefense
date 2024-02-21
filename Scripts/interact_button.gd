@@ -1,11 +1,11 @@
-extends StaticBody3D
-class_name InteractButton
+class_name InteractButton extends StaticBody3D
 
-signal button_interacted(value)
+signal button_interacted(value: int)
 
-@export var button_press_value := 0
-@export var press_cost := 0
-@export var hover_text := "Press [Interact]"
+@export var button_press_value: int = 0
+@export var press_cost: int = 0
+@export var hover_text: String = "Press [Interact]"
 
-func press():
+
+func press() -> void:
 	button_interacted.emit(button_press_value)

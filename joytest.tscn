@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://qiwkf7xhnvlb"]
+
+[ext_resource type="Texture2D" uid="uid://b1urq78k0nx6j" path="res://Assets/Textures/366b37e2ed7b3a075b71dedae0440081.png" id="1_lvpuv"]
+[ext_resource type="Script" path="res://joytest.gd" id="2_syday"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lvpuv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_lvpuv")
+script = ExtResource("2_syday")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjuc3x7u3f271"]
+
+[ext_resource type="PackedScene" uid="uid://dumiyjlnea4gq" path="res://Scenes/Towers/hitscan_tower.tscn" id="1_su74p"]
+[ext_resource type="Script" path="res://PCs/Mechanic/ClassCards/Gatling/tower_gatling.gd" id="2_ipjp1"]
+[ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://PCs/Mechanic/ClassCards/Gatling/tower_stats.tres" id="3_oicqw"]
+[ext_resource type="ArrayMesh" uid="uid://dler7wcqj0bm6" path="res://PCs/Mechanic/ClassCards/Gatling/gattlemesh.res" id="4_wihc0"]
+[ext_resource type="AudioStream" uid="uid://1j0rquv4awjs" path="res://PCs/Mechanic/ClassCards/Gatling/shot1.wav" id="5_vv714"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wpani"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_vv714")
+stream_0/weight = 1.0
+
+[node name="GatlingTower" instance=ExtResource("1_su74p")]
+script = ExtResource("2_ipjp1")
+stats = ExtResource("3_oicqw")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.426474, 0)
+mesh = ExtResource("4_wihc0")
+
+[node name="AudioStreamPlayer3D" parent="Yaw" index="0"]
+stream = SubResource("AudioStreamRandomizer_wpani")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://deer0awg4d18o"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/card.gd" id="1_yqa4b"]
+[ext_resource type="PackedScene" uid="uid://2eehfcrsednw" path="res://PCs/Mechanic/ClassCards/Assault/weapon_assault.tscn" id="3_28y3b"]
+[ext_resource type="Resource" uid="uid://bdmsiw45xxhiv" path="res://PCs/Mechanic/ClassCards/Assault/tower_stats.tres" id="3_ks0jw"]
+[ext_resource type="PackedScene" uid="uid://bbfm4i4xlkwdr" path="res://PCs/Mechanic/ClassCards/Assault/tower_assault.tscn" id="4_5nu32"]
+[ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://PCs/Mechanic/ClassCards/Assault/weapon_stats.tres" id="4_est7t"]
+
+[resource]
+script = ExtResource("1_yqa4b")
+rarity = 0
+faction = 0
+turret_scene = ExtResource("4_5nu32")
+weapon_scene = ExtResource("3_28y3b")
+weapon_stats = ExtResource("4_est7t")
+tower_stats = ExtResource("3_ks0jw")
+display_name = "Assault"

@@ -1,9 +1,8 @@
-extends PanelContainer
-class_name AlertPopup
+class_name AlertPopup extends PanelContainer
 
-signal completed
+signal completed()
 
-func set_popup(prompt_text, dismiss_text):
+func set_popup(prompt_text: String, dismiss_text: String) -> void:
 	$VBoxContainer/Label.text = prompt_text
 	$VBoxContainer/MarginContainerButton.text = dismiss_text
 

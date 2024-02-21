@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://takm6diuy71m"]
+
+[ext_resource type="PackedScene" uid="uid://nrdexcyatika" path="res://Scenes/Weapons/status_applying_weapon.tscn" id="1_7v0k2"]
+[ext_resource type="Script" path="res://PCs/Mechanic/ClassCards/GlueLauncher/weapon_glue_launcher.gd" id="2_12ex2"]
+[ext_resource type="Resource" uid="uid://d0643gfp52x3s" path="res://Resources/StatusEffects/sticky.tres" id="3_xtk6n"]
+[ext_resource type="Resource" uid="uid://boj1ho5x0sxtq" path="res://PCs/Mechanic/ClassCards/GlueLauncher/weapon_stats.tres" id="4_c3ve8"]
+[ext_resource type="Texture2D" uid="uid://oblavj8vj30n" path="res://PCs/Mechanic/ClassCards/GlueLauncher/glue_gun.png" id="5_obawu"]
+[ext_resource type="AudioStream" uid="uid://v3j5lw827y85" path="res://PCs/Mechanic/ClassCards/GlueLauncher/shot1.wav" id="6_6qk7c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehcsl"]
+atlas = ExtResource("5_obawu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cc15t"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_6qk7c")
+stream_0/weight = 1.0
+
+[node name="GlueLauncherWeapon" instance=ExtResource("1_7v0k2")]
+script = ExtResource("2_12ex2")
+status_stats = ExtResource("3_xtk6n")
+stats = ExtResource("4_c3ve8")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_ehcsl")
+
+[node name="AudioStreamPlayer3D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_cc15t")

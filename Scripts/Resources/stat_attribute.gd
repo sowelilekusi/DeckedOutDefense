@@ -1,5 +1,4 @@
-extends Resource
-class_name StatAttribute
+class_name StatAttribute extends Resource
 
-@export var key : String
-@export var value : float
+@export var key: String
+@export var value: float

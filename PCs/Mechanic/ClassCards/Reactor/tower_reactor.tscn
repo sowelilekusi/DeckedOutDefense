@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqrkn0vp2tmrh"]
+
+[ext_resource type="PackedScene" uid="uid://bi6b2r6wek7he" path="res://Scenes/Towers/range_affecting_tower.tscn" id="1_afsqn"]
+[ext_resource type="Script" path="res://PCs/Mechanic/ClassCards/Reactor/tower_reactor.gd" id="2_6w83m"]
+[ext_resource type="Resource" uid="uid://dxlisoas4xlmo" path="res://Resources/StatusEffects/radioactive.tres" id="3_xhrj0"]
+[ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://PCs/Mechanic/ClassCards/Reactor/tower_stats.tres" id="4_rkhup"]
+[ext_resource type="ArrayMesh" uid="uid://d280k3kx6hh7h" path="res://PCs/Mechanic/ClassCards/Reactor/reactor_mesh.res" id="5_it8eo"]
+
+[sub_resource type="Gradient" id="Gradient_ranod"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.252033, 1)
+colors = PackedColorArray(0, 0.533333, 0, 1, 0, 1, 0, 0.34902)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iinp2"]
+gradient = SubResource("Gradient_ranod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q1hpa"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 30.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 3, 0)
+color_ramp = SubResource("GradientTexture1D_iinp2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rl0f7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fr4f1"]
+material = SubResource("StandardMaterial3D_rl0f7")
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="ReactorTower" node_paths=PackedStringArray("particles") instance=ExtResource("1_afsqn")]
+script = ExtResource("2_6w83m")
+particles = NodePath("GPUParticles3D")
+status_stats = ExtResource("3_xhrj0")
+stats = ExtResource("4_rkhup")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.13062, 0)
+mesh = ExtResource("5_it8eo")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+amount = 12
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_q1hpa")
+draw_pass_1 = SubResource("BoxMesh_fr4f1")

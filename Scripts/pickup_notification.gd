@@ -1,4 +1,4 @@
-extends PanelContainer
+class_name PickupNotification extends PanelContainer
 
 @export var fade_out_time: float
 @export var style: StyleBoxFlat
@@ -9,8 +9,8 @@ extends PanelContainer
 @export var epic_background: Color
 @export var legendary_background: Color
 
-var fade_time = 0.0
-var fading = false
+var fade_time: float = 0.0
+var fading: bool = false
 
 
 func _ready() -> void:

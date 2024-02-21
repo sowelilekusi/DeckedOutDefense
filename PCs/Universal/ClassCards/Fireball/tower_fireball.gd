@@ -1,2 +1,0 @@
-extends ProjectileTower
-class_name FireballTower

@@ -1,5 +1,4 @@
-extends Area3D
-class_name KillBox
+class_name KillBox extends Area3D
 
 @export var level: Level
 

@@ -2,7 +2,7 @@ extends Control
 
 signal event_detected(event: InputEvent)
 
-var found_event = false
+var found_event: bool = false
 
 func _input(event: InputEvent) -> void:
 	if found_event:

@@ -1,10 +1,9 @@
 @tool
-extends MeshInstance3D
-class_name DebugMesh
+class_name DebugMesh extends MeshInstance3D
 
 
-func _ready():
-	var mat = StandardMaterial3D.new()
+func _ready() -> void:
+	var mat: StandardMaterial3D = StandardMaterial3D.new()
 	mesh = ImmediateMesh.new()
 	mat.no_depth_test = true
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -13,7 +12,7 @@ func _ready():
 	set_material_override(mat)
 
 
-func clear():
+func clear() -> void:
 	mesh.clear_surfaces()
 
 
@@ -28,15 +27,15 @@ func draw_line(begin_pos: Vector3, end_pos: Vector3, color: Color = Color.RED) -
 func draw_sphere(center: Vector3, radius: float = 1.0, color: Color = Color.RED) -> void:
 	var step: int = 30
 	var sppi: float = 2 * PI / step
-	var axes = [
+	var axes: Array = [
 		[Vector3.UP, Vector3.RIGHT],
 		[Vector3.RIGHT, Vector3.FORWARD],
 		[Vector3.FORWARD, Vector3.UP]
 	]
-	for axis in axes:
+	for axis: Array in axes:
 		mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 		mesh.surface_set_color(color)
-		for i in range(step + 1):
+		for i: int in range(step + 1):
 			mesh.surface_add_vertex(center + (axis[0] * radius)
 				.rotated(axis[1], sppi * (i % step)))
 		mesh.surface_end()
