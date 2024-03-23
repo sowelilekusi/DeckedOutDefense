@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Mechanic/ClassCards/Assault/card_assault.tres" id="5_806m0"]
 [ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://PCs/Mechanic/ClassCards/Sniper/card_sniper.tres" id="6_evvng"]
 [ext_resource type="Resource" uid="uid://cvto66tp7rrst" path="res://PCs/Mechanic/ClassCards/Gatling/card_gatling.tres" id="8_k80ff"]
-[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/tower_base.tscn" id="9_imodf"]
+[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="9_imodf"]
 [ext_resource type="Resource" uid="uid://blgngx360vff1" path="res://PCs/Mechanic/ClassCards/BombLauncher/card_bomb_launcher.tres" id="10_g0syk"]
 [ext_resource type="Resource" uid="uid://dg4pjt47q8xpw" path="res://PCs/Mechanic/ClassCards/Flamethrower/card_flamethrower.tres" id="11_d3sci"]
 [ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://PCs/Mechanic/ClassCards/RocketLauncher/card_rocket_launcher.tres" id="11_jk0fe"]

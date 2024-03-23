@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
 [ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="3_f6bia"]
 [ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
-[ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://charselect.tscn" id="5_lvoo2"]
+[ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://Scenes/Menus/CharacterSelect/charselect.tscn" id="5_lvoo2"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="7_npnbo"]
 

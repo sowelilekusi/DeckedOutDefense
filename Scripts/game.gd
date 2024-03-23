@@ -10,7 +10,7 @@ signal won_game
 
 var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/first_level.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
-var main_menu_scene_path: String = "res://Scenes/Menus/main_menu.tscn"
+var main_menu_scene_path: String = "res://Scenes/Menus/MainMenu/main_menu.tscn"
 var multiplayer_lobby_scene_path: String = "res://Scenes/Menus/multiplayer_lobby.tscn"
 var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lobby.tscn"
 var won_game_scene: PackedScene = load("res://Scenes/Menus/won_game_screen.tscn")

@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Mechanic/red.tres" id="2_dbyo0"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
 [ext_resource type="Texture2D" uid="uid://dkbkam81k355s" path="res://Assets/TextureAtlases/gauntlet.tres" id="3_5myy0"]
-[ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/pause_menu.tscn" id="3_avnsx"]
+[ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
 [ext_resource type="Script" path="res://PCs/view_movement.gd" id="4_mhexa"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]

@@ -13,7 +13,7 @@ func set_hero(hero: HeroClass) -> void:
 
 
 func _on_button_pressed() -> void:
-	pressed.emit(hero_class)
+	pressed.emit(Data.characters.find(hero_class))
 
 
 func _on_button_mouse_entered() -> void:

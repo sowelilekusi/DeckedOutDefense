@@ -1,7 +1,7 @@
 class_name RocketLauncherTower extends ProjectileTower
 
 var target_max: float = 3
-var targets: Array = []
+var targets: Array[EnemyController] = []
 
 
 func _ready() -> void:
@@ -21,13 +21,11 @@ func _physics_process(_delta: float) -> void:
 	if targets.size() < target_max:
 		acquire_target()
 	if targets.size() > 0:
-		var target_list: Array[EnemyController] = targets.duplicate()
-		for target: EnemyController in target_list:
-			if !is_instance_valid(target) or !target.alive:
-				targets.erase(target)
-				continue
-			if global_position.distance_to(target.global_position) > target_range:
-				targets.erase(target)
+		var valid_targets: Array[EnemyController] = []
+		for target: EnemyController in targets:
+			if is_instance_valid(target) and target.alive and global_position.distance_to(target.global_position) < target_range:
+				valid_targets.append(target)
+		targets = valid_targets
 		if targets.size() > 0:
 			targeted_enemy = targets[0]
 			networked_acquire_target.rpc(get_tree().root.get_path_to(targeted_enemy))
@@ -40,6 +38,8 @@ func _physics_process(_delta: float) -> void:
 func acquire_target() -> void:
 	var possible_enemies: Array[EnemyController] = []
 	for enemy: EnemyController in get_tree().get_nodes_in_group("Enemies"):
+		if !is_instance_valid(enemy):
+			continue
 		if global_position.distance_to(enemy.global_position) > target_range:
 			continue
 		if !(enemy.stats.target_type & stats.target_type):

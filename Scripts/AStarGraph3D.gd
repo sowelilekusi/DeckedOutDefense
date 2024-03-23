@@ -11,7 +11,7 @@ var astar: AStar3D = AStar3D.new()
 @export var spawner: EnemySpawner
 @export var visualized_path: VisualizedPath
 @export var tower_path: Node
-var tower_base_scene: PackedScene = load("res://Scenes/tower_base.tscn")
+var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
 var tower_frame_scene: PackedScene = load("res://Scenes/tower_frame.tscn")
 var tower_bases: Array = []
 var tower_base_ids: Dictionary = {}

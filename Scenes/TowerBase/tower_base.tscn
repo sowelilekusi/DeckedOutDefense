@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://ddbbwx0yy16lh"]
 
-[ext_resource type="Script" path="res://Scripts/tower_base.gd" id="1_tghvd"]
-[ext_resource type="Script" path="res://Scripts/inventory.gd" id="2_p5c7g"]
-[ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="3_01hk3"]
-[ext_resource type="ArrayMesh" uid="uid://cr83c74ys8rll" path="res://textmesh.res" id="4_hosgw"]
+[ext_resource type="Script" path="res://Scripts/tower_base.gd" id="1_kalmg"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="2_m0oxx"]
+[ext_resource type="ArrayMesh" uid="uid://cr83c74ys8rll" path="res://Scenes/TowerBase/textmesh.res" id="3_ly30x"]
+[ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="4_lbvtm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lc72v"]
 size = Vector3(1.1, 1.1, 1.1)
@@ -22,7 +22,7 @@ albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
 
 [node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_icon", "south_icon", "east_icon", "west_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider")]
 collision_layer = 17
-script = ExtResource("1_tghvd")
+script = ExtResource("1_kalmg")
 inventory = NodePath("Inventory")
 block = NodePath("MeshInstance3D")
 collider = NodePath("CollisionShape3D")
@@ -41,7 +41,7 @@ east_collider = NodePath("CollisionShape3D5")
 west_collider = NodePath("CollisionShape3D4")
 
 [node name="Inventory" type="Node" parent="."]
-script = ExtResource("2_p5c7g")
+script = ExtResource("2_m0oxx")
 max_size = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -50,14 +50,14 @@ shape = SubResource("BoxShape3D_lc72v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-mesh = ExtResource("4_hosgw")
+mesh = ExtResource("3_ly30x")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(3.5, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 0, 1.5, 0)
 layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
-texture = ExtResource("3_01hk3")
+texture = ExtResource("4_lbvtm")
 
 [node name="North" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.45, 0)
@@ -70,7 +70,7 @@ transform = Transform3D(3.5, 0, 0, 0, -6.7097e-08, 3.5, 0, -1.535, -1.5299e-07, 
 layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
-texture = ExtResource("3_01hk3")
+texture = ExtResource("4_lbvtm")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.55, 0)
@@ -89,7 +89,7 @@ transform = Transform3D(3.5, 0, 0, 0, -6.7097e-08, 3.5, 0, -1.535, -1.5299e-07, 
 layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
-texture = ExtResource("3_01hk3")
+texture = ExtResource("4_lbvtm")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.55, 0)
@@ -108,7 +108,7 @@ transform = Transform3D(1.535, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 
 layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
-texture = ExtResource("3_01hk3")
+texture = ExtResource("4_lbvtm")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -0.5)
@@ -127,7 +127,7 @@ transform = Transform3D(1.535, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 
 layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
-texture = ExtResource("3_01hk3")
+texture = ExtResource("4_lbvtm")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.5)

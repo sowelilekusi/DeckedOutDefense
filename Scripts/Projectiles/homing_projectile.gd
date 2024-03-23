@@ -7,7 +7,7 @@ var max_speed: float = 13.0
 
 func _physics_process(_delta: float) -> void:
 	if is_instance_valid(target):
-		direction = global_position.direction_to(target.sprite.global_position)
+		direction = global_position.direction_to(target.global_position)
 		#apply_central_force(direction * acceleration)
 
 

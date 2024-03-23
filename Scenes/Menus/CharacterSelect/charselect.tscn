@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqqitmhu66a7d"]
 
-[ext_resource type="Script" path="res://charselect.gd" id="1_h2h26"]
+[ext_resource type="Script" path="res://Scenes/Menus/CharacterSelect/charselect.gd" id="1_h2h26"]
 [ext_resource type="PackedScene" uid="uid://bnsf2degj5tio" path="res://Scenes/UI/hero_card.tscn" id="1_v2mfo"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="3_o88ca"]
 

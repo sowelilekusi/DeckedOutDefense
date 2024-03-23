@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://dsi0ofa74tfc4"]
 
-[ext_resource type="Texture2D" uid="uid://bmor4v4j7krgh" path="res://funboxtex.png" id="1_h83w8"]
+[ext_resource type="Texture2D" uid="uid://bmor4v4j7krgh" path="res://Scenes/TowerBase/funboxtex.png" id="1_h83w8"]
 [ext_resource type="Texture2D" uid="uid://c4ytjp05u7auv" path="res://noisetex.tres" id="2_pgkht"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ugjxq"]

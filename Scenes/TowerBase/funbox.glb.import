@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dx0ixlcxcxpcg"
-path="res://.godot/imported/funbox.glb-d1e31206a7865f3af16dc0128c2d024a.scn"
+path="res://.godot/imported/funbox.glb-0d98cfb9abd4d8ea0cefa019611e5edf.scn"
 
 [deps]
 
-source_file="res://funbox.glb"
-dest_files=["res://.godot/imported/funbox.glb-d1e31206a7865f3af16dc0128c2d024a.scn"]
+source_file="res://Scenes/TowerBase/funbox.glb"
+dest_files=["res://.godot/imported/funbox.glb-0d98cfb9abd4d8ea0cefa019611e5edf.scn"]
 
 [params]
 

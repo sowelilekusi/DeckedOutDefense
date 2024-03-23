@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmor4v4j7krgh"
-path="res://.godot/imported/funboxtex.png-08d477b8edff9115126116319e7f210a.ctex"
+path="res://.godot/imported/funboxtex.png-cacd48052e8a0cbba5138ea8a2d1200c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://funboxtex.png"
-dest_files=["res://.godot/imported/funboxtex.png-08d477b8edff9115126116319e7f210a.ctex"]
+source_file="res://Scenes/TowerBase/funboxtex.png"
+dest_files=["res://.godot/imported/funboxtex.png-cacd48052e8a0cbba5138ea8a2d1200c.ctex"]
 
 [params]
 

@@ -39,10 +39,10 @@ func _ready() -> void:
 	pitch_noise.frequency = 0.03
 	yaw_noise.frequency = 0.03
 	roll_noise.frequency = 0.01
-	var seed: int = randi()
-	pitch_noise.seed = seed
-	yaw_noise.seed = seed + 1
-	roll_noise.seed = seed + 2
+	var noise_seed: int = randi()
+	pitch_noise.seed = noise_seed
+	yaw_noise.seed = noise_seed + 1
+	roll_noise.seed = noise_seed + 2
 
 
 func _physics_process(delta: float) -> void:
@@ -50,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		#TODO: maybe make the speed slower/faster on slopes?
 		var player_speed: float = Vector2(player.velocity.x, player.velocity.z).length()
 		speed_factor = lerp(speed_factor, player_speed / head_bob_max_effect_speed, 20.0 * delta)
-		var test: float = 1.0 / 12.5
 		sample_point += delta * head_bob_frequency * speed_factor
 	else:
 		speed_factor = lerp(speed_factor, 0.0, 20.0 * delta)
