@@ -7,6 +7,7 @@ class_name CardPrinter extends StaticBody3D
 @export var choice_colliders: Array[CollisionShape3D]
 
 var card_available: bool = false
+var reply_player: Hero
 
 
 func randomize_cards() -> void:
@@ -41,22 +42,25 @@ func randomize_cards() -> void:
 	card_available = true
 
 
-func retrieve_card(i: int) -> void:
+func retrieve_card(i: int, reply: Hero) -> void:
 	$Node3D.set_visible(false)
 	for x: CollisionShape3D in choice_colliders:
 		x.disabled = true
 	if card_available:
 		var card: Card = cards[i].stats
-		var item: ItemCard = item_card_scene.instantiate() as ItemCard
-		item.card = card
-		item.position = Vector3(1.683, 0, 0)
-		add_child(item)
+		reply_player.add_card(card)
+		#var item: ItemCard = item_card_scene.instantiate() as ItemCard
+		#item.card = card
+		#item.position = Vector3(1.683, 0, 0)
+		#add_child(item)
 	button_collider.disabled = false
 	button_box.position = Vector3(0,0,0)
 	$AudioStreamPlayer3D.play()
+	reply_player = null
 
 
-func _on_static_body_3d_button_interacted(_value: int) -> void:
+func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
+	reply_player = reply
 	button_collider.disabled = true
 	button_box.position = Vector3(0,0,-0.2)
 	$AudioStreamPlayer3D.play()

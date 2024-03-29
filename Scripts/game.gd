@@ -3,6 +3,7 @@ extends Node
 signal wave_started(wave_number: int)
 signal wave_finished(wave_number: int)
 signal base_took_damage(remaining_health: int)
+signal rng_seeded()
 signal game_started
 signal game_restarted
 signal lost_game
@@ -30,12 +31,26 @@ var wave_limit: int = 20
 var starting_cash: int = 16
 var shop_chance: float = 0.0
 var stats: RoundStats = RoundStats.new()
+var rng: FastNoiseLite
 
 
 func _ready() -> void:
 	UILayer = CanvasLayer.new()
 	UILayer.layer = 2
 	get_tree().root.add_child.call_deferred(UILayer)
+
+
+@rpc("reliable", "call_local")
+func set_seed(value: int) -> void:
+	rng = FastNoiseLite.new()
+	rng.noise_type = FastNoiseLite.TYPE_VALUE
+	rng.frequency = 1
+	rng.seed = value
+	rng_seeded.emit()
+
+
+func randi_in_range(sample: float, start: float, end: float) -> int:
+	return floori(remap(rng.get_noise_1d(sample), -1.0, 1.0, start, end + 1))
 
 
 func parse_command(text: String, peer_id: int) -> void:
@@ -65,7 +80,7 @@ func parse_command(text: String, peer_id: int) -> void:
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to edit gamemode")
 	elif text.substr(1, 11) == "spawn_print":
-		level.printer._on_static_body_3d_button_interacted(0)
+		level.printer._on_static_body_3d_button_interacted(0, connected_players_nodes[peer_id].inventory)
 	elif text.substr(1, 10) == "spawn_shop":
 		level.shop.randomize_cards()
 	elif text.substr(1, 7) == "prosper":
@@ -76,6 +91,8 @@ func parse_command(text: String, peer_id: int) -> void:
 			networked_set_wave.rpc(int(text.substr(10)))
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to set wave")
+	elif text.substr(1, 4) == "seed":
+		chatbox.append_message("SERVER", Color.TOMATO, str(rng.seed))
 #	if text.substr(1, 17) == "show tower ranges":
 #		pass
 #	if text.substr(1, 20) = "show gauntlet ranges":
@@ -229,6 +246,10 @@ func remove_player(peer_id: int) -> void:
 
 
 func start_game() -> void:
+	if is_multiplayer_authority():
+		set_seed.rpc(randi())
+	else:
+		await rng_seeded
 	game_active = true
 	enemies = 0
 	objective_health = 120

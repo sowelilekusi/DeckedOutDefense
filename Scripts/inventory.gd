@@ -49,7 +49,7 @@ func networked_add(value: int) -> void:
 
 @rpc("reliable", "any_peer")
 func networked_remove_at(value: int) -> void:
-	var item: Item = contents.keys[value]
+	var item: Item = contents.keys()[value]
 	contents[item] -= 1
 	if contents[item] == 0:
 		contents.erase(item)

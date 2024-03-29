@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="5_433ie"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="6_ke2c8"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="9_4xla1"]
-[ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="9_7hati"]
+[ext_resource type="Script" path="res://Scripts/status_effector.gd" id="9_7hati"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_7yfyh"]
 [ext_resource type="Script" path="res://Scripts/EnemyAI/beelining_controller.gd" id="9_cx8mv"]
 

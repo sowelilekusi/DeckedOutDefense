@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://bjab6t4n0s5ac" path="res://PCs/Mechanic/ClassCards/Reactor/radiation_particles.tres" id="6_0sgt1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dpt5"]
+resource_local_to_scene = true
 atlas = ExtResource("5_bawfy")
 region = Rect2(0, 0, 64, 64)
 

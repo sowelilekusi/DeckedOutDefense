@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://ckung57mij7ue" path="res://PCs/Mage/ClassCards/Refrigerator/cold_particles.tres" id="5_8q1lc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yua2"]
+resource_local_to_scene = true
 atlas = ExtResource("4_y5ps0")
 region = Rect2(0, 0, 64, 64)
 

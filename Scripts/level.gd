@@ -13,26 +13,43 @@ class_name Level extends GridMap
 
 
 func generate_obstacles() -> void:
-	var obstacle_count: int = randi_range(0, 5)
+	#print(str(multiplayer.get_unique_id()) + " spawning obstacles with seed: " + str(Game.rng.seed))
+	var obstacle_count: int = Game.randi_in_range(1, 0, 5)
+	obstacle_count = 3
 	for index: int in obstacle_count:
-		var x: int = randi_range(0, a_star_graph_3d.grid_size.x - 1)
-		var y: int = randi_range(0, a_star_graph_3d.grid_size.y - 1)
-		var point_id: int = int(x * a_star_graph_3d.grid_size.y + y)
-		var chosen_obstacle: int = randi_range(0, obstacle_scenes.size() - 1)
+		var x: int = Game.randi_in_range(10 * index, 1 - a_star_graph_3d.grid_size.x, a_star_graph_3d.grid_size.x - 1)
+		var y: int = Game.randi_in_range(32 * index, 1 - a_star_graph_3d.grid_size.y, a_star_graph_3d.grid_size.y - 1)
+		var chosen_obstacle: int = Game.randi_in_range(4 * index, 0, obstacle_scenes.size() - 1)
 		var obstacle: GridMap = obstacle_scenes[chosen_obstacle].instantiate() as GridMap
 		var orientations: Array[int] = [0, 90, 180, 270]
-		var chosen_orientation: int = orientations.pick_random()
-		obstacle.position = a_star_graph_3d.astar.get_point_position(point_id)
+		var chosen_orientation: int = Game.randi_in_range(15 * index, 0, orientations.size() - 1)
+		obstacle.position = Vector3(x, 0, y)
 		obstacle.set_rotation_degrees(Vector3(0, chosen_orientation, 0))
 		add_child(obstacle)
 		for cell: Vector3i in obstacle.get_used_cells():
-			var cell_pos: Vector3 = obstacle.to_global(obstacle.map_to_local(cell))
-			var map_coord: Vector3i = Vector3i(round(cell_pos.x), 0, round(cell_pos.z))
-			#print("cell_pos: " + str(cell_pos) + "cell.z" + str(cell_pos.z) + ", map_coord: " + str(map_coord))
-			var closest_point: int = a_star_graph_3d.astar.get_closest_point(cell_pos, true)
-			var closest_point_pos: Vector3 = a_star_graph_3d.astar.get_point_position(closest_point)
-			if closest_point_pos.distance_to(Vector3(cell_pos.x, closest_point_pos.y, cell_pos.z)) <= 0.5:
-				a_star_graph_3d.astar.set_point_disabled(closest_point)
-			if get_cell_item(map_coord) == 1:
-				set_cell_item(map_coord, INVALID_CELL_ITEM)
+			var cell_coord: Vector3 = obstacle.to_global(obstacle.map_to_local(cell))
+			remove_world_tile(round(cell_coord.x), round(cell_coord.z))
 		obstacle.queue_free()
+
+
+func cell_coord_to_astar_point(x: int, y: int) -> int:
+	var center_point_x: int = floori(a_star_graph_3d.grid_size.x / 2.0) * a_star_graph_3d.grid_size.y
+	var center_point_y: int = a_star_graph_3d.grid_size.y / 2.0
+	return (center_point_x + ((x / 2.0) * a_star_graph_3d.grid_size.y)) + (center_point_y + (y / 2.0))
+
+
+func remove_world_tile(x: int, y: int) -> void:
+	if get_cell_item(Vector3i(x, 0, y)) != 1 or abs(x) >= a_star_graph_3d.grid_size.x or abs(y) >= a_star_graph_3d.grid_size.y:
+		return
+	set_cell_item(Vector3i(x, 0, y), INVALID_CELL_ITEM)
+	var point: int = cell_coord_to_astar_point(x, y)
+	var north_point: int = cell_coord_to_astar_point(x - 1, y)
+	var south_point: int = cell_coord_to_astar_point(x + 1, y)
+	var east_point: int = cell_coord_to_astar_point(x, y + 1)
+	var west_point: int = cell_coord_to_astar_point(x, y - 1)
+	if x % 2 == 0 and y % 2 == 0: #If the tile is on a point on the pathfinding grid
+		a_star_graph_3d.astar.set_point_disabled(point)
+	if x % 2 == 1 and y % 2 == 0: #If the cell breaks a north-south link
+		a_star_graph_3d.astar.disconnect_points(north_point, south_point)
+	if x % 2 == 0 and y % 2 == 1: #If the cell breaks a east-west link
+		a_star_graph_3d.astar.disconnect_points(east_point, west_point)

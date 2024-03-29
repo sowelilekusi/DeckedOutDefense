@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dgqmtmty7ekmc" path="res://PCs/Mage/ClassCards/Icicle/shot1.wav" id="6_ilpsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7uf3s"]
+resource_local_to_scene = true
 atlas = ExtResource("5_iremk")
 region = Rect2(0, 0, 64, 64)
 

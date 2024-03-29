@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://n0w2kj5j2x4e" path="res://PCs/Mechanic/ClassCards/RocketLauncher/shot1.wav" id="8_genbv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f4p4w"]
+resource_local_to_scene = true
 atlas = ExtResource("4_iygkf")
 region = Rect2(0, 0, 64, 64)
 

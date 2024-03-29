@@ -57,19 +57,19 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		right_hand_animator.play("weapon_sway")
 		right_hand_animator.speed_scale = 0
+		ears.make_current()
 		camera.make_current()
 		sprite.queue_free()
 		hand_sprite.texture = hero_class.hand_texture
 		player_name_tag.queue_free()
-		ears.make_current()
+		for card: Card in hero_class.deck:
+			inventory.add(card)
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
 		hud.set_visible(false)
 	if weapon != null:
 		weapon.set_raycast_origin(camera)
-	for card: Card in hero_class.deck:
-		inventory.add(card)
 	sprite.texture.atlas = hero_class.texture
 	check_left_hand_valid()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 			if interaction_raycast.get_collider() is InteractButton:
 				var button: InteractButton = interaction_raycast.get_collider() as InteractButton
 				if currency >= button.press_cost:
-					button.press()
+					button.press(self)
 					currency -= button.press_cost
 			if interaction_raycast.get_collider() is ItemCard:
 				add_card(interaction_raycast.get_collider().pick_up())
@@ -172,7 +172,7 @@ func increment_selected() -> void:
 func decrement_selected() -> void:
 	inventory_selected_index -= 1
 	if inventory_selected_index < 0:
-		inventory_selected_index = inventory.contents.keys().size() - 1
+		inventory_selected_index = max(inventory.contents.keys().size() - 1, 0)
 
 
 func _unhandled_input(event: InputEvent) -> void:

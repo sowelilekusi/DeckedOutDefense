@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cu654fn5nke3n" path="res://PCs/Entomologist/ClassCards/Blowdart/shot1.wav" id="6_bfygd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85web"]
+resource_local_to_scene = true
 atlas = ExtResource("5_rvf06")
 region = Rect2(0, 0, 64, 64)
 

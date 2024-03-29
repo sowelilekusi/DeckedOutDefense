@@ -50,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		#TODO: maybe make the speed slower/faster on slopes?
 		var player_speed: float = Vector2(player.velocity.x, player.velocity.z).length()
 		speed_factor = lerp(speed_factor, player_speed / head_bob_max_effect_speed, 20.0 * delta)
-		sample_point += delta * head_bob_frequency * speed_factor
 	else:
 		speed_factor = lerp(speed_factor, 0.0, 20.0 * delta)
 
@@ -69,6 +68,7 @@ func _process(delta: float) -> void:
 		#constant_trauma = min(1.0, constant_trauma + 0.1)
 	#if Input.is_action_just_pressed("decrease_trauma"):
 		#constant_trauma = max(0.0, constant_trauma - 0.1)
+	sample_point += delta * head_bob_frequency * speed_factor
 	var camera_translation: Vector3 = Vector3.ZERO
 	var camera_tilt: Vector3 = Vector3.ZERO
 	camera_translation = minecraft_translation(head_bob_amplitude * speed_factor)
@@ -133,10 +133,13 @@ func focus_target() -> Vector3:
 		return focus_raycast.global_position + -focus_raycast.global_transform.basis.z * 30.0
 
 
-func tilt_camera(tilt: Vector3, speed: float) -> void:
-	camera.rotation.x = lerp(camera.rotation.x, tilt.x, speed)
-	camera.rotation.y = lerp(camera.rotation.y, tilt.y, speed)
-	camera.rotation.z = lerp(camera.rotation.z, tilt.z, speed)
+#func tilt_camera(tilt: Vector3, speed: float) -> void:
+	##camera.rotation.x = lerp(camera.rotation.x, tilt.x, speed)
+	##camera.rotation.y = lerp(camera.rotation.y, tilt.y, speed)
+	##camera.rotation.z = lerp(camera.rotation.z, tilt.z, speed)
+	#camera.rotation.x = tilt.x
+	#camera.rotation.y = tilt.y
+	#camera.rotation.z = tilt.z
 
 
 func get_strafe_tilt(player_velocity: Vector3) -> Vector3:

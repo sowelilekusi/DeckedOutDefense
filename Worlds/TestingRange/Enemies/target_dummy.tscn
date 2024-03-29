@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_t0dpu"]
 [ext_resource type="Texture2D" uid="uid://brjk5pu0up85s" path="res://Assets/TextureAtlases/dummy.tres" id="6_agkvc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_m8sgd"]
-[ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="8_melp1"]
+[ext_resource type="Script" path="res://Scripts/status_effector.gd" id="8_melp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 radius = 0.7173

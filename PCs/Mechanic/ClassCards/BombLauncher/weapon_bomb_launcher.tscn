@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://qeav4v23p0dd" path="res://PCs/Mechanic/ClassCards/BombLauncher/shot1.wav" id="6_rg62n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4fobv"]
+resource_local_to_scene = true
 atlas = ExtResource("5_iyrt8")
 region = Rect2(0, 0, 64, 64)
 

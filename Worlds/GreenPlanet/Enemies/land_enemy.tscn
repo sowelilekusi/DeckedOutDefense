@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0nady5xm88bo"]
+[gd_scene load_steps=16 format=3 uid="uid://b0nady5xm88bo"]
 
 [ext_resource type="Script" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_fwsjt"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="2_j8yin"]
@@ -10,7 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_f8btv"]
 [ext_resource type="Script" path="res://Scripts/EnemyAI/pathing_controller.gd" id="10_gljle"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="10_or8n6"]
-[ext_resource type="Script" path="res://Scripts/StatusEffector.gd" id="10_txouh"]
+[ext_resource type="Script" path="res://Scripts/status_effector.gd" id="10_txouh"]
+[ext_resource type="Script" path="res://Scripts/sprite_bobber.gd" id="12_2nmk0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 
@@ -22,7 +23,7 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4tj6k"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
+[node name="WalkingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_fwsjt")
@@ -42,11 +43,11 @@ shape = SubResource("SphereShape3D_21dgw")
 script = ExtResource("2_j8yin")
 
 [node name="DirectionSprite" parent="." instance=ExtResource("2_o7jmg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642479, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585, 0)
 pixel_size = 0.04
 texture = SubResource("AtlasTexture_o3ikr")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="HealthBar" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
 sorting_offset = 1.0
 pixel_size = 0.02
@@ -54,7 +55,7 @@ billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_4tj6k")
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
+[node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
 layers = 4
 texture_filter = 0
@@ -86,6 +87,11 @@ offset_bottom = 236.0
 [node name="PathingController" type="Node" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("10_gljle")
 character = NodePath("..")
+
+[node name="SpriteBobber" type="Node" parent="." node_paths=PackedStringArray("character", "sprite")]
+script = ExtResource("12_2nmk0")
+character = NodePath("..")
+sprite = NodePath("../DirectionSprite")
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]

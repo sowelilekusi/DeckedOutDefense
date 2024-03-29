@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cxiluyamsxson" path="res://PCs/Mage/ClassCards/Fireball/shot1.wav" id="6_o5rjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfmm6"]
+resource_local_to_scene = true
 atlas = ExtResource("5_r42ic")
 region = Rect2(0, 0, 64, 64)
 

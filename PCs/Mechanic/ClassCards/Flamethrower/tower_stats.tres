@@ -22,4 +22,4 @@ value = 3.0
 script = ExtResource("2_wptab")
 target_type = 1
 attributes = Array[ExtResource("1_ikp33")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
-text = "Hold to apply Burning to enemies in front of you"
+text = "Applies burning to enemies in front of it"

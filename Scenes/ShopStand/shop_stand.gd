@@ -57,14 +57,15 @@ func randomize_cards() -> void:
 		x.set_visible(true)
 
 
-func retrieve_card(i: int) -> void:
+func retrieve_card(i: int, callback: Hero) -> void:
 	#close()
 	choice_colliders[i].disabled = true
 	choice_sprites[i].set_visible(false)
 	var card: Card = cards[i].stats
-	var item: ItemCard = item_card_scene.instantiate() as ItemCard
-	item.card = card
-	item.position = Vector3(2.128, 0, 0)
-	add_child(item)
+	callback.add_card(card)
+	#var item: ItemCard = item_card_scene.instantiate() as ItemCard
+	#item.card = card
+	#item.position = Vector3(2.128, 0, 0)
+	#add_child(item)
 	#button_collider.disabled = false
 	#button_box.position = Vector3(0,0,0)

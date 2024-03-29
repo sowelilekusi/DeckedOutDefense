@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://gyeamtekshor" path="res://PCs/Mechanic/ClassCards/Flamethrower/flame_particles.tres" id="6_idhp2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hank"]
+resource_local_to_scene = true
 atlas = ExtResource("5_wdw3e")
 region = Rect2(0, 0, 64, 64)
 

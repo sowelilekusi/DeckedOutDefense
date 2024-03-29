@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://chrf1dcq2ujw0" path="res://PCs/Mechanic/ClassCards/Assault/shot1.wav" id="4_gdaci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_604rb"]
+resource_local_to_scene = true
 atlas = ExtResource("3_kuj4t")
 region = Rect2(0, 0, 64, 64)
 

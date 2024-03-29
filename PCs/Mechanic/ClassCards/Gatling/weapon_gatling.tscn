@@ -2,12 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_fwlu5"]
 [ext_resource type="Resource" uid="uid://cj2x1jvo8l4ot" path="res://PCs/Mechanic/ClassCards/Gatling/weapon_stats.tres" id="2_fnyjd"]
-[ext_resource type="Texture2D" uid="uid://bjh6e8t8br6rq" path="res://PCs/Mechanic/ClassCards/Gatling/gatling.png" id="2_rv8ps"]
 [ext_resource type="Script" path="res://PCs/Mechanic/ClassCards/Gatling/weapon_gatling.gd" id="2_wm4al"]
+[ext_resource type="Texture2D" uid="uid://dkb8e0uu5vikw" path="res://PCs/Mechanic/ClassCards/Gatling/accelerator.png" id="4_gi42y"]
 [ext_resource type="AudioStream" uid="uid://1j0rquv4awjs" path="res://PCs/Mechanic/ClassCards/Gatling/shot1.wav" id="5_gelfi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0im1y"]
-atlas = ExtResource("2_rv8ps")
+resource_local_to_scene = true
+atlas = ExtResource("4_gi42y")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_778e1"]

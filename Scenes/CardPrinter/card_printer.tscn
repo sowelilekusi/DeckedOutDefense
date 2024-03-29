@@ -1,19 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene load_steps=14 format=3 uid="uid://1b2ikdanl66b"]
 
-[ext_resource type="Script" path="res://Scripts/card_printer.gd" id="1_7rhtj"]
-[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="2_7ouw1"]
-[ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="2_356ip"]
-[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="3_iia6u"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="5_pf7c7"]
+[ext_resource type="Script" path="res://Scenes/CardPrinter/card_printer.gd" id="1_qft15"]
+[ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="2_hegq8"]
+[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="3_wygtg"]
+[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="4_eavi1"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="5_m033a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s02au"]
 albedo_color = Color(0.203922, 0.592157, 0.592157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ebt5"]
 size = Vector3(2.672, 1.75, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_und3g"]
-size = Vector3(0.816972, 0.233429, 0.632978)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf4je"]
 viewport_path = NodePath("SubViewport")
@@ -33,13 +30,13 @@ size = Vector3(0.763889, 0.773027, 0.0570252)
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73g2w"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("5_pf7c7")
+stream_0/stream = ExtResource("5_m033a")
 stream_0/weight = 1.0
 
 [node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("cards", "button_collider", "button_box", "choice_colliders")]
-script = ExtResource("1_7rhtj")
+script = ExtResource("1_qft15")
 cards = [NodePath("SubViewport/Node2D"), NodePath("SubViewport2/Node2D"), NodePath("SubViewport3/Node2D")]
-item_card_scene = ExtResource("2_356ip")
+item_card_scene = ExtResource("2_hegq8")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
 button_box = NodePath("StaticBody3D/CollisionShape3D2/CSGBox3D")
 choice_colliders = [NodePath("StaticBody3D2/CollisionShape3D2"), NodePath("StaticBody3D3/CollisionShape3D2"), NodePath("StaticBody3D4/CollisionShape3D2")]
@@ -53,27 +50,23 @@ material = SubResource("StandardMaterial3D_s02au")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 shape = SubResource("BoxShape3D_0ebt5")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6825, 0.484672, 0)
-shape = SubResource("BoxShape3D_und3g")
-
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 render_target_update_mode = 4
 
-[node name="Node2D" parent="SubViewport" instance=ExtResource("2_7ouw1")]
+[node name="Node2D" parent="SubViewport" instance=ExtResource("3_wygtg")]
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 transparent_bg = true
 render_target_update_mode = 4
 
-[node name="Node2D" parent="SubViewport2" instance=ExtResource("2_7ouw1")]
+[node name="Node2D" parent="SubViewport2" instance=ExtResource("3_wygtg")]
 
 [node name="SubViewport3" type="SubViewport" parent="."]
 transparent_bg = true
 render_target_update_mode = 4
 
-[node name="Node2D" parent="SubViewport3" instance=ExtResource("2_7ouw1")]
+[node name="Node2D" parent="SubViewport3" instance=ExtResource("3_wygtg")]
 
 [node name="Node3D" type="Node3D" parent="."]
 visible = false
@@ -97,7 +90,7 @@ texture = SubResource("ViewportTexture_vyyy4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444448, 0.610684)
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("3_iia6u")
+script = ExtResource("4_eavi1")
 press_cost = 15
 hover_text = "Spend 15 Coins to print card"
 
@@ -111,7 +104,7 @@ size = Vector3(1.29447, 0.342125, 0.277604)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.756734, 1.15772, 0.610684)
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("3_iia6u")
+script = ExtResource("4_eavi1")
 hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
@@ -123,7 +116,7 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0672475, 1.15772, 0.610684)
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("3_iia6u")
+script = ExtResource("4_eavi1")
 button_press_value = 1
 hover_text = "Select card"
 
@@ -136,7 +129,7 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.883877, 1.15772, 0.610684)
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("3_iia6u")
+script = ExtResource("4_eavi1")
 button_press_value = 2
 hover_text = "Select card"
 
@@ -144,11 +137,6 @@ hover_text = "Select card"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
 disabled = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6825, 0.484672, 0)
-size = Vector3(0.816972, 0.233429, 0.632978)
-material = SubResource("StandardMaterial3D_s02au")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433459, 0.524183)

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bixe14jkki8be" path="res://PCs/Mechanic/ClassCards/Sniper/shot1.wav" id="6_pd8iu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cussn"]
+resource_local_to_scene = true
 atlas = ExtResource("4_ub37g")
 region = Rect2(0, 0, 64, 64)
 

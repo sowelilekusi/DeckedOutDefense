@@ -100,7 +100,8 @@ func start_game() -> void:
 	loadout_editor.set_visible(false)
 
 
-func edit_player_profile(_argument: PlayerProfile) -> void:
+#TODO: what the fuck is this doing lol
+func edit_player_profile(_argument: int) -> void:
 	var profile_dict: Dictionary = Data.player_profile.to_dict()
 	networked_edit_player_profile.rpc(multiplayer.get_unique_id(), profile_dict)
 
