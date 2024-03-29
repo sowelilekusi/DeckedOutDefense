@@ -51,5 +51,6 @@ selecting_enabled = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.5
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

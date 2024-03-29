@@ -164,7 +164,7 @@ func refund_wall(wall: TowerBase) -> void:
 func put_card_in_tower_base(tower_base: TowerBase) -> void:
 	if tower_base.has_card:
 		tower_base.remove_card()
-	else:
+	elif inventory.size > 0:
 		var card: Card = inventory.remove_at(hero.inventory_selected_index)
 		if !inventory.contents.has(card):
 			hero.decrement_selected()

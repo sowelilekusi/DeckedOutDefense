@@ -44,10 +44,10 @@ func _input(event: InputEvent) -> void:
 			if input_line.text.length() != 0:
 				if input_line.text.begins_with("/"):
 					Game.parse_command(input_line.text, multiplayer.get_unique_id())
-					fade_timer.start()
 				else:
 					append_message.rpc(username, color, input_line.text)
 			input_line.clear()
+			fade_timer.start()
 		if event.keycode == KEY_ESCAPE:
 			get_viewport().set_input_as_handled()
 			closed.emit()
@@ -61,7 +61,7 @@ func change_username(old_name: String, new_name: String) -> void:
 	append_message("SERVER", Color.TOMATO, old_name + " has changed their display name to " + new_name)
 
 
-@rpc("reliable","call_local","any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func append_message(user: String, user_color: Color, content: String) -> void:
 	textbox.append_text("[[color=" + user_color.to_html() + "]" + user + "[color=white]] " + content + "\n")
 	fading = false

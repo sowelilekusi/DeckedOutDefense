@@ -22,7 +22,7 @@ func add(item: Item) -> bool:
 		else:
 			contents[item] = 1
 		item_added.emit(item)
-		networked_add.rpc(Data.cards.find(item))
+		#networked_add.rpc(Data.cards.find(item))
 		return true
 	return false
 
@@ -33,7 +33,7 @@ func remove_at(index: int) -> Item:
 	if contents[item] == 0:
 		contents.erase(item)
 	item_removed.emit(item)
-	networked_remove_at.rpc(index)
+	#networked_remove_at.rpc(index)
 	return item
 
 
@@ -43,7 +43,7 @@ func networked_add(value: int) -> void:
 	if contents.has(item):
 		contents[item] += 1
 	else:
-		contents[item] = 0
+		contents[item] = 1
 	item_added.emit(item)
 
 

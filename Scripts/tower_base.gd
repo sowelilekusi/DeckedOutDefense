@@ -35,15 +35,11 @@ func set_float(value: float) -> void:
 	$MeshInstance3D.set_instance_shader_parameter("Float", value)
 
 
-func add_card(card: Card, caller_id: int) -> bool:
-	var result: bool = inventory.add(card)
-	if result:
-		networked_spawn_tower.rpc(caller_id)
-	return result
+func add_card(card: Card, caller_id: int) -> void:
+	networked_spawn_tower.rpc(Data.cards.find(card), caller_id)
 
 
 func remove_card() -> void:
-	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
 	networked_remove_tower.rpc()
 
 
@@ -72,7 +68,9 @@ func set_west_wall(value: bool) -> void:
 
 
 @rpc("reliable", "call_local", "any_peer")
-func networked_spawn_tower(caller_id: int) -> void:
+func networked_spawn_tower(card_index: int, caller_id: int) -> void:
+	var card: Card = Data.cards[card_index]
+	inventory.add(card)
 	tower = inventory.contents.keys()[0].turret_scene.instantiate() as Tower
 	tower.stats = inventory.contents.keys()[0].tower_stats
 	tower.name = "tower"
@@ -89,6 +87,8 @@ func networked_spawn_tower(caller_id: int) -> void:
 
 @rpc("reliable", "call_local", "any_peer")
 func networked_remove_tower() -> void:
+	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
+	Game.connected_players_nodes[tower.owner_id].unready_self()
 	tower.queue_free()
 	tower = null
 	minimap_icon.modulate = Color.GREEN

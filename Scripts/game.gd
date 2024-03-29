@@ -143,11 +143,20 @@ func spawn_players(player_array: Array, player_profiles: Dictionary, chatbox_ope
 	start_game()
 
 
-func ready_player(_value: int) -> void:
+func ready_player(player_ready_true: bool) -> void:
+	if !player_ready_true:
+		return
+	var ready_players: int = 0
 	for key: int in connected_players_nodes:
 		if connected_players_nodes[key].ready_state == false:
-			return
-	spawn_enemy_wave()
+			continue
+		else:
+			ready_players += 1
+	if ready_players == connected_players_nodes.size():
+		spawn_enemy_wave()
+		chatbox.append_message("SERVER", Color.TOMATO, "Wave Started!")
+	else:
+		chatbox.append_message("SERVER", Color.TOMATO, str(ready_players) + "/" + str(connected_players_nodes.size()) + " Players ready")
 
 
 func spawn_enemy_wave() -> void:
@@ -262,6 +271,7 @@ func start_game() -> void:
 	set_upcoming_wave()
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency = roundi(float(starting_cash) / float(connected_players_nodes.size()))
+	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(rng.seed))
 	game_started.emit()
 
 

@@ -117,10 +117,10 @@ func _process(delta: float) -> void:
 			equip_weapon()
 		if Input.is_action_just_pressed("Secondary Fire"):
 			swap_weapons()
-		if Input.is_action_just_pressed("Select Next Card"):
+		if Input.is_action_just_pressed("Select Next Card") and inventory.size != 0:
 			increment_selected()
 			$AudioStreamPlayer.play()
-		if Input.is_action_just_pressed("Select Previous Card"):
+		if Input.is_action_just_pressed("Select Previous Card") and inventory.size != 0:
 			decrement_selected()
 			$AudioStreamPlayer.play()
 		if Input.is_action_just_pressed("Primary Fire"):
@@ -179,17 +179,32 @@ func _unhandled_input(event: InputEvent) -> void:
 	if !is_multiplayer_authority() or paused:
 		return
 	if editing_mode and event.is_action_pressed("Ready"):
-		edit_tool.interact_key_held = false
-		if !ready_state:
-			ready_state = true
-			hud.shrink_wave_start_label()
-			$AudioStreamPlayer.play()
-			networked_set_ready_state.rpc(ready_state)
+		if ready_state:
+			unready_self()
+		else:
+			ready_self()
 	if event.is_action_pressed("Pause"):
 		var menu: PauseMenu = pause_menu_scene.instantiate() as PauseMenu
 		pause()
 		menu.closed.connect(unpause)
 		hud.add_child(menu)
+
+
+func ready_self() -> void:
+	edit_tool.interact_key_held = false
+	if !ready_state:
+		ready_state = true
+		hud.shrink_wave_start_label()
+		$AudioStreamPlayer.play()
+		networked_set_ready_state.rpc(ready_state)
+
+
+func unready_self() -> void:
+	if ready_state:
+		ready_state = false
+		hud.grow_wave_start_label()
+		$AudioStreamPlayer.play()
+		networked_set_ready_state(ready_state)
 
 
 func add_card(new_card: Card) -> void:

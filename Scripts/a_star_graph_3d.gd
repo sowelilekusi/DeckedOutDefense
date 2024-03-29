@@ -168,6 +168,7 @@ func networked_spawn_wall(pos: Vector3, name_id: int, caller_id: int) -> void:
 func networked_remove_wall(new_wall_id: int) -> void:
 	var wall: TowerBase = tower_base_ids[new_wall_id]
 	Game.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
+	Game.connected_players_nodes[wall.owner_id].unready_self()
 	tower_bases.erase(wall)
 	tower_base_ids.erase(new_wall_id)
 	wall.queue_free()

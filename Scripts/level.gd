@@ -15,7 +15,6 @@ class_name Level extends GridMap
 func generate_obstacles() -> void:
 	#print(str(multiplayer.get_unique_id()) + " spawning obstacles with seed: " + str(Game.rng.seed))
 	var obstacle_count: int = Game.randi_in_range(1, 0, 5)
-	obstacle_count = 3
 	for index: int in obstacle_count:
 		var x: int = Game.randi_in_range(10 * index, 1 - a_star_graph_3d.grid_size.x, a_star_graph_3d.grid_size.x - 1)
 		var y: int = Game.randi_in_range(32 * index, 1 - a_star_graph_3d.grid_size.y, a_star_graph_3d.grid_size.y - 1)

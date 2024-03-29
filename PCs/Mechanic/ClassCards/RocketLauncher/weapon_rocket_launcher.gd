@@ -5,14 +5,13 @@ class_name RocketLauncherWeapon extends ProjectileWeapon
 @export var targeting_ui_rect: TextureRect
 
 var target_max: int = 3
-var targets: Array = []
-var target_icons: Array = []
+var targets: Array[EnemyController] = []
+var target_icons: Array[Sprite3D] = []
 
 
 func _ready() -> void:
 	super._ready()
 	targeting_raycast.global_position = hero.camera.global_position
-	
 	target_max = floori(stats.get_attribute("Target Limit"))
 	for x: int in target_max:
 		var icon: Sprite3D = target_icon_scene.instantiate()
