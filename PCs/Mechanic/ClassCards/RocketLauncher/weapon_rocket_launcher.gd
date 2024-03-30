@@ -24,11 +24,11 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	if !trigger_held or time_since_firing < time_between_shots or current_energy < energy_cost:
 		return
-	var target_list: Array[EnemyController] = targets.duplicate()
-	for target: EnemyController in target_list:
-		if !is_instance_valid(target):
-			targets.erase(target)
-			continue
+	var target_list: Array[EnemyController] = []
+	for target: EnemyController in targets:
+		if is_instance_valid(target):
+			target_list.append(target)
+	targets = target_list
 	for x: int in target_icons.size():
 		if x < targets.size():
 			target_icons[x].global_position = targets[x].sprite.global_position

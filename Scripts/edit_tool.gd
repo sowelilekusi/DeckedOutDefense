@@ -155,6 +155,8 @@ func build_wall() -> void:
 
 
 func refund_wall(wall: TowerBase) -> void:
+	if !is_instance_valid(wall):
+		return
 	last_collider = null
 	if wall.has_card:
 		wall.remove_card()

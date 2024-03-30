@@ -10,7 +10,7 @@
 albedo_color = Color(0.203922, 0.592157, 0.592157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ebt5"]
-size = Vector3(2.672, 1.75, 1)
+size = Vector3(2, 2.1, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf4je"]
 viewport_path = NodePath("SubViewport")
@@ -24,14 +24,14 @@ viewport_path = NodePath("SubViewport3")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikdwj"]
 size = Vector3(1.29447, 0.342125, 0.277604)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gv3t5"]
-size = Vector3(0.763889, 0.773027, 0.0570252)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73g2w"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_m033a")
 stream_0/weight = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv3t5"]
+size = Vector3(0.617184, 0.869944, 0.0570252)
 
 [node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("cards", "button_collider", "button_box", "choice_colliders")]
 script = ExtResource("1_qft15")
@@ -42,52 +42,59 @@ button_box = NodePath("StaticBody3D/CollisionShape3D2/CSGBox3D")
 choice_colliders = [NodePath("StaticBody3D2/CollisionShape3D2"), NodePath("StaticBody3D3/CollisionShape3D2"), NodePath("StaticBody3D4/CollisionShape3D2")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
-size = Vector3(2.672, 1.75, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+size = Vector3(2, 2.1, 1)
 material = SubResource("StandardMaterial3D_s02au")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 shape = SubResource("BoxShape3D_0ebt5")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
+size = Vector2i(352, 512)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewport" instance=ExtResource("3_wygtg")]
+position = Vector2(-56, 0)
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 transparent_bg = true
+size = Vector2i(352, 512)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewport2" instance=ExtResource("3_wygtg")]
+position = Vector2(-56, 0)
 
 [node name="SubViewport3" type="SubViewport" parent="."]
 transparent_bg = true
+size = Vector2i(352, 512)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="SubViewport3" instance=ExtResource("3_wygtg")]
+position = Vector2(-56, 0)
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149617, 0)
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.805106, 1.12938, 0.500052)
+transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, -0.65, 1.65, 0.506948)
 texture_filter = 0
 texture = SubResource("ViewportTexture_yf4je")
 
 [node name="Sprite3D2" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.0180808, 1.12938, 0.500052)
+transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0, 1.65, 0.506948)
 texture_filter = 0
 texture = SubResource("ViewportTexture_3q3h0")
 
 [node name="Sprite3D3" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.843507, 1.12938, 0.500052)
+transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.65, 1.65, 0.506948)
 texture_filter = 0
 texture = SubResource("ViewportTexture_vyyy4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444448, 0.610684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847404, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
@@ -100,20 +107,24 @@ shape = SubResource("BoxShape3D_ikdwj")
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D2"]
 size = Vector3(1.29447, 0.342125, 0.277604)
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010989, -0.086501)
+stream = SubResource("AudioStreamRandomizer_73g2w")
+bus = &"SFX"
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.756734, 1.15772, 0.610684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.650194, 1.50143, 0.528758)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
 hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
 disabled = true
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0672475, 1.15772, 0.610684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000848182, 1.5001, 0.528758)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
@@ -121,12 +132,11 @@ button_press_value = 1
 hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
 disabled = true
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.883877, 1.15772, 0.610684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648946, 1.49865, 0.528758)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
@@ -134,14 +144,8 @@ button_press_value = 2
 hover_text = "Select card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466152, -0.0297148, -0.0917365)
 shape = SubResource("BoxShape3D_gv3t5")
 disabled = true
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433459, 0.524183)
-stream = SubResource("AudioStreamRandomizer_73g2w")
-bus = &"SFX"
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]
 [connection signal="button_interacted" from="StaticBody3D2" to="." method="retrieve_card"]

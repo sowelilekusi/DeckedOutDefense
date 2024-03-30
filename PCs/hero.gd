@@ -36,6 +36,7 @@ signal died
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+var weapons_spawn_count: int = 0 #Used to prevent node name collisions for multiplayer
 var inventory_selected_index: int = 0
 var equipped_card: Card
 var offhand_card: Card
@@ -124,7 +125,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("Equip In Gauntlet"):
 			equip_weapon()
 		if Input.is_action_just_pressed("Secondary Fire"):
-			swap_weapons()
+			if equipped_card or offhand_card:
+				swap_weapons()
 		if Input.is_action_just_pressed("Select Next Card") and inventory.contents.size() > 1:
 			increment_selected()
 			swap_card_audio.play()
@@ -202,6 +204,8 @@ func ready_self() -> void:
 	edit_tool.interact_key_held = false
 	if !ready_state:
 		ready_state = true
+		hud.place_icon.set_visible(false)
+		hud.swap_icon.set_visible(false)
 		hud.shrink_wave_start_label()
 		ready_audio.play()
 		networked_set_ready_state.rpc(ready_state)
@@ -210,6 +214,10 @@ func ready_self() -> void:
 func unready_self() -> void:
 	if ready_state:
 		ready_state = false
+		if !equipped_card:
+			hud.place_icon.set_visible(true)
+		if !offhand_card:
+			hud.swap_icon.set_visible(true)
 		hud.grow_wave_start_label()
 		unready_audio.play()
 		networked_set_ready_state(ready_state)
@@ -298,12 +306,12 @@ func equip_weapon() -> void:
 		equipped_card = inventory.remove_at(inventory_selected_index)
 		if !inventory.contents.has(equipped_card):
 			decrement_selected()
-		networked_equip_weapon.rpc(Data.cards.find(equipped_card))
 		weapon = equipped_card.weapon_scene.instantiate()
+		weapon.name = str(weapons_spawn_count)
+		networked_equip_weapon.rpc(Data.cards.find(equipped_card), 0, weapons_spawn_count)
+		weapons_spawn_count += 1
 		weapon.energy_changed.connect(hud.set_weapon_energy)
-		#weapon.name = "weapon"
 		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
-		#gauntlet_sprite.set_visible(false)
 		gauntlet_card_1.set_card(equipped_card)
 		hud.place_icon.set_visible(false)
 		gauntlet_card_1.view_weapon()
@@ -372,7 +380,7 @@ func _on_timer_timeout() -> void:
 
 
 func unequip_weapon() -> void:
-	networked_unequip_weapon.rpc()
+	networked_unequip_weapon.rpc(0)
 	gauntlet_card_1.set_visible(false)
 	hud.place_icon.set_visible(true)
 	#gauntlet_sprite.set_visible(true)
@@ -391,18 +399,48 @@ func networked_set_ready_state(state: bool) -> void:
 
 
 @rpc("reliable")
-func networked_equip_weapon(card_index: int) -> void:
-	equipped_card = Data.cards[card_index]
-	weapon = equipped_card.weapon_scene.instantiate()
-	weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
-	#weapon.name = "weapon"
-	weapon.set_hero(self)
-	right_hand.add_child(weapon)
+func networked_swap_weapon() -> void:
+	var temp: Weapon = offhand_weapon
+	var temp_card: Card = offhand_card
+	if weapon:
+		offhand_weapon = weapon
+		offhand_card = equipped_card
+	else:
+		offhand_weapon = null
+		offhand_card = null
+	if temp:
+		weapon = temp
+		equipped_card = temp_card
+	else:
+		weapon = null
+		equipped_card = null
 
 
 @rpc("reliable")
-func networked_unequip_weapon() -> void:
-	weapon.queue_free()
-	weapon = null
-	inventory.add(equipped_card)
-	equipped_card = null
+func networked_equip_weapon(card_index: int, slot: int, id: int) -> void:
+	var new_card: Card = Data.cards[card_index]
+	var new_weapon: Weapon = new_card.weapon_scene.instantiate()
+	new_weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
+	new_weapon.name = str(id)
+	new_weapon.set_hero(self)
+	right_hand.add_child(new_weapon)
+	match slot:
+		0:
+			equipped_card = new_card
+			weapon = new_weapon
+		1:
+			offhand_card = new_card
+			offhand_weapon = new_weapon
+
+
+@rpc("reliable")
+func networked_unequip_weapon(slot: int) -> void:
+	match slot:
+		0:
+			weapon.queue_free()
+			weapon = null
+			equipped_card = null
+		1:
+			offhand_weapon.queue_free()
+			offhand_weapon = null
+			offhand_card = null
