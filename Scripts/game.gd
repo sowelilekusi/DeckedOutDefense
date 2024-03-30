@@ -229,7 +229,7 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 func end_wave() -> void:
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
-		connected_players_nodes[peer_id].ready_state = false
+		connected_players_nodes[peer_id].unready_self()
 	level.a_star_graph_3d.visualized_path.enable_visualization()
 	level.a_star_graph_3d.enable_non_path_tower_frames()
 	if is_multiplayer_authority():

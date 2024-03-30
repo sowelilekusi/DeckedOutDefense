@@ -32,18 +32,18 @@ script = ExtResource("3_wiose")
 damage_particle_scene = ExtResource("4_mhq3m")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527022, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00571543, 0)
 shape = SubResource("SphereShape3D_21dgw")
 script = ExtResource("5_433ie")
 
 [node name="DirectionSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, 0, 0.546419, 0)
+transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, 0, 0.0251125, 0)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("6_ke2c8")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.15918, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.637873, 0)
 sorting_offset = 1.0
 pixel_size = 0.02
 billboard = 1
@@ -51,12 +51,13 @@ texture_filter = 0
 texture = SubResource("ViewportTexture_ss5ir")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0.886933, 0)
 layers = 4
 texture_filter = 0
 texture = ExtResource("9_7yfyh")
 
 [node name="StatusEffector" type="Node3D" parent="." node_paths=PackedStringArray("hbox", "enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.521307, 0)
 script = ExtResource("9_7hati")
 hbox = NodePath("../SubViewport/HBoxContainer")
 enemy = NodePath("..")

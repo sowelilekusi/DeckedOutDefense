@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Multiplayer Tower Defense"
+config/name="Decked Out Defense"
 run/main_scene="res://Scenes/Menus/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/Textures/icon.svg"

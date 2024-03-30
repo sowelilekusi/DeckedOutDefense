@@ -46,6 +46,7 @@ layers = 4
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 visible = false
+layers = 5
 radius = 10.0
 radial_segments = 16
 rings = 16

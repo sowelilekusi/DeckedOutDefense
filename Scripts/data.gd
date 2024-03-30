@@ -26,6 +26,12 @@ var rarity_weights: Dictionary = {
 }
 
 func _ready() -> void:
+	keymaps.append(preload("res://Resources/Keymaps/qwerty.tres"))
+	keymaps.append(preload("res://Resources/Keymaps/azerty.tres"))
+	keymaps.append(preload("res://Resources/Keymaps/dvorak.tres"))
+	keymaps.append(preload("res://Resources/Keymaps/colemak.tres"))
+	keymaps.append(preload("res://Resources/Keymaps/workman.tres"))
+	
 	graphics = PlayerGraphicsSettings.load_profile_from_disk()
 	graphics.apply_graphical_settings(get_viewport())
 	audio = PlayerAudioSettings.load_profile_from_disk()
@@ -69,9 +75,3 @@ func _ready() -> void:
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/dog_boss.tres"))
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/airenemy.tres"))
 	enemies.append(preload("res://Worlds/GreenPlanet/Enemies/airenemy2.tres"))
-	
-	keymaps.append(preload("res://Resources/Keymaps/qwerty.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/azerty.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/dvorak.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/colemak.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/workman.tres"))

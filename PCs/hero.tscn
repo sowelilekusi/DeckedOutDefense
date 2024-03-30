@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=62 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Mechanic/red.tres" id="2_dbyo0"]
@@ -20,10 +20,29 @@
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
 [ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://Scenes/UI/pickup_notification.tscn" id="17_oyeww"]
+[ext_resource type="Texture2D" uid="uid://cvjcu3hofahr6" path="res://Assets/Textures/place_slot.png" id="18_okmpi"]
 [ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
 [ext_resource type="Shader" path="res://crosshair.gdshader" id="20_gxpgc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="24_gg2dy"]
+[ext_resource type="AudioStream" uid="uid://csu2hce4bfoki" path="res://Audio/cardPlace1.ogg" id="24_8ch4w"]
+[ext_resource type="Texture2D" uid="uid://b8woqvpwq3tsq" path="res://Assets/Textures/swap_slot.png" id="24_gr6xt"]
+[ext_resource type="AudioStream" uid="uid://dxq8b77wa41os" path="res://Audio/cardPlace2.ogg" id="25_awl6m"]
+[ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
+[ext_resource type="AudioStream" uid="uid://k1lsqkvohjpa" path="res://Audio/cardPlace4.ogg" id="27_xvxs8"]
+[ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
+[ext_resource type="AudioStream" uid="uid://d32gpcu8w1yvn" path="res://Audio/cardSlide2.ogg" id="29_s0a0l"]
+[ext_resource type="AudioStream" uid="uid://val5n418yebw" path="res://Audio/cardSlide3.ogg" id="30_djhlg"]
+[ext_resource type="AudioStream" uid="uid://ck6g061w7i6ro" path="res://Audio/cardSlide4.ogg" id="31_546e6"]
+[ext_resource type="AudioStream" uid="uid://bj8eitlsjdotb" path="res://Audio/cardSlide5.ogg" id="32_tg7y0"]
+[ext_resource type="AudioStream" uid="uid://d0620p56ad34a" path="res://Audio/cardSlide6.ogg" id="33_2v5co"]
+[ext_resource type="AudioStream" uid="uid://uvoxbl1fbtu0" path="res://Audio/cardSlide7.ogg" id="34_6acmc"]
+[ext_resource type="AudioStream" uid="uid://dmf7dxo75df1a" path="res://Audio/cardSlide8.ogg" id="35_i0lwe"]
+[ext_resource type="AudioStream" uid="uid://dq01plaqhqso4" path="res://Audio/close_002.wav" id="36_cd8og"]
+[ext_resource type="AudioStream" uid="uid://quk50d1jafdw" path="res://Audio/powerUp2-Reversed.wav" id="36_lsvj8"]
+[ext_resource type="AudioStream" uid="uid://bqjqokbvkfap7" path="res://Audio/powerUp2.ogg" id="37_kv1mg"]
+[ext_resource type="AudioStream" uid="uid://datdq1i45080i" path="res://Audio/open_002.wav" id="37_sa2xu"]
+[ext_resource type="AudioStream" uid="uid://dd1w61ri7ui4i" path="res://Audio/phaserDown3.ogg" id="40_pnv0q"]
+[ext_resource type="AudioStream" uid="uid://bll3n3pr8s4yy" path="res://Audio/phaserUp3.ogg" id="41_hussy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 radius = 0.3
@@ -99,12 +118,46 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyb7c"]
-random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("24_8ch4w")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("25_awl6m")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("26_7tm07")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("27_xvxs8")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0lyoo"]
+streams_count = 8
+stream_0/stream = ExtResource("28_1thk8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("29_s0a0l")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("30_djhlg")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("31_546e6")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("32_tg7y0")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("33_2v5co")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("34_6acmc")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("35_i0lwe")
+stream_7/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_evsqr"]
 streams_count = 1
-stream_0/stream = ExtResource("24_gg2dy")
+stream_0/stream = ExtResource("36_lsvj8")
 stream_0/weight = 1.0
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "card_sprites", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pc8yw"]
+streams_count = 1
+stream_0/stream = ExtResource("37_kv1mg")
+stream_0/weight = 1.0
+
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "card_sprites", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -130,6 +183,14 @@ movement = NodePath("PlayerMovement")
 player_name_tag = NodePath("NametagViewport/Label")
 weapon_swap_timer = NodePath("WeaponSwapTimer")
 ears = NodePath("AudioListener3D")
+place_card_audio = NodePath("PlaceCardAudio")
+swap_card_audio = NodePath("SwapCardAudio")
+ready_audio = NodePath("ReadyAudio")
+unready_audio = NodePath("UnreadyAudio")
+fullpower_audio = NodePath("FullPowerAudio")
+zeropower_audio = NodePath("ZeroPowerAudio")
+swap_off_audio = NodePath("SwapOffAudio")
+swap_on_audio = NodePath("SwapOnAudio")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -334,8 +395,9 @@ head = NodePath("../ViewMovement")
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text")]
 script = ExtResource("8_yl6ka")
+player = NodePath("..")
 wave_count = NodePath("WaveCount")
 lives_count = NodePath("LivesCount")
 currency_count = NodePath("CurrencyCount")
@@ -345,13 +407,17 @@ minimap = NodePath("Minimap")
 minimap_cam = NodePath("../MiniMapViewport/Camera3D")
 minimap_viewport = NodePath("../MiniMapViewport")
 fps_label = NodePath("FPSCounter")
-hover_text = NodePath("HoverOverText")
+hover_text = NodePath("RichTextLabel2")
 enemy_sprites = [NodePath("EnemyTracker/TextureRect"), NodePath("EnemyTracker/TextureRect2"), NodePath("EnemyTracker/TextureRect3"), NodePath("EnemyTracker/TextureRect4"), NodePath("EnemyTracker/TextureRect5")]
 enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTracker/TextureRect2/Label2"), NodePath("EnemyTracker/TextureRect3/Label3"), NodePath("EnemyTracker/TextureRect4/Label4"), NodePath("EnemyTracker/TextureRect5/Label5")]
 weapon_energy_bar = NodePath("PrimaryEnergyBar")
 offhand_energy_bar = NodePath("OffhandEnergyBar")
 pickup_notif_scene = ExtResource("17_oyeww")
-wave_start_label = NodePath("Label")
+wave_start_label = NodePath("RichTextLabel")
+place_icon = NodePath("PlaceIcon")
+swap_icon = NodePath("SwapIcon")
+place_text = NodePath("PlaceIcon/RichTextLabel")
+swap_text = NodePath("SwapIcon/RichTextLabel")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -361,6 +427,68 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_mk87g")
+
+[node name="PlaceIcon" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -657.0
+offset_top = -455.0
+offset_right = -331.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("18_okmpi")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/PlaceIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -19.0
+offset_right = 30.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "#Equip In Gauntlet#"
+scroll_active = false
+
+[node name="SwapIcon" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -332.0
+offset_top = -455.0
+offset_right = -6.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("24_gr6xt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/SwapIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -29.0
+offset_right = 30.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "#Secondary Fire#"
+scroll_active = false
 
 [node name="Minimap" type="TextureRect" parent="HUD"]
 anchors_preset = 1
@@ -560,26 +688,25 @@ text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HoverOverText" type="Label" parent="HUD"]
-visible = false
+[node name="RichTextLabel2" type="RichTextLabel" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -93.5
-offset_top = 167.0
-offset_right = 93.5
-offset_bottom = 13.0
+offset_left = -304.0
+offset_top = 37.0
+offset_right = 296.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 34
-text = "Press button to do thing"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Press Button To do thing"
+scroll_active = false
 
 [node name="WaveCount" type="Label" parent="HUD"]
 anchors_preset = 5
@@ -657,7 +784,7 @@ offset_bottom = -40.0
 grow_vertical = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="HUD"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -666,10 +793,10 @@ offset_top = 110.0
 offset_right = 300.0
 offset_bottom = 160.0
 grow_horizontal = 2
-text = "Press [Button] to start wave"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Press #Ready# to start wave[/center]"
+scroll_active = false
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.9
@@ -678,8 +805,36 @@ one_shot = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_tsiqi")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PlaceCardAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_wyb7c")
+bus = &"SFX"
+
+[node name="SwapCardAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_0lyoo")
+bus = &"SFX"
+
+[node name="ReadyAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_evsqr")
+bus = &"SFX"
+
+[node name="UnreadyAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pc8yw")
+bus = &"SFX"
+
+[node name="FullPowerAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_sa2xu")
+bus = &"SFX"
+
+[node name="ZeroPowerAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_cd8og")
+bus = &"SFX"
+
+[node name="SwapOffAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_pnv0q")
+bus = &"SFX"
+
+[node name="SwapOnAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("41_hussy")
 bus = &"SFX"
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]

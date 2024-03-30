@@ -20,3 +20,7 @@ func _on_confirm_pressed() -> void:
 	Data.player_keymap.save_profile_to_disk()
 	Data.player_controller_keymap.append_input_map()
 	queue_free()
+
+
+func _on_button_hovered() -> void:
+	$AudioStreamPlayer.play()

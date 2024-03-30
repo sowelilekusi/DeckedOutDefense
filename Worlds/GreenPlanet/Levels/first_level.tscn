@@ -112,7 +112,7 @@ material = SubResource("StandardMaterial3D_u3k34")
 size = Vector2(2, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6x7pa"]
-size = Vector3(8, 1, 2)
+size = Vector3(8.5, 1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugxr"]
 albedo_texture = ExtResource("17_oq0rj")
@@ -1025,10 +1025,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
 shape = SubResource("BoxShape3D_jcbfv")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(0.933524, 0.358515, 0, -0.358515, 0.933524, 0, 0, 0, 1, 12.7353, 2.06138, 7.5)
+transform = Transform3D(0.933524, 0.358515, 0, -0.358515, 0.933524, 0, 0, 0, 1, 12.9463, 1.97883, 7.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, -2.98023e-08, -8.88178e-16, -2.98023e-08, 1, -1, 4.37114e-08, 1.91069e-15, -0.223239, -0.00713253, 0)
 mesh = SubResource("QuadMesh_p8nf8")
 skeleton = NodePath("../..")
 
@@ -1037,10 +1037,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_6x7pa")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(0.933524, 0.358515, 0, -0.358515, 0.933524, 0, 0, 0, 1, 12.735, 2.061, -7.5)
+transform = Transform3D(0.933524, 0.358515, 0, -0.358515, 0.933524, 0, 0, 0, 1, 12.946, 1.97845, -7.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, -2.98023e-08, -8.88178e-16, -2.98023e-08, 1, -1, 4.37114e-08, 1.91069e-15, -0.223239, -0.00713158, 0)
 mesh = SubResource("QuadMesh_p8nf8")
 skeleton = NodePath("../..")
 
@@ -1049,10 +1049,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_6x7pa")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.933524, -0.358515, -8.74228e-08, -0.358515, 0.933524, 0, 8.16113e-08, 3.13423e-08, -1, -12.735, 2.06138, 7.5)
+transform = Transform3D(-0.933524, -0.358515, -8.74228e-08, -0.358515, 0.933524, 0, 8.16113e-08, 3.13423e-08, -1, -12.9597, 1.97579, 7.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, -2.98023e-08, 7.10543e-15, -2.98023e-08, 1, -1, 4.37114e-08, 1.06581e-14, -0.226588, -0.00680065, 0)
 mesh = SubResource("QuadMesh_p8nf8")
 skeleton = NodePath("../..")
 
@@ -1061,10 +1061,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_6x7pa")
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.933524, -0.358515, -8.74228e-08, -0.358515, 0.933524, 0, 8.16113e-08, 3.13423e-08, -1, -12.735, 2.061, -7.5)
+transform = Transform3D(-0.933524, -0.358515, -8.74228e-08, -0.358515, 0.933524, 0, 8.16113e-08, 3.13423e-08, -1, -12.9597, 1.97541, -7.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D6"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, -2.98023e-08, 7.10543e-15, -2.98023e-08, 1, -1, 4.37114e-08, 1.06581e-14, -0.226588, -0.0067997, 0)
 mesh = SubResource("QuadMesh_p8nf8")
 skeleton = NodePath("../..")
 

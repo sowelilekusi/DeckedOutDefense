@@ -27,6 +27,14 @@ signal died
 @export var player_name_tag: Label
 @export var weapon_swap_timer: Timer
 @export var ears: AudioListener3D
+@export var place_card_audio: AudioStreamPlayer
+@export var swap_card_audio: AudioStreamPlayer
+@export var ready_audio: AudioStreamPlayer
+@export var unready_audio: AudioStreamPlayer
+@export var fullpower_audio: AudioStreamPlayer
+@export var zeropower_audio: AudioStreamPlayer
+@export var swap_off_audio: AudioStreamPlayer
+@export var swap_on_audio: AudioStreamPlayer
 
 var inventory_selected_index: int = 0
 var equipped_card: Card
@@ -117,12 +125,12 @@ func _process(delta: float) -> void:
 			equip_weapon()
 		if Input.is_action_just_pressed("Secondary Fire"):
 			swap_weapons()
-		if Input.is_action_just_pressed("Select Next Card") and inventory.size != 0:
+		if Input.is_action_just_pressed("Select Next Card") and inventory.contents.size() > 1:
 			increment_selected()
-			$AudioStreamPlayer.play()
-		if Input.is_action_just_pressed("Select Previous Card") and inventory.size != 0:
+			swap_card_audio.play()
+		if Input.is_action_just_pressed("Select Previous Card") and inventory.contents.size() > 1:
 			decrement_selected()
-			$AudioStreamPlayer.play()
+			swap_card_audio.play()
 		if Input.is_action_just_pressed("Primary Fire"):
 			edit_tool.interact_key_held = true
 		if Input.is_action_just_released("Primary Fire"):
@@ -195,7 +203,7 @@ func ready_self() -> void:
 	if !ready_state:
 		ready_state = true
 		hud.shrink_wave_start_label()
-		$AudioStreamPlayer.play()
+		ready_audio.play()
 		networked_set_ready_state.rpc(ready_state)
 
 
@@ -203,13 +211,14 @@ func unready_self() -> void:
 	if ready_state:
 		ready_state = false
 		hud.grow_wave_start_label()
-		$AudioStreamPlayer.play()
+		unready_audio.play()
 		networked_set_ready_state(ready_state)
 
 
 func add_card(new_card: Card) -> void:
 	inventory.add(new_card)
 	hud.pickup(new_card)
+	place_card_audio.play()
 
 
 func unpause() -> void:
@@ -285,7 +294,7 @@ func equip_weapon() -> void:
 		unequip_weapon()
 		return
 	if inventory.size > 0:
-		$AudioStreamPlayer.play()
+		place_card_audio.play()
 		equipped_card = inventory.remove_at(inventory_selected_index)
 		if !inventory.contents.has(equipped_card):
 			decrement_selected()
@@ -296,6 +305,7 @@ func equip_weapon() -> void:
 		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
 		#gauntlet_sprite.set_visible(false)
 		gauntlet_card_1.set_card(equipped_card)
+		hud.place_icon.set_visible(false)
 		gauntlet_card_1.view_weapon()
 		gauntlet_card_1.set_visible(true)
 		weapon.set_hero(self)
@@ -308,7 +318,11 @@ func swap_weapons() -> void:
 	if !editing_mode:
 		weapons_active = false
 	if weapon or offhand_weapon:
-		$AudioStreamPlayer.play()
+		if editing_mode:
+			swap_card_audio.play()
+		else:
+			swap_off_audio.play()
+	hud.audio_guard = true
 	var temp: Weapon = offhand_weapon
 	var temp_card: Card = offhand_card
 	if weapon:
@@ -323,10 +337,12 @@ func swap_weapons() -> void:
 		gauntlet_card_2.set_card(offhand_card)
 		gauntlet_card_2.view_weapon()
 		gauntlet_card_2.set_visible(true)
+		hud.swap_icon.set_visible(false)
 	else:
 		offhand_weapon = null
 		offhand_card = null
 		gauntlet_card_2.set_visible(false)
+		hud.swap_icon.set_visible(true)
 	if temp:
 		weapon = temp
 		equipped_card = temp_card
@@ -338,10 +354,12 @@ func swap_weapons() -> void:
 		gauntlet_card_1.set_card(equipped_card)
 		gauntlet_card_1.view_weapon()
 		gauntlet_card_1.set_visible(true)
+		hud.place_icon.set_visible(false)
 	else:
 		weapon = null
 		equipped_card = null
 		gauntlet_card_1.set_visible(false)
+		hud.place_icon.set_visible(true)
 	if !editing_mode:
 		weapon_swap_timer.start()
 
@@ -349,19 +367,20 @@ func swap_weapons() -> void:
 func _on_timer_timeout() -> void:
 	weapons_active = true
 	if weapon:
-		$AudioStreamPlayer.play()
+		swap_on_audio.play()
 		weapon.set_visible(true)
 
 
 func unequip_weapon() -> void:
 	networked_unequip_weapon.rpc()
 	gauntlet_card_1.set_visible(false)
+	hud.place_icon.set_visible(true)
 	#gauntlet_sprite.set_visible(true)
 	weapon.queue_free()
 	weapon = null
 	inventory.add(equipped_card)
 	equipped_card = null
-	$AudioStreamPlayer.play()
+	place_card_audio.play()
 	check_left_hand_valid()
 
 

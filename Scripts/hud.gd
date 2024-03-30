@@ -1,6 +1,7 @@
 class_name HUD extends CanvasLayer
 
 var last_lives_count: int = 120
+@export var player: Hero
 @export var wave_count: Label
 @export var lives_count: Label
 @export var currency_count: Label
@@ -10,7 +11,7 @@ var last_lives_count: int = 120
 @export var minimap_cam: MinimapCamera3D
 @export var minimap_viewport: SubViewport
 @export var fps_label: Label
-@export var hover_text: Label
+@export var hover_text: RichTextLabel
 var minimap_anchor: Node3D
 var enemy_names: Array[String]
 @export var enemy_sprites: Array[TextureRect]
@@ -18,7 +19,13 @@ var enemy_names: Array[String]
 @export var weapon_energy_bar: TextureProgressBar
 @export var offhand_energy_bar: TextureProgressBar
 @export var pickup_notif_scene: PackedScene
-@export var wave_start_label: Label
+@export var wave_start_label: RichTextLabel
+@export var place_icon: TextureRect
+@export var swap_icon: TextureRect
+@export var place_text: RichTextLabel
+@export var swap_text: RichTextLabel
+
+var audio_guard: bool = false
 
 
 func set_energy_visible(value: bool) -> void:
@@ -31,7 +38,9 @@ func set_offhand_energy_visible(value: bool) -> void:
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
-	wave_start_label.text = "Press [" + Data.player_keymap.ready.as_text_key_label() + "] to start wave"
+	wave_start_label.text = parse_action_tag("[center]Press #Ready# to start wave")
+	place_text.text = parse_action_tag("[center]#Equip In Gauntlet#")
+	swap_text.text = parse_action_tag("[center]#Secondary Fire#")
 
 
 func grow_wave_start_label() -> void:
@@ -55,7 +64,7 @@ func tween_label(x: float) -> void:
 
 
 func set_hover_text(text: String) -> void:
-	hover_text.text = text
+	hover_text.text = parse_action_tag(text)
 	hover_text.set_visible(true)
 
 
@@ -111,6 +120,16 @@ func set_crosshair_visible(value: bool) -> void:
 
 func set_weapon_energy(value: int) -> void:
 	weapon_energy_bar.value = value
+	if player.editing_mode:
+		audio_guard = true
+	if value == 0 and !audio_guard:
+		player.zeropower_audio.play()
+		audio_guard = true
+	if value == 100 and !audio_guard:
+		player.fullpower_audio.play()
+		audio_guard = true
+	if value > 0 and value < 100:
+		audio_guard = false
 
 
 func set_offhand_energy(value: int) -> void:
@@ -147,3 +166,15 @@ func pickup(card: Card) -> void:
 	var notif: PickupNotification = pickup_notif_scene.instantiate()
 	notif.set_card(card)
 	$VBoxContainer.add_child(notif)
+
+
+func parse_action_tag(text: String) -> String:
+	var string_array: PackedStringArray = text.split("#")
+	if string_array.size() > 1:
+		var event: InputEvent = InputMap.action_get_events(string_array[1])[0]
+		if event is InputEventKey:
+			string_array[1] = "[img=top,50]%s[/img]" % KeyIconMap.keys[str(event.keycode)]
+		if event is InputEventMouseButton:
+			string_array[1] = "[img=top,50]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)]
+	text = "".join(string_array)
+	return text

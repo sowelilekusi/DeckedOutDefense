@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://6a277g802os0"]
 
 [ext_resource type="Script" path="res://Scripts/alert_popup.gd" id="1_cac03"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_h7kij"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="2_2mbtt"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_veol0"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("2_h7kij")
+stream_0/stream = ExtResource("2_2mbtt")
 stream_0/weight = 1.0
 
 [node name="Control" type="PanelContainer"]

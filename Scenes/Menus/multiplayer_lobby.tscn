@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
 [ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://Scenes/Menus/CharacterSelect/charselect.tscn" id="5_lvoo2"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="7_npnbo"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="7_6mhre"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cwnde"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("7_npnbo")
+stream_0/stream = ExtResource("7_6mhre")
 stream_0/weight = 1.0
 
 [node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "loadout_editor", "chatbox")]

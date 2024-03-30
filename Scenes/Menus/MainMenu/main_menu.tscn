@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="2_ivytu"]
 [ext_resource type="Texture2D" uid="uid://lvvnrb5jugum" path="res://Assets/Textures/logo_title.png" id="3_8jkeb"]
 [ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/first_level.tscn" id="3_l8r4a"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="5_4c4cl"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="5_cwn2i"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
 viewport_path = NodePath("SubViewport")
@@ -12,7 +12,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jyua"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("5_4c4cl")
+stream_0/stream = ExtResource("5_cwn2i")
 stream_0/weight = 1.0
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level")]

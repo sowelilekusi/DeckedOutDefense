@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://ce0m8vbjbng6o"]
 
 [ext_resource type="Script" path="res://Scripts/won_game_screen.gd" id="1_oa7nq"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="2_553mv"]
 [ext_resource type="PackedScene" uid="uid://b5hp43bm07b8a" path="res://h_box_container.tscn" id="2_xm8em"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="3_ro1yg"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dram5"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("2_553mv")
+stream_0/stream = ExtResource("3_ro1yg")
 stream_0/weight = 1.0
 
 [node name="Control" type="Control"]

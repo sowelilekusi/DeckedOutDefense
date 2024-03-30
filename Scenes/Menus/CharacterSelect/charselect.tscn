@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/Menus/CharacterSelect/charselect.gd" id="1_h2h26"]
 [ext_resource type="PackedScene" uid="uid://bnsf2degj5tio" path="res://Scenes/UI/hero_card.tscn" id="1_v2mfo"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://shot1.wav" id="3_o88ca"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="3_ho1fl"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ehpk7"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("3_o88ca")
+stream_0/stream = ExtResource("3_ho1fl")
 stream_0/weight = 1.0
 
 [node name="Control" type="Control" node_paths=PackedStringArray("hbox")]

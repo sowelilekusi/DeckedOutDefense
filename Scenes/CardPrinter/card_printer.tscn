@@ -92,7 +92,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
 press_cost = 15
-hover_text = "Spend 15 Coins to print card"
+hover_text = "[center]#Interact# to spend $15 on random card"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_ikdwj")

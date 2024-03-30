@@ -169,6 +169,7 @@ func put_card_in_tower_base(tower_base: TowerBase) -> void:
 		if !inventory.contents.has(card):
 			hero.decrement_selected()
 		tower_base.add_card(card, multiplayer.get_unique_id())
+		hero.place_card_audio.play()
 
 
 func set_progress_percent(value: float) -> void:
