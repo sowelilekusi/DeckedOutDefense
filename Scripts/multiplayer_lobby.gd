@@ -60,17 +60,16 @@ func create_server() -> void:
 
 func setup_game(peer_id: int) -> void:
 	player_disconnected.connect(Game.remove_player)
-	Game.spawn_level()
 	scoreboard.all_players_ready.connect(start_game)
-	Game.game_restarted.connect(setup_the_ui)
+	Game.game_setup.connect(setup_the_ui)
 	Game.chatbox = chatbox
-	setup_the_ui()
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
 	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
 	loadout_editor.hero_selected.connect(edit_player_profile)
 	connected_players_profiles[peer_id] = Data.player_profile
 	player_connected.emit(peer_id, Data.player_profile)
+	Game.setup()
 
 
 func setup_the_ui() -> void:
@@ -95,9 +94,10 @@ func ready_player() -> void:
 
 func start_game() -> void:
 	enet_peer.refuse_new_connections = true
-	Game.spawn_players(connected_players_profiles.keys(), connected_players_profiles, chatbox.opened, chatbox.closed)
 	scoreboard.set_visible(false)
 	loadout_editor.set_visible(false)
+	Game.connected_player_profiles = connected_players_profiles
+	Game.start()
 
 
 #TODO: what the fuck is this doing lol

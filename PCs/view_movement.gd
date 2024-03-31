@@ -145,10 +145,10 @@ func focus_target() -> Vector3:
 func get_strafe_tilt(player_velocity: Vector3) -> Vector3:
 	var side_dot: float = player_velocity.normalized().dot(-global_transform.basis.z)
 	var front_dot: float = player_velocity.normalized().dot(-global_transform.basis.x)
-	var speed_factor: float = player_velocity.length() / tilt_max_effect_speed
+	var tilt_speed_factor: float = player_velocity.length() / tilt_max_effect_speed
 	var tilt_vector: Vector3 = Vector3.ZERO
-	tilt_vector.z = deg_to_rad(tilt_amount_x * front_dot * speed_factor)
-	tilt_vector.x = deg_to_rad(tilt_amount_y * -side_dot * speed_factor)
+	tilt_vector.z = deg_to_rad(tilt_amount_x * front_dot * tilt_speed_factor)
+	tilt_vector.x = deg_to_rad(tilt_amount_y * -side_dot * tilt_speed_factor)
 	return tilt_vector
 
 

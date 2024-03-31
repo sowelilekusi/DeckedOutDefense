@@ -58,6 +58,7 @@ func quit_game(confirmation: bool) -> void:
 
 
 func _on_play_button_pressed() -> void:
+	Game.level = null
 	Game.scene_switch_to_singleplayer_lobby()
 
 
@@ -67,6 +68,7 @@ func _on_options_button_pressed() -> void:
 
 
 func _on_multiplayer_button_pressed() -> void:
+	Game.level = null
 	Game.scene_switch_to_multiplayer_lobby()
 
 

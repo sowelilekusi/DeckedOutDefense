@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2avjln5vmr0y"]
+
+[ext_resource type="Script" path="res://Scenes/Shredder/shredder.gd" id="1_diuqd"]
+[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="1_toyr6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_waypt"]
+albedo_color = Color(0.909804, 0.113725, 0.113725, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3ege"]
+albedo_color = Color(1, 0.498039, 0.0941176, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxwll"]
+size = Vector3(1, 1.1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mxpr"]
+size = Vector3(0.925, 0.3, 0.4)
+
+[node name="Shredder" type="StaticBody3D"]
+script = ExtResource("1_diuqd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+size = Vector3(1, 1.1, 0.7)
+material = SubResource("StandardMaterial3D_waypt")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58128, 0)
+operation = 2
+size = Vector3(0.8, 0.4, 0.2)
+material = SubResource("StandardMaterial3D_o3ege")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_yxwll")
+
+[node name="InteractButton" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08506, 0)
+collision_layer = 16
+script = ExtResource("1_toyr6")
+hover_text = "[center]#Interact# to shred card"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButton"]
+shape = SubResource("BoxShape3D_5mxpr")
+
+[connection signal="button_interacted" from="InteractButton" to="." method="_on_interact_button_button_interacted"]

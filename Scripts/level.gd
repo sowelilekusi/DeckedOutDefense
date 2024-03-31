@@ -33,7 +33,7 @@ func generate_obstacles() -> void:
 
 func cell_coord_to_astar_point(x: int, y: int) -> int:
 	var center_point_x: int = floori(a_star_graph_3d.grid_size.x / 2.0) * a_star_graph_3d.grid_size.y
-	var center_point_y: int = a_star_graph_3d.grid_size.y / 2.0
+	var center_point_y: int = floori(a_star_graph_3d.grid_size.y / 2.0)
 	return (center_point_x + ((x / 2.0) * a_star_graph_3d.grid_size.y)) + (center_point_y + (y / 2.0))
 
 

@@ -7,11 +7,13 @@ class_name ShopStand extends Node3D
 @export var item_card_scene: PackedScene
 
 var price_dict: Dictionary = {
-	Data.Rarity.UNCOMMON : 30,
-	Data.Rarity.RARE : 50,
-	Data.Rarity.EPIC : 75,
-	Data.Rarity.LEGENDARY : 100,
+	Data.Rarity.UNCOMMON : 25,
+	Data.Rarity.RARE : 40,
+	Data.Rarity.EPIC : 60,
+	Data.Rarity.LEGENDARY : 85,
 }
+
+var cards_generated: int = 0
 
 
 func close() -> void:
@@ -34,19 +36,22 @@ func randomize_cards() -> void:
 			pricey_cards.append(card)
 	
 	for x: int in 3:
-		var chosen_card: Card = cheap_cards.pick_random()
+		var chosen_card: Card = cheap_cards[Game.randi_in_range(12 * cards_generated, 0, cheap_cards.size() - 1)]
+		cards_generated += 1
 		cards[x].set_card(chosen_card)
 		cards[x].view_tower()
 		choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
 		choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name + "?"
 	for x: int in 2:
-		var chosen_card: Card = medium_cards.pick_random()
+		var chosen_card: Card = medium_cards[Game.randi_in_range(9 * cards_generated, 0, medium_cards.size() - 1)]
+		cards_generated += 1
 		cards[x+3].set_card(chosen_card)
 		cards[x+3].view_tower()
 		choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
 		choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name + "?"
 	for x: int in 1:
-		var chosen_card: Card = pricey_cards.pick_random()
+		var chosen_card: Card = pricey_cards[Game.randi_in_range(50 * cards_generated, 0, pricey_cards.size() - 1)]
+		cards_generated += 1
 		cards[x+5].set_card(chosen_card)
 		cards[x+5].view_tower()
 		choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]

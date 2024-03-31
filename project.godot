@@ -35,6 +35,7 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://Assets/": "purple",
+"res://Audio/": "red",
 "res://PCs/": "blue",
 "res://Resources/": "green",
 "res://Scenes/": "yellow",

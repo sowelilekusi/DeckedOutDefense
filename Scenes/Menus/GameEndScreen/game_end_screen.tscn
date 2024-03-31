@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce0m8vbjbng6o"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/GameEndScreen/game_end_screen.gd" id="1_oa7nq"]
+[ext_resource type="PackedScene" uid="uid://b5hp43bm07b8a" path="res://h_box_container.tscn" id="2_xm8em"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="3_ro1yg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dram5"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_ro1yg")
+stream_0/weight = 1.0
+
+[node name="GameEndScreen" type="PanelContainer" node_paths=PackedStringArray("outcome_label", "winrate_label", "total_games_label", "total_wins_label", "total_losses_label", "undefeated_enemies")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = -150.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oa7nq")
+box = ExtResource("2_xm8em")
+outcome_label = NodePath("VBoxContainer/Labels/OutcomeLabel")
+winrate_label = NodePath("VBoxContainer/Labels/WinRateLabel")
+total_games_label = NodePath("VBoxContainer/Labels/TotalGamesLabel")
+total_wins_label = NodePath("VBoxContainer/Labels/TotalWinsLabel")
+total_losses_label = NodePath("VBoxContainer/Labels/TotalLossesLabel")
+undefeated_enemies = NodePath("VBoxContainer/UndefeatedEnemies")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="OutcomeLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+text = "You WIN :3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+text = "Your winrate is now: 80%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+text = "Total games played: 315"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+text = "Total wins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels"]
+layout_mode = 2
+text = "Total losses"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UndefeatedEnemies" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Return to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dram5")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="VBoxContainer/Buttons/PlayButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Buttons/QuitButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

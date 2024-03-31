@@ -3,9 +3,9 @@ extends Node
 signal wave_started(wave_number: int)
 signal wave_finished(wave_number: int)
 signal base_took_damage(remaining_health: int)
-signal rng_seeded()
+signal rng_seeded
+signal game_setup
 signal game_started
-signal game_restarted
 signal lost_game
 signal won_game
 
@@ -14,8 +14,7 @@ var player_scene: PackedScene = load("res://PCs/hero.tscn")
 var main_menu_scene_path: String = "res://Scenes/Menus/MainMenu/main_menu.tscn"
 var multiplayer_lobby_scene_path: String = "res://Scenes/Menus/multiplayer_lobby.tscn"
 var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lobby.tscn"
-var won_game_scene: PackedScene = load("res://Scenes/Menus/won_game_screen.tscn")
-var lose_game_scene: PackedScene = load("res://Scenes/Menus/lost_game_screen.tscn")
+var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
 var game_active: bool = false
 var level: Level
@@ -30,8 +29,11 @@ var chatbox: Chatbox
 var wave_limit: int = 20
 var starting_cash: int = 16
 var shop_chance: float = 0.0
-var stats: RoundStats = RoundStats.new()
+var stats: RoundStats
 var rng: FastNoiseLite
+
+#TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
+var connected_player_profiles: Dictionary = {}
 
 
 func _ready() -> void:
@@ -44,13 +46,19 @@ func _ready() -> void:
 func set_seed(value: int) -> void:
 	rng = FastNoiseLite.new()
 	rng.noise_type = FastNoiseLite.TYPE_VALUE
-	rng.frequency = 1
+	rng.frequency = 30
+	rng.fractal_octaves = 2
+	rng.fractal_gain = 0.1
 	rng.seed = value
 	rng_seeded.emit()
 
 
-func randi_in_range(sample: float, start: float, end: float) -> int:
-	return floori(remap(rng.get_noise_1d(sample), -1.0, 1.0, start, end + 1))
+func randi_in_range(sample: float, output_start: int, output_end: int) -> int:
+	return floori(remap(rng.get_noise_1d(sample), -1.0, 1.0, float(output_start), float(output_end + 1)))
+
+
+func randf_in_range(sample: float, output_start: float, output_end: float) -> float:
+	return remap(rng.get_noise_1d(sample), -1.0, 1.0, output_start, output_end)
 
 
 func parse_command(text: String, peer_id: int) -> void:
@@ -118,20 +126,21 @@ func spawn_level() -> void:
 	add_child(level)
 
 
-func spawn_players(player_array: Array, player_profiles: Dictionary, chatbox_open_signal: Signal, chatbox_closed_signal: Signal) -> void:
+func spawn_players() -> void:
 	var p_i: int = 0
+	var player_array: Array = connected_player_profiles.keys()
 	player_array.sort()
 	for peer_id: int in player_array:
 		var player: Hero = player_scene.instantiate() as Hero
 		player.name = str(peer_id)
-		player.player_name_tag.text = player_profiles[peer_id].display_name
+		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
-		player.profile = player_profiles[peer_id]
-		player.hero_class = Data.characters[player_profiles[peer_id].preferred_class]
+		player.profile = connected_player_profiles[peer_id]
+		player.hero_class = Data.characters[connected_player_profiles[peer_id].preferred_class]
 		player.ready_state_changed.connect(ready_player)
 		if peer_id == multiplayer.get_unique_id():
-			chatbox_open_signal.connect(player.pause)
-			chatbox_closed_signal.connect(player.unpause)
+			chatbox.opened.connect(player.pause)
+			chatbox.closed.connect(player.unpause)
 		player.set_multiplayer_authority(peer_id)
 		connected_players_nodes[peer_id] = player
 		wave_started.connect(player.exit_editing_mode)
@@ -140,7 +149,6 @@ func spawn_players(player_array: Array, player_profiles: Dictionary, chatbox_ope
 		add_child(player)
 		p_i += 1
 	level.cinematic_cam.does_its_thing = false
-	start_game()
 
 
 func ready_player(player_ready_true: bool) -> void:
@@ -154,7 +162,7 @@ func ready_player(player_ready_true: bool) -> void:
 			ready_players += 1
 	if ready_players == connected_players_nodes.size():
 		spawn_enemy_wave()
-		chatbox.append_message("SERVER", Color.TOMATO, "Wave Started!")
+		#chatbox.append_message("SERVER", Color.TOMATO, "Wave Started!")
 	else:
 		chatbox.append_message("SERVER", Color.TOMATO, str(ready_players) + "/" + str(connected_players_nodes.size()) + " Players ready")
 
@@ -208,7 +216,7 @@ func enemy_died(enemy: Enemy) -> void:
 	if enemies == 0:
 		end_wave()
 		if !endless_mode and wave >= wave_limit:
-			win_game()
+			end(true)
 
 
 func damage_goal(enemy: Enemy, penalty: int) -> void:
@@ -219,11 +227,11 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 	objective_health -= penalty
 	base_took_damage.emit(objective_health)
 	if objective_health <= 0:
-		lose_game()
+		end(false)
 	elif enemies == 0:
 		end_wave()
 		if !endless_mode and wave >= wave_limit:
-			win_game()
+			end(true)
 
 
 func end_wave() -> void:
@@ -233,11 +241,11 @@ func end_wave() -> void:
 	level.a_star_graph_3d.visualized_path.enable_visualization()
 	level.a_star_graph_3d.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
-		if randf() <= shop_chance:
+		if randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			networked_spawn_shop.rpc()
 			shop_chance = 0.0
 		else:
-			shop_chance += 0.05
+			shop_chance += 0.07
 	wave_finished.emit(wave)
 	set_upcoming_wave()
 
@@ -254,68 +262,68 @@ func remove_player(peer_id: int) -> void:
 		connected_players_nodes.erase(peer_id)
 
 
-func start_game() -> void:
-	if is_multiplayer_authority():
-		set_seed.rpc(randi())
-	else:
-		await rng_seeded
-	game_active = true
+func setup() -> void:
+	#clean up old stuff
+	if level:
+		level.queue_free()
+	for peer_id: int in connected_players_nodes:
+		connected_players_nodes[peer_id].queue_free()
+	connected_players_nodes.clear()
+	
+	#Spawn new stuff
+	spawn_level()
+	
+	#Set starting parameters
+	game_active = false
 	enemies = 0
 	objective_health = 120
 	wave = 0
+	stats = RoundStats.new()
+	game_setup.emit()
+
+
+func start(rng_seed: int = randi()) -> void:
+	if is_multiplayer_authority():
+		set_seed.rpc(rng_seed)
+	else:
+		await rng_seeded
+	
+	#Relies on player list having been decided
+	spawn_players()
+	for peer_id: int in connected_players_nodes:
+		connected_players_nodes[peer_id].currency = ceili(float(starting_cash) / float(connected_players_nodes.size()))
+	
+	#Relies on rng having been seeded
+	set_upcoming_wave()
 	level.a_star_graph_3d.make_grid()
 	level.generate_obstacles()
 	level.a_star_graph_3d.disable_all_tower_frames()
 	level.a_star_graph_3d.enable_non_path_tower_frames()
 	level.a_star_graph_3d.find_path()
-	set_upcoming_wave()
-	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].currency = roundi(float(starting_cash) / float(connected_players_nodes.size()))
+	
+	#Start game
+	game_active = true
 	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(rng.seed))
 	game_started.emit()
 
 
-func restart_game() -> void:
-	#implement game reloading system
-	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].queue_free()
-	connected_players_nodes.clear()
-	level.queue_free()
-	enemies = 0
-	objective_health = 120
-	wave = 0
-	stats = RoundStats.new()
-	spawn_level()
-	game_restarted.emit()
-	pass
-
-
-func lose_game() -> void:
+func end(outcome: bool) -> void:
 	if game_active == false:
 		return
 	game_active = false
-	Data.save_stats.add_game_outcome(false)
+	Data.save_stats.add_game_outcome(outcome)
 	Data.save_stats.save_profile_to_disk()
-	var menu: Control = lose_game_scene.instantiate()
+	var menu: GameEndScreen = game_end_scene.instantiate() as GameEndScreen
+	match outcome:
+		false:
+			menu.set_outcome_message("You lost...")
+			lost_game.emit()
+		true:
+			menu.set_outcome_message("You win!")
+			won_game.emit()
 	UILayer.add_child(menu)
-	lost_game.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].pause()
-
-
-func win_game() -> void:
-	if game_active == false:
-		return
-	game_active = false
-	Data.save_stats.add_game_outcome(true)
-	Data.save_stats.save_profile_to_disk()
-	var menu: Control = won_game_scene.instantiate()
-	UILayer.add_child(menu)
-	won_game.emit()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].pause()
+	connected_players_nodes[multiplayer.get_unique_id()].pause()
 
 
 func quit_to_desktop() -> void:
@@ -327,6 +335,8 @@ func quit_to_desktop() -> void:
 func scene_switch_main_menu() -> void:
 	for node: Node in get_children():
 		node.queue_free()
+	level = null
+	connected_players_nodes.clear()
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
 	get_tree().change_scene_to_file(main_menu_scene_path)

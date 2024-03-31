@@ -13,7 +13,7 @@ streams_count = 1
 stream_0/stream = ExtResource("6_6nu57")
 stream_0/weight = 1.0
 
-[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("scoreboard", "loadout_editor", "chatbox")]
+[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("scoreboard", "loadout_editor", "chatbox", "seed_entry", "ready_button", "daily_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,9 @@ script = ExtResource("1_nd17k")
 scoreboard = NodePath("Scoreboard")
 loadout_editor = NodePath("Control")
 chatbox = NodePath("Chatbox")
+seed_entry = NodePath("LineEdit")
+ready_button = NodePath("ReadyButton")
+daily_button = NodePath("DailyButton")
 
 [node name="Scoreboard" parent="." instance=ExtResource("1_423py")]
 visible = false
@@ -64,6 +67,28 @@ layout_mode = 1
 stream = SubResource("AudioStreamRandomizer_g5har")
 bus = &"SFX"
 
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 69.0625
+offset_bottom = 23.0
+placeholder_text = "seed"
+
+[node name="DailyButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Daily challenge"
+
 [connection signal="mouse_entered" from="ReadyButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ReadyButton" to="Scoreboard" method="set_player_ready_state" binds= [1, true]]
-[connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]
+[connection signal="mouse_entered" from="DailyButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="DailyButton" to="." method="_on_daily_button_pressed"]
