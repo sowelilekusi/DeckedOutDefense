@@ -1,6 +1,7 @@
 class_name Tower extends Node3D
 
 @export var stats: CardText
+@export var target_finder: TargetFinder
 @export var animator: AnimationPlayer
 @export var pitch_model: MeshInstance3D
 @export var yaw_model: MeshInstance3D
@@ -10,7 +11,7 @@ class_name Tower extends Node3D
 var owner_id: int
 var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
 var base_name: String
-var targeted_enemy: EnemyController
+#var targeted_enemy: EnemyController
 var time_since_firing: float = 0.0
 var time_between_shots: float = 0.0
 var damage: float = 0.0
@@ -38,44 +39,20 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if !is_multiplayer_authority():
 		#only doing the graphical sort of stuff but not shoot logic 
-		if targeted_enemy:
-			if !is_instance_valid(targeted_enemy) or !targeted_enemy.alive or global_position.distance_to(targeted_enemy.global_position) > target_range:
-				targeted_enemy = null
-			else:
-				aim()
-		return
-	if !targeted_enemy:
-		acquire_target()
-	else:
-		if !is_instance_valid(targeted_enemy) or !targeted_enemy.alive or global_position.distance_to(targeted_enemy.global_position) > target_range:
-			targeted_enemy = null
-		if targeted_enemy:
+		if target_finder.get_target():
 			aim()
-			if time_since_firing >= time_between_shots:
-				time_since_firing -= time_between_shots
-				shoot()
+		return
+	if target_finder.get_target():
+		aim()
+		if time_since_firing >= time_between_shots:
+			time_since_firing -= time_between_shots
+			shoot()
 
 
 func aim() -> void:
-	yaw_model.look_at(targeted_enemy.global_position)
-	pitch_model.look_at(targeted_enemy.global_position)
+	yaw_model.look_at(target_finder.get_target().global_position)
+	pitch_model.look_at(target_finder.get_target().global_position)
 	pitch_model.rotation.x = 0.0
-
-
-func acquire_target() -> void:
-	var most_progressed_enemy: EnemyController = null
-	for enemy: EnemyController in get_tree().get_nodes_in_group("Enemies"):
-		if global_position.distance_to(enemy.global_position) > target_range:
-			continue
-		var em_1: EnemyMovement = enemy.movement_controller as EnemyMovement
-		var em_2: EnemyMovement
-		if most_progressed_enemy != null:
-			em_2 = most_progressed_enemy.movement_controller as EnemyMovement
-		if (most_progressed_enemy == null or em_1.distance_remaining < em_2.distance_remaining) and enemy.stats.target_type & stats.target_type:
-			most_progressed_enemy = enemy
-	if most_progressed_enemy != null:
-		targeted_enemy = most_progressed_enemy
-		networked_acquire_target.rpc(get_tree().root.get_path_to(most_progressed_enemy))
 
 
 func shoot() -> void:
@@ -98,6 +75,6 @@ func networked_shoot() -> void:
 	shoot()
 
 
-@rpc("reliable")
-func networked_acquire_target(target_node_path: String) -> void:
-	targeted_enemy = get_tree().root.get_node(target_node_path)
+#@rpc("reliable")
+#func networked_acquire_target(target_node_path: String) -> void:
+	#targeted_enemy = get_tree().root.get_node(target_node_path)

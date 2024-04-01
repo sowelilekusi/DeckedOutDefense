@@ -7,7 +7,7 @@ class_name ShapecastTower extends Tower
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if targeted_enemy:
+	if target_finder.get_target():
 		particlesystem.emitting = true
 	else:
 		particlesystem.emitting = false
@@ -20,8 +20,8 @@ func shoot() -> void:
 
 
 func aim() -> void:
-	yaw_model.look_at(targeted_enemy.global_position)
-	pitch_model.look_at(targeted_enemy.global_position)
+	yaw_model.look_at(target_finder.get_target().global_position)
+	pitch_model.look_at(target_finder.get_target().global_position)
 	pitch_model.rotation.x = 0.0
 
 

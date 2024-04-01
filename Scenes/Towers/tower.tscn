@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvqu1heobgboe"]
+[gd_scene load_steps=7 format=3 uid="uid://bvqu1heobgboe"]
 
 [ext_resource type="Script" path="res://Scripts/Towers/tower.gd" id="1_u8bfo"]
+[ext_resource type="Script" path="res://Scripts/target_finder.gd" id="2_txlxp"]
 
 [sub_resource type="Animation" id="Animation_vk4a8"]
 resource_name = "shoot"
@@ -18,8 +19,9 @@ cull_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 0, 0.415686, 0.223529)
 
-[node name="Tower" type="Node3D" node_paths=PackedStringArray("animator", "pitch_model", "yaw_model", "range_indicator", "audio_player")]
+[node name="Tower" type="Node3D" node_paths=PackedStringArray("target_finder", "animator", "pitch_model", "yaw_model", "range_indicator", "audio_player")]
 script = ExtResource("1_u8bfo")
+target_finder = NodePath("TargetFinder")
 animator = NodePath("AnimationPlayer")
 pitch_model = NodePath("Pitch")
 yaw_model = NodePath("Yaw")
@@ -51,3 +53,7 @@ radius = 10.0
 radial_segments = 16
 rings = 16
 material = SubResource("StandardMaterial3D_1ucq4")
+
+[node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("tower")]
+script = ExtResource("2_txlxp")
+tower = NodePath("..")

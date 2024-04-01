@@ -1,63 +1,27 @@
 class_name RocketLauncherTower extends ProjectileTower
 
-var target_max: float = 3
-var targets: Array[EnemyController] = []
-
 
 func _ready() -> void:
 	super._ready()
-	target_max = floori(stats.get_attribute("Target Limit"))
+	target_finder.max_targets = floori(stats.get_attribute("Target Limit"))
 
 
 func _physics_process(_delta: float) -> void:
 	if !is_multiplayer_authority():
 		#only doing the graphical sort of stuff but not shoot logic 
-		if targeted_enemy and is_instance_valid(targeted_enemy):
-			if !targeted_enemy.alive or global_position.distance_to(targeted_enemy.global_position) > target_range:
-				targeted_enemy = null
-			else:
-				aim()
-		return
-	if targets.size() < target_max:
-		acquire_target()
-	if targets.size() > 0:
-		var valid_targets: Array[EnemyController] = []
-		for target: EnemyController in targets:
-			if is_instance_valid(target) and target.alive and global_position.distance_to(target.global_position) < target_range:
-				valid_targets.append(target)
-		targets = valid_targets
-		if targets.size() > 0:
-			targeted_enemy = targets[0]
-			networked_acquire_target.rpc(get_tree().root.get_path_to(targeted_enemy))
+		if target_finder.get_multiple_targets().size() >= 1:
 			aim()
-			if time_since_firing >= time_between_shots:
-				time_since_firing -= time_between_shots
-				shoot()
-
-
-func acquire_target() -> void:
-	var possible_enemies: Array[EnemyController] = []
-	for enemy: EnemyController in get_tree().get_nodes_in_group("Enemies"):
-		if !is_instance_valid(enemy):
-			continue
-		if global_position.distance_to(enemy.global_position) > target_range:
-			continue
-		if !(enemy.stats.target_type & stats.target_type):
-			continue
-		if targets.has(enemy):
-			continue
-		possible_enemies.append(enemy)
-	
-	for x: int in target_max - targets.size():
-		if possible_enemies.size() == 0:
-			return
-		var chosen: EnemyController = possible_enemies.pick_random()
-		possible_enemies.erase(chosen)
-		targets.append(chosen)
+		return
+	if target_finder.get_multiple_targets().size() >= 1:
+		#networked_acquire_target.rpc(get_tree().root.get_path_to(targeted_enemy))
+		aim()
+		if time_since_firing >= time_between_shots:
+			time_since_firing -= time_between_shots
+			shoot()
 
 
 func shoot() -> void:
-	for target: EnemyController in targets:
+	for target: EnemyController in target_finder.get_multiple_targets():
 		networked_spawn_rocket.rpc(get_tree().root.get_path_to(target), multiplayer.get_unique_id())
 
 

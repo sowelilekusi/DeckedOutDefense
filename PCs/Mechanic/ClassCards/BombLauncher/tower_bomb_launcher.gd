@@ -9,9 +9,9 @@ func _ready() -> void:
 func aim() -> void:
 	super.aim()
 	var pos: Vector2 = Vector2(global_position.x, global_position.z)
-	var t_pos: Vector2 = Vector2(targeted_enemy.global_position.x, targeted_enemy.global_position.z)
+	var t_pos: Vector2 = Vector2(target_finder.get_target().global_position.x, target_finder.get_target().global_position.z)
 	var x: float = pos.distance_to(t_pos)
-	var y: float = targeted_enemy.global_position.y - yaw_model.global_position.y
+	var y: float = target_finder.get_target().global_position.y - yaw_model.global_position.y
 	var v: float = force
 	var g: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 	var v2: float = pow(v, 2)

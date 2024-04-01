@@ -20,18 +20,14 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !targeted_enemy:
-		acquire_target()
+	if !target_finder.get_target():
+		time_since_firing_started = 0.0
+		current_time_between_shots = time_between_shots
 	else:
-		if !targeted_enemy.alive or global_position.distance_to(targeted_enemy.global_position) > target_range:
-			targeted_enemy = null
-			time_since_firing_started = 0.0
-			current_time_between_shots = time_between_shots
-		if targeted_enemy:
-			aim()
-			time_since_firing_started += delta
-			var progress: float = clamp(time_since_firing_started / time_to_reach_max_speed, 0, 1.0)
-			current_time_between_shots = lerpf(time_between_shots, final_time_between_shots, progress)
-			if time_since_firing >= current_time_between_shots:
-				time_since_firing -= current_time_between_shots
-				shoot()
+		aim()
+		time_since_firing_started += delta
+		var progress: float = clamp(time_since_firing_started / time_to_reach_max_speed, 0, 1.0)
+		current_time_between_shots = lerpf(time_between_shots, final_time_between_shots, progress)
+		if time_since_firing >= current_time_between_shots:
+			time_since_firing -= current_time_between_shots
+			shoot()

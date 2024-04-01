@@ -5,7 +5,7 @@ var direction: Vector3
 
 
 func _ready() -> void:
-	distance_remaining = character.global_position.distance_squared_to(goal.global_position)
+	distance_remaining = character.global_position.distance_to(goal.global_position)
 	direction = character.global_position.direction_to(goal.global_position)
 
 

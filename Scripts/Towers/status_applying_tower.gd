@@ -5,9 +5,9 @@ class_name StatusApplyingTower extends HitscanTower
 
 func shoot() -> void:
 	super.shoot()
-	if targeted_enemy and is_instance_valid(targeted_enemy) and targeted_enemy.alive:
-		targeted_enemy.damage(damage)
-		targeted_enemy.status_manager.add_effect(build_status_object())
+	if target_finder.get_target():
+		target_finder.get_target().damage(damage)
+		target_finder.get_target().status_manager.add_effect(build_status_object())
 
 
 func build_status_object() -> StatusEffect:
