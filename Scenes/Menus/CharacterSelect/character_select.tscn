@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc6m3cluulpis"]
+
+[ext_resource type="Script" uid="uid://plrd0ckxrabh" path="res://Scenes/Menus/CharacterSelect/character_select.gd" id="1_lqqhx"]
+[ext_resource type="Script" uid="uid://b1ucgfqilvr67" path="res://Scenes/Menus/CharacterSelect/character_preview.gd" id="9_8d0rx"]
+[ext_resource type="PackedScene" uid="uid://clabkhnbn75rf" path="res://UI/tower_label.tscn" id="10_jdigy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tlgw2"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_atdxu"]
+sky_material = SubResource("ProceduralSkyMaterial_tlgw2")
+
+[sub_resource type="Environment" id="Environment_pq6wd"]
+background_mode = 2
+sky = SubResource("Sky_atdxu")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="CharacterSelect" type="Node3D" node_paths=PackedStringArray("hero_preview_panel")]
+script = ExtResource("1_lqqhx")
+hero_preview_panel = NodePath("PanelContainer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pq6wd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.976893, 0.21373, 0, -0.21373, 0.976893, 0, 2.25535, 10.9009)
+cull_mask = 1047553
+fov = 39.4
+
+[node name="PanelContainer" type="PanelContainer" parent="." node_paths=PackedStringArray("tower_label_container", "hero_name_label")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -91.5
+offset_right = 299.0
+offset_bottom = 91.5
+grow_vertical = 2
+script = ExtResource("9_8d0rx")
+tower_label_scene = ExtResource("10_jdigy")
+tower_label_container = NodePath("HBoxContainer2/HBoxContainer")
+hero_name_label = NodePath("HBoxContainer2/Label")
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer2"]
+layout_mode = 2
+text = "character name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer2"]
+layout_mode = 2
+text = "------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "prev"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "next"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[node name="Podiums" type="Node3D" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="retreat_selector"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="advance_selector"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_confirm_button_pressed"]

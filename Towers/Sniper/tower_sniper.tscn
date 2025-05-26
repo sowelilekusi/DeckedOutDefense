@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://0ucn7wvbq034"]
+
+[ext_resource type="PackedScene" uid="uid://43vmeyuurqfs" path="res://Scenes/Towers/direct_affect_tower.tscn" id="1_efbw8"]
+[ext_resource type="Resource" uid="uid://eb0by6ba1d43" path="res://Towers/Sniper/tower_stats.tres" id="3_a0vis"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_pq66h"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_6u8dx"]
+[ext_resource type="ArrayMesh" uid="uid://bu35or5yc5j4c" path="res://Towers/Sniper/snipermodel.res" id="4_156p4"]
+
+[sub_resource type="Resource" id="Resource_v635x"]
+script = ExtResource("3_pq66h")
+damage = 0
+status_effects = Array[ExtResource("4_6u8dx")]([])
+
+[node name="DirectAffectTower" instance=ExtResource("1_efbw8")]
+stats = ExtResource("3_a0vis")
+effect = SubResource("Resource_v635x")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, 3.0962, 0)
+mesh = ExtResource("4_156p4")

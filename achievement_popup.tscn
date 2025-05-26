@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmn22yceqewx1"]
+
+[ext_resource type="Script" uid="uid://3n5mrdgjsn8e" path="res://achievement_popup.gd" id="1_ah4h2"]
+[ext_resource type="Texture2D" uid="uid://ctbi3gm1me1t5" path="res://Assets/Textures/unlock_mage_achievement.png" id="2_nbrip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um1rr"]
+atlas = ExtResource("2_nbrip")
+region = Rect2(36, 0, 36, 36)
+
+[node name="AchievementPopup" type="PanelContainer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -483.0
+offset_top = -61.5
+offset_bottom = 61.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_ah4h2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_um1rr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "unlock the thing and then go to the place to do the other thing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

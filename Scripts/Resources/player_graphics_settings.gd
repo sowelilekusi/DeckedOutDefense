@@ -9,7 +9,7 @@ const SAVE_PATH: String = "user://graphics_settings.tres"
 
 
 func apply_graphical_settings(viewport: Viewport) -> void:
-	DisplayServer.window_set_vsync_mode(vsync_mode)
+	#DisplayServer.window_set_vsync_mode(vsync_mode)
 	match aa_mode:
 		0:
 			viewport.use_taa = false

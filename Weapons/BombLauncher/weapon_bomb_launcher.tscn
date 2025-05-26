@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3fqlkytyc62u"]
+
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_gbycb"]
+[ext_resource type="Script" uid="uid://d2uo2cp7cdhdu" path="res://Weapons/BombLauncher/weapon_bomb_launcher.gd" id="2_g5ihb"]
+[ext_resource type="Resource" uid="uid://co6eorobj1xuu" path="res://Weapons/BombLauncher/weapon_stats.tres" id="3_73ol1"]
+[ext_resource type="PackedScene" uid="uid://c8oq5unisjqne" path="res://Projectiles/Bomb/bomb_projectile.tscn" id="3_jxt6m"]
+[ext_resource type="Texture2D" uid="uid://3qcdx7n440sc" path="res://Weapons/BombLauncher/grenade_launcher.png" id="5_iyrt8"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="6_rg62n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fobv"]
+resource_local_to_scene = true
+atlas = ExtResource("5_iyrt8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l37cm"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_rg62n")
+
+[node name="BombLauncherWeapon" instance=ExtResource("1_gbycb")]
+script = ExtResource("2_g5ihb")
+projectile_scene = ExtResource("3_jxt6m")
+stats = ExtResource("3_73ol1")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_4fobv")
+
+[node name="AudioStreamPlayer3D" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_l37cm")

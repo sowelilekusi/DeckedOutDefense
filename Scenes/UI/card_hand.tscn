@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dixtx38u4jhd7"]
 
-[ext_resource type="Script" path="res://Scripts/card_hand.gd" id="1_2cfmh"]
+[ext_resource type="Script" uid="uid://d6ejaumcenmg" path="res://Scripts/card_hand.gd" id="1_2cfmh"]
 [ext_resource type="Texture2D" uid="uid://dlqnhs8or4ik2" path="res://Assets/Textures/cardhand.png" id="1_d5oo3"]
 [ext_resource type="Texture2D" uid="uid://buf8t5gc7iw3a" path="res://Assets/TextureAtlases/rarityborders.tres" id="3_pclfx"]
 

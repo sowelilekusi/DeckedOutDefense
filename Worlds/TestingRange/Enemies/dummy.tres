@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://bdkcwve6d35gl"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/enemy.gd" id="1_o7yng"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_o7yng"]
 [ext_resource type="Texture2D" uid="uid://brjk5pu0up85s" path="res://Assets/TextureAtlases/dummy.tres" id="2_bbk0y"]
 
 [resource]
@@ -8,6 +8,7 @@ script = ExtResource("1_o7yng")
 title = "dummy"
 target_type = 1
 sprite = ExtResource("2_bbk0y")
+spawn_power = 10
 health = 100
 penalty = 10
 movement_speed = 1.0

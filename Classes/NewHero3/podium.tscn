@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://busdu5na4rf4e"]
+
+[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://Scenes/Menus/CharacterSelect/character_podium.gd" id="1_nxj67"]
+[ext_resource type="Texture2D" uid="uid://d4jd718brpsed" path="res://Classes/Engineer/doe.png" id="2_05uii"]
+[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="3_il1ej"]
+[ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_mrig3"]
+[ext_resource type="ArrayMesh" uid="uid://bu35or5yc5j4c" path="res://Towers/Sniper/snipermodel.res" id="5_yj8b1"]
+[ext_resource type="ArrayMesh" uid="uid://dler7wcqj0bm6" path="res://Towers/Gatling/gattlemesh.res" id="6_jr17d"]
+
+[node name="Hero3Podium" type="Node3D"]
+script = ExtResource("1_nxj67")
+text = "Come back soon!"
+metadata/_custom_type_script = "uid://bc0xyfr5nj1ul"
+
+[node name="Base" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.332046, 0, -0.943263, 0, 1, 0, 0.943263, 0, 0.332046, 0, 0, 0)
+radius = 3.0
+height = 1.0
+sides = 32
+
+[node name="Sprite3D" type="Sprite3D" parent="Base"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
+visible = false
+modulate = Color(0.517184, 0.517184, 0.517184, 1)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_05uii")
+
+[node name="Node3D" parent="Base" instance=ExtResource("3_il1ej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18309, 0.5, 0.742893)
+
+[node name="Assaultmod" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.256614, 0.167067, -0.322898, -7.90479e-16, 0.395231, 0.204492, 0.363558, -0.117923, 0.227914, -0.119748, 0.959456, -1.44893)
+mesh = ExtResource("4_mrig3")
+skeleton = NodePath("../../..")
+
+[node name="Snipermodel" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.15964, 0.231242, 0.312158, 0.0231825, 0.331215, -0.257215, -0.387786, 0.114996, 0.113129, 0.190324, 0.957512, 1.40108)
+mesh = ExtResource("5_yj8b1")
+skeleton = NodePath("../../..")
+
+[node name="Gattlemesh" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(-0.170479, -0.0500322, 0.247909, 0, 0.298972, 0.0603377, -0.252907, 0.0337256, -0.16711, 1.52548, 0.901463, -0.197461)
+mesh = ExtResource("6_jr17d")
+skeleton = NodePath("../../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+visible = false
+spot_range = 10.0
+spot_attenuation = 0.39

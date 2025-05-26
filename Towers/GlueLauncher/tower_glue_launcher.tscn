@@ -1,0 +1,29 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfdg32wymhoj1"]
+
+[ext_resource type="PackedScene" uid="uid://43vmeyuurqfs" path="res://Scenes/Towers/direct_affect_tower.tscn" id="1_v06tq"]
+[ext_resource type="Resource" uid="uid://d0643gfp52x3s" path="res://Resources/StatusEffects/sticky.tres" id="3_ibb53"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_v7ope"]
+[ext_resource type="Resource" uid="uid://bvkwgmbxje0dp" path="res://Towers/GlueLauncher/tower_stats.tres" id="4_etcd4"]
+[ext_resource type="Script" uid="uid://bh74uangqekuk" path="res://Scripts/StatusEffects/status_slow.gd" id="4_gk1x5"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_ubc07"]
+[ext_resource type="ArrayMesh" uid="uid://cehyrhbd7pu83" path="res://Towers/GlueLauncher/glue_launcher_model.res" id="5_dsftx"]
+
+[sub_resource type="Resource" id="Resource_4e51e"]
+script = ExtResource("4_gk1x5")
+stats = ExtResource("3_ibb53")
+
+[sub_resource type="Resource" id="Resource_mgak2"]
+script = ExtResource("3_v7ope")
+damage = 0
+status_effects = Array[ExtResource("4_ubc07")]([SubResource("Resource_4e51e")])
+
+[node name="DirectAffectTower" instance=ExtResource("1_v06tq")]
+stats = ExtResource("4_etcd4")
+effect = SubResource("Resource_mgak2")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 0, 0.461018, 0)
+mesh = ExtResource("5_dsftx")

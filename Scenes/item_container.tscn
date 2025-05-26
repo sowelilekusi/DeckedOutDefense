@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8d452unjpoiu"]
+[gd_scene load_steps=8 format=3 uid="uid://8d452unjpoiu"]
 
-[ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_6ftnx"]
-[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://PCs/Mechanic/ClassCards/Assault/card_assault.tres" id="2_hayav"]
-[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://PCs/Mage/ClassCards/Fireball/card_fireball.tres" id="3_sq8ai"]
-[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://PCs/Mechanic/ClassCards/Reactor/card_reactor.tres" id="4_3jmlk"]
+[ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="1_6ftnx"]
+[ext_resource type="Script" uid="uid://uomjb4sj4enc" path="res://Scripts/Resources/item.gd" id="2_a0o80"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_hayav"]
+[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://Cards/fireball.tres" id="3_sq8ai"]
+[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://Cards/reactor.tres" id="4_3jmlk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lscco"]
 
@@ -14,7 +15,7 @@ albedo_color = Color(0.509804, 0.505882, 0, 1)
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("1_6ftnx")
-contents = Array[Resource("res://Scripts/Resources/item.gd")]([ExtResource("2_hayav"), ExtResource("3_sq8ai"), ExtResource("4_3jmlk")])
+contents = Array[ExtResource("2_a0o80")]([ExtResource("2_hayav"), ExtResource("3_sq8ai"), ExtResource("4_3jmlk")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmd4mawasoc11"]
 
-[ext_resource type="Script" path="res://Scripts/graphics_options.gd" id="1_85rh6"]
+[ext_resource type="Script" uid="uid://bpb5c5r1yi8um" path="res://Scripts/graphics_options.gd" id="1_85rh6"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 

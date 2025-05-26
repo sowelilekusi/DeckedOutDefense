@@ -24,10 +24,14 @@ func close() -> void:
 
 
 func randomize_cards() -> void:
+	#TODO: use seeded randomness
+	var random_faction: int = randi_range(1, Card.Faction.values().size() - 1)
 	var cheap_cards: Array[Card] = []
 	var medium_cards: Array[Card] = []
 	var pricey_cards: Array[Card] = []
 	for card: Card in Data.cards:
+		if card.faction != random_faction:
+			continue
 		if card.rarity == Data.Rarity.UNCOMMON or card.rarity == Data.Rarity.RARE:
 			cheap_cards.append(card)
 		if card.rarity == Data.Rarity.RARE or card.rarity == Data.Rarity.EPIC:
@@ -35,27 +39,46 @@ func randomize_cards() -> void:
 		if card.rarity == Data.Rarity.EPIC or card.rarity == Data.Rarity.LEGENDARY:
 			pricey_cards.append(card)
 	
+	var chosen_card: Card = null
 	for x: int in 3:
-		var chosen_card: Card = cheap_cards[Game.randi_in_range(12 * cards_generated, 0, cheap_cards.size() - 1)]
+		if cheap_cards.size() > 0:
+			chosen_card = cheap_cards[Game.randi_in_range(12 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
-		cards[x].set_card(chosen_card)
-		cards[x].view_tower()
-		choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name + "?"
+		if chosen_card != null:
+			cards[x].set_card(chosen_card)
+			cards[x].view_tower()
+			choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
+			choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			if chosen_card.faction == Card.Faction.MAGE:
+				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 2:
-		var chosen_card: Card = medium_cards[Game.randi_in_range(9 * cards_generated, 0, medium_cards.size() - 1)]
+		if medium_cards.size() > 0:
+			chosen_card = medium_cards[Game.randi_in_range(9 * cards_generated, 0, medium_cards.size() - 1)]
+		elif cheap_cards.size() > 0:
+			chosen_card = cheap_cards[Game.randi_in_range(9 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
-		cards[x+3].set_card(chosen_card)
-		cards[x+3].view_tower()
-		choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name + "?"
+		if chosen_card != null:
+			cards[x+3].set_card(chosen_card)
+			cards[x+3].view_tower()
+			choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
+			choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			if chosen_card.faction == Card.Faction.MAGE:
+				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 1:
-		var chosen_card: Card = pricey_cards[Game.randi_in_range(50 * cards_generated, 0, pricey_cards.size() - 1)]
+		if pricey_cards.size() > 0:
+			chosen_card = pricey_cards[Game.randi_in_range(50 * cards_generated, 0, pricey_cards.size() - 1)]
+		elif medium_cards.size() > 0:
+			chosen_card = medium_cards[Game.randi_in_range(50 * cards_generated, 0, medium_cards.size() - 1)]
+		elif cheap_cards.size() > 0:
+			chosen_card = cheap_cards[Game.randi_in_range(50 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
-		cards[x+5].set_card(chosen_card)
-		cards[x+5].view_tower()
-		choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
-		choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name + "?"
+		if chosen_card != null:
+			cards[x+5].set_card(chosen_card)
+			cards[x+5].view_tower()
+			choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
+			choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			if chosen_card.faction == Card.Faction.MAGE:
+				Data.save_data.saw_mage_card_in_shop()
 	for x: CollisionShape3D in choice_colliders:
 		x.set_deferred("disabled", false)
 	for x: Sprite3D in choice_sprites:
@@ -67,6 +90,10 @@ func retrieve_card(i: int, callback: Hero) -> void:
 	choice_colliders[i].disabled = true
 	choice_sprites[i].set_visible(false)
 	var card: Card = cards[i].stats
+	if card.faction == Card.Faction.ENGINEER:
+		Data.save_data.bought_engineer_card()
+	if card.faction == Card.Faction.MAGE:
+		Data.save_data.bought_mage_card()
 	callback.add_card(card)
 	#var item: ItemCard = item_card_scene.instantiate() as ItemCard
 	#item.card = card

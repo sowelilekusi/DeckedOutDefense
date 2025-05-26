@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://boik1gnpl4v0a"]
+
+[ext_resource type="Texture2D" uid="uid://cde0voyrwnqkl" path="res://Assets/Textures/icon_eye_dog_boss.png" id="1_2o720"]
+[ext_resource type="Texture2D" uid="uid://bp3njt3h0qfbg" path="res://Assets/Textures/dead_eye_dog_boss.png" id="1_5xm32"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_euaab"]
+[ext_resource type="Texture2D" uid="uid://ff3cys53p37j" path="res://Assets/TextureAtlases/dog_fast_boss.tres" id="2_1m62w"]
+
+[resource]
+script = ExtResource("1_euaab")
+title = "boss dog"
+target_type = 1
+icon = ExtResource("1_2o720")
+death_sprite = ExtResource("1_5xm32")
+sprite = ExtResource("2_1m62w")
+spawn_power = 100
+health = 8000
+penalty = 40
+movement_speed = 0.8
+spawn_cooldown = 1.0
+common_group = 1
+common_cost = 7
+uncommon_group = 2
+uncommon_cost = 9
+rare_group = 3
+rare_cost = 13
+epic_group = 4
+epic_cost = 16
+legendary_group = 5
+legendary_cost = 20

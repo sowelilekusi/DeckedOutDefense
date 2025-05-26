@@ -10,3 +10,24 @@ class_name Enemy extends Resource
 @export var penalty: int = 10
 @export var movement_speed: float = 0.5
 @export var spawn_cooldown: float = 1.0
+
+@export_group("Spawner Card")
+@export_subgroup("Common")
+@export var common_group: int = 1
+@export var common_cost: int = 1
+
+@export_subgroup("Uncommon")
+@export var uncommon_group: int = 1
+@export var uncommon_cost: int = 1
+
+@export_subgroup("Rare")
+@export var rare_group: int = 1
+@export var rare_cost: int = 1
+
+@export_subgroup("Epic")
+@export var epic_group: int = 1
+@export var epic_cost: int = 1
+
+@export_subgroup("Legendary")
+@export var legendary_group: int = 1
+@export var legendary_cost: int = 1

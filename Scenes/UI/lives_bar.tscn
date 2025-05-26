@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://24x18qxqhy0i"]
 
 [ext_resource type="Texture2D" uid="uid://dvy2lvtotaxb3" path="res://Assets/Textures/lifebar_bg.png" id="1_x27cx"]
-[ext_resource type="Script" path="res://Scripts/lives_bar.gd" id="2_lqe7s"]
+[ext_resource type="Script" uid="uid://b3g3hofk5pbcp" path="res://Scripts/lives_bar.gd" id="2_lqe7s"]
 [ext_resource type="PackedScene" uid="uid://dko38egcaxubd" path="res://Scenes/UI/lifebar_segment.tscn" id="3_6hp86"]
 
 [node name="LivesBar" type="TextureRect" node_paths=PackedStringArray("segments")]

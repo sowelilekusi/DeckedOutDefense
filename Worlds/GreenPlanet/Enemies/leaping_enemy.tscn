@@ -1,0 +1,206 @@
+[gd_scene load_steps=20 format=3 uid="uid://cmneu5o0m02l8"]
+
+[ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_joiuq"]
+[ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_ssgps"]
+[ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="3_dhcpw"]
+[ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_yref6"]
+[ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_5u3uw"]
+[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="6_h3ov4"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_72t32"]
+[ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="8_egpbw"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_47ywr"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="10_lce6w"]
+[ext_resource type="Script" uid="uid://cp77etg1m1hc2" path="res://Scripts/sprite_bobber.gd" id="12_g2knp"]
+[ext_resource type="Script" uid="uid://dqluvn05min37" path="res://Scripts/EnemyAI/leaping_controller.gd" id="12_joiuq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3ikr"]
+resource_local_to_scene = true
+atlas = ExtResource("6_h3ov4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_132sr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4tj6k"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_joiuq"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ssgps"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dhcpw"]
+viewport_path = NodePath("SubViewport4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yref6"]
+viewport_path = NodePath("SubViewport5")
+
+[node name="LeapingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_joiuq")
+status_manager = NodePath("StatusEffector")
+movement_controller = NodePath("LeapingController")
+health = NodePath("Health")
+sprite = NodePath("DirectionSprite")
+corpse_scene = ExtResource("2_ssgps")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_dhcpw")
+damage_particle_scene = ExtResource("4_yref6")
+
+[node name="DirectionSprite" parent="." instance=ExtResource("5_5u3uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585, 0)
+pixel_size = 0.04
+texture = SubResource("AtlasTexture_o3ikr")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441355, 0)
+shape = SubResource("SphereShape3D_132sr")
+script = ExtResource("7_72t32")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
+sorting_offset = 1.0
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_4tj6k")
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("8_egpbw")
+
+[node name="StatusEffector" type="Node3D" parent="." node_paths=PackedStringArray("hbox", "enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18114, 0)
+script = ExtResource("9_47ywr")
+hbox = NodePath("../SubViewport/HBoxContainer")
+enemy = NodePath("..")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 55)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("10_lce6w")]
+visible = false
+offset_top = 36.0
+offset_bottom = 236.0
+
+[node name="SpriteBobber" type="Node" parent="." node_paths=PackedStringArray("character", "sprite")]
+script = ExtResource("12_g2knp")
+character = NodePath("..")
+sprite = NodePath("../DirectionSprite")
+
+[node name="LeapingController" type="Node" parent="." node_paths=PackedStringArray("eastl", "westl", "northl", "southl", "easts", "wests", "norths", "souths", "box", "character")]
+script = ExtResource("12_joiuq")
+eastl = NodePath("../SubViewport2/East")
+westl = NodePath("../SubViewport3/West")
+northl = NodePath("../SubViewport5/North")
+southl = NodePath("../SubViewport4/South")
+easts = NodePath("../east")
+wests = NodePath("../west")
+norths = NodePath("../north")
+souths = NodePath("../south")
+box = NodePath("../CSGBox3D")
+character = NodePath("..")
+metadata/_custom_type_script = "uid://dqluvn05min37"
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(277, 52)
+
+[node name="East" type="Label" parent="SubViewport2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "east"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(277, 52)
+
+[node name="West" type="Label" parent="SubViewport3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "west"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport4" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(277, 52)
+
+[node name="South" type="Label" parent="SubViewport4"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "south"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport5" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(277, 52)
+
+[node name="North" type="Label" parent="SubViewport5"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "north"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="east" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.955188, 0.919993, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_joiuq")
+
+[node name="west" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.366, 0.919993, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_ssgps")
+
+[node name="south" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919993, 1.05626)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_dhcpw")
+
+[node name="north" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919993, -1.24258)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_yref6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141846, 0)
+visible = false
+size = Vector3(0.5, 0.783691, 0.5)
+
+[connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
+[connection signal="health_depleted" from="Health" to="." method="die"]
+[connection signal="took_damage" from="Hitbox" to="Health" method="take_damage"]

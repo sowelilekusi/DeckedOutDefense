@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://ci822ash3mbhi"]
+
+[ext_resource type="Script" uid="uid://b43lbaanefmj3" path="res://Towers/Gatling/tower_gatling.gd" id="2_ipjp1"]
+[ext_resource type="Script" uid="uid://rvnacmxsrh4w" path="res://Scripts/target_finder.gd" id="3_co24a"]
+[ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://Towers/Gatling/tower_stats.tres" id="3_oicqw"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_tykap"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_sc4bm"]
+[ext_resource type="Script" uid="uid://8d0a4uc2i0ti" path="res://Scripts/Affectors/direct_affect.gd" id="4_v2roj"]
+[ext_resource type="ArrayMesh" uid="uid://dler7wcqj0bm6" path="res://Towers/Gatling/gattlemesh.res" id="4_wihc0"]
+
+[sub_resource type="Resource" id="Resource_7ovr8"]
+script = ExtResource("3_tykap")
+damage = 0
+status_effects = Array[ExtResource("4_sc4bm")]([])
+
+[sub_resource type="Animation" id="Animation_vk4a8"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cebsq"]
+_data = {
+&"shoot": SubResource("Animation_vk4a8")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_42byu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ucq4"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0.415686, 0.223529)
+
+[node name="DirectAffectTower" type="Node3D" node_paths=PackedStringArray("target_finder", "affector", "animator", "pitch_model", "yaw_model", "range_indicator", "audio_player")]
+script = ExtResource("2_ipjp1")
+stats = ExtResource("3_oicqw")
+target_finder = NodePath("TargetFinder")
+affector = NodePath("DirectAffect")
+animator = NodePath("AnimationPlayer")
+pitch_model = NodePath("Pitch")
+yaw_model = NodePath("Yaw")
+range_indicator = NodePath("CSGSphere3D")
+audio_player = NodePath("Yaw/AudioStreamPlayer3D")
+effect = SubResource("Resource_7ovr8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cebsq")
+}
+
+[node name="Pitch" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_42byu")
+
+[node name="Yaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.515143, 0)
+mesh = ExtResource("4_wihc0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Yaw"]
+bus = &"SFX"
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 4
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+visible = false
+layers = 5
+radius = 10.0
+radial_segments = 16
+rings = 16
+material = SubResource("StandardMaterial3D_1ucq4")
+
+[node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("tower")]
+script = ExtResource("3_co24a")
+tower = NodePath("..")
+
+[node name="DirectAffect" type="Node" parent="."]
+script = ExtResource("4_v2roj")

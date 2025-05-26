@@ -1,8 +1,6 @@
 class_name Hero extends CharacterBody3D
 
 signal ready_state_changed(state: bool)
-signal spawned
-signal died
 
 @export var hero_class: HeroClass
 @export var camera: Camera3D
@@ -18,14 +16,15 @@ signal died
 @export var hand_sprite: Sprite2D
 @export var interaction_raycast: RayCast3D
 @export var inventory: Inventory
-@export var gauntlet_card_1: CardInHand
-@export var gauntlet_card_2: CardInHand
+@export var gauntlet_cards: Array[CardInHand]
 @export var pause_menu_scene: PackedScene
 @export var hud: HUD
 @export var movement: PlayerMovement
 @export var sprint_zoom_speed: float = 0.2
 @export var player_name_tag: Label
 @export var weapon_swap_timer: Timer
+
+@export_subgroup("Audio")
 @export var ears: AudioListener3D
 @export var place_card_audio: AudioStreamPlayer
 @export var swap_card_audio: AudioStreamPlayer
@@ -36,12 +35,16 @@ signal died
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+var hovering_item: InteractButton = null
 var weapons_spawn_count: int = 0 #Used to prevent node name collisions for multiplayer
 var inventory_selected_index: int = 0
-var equipped_card: Card
-var offhand_card: Card
-var weapon: Weapon
-var offhand_weapon: Weapon
+#var equipped_card: Card
+#var offhand_card: Card
+var equipped_weapon: int = 0
+var weapons: Array[Weapon] = [null, null]
+var cards: Array[Card] = [null, null]
+#var weapon: Weapon
+#var offhand_weapon: Weapon
 var weapons_active: bool = false
 var paused: bool = false
 var editing_mode: bool = true
@@ -77,8 +80,8 @@ func _ready() -> void:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
 		hud.set_visible(false)
-	if weapon != null:
-		weapon.set_raycast_origin(camera)
+	if weapons[equipped_weapon] != null:
+		weapons[equipped_weapon].set_raycast_origin(camera)
 	sprite.texture.atlas = hero_class.texture
 	check_left_hand_valid()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -106,8 +109,16 @@ func _process(delta: float) -> void:
 	if editing_mode:
 		if interaction_raycast.is_colliding() and interaction_raycast.get_collider() is InteractButton:
 			hud.set_hover_text(interaction_raycast.get_collider().hover_text)
+			if !hovering_item or hovering_item != interaction_raycast.get_collider():
+				if hovering_item:
+					hovering_item.disable_hover_effect()
+				hovering_item = interaction_raycast.get_collider()
+				hovering_item.enable_hover_effect()
 		else:
 			hud.unset_hover_text()
+			if hovering_item:
+				hovering_item.disable_hover_effect()
+				hovering_item = null
 		
 		if edit_tool.is_looking_at_tower_base:
 			card_sprites[0].view_tower()
@@ -122,11 +133,21 @@ func _process(delta: float) -> void:
 					currency -= button.press_cost
 			if interaction_raycast.get_collider() is ItemCard:
 				add_card(interaction_raycast.get_collider().pick_up())
-		if Input.is_action_just_pressed("Equip In Gauntlet"):
-			equip_weapon()
-		if Input.is_action_just_pressed("Secondary Fire"):
-			if equipped_card or offhand_card:
-				swap_weapons()
+		#if Input.is_action_just_pressed("Equip In Gauntlet"):
+		#	equip_weapon()
+		#if Input.is_action_just_pressed("Secondary Fire"):
+		#	if equipped_card or offhand_card:
+		#		swap_weapons()
+		if Input.is_action_just_pressed("Equip Primary Weapon"):
+			if weapons[0]:
+				unequip_weapon(0)
+			else:
+				equip_weapon(0)
+		if Input.is_action_just_pressed("Equip Secondary Weapon"):
+			if weapons[1]:
+				unequip_weapon(1)
+			else:
+				equip_weapon(1)
 		if Input.is_action_just_pressed("Select Next Card") and inventory.contents.size() > 1:
 			increment_selected()
 			swap_card_audio.play()
@@ -137,26 +158,25 @@ func _process(delta: float) -> void:
 			edit_tool.interact_key_held = true
 		if Input.is_action_just_released("Primary Fire"):
 			edit_tool.interact_key_held = false
-		if weapon != null:
-			weapon.release_trigger()
-			weapon.release_second_trigger()
+		if weapons[equipped_weapon] != null:
+			weapons[equipped_weapon].release_trigger()
+			weapons[equipped_weapon].release_second_trigger()
 	else:
-		if weapon and weapons_active:
+		if weapons[equipped_weapon] and weapons_active:
 			if Input.is_action_just_pressed("Primary Fire"):
-				weapon.hold_trigger()
+				weapons[equipped_weapon].hold_trigger()
 			if Input.is_action_just_released("Primary Fire"):
-				weapon.release_trigger()
+				weapons[equipped_weapon].release_trigger()
 			if Input.is_action_pressed("Secondary Fire"):
-				weapon.hold_second_trigger()
+				weapons[equipped_weapon].hold_second_trigger()
 			if Input.is_action_just_released("Secondary Fire"):
-				weapon.release_second_trigger()
+				weapons[equipped_weapon].release_second_trigger()
 			if Input.is_action_pressed("Primary Fire"):
 				movement.can_sprint = false
 			if Input.is_action_pressed("Secondary Fire"):
 				movement.can_sprint = false
 		if Input.is_action_just_pressed("Equip In Gauntlet"):
-			if weapon and offhand_weapon:
-				swap_weapons()
+			swap_weapons()
 	
 	if movement.sprinting:
 		movement.zoom_factor -= sprint_zoom_speed * delta
@@ -214,10 +234,10 @@ func ready_self() -> void:
 func unready_self() -> void:
 	if ready_state:
 		ready_state = false
-		if !equipped_card:
-			hud.place_icon.set_visible(true)
-		if !offhand_card:
-			hud.swap_icon.set_visible(true)
+		#if !equipped_card:
+		#	hud.place_icon.set_visible(true)
+		#if !offhand_card:
+		#	hud.swap_icon.set_visible(true)
 		hud.grow_wave_start_label()
 		unready_audio.play()
 		networked_set_ready_state(ready_state)
@@ -242,7 +262,7 @@ func pause() -> void:
 
 
 func enter_editing_mode(value: int) -> void:
-	gauntlet_sprite.set_visible(true)
+	gauntlet_sprite.visible = true
 	weapons_active = false
 	hud.set_wave_count(value + 1)
 	hud.set_energy_visible(false)
@@ -250,30 +270,33 @@ func enter_editing_mode(value: int) -> void:
 	hud.grow_wave_start_label()
 	editing_mode = true
 	edit_tool.enabled = true
-	left_hand.set_visible(true)
-	if weapon:
-		weapon.release_trigger()
-		weapon.set_visible(false)
+	left_hand.visible = true
+	if weapons[equipped_weapon]:
+		weapons[equipped_weapon].release_trigger()
+		weapons[equipped_weapon].visible = false
 
 
 func exit_editing_mode(value: int) -> void:
-	gauntlet_sprite.set_visible(false)
+	gauntlet_sprite.visible = false
 	weapons_active = false
 	hud.set_wave_count(value)
-	if !weapon and offhand_weapon:
-		swap_weapons()
-	if weapon:
+	#if !weapon and offhand_weapon:
+	#	swap_weapons()
+	if weapons[equipped_weapon]:
 		hud.set_energy_visible(true)
 		#weapon.set_visible(false)
-		weapon.current_energy = weapon.max_energy
-		weapon.energy_changed.emit(weapon.current_energy)
+		weapons[equipped_weapon].current_energy = weapons[equipped_weapon].max_energy
+		#this had to be commented out coz the new energy bar thinks "energy changed" is "energy used"
+		#weapons[equipped_weapon].energy_changed.emit(weapons[equipped_weapon].current_energy)
+	var offhand_weapon: Weapon = weapons[0] if equipped_weapon == 1 else weapons[1]
 	if offhand_weapon:
 		hud.set_offhand_energy_visible(true)
 		offhand_weapon.current_energy = offhand_weapon.max_energy
-		offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
+		#offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
 	edit_tool.enabled = false
 	edit_tool.delete_tower_preview()
-	left_hand.set_visible(false)
+	left_hand.visible = false
+	hud.unset_hover_text()
 	editing_mode = false
 	weapon_swap_timer.start()
 
@@ -282,112 +305,129 @@ func check_left_hand_valid() -> void:
 	if !editing_mode:
 		return
 	if inventory.size == 0:
-		left_hand_sprite.set_visible(false)
+		left_hand_sprite.visible = false
 		#gauntlet.texture.region = Rect2(64, 0, 64, 64)
 	else:
-		left_hand_sprite.set_visible(true)
+		left_hand_sprite.visible = true
 		#gauntlet.texture.region = Rect2(0, 0, 64, 64)
 		var selected_card: Card = inventory.contents.keys()[inventory_selected_index]
 		for index: int in card_sprites.size():
 			if index < inventory.contents[selected_card]:
-				card_sprites[index].set_visible(true)
+				card_sprites[index].visible = true
 				card_sprites[index].set_card(selected_card)
 				#card_sprites[index].view_weapon()
 			else:
-				card_sprites[index].set_visible(false)
+				card_sprites[index].visible = false
 
 
-func equip_weapon() -> void:
-	if weapon != null:
+func equip_weapon(slot: int = 0) -> void:
+	if weapons[slot] != null:
 		unequip_weapon()
 		return
 	if inventory.size > 0:
 		place_card_audio.play()
-		equipped_card = inventory.remove_at(inventory_selected_index)
-		if !inventory.contents.has(equipped_card):
+		cards[slot] = inventory.remove_at(inventory_selected_index)
+		if !inventory.contents.has(cards[slot]):
 			decrement_selected()
-		weapon = equipped_card.weapon_scene.instantiate()
-		weapon.name = str(weapons_spawn_count)
-		networked_equip_weapon.rpc(Data.cards.find(equipped_card), 0, weapons_spawn_count)
+		weapons[slot] = cards[slot].weapon_scene.instantiate()
+		weapons[slot].name = str(weapons_spawn_count)
+		networked_equip_weapon.rpc(Data.cards.find(cards[slot]), 0, weapons_spawn_count)
 		weapons_spawn_count += 1
-		weapon.energy_changed.connect(hud.set_weapon_energy)
-		weapon.set_multiplayer_authority(multiplayer.get_unique_id())
-		gauntlet_card_1.set_card(equipped_card)
-		hud.place_icon.set_visible(false)
-		gauntlet_card_1.view_weapon()
-		gauntlet_card_1.set_visible(true)
-		weapon.set_hero(self)
-		weapon.set_visible(false)
-		right_hand.add_child(weapon)
+		#weapons[slot].energy_changed.connect(hud.set_weapon_energy.bind(weapons[slot].stats.energy_type))
+		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
+		gauntlet_cards[slot].set_card(cards[slot])
+		if slot == 0:
+			hud.place_icon.visible = false
+		else:
+			hud.swap_icon.visible = false
+		gauntlet_cards[slot].view_weapon()
+		gauntlet_cards[slot].visible = true
+		weapons[slot].set_hero(self)
+		weapons[slot].visible = false
+		right_hand.add_child(weapons[slot])
 		check_left_hand_valid()
+		if slot == 0:
+			weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
+			weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
+			hud.new_energy_bar.max_energy = weapons[slot].max_energy
+			if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
+				hud.new_energy_bar.enable_progress_bar()
+			if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
+				hud.new_energy_bar.create_discrete_icons(weapons[slot].max_energy)
+		else:
+			weapons[slot].energy_spent.connect(hud.new_energy_bar2.use_energy)
+			weapons[slot].energy_recharged.connect(hud.new_energy_bar2.gain_energy)
+			hud.new_energy_bar2.max_energy = weapons[slot].max_energy
+			if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
+				hud.new_energy_bar2.enable_progress_bar()
+			if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
+				hud.new_energy_bar2.create_discrete_icons(weapons[slot].max_energy)
+
+
+func stow_weapon(slot: int = 0) -> void:
+	weapons[slot].release_trigger()
+	weapons[slot].release_second_trigger()
+	weapons[slot].visible = false
+	weapons[slot].energy_spent.disconnect(hud.new_energy_bar.use_energy)
+	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar.gain_energy)
+	weapons[slot].energy_spent.connect(hud.new_energy_bar2.use_energy)
+	weapons[slot].energy_recharged.connect(hud.new_energy_bar2.gain_energy)
+	hud.set_offhand_energy(weapons[slot].current_energy)
+	hud.new_energy_bar2.max_energy = weapons[slot].max_energy
+	if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
+		hud.new_energy_bar2.enable_progress_bar()
+	if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
+		hud.new_energy_bar2.create_discrete_icons(weapons[slot].max_energy)
+
+
+func show_weapon(slot: int = 0) -> void:
+	weapons[slot].release_trigger()
+	weapons[slot].release_second_trigger()
+	weapons[slot].energy_spent.disconnect(hud.new_energy_bar2.use_energy)
+	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar2.gain_energy)
+	weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
+	weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
+	hud.set_weapon_energy(weapons[slot].current_energy, weapons[slot].stats.energy_type)
+	hud.new_energy_bar.max_energy = weapons[slot].max_energy
+	if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
+		hud.new_energy_bar.enable_progress_bar()
+	if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
+		hud.new_energy_bar.create_discrete_icons(weapons[slot].max_energy)
 
 
 func swap_weapons() -> void:
-	if !editing_mode:
-		weapons_active = false
-	if weapon or offhand_weapon:
-		if editing_mode:
-			swap_card_audio.play()
-		else:
-			swap_off_audio.play()
+	if !weapons[0] and !weapons[1]:
+		return
+	weapons_active = false
+	swap_off_audio.play()
 	hud.audio_guard = true
-	var temp: Weapon = offhand_weapon
-	var temp_card: Card = offhand_card
-	if weapon:
-		offhand_weapon = weapon
-		offhand_card = equipped_card
-		offhand_weapon.set_visible(false)
-		offhand_weapon.energy_changed.disconnect(hud.set_weapon_energy)
-		offhand_weapon.energy_changed.connect(hud.set_offhand_energy)
-		offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
-		offhand_weapon.release_trigger()
-		offhand_weapon.release_second_trigger()
-		gauntlet_card_2.set_card(offhand_card)
-		gauntlet_card_2.view_weapon()
-		gauntlet_card_2.set_visible(true)
-		hud.swap_icon.set_visible(false)
-	else:
-		offhand_weapon = null
-		offhand_card = null
-		gauntlet_card_2.set_visible(false)
-		hud.swap_icon.set_visible(true)
-	if temp:
-		weapon = temp
-		equipped_card = temp_card
-		weapon.energy_changed.disconnect(hud.set_offhand_energy)
-		weapon.energy_changed.connect(hud.set_weapon_energy)
-		weapon.energy_changed.emit(weapon.current_energy)
-		weapon.release_trigger()
-		weapon.release_second_trigger()
-		gauntlet_card_1.set_card(equipped_card)
-		gauntlet_card_1.view_weapon()
-		gauntlet_card_1.set_visible(true)
-		hud.place_icon.set_visible(false)
-	else:
-		weapon = null
-		equipped_card = null
-		gauntlet_card_1.set_visible(false)
-		hud.place_icon.set_visible(true)
-	if !editing_mode:
-		weapon_swap_timer.start()
+	stow_weapon(equipped_weapon)
+	equipped_weapon = 0 if equipped_weapon == 1 else 1
+	show_weapon(equipped_weapon)
+	weapon_swap_timer.start()
 
 
 func _on_timer_timeout() -> void:
 	weapons_active = true
-	if weapon:
+	if weapons[equipped_weapon]:
 		swap_on_audio.play()
-		weapon.set_visible(true)
+		weapons[equipped_weapon].visible = true
 
 
-func unequip_weapon() -> void:
-	networked_unequip_weapon.rpc(0)
-	gauntlet_card_1.set_visible(false)
-	hud.place_icon.set_visible(true)
+func unequip_weapon(slot: int = 0) -> void:
+	networked_unequip_weapon.rpc(slot)
+	gauntlet_cards[slot].visible = false
+	if slot == 0:
+		hud.place_icon.visible = true
+		hud.new_energy_bar.blank()
+	else:
+		hud.swap_icon.visible = true
+		hud.new_energy_bar2.blank()
 	#gauntlet_sprite.set_visible(true)
-	weapon.queue_free()
-	weapon = null
-	inventory.add(equipped_card)
-	equipped_card = null
+	weapons[slot].queue_free()
+	weapons[slot] = null
+	inventory.add(cards[slot])
+	cards[slot] = null
 	place_card_audio.play()
 	check_left_hand_valid()
 
@@ -400,20 +440,7 @@ func networked_set_ready_state(state: bool) -> void:
 
 @rpc("reliable")
 func networked_swap_weapon() -> void:
-	var temp: Weapon = offhand_weapon
-	var temp_card: Card = offhand_card
-	if weapon:
-		offhand_weapon = weapon
-		offhand_card = equipped_card
-	else:
-		offhand_weapon = null
-		offhand_card = null
-	if temp:
-		weapon = temp
-		equipped_card = temp_card
-	else:
-		weapon = null
-		equipped_card = null
+	swap_weapons()
 
 
 @rpc("reliable")
@@ -424,23 +451,12 @@ func networked_equip_weapon(card_index: int, slot: int, id: int) -> void:
 	new_weapon.name = str(id)
 	new_weapon.set_hero(self)
 	right_hand.add_child(new_weapon)
-	match slot:
-		0:
-			equipped_card = new_card
-			weapon = new_weapon
-		1:
-			offhand_card = new_card
-			offhand_weapon = new_weapon
+	cards[slot] = new_card
+	weapons[slot] = new_weapon
 
 
 @rpc("reliable")
 func networked_unequip_weapon(slot: int) -> void:
-	match slot:
-		0:
-			weapon.queue_free()
-			weapon = null
-			equipped_card = null
-		1:
-			offhand_weapon.queue_free()
-			offhand_weapon = null
-			offhand_card = null
+	weapons[slot].queue_free()
+	weapons[slot] = null
+	cards[slot] = null

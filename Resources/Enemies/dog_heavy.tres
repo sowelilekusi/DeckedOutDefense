@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://dxi17xvdlhkvc"]
+
+[ext_resource type="Texture2D" uid="uid://08n5jvq5tptf" path="res://Assets/Textures/icon_eye_dog_heavy.png" id="1_lck53"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_q48il"]
+[ext_resource type="Texture2D" uid="uid://e7lahg40lq8a" path="res://Assets/Textures/dead_eye_dog_heavy.png" id="1_qveaa"]
+[ext_resource type="Texture2D" uid="uid://c0543ucoalwmi" path="res://Assets/TextureAtlases/dog_fast_heavy.tres" id="2_7nc4x"]
+
+[resource]
+script = ExtResource("1_q48il")
+title = "heavy dog"
+target_type = 1
+icon = ExtResource("1_lck53")
+death_sprite = ExtResource("1_qveaa")
+sprite = ExtResource("2_7nc4x")
+spawn_power = 14
+health = 350
+penalty = 15
+movement_speed = 0.9
+spawn_cooldown = 2.0
+common_group = 2
+common_cost = 1
+uncommon_group = 5
+uncommon_cost = 2
+rare_group = 8
+rare_cost = 3
+epic_group = 14
+epic_cost = 4
+legendary_group = 18
+legendary_cost = 5

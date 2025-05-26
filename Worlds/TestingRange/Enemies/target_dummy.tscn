@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://cgcslt0rsg6e3"]
 
-[ext_resource type="Script" path="res://Scripts/target_dummy.gd" id="1_f72ee"]
+[ext_resource type="Script" uid="uid://du13pv0e5fah" path="res://Scripts/target_dummy.gd" id="1_f72ee"]
 [ext_resource type="Resource" uid="uid://bdkcwve6d35gl" path="res://Worlds/TestingRange/Enemies/dummy.tres" id="2_7pldl"]
-[ext_resource type="Script" path="res://Scripts/health.gd" id="3_8hqew"]
+[ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="3_8hqew"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_0ruff"]
-[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="4_yinjs"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="4_yinjs"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_t0dpu"]
 [ext_resource type="Texture2D" uid="uid://brjk5pu0up85s" path="res://Assets/TextureAtlases/dummy.tres" id="6_agkvc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="8_m8sgd"]
-[ext_resource type="Script" path="res://Scripts/status_effector.gd" id="8_melp1"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="8_melp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_21dgw"]
 radius = 0.7173

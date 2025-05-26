@@ -15,6 +15,7 @@ func spawn_visualizer_points() -> void:
 	#print(str(int(length)) + " / " + str(visualizer_points.size()) + ", diff: " + str(visualizer_points.size() - length))
 	for x: int in visualizer_points.size():
 		visualizer_points[x].progress_ratio = float(x) / visualizer_points.size()
+	enable_visualization()
 
 
 func disable_visualization() -> void:

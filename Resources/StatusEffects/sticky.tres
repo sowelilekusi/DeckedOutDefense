@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://d0643gfp52x3s"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/status_stats.gd" id="1_57gd1"]
+[ext_resource type="Script" uid="uid://bq6jp8bwub6je" path="res://Scripts/Resources/status_stats.gd" id="1_57gd1"]
 [ext_resource type="Texture2D" uid="uid://bpixdxdjnr5tw" path="res://Assets/Textures/glue_icon.png" id="1_b1meh"]
 
 [resource]

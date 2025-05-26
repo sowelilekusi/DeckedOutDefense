@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://dbanx8taicddm"]
 
 [ext_resource type="Texture2D" uid="uid://c0h8yi1xe4ru5" path="res://Assets/Textures/on_fire_icon.png" id="1_ebohu"]
-[ext_resource type="Script" path="res://Scripts/Resources/status_stats.gd" id="1_ogrf4"]
+[ext_resource type="Script" uid="uid://bq6jp8bwub6je" path="res://Scripts/Resources/status_stats.gd" id="1_ogrf4"]
 
 [resource]
 script = ExtResource("1_ogrf4")
 name = "Burning"
-unique = false
+max_stacks = 0
 proc_cd = 1.0
 duration = 3.0
 potency = 2.0

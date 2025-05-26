@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddpixntjsbpqp"]
+
+[ext_resource type="PackedScene" uid="uid://beq6rn0babncg" path="res://Scenes/Projectiles/status_applying_projectile.tscn" id="1_a8cjq"]
+[ext_resource type="Script" uid="uid://bl5um0g8hhtjw" path="res://Projectiles/Fireball/fireball_projectile.gd" id="2_rin44"]
+[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="3_vb4ff"]
+[ext_resource type="Texture2D" uid="uid://baarbcx0nxi7w" path="res://Projectiles/Fireball/fireball_projectile.png" id="4_uua74"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="5_k3tme"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxaub"]
+streams_count = 1
+stream_0/stream = ExtResource("5_k3tme")
+
+[node name="Fireball" instance=ExtResource("1_a8cjq")]
+script = ExtResource("2_rin44")
+status_stats = ExtResource("3_vb4ff")
+
+[node name="Sprite3D" parent="." index="1"]
+texture = ExtResource("4_uua74")
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = SubResource("AudioStreamRandomizer_bxaub")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=11 format=3 uid="uid://h34khfekaemi"]
+
+[ext_resource type="PackedScene" uid="uid://kioik38usbqj" path="res://Scenes/Towers/area_tower.tscn" id="1_m6l05"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_gkn1q"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_4h7vt"]
+[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="3_aop2h"]
+[ext_resource type="Resource" uid="uid://cdtjbxs21peqg" path="res://Towers/Flamethrower/tower_stats.tres" id="4_by7c8"]
+[ext_resource type="Script" uid="uid://c6eghujlaqhwi" path="res://Scripts/StatusEffects/status_dot.gd" id="4_p8owx"]
+[ext_resource type="ArrayMesh" uid="uid://b4p0d4y8fdeox" path="res://Towers/Flamethrower/flamethrower_mesh.res" id="5_tc7nr"]
+
+[sub_resource type="Resource" id="Resource_f5usv"]
+script = ExtResource("4_p8owx")
+stats = ExtResource("3_aop2h")
+
+[sub_resource type="Resource" id="Resource_wvbdd"]
+script = ExtResource("2_gkn1q")
+damage = 0
+status_effects = Array[ExtResource("3_4h7vt")]([SubResource("Resource_f5usv")])
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tyf6m"]
+radius = 3.0
+
+[node name="FlamethrowerTower" instance=ExtResource("1_m6l05")]
+stats = ExtResource("4_by7c8")
+effect = SubResource("Resource_wvbdd")
+
+[node name="Pitch" parent="." index="1"]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0.389397, 0)
+mesh = ExtResource("5_tc7nr")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Pitch" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.896251, 0)
+shape = SubResource("SphereShape3D_tyf6m")
+target_position = Vector3(0, 0, -3)
+collision_mask = 4
+
+[node name="AreaAffector" parent="." index="6" node_paths=PackedStringArray("shapecast")]
+shapecast = NodePath("../Pitch/ShapeCast3D")

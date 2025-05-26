@@ -1,6 +1,7 @@
 class_name CardText extends Resource
 
 @export var target_type: Data.TargetType
+@export var energy_type: Data.EnergyType
 @export var attributes: Array[StatAttribute]
 @export_multiline var text: String
 

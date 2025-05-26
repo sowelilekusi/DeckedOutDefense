@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://df27vi4stdgjx"]
+
+[ext_resource type="PackedScene" uid="uid://b7nargdyg28fj" path="res://Scenes/Weapons/weapon.tscn" id="1_533eh"]
+[ext_resource type="Script" uid="uid://bg8jqsqf83tbf" path="res://Weapons/Ascension/ascension_weapon.gd" id="2_s1gtk"]
+[ext_resource type="Resource" uid="uid://do05i1xtdwfqk" path="res://Weapons/Ascension/weapon_stats.tres" id="3_s1gtk"]
+[ext_resource type="Texture2D" uid="uid://dc6g4iw3eje0e" path="res://Weapons/Ascension/ascension_export.png" id="4_evfnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kfie"]
+atlas = ExtResource("4_evfnb")
+region = Rect2(0, 0, 64, 64)
+
+[node name="Weapon" instance=ExtResource("1_533eh")]
+script = ExtResource("2_s1gtk")
+stats = ExtResource("3_s1gtk")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_4kfie")

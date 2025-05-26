@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ri8r03wqy80t"]
 
-[ext_resource type="Script" path="res://Scripts/eight_direction_sprite.gd" id="1_ipfb5"]
+[ext_resource type="Script" uid="uid://by8jxwui7chwl" path="res://Scripts/eight_direction_sprite.gd" id="1_ipfb5"]
 [ext_resource type="Texture2D" uid="uid://bf3gkg7f2oyg7" path="res://Assets/TextureAtlases/player.tres" id="2_kkoy2"]
 
 [node name="EightDirectionSprite" type="Sprite3D"]

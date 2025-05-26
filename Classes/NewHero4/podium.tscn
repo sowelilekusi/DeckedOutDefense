@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://6givglesbjef"]
+
+[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://Scenes/Menus/CharacterSelect/character_podium.gd" id="1_h2nqs"]
+[ext_resource type="Texture2D" uid="uid://bvybr3fwnw46p" path="res://Classes/Mage/yeen.png" id="2_e7ajb"]
+[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="3_brui3"]
+[ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_6igfd"]
+[ext_resource type="ArrayMesh" uid="uid://bu35or5yc5j4c" path="res://Towers/Sniper/snipermodel.res" id="5_2o81e"]
+[ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://Towers/Fireball/magetowermesh.res" id="6_qcqfx"]
+
+[node name="Hero4Podium" type="Node3D"]
+script = ExtResource("1_h2nqs")
+text = "Come back in, uh, a long time!"
+metadata/_custom_type_script = "uid://bc0xyfr5nj1ul"
+
+[node name="Base" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642788, 0, 0, 0)
+radius = 3.0
+height = 1.0
+sides = 32
+
+[node name="Sprite3D" type="Sprite3D" parent="Base"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
+visible = false
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_e7ajb")
+
+[node name="Node3D" parent="Base" instance=ExtResource("3_brui3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21433, 0.5, -1.47375)
+
+[node name="Assaultmod" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(-0.216168, 0.271014, 0.279012, 0.174778, 0.352842, -0.207317, -0.347489, 0.00887582, -0.277844, 1.62687, 1.06376, -1.0274)
+mesh = ExtResource("4_6igfd")
+skeleton = NodePath("../../..")
+
+[node name="Snipermodel" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.332265, 0.0519786, -0.251592, -8.9882e-09, 0.411314, 0.0849769, 0.256905, -0.0672257, 0.325393, 0.500198, 0.978789, 1.90895)
+mesh = ExtResource("5_2o81e")
+skeleton = NodePath("../../..")
+
+[node name="Magetowermesh" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.432921, 0, 0.719847, 0, 0.84, 0, -0.719847, 0, 0.432921, -1.62727, 0.5, -0.00850296)
+mesh = ExtResource("6_qcqfx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Base/Magetowermesh"]
+transform = Transform3D(1.19048, 0, 0, 0, 1.19048, 0, 0, 0, 1.19048, 0, 3.38274, 0)
+visible = false
+light_color = Color(0.697081, 0.170704, 0.131545, 1)
+light_energy = 3.586
+omni_range = 1.824
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Base"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 4, 0)
+visible = false
+spot_range = 10.0
+spot_attenuation = 0.39

@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://bvqu1heobgboe"]
 
-[ext_resource type="Script" path="res://Scripts/Towers/tower.gd" id="1_u8bfo"]
-[ext_resource type="Script" path="res://Scripts/target_finder.gd" id="2_txlxp"]
+[ext_resource type="Script" uid="uid://ct24fjmc1ptd6" path="res://Towers/tower.gd" id="1_u8bfo"]
+[ext_resource type="Script" uid="uid://rvnacmxsrh4w" path="res://Scripts/target_finder.gd" id="2_txlxp"]
 
 [sub_resource type="Animation" id="Animation_vk4a8"]
 resource_name = "shoot"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cebsq"]
 _data = {
-"shoot": SubResource("Animation_vk4a8")
+&"shoot": SubResource("Animation_vk4a8")
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_42byu"]
@@ -30,13 +30,15 @@ audio_player = NodePath("Yaw/AudioStreamPlayer3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_cebsq")
+&"": SubResource("AnimationLibrary_cebsq")
 }
 
 [node name="Pitch" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_42byu")
 
 [node name="Yaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_42byu")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Yaw"]

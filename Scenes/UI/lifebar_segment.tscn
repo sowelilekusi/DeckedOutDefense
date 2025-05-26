@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dko38egcaxubd"]
 
-[ext_resource type="Script" path="res://Scripts/lifebar_segment.gd" id="1_dvlcq"]
+[ext_resource type="Script" uid="uid://c3ark32u3lct8" path="res://Scripts/lifebar_segment.gd" id="1_dvlcq"]
 [ext_resource type="Texture2D" uid="uid://0ey8r48lgjw1" path="res://Assets/Textures/lifebar_pip.png" id="1_pianw"]
 
 [sub_resource type="Animation" id="Animation_i18y2"]
@@ -464,13 +464,13 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1s8yp"]
 _data = {
-"RESET": SubResource("Animation_i18y2"),
-"lose1": SubResource("Animation_a6tv4"),
-"lose2": SubResource("Animation_t2ym0"),
-"lose3": SubResource("Animation_ueyfw"),
-"lose4": SubResource("Animation_r4h4h"),
-"lose5": SubResource("Animation_defuy"),
-"lose6": SubResource("Animation_rctjq")
+&"RESET": SubResource("Animation_i18y2"),
+&"lose1": SubResource("Animation_a6tv4"),
+&"lose2": SubResource("Animation_t2ym0"),
+&"lose3": SubResource("Animation_ueyfw"),
+&"lose4": SubResource("Animation_r4h4h"),
+&"lose5": SubResource("Animation_defuy"),
+&"lose6": SubResource("Animation_rctjq")
 }
 
 [node name="Control" type="Control"]

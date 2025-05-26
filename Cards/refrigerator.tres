@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://ds8qx4ggmqetk"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_84afc"]
+[ext_resource type="Resource" uid="uid://st0qrut5nxrm" path="res://Towers/Refrigerator/tower_stats.tres" id="3_bihii"]
+[ext_resource type="PackedScene" uid="uid://dfgxf88kk2nhn" path="res://Towers/Refrigerator/fridgetower.tscn" id="3_pq7e0"]
+[ext_resource type="PackedScene" uid="uid://b0vi11kj3lxng" path="res://Weapons/Refrigerator/weapon_refrigerator.tscn" id="4_0oufq"]
+[ext_resource type="Resource" uid="uid://5l758yxfpi1e" path="res://Weapons/Refrigerator/weapon_stats.tres" id="5_dqmyh"]
+
+[resource]
+script = ExtResource("1_84afc")
+rarity = 1
+faction = 2
+turret_scene = ExtResource("3_pq7e0")
+weapon_scene = ExtResource("4_0oufq")
+weapon_stats = ExtResource("5_dqmyh")
+tower_stats = ExtResource("3_bihii")
+display_name = "Refrigerator"

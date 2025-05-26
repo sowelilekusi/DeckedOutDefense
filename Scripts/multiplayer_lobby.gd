@@ -1,20 +1,12 @@
-class_name MultiplayerLobby extends Control
+class_name MultiplayerLobby extends Lobby
 
 signal player_connected(peer_id: int, player_profile: PlayerProfile)
 signal player_disconnected(peer_id: int)
 signal disconnected_from_server
 
-const SERVER_PORT: int = 58008
-const MAX_PLAYERS: int = 4
-
 @export var server_form: ServerForm
-@export var scoreboard: Scoreboard
-@export var loadout_editor: HeroSelector
-@export var chatbox: Chatbox
 
-var enet_peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 var alert_popup_scene: PackedScene = preload("res://Scenes/Menus/alert_popup.tscn")
-var connected_players_profiles: Dictionary = {}
 
 
 func _ready() -> void:
@@ -53,15 +45,16 @@ func _on_server_disconnected() -> void:
 
 
 func create_server() -> void:
-	enet_peer.create_server(SERVER_PORT, MAX_PLAYERS)
+	enet_peer.create_server(server_form.port, server_form.max_players)
 	multiplayer.multiplayer_peer = enet_peer
 	setup_game(1)
 
 
 func setup_game(peer_id: int) -> void:
+	loadout_editor = character_select_screen.instantiate() as CharacterSelect
+	add_child(loadout_editor)
 	player_disconnected.connect(Game.remove_player)
 	scoreboard.all_players_ready.connect(start_game)
-	Game.game_setup.connect(setup_the_ui)
 	Game.chatbox = chatbox
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
@@ -69,21 +62,11 @@ func setup_game(peer_id: int) -> void:
 	loadout_editor.hero_selected.connect(edit_player_profile)
 	connected_players_profiles[peer_id] = Data.player_profile
 	player_connected.emit(peer_id, Data.player_profile)
-	Game.setup()
-
-
-func setup_the_ui() -> void:
-	scoreboard.unready_all_players()
-	scoreboard.set_visible(true)
-	loadout_editor.set_visible(true)
-	$ReadyButton.set_visible(true)
-	chatbox.set_visible(true)
+	setup_the_ui()
 
 
 func connect_to_server() -> void:
-	var ip: String = server_form.get_server_ip() if server_form.get_server_ip() else "localhost"
-	var port: String = server_form.get_server_port() if server_form.get_server_port() else str(SERVER_PORT)
-	enet_peer.create_client(ip, int(port))
+	enet_peer.create_client(server_form.ip, server_form.port)
 	multiplayer.multiplayer_peer = enet_peer
 
 
@@ -94,10 +77,7 @@ func ready_player() -> void:
 
 func start_game() -> void:
 	enet_peer.refuse_new_connections = true
-	scoreboard.set_visible(false)
-	loadout_editor.set_visible(false)
-	Game.connected_player_profiles = connected_players_profiles
-	Game.start()
+	super.start_game()
 
 
 #TODO: what the fuck is this doing lol
@@ -125,7 +105,3 @@ func add_player(new_player_profile_dict: Dictionary) -> void:
 @rpc("any_peer", "reliable", "call_local")
 func networked_ready_player(peer_id: int) -> void:
 	scoreboard.set_player_ready_state(peer_id, true)
-
-
-func _on_button_mouse_entered() -> void:
-	$AudioStreamPlayer.play()

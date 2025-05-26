@@ -17,17 +17,16 @@ var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lob
 var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
 var game_active: bool = false
+var gamemode: GameMode = null
 var level: Level
 var enemies: int = 0
 var objective_health: int = 120
 var wave: int = 0
-var endless_mode: bool = false
-var upcoming_wave: Dictionary
 var pot: float
 var UILayer: CanvasLayer
 var chatbox: Chatbox
 var wave_limit: int = 20
-var starting_cash: int = 16
+var starting_cash: int = 25
 var shop_chance: float = 0.0
 var stats: RoundStats
 var rng: FastNoiseLite
@@ -171,32 +170,41 @@ func spawn_enemy_wave() -> void:
 	level.shop.close()
 	wave += 1
 	level.a_star_graph_3d.find_path()
-	level.a_star_graph_3d.visualized_path.disable_visualization()
 	level.a_star_graph_3d.disable_all_tower_frames()
 	for spawn: EnemySpawner in level.enemy_spawns:
-		spawn.spawn_wave(upcoming_wave)
+		spawn.path.disable_visualization()
+		spawn.spawn_wave()
 	wave_started.emit(wave)
 
 
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
 		var spawn_power: int = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
-		var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
+		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns)
+		temp_set_upcoming_wave(new_wave, floori(WaveManager.calculate_pot(wave + 1, connected_players_nodes.size()) / 20.0))
+		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 
 
-@rpc("reliable", "call_local")
-func networked_set_upcoming_wave(wave_dict: Dictionary, coins: int) -> void:
-	upcoming_wave = wave_dict
+func temp_set_upcoming_wave(wave: Wave, coins: int) -> void:
 	pot = coins
-	for key: int in connected_players_nodes:
-		connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
+	connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(wave)
+	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(wave.to_dict())
+
+#TODO: You'll probably have to write a to_dict function for the new wave system 
+#before any of this shit works in multiplayer
+#@rpc("reliable", "call_local")
+#func networked_set_upcoming_wave(wave_dict: Dictionary, coins: int) -> void:
+	#upcoming_wave = wave_dict
+	#pot = coins
+	#for key: int in connected_players_nodes:
+		#connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
 
 
 @rpc("reliable", "call_local")
 func networked_set_endless(value: bool) -> void:
-	endless_mode = value
-	if endless_mode:
+	gamemode.endless = value
+	if gamemode.endless:
 		chatbox.append_message("SERVER", Color.TOMATO, "Endless mode enabled!")
 	else:
 		chatbox.append_message("SERVER", Color.TOMATO, "Endless mode disabled!")
@@ -215,7 +223,7 @@ func enemy_died(enemy: Enemy) -> void:
 			return
 	if enemies == 0:
 		end_wave()
-		if !endless_mode and wave >= wave_limit:
+		if !gamemode.endless and wave >= wave_limit:
 			end(true)
 
 
@@ -230,7 +238,7 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 		end(false)
 	elif enemies == 0:
 		end_wave()
-		if !endless_mode and wave >= wave_limit:
+		if !gamemode.endless and wave >= wave_limit:
 			end(true)
 
 
@@ -238,7 +246,8 @@ func end_wave() -> void:
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
 		connected_players_nodes[peer_id].unready_self()
-	level.a_star_graph_3d.visualized_path.enable_visualization()
+	for spawn: EnemySpawner in level.enemy_spawns:
+		spawn.path.enable_visualization()
 	level.a_star_graph_3d.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
 		if randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
@@ -282,9 +291,9 @@ func setup() -> void:
 	game_setup.emit()
 
 
-func start(rng_seed: int = randi()) -> void:
+func start() -> void:
 	if is_multiplayer_authority():
-		set_seed.rpc(rng_seed)
+		set_seed.rpc(gamemode.rng_seed)
 	else:
 		await rng_seeded
 	
@@ -305,14 +314,15 @@ func start(rng_seed: int = randi()) -> void:
 	game_active = true
 	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(rng.seed))
 	game_started.emit()
+	#print("started game with seed: " + str(gamemode.rng_seed))
 
 
 func end(outcome: bool) -> void:
 	if game_active == false:
 		return
 	game_active = false
-	Data.save_stats.add_game_outcome(outcome)
-	Data.save_stats.save_profile_to_disk()
+	Data.save_data.add_game_outcome(outcome)
+	Data.save_data.save_to_disc()
 	var menu: GameEndScreen = game_end_scene.instantiate() as GameEndScreen
 	match outcome:
 		false:

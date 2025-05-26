@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://beq6rn0babncg"]
 
 [ext_resource type="PackedScene" uid="uid://7f4dfphgiswr" path="res://Scenes/Projectiles/explosive_projectile.tscn" id="1_atrjq"]
-[ext_resource type="Script" path="res://Scripts/Projectiles/status_applying_projectile.gd" id="2_4p44n"]
+[ext_resource type="Script" uid="uid://ba2aqn82wo747" path="res://Scripts/Projectiles/status_applying_projectile.gd" id="2_4p44n"]
 
 [node name="StatusApplyingProjectile" instance=ExtResource("1_atrjq")]
 script = ExtResource("2_4p44n")

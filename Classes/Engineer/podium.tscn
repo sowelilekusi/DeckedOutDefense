@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciagj1hfn4gou"]
+
+[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://Scenes/Menus/CharacterSelect/character_podium.gd" id="1_fo804"]
+[ext_resource type="Texture2D" uid="uid://d4jd718brpsed" path="res://Classes/Engineer/doe.png" id="2_4b5pd"]
+[ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="3_pmyku"]
+[ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_1jafm"]
+[ext_resource type="ArrayMesh" uid="uid://bu35or5yc5j4c" path="res://Towers/Sniper/snipermodel.res" id="5_851y4"]
+[ext_resource type="ArrayMesh" uid="uid://dler7wcqj0bm6" path="res://Towers/Gatling/gattlemesh.res" id="6_iftlf"]
+[ext_resource type="PackedScene" uid="uid://d3qabcosmk2q5" path="res://Towers/Overclock/tower.tscn" id="7_pmyku"]
+[ext_resource type="Resource" uid="uid://v13yoous66bc" path="res://Towers/Overclock/tower_stats.tres" id="8_1jafm"]
+
+[node name="EngineerPodium" type="Node3D"]
+script = ExtResource("1_fo804")
+metadata/_custom_type_script = "uid://bc0xyfr5nj1ul"
+
+[node name="Base" type="CSGCylinder3D" parent="."]
+radius = 3.0
+height = 1.0
+sides = 32
+
+[node name="CharacterSprite" type="Sprite3D" parent="Base"]
+transform = Transform3D(1.6895, 0, -2.47903, 0, 3, 0, 2.47903, 0, 1.6895, -0.0459526, 1.91885, -0.305444)
+modulate = Color(0.517184, 0.517184, 0.517184, 1)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_4b5pd")
+
+[node name="Node3D" parent="Base" instance=ExtResource("3_pmyku")]
+transform = Transform3D(0.563166, 0, -0.826344, 0, 1, 0, 0.826344, 0, 0.563166, -1.32611, 0.5, -0.864711)
+
+[node name="Assaultmod" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(-0.155908, 0.191531, -0.37018, -7.29442e-09, 0.395231, 0.204492, 0.416795, 0.0716447, -0.138472, 1.08392, 0.959456, -1.22038)
+mesh = ExtResource("4_1jafm")
+skeleton = NodePath("../../..")
+
+[node name="Snipermodel" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.410348, 0.0352013, 0.0823131, 0.0231825, 0.331215, -0.257215, -0.0864702, 0.255847, 0.32166, -1.09654, 0.957512, 0.64087)
+mesh = ExtResource("5_851y4")
+skeleton = NodePath("../../..")
+
+[node name="Gattlemesh" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(0.11298, -0.0560454, 0.277704, 2.63199e-09, 0.298972, 0.0603377, -0.283303, -0.0223507, 0.110748, 0.976316, 0.901463, 0.843925)
+mesh = ExtResource("6_iftlf")
+skeleton = NodePath("../../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Base"]
+transform = Transform3D(0.563166, 0.826344, 3.61207e-08, 1.35728e-16, -4.37114e-08, 1, 0.826344, -0.563166, -2.46168e-08, -0.0459526, 4, -0.305444)
+spot_range = 10.0
+spot_attenuation = 0.39
+
+[node name="Tower2" parent="Base" instance=ExtResource("7_pmyku")]
+transform = Transform3D(0.563166, 0, -0.826344, 0, 1, 0, 0.826344, 0, 0.563166, 2.31578, 1.01612, -0.162108)
+stats = ExtResource("8_1jafm")

@@ -24,8 +24,10 @@ func _ready() -> void:
 	movement_speed = stats.movement_speed
 
 
-func damage(amount: float) -> void:
-	$Hitbox.damage(amount)
+func apply_effect(effect: Effect) -> void:
+	health.take_damage(effect.damage)
+	for status: StatusEffect in effect.status_effects:
+		status_manager.add_effect(status)
 
 
 func goal_entered() -> void:

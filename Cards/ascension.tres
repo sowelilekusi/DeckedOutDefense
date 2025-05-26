@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bga736m7furat"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_wkie7"]
+[ext_resource type="Resource" uid="uid://c756rtt7ujowk" path="res://Towers/Ascension/tower_stats.tres" id="2_uoj3t"]
+[ext_resource type="PackedScene" uid="uid://dk1pt2f1qya1m" path="res://Towers/Ascension/tower.tscn" id="2_vk6xf"]
+[ext_resource type="PackedScene" uid="uid://df27vi4stdgjx" path="res://Weapons/Ascension/ascension.tscn" id="4_3q334"]
+[ext_resource type="Resource" uid="uid://do05i1xtdwfqk" path="res://Weapons/Ascension/weapon_stats.tres" id="5_dw3gx"]
+
+[resource]
+script = ExtResource("1_wkie7")
+rarity = 1
+faction = 2
+turret_scene = ExtResource("2_vk6xf")
+weapon_scene = ExtResource("4_3q334")
+weapon_stats = ExtResource("5_dw3gx")
+tower_stats = ExtResource("2_uoj3t")
+display_name = "Ascension"
+metadata/_custom_type_script = "uid://d40isem6w5d8"

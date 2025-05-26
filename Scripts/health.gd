@@ -8,6 +8,7 @@ signal health_changed(health: int)
 
 var current_health: int
 
+
 func take_damage(damage: int) -> void:
 	current_health -= damage
 	health_changed.emit(current_health)

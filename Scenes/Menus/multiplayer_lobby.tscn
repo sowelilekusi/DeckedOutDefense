@@ -1,20 +1,19 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwvprrvk4l2k0"]
 
-[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_l1spu"]
-[ext_resource type="Script" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
+[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_l1spu"]
+[ext_resource type="Script" uid="uid://cvm4lyhx1uh0w" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
 [ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="3_f6bia"]
 [ext_resource type="PackedScene" uid="uid://bvfit0sy2tnw4" path="res://Scenes/Menus/server_form.tscn" id="5_bqbwv"]
-[ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://Scenes/Menus/CharacterSelect/charselect.tscn" id="5_lvoo2"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="6_wtqwd"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="7_6mhre"]
+[ext_resource type="PackedScene" uid="uid://bc6m3cluulpis" path="res://Scenes/Menus/CharacterSelect/character_select.tscn" id="7_kawp7"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cwnde"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("7_6mhre")
-stream_0/weight = 1.0
 
-[node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "loadout_editor", "chatbox")]
+[node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "scoreboard", "chatbox", "ready_button", "audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,9 +24,11 @@ mouse_filter = 2
 theme = ExtResource("1_l1spu")
 script = ExtResource("2_nb860")
 server_form = NodePath("ServerForm")
+character_select_screen = ExtResource("7_kawp7")
 scoreboard = NodePath("Scoreboard")
-loadout_editor = NodePath("Control")
 chatbox = NodePath("Chatbox")
+ready_button = NodePath("ReadyButton")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="ServerForm" parent="." instance=ExtResource("5_bqbwv")]
 layout_mode = 1
@@ -45,10 +46,6 @@ anchor_right = 1.0
 offset_left = -472.0
 offset_right = -50.0
 grow_horizontal = 0
-
-[node name="Control" parent="." instance=ExtResource("5_lvoo2")]
-visible = false
-layout_mode = 1
 
 [node name="ReadyButton" type="Button" parent="."]
 visible = false
@@ -81,4 +78,3 @@ bus = &"SFX"
 [connection signal="host_button_pressed" from="ServerForm" to="ServerForm" method="set_visible" binds= [false]]
 [connection signal="mouse_entered" from="ReadyButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="ReadyButton" to="." method="ready_player"]
-[connection signal="pressed" from="ReadyButton" to="ReadyButton" method="set_visible" binds= [false]]

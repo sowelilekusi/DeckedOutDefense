@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmbd7ivisjm3w"]
+
+[ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_y7piy"]
+[ext_resource type="Script" uid="uid://bxqellvwo4d7n" path="res://Weapons/Overclock/overclock_weapon.gd" id="2_5uumc"]
+[ext_resource type="Resource" uid="uid://d3qmy6puuh1gl" path="res://Weapons/Overclock/weapon_stats.tres" id="3_tptkd"]
+[ext_resource type="Texture2D" uid="uid://cufk22apg8kqv" path="res://Weapons/Overclock/g_asssrault-export.png" id="4_5uumc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tptkd"]
+atlas = ExtResource("4_5uumc")
+region = Rect2(0, 0, 64, 64)
+
+[node name="HitscanWeapon" instance=ExtResource("1_y7piy")]
+script = ExtResource("2_5uumc")
+stats = ExtResource("3_tptkd")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_tptkd")

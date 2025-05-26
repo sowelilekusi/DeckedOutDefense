@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2avjln5vmr0y"]
 
-[ext_resource type="Script" path="res://Scenes/Shredder/shredder.gd" id="1_diuqd"]
-[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="1_toyr6"]
+[ext_resource type="Script" uid="uid://cu11aknhwt2qc" path="res://Scenes/Shredder/shredder.gd" id="1_diuqd"]
+[ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="1_toyr6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_waypt"]
 albedo_color = Color(0.909804, 0.113725, 0.113725, 1)

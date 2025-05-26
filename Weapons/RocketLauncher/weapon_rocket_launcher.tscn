@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdp7icdejayvr"]
+
+[ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_gxaua"]
+[ext_resource type="Script" uid="uid://cuxi02s34ohs" path="res://Weapons/RocketLauncher/weapon_rocket_launcher.gd" id="2_8x1tf"]
+[ext_resource type="PackedScene" uid="uid://p2vwo8ivben6" path="res://Projectiles/Rocket/rocket_projectile.tscn" id="2_lfuvh"]
+[ext_resource type="PackedScene" uid="uid://csufsbi64asau" path="res://Weapons/RocketLauncher/target_icon.tscn" id="3_2x5va"]
+[ext_resource type="Resource" uid="uid://d2yo07m2mp2mp" path="res://Weapons/RocketLauncher/weapon_stats.tres" id="3_i1hxj"]
+[ext_resource type="Texture2D" uid="uid://by1y15lm0bppe" path="res://Weapons/RocketLauncher/rocket_launcher.png" id="4_iygkf"]
+[ext_resource type="Texture2D" uid="uid://cc2umukpibmx1" path="res://Weapons/RocketLauncher/target_list.png" id="6_jlv88"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="8_genbv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4p4w"]
+resource_local_to_scene = true
+atlas = ExtResource("4_iygkf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewxon"]
+atlas = ExtResource("6_jlv88")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5w2i3"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_genbv")
+
+[node name="RocketLauncher" node_paths=PackedStringArray("targeting_raycast", "targeting_ui_rect") instance=ExtResource("1_gxaua")]
+script = ExtResource("2_8x1tf")
+target_icon_scene = ExtResource("3_2x5va")
+targeting_raycast = NodePath("RayCast3D")
+targeting_ui_rect = NodePath("TextureRect")
+projectile_scene = ExtResource("2_lfuvh")
+stats = ExtResource("3_i1hxj")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_f4p4w")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 4
+
+[node name="TextureRect" type="TextureRect" parent="." index="3"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ewxon")
+
+[node name="AudioStreamPlayer3D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_5w2i3")

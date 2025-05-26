@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://p2vwo8ivben6"]
+
+[ext_resource type="PackedScene" uid="uid://di2wwvkv4wov1" path="res://Scenes/Projectiles/homing_projectile.tscn" id="1_fnn4i"]
+[ext_resource type="Script" uid="uid://bs1sle66bd7e" path="res://Projectiles/Rocket/rocket_projectile.gd" id="2_86up0"]
+[ext_resource type="Texture2D" uid="uid://bode8mfmr3r1h" path="res://Projectiles/Rocket/rocket.png" id="3_aonkx"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="4_i5kff"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4rf40"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_i5kff")
+
+[node name="Rocket" instance=ExtResource("1_fnn4i")]
+script = ExtResource("2_86up0")
+
+[node name="Sprite3D" parent="." index="1"]
+pixel_size = 0.013
+texture = ExtResource("3_aonkx")
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = SubResource("AudioStreamRandomizer_4rf40")

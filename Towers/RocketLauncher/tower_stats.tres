@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://c65rq455ma8f6"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_jajj0"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_lag26"]
+
+[sub_resource type="Resource" id="Resource_4fjm2"]
+script = ExtResource("1_jajj0")
+key = "Fire Delay"
+value = 5.0
+
+[sub_resource type="Resource" id="Resource_uwj4j"]
+script = ExtResource("1_jajj0")
+key = "Target Limit"
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_6qv5v"]
+script = ExtResource("1_jajj0")
+key = "Damage"
+value = 8.0
+
+[sub_resource type="Resource" id="Resource_y1rtq"]
+script = ExtResource("1_jajj0")
+key = "Range"
+value = 20.0
+
+[resource]
+script = ExtResource("2_lag26")
+target_type = 2
+attributes = Array[ExtResource("1_jajj0")]([SubResource("Resource_4fjm2"), SubResource("Resource_uwj4j"), SubResource("Resource_6qv5v"), SubResource("Resource_y1rtq")])
+text = "Every /Fire Delay\\s, fires a homing rocket at up to /Target Limit\\ flying enemies up to /Range\\m away that deal /Damage\\ damage"

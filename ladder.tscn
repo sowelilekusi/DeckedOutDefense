@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx8f6tsipvmls"]
+
+[ext_resource type="Script" uid="uid://7pd2edvb845w" path="res://ladder.gd" id="1_cq4ai"]
+
+[node name="Ladder" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_cq4ai")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

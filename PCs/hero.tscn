@@ -1,33 +1,35 @@
-[gd_scene load_steps=62 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=64 format=3 uid="uid://dxgxbtf68lcv5"]
 
-[ext_resource type="Script" path="res://PCs/hero.gd" id="1_pihpe"]
-[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://PCs/Mechanic/red.tres" id="2_dbyo0"]
+[ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
+[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
 [ext_resource type="Texture2D" uid="uid://dkbkam81k355s" path="res://Assets/TextureAtlases/gauntlet.tres" id="3_5myy0"]
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
-[ext_resource type="Script" path="res://PCs/view_movement.gd" id="4_mhexa"]
+[ext_resource type="Script" uid="uid://cij76at0nbs1v" path="res://PCs/view_movement.gd" id="4_mhexa"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]
-[ext_resource type="Script" path="res://Scripts/inventory.gd" id="6_cf5ap"]
-[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://PCs/Mechanic/red.png" id="6_yyp8i"]
-[ext_resource type="Script" path="res://Scripts/hud.gd" id="8_yl6ka"]
-[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://PCs/Mechanic/red_hand.png" id="9_gxh2h"]
-[ext_resource type="Script" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
-[ext_resource type="Script" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
+[ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="6_cf5ap"]
+[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://Classes/Engineer/red.png" id="6_yyp8i"]
+[ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
+[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://Classes/Engineer/red_hand.png" id="9_gxh2h"]
+[ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
+[ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
 [ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="15_cqpib"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
 [ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://Scenes/UI/pickup_notification.tscn" id="17_oyeww"]
+[ext_resource type="PackedScene" uid="uid://d17c77pqsi8oy" path="res://enemy_card_ui.tscn" id="18_dfkac"]
 [ext_resource type="Texture2D" uid="uid://cvjcu3hofahr6" path="res://Assets/Textures/place_slot.png" id="18_okmpi"]
-[ext_resource type="Script" path="res://PCs/player_movement.gd" id="20_cfhw8"]
-[ext_resource type="Shader" path="res://crosshair.gdshader" id="20_gxpgc"]
+[ext_resource type="Script" uid="uid://b5wle8f6rv3e7" path="res://PCs/player_movement.gd" id="20_cfhw8"]
+[ext_resource type="Shader" uid="uid://dhtylicctk3g4" path="res://UI/crosshair.gdshader" id="20_gxpgc"]
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
 [ext_resource type="AudioStream" uid="uid://csu2hce4bfoki" path="res://Audio/cardPlace1.ogg" id="24_8ch4w"]
 [ext_resource type="Texture2D" uid="uid://b8woqvpwq3tsq" path="res://Assets/Textures/swap_slot.png" id="24_gr6xt"]
 [ext_resource type="AudioStream" uid="uid://dxq8b77wa41os" path="res://Audio/cardPlace2.ogg" id="25_awl6m"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
+[ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://energy_bar.tscn" id="27_14ugt"]
 [ext_resource type="AudioStream" uid="uid://k1lsqkvohjpa" path="res://Audio/cardPlace4.ogg" id="27_xvxs8"]
 [ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
 [ext_resource type="AudioStream" uid="uid://d32gpcu8w1yvn" path="res://Audio/cardSlide2.ogg" id="29_s0a0l"]
@@ -64,7 +66,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0.615, -0.275, -1, 0.2, 1, 0.59, -0.255
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wknc"]
 _data = {
-"weapon_sway": SubResource("Animation_2q50p")
+&"weapon_sway": SubResource("Animation_2q50p")
 }
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8f12g"]
@@ -120,44 +122,30 @@ properties/1/replication_mode = 2
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyb7c"]
 streams_count = 4
 stream_0/stream = ExtResource("24_8ch4w")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("25_awl6m")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("26_7tm07")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("27_xvxs8")
-stream_3/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0lyoo"]
 streams_count = 8
 stream_0/stream = ExtResource("28_1thk8")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("29_s0a0l")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("30_djhlg")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("31_546e6")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("32_tg7y0")
-stream_4/weight = 1.0
 stream_5/stream = ExtResource("33_2v5co")
-stream_5/weight = 1.0
 stream_6/stream = ExtResource("34_6acmc")
-stream_6/weight = 1.0
 stream_7/stream = ExtResource("35_i0lwe")
-stream_7/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_evsqr"]
 streams_count = 1
 stream_0/stream = ExtResource("36_lsvj8")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pc8yw"]
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
-stream_0/weight = 1.0
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "card_sprites", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "gauntlet_card_1", "gauntlet_card_2", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "card_sprites", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "inventory", "gauntlet_cards", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -175,8 +163,7 @@ sprite = NodePath("EightDirectionSprite")
 hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Sprite2D")
 interaction_raycast = NodePath("ViewMovement/Head/RayCast3D")
 inventory = NodePath("Inventory")
-gauntlet_card_1 = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport2/Node2D")
-gauntlet_card_2 = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3/Node2D")
+gauntlet_cards = [NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport2/Node2D"), NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3/Node2D")]
 pause_menu_scene = ExtResource("3_avnsx")
 hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
@@ -241,7 +228,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.66, -0.255, -0.221557
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FirstPersonViewport/Head2/RightHand"]
 libraries = {
-"": SubResource("AnimationLibrary_2wknc")
+&"": SubResource("AnimationLibrary_2wknc")
 }
 
 [node name="Gauntlet" type="Sprite3D" parent="FirstPersonViewport/Head2/RightHand"]
@@ -392,10 +379,12 @@ script = ExtResource("6_cf5ap")
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
+toggle_sprint = true
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
+enable_jumping = true
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "new_energy_bar2")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("WaveCount")
@@ -418,6 +407,9 @@ place_icon = NodePath("PlaceIcon")
 swap_icon = NodePath("SwapIcon")
 place_text = NodePath("PlaceIcon/RichTextLabel")
 swap_text = NodePath("SwapIcon/RichTextLabel")
+enemy_card_scene = ExtResource("18_dfkac")
+new_energy_bar = NodePath("EnergyBar")
+new_energy_bar2 = NodePath("EnergyBar2")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -798,8 +790,36 @@ bbcode_enabled = true
 text = "[center]Press #Ready# to start wave[/center]"
 scroll_active = false
 
+[node name="Control2" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Control3" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
+mouse_filter = 2
+
+[node name="EnergyBar2" parent="HUD" instance=ExtResource("27_14ugt")]
+offset_left = -72.0
+offset_right = -72.0
+mouse_filter = 2
+
 [node name="WeaponSwapTimer" type="Timer" parent="."]
-wait_time = 0.9
+wait_time = 0.4
 one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

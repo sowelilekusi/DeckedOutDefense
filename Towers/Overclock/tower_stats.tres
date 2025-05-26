@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://v13yoous66bc"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_0swcp"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_fax6y"]
+
+[sub_resource type="Resource" id="Resource_0swcp"]
+script = ExtResource("1_0swcp")
+key = "Fire Delay"
+value = 0.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_fax6y"]
+script = ExtResource("1_0swcp")
+key = "Damage"
+value = 0.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_v0e26"]
+script = ExtResource("1_0swcp")
+key = "Range"
+value = 4.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[resource]
+script = ExtResource("2_fax6y")
+target_type = 1
+energy_type = 0
+attributes = Array[ExtResource("1_0swcp")]([SubResource("Resource_0swcp"), SubResource("Resource_fax6y"), SubResource("Resource_v0e26")])
+text = "Speeds up the fire rate of towers within /Range\\m by 10%"
+metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

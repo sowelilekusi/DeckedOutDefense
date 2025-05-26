@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=8 format=3 uid="uid://d3qmy6puuh1gl"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_m84e5"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_rl1ek"]
+
+[sub_resource type="Resource" id="Resource_m84e5"]
+script = ExtResource("1_m84e5")
+key = "Fire Delay"
+value = 0.3
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_rl1ek"]
+script = ExtResource("1_m84e5")
+key = "Damage"
+value = 0.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_gglou"]
+script = ExtResource("1_m84e5")
+key = "Energy"
+value = 20.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_0g051"]
+script = ExtResource("1_m84e5")
+key = "Range"
+value = 100.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[sub_resource type="Resource" id="Resource_uq2yv"]
+script = ExtResource("1_m84e5")
+key = "EffectDuration"
+value = 1.0
+metadata/_custom_type_script = "uid://yjb0uv6og430"
+
+[resource]
+script = ExtResource("2_rl1ek")
+target_type = 1
+energy_type = 2
+attributes = Array[ExtResource("1_m84e5")]([SubResource("Resource_m84e5"), SubResource("Resource_rl1ek"), SubResource("Resource_gglou"), SubResource("Resource_0g051"), SubResource("Resource_uq2yv")])
+text = "Fire a machine-energizing pellet every /Fire Delay\\ seconds that speeds up tower fire rate by 35% for /EffectDuration\\ seconds at a range of /Range\\m"
+metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

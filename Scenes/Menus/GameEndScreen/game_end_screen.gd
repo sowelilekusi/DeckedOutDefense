@@ -11,13 +11,13 @@ class_name GameEndScreen extends PanelContainer
 
 
 func _ready() -> void:
-	var wins: int = Data.save_stats.twenty_game_history.count(true)
-	var games: int = Data.save_stats.twenty_game_history.size()
+	var wins: int = Data.save_data.twenty_game_history.count(true)
+	var games: int = Data.save_data.twenty_game_history.size()
 	var winrate: int = int((float(wins) / float(games)) * 100.0)
 	winrate_label.text = "Your 20-game winrate is now: " + str(winrate) + "%!"
-	total_games_label.text = "Total games: " + str(Data.save_stats.wins + Data.save_stats.losses)
-	total_wins_label.text = "Total wins: " + str(Data.save_stats.wins)
-	total_losses_label.text = "Total losses: " + str(Data.save_stats.losses)
+	total_games_label.text = "Total games: " + str(Data.save_data.wins + Data.save_data.losses)
+	total_wins_label.text = "Total wins: " + str(Data.save_data.wins)
+	total_losses_label.text = "Total losses: " + str(Data.save_data.losses)
 	for wave_key: int in Game.stats.enemies_undefeated:
 		var spawned_box: EnemyBox = box.instantiate() as EnemyBox
 		undefeated_enemies.add_child(spawned_box)
@@ -36,6 +36,8 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_play_button_pressed() -> void:
+	if Game.gamemode.daily == false and !Game.gamemode.seeded:
+		Game.gamemode.rng_seed = randi()
 	Game.setup()
 	Game.start()
 	queue_free()

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="HeroClass" load_steps=10 format=3 uid="uid://dxonpv8qbyrjy"]
+
+[ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="1_aeu85"]
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_gq5ju"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_3yr5a"]
+[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://Cards/fireball.tres" id="3_sh7d1"]
+[ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://Cards/sniper.tres" id="3_wyb0n"]
+[ext_resource type="Texture2D" uid="uid://bvaif1sfn1ej4" path="res://Classes/Mage/blue_hand.png" id="4_srskc"]
+[ext_resource type="Resource" uid="uid://bga736m7furat" path="res://Cards/ascension.tres" id="5_k7b5b"]
+[ext_resource type="Texture2D" uid="uid://bvybr3fwnw46p" path="res://Classes/Mage/yeen.png" id="6_jda20"]
+[ext_resource type="PackedScene" uid="uid://bd4k48bdgiddy" path="res://Classes/Mage/podium.tscn" id="7_aglom"]
+
+[resource]
+script = ExtResource("1_aeu85")
+hero_name = "Mage"
+texture = ExtResource("6_jda20")
+hand_texture = ExtResource("4_srskc")
+deck = Array[ExtResource("1_gq5ju")]([ExtResource("2_3yr5a"), ExtResource("2_3yr5a"), ExtResource("3_wyb0n"), ExtResource("3_sh7d1"), ExtResource("5_k7b5b")])
+faction = 2
+podium = ExtResource("7_aglom")

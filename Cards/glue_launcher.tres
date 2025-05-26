@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://fwsg5av1egp2"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_tdu8a"]
+[ext_resource type="Resource" uid="uid://boj1ho5x0sxtq" path="res://Weapons/GlueLauncher/weapon_stats.tres" id="3_dukui"]
+[ext_resource type="Resource" uid="uid://bvkwgmbxje0dp" path="res://Towers/GlueLauncher/tower_stats.tres" id="3_e5fta"]
+[ext_resource type="PackedScene" uid="uid://bfdg32wymhoj1" path="res://Towers/GlueLauncher/tower_glue_launcher.tscn" id="4_xcrut"]
+[ext_resource type="PackedScene" uid="uid://takm6diuy71m" path="res://Weapons/GlueLauncher/weapon_glue_launcher.tscn" id="5_l3c38"]
+
+[resource]
+script = ExtResource("1_tdu8a")
+rarity = 0
+faction = 1
+turret_scene = ExtResource("4_xcrut")
+weapon_scene = ExtResource("5_l3c38")
+weapon_stats = ExtResource("3_dukui")
+tower_stats = ExtResource("3_e5fta")
+display_name = "Glue Launcher"

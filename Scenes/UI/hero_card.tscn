@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnsf2degj5tio"]
 
-[ext_resource type="Script" path="res://hero_select_card.gd" id="1_rqutp"]
+[ext_resource type="Script" uid="uid://v5y44744p7ie" path="res://UI/hero_select_card.gd" id="1_rqutp"]
 [ext_resource type="Texture2D" uid="uid://bskg4kgoi576f" path="res://Assets/Textures/Sprite-0001.png" id="2_gly1b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihqrr"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerKeymap" load_steps=18 format=3 uid="uid://qgpkrp08tx5l"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/player_keymap.gd" id="1_e3tjt"]
+[ext_resource type="Script" uid="uid://vkthiwr3vq4g" path="res://Scripts/Resources/player_keymap.gd" id="1_e3tjt"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_62tdh"]
 device = -1

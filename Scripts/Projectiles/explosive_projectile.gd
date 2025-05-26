@@ -33,7 +33,7 @@ func explode() -> void:
 
 
 func hit(target: CharacterBody3D) -> void:
-	target.damage(damage)
+	target.apply_effect(effect)
 	if owner_id == 0:
 		if Data.preferences.display_tower_damage_indicators:
 			spawn_damage_indicator(target.sprite.global_position)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://clulh7v8c7h85"]
 
-[ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_bievw"]
+[ext_resource type="Script" uid="uid://48rvmybi18wj" path="res://Scripts/options_menu.gd" id="1_bievw"]
 [ext_resource type="PackedScene" uid="uid://bjk7jf0bau5lv" path="res://Scenes/Menus/gameplay_options.tscn" id="3_25wuw"]
 [ext_resource type="PackedScene" uid="uid://bmd4mawasoc11" path="res://Scenes/Menus/graphics_options.tscn" id="4_ckcvq"]
 [ext_resource type="PackedScene" uid="uid://bf2nosqt5f82e" path="res://Scenes/Menus/keybind_options.tscn" id="5_4k33c"]
@@ -11,7 +11,6 @@
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_hhyef")
-stream_0/weight = 1.0
 
 [node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("gameplay", "graphics", "keybinds")]
 anchors_preset = 15
@@ -34,21 +33,26 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 3
 
 [node name="Gameplay" parent="VBoxContainer/TabContainer" instance=ExtResource("3_25wuw")]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Graphics" parent="VBoxContainer/TabContainer" instance=ExtResource("4_ckcvq")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Keybinds" parent="VBoxContainer/TabContainer" instance=ExtResource("5_4k33c")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Audio" parent="VBoxContainer/TabContainer" instance=ExtResource("6_4vs8p")]
-visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

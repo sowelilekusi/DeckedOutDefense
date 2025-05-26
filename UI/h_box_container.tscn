@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5hp43bm07b8a"]
+
+[ext_resource type="Script" uid="uid://b0h5oewxd48lv" path="res://UI/enemybox.gd" id="1_lcu0c"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+script = ExtResource("1_lcu0c")
+
+[node name="WaveLabel" type="Label" parent="."]
+layout_mode = 2
+text = "wave 1: "

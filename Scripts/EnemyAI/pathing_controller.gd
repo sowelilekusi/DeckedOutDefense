@@ -18,3 +18,4 @@ func _physics_process(delta: float) -> void:
 	var sample: Transform3D = path.sample_baked_with_rotation(path_progress, true)
 	character.global_position = sample.origin
 	character.look_at(character.global_position + -sample.basis.z)
+	var closest_point: Vector3 = path.get_closest_point(character.global_position)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chnj376d3lcjd"]
 
-[ext_resource type="Script" path="res://Scripts/pickup_notification.gd" id="1_cgy5u"]
+[ext_resource type="Script" uid="uid://b6vynawytkd0k" path="res://Scripts/pickup_notification.gd" id="1_cgy5u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdnv4"]
 resource_local_to_scene = true

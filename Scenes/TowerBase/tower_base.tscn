@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ddbbwx0yy16lh"]
 
-[ext_resource type="Script" path="res://Scripts/tower_base.gd" id="1_kalmg"]
-[ext_resource type="Script" path="res://Scripts/inventory.gd" id="2_m0oxx"]
+[ext_resource type="Script" uid="uid://si58bm4r7r2i" path="res://Scripts/tower_base.gd" id="1_kalmg"]
+[ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="2_m0oxx"]
 [ext_resource type="ArrayMesh" uid="uid://cr83c74ys8rll" path="res://Scenes/TowerBase/textmesh.res" id="3_ly30x"]
 [ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="4_lbvtm"]
 
@@ -20,7 +20,7 @@ albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t32n1"]
 albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
 
-[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_icon", "south_icon", "east_icon", "west_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider")]
+[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_icon", "south_icon", "east_icon", "west_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider") groups=["TowerBases"]]
 collision_layer = 17
 script = ExtResource("1_kalmg")
 inventory = NodePath("Inventory")

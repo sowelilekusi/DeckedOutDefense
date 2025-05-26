@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://st0qrut5nxrm"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_wa26m"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_w4q6a"]
+
+[sub_resource type="Resource" id="Resource_j28f4"]
+script = ExtResource("1_wa26m")
+key = "Fire Delay"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_likes"]
+script = ExtResource("1_wa26m")
+key = "Damage"
+value = 0.0
+
+[sub_resource type="Resource" id="Resource_b65mk"]
+script = ExtResource("1_wa26m")
+key = "Range"
+value = 3.0
+
+[resource]
+script = ExtResource("2_w4q6a")
+target_type = 1
+attributes = Array[ExtResource("1_wa26m")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
+text = "Applies Cold to enemies around itself"

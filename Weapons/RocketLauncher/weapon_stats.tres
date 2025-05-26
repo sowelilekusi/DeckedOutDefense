@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://d2yo07m2mp2mp"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_5gy7w"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_ow0r7"]
+
+[sub_resource type="Resource" id="Resource_4fjm2"]
+script = ExtResource("1_5gy7w")
+key = "Fire Delay"
+value = 2.0
+
+[sub_resource type="Resource" id="Resource_uwj4j"]
+script = ExtResource("1_5gy7w")
+key = "Target Limit"
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_6qv5v"]
+script = ExtResource("1_5gy7w")
+key = "Damage"
+value = 8.0
+
+[sub_resource type="Resource" id="Resource_ymyed"]
+script = ExtResource("1_5gy7w")
+key = "Energy"
+value = 12.0
+
+[resource]
+script = ExtResource("2_ow0r7")
+target_type = 0
+energy_type = 1
+attributes = Array[ExtResource("1_5gy7w")]([SubResource("Resource_4fjm2"), SubResource("Resource_uwj4j"), SubResource("Resource_6qv5v"), SubResource("Resource_ymyed")])
+text = "Every /Fire Delay\\s, hold to target up to /Target Limit\\ enemies and release to fire homing rockets that deal /Damage\\ damage"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://7g3jev3v6d3l"]
 
-[ext_resource type="Script" path="res://Scenes/ShopStand/shop_stand.gd" id="1_4in53"]
-[ext_resource type="Script" path="res://Scripts/interact_button.gd" id="1_x8sts"]
+[ext_resource type="Script" uid="uid://colk6js4wet11" path="res://Scenes/ShopStand/shop_stand.gd" id="1_4in53"]
+[ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="1_x8sts"]
 [ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="2_qh00w"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="3_u7x2f"]
 
@@ -71,6 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08327, 0.835364, 0.235621)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButton"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -82,6 +83,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 1
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractButton2"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -93,6 +95,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 2
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="InteractButton3"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -104,6 +107,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 5
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="InteractButton4"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -115,6 +119,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 4
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="InteractButton5"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -126,6 +131,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 3
+hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="InteractButton6"]
 shape = SubResource("BoxShape3D_3r1g8")

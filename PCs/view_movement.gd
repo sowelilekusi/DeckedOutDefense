@@ -1,6 +1,6 @@
 class_name ViewMovement extends Node3D
 
-@export var player: Hero
+@export var player: CharacterBody3D
 
 @export_category("Bobbing")
 @export var camera: Camera3D
@@ -30,6 +30,7 @@ var pitch_noise: FastNoiseLite = FastNoiseLite.new()
 var yaw_noise: FastNoiseLite = FastNoiseLite.new()
 var roll_noise: FastNoiseLite = FastNoiseLite.new()
 var constant_trauma: float = 0.0
+var paused: bool = false
 
 
 func _ready() -> void:
@@ -47,14 +48,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if enable_head_bob and player.is_on_floor():
-		#TODO: maybe make the speed slower/faster on slopes?
 		var player_speed: float = Vector2(player.velocity.x, player.velocity.z).length()
-		speed_factor = lerp(speed_factor, player_speed / head_bob_max_effect_speed, 20.0 * delta)
+		speed_factor = move_toward(speed_factor, player_speed / head_bob_max_effect_speed, 3.0 * delta)
 	else:
-		speed_factor = lerp(speed_factor, 0.0, 20.0 * delta)
+		speed_factor = move_toward(speed_factor, 0.0, 5.0 * delta)
 
 
 func _process(delta: float) -> void:
+	if paused:
+		return
 	#trauma = max(0.0, trauma - ((1.0 / trauma_recovery_speed) * delta))
 	#camera_shake = pow(max(trauma, constant_trauma), 2.0)
 	#noise_sample += shake_speed * delta

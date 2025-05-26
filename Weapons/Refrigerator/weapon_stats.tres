@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardText" load_steps=7 format=3 uid="uid://5l758yxfpi1e"]
+
+[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_dxffl"]
+[ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_wny82"]
+
+[sub_resource type="Resource" id="Resource_j28f4"]
+script = ExtResource("1_dxffl")
+key = "Fire Delay"
+value = 0.5
+
+[sub_resource type="Resource" id="Resource_likes"]
+script = ExtResource("1_dxffl")
+key = "Damage"
+value = 1.0
+
+[sub_resource type="Resource" id="Resource_b65mk"]
+script = ExtResource("1_dxffl")
+key = "Range"
+value = 3.0
+
+[sub_resource type="Resource" id="Resource_voaa5"]
+script = ExtResource("1_dxffl")
+key = "Energy"
+value = 14.0
+
+[resource]
+script = ExtResource("2_wny82")
+target_type = 0
+energy_type = 2
+attributes = Array[ExtResource("1_dxffl")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk"), SubResource("Resource_voaa5")])
+text = "Hold to apply Cold to enemies in front of you"

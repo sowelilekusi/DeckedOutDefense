@@ -2,7 +2,7 @@ class_name Level extends GridMap
 
 @export var enemy_pool: Array[Enemy]
 @export var player_spawns: Array[Node3D]
-@export var enemy_spawns: Array[Node3D]
+@export var enemy_spawns: Array[EnemySpawner]
 @export var enemy_goals: Array[Node3D]
 @export var corpses: Node3D
 @export var a_star_graph_3d: AStarGraph3D
@@ -15,6 +15,7 @@ class_name Level extends GridMap
 func generate_obstacles() -> void:
 	#print(str(multiplayer.get_unique_id()) + " spawning obstacles with seed: " + str(Game.rng.seed))
 	var obstacle_count: int = Game.randi_in_range(1, 0, 5)
+	obstacle_count = 0
 	for index: int in obstacle_count:
 		var x: int = Game.randi_in_range(10 * index, 1 - a_star_graph_3d.grid_size.x, a_star_graph_3d.grid_size.x - 1)
 		var y: int = Game.randi_in_range(32 * index, 1 - a_star_graph_3d.grid_size.y, a_star_graph_3d.grid_size.y - 1)
@@ -34,7 +35,7 @@ func generate_obstacles() -> void:
 func cell_coord_to_astar_point(x: int, y: int) -> int:
 	var center_point_x: int = floori(a_star_graph_3d.grid_size.x / 2.0) * a_star_graph_3d.grid_size.y
 	var center_point_y: int = floori(a_star_graph_3d.grid_size.y / 2.0)
-	return (center_point_x + ((x / 2.0) * a_star_graph_3d.grid_size.y)) + (center_point_y + (y / 2.0))
+	return (center_point_x + (int(x / 2.0) * a_star_graph_3d.grid_size.y)) + (center_point_y + int(y / 2.0))
 
 
 func remove_world_tile(x: int, y: int) -> void:

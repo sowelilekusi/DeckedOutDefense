@@ -1,0 +1,32 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhbfd3prwqmyx"]
+
+[ext_resource type="PackedScene" uid="uid://bidr1m71pajma" path="res://Scenes/Towers/projectile_tower.tscn" id="1_hqry2"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_rtffu"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_nwd61"]
+[ext_resource type="Script" uid="uid://c6eghujlaqhwi" path="res://Scripts/StatusEffects/status_dot.gd" id="4_8dphr"]
+[ext_resource type="Resource" uid="uid://dbanx8taicddm" path="res://Resources/StatusEffects/on_fire.tres" id="5_hih6e"]
+[ext_resource type="ArrayMesh" uid="uid://d34yiqnnaie8r" path="res://Towers/Fireball/magetowermesh.res" id="6_yphct"]
+[ext_resource type="PackedScene" uid="uid://ddpixntjsbpqp" path="res://Projectiles/Fireball/fireball_projectile.tscn" id="7_i3p2x"]
+
+[sub_resource type="Resource" id="Resource_sr3we"]
+script = ExtResource("4_8dphr")
+stats = ExtResource("5_hih6e")
+metadata/_custom_type_script = "uid://c6eghujlaqhwi"
+
+[sub_resource type="Resource" id="Resource_bxn1b"]
+script = ExtResource("2_rtffu")
+damage = 0
+status_effects = Array[ExtResource("3_nwd61")]([SubResource("Resource_sr3we")])
+metadata/_custom_type_script = "uid://djp7tepdsda8w"
+
+[node name="ProjectileTower" instance=ExtResource("1_hqry2")]
+effect = SubResource("Resource_bxn1b")
+
+[node name="Pitch" parent="." index="1"]
+mesh = ExtResource("6_yphct")
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0, 1.76777, 0)
+
+[node name="SpawnAffect" parent="." index="6"]
+spawn_scene = ExtResource("7_i3p2x")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://b3o112jw3loiu"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_0ciid"]
+[ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://Towers/Reactor/tower_stats.tres" id="3_7vuex"]
+[ext_resource type="PackedScene" uid="uid://yymj42pp6v1t" path="res://Weapons/Reactor/weapon_reactor.tscn" id="3_de72q"]
+[ext_resource type="PackedScene" uid="uid://b7idyi1c67ou4" path="res://Towers/Reactor/reactortower.tscn" id="3_l4xwa"]
+[ext_resource type="Resource" uid="uid://ipfr7emuarbj" path="res://Weapons/Reactor/weapon_stats.tres" id="4_wilo7"]
+
+[resource]
+script = ExtResource("1_0ciid")
+rarity = 4
+faction = 1
+turret_scene = ExtResource("3_l4xwa")
+weapon_scene = ExtResource("3_de72q")
+weapon_stats = ExtResource("4_wilo7")
+tower_stats = ExtResource("3_7vuex")
+display_name = "Reactor"

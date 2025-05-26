@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3qabcosmk2q5"]
+
+[ext_resource type="PackedScene" uid="uid://kioik38usbqj" path="res://Scenes/Towers/area_tower.tscn" id="1_85dnw"]
+[ext_resource type="Script" uid="uid://c4bu4hlgifqom" path="res://Towers/Overclock/overclock_tower.gd" id="2_uhx1y"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_gt5qf"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_d15h4"]
+
+[sub_resource type="Resource" id="Resource_50mhx"]
+script = ExtResource("3_gt5qf")
+damage = 0
+status_effects = Array[ExtResource("4_d15h4")]([])
+metadata/_custom_type_script = "uid://djp7tepdsda8w"
+
+[node name="Tower" instance=ExtResource("1_85dnw")]
+script = ExtResource("2_uhx1y")
+turns_to_aim = false
+effect = SubResource("Resource_50mhx")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51387, 0)
+size = Vector3(1, 2.02774, 1)

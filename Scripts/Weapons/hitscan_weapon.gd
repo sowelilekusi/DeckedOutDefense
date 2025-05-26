@@ -19,7 +19,7 @@ func shoot() -> void:
 	if raycast.is_colliding():
 		var target: CharacterBody3D = raycast.get_collider()
 		if target != null:
-			var target_hitbox: Hitbox = target.shape_owner_get_owner(raycast.get_collider_shape())
+			var target_hitbox: CollisionShape3D = target.shape_owner_get_owner(raycast.get_collider_shape())
 			if target_hitbox is Hitbox:
 				hit(target, target_hitbox)
 				if Data.preferences.display_self_damage_indicators:

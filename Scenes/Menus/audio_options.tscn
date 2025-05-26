@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwc45ogto8thn"]
 
-[ext_resource type="Script" path="res://Scripts/audio_options.gd" id="1_avc0j"]
+[ext_resource type="Script" uid="uid://c4ljvgrb81du6" path="res://Scripts/audio_options.gd" id="1_avc0j"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_hvvdd"]
 

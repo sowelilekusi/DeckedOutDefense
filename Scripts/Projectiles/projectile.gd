@@ -9,6 +9,7 @@ var force: float = 2.0
 var damage: float = 0.0
 var lifetime: float = 10.0
 var time_alive: float = 0.0
+var effect: Effect
 
 
 func _ready() -> void:
@@ -20,10 +21,10 @@ func _process(delta: float) -> void:
 
 
 func spawn_damage_indicator(pos: Vector3) -> void:
-	if damage > 0:
+	if effect.damage > 0:
 		var marker: Node3D = damage_particle_scene.instantiate()
 		get_tree().root.add_child(marker)
-		marker.set_number(damage)
+		marker.set_number(effect.damage)
 		marker.position = pos
 
 

@@ -1,6 +1,7 @@
 class_name Weapon extends Node3D
 
-signal energy_changed(energy: int)
+signal energy_spent(energy: int, type: Data.EnergyType)
+signal energy_recharged(energy: int, type: Data.EnergyType)
 
 @export var stats: CardText
 @export var animator: AnimationPlayer
@@ -13,7 +14,7 @@ var trigger_held: bool = false
 var second_trigger_held: bool = false
 var time_since_firing: float = 0.0
 var time_between_shots: float = 0.0
-var damage: float = 0.0
+var damage: int = 0
 var max_energy: float = 100.0
 var current_energy: float = 100.0
 var energy_cost: float = 1.0
@@ -21,12 +22,16 @@ var recharging: bool = false
 var recharge_speed: float = 0.0
 var recharge_acceleration: float = 2.0
 var recharge_max_speed: float = 25.0
+#var time_since_trigger: float = 0.0
+var prev_energy_int: int = 0.0
 
 
 func _ready() -> void:
 	time_between_shots = stats.get_attribute("Fire Delay")
-	damage = stats.get_attribute("Damage")
-	energy_cost = stats.get_attribute("Energy")
+	damage = int(stats.get_attribute("Damage"))
+	#energy_cost = stats.get_attribute("Energy")
+	max_energy = stats.get_attribute("Energy")
+	current_energy = max_energy
 
 
 func set_hero(value: Hero) -> void:
@@ -41,22 +46,33 @@ func _process(delta: float) -> void:
 		current_energy += recharge_speed * delta
 		if current_energy >= max_energy:
 			current_energy = max_energy
-	energy_changed.emit(current_energy)
+			recharging = false
+		if stats.energy_type == Data.EnergyType.CONTINUOUS:
+			energy_recharged.emit(recharge_speed * delta, stats.energy_type)
+		if stats.energy_type == Data.EnergyType.DISCRETE and int(current_energy) > prev_energy_int:
+			energy_recharged.emit(1, stats.energy_type)
+		prev_energy_int = int(current_energy)
+		#energy_changed.emit(current_energy)
 	if time_since_firing < time_between_shots:
 		time_since_firing += delta
+	if trigger_held and stats.energy_type == Data.EnergyType.CONTINUOUS:
+		current_energy -= delta
+		energy_spent.emit(delta, stats.energy_type)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if trigger_held and current_energy >= energy_cost and time_since_firing >= time_between_shots:
+		if stats.energy_type == Data.EnergyType.DISCRETE:
+			current_energy -= 1
+			energy_spent.emit(1, stats.energy_type)
 		time_since_firing -= time_between_shots
-		current_energy -= energy_cost
-		energy_changed.emit(current_energy)
 		shoot()
 		networked_shoot.rpc()
 
 
 func hold_trigger() -> void:
 	trigger_held = true
+	recharge_timer.stop()
 
 
 func release_trigger() -> void:

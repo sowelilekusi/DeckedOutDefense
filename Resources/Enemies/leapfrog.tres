@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://btudmfd7wfwec"]
+
+[ext_resource type="Texture2D" uid="uid://bl16mvx4xaxeb" path="res://Assets/Textures/dead_leapfrog.png" id="1_aa1x4"]
+[ext_resource type="Texture2D" uid="uid://3ywtwfpuuknr" path="res://Assets/Textures/leapfrog.png" id="2_pj3v3"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="3_i5ry5"]
+[ext_resource type="Texture2D" uid="uid://cb66pspr16scy" path="res://Assets/Textures/leapfrog_2.png" id="4_i5ry5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6kdu"]
+resource_local_to_scene = true
+atlas = ExtResource("4_i5ry5")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_i5ry5")
+title = "Leapdog"
+target_type = 1
+icon = ExtResource("2_pj3v3")
+death_sprite = ExtResource("1_aa1x4")
+sprite = SubResource("AtlasTexture_n6kdu")
+spawn_power = 10
+health = 150
+penalty = 8
+movement_speed = 1.3
+spawn_cooldown = 1.8
+common_group = 1
+common_cost = 1
+uncommon_group = 3
+uncommon_cost = 2
+rare_group = 5
+rare_cost = 3
+epic_group = 8
+epic_cost = 4
+legendary_group = 12
+legendary_cost = 5

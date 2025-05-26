@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dumiyjlnea4gq"]
-
-[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_60g1i"]
-[ext_resource type="Script" path="res://Scripts/Towers/hitscan_tower.gd" id="2_t6bcd"]
-
-[node name="HitscanTower" instance=ExtResource("1_60g1i")]
-script = ExtResource("2_t6bcd")

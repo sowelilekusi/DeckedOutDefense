@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerKeymap" load_steps=18 format=3 uid="uid://ciy3467h2g8fi"]
 
-[ext_resource type="Script" path="res://Scripts/Resources/player_keymap.gd" id="1_tfpk7"]
+[ext_resource type="Script" uid="uid://vkthiwr3vq4g" path="res://Scripts/Resources/player_keymap.gd" id="1_tfpk7"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_wcd5e"]
 button_index = 9

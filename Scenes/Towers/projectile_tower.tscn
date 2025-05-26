@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://t0b32qb8eub2"]
+[gd_scene load_steps=3 format=3 uid="uid://bidr1m71pajma"]
 
-[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_yagdr"]
-[ext_resource type="Script" path="res://Scripts/Towers/projectile_tower.gd" id="2_fqi5p"]
+[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_p8i8e"]
+[ext_resource type="Script" uid="uid://ccu1u6nqkjxki" path="res://Scripts/Affectors/spawn_affect.gd" id="2_d8uyp"]
 
-[node name="ProjectileTower" instance=ExtResource("1_yagdr")]
-script = ExtResource("2_fqi5p")
-projectile_scene = null
+[node name="ProjectileTower" node_paths=PackedStringArray("affector") instance=ExtResource("1_p8i8e")]
+affector = NodePath("SpawnAffect")
+
+[node name="SpawnAffect" type="Node" parent="." index="6" node_paths=PackedStringArray("tower")]
+script = ExtResource("2_d8uyp")
+tower = NodePath("..")
+metadata/_custom_type_script = "uid://ccu1u6nqkjxki"

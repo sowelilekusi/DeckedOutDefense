@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dp4gfr5h0tbcd"]
 
 [ext_resource type="PackedScene" uid="uid://b7nargdyg28fj" path="res://Scenes/Weapons/weapon.tscn" id="1_gfchc"]
-[ext_resource type="Script" path="res://Scripts/Weapons/shapecast_weapon.gd" id="2_lg6v5"]
+[ext_resource type="Script" uid="uid://1l1qccgmp5ih" path="res://Scripts/Weapons/shapecast_weapon.gd" id="2_lg6v5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uk6ey"]
 size = Vector3(2, 2, 3)

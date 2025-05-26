@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://cucdevshmdohf"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_t3tfw"]
+[ext_resource type="PackedScene" uid="uid://dmbd7ivisjm3w" path="res://Weapons/Overclock/overclock_weapon.tscn" id="2_67wu0"]
+[ext_resource type="Resource" uid="uid://v13yoous66bc" path="res://Towers/Overclock/tower_stats.tres" id="2_o52qt"]
+[ext_resource type="PackedScene" uid="uid://d3qabcosmk2q5" path="res://Towers/Overclock/tower.tscn" id="3_d6lco"]
+[ext_resource type="Resource" uid="uid://d3qmy6puuh1gl" path="res://Weapons/Overclock/weapon_stats.tres" id="3_o52qt"]
+
+[resource]
+script = ExtResource("1_t3tfw")
+rarity = 1
+faction = 1
+turret_scene = ExtResource("3_d6lco")
+weapon_scene = ExtResource("2_67wu0")
+weapon_stats = ExtResource("3_o52qt")
+tower_stats = ExtResource("2_o52qt")
+display_name = "Overclock"
+metadata/_custom_type_script = "uid://d40isem6w5d8"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://chbmp1ap8jc7"]
+
+[ext_resource type="PackedScene" uid="uid://43vmeyuurqfs" path="res://Scenes/Towers/direct_affect_tower.tscn" id="1_cn3qe"]
+[ext_resource type="Resource" uid="uid://bdmsiw45xxhiv" path="res://Towers/Assault/tower_stats.tres" id="2_gg1gn"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_75shm"]
+[ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_1d5pl"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_lkplr"]
+
+[sub_resource type="Resource" id="Resource_c6gqc"]
+script = ExtResource("3_75shm")
+damage = 0
+status_effects = Array[ExtResource("4_lkplr")]([])
+
+[node name="DirectAffectTower" instance=ExtResource("1_cn3qe")]
+stats = ExtResource("2_gg1gn")
+effect = SubResource("Resource_c6gqc")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.2058, 0)
+mesh = ExtResource("4_1d5pl")

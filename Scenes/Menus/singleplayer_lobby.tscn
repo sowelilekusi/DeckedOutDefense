@@ -1,19 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://176c6fuhg5ic"]
+[gd_scene load_steps=7 format=3 uid="uid://176c6fuhg5ic"]
 
-[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://new_theme.tres" id="1_2aur6"]
-[ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://Scenes/UI/scoreboard.tscn" id="1_423py"]
-[ext_resource type="Script" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
+[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_2aur6"]
+[ext_resource type="Script" uid="uid://e5gf7hd5jsw3" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="3_l8xy3"]
-[ext_resource type="PackedScene" uid="uid://dqqitmhu66a7d" path="res://Scenes/Menus/CharacterSelect/charselect.tscn" id="5_vg5y0"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="6_6nu57"]
+[ext_resource type="PackedScene" uid="uid://bc6m3cluulpis" path="res://Scenes/Menus/CharacterSelect/character_select.tscn" id="6_ltm04"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g5har"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_6nu57")
-stream_0/weight = 1.0
 
-[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("scoreboard", "loadout_editor", "chatbox", "seed_entry", "ready_button", "daily_button")]
+[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("chatbox", "audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,72 +21,13 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_2aur6")
 script = ExtResource("1_nd17k")
-scoreboard = NodePath("Scoreboard")
-loadout_editor = NodePath("Control")
+character_select_screen = ExtResource("6_ltm04")
 chatbox = NodePath("Chatbox")
-seed_entry = NodePath("LineEdit")
-ready_button = NodePath("ReadyButton")
-daily_button = NodePath("DailyButton")
-
-[node name="Scoreboard" parent="." instance=ExtResource("1_423py")]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -472.0
-offset_right = -50.0
-grow_horizontal = 0
-
-[node name="ReadyButton" type="Button" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 311.0
-offset_right = -240.0
-offset_bottom = 19.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Ready"
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Chatbox" parent="." instance=ExtResource("3_l8xy3")]
-layout_mode = 1
-
-[node name="Control" parent="." instance=ExtResource("5_vg5y0")]
-visible = false
 layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_g5har")
 bus = &"SFX"
-
-[node name="LineEdit" type="LineEdit" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 69.0625
-offset_bottom = 23.0
-placeholder_text = "seed"
-
-[node name="DailyButton" type="Button" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -276.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Daily challenge"
-
-[connection signal="mouse_entered" from="ReadyButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="ReadyButton" to="Scoreboard" method="set_player_ready_state" binds= [1, true]]
-[connection signal="mouse_entered" from="DailyButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="DailyButton" to="." method="_on_daily_button_pressed"]

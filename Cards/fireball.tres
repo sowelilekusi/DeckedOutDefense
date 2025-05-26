@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bibx2my7igspq"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_qktm8"]
+[ext_resource type="Resource" uid="uid://dnvqghpwyuw84" path="res://Towers/Fireball/tower_stats.tres" id="2_yfpht"]
+[ext_resource type="PackedScene" uid="uid://bhbfd3prwqmyx" path="res://Towers/Fireball/fireballtower.tscn" id="3_gdfiu"]
+[ext_resource type="PackedScene" uid="uid://dnwjfb4fexr0o" path="res://Weapons/Fireball/weapon_fireball.tscn" id="4_mpiuf"]
+[ext_resource type="Resource" uid="uid://dhwhwicgpw7yh" path="res://Weapons/Fireball/weapon_stats.tres" id="5_ey1sc"]
+
+[resource]
+script = ExtResource("1_qktm8")
+rarity = 3
+faction = 2
+turret_scene = ExtResource("3_gdfiu")
+weapon_scene = ExtResource("4_mpiuf")
+weapon_stats = ExtResource("5_ey1sc")
+tower_stats = ExtResource("2_yfpht")
+display_name = "Fireball"

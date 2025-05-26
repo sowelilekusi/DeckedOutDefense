@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bf2nosqt5f82e"]
 
-[ext_resource type="Script" path="res://Scripts/keybind_options.gd" id="1_oxg0p"]
+[ext_resource type="Script" uid="uid://cxm67e833baex" path="res://Scripts/keybind_options.gd" id="1_oxg0p"]
 
 [node name="Keybinds" type="VBoxContainer"]
 anchors_preset = 15

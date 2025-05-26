@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://bod84abxnnmdo"]
+
+[ext_resource type="PackedScene" uid="uid://bidr1m71pajma" path="res://Scenes/Towers/projectile_tower.tscn" id="1_b7osn"]
+[ext_resource type="ArrayMesh" uid="uid://cbuu5w43qins8" path="res://Towers/BombLauncher/bombamodel.res" id="2_8yc3r"]
+[ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_kdbmn"]
+[ext_resource type="Script" uid="uid://bs020rluyw3hs" path="res://Towers/BombLauncher/tower_bomb_launcher.gd" id="2_qwant"]
+[ext_resource type="PackedScene" uid="uid://c8oq5unisjqne" path="res://Projectiles/Bomb/bomb_projectile.tscn" id="3_kdbmn"]
+[ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_qwant"]
+
+[sub_resource type="Resource" id="Resource_twicp"]
+script = ExtResource("2_kdbmn")
+damage = 0
+status_effects = Array[ExtResource("3_qwant")]([])
+metadata/_custom_type_script = "uid://djp7tepdsda8w"
+
+[node name="ProjectileTower" instance=ExtResource("1_b7osn")]
+script = ExtResource("2_qwant")
+effect = SubResource("Resource_twicp")
+
+[node name="Pitch" parent="." index="1"]
+visible = false
+
+[node name="Yaw" parent="." index="2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.386736, 0)
+mesh = ExtResource("2_8yc3r")
+
+[node name="SpawnAffect" parent="." index="6"]
+spawn_scene = ExtResource("3_kdbmn")

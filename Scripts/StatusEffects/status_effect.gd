@@ -1,6 +1,6 @@
-class_name StatusEffect extends RefCounted
+class_name StatusEffect extends Resource
 
-var stats: StatusStats
+@export var stats: StatusStats
 
 var time_since_proc: float = 0.0
 var time_existed: float = 0.0

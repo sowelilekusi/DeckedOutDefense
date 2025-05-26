@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://hjq3nrnumklp"]
 
 [ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="1_x8m88"]
-[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="2_m8c1f"]
-[ext_resource type="Gradient" uid="uid://dx7auy3oqw82t" path="res://health_bar_gradient.tres" id="3_dpmma"]
+[ext_resource type="Script" uid="uid://bf06es50d0flv" path="res://Scripts/health_bar.gd" id="2_m8c1f"]
+[ext_resource type="Gradient" uid="uid://dx7auy3oqw82t" path="res://UI/health_bar_gradient.tres" id="3_dpmma"]
 
 [node name="HealthBar" type="TextureProgressBar"]
 offset_right = 200.0

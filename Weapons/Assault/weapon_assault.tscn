@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://2eehfcrsednw"]
+
+[ext_resource type="PackedScene" uid="uid://difwo7wlyqr3h" path="res://Scenes/Weapons/hitscan_weapon.tscn" id="1_wkxf7"]
+[ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://Weapons/Assault/weapon_stats.tres" id="2_fnp5x"]
+[ext_resource type="Texture2D" uid="uid://celay30i4soud" path="res://Weapons/Assault/g_assault.png" id="3_kuj4t"]
+[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="4_gdaci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_604rb"]
+resource_local_to_scene = true
+atlas = ExtResource("3_kuj4t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rhtcf"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_gdaci")
+
+[node name="HitscanWeapon" instance=ExtResource("1_wkxf7")]
+stats = ExtResource("2_fnp5x")
+
+[node name="Sprite3D" parent="." index="0"]
+texture = SubResource("AtlasTexture_604rb")
+
+[node name="AudioStreamPlayer3D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_rhtcf")

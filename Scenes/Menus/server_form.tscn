@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvfit0sy2tnw4"]
 
-[ext_resource type="Script" path="res://Scripts/server_form.gd" id="1_43oaq"]
+[ext_resource type="Script" uid="uid://dyyhbd2pbfygi" path="res://Scripts/server_form.gd" id="1_43oaq"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="2_hirre"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3o7ni"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_hirre")
-stream_0/weight = 1.0
 
-[node name="ServerForm" type="PanelContainer"]
+[node name="ServerForm" type="PanelContainer" node_paths=PackedStringArray("ip_entry", "port_entry", "host_button", "join_button", "ip_field", "port_field", "players_field", "start_button")]
+custom_minimum_size = Vector2(500, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,54 +22,96 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_43oaq")
+ip_entry = NodePath("VBoxContainer/IPField/ServerIP")
+port_entry = NodePath("VBoxContainer/PortField/ServerPort")
+host_button = NodePath("VBoxContainer/ModeContainer/HostButton")
+join_button = NodePath("VBoxContainer/ModeContainer/JoinButton")
+ip_field = NodePath("VBoxContainer/IPField")
+port_field = NodePath("VBoxContainer/PortField")
+players_field = NodePath("VBoxContainer/PlayersField")
+start_button = NodePath("VBoxContainer/StartButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ModeContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="HostButton" type="Button" parent="VBoxContainer/ModeContainer"]
+layout_mode = 2
+text = "Host Game"
+
+[node name="JoinButton" type="Button" parent="VBoxContainer/ModeContainer"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="IPField" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/IPField"]
 layout_mode = 2
 text = "Server IP:"
 
-[node name="ServerIP" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="ServerIP" type="LineEdit" parent="VBoxContainer/IPField"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "localhost"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PortField" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/PortField"]
 layout_mode = 2
 text = "Server Port:"
 
-[node name="ServerPort" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+[node name="ServerPort" type="LineEdit" parent="VBoxContainer/PortField"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "default"
 
-[node name="Connect" type="Button" parent="VBoxContainer"]
+[node name="PlayersField" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
-text = "Connect"
 
-[node name="Host" type="Button" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/PlayersField"]
 layout_mode = 2
-text = "Host"
+text = "Max Players"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/PlayersField"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 4.0
+value = 4.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/PlayersField"]
+layout_mode = 2
+text = "4"
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Start"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_3o7ni")
 bus = &"SFX"
 
-[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/Connect" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Connect" to="." method="_on_connect_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/Host" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/BackButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ModeContainer/HostButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/ModeContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ModeContainer/JoinButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/ModeContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/PlayersField/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

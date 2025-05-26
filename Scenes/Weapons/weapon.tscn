@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7nargdyg28fj"]
 
-[ext_resource type="Script" path="res://Scripts/Weapons/weapon.gd" id="1_yo2gh"]
+[ext_resource type="Script" uid="uid://blh4s3v07ycwa" path="res://Scripts/Weapons/weapon.gd" id="1_yo2gh"]
 
 [sub_resource type="Animation" id="Animation_5krlx"]
 length = 0.001
@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fs82p"]
 _data = {
-"RESET": SubResource("Animation_5krlx"),
-"shoot": SubResource("Animation_0rgpe")
+&"RESET": SubResource("Animation_5krlx"),
+&"shoot": SubResource("Animation_0rgpe")
 }
 
 [node name="Weapon" type="Node3D" node_paths=PackedStringArray("animator", "audio_player", "recharge_timer")]
@@ -52,11 +52,11 @@ texture_filter = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fs82p")
+&"": SubResource("AnimationLibrary_fs82p")
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

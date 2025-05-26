@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://43vmeyuurqfs"]
+
+[ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_rp4eu"]
+[ext_resource type="Script" uid="uid://8d0a4uc2i0ti" path="res://Scripts/Affectors/direct_affect.gd" id="2_f7mf6"]
+
+[node name="DirectAffectTower" node_paths=PackedStringArray("affector") instance=ExtResource("1_rp4eu")]
+affector = NodePath("DirectAffect")
+
+[node name="DirectAffect" type="Node" parent="." index="6"]
+script = ExtResource("2_f7mf6")

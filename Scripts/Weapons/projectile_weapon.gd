@@ -20,7 +20,9 @@ func networked_shoot() -> void:
 func networked_spawn_projectile(peer_id: int, direction: Vector3) -> void:
 	var projectile: Projectile = projectile_scene.instantiate() as Projectile
 	projectile.position = global_position
-	projectile.damage = damage
+	var effect: Effect = Effect.new()
+	effect.damage = damage
+	projectile.effect = effect
 	projectile.direction = direction
 	projectile.force = force
 	projectile.owner_id = peer_id

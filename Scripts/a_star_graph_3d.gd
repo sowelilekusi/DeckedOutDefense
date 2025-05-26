@@ -6,10 +6,8 @@ var non_build_locations: Array = []
 var astar: AStar3D = AStar3D.new()
 
 #TODO generalize this better
-@export var start: Node3D
 @export var end: Node3D
-@export var spawner: EnemySpawner
-@export var visualized_path: VisualizedPath
+@export var spawners: Array[EnemySpawner]
 @export var tower_path: Node
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
 var tower_frame_scene: PackedScene = load("res://Scenes/tower_frame.tscn")
@@ -17,6 +15,11 @@ var tower_bases: Array = []
 var tower_base_ids: Dictionary = {}
 var tower_frames: Array = []
 var wall_id: int = 0
+
+
+func _ready() -> void:
+	for spawner: EnemySpawner in spawners:
+		spawner.astar = self
 
 
 func toggle_point(point_id: int, caller_id: int) -> void:
@@ -210,15 +213,18 @@ func place_random_towers(tower_limit: int) -> void:
 
 
 func find_path() -> bool:
-	var path: PackedVector3Array = astar.get_point_path(astar.get_point_count() - 2, astar.get_point_count() - 1)
-	if !path.is_empty():
-		var curve: Curve3D = Curve3D.new()
-		for point: Vector3 in path:
-			curve.add_point(point)
-		spawner.path.curve = curve
-		spawner.path.spawn_visualizer_points()
-		return true
-	return false
+	for spawn: EnemySpawner in spawners:
+		var path: PackedVector3Array = astar.get_point_path(spawn.astar_point_id, astar.get_point_count() - 1)
+		if !path.is_empty():
+			var curve: Curve3D = Curve3D.new()
+			for point: Vector3 in path:
+				curve.add_point(point)
+			spawn.path.global_position = Vector3.ZERO
+			spawn.path.curve = curve
+		else:
+			return false
+	spawners[0].path.spawn_visualizer_points()
+	return true
 
 
 func make_grid() -> void:
@@ -247,10 +253,12 @@ func make_grid() -> void:
 				var west_point_id: int = grid_size.y * x + (y + 1)
 				astar.connect_points(point_id, west_point_id, false)
 	
-	non_build_locations.append(astar.get_point_count())
-	astar.add_point(astar.get_point_count(), start.global_position)
-	for x: int in grid_size.y:
-		astar.connect_points(int(astar.get_point_count() - 1), x)
+	for spawn: EnemySpawner in spawners:
+		non_build_locations.append(astar.get_point_count())
+		spawn.astar_point_id = astar.get_point_count()
+		astar.add_point(astar.get_point_count(), spawn.global_position)
+		for x: int in grid_size.y:
+			astar.connect_points(int(astar.get_point_count() - 1), x)
 	non_build_locations.append(astar.get_point_count())
 	astar.add_point(astar.get_point_count(), end.global_position)
 	for x: int in grid_size.y:

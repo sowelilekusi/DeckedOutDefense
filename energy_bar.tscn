@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2id8hjico4w8"]
+
+[ext_resource type="Script" uid="uid://gjcl34fan741" path="res://energy_bar.gd" id="1_rdnti"]
+[ext_resource type="Texture2D" uid="uid://bm13bgpre6ubr" path="res://Assets/Textures/energy_cell.png" id="2_q48n7"]
+[ext_resource type="Texture2D" uid="uid://b1y1d1ge4fl8p" path="res://Assets/Textures/energy_bar.png" id="3_d65ol"]
+[ext_resource type="Texture2D" uid="uid://3vqulb1vpy7h" path="res://Assets/Textures/energy_bar_bg.png" id="3_wymtn"]
+[ext_resource type="Texture2D" uid="uid://cxh488oh3jtr7" path="res://Assets/Textures/energy_bar_overlay.png" id="4_77ucw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77ucw"]
+bg_color = Color(0, 0.667, 0.87, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wymtn"]
+atlas = ExtResource("4_77ucw")
+region = Rect2(0, 0, 159, 422)
+
+[node name="EnergyBar" type="Control" node_paths=PackedStringArray("bar_overlay", "progress_bar")]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_rdnti")
+cell_icon_tex = ExtResource("2_q48n7")
+bar_overlay = NodePath("TextureRect/TextureRect")
+progress_bar = NodePath("TextureRect/ProgressBar")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -421.0
+offset_right = 31.0
+offset_bottom = 1.0
+texture = ExtResource("3_wymtn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -421.0
+offset_right = 31.0
+offset_bottom = 1.0
+texture = ExtResource("3_d65ol")
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 52.0
+offset_right = -57.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_77ucw")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_d65ol")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+visible = false
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 422.0
+texture = SubResource("AtlasTexture_wymtn")

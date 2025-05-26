@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeroClass" load_steps=4 format=3 uid="uid://cq1sq8lb2lif5"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_rtgxw"]
+[ext_resource type="PackedScene" uid="uid://6givglesbjef" path="res://Classes/NewHero4/podium.tscn" id="2_quxjv"]
+[ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="2_t7plg"]
+
+[resource]
+script = ExtResource("2_t7plg")
+hero_name = "Under Construction"
+deck = Array[ExtResource("1_rtgxw")]([])
+faction = 0
+podium = ExtResource("2_quxjv")
+metadata/_custom_type_script = "uid://dcwtg2gev3uia"
