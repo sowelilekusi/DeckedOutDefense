@@ -1,12 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://uv7hjsgisy31"]
+[gd_scene load_steps=12 format=3 uid="uid://uv7hjsgisy31"]
 
 [ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="1_45ikc"]
+[ext_resource type="Script" uid="uid://cjensbjuji22t" path="res://Worlds/TestingRange/Levels/training_arena.gd" id="1_dgqrn"]
 [ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="2_w387b"]
 [ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_y4upj"]
 [ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="4_i7krx"]
-[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_ucmnf"]
-[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="5_15cd7"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="5_806m0"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Resources/Enemies/dog.tres" id="5_tv1bi"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="9_imodf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mqtlc"]
@@ -19,41 +19,8 @@ texture_filter = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mcyj"]
 size = Vector3(15, 1, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dpehd"]
-resource_local_to_scene = true
-atlas = ExtResource("5_15cd7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="Resource" id="Resource_mmghc"]
-resource_local_to_scene = true
-script = ExtResource("4_ucmnf")
-title = "dog"
-target_type = 0
-sprite = SubResource("AtlasTexture_dpehd")
-spawn_power = 10
-health = 100
-penalty = 10
-movement_speed = 1.0
-spawn_cooldown = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u1euk"]
-resource_local_to_scene = true
-atlas = ExtResource("5_15cd7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="Resource" id="Resource_1m7kn"]
-resource_local_to_scene = true
-script = ExtResource("4_ucmnf")
-title = "dog"
-target_type = 0
-sprite = SubResource("AtlasTexture_u1euk")
-spawn_power = 10
-health = 100
-penalty = 10
-movement_speed = 1.0
-spawn_cooldown = 1.0
-
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_dgqrn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_mqtlc")
@@ -74,11 +41,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805513, 0.5, 2.30163)
 
 [node name="Enemy" parent="." instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28337, 0.601179, -1.23188)
-stats = SubResource("Resource_mmghc")
+stats = ExtResource("5_tv1bi")
 
 [node name="Enemy2" parent="." instance=ExtResource("3_y4upj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26298, 0.601179, -3.22988)
-stats = SubResource("Resource_1m7kn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59318, 0.601179, -2.16648)
+stats = ExtResource("5_tv1bi")
+
+[node name="Enemy3" parent="." instance=ExtResource("3_y4upj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38431, 0.601179, -2.44026)
+stats = ExtResource("5_tv1bi")
+
+[node name="Enemy4" parent="." instance=ExtResource("3_y4upj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 0.601179, -2.4969)
+stats = ExtResource("5_tv1bi")
 
 [node name="assaultcard" parent="." instance=ExtResource("4_i7krx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7802, 0.5, 3.16356)

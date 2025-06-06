@@ -2,34 +2,26 @@
 
 [ext_resource type="Script" uid="uid://bivtfdl3p1brv" path="res://Scenes/CardPrinter/card_printer.gd" id="1_qft15"]
 [ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="4_eavi1"]
+[ext_resource type="PackedScene" uid="uid://b6i5w3mowcfcs" path="res://drafting_table.glb" id="4_kpujb"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="5_m033a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s02au"]
-albedo_color = Color(0.203922, 0.592157, 0.592157, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ebt5"]
-size = Vector3(2, 2.1, 1)
+size = Vector3(2.17, 1.55307, 1.12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikdwj"]
-size = Vector3(1.29447, 0.342125, 0.277604)
+size = Vector3(2.20033, 0.260753, 1.27008)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73g2w"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_m033a")
 
-[node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button_collider", "button_box")]
+[node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button_collider")]
 script = ExtResource("1_qft15")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
-button_box = NodePath("StaticBody3D/CollisionShape3D2/CSGBox3D")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
-size = Vector3(2, 2.1, 1)
-material = SubResource("StandardMaterial3D_s02au")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776539, 0.0332634)
 shape = SubResource("BoxShape3D_0ebt5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -38,17 +30,18 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
 press_cost = 15
-hover_text = "[center]#Interact# to spend $15 on random card"
+hover_text = "[center]#Interact# draft a card for $15"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -6.55949e-05, 0.349496, -0.579584)
 shape = SubResource("BoxShape3D_ikdwj")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D2"]
-size = Vector3(1.29447, 0.342125, 0.277604)
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010989, -0.086501)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578748, -0.587001)
 stream = SubResource("AudioStreamRandomizer_73g2w")
 bus = &"SFX"
+
+[node name="drafting_table" parent="." instance=ExtResource("4_kpujb")]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0.385809, 0)
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]

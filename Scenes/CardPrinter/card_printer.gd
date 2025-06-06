@@ -1,7 +1,6 @@
 class_name CardPrinter extends StaticBody3D
 
 @export var button_collider: CollisionShape3D
-@export var button_box: Node3D
 
 #TODO: use faction enum
 var base_faction: int = 1
@@ -37,6 +36,7 @@ func generate_rarity() -> int:
 
 func randomize_cards(faction: Card.Faction) -> void:
 	#TODO: no magic numbers, asshole! 3 = cards to spawn
+	var pos_x: float = 0.0
 	for x: int in 3:
 		var decided_rarity: int = generate_rarity()
 		var card_choices: Array[Card] = get_faction_cards(faction)
@@ -58,7 +58,10 @@ func randomize_cards(faction: Card.Faction) -> void:
 			card_array.erase(card)
 		var item: CardItem = reply_player.hero_class.card_item.instantiate() as CardItem
 		item.set_card(card)
-		item.position = Vector3(x, 1, 2)
+		item.position = Vector3(pos_x, 2, 0)
+		pos_x *= -1
+		if pos_x >= 0:
+			pos_x += 1.25
 		item.pressed.connect(card_picked_up)
 		spawned_cards.append(item)
 		add_child(item)
@@ -71,13 +74,11 @@ func card_picked_up(card_item: CardItem) -> void:
 		spawned_card.queue_free()
 	spawned_cards = []
 	button_collider.disabled = false
-	button_box.position = Vector3(0,0,0)
 	$StaticBody3D/AudioStreamPlayer3D.play()
 
 
 func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 	reply_player = reply
 	button_collider.disabled = true
-	button_box.position = Vector3(0,0,-0.2)
 	$StaticBody3D/AudioStreamPlayer3D.play()
 	randomize_cards(reply.hero_class.faction)

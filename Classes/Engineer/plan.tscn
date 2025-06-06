@@ -126,13 +126,13 @@ curve = SubResource("Curve_kobsv")
 metadata/_custom_type_script = "uid://cl2mi4bnpatwk"
 
 [node name="Plane" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(0.183, 0, 0, 0, 0.153, 0, 0, 0, 0.137, -0.758238, 0.0293462, -0.313285)
+transform = Transform3D(0.129, 0, 0, 0, 0.108, 0, 0, 0, 0.097, -0.536755, 0.0293462, -0.257914)
 mesh = SubResource("ArrayMesh_kobsv")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("5_2u312")
 
 [node name="Plane2" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(0.183, 0, 0, 0, 0.153, 0, 0, 0, 0.137, -0.758238, 0.0293462, -0.313285)
+transform = Transform3D(0.129, 0, 0, 0, 0.108, 0, 0, 0, 0.097, -0.536755, 0.0293462, -0.257914)
 mesh = SubResource("ArrayMesh_75s6s")
 skeleton = NodePath("")
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b7idyi1c67ou4"]
 
 [ext_resource type="PackedScene" uid="uid://kioik38usbqj" path="res://Scenes/Towers/area_tower.tscn" id="1_0qp3f"]
+[ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://Towers/Reactor/tower_stats.tres" id="2_gthqr"]
 [ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_v1m7x"]
 [ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_amg2o"]
 [ext_resource type="Script" uid="uid://c6eghujlaqhwi" path="res://Scripts/StatusEffects/status_dot.gd" id="4_dcmuu"]
@@ -18,20 +19,13 @@ damage = 0
 status_effects = Array[ExtResource("3_amg2o")]([SubResource("Resource_ltmnh")])
 metadata/_custom_type_script = "uid://djp7tepdsda8w"
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_v6dih"]
-radius = 30.0
-
 [node name="Tower" instance=ExtResource("1_0qp3f")]
 turns_to_aim = false
+stats = ExtResource("2_gthqr")
 effect = SubResource("Resource_joohe")
-
-[node name="ShapeCast3D" type="ShapeCast3D" parent="Pitch" index="0"]
-shape = SubResource("SphereShape3D_v6dih")
-target_position = Vector3(0, 0, 0)
-collision_mask = 4
 
 [node name="Yaw" parent="." index="2"]
 mesh = ExtResource("6_7kedu")
 
-[node name="AreaAffector" parent="." index="6" node_paths=PackedStringArray("shapecast")]
-shapecast = NodePath("../Pitch/ShapeCast3D")
+[node name="CSGSphere3D" parent="." index="4"]
+radius = 5.0

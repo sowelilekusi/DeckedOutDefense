@@ -20,41 +20,45 @@ radius = 3.0
 height = 1.0
 sides = 32
 
-[node name="Sprite3D" type="Sprite3D" parent="Base"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
-modulate = Color(0.446777, 0.446777, 0.446777, 1)
-billboard = 2
-texture_filter = 0
-texture = ExtResource("2_skplt")
-
 [node name="Node3D" parent="Base" instance=ExtResource("3_m1210")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21433, 0.5, -1.47375)
-
-[node name="Assaultmod" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(-0.216168, 0.271014, 0.279012, 0.174778, 0.352842, -0.207317, -0.347489, 0.00887582, -0.277844, 1.62687, 1.06376, -1.0274)
-mesh = ExtResource("4_5wuy8")
-skeleton = NodePath("../../..")
-
-[node name="Snipermodel" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(0.332265, 0.0519786, -0.251592, -8.9882e-09, 0.411314, 0.0849769, 0.256905, -0.0672257, 0.325393, 0.500198, 0.978789, 1.90895)
-mesh = ExtResource("5_tnndn")
-skeleton = NodePath("../../..")
-
-[node name="Magetowermesh" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(0.432921, 0, 0.719847, 0, 0.84, 0, -0.719847, 0, 0.432921, -1.62727, 0.5, -0.00850296)
-mesh = ExtResource("6_67jsi")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Base/Magetowermesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.38274, 0)
-light_color = Color(0.697081, 0.170704, 0.131545, 1)
-light_energy = 3.586
-omni_range = 1.824
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Base"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 4, 0)
 spot_range = 10.0
 spot_attenuation = 0.39
 
-[node name="Tower" parent="Base" instance=ExtResource("7_3ilqd")]
+[node name="Content" type="Node3D" parent="Base"]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Base/Content"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_skplt")
+
+[node name="Assaultmod" type="MeshInstance3D" parent="Base/Content"]
+transform = Transform3D(-0.216168, 0.271014, 0.279012, 0.174778, 0.352842, -0.207317, -0.347489, 0.00887582, -0.277844, 1.62687, 1.06376, -1.0274)
+mesh = ExtResource("4_5wuy8")
+skeleton = NodePath("../../../..")
+
+[node name="Snipermodel" type="MeshInstance3D" parent="Base/Content"]
+transform = Transform3D(0.332265, 0.0519786, -0.251592, -8.9882e-09, 0.411314, 0.0849769, 0.256905, -0.0672257, 0.325393, 0.500198, 0.978789, 1.90895)
+mesh = ExtResource("5_tnndn")
+skeleton = NodePath("../../../..")
+
+[node name="Magetowermesh" type="MeshInstance3D" parent="Base/Content"]
+transform = Transform3D(0.432921, 0, 0.719847, 0, 0.84, 0, -0.719847, 0, 0.432921, -1.62727, 0.5, -0.0085029)
+mesh = ExtResource("6_67jsi")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Base/Content/Magetowermesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.38274, 0)
+light_color = Color(0.697081, 0.170704, 0.131545, 1)
+light_energy = 3.586
+omni_range = 1.824
+
+[node name="Tower" parent="Base/Content" instance=ExtResource("7_3ilqd")]
 transform = Transform3D(-0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, -0.642788, 0.228261, 1.16271, -1.45948)
 stats = ExtResource("8_2wywa")

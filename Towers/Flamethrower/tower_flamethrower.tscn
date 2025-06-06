@@ -18,7 +18,7 @@ damage = 0
 status_effects = Array[ExtResource("3_4h7vt")]([SubResource("Resource_f5usv")])
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tyf6m"]
-radius = 3.0
+radius = 3.5
 
 [node name="FlamethrowerTower" instance=ExtResource("1_m6l05")]
 stats = ExtResource("4_by7c8")
@@ -29,10 +29,13 @@ transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0.389397, 0)
 mesh = ExtResource("5_tc7nr")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="Pitch" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.896251, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.896251, -0.56516)
 shape = SubResource("SphereShape3D_tyf6m")
 target_position = Vector3(0, 0, -3)
 collision_mask = 4
+
+[node name="CSGSphere3D" parent="." index="4"]
+radius = 3.0
 
 [node name="AreaAffector" parent="." index="6" node_paths=PackedStringArray("shapecast")]
 shapecast = NodePath("../Pitch/ShapeCast3D")

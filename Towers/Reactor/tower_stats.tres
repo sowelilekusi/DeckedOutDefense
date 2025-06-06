@@ -21,5 +21,6 @@ value = 30.0
 [resource]
 script = ExtResource("2_8w61k")
 target_type = 3
+energy_type = 0
 attributes = Array[ExtResource("1_peekg")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
 text = "Slowly applies Radioactive to enemies around itself at a range of /Range\\m"

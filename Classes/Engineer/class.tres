@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=11 format=3 uid="uid://b5pc3frhx467q"]
+[gd_resource type="Resource" script_class="HeroClass" load_steps=12 format=3 uid="uid://b5pc3frhx467q"]
 
 [ext_resource type="PackedScene" uid="uid://dq8v5e11rvyi6" path="res://Classes/Engineer/plan.tscn" id="1_2m5d7"]
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_t4fvj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cvto66tp7rrst" path="res://Cards/gatling.tres" id="4_ovvb2"]
 [ext_resource type="Resource" uid="uid://cucdevshmdohf" path="res://Cards/overclock_card.tres" id="5_vqkxt"]
 [ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://Classes/Engineer/red_hand.png" id="6_a8dvt"]
+[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://Cards/reactor.tres" id="7_1qd1v"]
 [ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="7_ftkad"]
 [ext_resource type="PackedScene" uid="uid://ciagj1hfn4gou" path="res://Classes/Engineer/podium.tscn" id="7_nyup7"]
 [ext_resource type="Texture2D" uid="uid://d4jd718brpsed" path="res://Classes/Engineer/doe.png" id="8_0o0bw"]
@@ -16,7 +17,7 @@ script = ExtResource("7_ftkad")
 hero_name = "Engineer"
 texture = ExtResource("8_0o0bw")
 hand_texture = ExtResource("6_a8dvt")
-deck = Array[ExtResource("1_t4fvj")]([ExtResource("2_62g46"), ExtResource("2_62g46"), ExtResource("3_eml7q"), ExtResource("4_ovvb2"), ExtResource("5_vqkxt")])
+deck = Array[ExtResource("1_t4fvj")]([ExtResource("2_62g46"), ExtResource("2_62g46"), ExtResource("3_eml7q"), ExtResource("4_ovvb2"), ExtResource("5_vqkxt"), ExtResource("7_1qd1v")])
 faction = 1
 podium = ExtResource("7_nyup7")
 card_item = ExtResource("1_2m5d7")

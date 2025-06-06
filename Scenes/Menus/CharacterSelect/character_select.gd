@@ -23,8 +23,9 @@ func _ready() -> void:
 		pivot.add_child(podium)
 		pivot.rotate_y((TAU / heroes) * x)
 		x += 1
-	#if Data.save_data.mage_unlocked:
-		#podiums.visible = true
+	podiums[0].show_content()
+	if Data.save_data.mage_unlocked:
+		podiums[1].show_content()
 
 
 func reset_button() -> void:

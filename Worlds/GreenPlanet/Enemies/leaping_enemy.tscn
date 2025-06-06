@@ -77,12 +77,6 @@ layers = 4
 texture_filter = 0
 texture = ExtResource("8_egpbw")
 
-[node name="StatusEffector" type="Node3D" parent="." node_paths=PackedStringArray("hbox", "enemy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18114, 0)
-script = ExtResource("9_47ywr")
-hbox = NodePath("../SubViewport/HBoxContainer")
-enemy = NodePath("..")
-
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(200, 55)
@@ -224,6 +218,11 @@ texture = SubResource("ViewportTexture_5u3uw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141846, 0)
 visible = false
 size = Vector3(0.5, 0.783691, 0.5)
+
+[node name="StatusEffector" type="Node" parent="." node_paths=PackedStringArray("sprite_container")]
+script = ExtResource("9_47ywr")
+sprite_container = NodePath("../SubViewport/HBoxContainer")
+metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]

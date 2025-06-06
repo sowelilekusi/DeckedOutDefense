@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bssfvyxv5uo1f"]
+
+[ext_resource type="Script" uid="uid://c86ygtor5tksd" path="res://Scripts/flow_node.gd" id="1_ng65h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ng65h"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bmgs5"]
+
+[node name="FlowNode" type="StaticBody3D"]
+script = ExtResource("1_ng65h")
+metadata/_custom_type_script = "uid://c86ygtor5tksd"
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material = SubResource("StandardMaterial3D_ng65h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bmgs5")

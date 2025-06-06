@@ -22,6 +22,7 @@ func _ready() -> void:
 	$SubViewport/HealthBar.setup(stats.health)
 	sprite.texture = stats.sprite.duplicate()
 	movement_speed = stats.movement_speed
+	status_manager.enemy = self
 
 
 func apply_effect(effect: Effect) -> void:

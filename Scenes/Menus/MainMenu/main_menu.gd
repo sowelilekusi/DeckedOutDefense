@@ -21,11 +21,11 @@ func _ready() -> void:
 	load_stats(Data.save_data)
 	bg_level.a_star_graph_3d.make_grid()
 	bg_level.a_star_graph_3d.find_path()
-	bg_level.a_star_graph_3d.build_random_maze(50)
-	bg_level.a_star_graph_3d.place_random_towers(20)
+	bg_level.a_star_graph_3d.build_random_maze(70)
+	bg_level.a_star_graph_3d.place_random_towers(30)
 	bg_level.a_star_graph_3d.disable_all_tower_frames()
 	Game.level = bg_level
-	WaveManager.generate_wave(1000, bg_level.enemy_pool, bg_level.enemy_spawns)
+	WaveManager.generate_wave(WaveManager.calculate_spawn_power(50, 4), bg_level.enemy_pool, bg_level.enemy_spawns)
 	for spawn: EnemySpawner in bg_level.enemy_spawns:
 		spawn.enemy_died_callback = enemy_died
 		spawn.enemy_reached_goal_callback = damage_goal

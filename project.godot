@@ -18,7 +18,6 @@ config/icon="res://Assets/Textures/icon.svg"
 [autoload]
 
 Data="*res://Scripts/data.gd"
-WaveManager="*res://Scripts/wave_manager.gd"
 Game="*res://Scripts/game.gd"
 
 [debug]

@@ -18,34 +18,35 @@ radius = 3.0
 height = 1.0
 sides = 32
 
-[node name="Sprite3D" type="Sprite3D" parent="Base"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
+[node name="Node3D" parent="Base" instance=ExtResource("3_il1ej")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18309, 0.5, 0.742893)
+
+[node name="Content" type="Node3D" parent="Base"]
 visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Base/Content"]
+transform = Transform3D(3, 0, 5.96046e-08, 0, 3, 0, -5.96046e-08, 0, 3, 0, 1.91885, 0)
 modulate = Color(0.517184, 0.517184, 0.517184, 1)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("2_05uii")
 
-[node name="Node3D" parent="Base" instance=ExtResource("3_il1ej")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18309, 0.5, 0.742893)
-
-[node name="Assaultmod" type="MeshInstance3D" parent="Base"]
+[node name="Assaultmod" type="MeshInstance3D" parent="Base/Content"]
 transform = Transform3D(0.256614, 0.167067, -0.322898, -7.90479e-16, 0.395231, 0.204492, 0.363558, -0.117923, 0.227914, -0.119748, 0.959456, -1.44893)
 mesh = ExtResource("4_mrig3")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="Snipermodel" type="MeshInstance3D" parent="Base"]
+[node name="Snipermodel" type="MeshInstance3D" parent="Base/Content"]
 transform = Transform3D(0.15964, 0.231242, 0.312158, 0.0231825, 0.331215, -0.257215, -0.387786, 0.114996, 0.113129, 0.190324, 0.957512, 1.40108)
 mesh = ExtResource("5_yj8b1")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="Gattlemesh" type="MeshInstance3D" parent="Base"]
+[node name="Gattlemesh" type="MeshInstance3D" parent="Base/Content"]
 transform = Transform3D(-0.170479, -0.0500322, 0.247909, 0, 0.298972, 0.0603377, -0.252907, 0.0337256, -0.16711, 1.52548, 0.901463, -0.197461)
 mesh = ExtResource("6_jr17d")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
-visible = false
+[node name="SpotLight3D" type="SpotLight3D" parent="Base/Content"]
+transform = Transform3D(1, -2.98023e-08, -1.77636e-15, 0, -4.37114e-08, 1, -2.98023e-08, -1, -4.37114e-08, 0, 4, 0)
 spot_range = 10.0
 spot_attenuation = 0.39

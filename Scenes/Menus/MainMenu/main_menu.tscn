@@ -23,19 +23,19 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv1gy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t4jd"]
 resource_local_to_scene = true
 atlas = ExtResource("8_1vnym")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="Resource" id="Resource_6t4jd"]
+[sub_resource type="Resource" id="Resource_y5bw6"]
 resource_local_to_scene = true
 script = ExtResource("5_u514r")
 title = "dog"
 target_type = 1
 icon = ExtResource("7_2sylv")
 death_sprite = ExtResource("6_rsxwm")
-sprite = SubResource("AtlasTexture_sv1gy")
+sprite = SubResource("AtlasTexture_6t4jd")
 spawn_power = 10
 health = 180
 penalty = 10
@@ -83,7 +83,7 @@ game_select_menu = NodePath("GameSelectMenu")
 main_controls = NodePath("MainControls")
 seed_entry = NodePath("GameSelectMenu/VBoxContainer/HBoxContainer2/LineEdit")
 profile_controls = NodePath("ProfileEditor")
-mods_controls = NodePath("PanelContainer")
+mods_controls = NodePath("ModsMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -186,7 +186,7 @@ text = "View Profile"
 size = Vector2i(1920, 1080)
 
 [node name="GridMap" parent="SubViewport" instance=ExtResource("3_l8r4a")]
-enemy_pool = Array[ExtResource("5_u514r")]([SubResource("Resource_6t4jd"), ExtResource("9_hdp0s"), ExtResource("10_day26"), ExtResource("11_1mes0"), ExtResource("12_5vny5"), ExtResource("13_xb7gj")])
+enemy_pool = Array[ExtResource("5_u514r")]([SubResource("Resource_y5bw6"), ExtResource("9_hdp0s"), ExtResource("10_day26"), ExtResource("11_1mes0"), ExtResource("12_5vny5"), ExtResource("13_xb7gj")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_2jyua")
@@ -559,7 +559,7 @@ icon = SubResource("AtlasTexture_3aj5m")
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="ModsMenu" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -575,32 +575,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_6t4jd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModsMenu"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ModsMenu/VBoxContainer"]
 layout_mode = 2
 text = "Mods"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModsMenu/VBoxContainer"]
 custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModsMenu/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModsMenu/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="CancelMods" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="CancelMods" type="Button" parent="ModsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Confirm"
 
-[node name="ConfirmMods" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ConfirmMods" type="Button" parent="ModsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Confirm"
 
@@ -627,5 +627,5 @@ text = "Confirm"
 [connection signal="pressed" from="ProfileManager/VBoxContainer/Controls/Cancel" to="." method="_on_profile_manager_cancel_pressed"]
 [connection signal="pressed" from="ProfileManager/VBoxContainer/Controls/Confirm" to="." method="_on_profile_manager_confirm_pressed"]
 [connection signal="pressed" from="AchievementsMenu/VBoxContainer/HBoxContainer/Button" to="." method="_on_achievements_back_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/CancelMods" to="." method="_on_cancel_mods_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ConfirmMods" to="." method="_on_confirm_mods_pressed"]
+[connection signal="pressed" from="ModsMenu/VBoxContainer/HBoxContainer/CancelMods" to="." method="_on_cancel_mods_pressed"]
+[connection signal="pressed" from="ModsMenu/VBoxContainer/HBoxContainer/ConfirmMods" to="." method="_on_confirm_mods_pressed"]
