@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cmneu5o0m02l8"]
+[gd_scene load_steps=21 format=3 uid="uid://cmneu5o0m02l8"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_joiuq"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_ssgps"]
@@ -34,6 +34,9 @@ viewport_path = NodePath("SubViewport4")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yref6"]
 viewport_path = NodePath("SubViewport5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5u3uw"]
+viewport_path = NodePath("SubViewport6")
 
 [node name="LeapingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
 collision_layer = 4
@@ -102,7 +105,7 @@ script = ExtResource("12_g2knp")
 character = NodePath("..")
 sprite = NodePath("../DirectionSprite")
 
-[node name="LeapingController" type="Node" parent="." node_paths=PackedStringArray("eastl", "westl", "northl", "southl", "easts", "wests", "norths", "souths", "box", "character")]
+[node name="LeapingController" type="Node" parent="." node_paths=PackedStringArray("eastl", "westl", "northl", "southl", "easts", "wests", "norths", "souths", "box", "tol", "character")]
 script = ExtResource("12_joiuq")
 eastl = NodePath("../SubViewport2/East")
 westl = NodePath("../SubViewport3/West")
@@ -113,6 +116,7 @@ wests = NodePath("../west")
 norths = NodePath("../north")
 souths = NodePath("../south")
 box = NodePath("../CSGBox3D")
+tol = NodePath("../SubViewport6/North")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://dqluvn05min37"
 
@@ -172,6 +176,20 @@ text = "north"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SubViewport6" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(277, 52)
+
+[node name="North" type="Label" parent="SubViewport6"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "north"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="east" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.955188, 0.919993, 0)
 visible = false
@@ -195,6 +213,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919993, -1.24258)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_yref6")
+
+[node name="north2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.215, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_5u3uw")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141846, 0)

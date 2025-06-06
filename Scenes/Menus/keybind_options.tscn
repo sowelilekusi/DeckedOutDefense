@@ -14,6 +14,7 @@ script = ExtResource("1_oxg0p")
 layout_mode = 2
 
 [node name="ColumnLabels" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="Action" type="Label" parent="ColumnLabels"]

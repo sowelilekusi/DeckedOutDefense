@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dlftx7c32euh0"]
-
-[ext_resource type="Texture2D" uid="uid://dds48gjgiyjp6" path="res://plan_plan_tex.png" id="1_jpetr"]
-
-[resource]
-albedo_texture = ExtResource("1_jpetr")

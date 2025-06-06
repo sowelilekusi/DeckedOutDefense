@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=10 format=3 uid="uid://dxonpv8qbyrjy"]
+[gd_resource type="Resource" script_class="HeroClass" load_steps=11 format=3 uid="uid://dxonpv8qbyrjy"]
 
+[ext_resource type="PackedScene" uid="uid://bfxgtf1v1okat" path="res://Classes/Mage/scroll.tscn" id="1_6eh1f"]
 [ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="1_aeu85"]
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_gq5ju"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_3yr5a"]
@@ -18,3 +19,4 @@ hand_texture = ExtResource("4_srskc")
 deck = Array[ExtResource("1_gq5ju")]([ExtResource("2_3yr5a"), ExtResource("2_3yr5a"), ExtResource("3_wyb0n"), ExtResource("3_sh7d1"), ExtResource("5_k7b5b")])
 faction = 2
 podium = ExtResource("7_aglom")
+card_item = ExtResource("1_6eh1f")

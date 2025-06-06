@@ -6,3 +6,4 @@ class_name HeroClass extends Resource
 @export var deck: Array[Card]
 @export var faction: Card.Faction
 @export var podium: PackedScene
+@export var card_item: PackedScene

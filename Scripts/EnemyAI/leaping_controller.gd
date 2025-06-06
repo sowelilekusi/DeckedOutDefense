@@ -9,13 +9,15 @@ class_name LeapingController extends PathingController
 @export var norths: Sprite3D
 @export var souths: Sprite3D
 @export var box: CSGBox3D
+@export var tol: Label
 
 var tolerance: float = 50.0
 var jumping: bool = false
 
 
 func _process(delta: float) -> void:
-	tolerance = remap(character.health.current_health, 10, 50, character.health.max_health * 0.20, character.health.max_health)
+	tolerance = remap(character.health.current_health, character.health.max_health * 0.20, character.health.max_health, 10, 50)
+	tolerance = maxf(tolerance, 10)
 
 
 func _physics_process(delta: float) -> void:
@@ -64,7 +66,7 @@ func _physics_process(delta: float) -> void:
 					distance_remaining -= gain
 					path_progress += gain
 					leap(Vector3(0.0, 0.0, -4.0))
-				#eastl.text = str(gain)
+				eastl.text = str(gain)
 				#easts.visible = true
 			else:
 				eastl.text = "cant"
@@ -83,7 +85,7 @@ func _physics_process(delta: float) -> void:
 					distance_remaining -= gain
 					path_progress += gain
 					leap(Vector3(0.0, 0.0, 4.0))
-				#westl.text = str(gain)
+				westl.text = str(gain)
 				#wests.visible = true
 			else:
 				westl.text = "cant"
@@ -102,7 +104,7 @@ func _physics_process(delta: float) -> void:
 					distance_remaining -= gain
 					path_progress += gain
 					leap(Vector3(-4.0, 0.0, 0.0))
-				#northl.text = str(gain)
+				northl.text = str(gain)
 				#norths.visible = true
 			else:
 				northl.text = "cant"
@@ -121,7 +123,7 @@ func _physics_process(delta: float) -> void:
 					distance_remaining -= gain
 					path_progress += gain
 					leap(Vector3(4.0, 0.0, 0.0))
-				#southl.text = str(gain)
+				southl.text = str(gain)
 				#souths.visible = true
 			else:
 				southl.text = "cant"
@@ -138,6 +140,6 @@ func finish_jump() -> void:
 func leap(to_point: Vector3) -> void:
 	jumping = true
 	var tween: Tween = create_tween()
-	tween.tween_property(character, "global_position", character.global_position + (to_point / 2.0) + Vector3.UP, 1.0)
-	tween.tween_property(character, "global_position", character.global_position + to_point, 1.0)
+	tween.tween_property(character, "global_position", character.global_position + (to_point / 2.0) + Vector3.UP, 0.5)
+	tween.tween_property(character, "global_position", character.global_position + to_point, 0.5)
 	tween.tween_callback(finish_jump)

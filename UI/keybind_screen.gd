@@ -1,4 +1,4 @@
-extends Control
+class_name KeybindPopup extends Control
 
 signal event_detected(event: InputEvent)
 
@@ -12,4 +12,3 @@ func _input(event: InputEvent) -> void:
 		found_event = true
 		event_detected.emit(event)
 		queue_free()
-		

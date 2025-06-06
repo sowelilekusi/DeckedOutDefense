@@ -1,41 +1,15 @@
 extends Node
 
 
-func calculate_spawn_power(wave_number: int, number_of_players: int) -> int:
+static func calculate_spawn_power(wave_number: int, number_of_players: int) -> int:
 	return (20 * number_of_players) + (5 * wave_number)
 
 
-func calculate_pot(wave_number: int, number_of_players: int) -> int:
-	return 20 + (50 * number_of_players) + (15 * wave_number)
+static func calculate_pot(wave_number: int, number_of_players: int) -> int:
+	return ceili((2.5 * number_of_players) + (0.5 * wave_number))
 
 
-#func generate_wave(spawn_power: int, spawn_pool: Array[Enemy]) -> Dictionary:
-	#var wave: Dictionary = {}
-	##var sp_used = 0
-	#var enemy_types: int = randi_range(1, 5)
-	#var enemy_choices: Array[Enemy] = spawn_pool.duplicate()
-	#var sp_allotment: int = floori(float(spawn_power) / float(enemy_types))
-	#for x: int in enemy_types:
-		#var choice: Enemy = enemy_choices.pick_random()
-		#enemy_choices.erase(choice)
-		#if floori(float(sp_allotment) / float(choice.spawn_power)) > 0:
-			#wave[Data.enemies.find(choice)] = floori(float(sp_allotment) / float(choice.spawn_power))
-			##sp_used += wave[Data.enemies.find(choice)] * choice.spawn_power
-	##print("Generated wave with spawn power: " + str(sp_used) + "/" + str(spawn_power))
-	#return wave
-
-
-#func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
-	#var wave: Wave = Wave.new()
-	#var new_card: EnemyCard = EnemyCard.new()
-	#new_card.enemy = Data.enemies[6]
-	#new_card.rarity = Data.Rarity.COMMON
-	#wave.enemy_groups.append(new_card)
-	#spawners[1].add_card(new_card)
-	#return wave
-
-
-func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
+static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
 	var wave: Wave = Wave.new()
 	
 	var points: int = spawn_power / 10.0

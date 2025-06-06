@@ -172,9 +172,9 @@ func _process(_delta: float) -> void:
 				change_crouch = true
 	if crouching:
 		crouch()
-	if Input.is_action_just_pressed("Crouch") and is_in_climb_zone:
+	if Input.is_action_just_pressed("Hold Climbing") and is_in_climb_zone:
 		hold_climb = true
-	if Input.is_action_just_released("Crouch") and is_in_climb_zone:
+	if Input.is_action_just_released("Hold Climbing") and is_in_climb_zone:
 		hold_climb = false
 	look_vector.x = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	look_vector.y = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)

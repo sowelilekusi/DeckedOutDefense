@@ -3,15 +3,14 @@ extends Node
 var characters: Array[HeroClass]
 var cards: Array[Card]
 var enemies: Array[Enemy]
-var keymaps: Array[PlayerKeymap]
+#var keymaps: Array[PlayerKeymap]
 var mods: Dictionary[String, String]
 var graphics: PlayerGraphicsSettings
 var audio: PlayerAudioSettings
 var preferences: PlayerPreferences
 var player_profile: PlayerProfile
-var player_keymap: PlayerKeymap
-var player_controller_keymap: PlayerKeymap = preload("res://Resources/Keymaps/controller.tres")
 var save_data: SaveData
+var keymap_data: KeymapData
 
 const DEFAULT_SERVER_PORT: int = 58008
 
@@ -102,12 +101,6 @@ func _ready() -> void:
 								mods[dict["display_name"]] = "res://Mods/" + file_name + "/" + dict["pck_path"]
 						data_name = data_dir.get_next()
 			file_name = mod_dir.get_next()
-
-	keymaps.append(preload("res://Resources/Keymaps/qwerty.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/azerty.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/dvorak.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/colemak.tres"))
-	keymaps.append(preload("res://Resources/Keymaps/workman.tres"))
 	
 	graphics = PlayerGraphicsSettings.load_profile_from_disk()
 	graphics.apply_graphical_settings(get_viewport())
@@ -115,10 +108,9 @@ func _ready() -> void:
 	audio.apply_audio_settings()
 	player_profile = PlayerProfile.load_profile_from_disk()
 	preferences = PlayerPreferences.load_profile_from_disk()
-	player_keymap = PlayerKeymap.load_profile_from_disk()
-	player_keymap.apply()
-	player_controller_keymap.append_input_map()
-	save_data = SaveData.load_profile_from_disk()
+	save_data = SaveData.load_from_disk(0)
+	keymap_data = KeymapData.load_from_disk()
+	keymap_data.apply()
 	
 	load_classes()
 	load_cards("res://Cards")

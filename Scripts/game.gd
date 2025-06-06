@@ -182,7 +182,7 @@ func set_upcoming_wave() -> void:
 		var spawn_power: int = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
 		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
 		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns)
-		temp_set_upcoming_wave(new_wave, floori(WaveManager.calculate_pot(wave + 1, connected_players_nodes.size()) / 20.0))
+		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave + 1, connected_players_nodes.size()))
 		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 
 

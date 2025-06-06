@@ -175,7 +175,13 @@ func _process(delta: float) -> void:
 				movement.can_sprint = false
 			if Input.is_action_pressed("Secondary Fire"):
 				movement.can_sprint = false
-		if Input.is_action_just_pressed("Equip In Gauntlet"):
+		if Input.is_action_just_pressed("Equip Primary Weapon"):
+			if equipped_weapon == 1 and weapons[0]:
+				swap_weapons()
+		if Input.is_action_just_pressed("Equip Secondary Weapon"):
+			if equipped_weapon == 0 and weapons[1]:
+				swap_weapons()
+		if Input.is_action_just_pressed("Swap Weapons"):
 			swap_weapons()
 	
 	if movement.sprinting:
@@ -266,7 +272,6 @@ func enter_editing_mode(value: int) -> void:
 	weapons_active = false
 	hud.set_wave_count(value + 1)
 	hud.set_energy_visible(false)
-	hud.set_offhand_energy_visible(false)
 	hud.grow_wave_start_label()
 	editing_mode = true
 	edit_tool.enabled = true
@@ -282,17 +287,18 @@ func exit_editing_mode(value: int) -> void:
 	hud.set_wave_count(value)
 	#if !weapon and offhand_weapon:
 	#	swap_weapons()
+	var offhand_weapon: Weapon = weapons[0] if equipped_weapon == 1 else weapons[1]
+	if offhand_weapon:
+		offhand_weapon.current_energy = offhand_weapon.max_energy
+		#offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
+	if (!weapons[equipped_weapon] and offhand_weapon) or (weapons[0] and equipped_weapon == 1):
+		swap_weapons()
 	if weapons[equipped_weapon]:
 		hud.set_energy_visible(true)
 		#weapon.set_visible(false)
 		weapons[equipped_weapon].current_energy = weapons[equipped_weapon].max_energy
 		#this had to be commented out coz the new energy bar thinks "energy changed" is "energy used"
 		#weapons[equipped_weapon].energy_changed.emit(weapons[equipped_weapon].current_energy)
-	var offhand_weapon: Weapon = weapons[0] if equipped_weapon == 1 else weapons[1]
-	if offhand_weapon:
-		hud.set_offhand_energy_visible(true)
-		offhand_weapon.current_energy = offhand_weapon.max_energy
-		#offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
 	edit_tool.enabled = false
 	edit_tool.delete_tower_preview()
 	left_hand.visible = false
@@ -355,13 +361,9 @@ func equip_weapon(slot: int = 0) -> void:
 			if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
 				hud.new_energy_bar.create_discrete_icons(weapons[slot].max_energy)
 		else:
-			weapons[slot].energy_spent.connect(hud.new_energy_bar2.use_energy)
-			weapons[slot].energy_recharged.connect(hud.new_energy_bar2.gain_energy)
-			hud.new_energy_bar2.max_energy = weapons[slot].max_energy
-			if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
-				hud.new_energy_bar2.enable_progress_bar()
-			if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
-				hud.new_energy_bar2.create_discrete_icons(weapons[slot].max_energy)
+			weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_secondary_energy)
+			hud.new_energy_bar.secondary_max_energy = weapons[slot].max_energy
+			hud.new_energy_bar.secondary_energy = weapons[slot].current_energy
 
 
 func stow_weapon(slot: int = 0) -> void:
@@ -370,21 +372,15 @@ func stow_weapon(slot: int = 0) -> void:
 	weapons[slot].visible = false
 	weapons[slot].energy_spent.disconnect(hud.new_energy_bar.use_energy)
 	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar.gain_energy)
-	weapons[slot].energy_spent.connect(hud.new_energy_bar2.use_energy)
-	weapons[slot].energy_recharged.connect(hud.new_energy_bar2.gain_energy)
-	hud.set_offhand_energy(weapons[slot].current_energy)
-	hud.new_energy_bar2.max_energy = weapons[slot].max_energy
-	if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
-		hud.new_energy_bar2.enable_progress_bar()
-	if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
-		hud.new_energy_bar2.create_discrete_icons(weapons[slot].max_energy)
+	weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_secondary_energy)
+	hud.new_energy_bar.secondary_max_energy = weapons[slot].max_energy
+	hud.new_energy_bar.secondary_energy = weapons[slot].current_energy
 
 
 func show_weapon(slot: int = 0) -> void:
 	weapons[slot].release_trigger()
 	weapons[slot].release_second_trigger()
-	weapons[slot].energy_spent.disconnect(hud.new_energy_bar2.use_energy)
-	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar2.gain_energy)
+	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar.gain_secondary_energy)
 	weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
 	weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
 	hud.set_weapon_energy(weapons[slot].current_energy, weapons[slot].stats.energy_type)
@@ -393,6 +389,10 @@ func show_weapon(slot: int = 0) -> void:
 		hud.new_energy_bar.enable_progress_bar()
 	if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
 		hud.new_energy_bar.create_discrete_icons(weapons[slot].max_energy)
+	hud.new_energy_bar.use_energy(weapons[slot].max_energy - weapons[slot].current_energy, weapons[slot].stats.energy_type)
+	var offhand: int = 0 if equipped_weapon == 1 else 1
+	if !weapons[offhand]:
+		hud.new_energy_bar.disable_secondary_energy()
 
 
 func swap_weapons() -> void:
@@ -401,7 +401,8 @@ func swap_weapons() -> void:
 	weapons_active = false
 	swap_off_audio.play()
 	hud.audio_guard = true
-	stow_weapon(equipped_weapon)
+	if weapons[equipped_weapon]:
+		stow_weapon(equipped_weapon)
 	equipped_weapon = 0 if equipped_weapon == 1 else 1
 	show_weapon(equipped_weapon)
 	weapon_swap_timer.start()
@@ -422,7 +423,7 @@ func unequip_weapon(slot: int = 0) -> void:
 		hud.new_energy_bar.blank()
 	else:
 		hud.swap_icon.visible = true
-		hud.new_energy_bar2.blank()
+		hud.new_energy_bar.disable_secondary_energy()
 	#gauntlet_sprite.set_visible(true)
 	weapons[slot].queue_free()
 	weapons[slot] = null

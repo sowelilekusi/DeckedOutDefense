@@ -31,7 +31,7 @@ value = 4.0
 [sub_resource type="Resource" id="Resource_d1lvi"]
 script = ExtResource("1_7oh83")
 key = "Energy"
-value = 100.0
+value = 20.0
 
 [resource]
 script = ExtResource("2_y36gr")

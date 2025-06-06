@@ -1,6 +1,5 @@
 class_name CardPrinter extends StaticBody3D
 
-@export var item_card_scene: PackedScene
 @export var button_collider: CollisionShape3D
 @export var button_box: Node3D
 
@@ -48,16 +47,16 @@ func randomize_cards(faction: Card.Faction) -> void:
 				if card.rarity == decided_rarity:
 					card_array.append(card)
 					cards_chosen = true
-			decided_rarity -= 1
 			if decided_rarity < 0:
 				card_array.append(Data.cards[0])
 				cards_chosen = true
+			decided_rarity -= 1
 		var card: Card
 		if card_array.size() > 0:
 			card = card_array[Game.randi_in_range(132 * cards_generated, 0, card_array.size() - 1)]
 			cards_generated += 1
 			card_array.erase(card)
-		var item: CardItem = item_card_scene.instantiate() as CardItem
+		var item: CardItem = reply_player.hero_class.card_item.instantiate() as CardItem
 		item.set_card(card)
 		item.position = Vector3(x, 1, 2)
 		item.pressed.connect(card_picked_up)

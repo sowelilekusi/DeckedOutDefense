@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=62 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
@@ -24,9 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cvjcu3hofahr6" path="res://Assets/Textures/place_slot.png" id="18_okmpi"]
 [ext_resource type="Script" uid="uid://b5wle8f6rv3e7" path="res://PCs/player_movement.gd" id="20_cfhw8"]
 [ext_resource type="Shader" uid="uid://dhtylicctk3g4" path="res://UI/crosshair.gdshader" id="20_gxpgc"]
-[ext_resource type="Texture2D" uid="uid://r202vo47jw1q" path="res://Assets/Textures/enemyhealth.png" id="21_apps2"]
 [ext_resource type="AudioStream" uid="uid://csu2hce4bfoki" path="res://Audio/cardPlace1.ogg" id="24_8ch4w"]
-[ext_resource type="Texture2D" uid="uid://b8woqvpwq3tsq" path="res://Assets/Textures/swap_slot.png" id="24_gr6xt"]
 [ext_resource type="AudioStream" uid="uid://dxq8b77wa41os" path="res://Audio/cardPlace2.ogg" id="25_awl6m"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
 [ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://energy_bar.tscn" id="27_14ugt"]
@@ -384,7 +382,7 @@ max_look_down_angle = 80.0
 max_look_up_angle = 80.0
 enable_jumping = true
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "weapon_energy_bar", "offhand_energy_bar", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "new_energy_bar2")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("WaveCount")
@@ -399,8 +397,6 @@ fps_label = NodePath("FPSCounter")
 hover_text = NodePath("RichTextLabel2")
 enemy_sprites = [NodePath("EnemyTracker/TextureRect"), NodePath("EnemyTracker/TextureRect2"), NodePath("EnemyTracker/TextureRect3"), NodePath("EnemyTracker/TextureRect4"), NodePath("EnemyTracker/TextureRect5")]
 enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTracker/TextureRect2/Label2"), NodePath("EnemyTracker/TextureRect3/Label3"), NodePath("EnemyTracker/TextureRect4/Label4"), NodePath("EnemyTracker/TextureRect5/Label5")]
-weapon_energy_bar = NodePath("PrimaryEnergyBar")
-offhand_energy_bar = NodePath("OffhandEnergyBar")
 pickup_notif_scene = ExtResource("17_oyeww")
 wave_start_label = NodePath("RichTextLabel")
 place_icon = NodePath("PlaceIcon")
@@ -409,7 +405,6 @@ place_text = NodePath("PlaceIcon/RichTextLabel")
 swap_text = NodePath("SwapIcon/RichTextLabel")
 enemy_card_scene = ExtResource("18_dfkac")
 new_energy_bar = NodePath("EnergyBar")
-new_energy_bar2 = NodePath("EnergyBar2")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -436,20 +431,16 @@ texture = ExtResource("18_okmpi")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/PlaceIcon"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -19.0
-offset_right = 30.0
-offset_bottom = 41.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "#Equip In Gauntlet#"
+text = "#Equip Primary Weapon#"
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SwapIcon" type="TextureRect" parent="HUD"]
 anchors_preset = 3
@@ -463,24 +454,20 @@ offset_right = -6.0
 offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("24_gr6xt")
+texture = ExtResource("18_okmpi")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/SwapIcon"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -29.0
-offset_right = 30.0
-offset_bottom = 31.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "#Secondary Fire#"
+text = "#Equip Secondary Weapon#"
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Minimap" type="TextureRect" parent="HUD"]
 anchors_preset = 1
@@ -519,10 +506,10 @@ scale = Vector2(3, 3)
 mouse_filter = 2
 
 [node name="LivesCount" type="Label" parent="HUD"]
-offset_left = -5.0
-offset_top = 15.0
-offset_right = 100.0
-offset_bottom = 72.0
+offset_left = -2.24
+offset_top = 23.28
+offset_right = 102.76
+offset_bottom = 112.28
 theme_override_colors/font_color = Color(0.65098, 0.227451, 0.243137, 1)
 theme_override_font_sizes/font_size = 37
 text = "120
@@ -724,47 +711,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PrimaryEnergyBar" type="TextureProgressBar" parent="HUD"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-step = 0.01
-value = 100.0
-fill_mode = 1
-nine_patch_stretch = true
-texture_under = ExtResource("21_apps2")
-texture_progress = ExtResource("21_apps2")
-tint_under = Color(0, 1, 1, 0.168627)
-tint_progress = Color(0, 1, 1, 1)
-
-[node name="OffhandEnergyBar" type="TextureProgressBar" parent="HUD"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -379.0
-offset_top = -50.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-step = 0.01
-value = 100.0
-fill_mode = 1
-nine_patch_stretch = true
-texture_under = ExtResource("21_apps2")
-texture_progress = ExtResource("21_apps2")
-tint_under = Color(0, 1, 1, 0.168627)
-tint_progress = Color(0, 1, 1, 1)
-
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
 anchors_preset = 4
 anchor_top = 0.5
@@ -811,11 +757,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
-mouse_filter = 2
-
-[node name="EnergyBar2" parent="HUD" instance=ExtResource("27_14ugt")]
-offset_left = -72.0
-offset_right = -72.0
 mouse_filter = 2
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]

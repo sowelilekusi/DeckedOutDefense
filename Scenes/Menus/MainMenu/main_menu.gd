@@ -25,7 +25,7 @@ func _ready() -> void:
 	bg_level.a_star_graph_3d.place_random_towers(20)
 	bg_level.a_star_graph_3d.disable_all_tower_frames()
 	Game.level = bg_level
-	WaveManager.generate_wave(400, bg_level.enemy_pool, bg_level.enemy_spawns)
+	WaveManager.generate_wave(1000, bg_level.enemy_pool, bg_level.enemy_spawns)
 	for spawn: EnemySpawner in bg_level.enemy_spawns:
 		spawn.enemy_died_callback = enemy_died
 		spawn.enemy_reached_goal_callback = damage_goal
@@ -36,7 +36,7 @@ func _ready() -> void:
 #these exist purely to make the enemies that spawn on the main menu happy
 func enemy_died(_some_arg: Enemy) -> void:
 	pass
-func damage_goal(_some_arg1: int, _some_arg2: int) -> void:
+func damage_goal(_some_arg1: Enemy, _some_arg2: int) -> void:
 	pass
 func increase_enemy_count() -> void:
 	pass
@@ -45,7 +45,7 @@ func increase_enemy_count() -> void:
 func _on_display_name_edit_pressed() -> void:
 	$ProfileManager.visible = true
 	$ProfileManager/VBoxContainer/DisplayName/LineEdit.placeholder_text = Data.player_profile.display_name
-	temp_data = SaveData.load_profile_from_disk()
+	temp_data = SaveData.load_from_disk(0)
 
 
 func change_profile_display_name(display_name: String) -> void:

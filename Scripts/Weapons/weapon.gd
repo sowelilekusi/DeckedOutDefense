@@ -23,7 +23,6 @@ var recharge_speed: float = 0.0
 var recharge_acceleration: float = 2.0
 var recharge_max_speed: float = 25.0
 #var time_since_trigger: float = 0.0
-var prev_energy_int: int = 0.0
 
 
 func _ready() -> void:
@@ -47,12 +46,7 @@ func _process(delta: float) -> void:
 		if current_energy >= max_energy:
 			current_energy = max_energy
 			recharging = false
-		if stats.energy_type == Data.EnergyType.CONTINUOUS:
-			energy_recharged.emit(recharge_speed * delta, stats.energy_type)
-		if stats.energy_type == Data.EnergyType.DISCRETE and int(current_energy) > prev_energy_int:
-			energy_recharged.emit(1, stats.energy_type)
-		prev_energy_int = int(current_energy)
-		#energy_changed.emit(current_energy)
+		energy_recharged.emit(recharge_speed * delta, stats.energy_type)
 	if time_since_firing < time_between_shots:
 		time_since_firing += delta
 	if trigger_held and stats.energy_type == Data.EnergyType.CONTINUOUS:
@@ -64,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	if trigger_held and current_energy >= energy_cost and time_since_firing >= time_between_shots:
 		if stats.energy_type == Data.EnergyType.DISCRETE:
 			current_energy -= 1
+			current_energy = floorf(current_energy)
 			energy_spent.emit(1, stats.energy_type)
 		time_since_firing -= time_between_shots
 		shoot()

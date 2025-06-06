@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=10 format=3 uid="uid://b5pc3frhx467q"]
+[gd_resource type="Resource" script_class="HeroClass" load_steps=11 format=3 uid="uid://b5pc3frhx467q"]
 
+[ext_resource type="PackedScene" uid="uid://dq8v5e11rvyi6" path="res://Classes/Engineer/plan.tscn" id="1_2m5d7"]
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_t4fvj"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_62g46"]
 [ext_resource type="Resource" uid="uid://ckm88acryitl4" path="res://Cards/sniper.tres" id="3_eml7q"]
@@ -18,3 +19,4 @@ hand_texture = ExtResource("6_a8dvt")
 deck = Array[ExtResource("1_t4fvj")]([ExtResource("2_62g46"), ExtResource("2_62g46"), ExtResource("3_eml7q"), ExtResource("4_ovvb2"), ExtResource("5_vqkxt")])
 faction = 1
 podium = ExtResource("7_nyup7")
+card_item = ExtResource("1_2m5d7")

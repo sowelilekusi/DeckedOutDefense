@@ -16,8 +16,6 @@ var minimap_anchor: Node3D
 var enemy_names: Array[String]
 @export var enemy_sprites: Array[TextureRect]
 @export var enemy_counts: Array[Label]
-@export var weapon_energy_bar: TextureProgressBar
-@export var offhand_energy_bar: TextureProgressBar
 @export var pickup_notif_scene: PackedScene
 @export var wave_start_label: RichTextLabel
 @export var place_icon: TextureRect
@@ -26,7 +24,6 @@ var enemy_names: Array[String]
 @export var swap_text: RichTextLabel
 @export var enemy_card_scene: PackedScene
 @export var new_energy_bar: EnergyBar
-@export var new_energy_bar2: EnergyBar
 
 var audio_guard: bool = false
 var cards: Array[EnemyCardUI] = []
@@ -65,20 +62,14 @@ func show_wave_generation_anim(wave: Wave) -> void:
 
 
 func set_energy_visible(value: bool) -> void:
-	pass
-	#weapon_energy_bar.set_visible(value)
-
-
-func set_offhand_energy_visible(value: bool) -> void:
-	pass
-	#offhand_energy_bar.set_visible(value)
+	new_energy_bar.visible = value
 
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 	wave_start_label.text = parse_action_tag("[center]Press #Ready# to start wave")
-	place_text.text = parse_action_tag("[center]#Equip In Gauntlet#")
-	swap_text.text = parse_action_tag("[center]#Secondary Fire#")
+	place_text.text = parse_action_tag("[center]#Equip Primary Weapon#")
+	swap_text.text = parse_action_tag("[center]#Equip Secondary Weapon#")
 
 
 func grow_wave_start_label() -> void:
@@ -157,7 +148,7 @@ func set_crosshair_visible(value: bool) -> void:
 
 #TODO: the fuck is audio_guard for?
 func set_weapon_energy(value: int, energy_type: Data.EnergyType) -> void:
-	weapon_energy_bar.value = value
+	#weapon_energy_bar.value = value
 	if player.editing_mode:
 		audio_guard = true
 	if value == 0 and !audio_guard:
@@ -168,10 +159,6 @@ func set_weapon_energy(value: int, energy_type: Data.EnergyType) -> void:
 		audio_guard = true
 	if value > 0 and value < 100:
 		audio_guard = false
-
-
-func set_offhand_energy(value: int) -> void:
-	offhand_energy_bar.value = value
 
 
 func maximise_minimap(anchor: Node3D) -> void:
@@ -208,11 +195,21 @@ func pickup(card: Card) -> void:
 
 func parse_action_tag(text: String) -> String:
 	var string_array: PackedStringArray = text.split("#")
+	var output: Array[String] = []
 	if string_array.size() > 1:
-		var event: InputEvent = InputMap.action_get_events(string_array[1])[0]
-		if event is InputEventKey:
-			string_array[1] = "[img=top,50]%s[/img]" % KeyIconMap.keys[str(event.keycode)]
-		if event is InputEventMouseButton:
-			string_array[1] = "[img=top,50]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)]
+		for i: int in InputMap.action_get_events(string_array[1]).size():
+			var event: InputEvent = InputMap.action_get_events(string_array[1])[i]
+			if InputMap.action_get_events(string_array[1]).size() > 1:
+				var last: bool = true if i == InputMap.action_get_events(string_array[1]).size() - 1 else false
+				var first: bool = true if i == 0 else false
+				if last:
+					output.append(" or ")
+				elif !first:
+					output.append(", ")
+			if event is InputEventKey:
+				output.append("[img=top,50]%s[/img]" % KeyIconMap.keys[str(event.physical_keycode)])
+			if event is InputEventMouseButton:
+				output.append("[img=top,50]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)])
+	string_array[1] = "".join(output)
 	text = "".join(string_array)
 	return text

@@ -10,12 +10,12 @@ var listening_for_key: bool = false
 
 
 func _ready() -> void:
-	for index: int in Data.keymaps.size():
-		var map: PlayerKeymap = Data.keymaps[index]
-		var button: Button = Button.new()
-		button.text = map.title
-		button.pressed.connect(set_keymap.bind(index))
-		$HBoxContainer.add_child(button)
+	#for index: int in Data.keymaps.size():
+	#	var map: PlayerKeymap = Data.keymaps[index]
+	#	var button: Button = Button.new()
+	#	button.text = map.title
+	#	button.pressed.connect(set_keymap.bind(index))
+	#	$HBoxContainer.add_child(button)
 	load_keybind_labels()
 
 
@@ -34,34 +34,19 @@ func load_keybind_labels() -> void:
 			var entry: KeybindEntry = keybind_entry_scene.instantiate() as KeybindEntry
 			entry.set_action_name(action)
 			if InputMap.action_get_events(action).size() > 0:
-				entry.set_primary_bind(InputMap.action_get_events(action)[0])
-			if InputMap.action_get_events(action).size() > 1:
-				entry.set_secondary_bind(InputMap.action_get_events(action)[1])
+				for event: InputEvent in InputMap.action_get_events(action):
+					entry.add_bind_button(event)
 			keybind_boxes.append(entry)
-			entry.primary_bind_pressed.connect(_on_primary_keybind_button_pressed.bind(entry))
-			entry.secondary_bind_pressed.connect(_on_secondary_keybind_button_pressed.bind(entry))
+			entry.bind_button_pressed.connect(_on_keybind_button_pressed.bind(entry))
 			$ScrollContainer/VBoxContainer.add_child(entry)
 
 
-func _on_primary_keybind_button_pressed(keybind_entry: KeybindEntry) -> void:
-	selected_entry = keybind_entry
-	var popup: Control = keybind_popup.instantiate()
-	popup.event_detected.connect(change_primary_key)
+func _on_keybind_button_pressed(button: Button, keybind_entry: KeybindEntry) -> void:
+	var popup: KeybindPopup = keybind_popup.instantiate()
+	popup.event_detected.connect(keybind_entry.set_button_bind.bind(button))
 	Game.UILayer.add_child(popup)
 
 
-func _on_secondary_keybind_button_pressed(keybind_entry: KeybindEntry) -> void:
-	selected_entry = keybind_entry
-	var popup: Control = keybind_popup.instantiate()
-	popup.event_detected.connect(change_secondary_key)
-	Game.UILayer.add_child(popup)
-
-
-func change_primary_key(event: InputEvent) -> void:
-	Data.player_keymap.set_primary_action_event(selected_entry.action_string, event)
-	selected_entry.set_primary_bind(event)
-
-
-func change_secondary_key(event: InputEvent) -> void:
-	Data.player_keymap.set_secondary_action_event(selected_entry.action_string, event)
-	selected_entry.set_secondary_bind(event)
+func save() -> void:
+	for entry: KeybindEntry in keybind_boxes:
+		Data.keymap_data.add_binding(entry.to_array())

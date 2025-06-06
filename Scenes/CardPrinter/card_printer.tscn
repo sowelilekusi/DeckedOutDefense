@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene load_steps=8 format=3 uid="uid://1b2ikdanl66b"]
 
 [ext_resource type="Script" uid="uid://bivtfdl3p1brv" path="res://Scenes/CardPrinter/card_printer.gd" id="1_qft15"]
-[ext_resource type="PackedScene" uid="uid://dq8v5e11rvyi6" path="res://plan.tscn" id="2_8jpsw"]
 [ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="4_eavi1"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="5_m033a"]
 
@@ -21,7 +20,6 @@ stream_0/stream = ExtResource("5_m033a")
 
 [node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button_collider", "button_box")]
 script = ExtResource("1_qft15")
-item_card_scene = ExtResource("2_8jpsw")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
 button_box = NodePath("StaticBody3D/CollisionShape3D2/CSGBox3D")
 

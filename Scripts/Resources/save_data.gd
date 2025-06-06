@@ -1,6 +1,6 @@
 class_name SaveData extends RefCounted
 
-const SAVE_PATH: String = "user://save1.txt"
+var save_slot: int = 0
 
 #Game History
 var twenty_game_history: Array[bool] = []
@@ -52,7 +52,11 @@ func bought_mage_card() -> void:
 
 
 func save_to_disc() -> void:
-	var save_file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var dir: DirAccess = DirAccess.open("user://")
+	if !dir.dir_exists("saves"):
+		dir.make_dir("saves")
+	dir.change_dir("saves")
+	var save_file: FileAccess = FileAccess.open("user://saves/slot" + str(save_slot), FileAccess.WRITE)
 	var dict: Dictionary = {
 		"wins" = wins,
 		"losses" = losses,
@@ -66,15 +70,16 @@ func save_to_disc() -> void:
 	save_file.store_line(json_string)
 
 
-static func load_profile_from_disk() -> SaveData:
-	if FileAccess.file_exists(SAVE_PATH):
-		var save_file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
+static func load_from_disk(slot: int) -> SaveData:
+	if FileAccess.file_exists("user://saves/slot" + str(slot)):
+		var save_file: FileAccess = FileAccess.open("user://saves/slot" + str(slot), FileAccess.READ)
 		var json_string: String = save_file.get_line()
 		var json: JSON = JSON.new()
 		var parse_result: Error = json.parse(json_string)
 		if parse_result == OK:
 			var dict: Dictionary = json.data
 			var stats: SaveData = SaveData.new()
+			stats.save_slot = slot
 			stats.wins = dict["wins"]
 			stats.losses = dict["losses"]
 			stats.twenty_game_history.append_array(dict["twenty_game_history"])
