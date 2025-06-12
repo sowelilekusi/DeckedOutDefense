@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://btudmfd7wfwec"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=7 format=3 uid="uid://btudmfd7wfwec"]
 
 [ext_resource type="Texture2D" uid="uid://bl16mvx4xaxeb" path="res://Assets/Textures/dead_leapfrog.png" id="1_aa1x4"]
 [ext_resource type="Texture2D" uid="uid://3ywtwfpuuknr" path="res://Assets/Textures/leapfrog.png" id="2_pj3v3"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="3_i5ry5"]
+[ext_resource type="PackedScene" uid="uid://cmneu5o0m02l8" path="res://Worlds/GreenPlanet/Enemies/leaping_enemy.tscn" id="3_pj3v3"]
 [ext_resource type="Texture2D" uid="uid://cb66pspr16scy" path="res://Assets/Textures/leapfrog_2.png" id="4_i5ry5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6kdu"]
@@ -15,6 +16,7 @@ resource_local_to_scene = true
 script = ExtResource("3_i5ry5")
 title = "Leapdog"
 target_type = 1
+scene = ExtResource("3_pj3v3")
 icon = ExtResource("2_pj3v3")
 death_sprite = ExtResource("1_aa1x4")
 sprite = SubResource("AtlasTexture_n6kdu")

@@ -11,10 +11,7 @@ class_name GameEndScreen extends PanelContainer
 
 
 func _ready() -> void:
-	var wins: int = Data.save_data.twenty_game_history.count(true)
-	var games: int = Data.save_data.twenty_game_history.size()
-	var winrate: int = int((float(wins) / float(games)) * 100.0)
-	winrate_label.text = "Your 20-game winrate is now: " + str(winrate) + "%!"
+	winrate_label.text = "Your 20-game winrate is now: " + str(Data.save_data.winrate) + "%!"
 	total_games_label.text = "Total games: " + str(Data.save_data.wins + Data.save_data.losses)
 	total_wins_label.text = "Total wins: " + str(Data.save_data.wins)
 	total_losses_label.text = "Total losses: " + str(Data.save_data.losses)

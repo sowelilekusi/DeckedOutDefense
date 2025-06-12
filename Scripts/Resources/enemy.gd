@@ -2,6 +2,7 @@ class_name Enemy extends Resource
 
 @export var title: String = "dog"
 @export var target_type: Data.EnemyType
+@export var scene: PackedScene
 @export var icon: Texture
 @export var death_sprite: Texture
 @export var sprite: AtlasTexture

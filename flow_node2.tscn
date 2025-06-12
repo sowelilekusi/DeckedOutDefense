@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://h7el2c2awv6"]
+
+[ext_resource type="PackedScene" uid="uid://bs4en6twugqjl" path="res://flow_node.glb" id="1_tnepb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16gtg"]
+resource_local_to_scene = true
+
+[node name="flow_node" instance=ExtResource("1_tnepb")]
+
+[node name="Sphere" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_16gtg")

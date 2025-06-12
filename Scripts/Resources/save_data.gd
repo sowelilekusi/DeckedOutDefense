@@ -6,6 +6,11 @@ var save_slot: int = 0
 var twenty_game_history: Array[bool] = []
 var wins: int = 0
 var losses: int = 0
+var winrate: int :
+	get():
+		return int((float(twenty_game_history.count(true)) / float(twenty_game_history.size())) * 100.0)
+	set(_value):
+		return
 
 #Engineer
 var engineer_cards_bought: int = 0

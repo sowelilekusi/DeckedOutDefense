@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bquvikft4xp1v"]
+
+[ext_resource type="Texture2D" uid="uid://wx4d2upch81n" path="res://eyedog_eyedog_tex.png" id="1_l4rje"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_l4rje")
+texture_filter = 2

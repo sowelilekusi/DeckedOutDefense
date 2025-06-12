@@ -10,7 +10,7 @@ signal ready_state_changed(state: bool)
 @export var left_hand: Node3D
 @export var right_hand: Node3D
 @export var right_hand_animator: AnimationPlayer
-@export var edit_tool: EditTool
+@export var edit_tool: PathEditTool
 @export var gauntlet_sprite: Sprite3D
 @export var sprite: EightDirectionSprite3D
 @export var hand_sprite: Sprite2D
@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 				hovering_item.disable_hover_effect()
 				hovering_item = null
 		
-		if edit_tool.is_looking_at_tower_base:
+		if is_instance_valid(edit_tool.ray_collider) and edit_tool.ray_collider is TowerBase:
 			card_sprites[0].view_tower()
 		else:
 			card_sprites[0].view_weapon()

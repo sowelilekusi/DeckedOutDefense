@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://bffhb5krs5elm"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://bffhb5krs5elm"]
 
 [ext_resource type="Texture2D" uid="uid://b1lwaxw62yp3p" path="res://Assets/Textures/dead_spike.png" id="1_1js8q"]
 [ext_resource type="Texture2D" uid="uid://duywsy7jmh4u" path="res://Assets/Textures/spike.png" id="1_22o7e"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_q5r05"]
+[ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="3_b3axe"]
 [ext_resource type="Texture2D" uid="uid://sybn6bjbj5fh" path="res://Assets/TextureAtlases/spike.tres" id="3_tbb38"]
 
 [resource]
 script = ExtResource("1_q5r05")
 title = "spike"
 target_type = 2
+scene = ExtResource("3_b3axe")
 icon = ExtResource("1_22o7e")
 death_sprite = ExtResource("1_1js8q")
 sprite = ExtResource("3_tbb38")

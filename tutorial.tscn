@@ -1,0 +1,252 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1l8c02m2d58d"]
+
+[ext_resource type="Script" uid="uid://bc7buekur5p5i" path="res://tutorial.gd" id="1_5mrt3"]
+[ext_resource type="Material" uid="uid://45bvudgvpre2" path="res://prototype.tres" id="1_yb1ct"]
+[ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="2_5mrt3"]
+[ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="2_ehuit"]
+[ext_resource type="Texture2D" uid="uid://c2e1jacw7iua6" path="res://UI/Keybinding/KennyControllerPrompts/Mouse/mouse_move.png" id="5_rwowx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehuit"]
+size = Vector3(39, 1, 39)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mrt3"]
+size = Vector3(3, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb1ct"]
+transparency = 1
+albedo_color = Color(0.382817, 0.681764, 0.962017, 0.768)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yb1ct"]
+size = Vector3(0.5, 4, 2.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rwowx"]
+radius = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu44a"]
+albedo_color = Color(0.679447, 0.144964, 0.137269, 1)
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_5mrt3")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
+size = Vector3(39, 1, 39)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ehuit")
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor2"]
+size = Vector3(39, 1, 39)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+shape = SubResource("BoxShape3D_ehuit")
+
+[node name="SpawnRoom" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 19)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 19)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0, 17)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 0, 14)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18, 0, 12)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15, 0, 12)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -13, 0, 13)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -13, 0, 18)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(3, 4, 1)
+material = ExtResource("1_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_5mrt3")
+
+[node name="door" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9934, 2, 15.3436)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom/door"]
+size = Vector3(0.5, 4, 2.5)
+material = SubResource("StandardMaterial3D_yb1ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/door"]
+shape = SubResource("BoxShape3D_yb1ct")
+
+[node name="InteractButton" type="StaticBody3D" parent="SpawnRoom/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.489253, -0.88103, 1.49908)
+collision_layer = 16
+script = ExtResource("2_5mrt3")
+hover_text = "[center]#Interact# to open door"
+metadata/_custom_type_script = "uid://dkfswql8ui0bt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/door/InteractButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266008, 0, 0)
+shape = SubResource("SphereShape3D_rwowx")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SpawnRoom/door/InteractButton"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 0.2
+height = 0.3
+sides = 16
+material = SubResource("StandardMaterial3D_hu44a")
+
+[node name="Hero" parent="." instance=ExtResource("2_ehuit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2082, 0.044471, 16.1349)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 490.0
+offset_bottom = 100.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Use"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+bbcode_enabled = true
+text = "#Move Forward#"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+bbcode_enabled = true
+text = "#Move Left##Move Backward##Move Right#"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "to walk"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Use"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_rwowx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "to look"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="button_interacted" from="SpawnRoom/door/InteractButton" to="." method="_on_interact_button_button_interacted"]
+[connection signal="timeout" from="Timer" to="." method="fade_move_hint"]

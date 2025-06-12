@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://dsgkwh3opyqtx"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://dsgkwh3opyqtx"]
 
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="1_57rr1"]
 [ext_resource type="Texture2D" uid="uid://ta47gpiwloxm" path="res://Assets/Textures/dead_bubble.png" id="1_ioqxi"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_wjbfx"]
+[ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="3_86skx"]
 [ext_resource type="Texture2D" uid="uid://d0vafwv4lhjji" path="res://Assets/TextureAtlases/bubble.tres" id="3_homny"]
 
 [resource]
 script = ExtResource("1_wjbfx")
 title = "bubble"
 target_type = 2
+scene = ExtResource("3_86skx")
 icon = ExtResource("1_57rr1")
 death_sprite = ExtResource("1_ioqxi")
 sprite = ExtResource("3_homny")

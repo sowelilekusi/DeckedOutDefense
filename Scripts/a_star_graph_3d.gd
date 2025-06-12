@@ -230,12 +230,13 @@ func find_path() -> bool:
 func make_grid() -> void:
 	for x: int in grid_size.x:
 		for y: int in grid_size.y:
-			var point_position: Vector3 = Vector3((x - floori(grid_size.x / 2.0)) * point_gap, 0.5, (y - floori(grid_size.y / 2.0)) * point_gap)
+			var point_position: Vector3 = Vector3((x - floori(grid_size.x / 2.0)) * point_gap, 0, (y - floori(grid_size.y / 2.0)) * point_gap)
+			point_position += global_position
 			astar.add_point(int(x * grid_size.y + y), point_position)
 			var frame: Node3D = tower_frame_scene.instantiate()
-			frame.position = point_position
 			tower_frames.append(frame)
 			add_child(frame)
+			frame.global_position = point_position
 	
 	for x: int in grid_size.x:
 		for y: int in grid_size.y:

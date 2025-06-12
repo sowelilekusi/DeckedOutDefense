@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1srd60cohcdj"]
+
+[ext_resource type="Material" uid="uid://cfv5g36sjq3bo" path="res://tile.tres" id="1_4v084"]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D"]
+polygon = PackedVector2Array(0.0272499, 0.0545001, 0.0586923, 0.00419231, 0.0314424, -0.039827, -0.0335385, -0.0440193, -0.0670769, 0.00209616, -0.0314423, 0.0545001)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("1_4v084")

@@ -16,7 +16,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_ss5ir"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
+[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
@@ -24,7 +24,7 @@ script = ExtResource("1_m83kr")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("BeeliningController")
 health = NodePath("Health")
-sprite = NodePath("DirectionSprite")
+d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_aed6c")
 
 [node name="Health" type="Node" parent="."]
@@ -81,6 +81,8 @@ character = NodePath("..")
 script = ExtResource("9_7hati")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="."]
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]

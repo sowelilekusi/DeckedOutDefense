@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cfv5g36sjq3bo"]
+
+[ext_resource type="Shader" uid="uid://dmgdero70g5d5" path="res://tiler.gdshader" id="1_o41vb"]
+[ext_resource type="Texture2D" uid="uid://ds4ccfym5ej7w" path="res://Assets/Textures/tile.png" id="2_2vp4j"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o41vb")
+shader_parameter/scroll_speed = 0.6
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("2_2vp4j")

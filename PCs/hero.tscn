@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
 [ext_resource type="Script" uid="uid://cij76at0nbs1v" path="res://PCs/view_movement.gd" id="4_mhexa"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
-[ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://Scenes/gauntlet.tscn" id="5_jlxb3"]
+[ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://PCs/PathEditTool/path_edit_tool.tscn" id="5_jlxb3"]
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="6_cf5ap"]
 [ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://Classes/Engineer/red.png" id="6_yyp8i"]
 [ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
@@ -20,13 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
 [ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://Scenes/UI/pickup_notification.tscn" id="17_oyeww"]
-[ext_resource type="PackedScene" uid="uid://d17c77pqsi8oy" path="res://enemy_card_ui.tscn" id="18_dfkac"]
+[ext_resource type="PackedScene" uid="uid://d17c77pqsi8oy" path="res://UI/EnemyCard/enemy_card_ui.tscn" id="18_dfkac"]
 [ext_resource type="Texture2D" uid="uid://cvjcu3hofahr6" path="res://Assets/Textures/place_slot.png" id="18_okmpi"]
 [ext_resource type="Script" uid="uid://b5wle8f6rv3e7" path="res://PCs/player_movement.gd" id="20_cfhw8"]
-[ext_resource type="Shader" uid="uid://dhtylicctk3g4" path="res://UI/crosshair.gdshader" id="20_gxpgc"]
 [ext_resource type="AudioStream" uid="uid://csu2hce4bfoki" path="res://Audio/cardPlace1.ogg" id="24_8ch4w"]
 [ext_resource type="AudioStream" uid="uid://dxq8b77wa41os" path="res://Audio/cardPlace2.ogg" id="25_awl6m"]
+[ext_resource type="Texture2D" uid="uid://bs2mskoyvyehv" path="res://Assets/Textures/crosshair159.png" id="25_l7gpx"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
+[ext_resource type="Texture2D" uid="uid://0x80ptif1diq" path="res://Assets/Textures/hand_small_point.png" id="26_dfkac"]
 [ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://energy_bar.tscn" id="27_14ugt"]
 [ext_resource type="AudioStream" uid="uid://k1lsqkvohjpa" path="res://Audio/cardPlace4.ogg" id="27_xvxs8"]
 [ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
@@ -93,21 +94,6 @@ viewport_path = NodePath("FirstPersonViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_574jy"]
 viewport_path = NodePath("MiniMapViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lg5jo"]
-shader = ExtResource("20_gxpgc")
-shader_parameter/center_enabled = true
-shader_parameter/legs_enabled = true
-shader_parameter/inverted = false
-shader_parameter/color_id = 0
-shader_parameter/color_0 = Vector4(1, 0, 0, 0.95)
-shader_parameter/color_1 = Vector4(1, 0, 0, 1)
-shader_parameter/color_2 = Vector4(0, 0, 1, 1)
-shader_parameter/center_radius = 0.002
-shader_parameter/width = 0.002
-shader_parameter/len = 0.012
-shader_parameter/spacing = 0.008
-shader_parameter/spread = 1.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tsiqi"]
 properties/0/path = NodePath(".:position")
@@ -382,19 +368,18 @@ max_look_down_angle = 80.0
 max_look_up_angle = 80.0
 enable_jumping = true
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "crosshair", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
-wave_count = NodePath("WaveCount")
-lives_count = NodePath("LivesCount")
-currency_count = NodePath("CurrencyCount")
-minimap_outline = NodePath("MinimapBorder")
-crosshair = NodePath("Crosshair")
+wave_count = NodePath("EnemyTracker/WaveCount")
+lives_count = NodePath("LivesBar/LivesCount")
+currency_count = NodePath("Minimap/CurrencyCount")
+minimap_outline = NodePath("Minimap/MinimapBorder")
 minimap = NodePath("Minimap")
 minimap_cam = NodePath("../MiniMapViewport/Camera3D")
 minimap_viewport = NodePath("../MiniMapViewport")
 fps_label = NodePath("FPSCounter")
-hover_text = NodePath("RichTextLabel2")
+hover_text = NodePath("InteractLabel")
 enemy_sprites = [NodePath("EnemyTracker/TextureRect"), NodePath("EnemyTracker/TextureRect2"), NodePath("EnemyTracker/TextureRect3"), NodePath("EnemyTracker/TextureRect4"), NodePath("EnemyTracker/TextureRect5")]
 enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTracker/TextureRect2/Label2"), NodePath("EnemyTracker/TextureRect3/Label3"), NodePath("EnemyTracker/TextureRect4/Label4"), NodePath("EnemyTracker/TextureRect5/Label5")]
 pickup_notif_scene = ExtResource("17_oyeww")
@@ -481,6 +466,35 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = SubResource("ViewportTexture_574jy")
 
+[node name="MinimapBorder" type="TextureRect" parent="HUD/Minimap"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -259.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 333.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("16_x1xjr")
+
+[node name="CurrencyCount" type="Label" parent="HUD/Minimap"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_top = 260.0
+offset_bottom = 318.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
+theme_override_font_sizes/font_size = 37
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FPSCounter" type="Label" parent="HUD"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -505,30 +519,16 @@ grow_vertical = 1
 scale = Vector2(3, 3)
 mouse_filter = 2
 
-[node name="LivesCount" type="Label" parent="HUD"]
-offset_left = -2.24
-offset_top = 23.28
-offset_right = 102.76
-offset_bottom = 112.28
+[node name="LivesCount" type="Label" parent="HUD/LivesBar"]
+layout_mode = 0
+offset_right = 79.0
+offset_bottom = 70.0
+scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0.65098, 0.227451, 0.243137, 1)
 theme_override_font_sizes/font_size = 37
-text = "120
-"
+text = "120"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MinimapBorder" type="TextureRect" parent="HUD"]
-texture_filter = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -262.0
-offset_top = 37.0
-offset_right = -37.0
-offset_bottom = 336.0
-grow_horizontal = 0
-mouse_filter = 2
-texture = ExtResource("16_x1xjr")
 
 [node name="EnemyTracker" type="TextureRect" parent="HUD"]
 texture_filter = 1
@@ -652,22 +652,23 @@ text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrencyCount" type="Label" parent="HUD"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -101.0
-offset_top = 300.0
-offset_right = -40.0
-offset_bottom = 54.0
-grow_horizontal = 0
-theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
-theme_override_font_sizes/font_size = 37
-text = "20"
+[node name="WaveCount" type="Label" parent="HUD/EnemyTracker"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 59.0
+offset_right = 30.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="HUD"]
+[node name="InteractLabel" type="RichTextLabel" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -686,30 +687,6 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]Press Button To do thing"
 scroll_active = false
-
-[node name="WaveCount" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_top = 81.0
-offset_right = 30.0
-offset_bottom = 109.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Crosshair" type="ColorRect" parent="HUD"]
-material = SubResource("ShaderMaterial_lg5jo")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
 anchors_preset = 4
@@ -757,7 +734,44 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
+visible = false
 mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+modulate = Color(0.54324, 0.193653, 0.15885, 0.9)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("25_l7gpx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("26_dfkac")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.4

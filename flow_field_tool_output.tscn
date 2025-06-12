@@ -1,0 +1,662 @@
+[gd_scene load_steps=3 format=3 uid="uid://2vv6mrxiwibf"]
+
+[ext_resource type="Script" uid="uid://r4nmfr8jfcjx" path="res://flow_field.gd" id="1_ca7vt"]
+[ext_resource type="PackedScene" uid="uid://bssfvyxv5uo1f" path="res://flow_node.tscn" id="2_s6hwk"]
+
+[node name="FlowField" type="Node3D" node_paths=PackedStringArray("nodes", "goals")]
+script = ExtResource("1_ca7vt")
+flow_node_scene = ExtResource("2_s6hwk")
+nodes = [NodePath("FlowNode"), NodePath("@StaticBody3D@10"), NodePath("@StaticBody3D@11"), NodePath("@StaticBody3D@12"), NodePath("@StaticBody3D@13"), NodePath("@StaticBody3D@14"), NodePath("@StaticBody3D@15"), NodePath("@StaticBody3D@16"), NodePath("@StaticBody3D@17"), NodePath("@StaticBody3D@18"), NodePath("@StaticBody3D@19"), NodePath("@StaticBody3D@20"), NodePath("@StaticBody3D@21"), NodePath("@StaticBody3D@22"), NodePath("@StaticBody3D@23"), NodePath("@StaticBody3D@24"), NodePath("@StaticBody3D@25"), NodePath("@StaticBody3D@26"), NodePath("@StaticBody3D@27"), NodePath("@StaticBody3D@28"), NodePath("@StaticBody3D@29"), NodePath("@StaticBody3D@30"), NodePath("@StaticBody3D@31"), NodePath("@StaticBody3D@32"), NodePath("@StaticBody3D@33"), NodePath("@StaticBody3D@34"), NodePath("@StaticBody3D@35"), NodePath("@StaticBody3D@36"), NodePath("@StaticBody3D@37"), NodePath("@StaticBody3D@38"), NodePath("@StaticBody3D@39"), NodePath("@StaticBody3D@40"), NodePath("@StaticBody3D@41"), NodePath("@StaticBody3D@42"), NodePath("@StaticBody3D@43"), NodePath("@StaticBody3D@44"), NodePath("@StaticBody3D@45"), NodePath("@StaticBody3D@46"), NodePath("@StaticBody3D@47"), NodePath("@StaticBody3D@48"), NodePath("@StaticBody3D@49"), NodePath("@StaticBody3D@50"), NodePath("@StaticBody3D@51"), NodePath("@StaticBody3D@52"), NodePath("@StaticBody3D@53"), NodePath("@StaticBody3D@54"), NodePath("@StaticBody3D@55"), NodePath("@StaticBody3D@56"), NodePath("@StaticBody3D@57"), NodePath("@StaticBody3D@58"), NodePath("@StaticBody3D@59"), NodePath("@StaticBody3D@60"), NodePath("@StaticBody3D@61"), NodePath("@StaticBody3D@62"), NodePath("@StaticBody3D@63"), NodePath("@StaticBody3D@64"), NodePath("@StaticBody3D@65"), NodePath("@StaticBody3D@66"), NodePath("@StaticBody3D@67"), NodePath("@StaticBody3D@68"), NodePath("@StaticBody3D@69"), NodePath("@StaticBody3D@70"), NodePath("@StaticBody3D@71"), NodePath("@StaticBody3D@72"), NodePath("@StaticBody3D@73"), NodePath("@StaticBody3D@74"), NodePath("@StaticBody3D@75"), NodePath("@StaticBody3D@76"), NodePath("@StaticBody3D@77"), NodePath("@StaticBody3D@78"), NodePath("@StaticBody3D@79"), NodePath("@StaticBody3D@80"), NodePath("@StaticBody3D@81"), NodePath("@StaticBody3D@82"), NodePath("@StaticBody3D@83"), NodePath("@StaticBody3D@84"), NodePath("@StaticBody3D@85"), NodePath("@StaticBody3D@86"), NodePath("@StaticBody3D@87"), NodePath("@StaticBody3D@88"), NodePath("@StaticBody3D@89"), NodePath("@StaticBody3D@90"), NodePath("@StaticBody3D@91"), NodePath("@StaticBody3D@92"), NodePath("@StaticBody3D@93"), NodePath("@StaticBody3D@94"), NodePath("@StaticBody3D@95"), NodePath("@StaticBody3D@96"), NodePath("@StaticBody3D@97"), NodePath("@StaticBody3D@98"), NodePath("@StaticBody3D@99"), NodePath("@StaticBody3D@100"), NodePath("@StaticBody3D@101"), NodePath("@StaticBody3D@102"), NodePath("@StaticBody3D@103"), NodePath("@StaticBody3D@104"), NodePath("@StaticBody3D@105"), NodePath("@StaticBody3D@106"), NodePath("@StaticBody3D@107"), NodePath("@StaticBody3D@108"), NodePath("@StaticBody3D@109"), NodePath("@StaticBody3D@110"), NodePath("@StaticBody3D@111"), NodePath("@StaticBody3D@112"), NodePath("@StaticBody3D@113"), NodePath("@StaticBody3D@385"), NodePath("@StaticBody3D@387"), NodePath("@StaticBody3D@389"), NodePath("@StaticBody3D@391"), NodePath("@StaticBody3D@393"), NodePath("@StaticBody3D@395"), NodePath("@StaticBody3D@397"), NodePath("@StaticBody3D@411"), NodePath("@StaticBody3D@414"), NodePath("@StaticBody3D@416"), NodePath("@StaticBody3D@458"), NodePath("@StaticBody3D@464"), NodePath("@StaticBody3D@466"), NodePath("@StaticBody3D@468"), NodePath("@StaticBody3D@470"), NodePath("@StaticBody3D@472"), NodePath("@StaticBody3D@474"), NodePath("@StaticBody3D@476"), NodePath("@StaticBody3D@490"), NodePath("@StaticBody3D@493"), NodePath("@StaticBody3D@495")]
+goals = [NodePath("@StaticBody3D@458")]
+metadata/_custom_type_script = "uid://r4nmfr8jfcjx"
+
+[node name="FlowNode" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@10"), NodePath("../@StaticBody3D@16"), NodePath("../@StaticBody3D@464")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@10" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.0404969, -5)
+connections = [NodePath("../FlowNode"), NodePath("../@StaticBody3D@11"), NodePath("../@StaticBody3D@17"), NodePath("../@StaticBody3D@466")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@11" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@10"), NodePath("../@StaticBody3D@12"), NodePath("../@StaticBody3D@18"), NodePath("../@StaticBody3D@468")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@12" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.0404969, 2.84217e-14)
+connections = [NodePath("../@StaticBody3D@11"), NodePath("../@StaticBody3D@13"), NodePath("../@StaticBody3D@19"), NodePath("../@StaticBody3D@470")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@13" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@12"), NodePath("../@StaticBody3D@14"), NodePath("../@StaticBody3D@20"), NodePath("../@StaticBody3D@472")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@14" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@13"), NodePath("../@StaticBody3D@15"), NodePath("../@StaticBody3D@21"), NodePath("../@StaticBody3D@474")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@15" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@14"), NodePath("../@StaticBody3D@22"), NodePath("../@StaticBody3D@476")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@16" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.0017556, -7.5)
+connections = [NodePath("../FlowNode"), NodePath("../@StaticBody3D@17"), NodePath("../@StaticBody3D@23")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@17" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.0404969, -5)
+connections = [NodePath("../@StaticBody3D@10"), NodePath("../@StaticBody3D@16"), NodePath("../@StaticBody3D@18"), NodePath("../@StaticBody3D@24")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@18" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@11"), NodePath("../@StaticBody3D@17"), NodePath("../@StaticBody3D@19"), NodePath("../@StaticBody3D@25")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@19" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.0404969, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@12"), NodePath("../@StaticBody3D@18"), NodePath("../@StaticBody3D@20"), NodePath("../@StaticBody3D@26")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@20" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@13"), NodePath("../@StaticBody3D@19"), NodePath("../@StaticBody3D@21"), NodePath("../@StaticBody3D@27")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@21" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@14"), NodePath("../@StaticBody3D@20"), NodePath("../@StaticBody3D@22"), NodePath("../@StaticBody3D@28")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@22" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@15"), NodePath("../@StaticBody3D@21"), NodePath("../@StaticBody3D@29")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@23" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@16"), NodePath("../@StaticBody3D@24"), NodePath("../@StaticBody3D@30")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@24" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@17"), NodePath("../@StaticBody3D@23"), NodePath("../@StaticBody3D@25"), NodePath("../@StaticBody3D@31")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@25" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@18"), NodePath("../@StaticBody3D@24"), NodePath("../@StaticBody3D@26"), NodePath("../@StaticBody3D@32")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@26" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.0404969, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@19"), NodePath("../@StaticBody3D@25"), NodePath("../@StaticBody3D@27"), NodePath("../@StaticBody3D@33")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@27" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@20"), NodePath("../@StaticBody3D@26"), NodePath("../@StaticBody3D@28"), NodePath("../@StaticBody3D@34")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@28" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@21"), NodePath("../@StaticBody3D@27"), NodePath("../@StaticBody3D@29"), NodePath("../@StaticBody3D@35")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@29" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@22"), NodePath("../@StaticBody3D@28"), NodePath("../@StaticBody3D@36")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@30" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@23"), NodePath("../@StaticBody3D@31"), NodePath("../@StaticBody3D@37")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@31" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@24"), NodePath("../@StaticBody3D@30"), NodePath("../@StaticBody3D@32"), NodePath("../@StaticBody3D@38")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@32" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@25"), NodePath("../@StaticBody3D@31"), NodePath("../@StaticBody3D@33"), NodePath("../@StaticBody3D@39")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@33" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.0404969, 2.84217e-14)
+connections = [NodePath("../@StaticBody3D@26"), NodePath("../@StaticBody3D@32"), NodePath("../@StaticBody3D@34"), NodePath("../@StaticBody3D@40")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@34" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@27"), NodePath("../@StaticBody3D@33"), NodePath("../@StaticBody3D@35"), NodePath("../@StaticBody3D@41")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@35" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@28"), NodePath("../@StaticBody3D@34"), NodePath("../@StaticBody3D@36"), NodePath("../@StaticBody3D@42")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@36" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@29"), NodePath("../@StaticBody3D@35"), NodePath("../@StaticBody3D@43")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@37" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@30"), NodePath("../@StaticBody3D@38"), NodePath("../@StaticBody3D@44")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@38" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@31"), NodePath("../@StaticBody3D@37"), NodePath("../@StaticBody3D@39"), NodePath("../@StaticBody3D@45")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@39" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@32"), NodePath("../@StaticBody3D@38"), NodePath("../@StaticBody3D@40"), NodePath("../@StaticBody3D@46")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@40" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.0404969, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@33"), NodePath("../@StaticBody3D@39"), NodePath("../@StaticBody3D@41"), NodePath("../@StaticBody3D@47")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@41" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@34"), NodePath("../@StaticBody3D@40"), NodePath("../@StaticBody3D@42"), NodePath("../@StaticBody3D@48")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@42" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@35"), NodePath("../@StaticBody3D@41"), NodePath("../@StaticBody3D@43"), NodePath("../@StaticBody3D@49")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@43" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@36"), NodePath("../@StaticBody3D@42"), NodePath("../@StaticBody3D@50")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@44" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@37"), NodePath("../@StaticBody3D@45"), NodePath("../@StaticBody3D@51")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@45" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@38"), NodePath("../@StaticBody3D@44"), NodePath("../@StaticBody3D@46"), NodePath("../@StaticBody3D@52")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@46" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@39"), NodePath("../@StaticBody3D@45"), NodePath("../@StaticBody3D@47"), NodePath("../@StaticBody3D@53")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@47" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0404969, 0)
+connections = [NodePath("../@StaticBody3D@40"), NodePath("../@StaticBody3D@46"), NodePath("../@StaticBody3D@48"), NodePath("../@StaticBody3D@54")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@48" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@41"), NodePath("../@StaticBody3D@47"), NodePath("../@StaticBody3D@49"), NodePath("../@StaticBody3D@55")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@49" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@42"), NodePath("../@StaticBody3D@48"), NodePath("../@StaticBody3D@50"), NodePath("../@StaticBody3D@56")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@50" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@43"), NodePath("../@StaticBody3D@49"), NodePath("../@StaticBody3D@57")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@51" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@44"), NodePath("../@StaticBody3D@52"), NodePath("../@StaticBody3D@58")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@52" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@45"), NodePath("../@StaticBody3D@51"), NodePath("../@StaticBody3D@53"), NodePath("../@StaticBody3D@59")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@53" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@46"), NodePath("../@StaticBody3D@52"), NodePath("../@StaticBody3D@54"), NodePath("../@StaticBody3D@60")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@54" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0404969, 0)
+connections = [NodePath("../@StaticBody3D@47"), NodePath("../@StaticBody3D@53"), NodePath("../@StaticBody3D@55"), NodePath("../@StaticBody3D@61")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@55" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@48"), NodePath("../@StaticBody3D@54"), NodePath("../@StaticBody3D@56"), NodePath("../@StaticBody3D@62")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@56" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@49"), NodePath("../@StaticBody3D@55"), NodePath("../@StaticBody3D@57"), NodePath("../@StaticBody3D@63")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@57" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@50"), NodePath("../@StaticBody3D@56"), NodePath("../@StaticBody3D@64")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@58" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0017556, -7.5)
+connections = [NodePath("../@StaticBody3D@51"), NodePath("../@StaticBody3D@59"), NodePath("../@StaticBody3D@65")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@59" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404971, -5)
+connections = [NodePath("../@StaticBody3D@52"), NodePath("../@StaticBody3D@58"), NodePath("../@StaticBody3D@60"), NodePath("../@StaticBody3D@66")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@60" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404969, -2.5)
+connections = [NodePath("../@StaticBody3D@53"), NodePath("../@StaticBody3D@59"), NodePath("../@StaticBody3D@61"), NodePath("../@StaticBody3D@67")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@61" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404969, 0)
+connections = [NodePath("../@StaticBody3D@54"), NodePath("../@StaticBody3D@60"), NodePath("../@StaticBody3D@62"), NodePath("../@StaticBody3D@68")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@62" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404972, 2.5)
+connections = [NodePath("../@StaticBody3D@55"), NodePath("../@StaticBody3D@61"), NodePath("../@StaticBody3D@63"), NodePath("../@StaticBody3D@69")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@63" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404972, 5)
+connections = [NodePath("../@StaticBody3D@56"), NodePath("../@StaticBody3D@62"), NodePath("../@StaticBody3D@64"), NodePath("../@StaticBody3D@70")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@64" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@57"), NodePath("../@StaticBody3D@63"), NodePath("../@StaticBody3D@71")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@65" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@58"), NodePath("../@StaticBody3D@66"), NodePath("../@StaticBody3D@72")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@66" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@59"), NodePath("../@StaticBody3D@65"), NodePath("../@StaticBody3D@67"), NodePath("../@StaticBody3D@73")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@67" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@60"), NodePath("../@StaticBody3D@66"), NodePath("../@StaticBody3D@68"), NodePath("../@StaticBody3D@74")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@68" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.0404972, 0)
+connections = [NodePath("../@StaticBody3D@61"), NodePath("../@StaticBody3D@67"), NodePath("../@StaticBody3D@69"), NodePath("../@StaticBody3D@75")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@69" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@62"), NodePath("../@StaticBody3D@68"), NodePath("../@StaticBody3D@70"), NodePath("../@StaticBody3D@76")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@70" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.0404971, 5)
+connections = [NodePath("../@StaticBody3D@63"), NodePath("../@StaticBody3D@69"), NodePath("../@StaticBody3D@71"), NodePath("../@StaticBody3D@77")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@71" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@64"), NodePath("../@StaticBody3D@70"), NodePath("../@StaticBody3D@78")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@72" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@65"), NodePath("../@StaticBody3D@73"), NodePath("../@StaticBody3D@79")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@73" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@66"), NodePath("../@StaticBody3D@72"), NodePath("../@StaticBody3D@74"), NodePath("../@StaticBody3D@80")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@74" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@67"), NodePath("../@StaticBody3D@73"), NodePath("../@StaticBody3D@75"), NodePath("../@StaticBody3D@81")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@75" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.0404969, -1.42109e-14)
+connections = [NodePath("../@StaticBody3D@68"), NodePath("../@StaticBody3D@74"), NodePath("../@StaticBody3D@76"), NodePath("../@StaticBody3D@82")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@76" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@69"), NodePath("../@StaticBody3D@75"), NodePath("../@StaticBody3D@77"), NodePath("../@StaticBody3D@83")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@77" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.0404971, 5)
+connections = [NodePath("../@StaticBody3D@70"), NodePath("../@StaticBody3D@76"), NodePath("../@StaticBody3D@78"), NodePath("../@StaticBody3D@84")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@78" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@71"), NodePath("../@StaticBody3D@77"), NodePath("../@StaticBody3D@85")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@79" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@72"), NodePath("../@StaticBody3D@80"), NodePath("../@StaticBody3D@86")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@80" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@73"), NodePath("../@StaticBody3D@79"), NodePath("../@StaticBody3D@81"), NodePath("../@StaticBody3D@87")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@81" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@74"), NodePath("../@StaticBody3D@80"), NodePath("../@StaticBody3D@82"), NodePath("../@StaticBody3D@88")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@82" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.0404969, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@75"), NodePath("../@StaticBody3D@81"), NodePath("../@StaticBody3D@83"), NodePath("../@StaticBody3D@89")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@83" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@76"), NodePath("../@StaticBody3D@82"), NodePath("../@StaticBody3D@84"), NodePath("../@StaticBody3D@90")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@84" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.0404971, 5)
+connections = [NodePath("../@StaticBody3D@77"), NodePath("../@StaticBody3D@83"), NodePath("../@StaticBody3D@85"), NodePath("../@StaticBody3D@91")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@85" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@78"), NodePath("../@StaticBody3D@84"), NodePath("../@StaticBody3D@92")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@86" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@79"), NodePath("../@StaticBody3D@87"), NodePath("../@StaticBody3D@93")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@87" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@80"), NodePath("../@StaticBody3D@86"), NodePath("../@StaticBody3D@88"), NodePath("../@StaticBody3D@94")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@88" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@81"), NodePath("../@StaticBody3D@87"), NodePath("../@StaticBody3D@89"), NodePath("../@StaticBody3D@95")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@89" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.0404969, 0)
+connections = [NodePath("../@StaticBody3D@82"), NodePath("../@StaticBody3D@88"), NodePath("../@StaticBody3D@90"), NodePath("../@StaticBody3D@96")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@90" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@83"), NodePath("../@StaticBody3D@89"), NodePath("../@StaticBody3D@91"), NodePath("../@StaticBody3D@97")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@91" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.0404971, 5)
+connections = [NodePath("../@StaticBody3D@84"), NodePath("../@StaticBody3D@90"), NodePath("../@StaticBody3D@92"), NodePath("../@StaticBody3D@98")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@92" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@85"), NodePath("../@StaticBody3D@91"), NodePath("../@StaticBody3D@99")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@93" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@86"), NodePath("../@StaticBody3D@94"), NodePath("../@StaticBody3D@100")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@94" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@87"), NodePath("../@StaticBody3D@93"), NodePath("../@StaticBody3D@95"), NodePath("../@StaticBody3D@101")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@95" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@88"), NodePath("../@StaticBody3D@94"), NodePath("../@StaticBody3D@96"), NodePath("../@StaticBody3D@102")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@96" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.0404969, 0)
+connections = [NodePath("../@StaticBody3D@89"), NodePath("../@StaticBody3D@95"), NodePath("../@StaticBody3D@97"), NodePath("../@StaticBody3D@103")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@97" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@90"), NodePath("../@StaticBody3D@96"), NodePath("../@StaticBody3D@98"), NodePath("../@StaticBody3D@104")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@98" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.0404971, 5)
+connections = [NodePath("../@StaticBody3D@91"), NodePath("../@StaticBody3D@97"), NodePath("../@StaticBody3D@99"), NodePath("../@StaticBody3D@105")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@99" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@92"), NodePath("../@StaticBody3D@98"), NodePath("../@StaticBody3D@106")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@100" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@93"), NodePath("../@StaticBody3D@101"), NodePath("../@StaticBody3D@107")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@101" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@94"), NodePath("../@StaticBody3D@100"), NodePath("../@StaticBody3D@102"), NodePath("../@StaticBody3D@108")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@102" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@95"), NodePath("../@StaticBody3D@101"), NodePath("../@StaticBody3D@103"), NodePath("../@StaticBody3D@109")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@103" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.0404969, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@96"), NodePath("../@StaticBody3D@102"), NodePath("../@StaticBody3D@104"), NodePath("../@StaticBody3D@110")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@104" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@97"), NodePath("../@StaticBody3D@103"), NodePath("../@StaticBody3D@105"), NodePath("../@StaticBody3D@111")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@105" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.0404969, 5)
+connections = [NodePath("../@StaticBody3D@98"), NodePath("../@StaticBody3D@104"), NodePath("../@StaticBody3D@106"), NodePath("../@StaticBody3D@112")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@106" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.00175571, 7.5)
+connections = [NodePath("../@StaticBody3D@99"), NodePath("../@StaticBody3D@105"), NodePath("../@StaticBody3D@113")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@107" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0.00175571, -7.5)
+connections = [NodePath("../@StaticBody3D@100"), NodePath("../@StaticBody3D@108"), NodePath("../@StaticBody3D@397")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@108" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -0.0404972, -5)
+connections = [NodePath("../@StaticBody3D@101"), NodePath("../@StaticBody3D@107"), NodePath("../@StaticBody3D@109"), NodePath("../@StaticBody3D@395")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@109" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -0.0404972, -2.5)
+connections = [NodePath("../@StaticBody3D@102"), NodePath("../@StaticBody3D@108"), NodePath("../@StaticBody3D@110"), NodePath("../@StaticBody3D@393")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@110" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -0.0404969, 2.84217e-14)
+connections = [NodePath("../@StaticBody3D@103"), NodePath("../@StaticBody3D@109"), NodePath("../@StaticBody3D@111"), NodePath("../@StaticBody3D@391")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@111" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -0.0404969, 2.5)
+connections = [NodePath("../@StaticBody3D@104"), NodePath("../@StaticBody3D@110"), NodePath("../@StaticBody3D@112"), NodePath("../@StaticBody3D@389")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@112" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -0.0404969, 5)
+connections = [NodePath("../@StaticBody3D@105"), NodePath("../@StaticBody3D@111"), NodePath("../@StaticBody3D@113"), NodePath("../@StaticBody3D@387")]
+visualisers = [null, null, null, null]
+
+[node name="@StaticBody3D@113" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0.0017556, 7.5)
+connections = [NodePath("../@StaticBody3D@106"), NodePath("../@StaticBody3D@112"), NodePath("../@StaticBody3D@385")]
+visualisers = [null, null, null]
+
+[node name="@StaticBody3D@385" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, 0.0945654, 7.5)
+connections = [NodePath("../@StaticBody3D@113"), NodePath("../@StaticBody3D@387"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@387" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, -0.0885693, 5)
+connections = [NodePath("../@StaticBody3D@112"), NodePath("../@StaticBody3D@385"), NodePath("../@StaticBody3D@389"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@389" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, -0.0848544, 2.5)
+connections = [NodePath("../@StaticBody3D@111"), NodePath("../@StaticBody3D@391"), NodePath("../@StaticBody3D@387"), NodePath("../@StaticBody3D@416"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@391" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, -0.0806967, 2.84217e-14)
+connections = [NodePath("../@StaticBody3D@110"), NodePath("../@StaticBody3D@393"), NodePath("../@StaticBody3D@389"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@393" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, -0.0848545, -2.5)
+connections = [NodePath("../@StaticBody3D@109"), NodePath("../@StaticBody3D@395"), NodePath("../@StaticBody3D@391"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@395" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, -0.0885694, -5)
+connections = [NodePath("../@StaticBody3D@108"), NodePath("../@StaticBody3D@397"), NodePath("../@StaticBody3D@393"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@397" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.215, 0.0945654, -7.5)
+connections = [NodePath("../@StaticBody3D@107"), NodePath("../@StaticBody3D@395"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@416")]
+visualisers = [null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@411" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.215, -1.0593, 0)
+connections = [NodePath("../@StaticBody3D@391"), NodePath("../@StaticBody3D@416"), NodePath("../@StaticBody3D@414"), NodePath("../@StaticBody3D@385"), NodePath("../@StaticBody3D@387"), NodePath("../@StaticBody3D@389"), NodePath("../@StaticBody3D@393"), NodePath("../@StaticBody3D@395"), NodePath("../@StaticBody3D@397"), NodePath("../@StaticBody3D@458")]
+visualisers = [null, null, null, null, null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@414" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.215, -1.05915, -2.5)
+connections = [NodePath("../@StaticBody3D@393"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@397"), NodePath("../@StaticBody3D@395"), NodePath("../@StaticBody3D@391"), NodePath("../@StaticBody3D@389"), NodePath("../@StaticBody3D@387"), NodePath("../@StaticBody3D@385"), NodePath("../@StaticBody3D@458")]
+visualisers = [null, null, null, null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@416" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.215, -1.05945, 2.5)
+connections = [NodePath("../@StaticBody3D@389"), NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@385"), NodePath("../@StaticBody3D@387"), NodePath("../@StaticBody3D@391"), NodePath("../@StaticBody3D@393"), NodePath("../@StaticBody3D@395"), NodePath("../@StaticBody3D@397"), NodePath("../@StaticBody3D@458")]
+visualisers = [null, null, null, null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@458" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.215, -1.05955, 0)
+connections = [NodePath("../@StaticBody3D@411"), NodePath("../@StaticBody3D@416"), NodePath("../@StaticBody3D@414")]
+visualisers = [null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@464" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, 0.10004, -7.5)
+connections = [NodePath("../FlowNode"), NodePath("../@StaticBody3D@466"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@466" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, -0.079766, -5)
+connections = [NodePath("../@StaticBody3D@10"), NodePath("../@StaticBody3D@468"), NodePath("../@StaticBody3D@464"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@468" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, -0.0764061, -2.5)
+connections = [NodePath("../@StaticBody3D@11"), NodePath("../@StaticBody3D@470"), NodePath("../@StaticBody3D@466"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@470" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, -0.0730402, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@12"), NodePath("../@StaticBody3D@472"), NodePath("../@StaticBody3D@468"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@472" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, -0.0764062, 2.5)
+connections = [NodePath("../@StaticBody3D@13"), NodePath("../@StaticBody3D@474"), NodePath("../@StaticBody3D@470"), NodePath("../@StaticBody3D@493"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@474" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, -0.0797663, 5)
+connections = [NodePath("../@StaticBody3D@14"), NodePath("../@StaticBody3D@472"), NodePath("../@StaticBody3D@476"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@476" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.285, 0.10004, 7.5)
+connections = [NodePath("../@StaticBody3D@15"), NodePath("../@StaticBody3D@474"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@493")]
+visualisers = [null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@490" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.385, -1.0444, -2.84217e-14)
+connections = [NodePath("../@StaticBody3D@470"), NodePath("../@StaticBody3D@493"), NodePath("../@StaticBody3D@495"), NodePath("../@StaticBody3D@472"), NodePath("../@StaticBody3D@474"), NodePath("../@StaticBody3D@476"), NodePath("../@StaticBody3D@468"), NodePath("../@StaticBody3D@466"), NodePath("../@StaticBody3D@464")]
+visualisers = [null, null, null, null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@493" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.385, -1.05029, 4)
+connections = [NodePath("../@StaticBody3D@472"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@476"), NodePath("../@StaticBody3D@474"), NodePath("../@StaticBody3D@470"), NodePath("../@StaticBody3D@468"), NodePath("../@StaticBody3D@466"), NodePath("../@StaticBody3D@464")]
+visualisers = [null, null, null, null, null, null, null, null]
+buildable = false
+
+[node name="@StaticBody3D@495" parent="." node_paths=PackedStringArray("connections", "visualisers") instance=ExtResource("2_s6hwk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.385, -1.05029, -4)
+connections = [NodePath("../@StaticBody3D@468"), NodePath("../@StaticBody3D@490"), NodePath("../@StaticBody3D@464"), NodePath("../@StaticBody3D@466"), NodePath("../@StaticBody3D@470"), NodePath("../@StaticBody3D@472"), NodePath("../@StaticBody3D@474"), NodePath("../@StaticBody3D@476")]
+visualisers = [null, null, null, null, null, null, null, null]
+buildable = false

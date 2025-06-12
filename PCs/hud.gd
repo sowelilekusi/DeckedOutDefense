@@ -93,12 +93,16 @@ func tween_label(x: float) -> void:
 
 
 func set_hover_text(text: String) -> void:
+	$TextureRect2.visible = true
+	$TextureRect.visible = false
 	hover_text.text = parse_action_tag(text)
-	hover_text.set_visible(true)
+	hover_text.visible = true
 
 
 func unset_hover_text() -> void:
-	hover_text.set_visible(false)
+	hover_text.visible = false
+	$TextureRect2.visible = false
+	$TextureRect.visible = true
 
 
 func set_wave_count(value: int) -> void:
@@ -125,8 +129,12 @@ func set_upcoming_wave(value: Dictionary) -> void:
 	var frame_count: int = 0
 	enemy_names = []
 	var wave: Dictionary = {}
-	for index: int in value:
-		wave[Data.enemies[index]] = value[index]
+	for key: String in value:
+		var new_enemy: Enemy
+		for enemy: Enemy in Data.enemies:
+			if enemy.title == key:
+				new_enemy = enemy
+		wave[new_enemy] = value[key]
 	for x: int in enemy_sprites.size():
 		enemy_sprites[x].set_visible(false)
 		enemy_counts[x].set_visible(false)

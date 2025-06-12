@@ -33,6 +33,7 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 		var new_card: EnemyCard = EnemyCard.new()
 		
 		#First, choose an enemy at random
+		#TODO: Use seeded random
 		new_card.enemy = spawn_pool.pick_random()
 		
 		#Next, we have to figure out if we can actually buy that enemy
@@ -61,10 +62,11 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 				#Even the common rarity was too expensive, so we have to choose
 				#a different enemy and try this process again
 				var enemy_id: int = spawn_pool.find(new_card.enemy)
+				enemy_id -= 1
 				if enemy_id <= 0:
 					new_card.enemy = spawn_pool[spawn_pool.size() - 1]
 				else:
-					new_card.enemy = spawn_pool[enemy_id - 1]
+					new_card.enemy = spawn_pool[enemy_id]
 		
 		#Now that we know which rarities we could afford, lets just choose a
 		#random one

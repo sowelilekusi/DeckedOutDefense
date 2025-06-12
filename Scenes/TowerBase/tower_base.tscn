@@ -1,56 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddbbwx0yy16lh"]
+[gd_scene load_steps=7 format=3 uid="uid://ddbbwx0yy16lh"]
 
-[ext_resource type="Script" uid="uid://si58bm4r7r2i" path="res://Scripts/tower_base.gd" id="1_kalmg"]
+[ext_resource type="Script" uid="uid://si58bm4r7r2i" path="res://Scenes/TowerBase/tower_base.gd" id="1_kalmg"]
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="2_m0oxx"]
-[ext_resource type="ArrayMesh" uid="uid://cr83c74ys8rll" path="res://Scenes/TowerBase/textmesh.res" id="3_ly30x"]
+[ext_resource type="Material" uid="uid://bi0grduhgdma4" path="res://Scenes/TowerBase/new_shader_material.tres" id="3_ueedj"]
+[ext_resource type="ArrayMesh" uid="uid://cm5xjp442ew0y" path="res://textmesh.res" id="4_8j8ue"]
 [ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="4_lbvtm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lc72v"]
-size = Vector3(1.1, 1.1, 1.1)
+size = Vector3(1.381, 1.377, 1.381)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3uwr"]
-albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i074"]
-albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt61s"]
-albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t32n1"]
-albedo_color = Color(0.462745, 0.439216, 0.415686, 1)
-
-[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "north_icon", "south_icon", "east_icon", "west_icon", "north_mesh", "south_mesh", "east_mesh", "west_mesh", "north_collider", "south_collider", "east_collider", "west_collider") groups=["TowerBases"]]
+[node name="TowerBase" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon") groups=["TowerBases"]]
 collision_layer = 17
 script = ExtResource("1_kalmg")
 inventory = NodePath("Inventory")
 block = NodePath("MeshInstance3D")
 collider = NodePath("CollisionShape3D")
 minimap_icon = NodePath("MinimapIcon")
-north_icon = NodePath("North/NorthMinimapIcon")
-south_icon = NodePath("South/SouthMinimapIcon")
-east_icon = NodePath("East/EastMinimapIcon")
-west_icon = NodePath("West/WestMinimapIcon")
-north_mesh = NodePath("North")
-south_mesh = NodePath("South")
-east_mesh = NodePath("East")
-west_mesh = NodePath("West")
-north_collider = NodePath("CollisionShape3D2")
-south_collider = NodePath("CollisionShape3D3")
-east_collider = NodePath("CollisionShape3D5")
-west_collider = NodePath("CollisionShape3D4")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_m0oxx")
 max_size = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688315, 0.00199121)
 shape = SubResource("BoxShape3D_lc72v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-mesh = ExtResource("3_ly30x")
+material_override = ExtResource("3_ueedj")
+mesh = ExtResource("4_8j8ue")
 
 [node name="MinimapIcon" type="Sprite3D" parent="."]
 transform = Transform3D(3.5, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 0, 1.5, 0)
@@ -58,79 +35,3 @@ layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
 texture = ExtResource("4_lbvtm")
-
-[node name="North" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.45, 0)
-visible = false
-size = Vector3(1, 0.9, 0.5)
-material = SubResource("StandardMaterial3D_o3uwr")
-
-[node name="NorthMinimapIcon" type="Sprite3D" parent="North"]
-transform = Transform3D(3.5, 0, 0, 0, -6.7097e-08, 3.5, 0, -1.535, -1.5299e-07, 0.0251597, 1, 0)
-layers = 4
-modulate = Color(0, 1, 0, 1)
-texture_filter = 0
-texture = ExtResource("4_lbvtm")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.55, 0)
-visible = false
-shape = SubResource("BoxShape3D_lc72v")
-disabled = true
-
-[node name="South" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.45, 0)
-visible = false
-size = Vector3(1, 0.9, 0.5)
-material = SubResource("StandardMaterial3D_1i074")
-
-[node name="SouthMinimapIcon" type="Sprite3D" parent="South"]
-transform = Transform3D(3.5, 0, 0, 0, -6.7097e-08, 3.5, 0, -1.535, -1.5299e-07, -0.0251607, 1, 0)
-layers = 4
-modulate = Color(0, 1, 0, 1)
-texture_filter = 0
-texture = ExtResource("4_lbvtm")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.55, 0)
-visible = false
-shape = SubResource("BoxShape3D_lc72v")
-disabled = true
-
-[node name="East" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.5)
-visible = false
-size = Vector3(0.5, 0.9, 1)
-material = SubResource("StandardMaterial3D_jt61s")
-
-[node name="EastMinimapIcon" type="Sprite3D" parent="East"]
-transform = Transform3D(1.535, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 0, 1, 0.0248078)
-layers = 4
-modulate = Color(0, 1, 0, 1)
-texture_filter = 0
-texture = ExtResource("4_lbvtm")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -0.5)
-visible = false
-shape = SubResource("BoxShape3D_lc72v")
-disabled = true
-
-[node name="West" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.5)
-visible = false
-size = Vector3(0.5, 0.9, 1)
-material = SubResource("StandardMaterial3D_t32n1")
-
-[node name="WestMinimapIcon" type="Sprite3D" parent="West"]
-transform = Transform3D(1.535, 0, 0, 0, -1.5299e-07, 3.5, 0, -3.5, -1.5299e-07, 0, 1, -0.0252527)
-layers = 4
-modulate = Color(0, 1, 0, 1)
-texture_filter = 0
-texture = ExtResource("4_lbvtm")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.5)
-visible = false
-shape = SubResource("BoxShape3D_lc72v")
-disabled = true

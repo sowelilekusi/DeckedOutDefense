@@ -1,0 +1,140 @@
+[gd_scene load_steps=3 format=3 uid="uid://cccowrgelgswj"]
+
+[ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scripts/flow_field_tool.gd" id="1_e7pmn"]
+
+[sub_resource type="Environment" id="Environment_e7pmn"]
+ambient_light_source = 2
+ambient_light_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="FlowFieldTool" type="Node" node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field")]
+script = ExtResource("1_e7pmn")
+raycast = NodePath("CameraFocus/Camera3D/RayCast3D")
+project_raycast = NodePath("RayCast3D")
+camera = NodePath("CameraFocus/Camera3D")
+camera_pivot = NodePath("CameraFocus")
+position_field = NodePath("Position")
+x_field = NodePath("Position/x")
+y_field = NodePath("Position/y")
+z_field = NodePath("Position/z")
+x_size_field = NodePath("VBoxContainer/HBoxContainer/x_size")
+y_size_field = NodePath("VBoxContainer/HBoxContainer/y_size")
+gap_field = NodePath("VBoxContainer/HBoxContainer/gap")
+metadata/_custom_type_script = "uid://05c5q1v2nv8p"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 296.0
+offset_bottom = 572.0
+
+[node name="Create" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create Node"
+
+[node name="Delete" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Remove Node"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GenerateGrid" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Generate Grid"
+
+[node name="x_size" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "15"
+placeholder_text = "x_size"
+
+[node name="y_size" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "7"
+placeholder_text = "y_size"
+
+[node name="gap" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "2.5"
+placeholder_text = "gap"
+
+[node name="Connect" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Connect Nodes"
+
+[node name="ProjectDownwards" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Stick node to floor"
+
+[node name="MarkGoal" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Toggle Goal"
+
+[node name="MarkStart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Toggle Start"
+
+[node name="ToggleTraversable" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Toggle Traversable"
+
+[node name="ToggleBuildable" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Toggle Buildable"
+
+[node name="Extrude" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Extrude"
+
+[node name="Calculate" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Calculate"
+
+[node name="Finalize" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Finalize"
+
+[node name="Position" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -323.0
+offset_bottom = 41.0
+grow_horizontal = 0
+
+[node name="x" type="LineEdit" parent="Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="y" type="LineEdit" parent="Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="z" type="LineEdit" parent="Position"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CameraFocus" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraFocus"]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 8.50452, 3.40739)
+environment = SubResource("Environment_e7pmn")
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraFocus/Camera3D"]
+collision_mask = 64
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Delete" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GenerateGrid" to="." method="_on_generate_grid_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Connect" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ProjectDownwards" to="." method="_on_project_downwards_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarkGoal" to="." method="_on_mark_goal_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarkStart" to="." method="_on_mark_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ToggleTraversable" to="." method="_on_toggle_traversable_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ToggleBuildable" to="." method="_on_toggle_buildable_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Extrude" to="." method="_on_extrude_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Calculate" to="." method="_on_calculate_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Finalize" to="." method="_on_finalize_button_pressed"]
+[connection signal="text_changed" from="Position/x" to="." method="_on_x_field_changed"]
+[connection signal="text_changed" from="Position/y" to="." method="_on_y_field_changed"]
+[connection signal="text_changed" from="Position/z" to="." method="_on_z_field_changed"]

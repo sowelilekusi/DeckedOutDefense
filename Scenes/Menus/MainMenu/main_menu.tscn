@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_p1cib"]
 [ext_resource type="Script" uid="uid://ci8vq73u23viy" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="2_ivytu"]
-[ext_resource type="Texture2D" uid="uid://lvvnrb5jugum" path="res://Assets/Textures/logo_title.png" id="3_8jkeb"]
 [ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/first_level.tscn" id="3_l8r4a"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="5_cwn2i"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="5_u514r"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cpa1hl36xfplg" path="res://Assets/Textures/first_scroll_seen.png" id="16_sv1gy"]
 [ext_resource type="Texture2D" uid="uid://ctbi3gm1me1t5" path="res://Assets/Textures/unlock_mage_achievement.png" id="17_6t4jd"]
 [ext_resource type="Script" uid="uid://cxrm2naq75jo1" path="res://mod_menu.gd" id="19_6t4jd"]
+[ext_resource type="FontFile" uid="uid://c3hwdjscf2hnk" path="res://Assets/Fonts/OpenType (.otf)/Kaph-Regular.otf" id="20_y5bw6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
 viewport_path = NodePath("SubViewport")
@@ -94,19 +94,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_5u75i")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -627.0
-offset_top = 73.0
-offset_right = 1293.0
-offset_bottom = 1153.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
 grow_horizontal = 2
-scale = Vector2(0.67, 0.67)
-texture = ExtResource("3_8jkeb")
-expand_mode = 1
+theme_override_colors/font_color = Color(0.8, 0.5644, 0.344, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -35
+theme_override_constants/outline_size = 55
+theme_override_fonts/font = ExtResource("20_y5bw6")
+theme_override_font_sizes/font_size = 146
+text = "decked
+out
+defense"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainControls" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -125,6 +129,7 @@ text = "Play"
 
 [node name="MultiplayerButton" type="Button" parent="MainControls"]
 layout_mode = 2
+disabled = true
 text = "Multiplayer"
 
 [node name="ModsButton" type="Button" parent="MainControls"]

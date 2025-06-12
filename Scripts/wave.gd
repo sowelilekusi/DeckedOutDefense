@@ -18,7 +18,7 @@ func to_dict() -> Dictionary:
 			enemy_count = group.enemy.epic_group
 		elif group.rarity == Data.Rarity.LEGENDARY:
 			enemy_count = group.enemy.legendary_group
-		if !dict.has(Data.enemies.find(group.enemy)):
-			dict[Data.enemies.find(group.enemy)] = 0
-		dict[Data.enemies.find(group.enemy)] += enemy_count
+		if !dict.has(group.enemy.title):
+			dict[group.enemy.title] = 0
+		dict[group.enemy.title] += enemy_count
 	return dict

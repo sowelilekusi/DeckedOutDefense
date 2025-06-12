@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://406wnf58lo7h"]
+
+[ext_resource type="PackedScene" uid="uid://bvyx8hxvka7vu" path="res://tree_test.glb" id="1_pscrb"]
+[ext_resource type="Material" uid="uid://cqwo7la40rbkn" path="res://foliage/foliage.material" id="2_kkjgf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us4dp"]
+albedo_color = Color(0.326727, 0.157357, 0.00483305, 1)
+
+[node name="tree_test" instance=ExtResource("1_pscrb")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_us4dp")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_kkjgf")

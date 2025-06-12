@@ -39,6 +39,17 @@ func _ready() -> void:
 	UILayer = CanvasLayer.new()
 	UILayer.layer = 2
 	get_tree().root.add_child.call_deferred(UILayer)
+	var version_label: Label = Label.new()
+	var version: String = ProjectSettings.get_setting("application/config/version")
+	version_label.text = "WORK IN PROGRESS | ALPHA - VERSION " + version + " | PLAYTEST"
+	version_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	version_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	version_label.add_theme_font_size_override("font_size", 18)
+	version_label.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85, 0.7))
+	version_label.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	UILayer.add_child(version_label)
+	Input.set_custom_mouse_cursor(load("res://Assets/Textures/cursor_none.png"), Input.CURSOR_ARROW, Vector2(9, 6))
+	Input.set_custom_mouse_cursor(load("res://Assets/Textures/bracket_b_vertical.png"), Input.CURSOR_IBEAM, Vector2(16, 16))
 
 
 @rpc("reliable", "call_local")
@@ -169,10 +180,12 @@ func ready_player(player_ready_true: bool) -> void:
 func spawn_enemy_wave() -> void:
 	level.shop.close()
 	wave += 1
-	level.a_star_graph_3d.find_path()
-	level.a_star_graph_3d.disable_all_tower_frames()
+	level.disable_all_tower_frames()
+	#level.a_star_graph_3d.find_path()
+	#level.a_star_graph_3d.disable_all_tower_frames()
+	level.flow_field.calculate()
 	for spawn: EnemySpawner in level.enemy_spawns:
-		spawn.path.disable_visualization()
+		#spawn.path.disable_visualization()
 		spawn.spawn_wave()
 	wave_started.emit(wave)
 
@@ -248,7 +261,7 @@ func end_wave() -> void:
 		connected_players_nodes[peer_id].unready_self()
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.path.enable_visualization()
-	level.a_star_graph_3d.enable_non_path_tower_frames()
+	#level.a_star_graph_3d.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
 		if randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			networked_spawn_shop.rpc()
@@ -304,11 +317,14 @@ func start() -> void:
 	
 	#Relies on rng having been seeded
 	set_upcoming_wave()
-	level.a_star_graph_3d.make_grid()
+	level.flow_field.calculate()
+	level.enemy_spawns[0].update_path()
+	#level.a_star_graph_3d.make_grid()
 	level.generate_obstacles()
-	level.a_star_graph_3d.disable_all_tower_frames()
-	level.a_star_graph_3d.enable_non_path_tower_frames()
-	level.a_star_graph_3d.find_path()
+	level.enable_non_path_tower_frames()
+	#level.a_star_graph_3d.disable_all_tower_frames()
+	#level.a_star_graph_3d.enable_non_path_tower_frames()z
+	#level.a_star_graph_3d.find_path()
 	
 	#Start game
 	game_active = true

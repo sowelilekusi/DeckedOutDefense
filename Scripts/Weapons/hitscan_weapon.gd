@@ -37,4 +37,4 @@ func networked_hit(target_path: String, target_hitbox_path: String) -> void:
 	var target_hitbox: Hitbox = get_tree().root.get_node(target_hitbox_path) as Hitbox
 	hit(target, target_hitbox)
 	if Data.preferences.display_party_damage_indicators:
-		spawn_damage_indicator(target.sprite.global_position)
+		spawn_damage_indicator(target.d_n.global_position)

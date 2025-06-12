@@ -1,5 +1,4 @@
-extends CharacterBody3D
-class_name EnemyController
+class_name EnemyController extends CharacterBody3D
 
 signal reached_goal(enemy: Enemy, penalty: int)
 signal died(enemy: Enemy)
@@ -8,7 +7,8 @@ signal died(enemy: Enemy)
 @export var status_manager: StatusEffector
 @export var movement_controller: EnemyMovement
 @export var health: Health
-@export var sprite: Sprite3D
+@export var d_n: Node3D
+#@export var sprite: Sprite3D
 @export var corpse_scene: PackedScene
 
 var movement_speed: float
@@ -20,7 +20,7 @@ func _ready() -> void:
 	health.max_health = stats.health
 	health.current_health = stats.health
 	$SubViewport/HealthBar.setup(stats.health)
-	sprite.texture = stats.sprite.duplicate()
+	#sprite.texture = stats.sprite.duplicate()
 	movement_speed = stats.movement_speed
 	status_manager.enemy = self
 

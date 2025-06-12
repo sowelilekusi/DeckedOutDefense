@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="3_dhcpw"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_yref6"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_5u3uw"]
-[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="6_h3ov4"]
+[ext_resource type="Texture2D" uid="uid://cb66pspr16scy" path="res://Assets/Textures/leapfrog_2.png" id="6_joiuq"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_72t32"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="8_egpbw"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_47ywr"]
@@ -15,7 +15,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3ikr"]
 resource_local_to_scene = true
-atlas = ExtResource("6_h3ov4")
+atlas = ExtResource("6_joiuq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_132sr"]
@@ -38,14 +38,14 @@ viewport_path = NodePath("SubViewport5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u3uw"]
 viewport_path = NodePath("SubViewport6")
 
-[node name="LeapingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
+[node name="LeapingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_joiuq")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("LeapingController")
 health = NodePath("Health")
-sprite = NodePath("DirectionSprite")
+d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_ssgps")
 
 [node name="Health" type="Node" parent="."]
@@ -223,6 +223,9 @@ size = Vector3(0.5, 0.783691, 0.5)
 script = ExtResource("9_47ywr")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.440026, 0)
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]

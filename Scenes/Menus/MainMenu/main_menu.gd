@@ -19,18 +19,18 @@ var temp_data: SaveData
 func _ready() -> void:
 	$ProfileEditor/VBoxContainer/HBoxContainer/DisplayName.text = Data.player_profile.display_name
 	load_stats(Data.save_data)
-	bg_level.a_star_graph_3d.make_grid()
-	bg_level.a_star_graph_3d.find_path()
-	bg_level.a_star_graph_3d.build_random_maze(70)
-	bg_level.a_star_graph_3d.place_random_towers(30)
-	bg_level.a_star_graph_3d.disable_all_tower_frames()
+	#bg_level.a_star_graph_3d.make_grid()
+	#bg_level.a_star_graph_3d.find_path()
+	#bg_level.a_star_graph_3d.build_random_maze(70)
+	#bg_level.a_star_graph_3d.place_random_towers(30)
+	#bg_level.a_star_graph_3d.disable_all_tower_frames()
 	Game.level = bg_level
-	WaveManager.generate_wave(WaveManager.calculate_spawn_power(50, 4), bg_level.enemy_pool, bg_level.enemy_spawns)
-	for spawn: EnemySpawner in bg_level.enemy_spawns:
-		spawn.enemy_died_callback = enemy_died
-		spawn.enemy_reached_goal_callback = damage_goal
-		spawn.enemy_spawned.connect(increase_enemy_count)
-		spawn.spawn_wave()
+	#WaveManager.generate_wave(WaveManager.calculate_spawn_power(50, 4), bg_level.enemy_pool, bg_level.enemy_spawns)
+	#for spawn: EnemySpawner in bg_level.enemy_spawns:
+	#	spawn.enemy_died_callback = enemy_died
+	#	spawn.enemy_reached_goal_callback = damage_goal
+	#	spawn.enemy_spawned.connect(increase_enemy_count)
+	#	spawn.spawn_wave()
 
 
 #these exist purely to make the enemies that spawn on the main menu happy
@@ -122,7 +122,7 @@ func _on_standard_button_pressed() -> void:
 
 
 func _on_daily_button_pressed() -> void:
-	gamemode.seed = hash(Time.get_date_string_from_system(true))
+	gamemode.rng_seed = hash(Time.get_date_string_from_system(true))
 	gamemode.endless = false
 	gamemode.daily = true
 	start_game()
@@ -144,7 +144,7 @@ func _on_changelog_button_pressed() -> void:
 func load_stats(stats: SaveData) -> void:
 	$ProfileManager/VBoxContainer/Stats/Wins/Label2.text = str(stats.wins)
 	$ProfileManager/VBoxContainer/Stats/Losses/Label2.text = str(stats.losses)
-	$ProfileManager/VBoxContainer/Stats/Winrate/Label2.text = str(int(stats.wins / 20.0))
+	$ProfileManager/VBoxContainer/Stats/Winrate/Label2.text = str(stats.winrate) + "%"
 	$ProfileManager/VBoxContainer/Stats/EngineerCardsBought/Label2.text = str(stats.engineer_cards_bought)
 	$ProfileManager/VBoxContainer/Stats/MageCardsBought/Label2.text = str(stats.mage_cards_bought)
 

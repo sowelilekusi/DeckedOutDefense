@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uv7hjsgisy31"]
+[gd_scene load_steps=24 format=3 uid="uid://uv7hjsgisy31"]
 
 [ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="1_45ikc"]
 [ext_resource type="Script" uid="uid://cjensbjuji22t" path="res://Worlds/TestingRange/Levels/training_arena.gd" id="1_dgqrn"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_y4upj"]
 [ext_resource type="PackedScene" uid="uid://dsasunnk47n8o" path="res://Scenes/item_card.tscn" id="4_i7krx"]
 [ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="5_806m0"]
-[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Resources/Enemies/dog.tres" id="5_tv1bi"]
+[ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="5_aqj4m"]
+[ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="6_ukkm8"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="7_5p2fi"]
+[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="8_4y2w1"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="9_imodf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mqtlc"]
@@ -18,6 +21,125 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mcyj"]
 size = Vector3(15, 1, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqj4m"]
+resource_local_to_scene = true
+atlas = ExtResource("8_4y2w1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_ukkm8"]
+resource_local_to_scene = true
+script = ExtResource("7_5p2fi")
+title = "dog"
+target_type = 1
+icon = ExtResource("6_ukkm8")
+death_sprite = ExtResource("5_aqj4m")
+sprite = SubResource("AtlasTexture_aqj4m")
+spawn_power = 10
+health = 180
+penalty = 10
+movement_speed = 1.2
+spawn_cooldown = 1.2
+common_group = 4
+common_cost = 1
+uncommon_group = 6
+uncommon_cost = 2
+rare_group = 8
+rare_cost = 3
+epic_group = 10
+epic_cost = 4
+legendary_group = 12
+legendary_cost = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p2fi"]
+resource_local_to_scene = true
+atlas = ExtResource("8_4y2w1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_4y2w1"]
+resource_local_to_scene = true
+script = ExtResource("7_5p2fi")
+title = "dog"
+target_type = 1
+icon = ExtResource("6_ukkm8")
+death_sprite = ExtResource("5_aqj4m")
+sprite = SubResource("AtlasTexture_5p2fi")
+spawn_power = 10
+health = 180
+penalty = 10
+movement_speed = 1.2
+spawn_cooldown = 1.2
+common_group = 4
+common_cost = 1
+uncommon_group = 6
+uncommon_cost = 2
+rare_group = 8
+rare_cost = 3
+epic_group = 10
+epic_cost = 4
+legendary_group = 12
+legendary_cost = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl7a1"]
+resource_local_to_scene = true
+atlas = ExtResource("8_4y2w1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_tilno"]
+resource_local_to_scene = true
+script = ExtResource("7_5p2fi")
+title = "dog"
+target_type = 1
+icon = ExtResource("6_ukkm8")
+death_sprite = ExtResource("5_aqj4m")
+sprite = SubResource("AtlasTexture_dl7a1")
+spawn_power = 10
+health = 180
+penalty = 10
+movement_speed = 1.2
+spawn_cooldown = 1.2
+common_group = 4
+common_cost = 1
+uncommon_group = 6
+uncommon_cost = 2
+rare_group = 8
+rare_cost = 3
+epic_group = 10
+epic_cost = 4
+legendary_group = 12
+legendary_cost = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgy1v"]
+resource_local_to_scene = true
+atlas = ExtResource("8_4y2w1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_1enkk"]
+resource_local_to_scene = true
+script = ExtResource("7_5p2fi")
+title = "dog"
+target_type = 1
+icon = ExtResource("6_ukkm8")
+death_sprite = ExtResource("5_aqj4m")
+sprite = SubResource("AtlasTexture_dgy1v")
+spawn_power = 10
+health = 180
+penalty = 10
+movement_speed = 1.2
+spawn_cooldown = 1.2
+common_group = 4
+common_cost = 1
+uncommon_group = 6
+uncommon_cost = 2
+rare_group = 8
+rare_cost = 3
+epic_group = 10
+epic_cost = 4
+legendary_group = 12
+legendary_cost = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aqj4m"]
+size = Vector3(1, 1, 10)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_dgqrn")
@@ -41,19 +163,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805513, 0.5, 2.30163)
 
 [node name="Enemy" parent="." instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28337, 0.601179, -1.23188)
-stats = ExtResource("5_tv1bi")
+stats = SubResource("Resource_ukkm8")
 
 [node name="Enemy2" parent="." instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59318, 0.601179, -2.16648)
-stats = ExtResource("5_tv1bi")
+stats = SubResource("Resource_4y2w1")
 
 [node name="Enemy3" parent="." instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38431, 0.601179, -2.44026)
-stats = ExtResource("5_tv1bi")
+stats = SubResource("Resource_tilno")
 
 [node name="Enemy4" parent="." instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 0.601179, -2.4969)
-stats = ExtResource("5_tv1bi")
+stats = SubResource("Resource_1enkk")
 
 [node name="assaultcard" parent="." instance=ExtResource("4_i7krx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7802, 0.5, 3.16356)
@@ -66,3 +188,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77234, 0.5, 2.6958)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766634, 0.5, -9.7488)
 inventory = NodePath("../towerbase/Inventory")
 collider = NodePath("../towerbase/CollisionShape3D")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 1.16471, 0.5, 12.4493)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.0990853, 0.5, 11.5008)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, -1.00031, 0.5, 11.0314)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D4"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, -2.09458, 0.5, 10.7668)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D5"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -3.20157, 0.5, 10.5973)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D6"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -4.31944, 0.5, 10.4654)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D7"]
+size = Vector3(1, 1, 10)
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -5.47159, 0.5, 10.4089)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D8"]
+shape = SubResource("BoxShape3D_aqj4m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D8"]
+size = Vector3(1, 1, 10)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2k8y13qfvch0"]
+
+[ext_resource type="Shader" uid="uid://y78cbva8erip" path="res://psx.gdshader" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("1_0xm2m")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_1bvp3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_h2yge")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[node name="Node" type="Node" parent="SubViewport"]

@@ -23,14 +23,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4tj6k"]
 viewport_path = NodePath("SubViewport")
 
-[node name="WalkingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "sprite") groups=["Enemies"]]
+[node name="WalkingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_fwsjt")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 health = NodePath("Health")
-sprite = NodePath("DirectionSprite")
+d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_y7h25")
 
 [node name="Health" type="Node" parent="."]
@@ -92,6 +92,9 @@ sprite = NodePath("../DirectionSprite")
 script = ExtResource("10_txouh")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429125, 0)
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]
