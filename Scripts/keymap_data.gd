@@ -1,4 +1,5 @@
-class_name KeymapData extends RefCounted
+class_name KeymapData
+extends RefCounted
 
 var title: String = "default"
 var map: Dictionary[String, Array]

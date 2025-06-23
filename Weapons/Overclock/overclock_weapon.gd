@@ -1,5 +1,5 @@
-class_name OverclockWeapon extends Weapon
-
+class_name OverclockWeapon
+extends Weapon
 
 @export var raycast: RayCast3D
 @export var range_debug_indicator: CSGSphere3D

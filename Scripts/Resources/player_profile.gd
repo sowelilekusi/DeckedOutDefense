@@ -1,4 +1,5 @@
-class_name PlayerProfile extends Resource
+class_name PlayerProfile
+extends Resource
 
 signal display_name_changed(old_name: String, new_name: String)
 signal preferred_class_changed(old_class: int, new_class: int)

@@ -1,4 +1,5 @@
-class_name EnemyGoal extends Node3D
+class_name EnemyGoal
+extends Node3D
 
 @export var audio_player: AudioStreamPlayer3D
 

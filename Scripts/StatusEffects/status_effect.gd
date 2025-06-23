@@ -1,4 +1,5 @@
-class_name StatusEffect extends Resource
+class_name StatusEffect
+extends Resource
 
 @export var stats: StatusStats
 

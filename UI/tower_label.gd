@@ -1,4 +1,5 @@
-class_name TowerLabel extends HBoxContainer
+class_name TowerLabel
+extends HBoxContainer
 
 @export var tower_name: Label
 @export var tower_amount: Label

@@ -1,4 +1,5 @@
-class_name FireballProjectile extends StatusApplyingProjectile
+class_name FireballProjectile
+extends StatusApplyingProjectile
 
 
 func build_status_object() -> StatusEffect:

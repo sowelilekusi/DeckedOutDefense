@@ -1,4 +1,5 @@
-class_name StatusApplyingWeapon extends HitscanWeapon
+class_name StatusApplyingWeapon
+extends HitscanWeapon
 
 @export var status_stats: StatusStats
 

@@ -1,4 +1,5 @@
-class_name AudioOptions extends VBoxContainer
+class_name AudioOptions
+extends VBoxContainer
 
 @export var master_input: SpinBox
 @export var master_slider: HSlider

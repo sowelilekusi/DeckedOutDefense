@@ -1,4 +1,5 @@
-class_name PlayerAudioSettings extends Resource
+class_name PlayerAudioSettings
+extends Resource
 
 const SAVE_PATH: String = "user://audio_settings.tres"
 
@@ -19,4 +20,3 @@ static func load_profile_from_disk() -> PlayerAudioSettings:
 	if ResourceLoader.exists(SAVE_PATH):
 		return ResourceLoader.load(SAVE_PATH)
 	return PlayerAudioSettings.new()
-

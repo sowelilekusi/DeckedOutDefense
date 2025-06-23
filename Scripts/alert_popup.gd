@@ -1,4 +1,5 @@
-class_name AlertPopup extends PanelContainer
+class_name AlertPopup
+extends PanelContainer
 
 signal completed()
 

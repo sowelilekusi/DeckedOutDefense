@@ -1,4 +1,5 @@
 class_name KeyIconMap
+extends Object
 
 
 static var playstation_keys: Dictionary = {

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://dq8v5e11rvyi6"]
 
-[ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://card_item.gd" id="2_kobsv"]
+[ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://Scripts/card_item.gd" id="2_kobsv"]
 [ext_resource type="Script" uid="uid://cl2mi4bnpatwk" path="res://Scripts/float_and_spin.gd" id="3_b2a1t"]
 [ext_resource type="Texture2D" uid="uid://dds48gjgiyjp6" path="res://Classes/Engineer/plan_plan_tex.png" id="4_75s6s"]
 [ext_resource type="Material" uid="uid://dq30v3hgyi4da" path="res://Classes/Engineer/mouse_hover_material.tres" id="5_2u312"]

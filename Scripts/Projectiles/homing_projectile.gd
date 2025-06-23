@@ -1,4 +1,5 @@
-class_name HomingProjectile extends ExplosiveProjectile
+class_name HomingProjectile
+extends ExplosiveProjectile
 
 var target: Node3D
 var acceleration: float = 50.0

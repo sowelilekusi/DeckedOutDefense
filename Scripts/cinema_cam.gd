@@ -1,4 +1,5 @@
-class_name CinematicCamManager extends Node3D
+class_name CinematicCamManager
+extends Node3D
 
 @export var path_follows: Array[PathFollow3D]
 @export var cameras: Array[Camera3D]

@@ -1,4 +1,5 @@
-class_name StatusApplyingProjectile extends ExplosiveProjectile
+class_name StatusApplyingProjectile
+extends ExplosiveProjectile
 
 @export var status_stats: StatusStats
 

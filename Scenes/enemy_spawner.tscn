@@ -1,20 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2yv447trxkwt"]
+[gd_scene load_steps=4 format=3 uid="uid://d2yv447trxkwt"]
 
 [ext_resource type="Script" uid="uid://dkuxg6ek5us4f" path="res://Scripts/enemy_spawner.gd" id="1_23wuv"]
 [ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="2_muaoj"]
 [ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="3_nh55v"]
-[ext_resource type="Script" uid="uid://cd500cyj1tdyw" path="res://Scripts/visualized_path.gd" id="4_tdwud"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("path")]
+[node name="Node3D" type="Node3D"]
 script = ExtResource("1_23wuv")
 land_enemy_scene = ExtResource("2_muaoj")
 air_enemy_scene = ExtResource("3_nh55v")
-path = NodePath("VisualizedPath")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 visible = false
-
-[node name="VisualizedPath" type="Path3D" parent="."]
-script = ExtResource("4_tdwud")
-metadata/_custom_type_script = "uid://cd500cyj1tdyw"

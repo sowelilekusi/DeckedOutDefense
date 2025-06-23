@@ -1,4 +1,5 @@
-class_name HealthBar extends TextureProgressBar
+class_name HealthBar
+extends TextureProgressBar
 
 @export var health_bar_gradient: Gradient
 

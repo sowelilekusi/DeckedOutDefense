@@ -1,4 +1,5 @@
-class_name BombLauncherTower extends Tower
+class_name BombLauncherTower
+extends Tower
 
 
 func _ready() -> void:

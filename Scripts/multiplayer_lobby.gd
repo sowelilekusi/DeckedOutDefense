@@ -1,4 +1,5 @@
-class_name MultiplayerLobby extends Lobby
+class_name MultiplayerLobby
+extends Lobby
 
 signal player_connected(peer_id: int, player_profile: PlayerProfile)
 signal player_disconnected(peer_id: int)

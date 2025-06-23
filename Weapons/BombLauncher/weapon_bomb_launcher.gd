@@ -1,4 +1,5 @@
-class_name BombLauncherWeapon extends ProjectileWeapon
+class_name BombLauncherWeapon
+extends ProjectileWeapon
 
 
 func _ready() -> void:

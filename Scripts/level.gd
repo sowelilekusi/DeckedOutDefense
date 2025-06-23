@@ -1,11 +1,12 @@
-class_name Level extends GridMap
+class_name Level
+extends Node3D
 
 @export var enemy_pool: Array[Enemy]
 @export var tower_path: Node
 @export var player_spawns: Array[Node3D]
 @export var enemy_spawns: Array[EnemySpawner]
 @export var enemy_goals: Array[Node3D]
-@export var corpses: Node3D
+@export var corpses: Node
 @export var flow_field: FlowField
 @export var cinematic_cam: CinematicCamManager
 @export var printer: CardPrinter

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://bfxgtf1v1okat"]
 
-[ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://card_item.gd" id="1_rlle2"]
+[ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://Scripts/card_item.gd" id="1_rlle2"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="2_aiko0"]
 [ext_resource type="Script" uid="uid://cl2mi4bnpatwk" path="res://Scripts/float_and_spin.gd" id="3_jjaja"]
 [ext_resource type="Texture2D" uid="uid://b0sl2tvwle1m7" path="res://Classes/Mage/scroll2_paper.png" id="4_aiko0"]

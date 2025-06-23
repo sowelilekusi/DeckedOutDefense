@@ -1,4 +1,5 @@
-class_name EnemyCardUI extends Control
+class_name EnemyCardUI
+extends Control
 
 @export var enemy_name: Label
 @export var enemy_rarity: TextureRect

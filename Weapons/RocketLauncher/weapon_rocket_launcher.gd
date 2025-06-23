@@ -1,4 +1,5 @@
-class_name RocketLauncherWeapon extends ProjectileWeapon
+class_name RocketLauncherWeapon
+extends ProjectileWeapon
 
 @export var target_icon_scene: PackedScene
 @export var targeting_raycast: RayCast3D

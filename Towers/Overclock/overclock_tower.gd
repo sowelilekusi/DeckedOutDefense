@@ -1,4 +1,5 @@
-class_name OverclockTower extends Tower
+class_name OverclockTower
+extends Tower
 
 func shoot() -> void:
 	#affector.apply_effect(effect, target_finder.targets)

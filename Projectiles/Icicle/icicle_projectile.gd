@@ -1,4 +1,5 @@
-class_name IcicleProjectile extends StatusApplyingProjectile
+class_name IcicleProjectile
+extends StatusApplyingProjectile
 
 
 func build_status_object() -> StatusEffect:

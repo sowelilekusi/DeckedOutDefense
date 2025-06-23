@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bvqu1heobgboe" path="res://Scenes/Towers/tower.tscn" id="1_stebd"]
 [ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_jbe1c"]
 [ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_vxmma"]
-[ext_resource type="PackedScene" uid="uid://cx8f6tsipvmls" path="res://ladder.tscn" id="4_eys8f"]
-[ext_resource type="Material" uid="uid://chxjofsr2lq1r" path="res://new_standard_material_3d.tres" id="5_lny5m"]
+[ext_resource type="PackedScene" uid="uid://cx8f6tsipvmls" path="res://Scenes/Ladder/ladder.tscn" id="4_eys8f"]
+[ext_resource type="Material" uid="uid://chxjofsr2lq1r" path="res://Towers/Ascension/new_standard_material_3d.tres" id="5_lny5m"]
 
 [sub_resource type="Resource" id="Resource_lny5m"]
 script = ExtResource("2_jbe1c")

@@ -1,4 +1,5 @@
-class_name BootLogo extends TextureRect
+class_name BootLogo
+extends TextureRect
 
 signal animation_finished()
 

@@ -1,8 +1,10 @@
-class_name Affector extends Node
+class_name Affector
+extends Node
 
 var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
 
 
+@warning_ignore("unused_parameter")
 func apply_effect(effect: Effect, targets: Array[EnemyController]) -> void:
 	pass
 

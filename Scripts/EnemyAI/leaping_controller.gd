@@ -1,4 +1,5 @@
-class_name LeapingController extends PathingController
+class_name LeapingController
+extends PathingController
 
 @export var eastl: Label
 @export var westl: Label

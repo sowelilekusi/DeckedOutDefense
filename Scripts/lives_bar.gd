@@ -1,3 +1,4 @@
+class_name LivesBar
 extends TextureRect
 
 @export var segments: Array[LivesBarSegment]

@@ -1,4 +1,5 @@
-class_name Enemy extends Resource
+class_name Enemy
+extends Resource
 
 @export var title: String = "dog"
 @export var target_type: Data.EnemyType

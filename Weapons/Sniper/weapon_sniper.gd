@@ -1,4 +1,5 @@
-class_name SniperWeapon extends HitscanWeapon
+class_name SniperWeapon
+extends HitscanWeapon
 
 @export var scope_mask: CanvasLayer
 

@@ -1,4 +1,5 @@
-class_name PathEditTool extends Node3D
+class_name PathEditTool
+extends Node3D
 
 @export var hero: Hero
 @export var inventory: Inventory
@@ -16,7 +17,6 @@ var ray_collider: Object
 var ray_point: Vector3
 var last_point: FlowNode
 var last_tower_base: TowerBase
-
 var interact_key_held: bool = false
 var interacted_once: bool = false
 var interact_held_time: float = 0.0

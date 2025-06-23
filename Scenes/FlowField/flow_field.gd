@@ -1,4 +1,5 @@
-class_name FlowField extends Node3D
+class_name FlowField
+extends Node3D
 
 signal path_updated()
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 			node.visible = false
 
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if !nodes_visible:
 		return

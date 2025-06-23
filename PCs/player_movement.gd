@@ -1,4 +1,5 @@
-class_name PlayerMovement extends Node
+class_name PlayerMovement
+extends Node
 
 @export var player: CharacterBody3D
 @export var head: Node3D
@@ -58,7 +59,6 @@ var is_in_climb_zone: bool = false
 var hold_climb: bool = false
 var ragdoll_grace_period_length: float = 0.5
 var ragdoll_grace_period_elapsed: float = 0.0
-
 var crouching: bool = false
 var prev_crouch_height: float = 0.0
 var new_crouch_height: float = 0.0

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://d2k8y13qfvch0"]
 
-[ext_resource type="Shader" uid="uid://diugvmtoos1ti" path="res://pixeldither.gdshader" id="2_1bvp3"]
+[ext_resource type="Shader" uid="uid://diugvmtoos1ti" path="res://Shaders/pixeldither.gdshader" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://6frn8lcwwehv" path="res://Assets/TextureAtlases/puppyfruit.png" id="2_lquwl"]
-[ext_resource type="Script" uid="uid://p1ugbcmjuwxg" path="res://gif_animation.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://p1ugbcmjuwxg" path="res://Scripts/boot_logo.gd" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bpo5fu2a26mr7" path="res://blk-nx64-1x.png" id="3_h2yge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]

@@ -1,4 +1,5 @@
-class_name Dummy extends EnemyController
+class_name Dummy
+extends EnemyController
 
 
 func _on_health_health_depleted() -> void:

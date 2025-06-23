@@ -1,4 +1,5 @@
-class_name ReactorTower extends Tower
+class_name ReactorTower
+extends Tower
 
 @export var particles: GPUParticles3D
 

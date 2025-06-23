@@ -1,4 +1,5 @@
-class_name GameplayOptionsMenu extends VBoxContainer
+class_name GameplayOptionsMenu
+extends VBoxContainer
 
 @export var look_sens_slider: HSlider
 @export var look_sens_input: SpinBox

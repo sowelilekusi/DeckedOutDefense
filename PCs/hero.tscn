@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bs2mskoyvyehv" path="res://Assets/Textures/crosshair159.png" id="25_l7gpx"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
 [ext_resource type="Texture2D" uid="uid://0x80ptif1diq" path="res://Assets/Textures/hand_small_point.png" id="26_dfkac"]
-[ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://energy_bar.tscn" id="27_14ugt"]
+[ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://UI/EnergyBar/energy_bar.tscn" id="27_14ugt"]
 [ext_resource type="AudioStream" uid="uid://k1lsqkvohjpa" path="res://Audio/cardPlace4.ogg" id="27_xvxs8"]
 [ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
 [ext_resource type="AudioStream" uid="uid://d32gpcu8w1yvn" path="res://Audio/cardSlide2.ogg" id="29_s0a0l"]

@@ -1,1 +1,2 @@
-class_name FireballWeapon extends ProjectileWeapon
+class_name FireballWeapon
+extends ProjectileWeapon

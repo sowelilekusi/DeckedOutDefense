@@ -1,4 +1,5 @@
-class_name OptionsMenu extends Control
+class_name OptionsMenu
+extends Control
 
 @export var gameplay: GameplayOptionsMenu
 @export var graphics: GraphicsOptionsMenu

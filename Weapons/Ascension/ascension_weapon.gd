@@ -1,4 +1,5 @@
-class_name AscensionWeapon extends Weapon
+class_name AscensionWeapon
+extends Weapon
 
 
 func shoot() -> void:

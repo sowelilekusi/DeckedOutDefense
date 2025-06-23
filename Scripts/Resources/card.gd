@@ -1,4 +1,5 @@
-class_name Card extends Item
+class_name Card
+extends Item
 
 enum Faction {
 	GENERIC = 0,

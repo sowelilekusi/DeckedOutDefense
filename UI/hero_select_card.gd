@@ -1,3 +1,4 @@
+class_name HeroSelectCard
 extends PanelContainer
 
 signal pressed(hero_class: int)

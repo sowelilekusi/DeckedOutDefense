@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi8f3vowymalg"]
-
-[ext_resource type="Script" uid="uid://cd500cyj1tdyw" path="res://Scripts/visualized_path.gd" id="1_kqywm"]
-
-[sub_resource type="Curve3D" id="Curve3D_suxqu"]
-
-[node name="VisualizedPath" type="Path3D"]
-curve = SubResource("Curve3D_suxqu")
-script = ExtResource("1_kqywm")

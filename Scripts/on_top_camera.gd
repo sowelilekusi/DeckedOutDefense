@@ -1,4 +1,5 @@
-class_name OnTopCamera extends Camera3D
+class_name OnTopCamera
+extends Camera3D
 
 @export var clone_camera: Node3D
 

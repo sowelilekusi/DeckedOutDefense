@@ -1,4 +1,5 @@
-class_name Effect extends Resource
+class_name Effect
+extends Resource
 
 
 @export var damage: int = 0

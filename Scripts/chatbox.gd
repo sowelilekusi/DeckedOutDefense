@@ -1,4 +1,5 @@
-class_name Chatbox extends Control
+class_name Chatbox
+extends Control
 
 signal opened
 signal closed

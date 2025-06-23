@@ -1,4 +1,5 @@
-class_name ViewMovement extends Node3D
+class_name ViewMovement
+extends Node3D
 
 @export var player: CharacterBody3D
 
@@ -19,7 +20,6 @@ class_name ViewMovement extends Node3D
 
 var sample_point: float = 0.0
 var speed_factor: float = 0.0
-
 var trauma: float = 0.0
 var trauma_recovery_speed: float = 0.7
 var camera_shake: float = 0.0

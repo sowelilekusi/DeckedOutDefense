@@ -1,4 +1,5 @@
-class_name Weapon extends Node3D
+class_name Weapon
+extends Node3D
 
 signal energy_spent(energy: int, type: Data.EnergyType)
 signal energy_recharged(energy: int, type: Data.EnergyType)
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 		energy_spent.emit(delta, stats.energy_type)
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	if trigger_held and current_energy >= energy_cost and time_since_firing >= time_between_shots:
 		if stats.energy_type == Data.EnergyType.DISCRETE:

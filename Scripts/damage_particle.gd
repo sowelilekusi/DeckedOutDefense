@@ -1,4 +1,5 @@
-class_name DamageParticle extends Sprite3D
+class_name DamageParticle
+extends Sprite3D
 
 @onready var label: Label = $SubViewport/Label
 var time_alive: float = 0.0

@@ -1,4 +1,5 @@
-class_name StatusStats extends Resource
+class_name StatusStats
+extends Resource
 
 @export var name: String
 @export var max_stacks: int = 0

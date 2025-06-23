@@ -1,4 +1,5 @@
-class_name SpawnAffect extends Affector
+class_name SpawnAffect
+extends Affector
 
 @export var spawn_scene: PackedScene
 @export var tower: Tower

@@ -1,4 +1,5 @@
-class_name SaveData extends RefCounted
+class_name SaveData
+extends RefCounted
 
 var save_slot: int = 0
 

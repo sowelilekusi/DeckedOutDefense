@@ -1,4 +1,5 @@
-class_name KeybindEntry extends HBoxContainer
+class_name KeybindEntry
+extends HBoxContainer
 
 signal bind_button_pressed(button: Button)
 

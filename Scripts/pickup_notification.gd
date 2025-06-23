@@ -1,4 +1,5 @@
-class_name PickupNotification extends PanelContainer
+class_name PickupNotification
+extends PanelContainer
 
 @export var fade_out_time: float
 @export var style: StyleBoxFlat

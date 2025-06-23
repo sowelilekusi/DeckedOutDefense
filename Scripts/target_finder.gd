@@ -1,4 +1,5 @@
-class_name TargetFinder extends Node
+class_name TargetFinder
+extends Node
 
 enum TARGETING_STRATEGY {
 	RANDOM = 0,

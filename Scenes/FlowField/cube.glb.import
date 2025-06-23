@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bs4en6twugqjl"
-path="res://.godot/imported/flow_node.glb-590e85013ddaf9dde846990416b040e0.scn"
+uid="uid://bkokjrjns7l6j"
+path="res://.godot/imported/cube.glb-8c7fddad925be67dc400ce95d4de5b99.scn"
 
 [deps]
 
-source_file="res://flow_node.glb"
-dest_files=["res://.godot/imported/flow_node.glb-590e85013ddaf9dde846990416b040e0.scn"]
+source_file="res://Scenes/FlowField/cube.glb"
+dest_files=["res://.godot/imported/cube.glb-8c7fddad925be67dc400ce95d4de5b99.scn"]
 
 [params]
 

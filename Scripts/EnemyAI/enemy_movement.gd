@@ -1,4 +1,5 @@
-class_name EnemyMovement extends Node
+class_name EnemyMovement
+extends Node
 
 @export var character: EnemyController
 

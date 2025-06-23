@@ -1,4 +1,5 @@
-class_name StatusEffector extends Node
+class_name StatusEffector
+extends Node
 
 @export var sprite_container: Container ## Container that effect icons should be instantiated under
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx3u2fj5cniac"
-path.s3tc="res://.godot/imported/drafting_table_plan_tex.png-1699462a730246cc6031e19c5449ed7d.s3tc.ctex"
+path.s3tc="res://.godot/imported/drafting_table_plan_tex.png-7b1786af0562d78c6bd0327df564d184.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://drafting_table_plan_tex.png"
-dest_files=["res://.godot/imported/drafting_table_plan_tex.png-1699462a730246cc6031e19c5449ed7d.s3tc.ctex"]
+source_file="res://Scenes/DraftingTable/drafting_table_plan_tex.png"
+dest_files=["res://.godot/imported/drafting_table_plan_tex.png-7b1786af0562d78c6bd0327df564d184.s3tc.ctex"]
 
 [params]
 

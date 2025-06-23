@@ -1,4 +1,5 @@
-class_name EnemyBox extends HBoxContainer
+class_name EnemyBox
+extends HBoxContainer
 
 
 func set_wave(wave: int) -> void:

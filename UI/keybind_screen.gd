@@ -1,4 +1,5 @@
-class_name KeybindPopup extends Control
+class_name KeybindPopup
+extends Control
 
 signal event_detected(event: InputEvent)
 

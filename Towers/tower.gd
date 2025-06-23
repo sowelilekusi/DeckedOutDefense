@@ -1,4 +1,5 @@
-class_name Tower extends Node3D
+class_name Tower
+extends Node3D
 
 @export var turns_to_aim: bool = true
 @export var stats: CardText

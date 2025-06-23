@@ -1,4 +1,5 @@
-class_name PlayerGraphicsSettings extends Resource
+class_name PlayerGraphicsSettings
+extends Resource
 
 const SAVE_PATH: String = "user://graphics_settings.tres"
 

@@ -1,4 +1,5 @@
-class_name FloatAndSpin extends RayCast3D
+class_name FloatAndSpin
+extends RayCast3D
 
 @export_range(0.0, 3.0) var float_height: float = 1.5
 @export_range(0.0, 2.0) var bounce_dist: float = 0.5

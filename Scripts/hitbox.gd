@@ -1,4 +1,5 @@
-class_name Hitbox extends CollisionShape3D
+class_name Hitbox
+extends CollisionShape3D
 
 @export var critical_zone: bool = false
 

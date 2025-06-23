@@ -1,4 +1,5 @@
-class_name Lobby extends Control
+class_name Lobby
+extends Control
 
 @export var character_select_screen: PackedScene
 #@export var scoreboard: Scoreboard

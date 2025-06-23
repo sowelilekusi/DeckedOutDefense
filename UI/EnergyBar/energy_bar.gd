@@ -1,4 +1,5 @@
-class_name EnergyBar extends Control
+class_name EnergyBar
+extends Control
 
 @export var cell_icon_tex: Texture
 @export var bar_overlay: TextureRect

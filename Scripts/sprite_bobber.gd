@@ -1,4 +1,5 @@
-class_name SpriteBobber extends Node
+class_name SpriteBobber
+extends Node
 
 @export var character: EnemyController
 @export var sprite: Node3D

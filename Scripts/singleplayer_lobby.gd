@@ -1,4 +1,5 @@
-class_name SinglePlayerLobby extends Lobby
+class_name SinglePlayerLobby
+extends Lobby
 
 
 func _ready() -> void:

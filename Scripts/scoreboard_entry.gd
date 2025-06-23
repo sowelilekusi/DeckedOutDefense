@@ -1,4 +1,5 @@
-class_name ScoreboardEntry extends HBoxContainer
+class_name ScoreboardEntry
+extends HBoxContainer
 
 var display_name: String
 var character: int

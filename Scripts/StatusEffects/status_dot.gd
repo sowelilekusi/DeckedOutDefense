@@ -1,4 +1,5 @@
-class_name StatusDoT extends StatusEffect
+class_name StatusDoT
+extends StatusEffect
 
 
 func proc(affected: EnemyController, stacks: int, _existing_effects: Dictionary) -> void:

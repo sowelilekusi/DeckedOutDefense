@@ -1,4 +1,5 @@
-class_name BeeliningController extends EnemyMovement
+class_name BeeliningController
+extends EnemyMovement
 
 var goal: Node3D
 var direction: Vector3

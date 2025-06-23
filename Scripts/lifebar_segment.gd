@@ -1,5 +1,5 @@
-extends Control
 class_name LivesBarSegment
+extends Control
 
 var lives_left: int = 6
 

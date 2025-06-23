@@ -1,4 +1,5 @@
-class_name BombProjectile extends ExplosiveProjectile
+class_name BombProjectile
+extends ExplosiveProjectile
 
 var max_bounces: int = 1
 var bounces: int = 0

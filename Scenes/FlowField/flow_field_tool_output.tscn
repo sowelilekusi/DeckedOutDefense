@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2vv6mrxiwibf"]
 
-[ext_resource type="Script" uid="uid://r4nmfr8jfcjx" path="res://flow_field.gd" id="1_ca7vt"]
-[ext_resource type="PackedScene" uid="uid://bssfvyxv5uo1f" path="res://flow_node.tscn" id="2_s6hwk"]
+[ext_resource type="Script" uid="uid://r4nmfr8jfcjx" path="res://Scenes/FlowField/flow_field.gd" id="1_ca7vt"]
+[ext_resource type="PackedScene" uid="uid://bssfvyxv5uo1f" path="res://Scenes/FlowField/flow_node.tscn" id="2_s6hwk"]
 
 [node name="FlowField" type="Node3D" node_paths=PackedStringArray("nodes", "goals")]
 script = ExtResource("1_ca7vt")

@@ -1,4 +1,5 @@
-class_name HitscanWeapon extends Weapon
+class_name HitscanWeapon
+extends Weapon
 
 @export var raycast: RayCast3D
 @export var range_debug_indicator: CSGSphere3D

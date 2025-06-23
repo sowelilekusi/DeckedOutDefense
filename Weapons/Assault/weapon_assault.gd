@@ -1,1 +1,2 @@
-class_name AssaultWeapon extends HitscanWeapon
+class_name AssaultWeapon
+extends HitscanWeapon

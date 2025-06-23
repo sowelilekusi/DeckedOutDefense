@@ -1,4 +1,5 @@
-class_name PathingController extends EnemyMovement
+class_name PathingController
+extends EnemyMovement
 
 #var path: Curve3D
 #var path_progress: float = 0.0

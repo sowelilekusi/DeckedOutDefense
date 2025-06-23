@@ -1,4 +1,5 @@
-class_name ExplosiveProjectile extends Projectile
+class_name ExplosiveProjectile
+extends Projectile
 
 @export var explosion_range: float = 3.0
 

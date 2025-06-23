@@ -1,4 +1,5 @@
-class_name EightDirectionSprite3D extends Sprite3D
+class_name EightDirectionSprite3D
+extends Sprite3D
 
 
 func _process(_delta: float) -> void:

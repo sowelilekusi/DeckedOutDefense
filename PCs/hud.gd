@@ -1,6 +1,6 @@
-class_name HUD extends CanvasLayer
+class_name HUD
+extends CanvasLayer
 
-var last_lives_count: int = 120
 @export var player: Hero
 @export var wave_count: Label
 @export var lives_count: Label
@@ -12,7 +12,6 @@ var last_lives_count: int = 120
 @export var minimap_viewport: SubViewport
 @export var fps_label: Label
 @export var hover_text: RichTextLabel
-var enemy_names: Array[String]
 @export var enemy_sprites: Array[TextureRect]
 @export var enemy_counts: Array[Label]
 @export var pickup_notif_scene: PackedScene
@@ -24,6 +23,8 @@ var enemy_names: Array[String]
 @export var enemy_card_scene: PackedScene
 @export var new_energy_bar: EnergyBar
 
+var last_lives_count: int = 120
+var enemy_names: Array[String]
 var map_anchor: Node3D
 var audio_guard: bool = false
 var cards: Array[EnemyCardUI] = []
@@ -155,6 +156,7 @@ func set_crosshair_visible(value: bool) -> void:
 	crosshair.set_visible(value)
 
 #TODO: the fuck is audio_guard for?
+@warning_ignore("unused_parameter")
 func set_weapon_energy(value: int, energy_type: Data.EnergyType) -> void:
 	#weapon_energy_bar.value = value
 	if player.editing_mode:

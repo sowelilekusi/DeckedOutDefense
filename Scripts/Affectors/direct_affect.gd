@@ -1,4 +1,5 @@
-class_name DirectAffect extends Affector
+class_name DirectAffect
+extends Affector
 
 
 func apply_effect(effect: Effect, targets: Array[EnemyController]) -> void:

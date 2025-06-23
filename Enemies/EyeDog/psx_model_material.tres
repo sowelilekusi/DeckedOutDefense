@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bo82o88d7vo1x"]
 
-[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://jitter.gdshader" id="1_crvh7"]
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_crvh7"]
 [ext_resource type="Texture2D" uid="uid://wx4d2upch81n" path="res://Enemies/EyeDog/eyedog_eyedog_tex.png" id="2_j3hec"]
 
 [resource]

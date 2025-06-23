@@ -1,4 +1,5 @@
-class_name GatlingWeapon extends HitscanWeapon
+class_name GatlingWeapon
+extends HitscanWeapon
 
 var time_since_firing_started: float = 0.0
 var time_to_reach_max_speed: float = 0.0

@@ -1,4 +1,5 @@
-class_name Corpse extends RigidBody3D
+class_name Corpse
+extends RigidBody3D
 
 
 func set_sprite(tex: Texture) -> void:

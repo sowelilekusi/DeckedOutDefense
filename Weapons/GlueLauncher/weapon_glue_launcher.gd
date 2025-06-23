@@ -1,4 +1,5 @@
-class_name GlueLauncherWeapon extends StatusApplyingWeapon
+class_name GlueLauncherWeapon
+extends StatusApplyingWeapon
 
 
 func build_status_object() -> StatusEffect:

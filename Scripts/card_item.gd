@@ -1,4 +1,5 @@
-class_name CardItem extends InteractButton
+class_name CardItem
+extends InteractButton
 
 signal pressed(card_item: CardItem)
 

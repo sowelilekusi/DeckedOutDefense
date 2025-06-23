@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=16 format=3 uid="uid://b6a0ip4p72tgx"]
 
-[ext_resource type="StyleBox" uid="uid://lpof3jdy7hr7" path="res://new_style_box_flat.tres" id="4_o03gw"]
+[ext_resource type="StyleBox" uid="uid://lpof3jdy7hr7" path="res://UI/new_style_box_flat.tres" id="4_o03gw"]
 [ext_resource type="FontFile" uid="uid://c17ml15e2qan0" path="res://Assets/Fonts/TrueType (.ttf)/Sagewold-Regular.ttf" id="4_v3wda"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyjol"]

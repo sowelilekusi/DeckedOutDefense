@@ -1,4 +1,5 @@
-class_name EnemyCard extends RefCounted
+class_name EnemyCard
+extends RefCounted
 
 
 var enemy: Enemy = null

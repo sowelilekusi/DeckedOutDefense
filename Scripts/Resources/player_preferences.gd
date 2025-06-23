@@ -1,4 +1,5 @@
-class_name PlayerPreferences extends Resource
+class_name PlayerPreferences
+extends Resource
 
 const SAVE_PATH: String = "user://preferences.tres"
 

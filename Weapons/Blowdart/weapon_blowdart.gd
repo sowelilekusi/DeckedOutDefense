@@ -1,4 +1,5 @@
-class_name BlowdartWeapon extends StatusApplyingWeapon
+class_name BlowdartWeapon
+extends StatusApplyingWeapon
 
 
 func build_status_object() -> StatusEffect:

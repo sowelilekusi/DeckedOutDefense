@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ravcalfsha76"]
 
-[ext_resource type="PackedScene" uid="uid://bvoygakisxw4i" path="res://cube.glb" id="1_7p7qy"]
+[ext_resource type="PackedScene" uid="uid://bkokjrjns7l6j" path="res://Scenes/FlowField/cube.glb" id="1_7p7qy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8upr"]
 resource_local_to_scene = true

@@ -1,4 +1,5 @@
-class_name Scoreboard extends PanelContainer
+class_name Scoreboard
+extends PanelContainer
 
 signal all_players_ready()
 

@@ -1,4 +1,5 @@
-class_name CardInHand extends Node2D
+class_name CardInHand
+extends Node2D
 
 var stats: Card
 @export var rarity_sprite: Sprite2D

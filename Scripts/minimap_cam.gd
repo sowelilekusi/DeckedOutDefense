@@ -1,5 +1,5 @@
-extends Camera3D
 class_name MinimapCamera3D
+extends Camera3D
 
 @export var anchor: Node3D
 #@export var face_north: bool

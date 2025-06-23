@@ -1,4 +1,5 @@
-class_name ItemCard extends StaticBody3D
+class_name ItemCard
+extends StaticBody3D
 
 @export var card: Card
 

@@ -1,4 +1,5 @@
-class_name WaveManager extends Object
+class_name WaveManager
+extends Object
 ## A collection of static functions related to enemy wave generation
 ##
 ## Contains the algorithm for generating a wave based on a given pool of enemies

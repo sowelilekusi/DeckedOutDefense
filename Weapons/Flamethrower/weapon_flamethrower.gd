@@ -1,4 +1,5 @@
-class_name FlamethrowerWeapon extends ShapecastWeapon
+class_name FlamethrowerWeapon
+extends ShapecastWeapon
 
 
 func build_status_object() -> StatusEffect:

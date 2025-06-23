@@ -1,4 +1,5 @@
-class_name ModMenu extends PanelContainer
+class_name ModMenu
+extends PanelContainer
 
 var entry_containers: Array[HBoxContainer]
 var entry_names: Dictionary[String, Label]

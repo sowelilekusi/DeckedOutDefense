@@ -1,4 +1,5 @@
-class_name Wave extends RefCounted
+class_name Wave
+extends RefCounted
 
 
 var enemy_groups: Array[EnemyCard]

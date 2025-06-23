@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2id8hjico4w8"]
 
-[ext_resource type="Script" uid="uid://gjcl34fan741" path="res://energy_bar.gd" id="1_rdnti"]
+[ext_resource type="Script" uid="uid://gjcl34fan741" path="res://UI/EnergyBar/energy_bar.gd" id="1_rdnti"]
 [ext_resource type="Texture2D" uid="uid://bm13bgpre6ubr" path="res://Assets/Textures/energy_cell.png" id="2_q48n7"]
 [ext_resource type="Texture2D" uid="uid://b1y1d1ge4fl8p" path="res://Assets/Textures/energy_bar.png" id="3_d65ol"]
 [ext_resource type="Texture2D" uid="uid://c0kwkv021p7gl" path="res://Assets/Textures/energy_bar_bg3.png" id="3_efdny"]

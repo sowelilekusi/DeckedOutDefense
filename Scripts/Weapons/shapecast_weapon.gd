@@ -1,4 +1,5 @@
-class_name ShapecastWeapon extends Weapon
+class_name ShapecastWeapon
+extends Weapon
 
 @export var shapecast: ShapeCast3D
 @export var range_debug_indicator: CSGSphere3D

@@ -1,1 +1,2 @@
-class_name RocketProjectile extends HomingProjectile
+class_name RocketProjectile
+extends HomingProjectile

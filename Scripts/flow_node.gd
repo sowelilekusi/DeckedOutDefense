@@ -1,8 +1,9 @@
-class_name FlowNode extends StaticBody3D
+class_name FlowNode
+extends StaticBody3D
 
 @export var connections: Array[FlowNode]
 @export var visualisers: Array[Node3D]
-var visual_scene: PackedScene = preload("res://cube2.tscn")
+var visual_scene: PackedScene = preload("res://Scenes/FlowField/cube2.tscn")
 @export var traversable: bool = true
 @export var buildable: bool = true
 var best_path: FlowNode : 
@@ -24,6 +25,7 @@ func _ready() -> void:
 		set_connector_color(node, Color.WEB_GRAY)
 
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if visible:
 		for i: int in connections.size():

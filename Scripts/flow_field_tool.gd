@@ -1,4 +1,5 @@
-class_name FlowFieldTool extends Node
+class_name FlowFieldTool
+extends Node
 
 @export var flow_field: FlowField
 @export var raycast: RayCast3D

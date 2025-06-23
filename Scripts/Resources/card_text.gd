@@ -1,4 +1,5 @@
-class_name CardText extends Resource
+class_name CardText
+extends Resource
 
 @export var target_type: Data.TargetType
 @export var energy_type: Data.EnergyType

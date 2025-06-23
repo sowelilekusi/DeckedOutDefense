@@ -1,1 +1,2 @@
-class_name IcicleWeapon extends ProjectileWeapon
+class_name IcicleWeapon
+extends ProjectileWeapon

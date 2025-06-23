@@ -1,4 +1,5 @@
-class_name InteractButton extends StaticBody3D
+class_name InteractButton
+extends StaticBody3D
 
 signal button_interacted(value: int, callback: Hero)
 

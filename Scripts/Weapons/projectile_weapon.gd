@@ -1,4 +1,5 @@
-class_name ProjectileWeapon extends Weapon
+class_name ProjectileWeapon
+extends Weapon
 
 @export var projectile_scene: PackedScene
 

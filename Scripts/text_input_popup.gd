@@ -1,4 +1,5 @@
-class_name TextInputPopup extends PanelContainer
+class_name TextInputPopup
+extends PanelContainer
 
 signal completed(outcome: bool)
 

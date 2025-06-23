@@ -1,4 +1,5 @@
-class_name Hero extends CharacterBody3D
+class_name Hero
+extends CharacterBody3D
 
 signal ready_state_changed(state: bool)
 
@@ -39,13 +40,9 @@ var game_manager: GameManager
 var hovering_item: InteractButton = null
 var weapons_spawn_count: int = 0 #Used to prevent node name collisions for multiplayer
 var inventory_selected_index: int = 0
-#var equipped_card: Card
-#var offhand_card: Card
 var equipped_weapon: int = 0
 var weapons: Array[Weapon] = [null, null]
 var cards: Array[Card] = [null, null]
-#var weapon: Weapon
-#var offhand_weapon: Weapon
 var weapons_active: bool = false
 var paused: bool = false
 var editing_mode: bool = true

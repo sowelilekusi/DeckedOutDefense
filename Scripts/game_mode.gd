@@ -1,4 +1,5 @@
-class_name GameMode extends RefCounted
+class_name GameMode
+extends RefCounted
 
 var multiplayer: bool = false
 var seeded: bool = false

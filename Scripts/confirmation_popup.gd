@@ -1,4 +1,5 @@
-class_name ConfirmationPopup extends PanelContainer
+class_name ConfirmationPopup
+extends PanelContainer
 
 signal completed(outcome: bool)
 

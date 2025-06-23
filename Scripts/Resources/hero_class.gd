@@ -1,4 +1,5 @@
-class_name HeroClass extends Resource
+class_name HeroClass
+extends Resource
 
 @export var hero_name: String = "Default"
 @export var texture: Texture

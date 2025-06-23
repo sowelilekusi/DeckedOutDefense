@@ -1,4 +1,5 @@
-class_name AreaAffector extends Affector
+class_name AreaAffector
+extends Affector
 
 @export var shapecast: ShapeCast3D
 

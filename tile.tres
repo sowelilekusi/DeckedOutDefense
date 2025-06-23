@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cfv5g36sjq3bo"]
 
-[ext_resource type="Shader" uid="uid://dmgdero70g5d5" path="res://tiler.gdshader" id="1_o41vb"]
+[ext_resource type="Shader" uid="uid://dmgdero70g5d5" path="res://Shaders/tiler.gdshader" id="1_o41vb"]
 [ext_resource type="Texture2D" uid="uid://ds4ccfym5ej7w" path="res://Assets/Textures/tile.png" id="2_2vp4j"]
 
 [resource]

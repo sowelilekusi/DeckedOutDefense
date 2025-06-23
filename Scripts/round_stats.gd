@@ -1,4 +1,5 @@
-class_name RoundStats extends RefCounted
+class_name RoundStats
+extends RefCounted
 
 var enemies_undefeated: Dictionary
 

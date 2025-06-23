@@ -1,4 +1,5 @@
-class_name Health extends Node
+class_name Health
+extends Node
 
 signal health_depleted
 signal health_changed(health: int)

@@ -13,7 +13,7 @@ signal switch_to_single_player
 signal switch_to_multi_player
 signal switch_to_main_menu
 
-var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/first_level.tscn")
+var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
 var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}

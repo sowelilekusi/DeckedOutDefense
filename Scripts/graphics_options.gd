@@ -1,4 +1,5 @@
-class_name GraphicsOptionsMenu extends VBoxContainer
+class_name GraphicsOptionsMenu
+extends VBoxContainer
 
 @export var fov_input: SpinBox
 @export var fov_slider: HSlider
