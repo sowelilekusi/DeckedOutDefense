@@ -42,7 +42,7 @@ func randomize_cards() -> void:
 	var chosen_card: Card = null
 	for x: int in 3:
 		if cheap_cards.size() > 0:
-			chosen_card = cheap_cards[Game.randi_in_range(12 * cards_generated, 0, cheap_cards.size() - 1)]
+			chosen_card = cheap_cards[NoiseRandom.randi_in_range(12 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
 		if chosen_card != null:
 			cards[x].set_card(chosen_card)
@@ -53,9 +53,9 @@ func randomize_cards() -> void:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 2:
 		if medium_cards.size() > 0:
-			chosen_card = medium_cards[Game.randi_in_range(9 * cards_generated, 0, medium_cards.size() - 1)]
+			chosen_card = medium_cards[NoiseRandom.randi_in_range(9 * cards_generated, 0, medium_cards.size() - 1)]
 		elif cheap_cards.size() > 0:
-			chosen_card = cheap_cards[Game.randi_in_range(9 * cards_generated, 0, cheap_cards.size() - 1)]
+			chosen_card = cheap_cards[NoiseRandom.randi_in_range(9 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
 		if chosen_card != null:
 			cards[x+3].set_card(chosen_card)
@@ -66,11 +66,11 @@ func randomize_cards() -> void:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 1:
 		if pricey_cards.size() > 0:
-			chosen_card = pricey_cards[Game.randi_in_range(50 * cards_generated, 0, pricey_cards.size() - 1)]
+			chosen_card = pricey_cards[NoiseRandom.randi_in_range(50 * cards_generated, 0, pricey_cards.size() - 1)]
 		elif medium_cards.size() > 0:
-			chosen_card = medium_cards[Game.randi_in_range(50 * cards_generated, 0, medium_cards.size() - 1)]
+			chosen_card = medium_cards[NoiseRandom.randi_in_range(50 * cards_generated, 0, medium_cards.size() - 1)]
 		elif cheap_cards.size() > 0:
-			chosen_card = cheap_cards[Game.randi_in_range(50 * cards_generated, 0, cheap_cards.size() - 1)]
+			chosen_card = cheap_cards[NoiseRandom.randi_in_range(50 * cards_generated, 0, cheap_cards.size() - 1)]
 		cards_generated += 1
 		if chosen_card != null:
 			cards[x+5].set_card(chosen_card)

@@ -5,6 +5,7 @@ class_name TowerBase extends StaticBody3D
 @export var collider: CollisionShape3D
 @export var minimap_icon: Sprite3D
 
+var game_manager: GameManager
 var owner_id: int
 var point: FlowNode
 var tower: Tower = null
@@ -51,8 +52,8 @@ func networked_spawn_tower(card_index: int, caller_id: int) -> void:
 
 @rpc("reliable", "call_local", "any_peer")
 func networked_remove_tower() -> void:
-	Game.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
-	Game.connected_players_nodes[tower.owner_id].unready_self()
+	game_manager.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
+	game_manager.connected_players_nodes[tower.owner_id].unready_self()
 	tower.queue_free()
 	tower = null
 	minimap_icon.modulate = Color.GREEN

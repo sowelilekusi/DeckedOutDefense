@@ -13,7 +13,8 @@ var username: String = "default"
 var color: Color = Color.TOMATO
 var fading: bool = true
 var time_to_fade: float = 2.0
-var time_since_started_fading:float = 2.0
+var time_since_started_fading: float = 2.0
+var game_manager: GameManager
 
 
 func _process(delta: float) -> void:
@@ -43,7 +44,7 @@ func _input(event: InputEvent) -> void:
 			text_selected = false
 			if input_line.text.length() != 0:
 				if input_line.text.begins_with("/"):
-					Game.parse_command(input_line.text, multiplayer.get_unique_id())
+					game_manager.parse_command(input_line.text, multiplayer.get_unique_id())
 				else:
 					append_message.rpc(username, color, input_line.text)
 			input_line.clear()

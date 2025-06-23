@@ -1,5 +1,8 @@
 class_name MainMenu extends Control
 
+signal singleplayer_game_requested
+signal multiplayer_game_requested
+
 @export var bg_level: Level
 @export var game_select_menu: Control
 @export var main_controls: Control
@@ -7,6 +10,7 @@ class_name MainMenu extends Control
 @export var profile_controls: Control
 @export var mods_controls: ModMenu
 
+var game: GameManager
 var gamemode: GameMode = GameMode.new()
 
 var confirmation_popup_scene: PackedScene = preload("res://Scenes/Menus/confirmation_popup.tscn")
@@ -24,7 +28,7 @@ func _ready() -> void:
 	#bg_level.a_star_graph_3d.build_random_maze(70)
 	#bg_level.a_star_graph_3d.place_random_towers(30)
 	#bg_level.a_star_graph_3d.disable_all_tower_frames()
-	Game.level = bg_level
+	#Game.level = bg_level
 	#WaveManager.generate_wave(WaveManager.calculate_spawn_power(50, 4), bg_level.enemy_pool, bg_level.enemy_spawns)
 	#for spawn: EnemySpawner in bg_level.enemy_spawns:
 	#	spawn.enemy_died_callback = enemy_died
@@ -67,6 +71,7 @@ func quit_game(confirmation: bool) -> void:
 
 func _on_options_button_pressed() -> void:
 	var menu: OptionsMenu = options_menu_scene.instantiate()
+	menu.game_manager = game
 	add_child(menu)
 
 
@@ -75,12 +80,11 @@ func _on_button_mouse_entered() -> void:
 
 
 func start_game() -> void:
-	Game.level = null
-	Game.gamemode = gamemode
-	if gamemode.multiplayer:
-		Game.scene_switch_to_multiplayer_lobby()
+	game.gamemode = gamemode
+	if !gamemode.multiplayer:
+		singleplayer_game_requested.emit()
 	else:
-		Game.scene_switch_to_singleplayer_lobby()
+		multiplayer_game_requested.emit()
 
 
 func _on_play_button_pressed() -> void:
@@ -96,7 +100,7 @@ func _on_multiplayer_button_pressed() -> void:
 func open_game_menu() -> void:
 	main_controls.visible = false
 	game_select_menu.visible = true
-	
+
 
 func _on_back_button_pressed() -> void:
 	main_controls.visible = true

@@ -11,6 +11,7 @@ signal died(enemy: Enemy)
 #@export var sprite: Sprite3D
 @export var corpse_scene: PackedScene
 
+var corpse_root: Node
 var movement_speed: float
 var movement_speed_penalty: float = 1.0
 var alive: bool = true
@@ -41,9 +42,9 @@ func goal_entered() -> void:
 func die() -> void:
 	if alive:
 		alive = false
-		died.emit(stats)
 		var corpse: RigidBody3D = corpse_scene.instantiate()
 		corpse.set_sprite(stats.death_sprite)
 		corpse.position = global_position
-		Game.level.corpses.add_child(corpse)
+		corpse_root.add_child(corpse)
+		died.emit(stats)
 		queue_free()

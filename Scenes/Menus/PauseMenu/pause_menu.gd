@@ -1,9 +1,12 @@
 class_name PauseMenu extends Control
 
-signal closed()
+signal closed
+signal quit_to_main_menu_pressed
+signal quit_to_desktop_pressed
 
 var options_menu_scene: PackedScene = preload("res://Scenes/Menus/options_menu.tscn")
 var confirmation_popup_scene: PackedScene = preload("res://Scenes/Menus/confirmation_popup.tscn")
+var game_manager: GameManager
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -19,6 +22,7 @@ func _on_resume_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	var menu: OptionsMenu = options_menu_scene.instantiate()
+	menu.game_manager = game_manager
 	add_child(menu)
 
 
@@ -31,7 +35,7 @@ func _on_quit_to_main_menu_pressed() -> void:
 
 func return_to_menu(confirmation: bool) -> void:
 	if confirmation:
-		Game.scene_switch_main_menu()
+		quit_to_main_menu_pressed.emit()
 
 
 func _on_quit_to_desktop_pressed() -> void:
@@ -43,7 +47,7 @@ func _on_quit_to_desktop_pressed() -> void:
 
 func quit_game(confirmation: bool) -> void:
 	if confirmation:
-		Game.quit_to_desktop()
+		quit_to_desktop_pressed.emit()
 
 
 func _on_button_mouse_entered() -> void:

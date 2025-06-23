@@ -22,7 +22,7 @@ func generate_rarity() -> int:
 	for rarity: String in Data.Rarity:
 		weight_total += Data.rarity_weights[rarity]
 	
-	var generated_rarity: int = Game.randi_in_range(4 * cards_generated, 0, weight_total)
+	var generated_rarity: int = NoiseRandom.randi_in_range(4 * cards_generated, 0, weight_total)
 	cards_generated += 1
 	var decided_rarity: int = 0
 	
@@ -53,7 +53,7 @@ func randomize_cards(faction: Card.Faction) -> void:
 			decided_rarity -= 1
 		var card: Card
 		if card_array.size() > 0:
-			card = card_array[Game.randi_in_range(132 * cards_generated, 0, card_array.size() - 1)]
+			card = card_array[NoiseRandom.randi_in_range(132 * cards_generated, 0, card_array.size() - 1)]
 			cards_generated += 1
 			card_array.erase(card)
 		var item: CardItem = reply_player.hero_class.card_item.instantiate() as CardItem

@@ -12,7 +12,6 @@ var last_lives_count: int = 120
 @export var minimap_viewport: SubViewport
 @export var fps_label: Label
 @export var hover_text: RichTextLabel
-var minimap_anchor: Node3D
 var enemy_names: Array[String]
 @export var enemy_sprites: Array[TextureRect]
 @export var enemy_counts: Array[Label]
@@ -25,6 +24,7 @@ var enemy_names: Array[String]
 @export var enemy_card_scene: PackedScene
 @export var new_energy_bar: EnergyBar
 
+var map_anchor: Node3D
 var audio_guard: bool = false
 var cards: Array[EnemyCardUI] = []
 
@@ -131,7 +131,7 @@ func set_upcoming_wave(value: Dictionary) -> void:
 	var wave: Dictionary = {}
 	for key: String in value:
 		var new_enemy: Enemy
-		for enemy: Enemy in Data.enemies:
+		for enemy: Enemy in player.game_manager.level.enemy_pool:
 			if enemy.title == key:
 				new_enemy = enemy
 		wave[new_enemy] = value[key]
@@ -169,8 +169,8 @@ func set_weapon_energy(value: int, energy_type: Data.EnergyType) -> void:
 		audio_guard = false
 
 
-func maximise_minimap(anchor: Node3D) -> void:
-	minimap_cam.anchor = anchor
+func maximise_minimap() -> void:
+	minimap_cam.anchor = map_anchor
 	minimap.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	minimap.offset_bottom = -40
 	minimap.offset_top = 40
@@ -182,8 +182,8 @@ func maximise_minimap(anchor: Node3D) -> void:
 	currency_count.set_visible(false)
 
 
-func minimize_minimap(anchor: Node3D) -> void:
-	minimap_cam.anchor = anchor
+func minimize_minimap() -> void:
+	minimap_cam.anchor = player
 	minimap.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
 	minimap.offset_right = -40
 	minimap.offset_top = 40

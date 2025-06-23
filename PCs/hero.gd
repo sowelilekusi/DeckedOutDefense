@@ -35,6 +35,7 @@ signal ready_state_changed(state: bool)
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+var game_manager: GameManager
 var hovering_item: InteractButton = null
 var weapons_spawn_count: int = 0 #Used to prevent node name collisions for multiplayer
 var inventory_selected_index: int = 0
@@ -191,10 +192,10 @@ func _process(delta: float) -> void:
 	camera.fov = Data.graphics.hfov * (1.0 / movement.zoom_factor)
 	
 	if Input.is_action_just_pressed("View Map"):
-		hud.maximise_minimap(Game.level)
+		hud.maximise_minimap()
 		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if Input.is_action_just_released("View Map"):
-		hud.minimize_minimap(self)
+		hud.minimize_minimap()
 		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	check_left_hand_valid()
 
@@ -222,6 +223,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Pause"):
 		var menu: PauseMenu = pause_menu_scene.instantiate() as PauseMenu
 		pause()
+		menu.game_manager = game_manager
+		menu.quit_to_desktop_pressed.connect(game_manager.quit_to_desktop)
+		menu.quit_to_main_menu_pressed.connect(game_manager.scene_switch_main_menu)
 		menu.closed.connect(unpause)
 		hud.add_child(menu)
 

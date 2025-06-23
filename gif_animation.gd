@@ -5,7 +5,6 @@ signal animation_finished()
 var time: float = 0.0
 var x: int = 0
 var y: int = 0
-var loops: int = 0
 var signalled: bool = false
 @export var color_rect: ColorRect
 
@@ -26,8 +25,7 @@ func _process(delta: float) -> void:
 		if y == 8 and x == 4:
 			y = 7
 			x = 5
-			loops += 1
-			if !signalled and loops >= 3:
+			if !signalled:
 				signalled = true
 				animation_finished.emit()
 		texture.region = Rect2(256.0 * x, 256.0 * y, 256.0, 256.0)

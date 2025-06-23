@@ -2,7 +2,6 @@ extends Node
 
 var characters: Array[HeroClass]
 var cards: Array[Card]
-var enemies: Array[Enemy]
 #var keymaps: Array[PlayerKeymap]
 var mods: Dictionary[String, String]
 var graphics: PlayerGraphicsSettings
@@ -13,14 +12,14 @@ var save_data: SaveData
 var keymap_data: KeymapData
 
 const DEFAULT_SERVER_PORT: int = 58008
-
-var wall_cost: int = 1
-var printer_cost: int = 15
 enum EnergyType {UNDEFINED = 0, DISCRETE = 1, CONTINUOUS = 2}
 enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
-var rarity_weights: Dictionary = {
+
+static var wall_cost: int = 1
+static var printer_cost: int = 15
+static var rarity_weights: Dictionary = {
 	"COMMON" = 50,
 	"UNCOMMON" = 30,
 	"RARE" = 10,
@@ -114,11 +113,3 @@ func _ready() -> void:
 	
 	load_classes()
 	load_cards("res://Cards")
-	
-	enemies.append(preload("res://Resources/Enemies/dog.tres"))
-	enemies.append(preload("res://Resources/Enemies/dog_fast.tres"))
-	enemies.append(preload("res://Resources/Enemies/dog_heavy.tres"))
-	enemies.append(preload("res://Resources/Enemies/dog_boss.tres"))
-	enemies.append(preload("res://Resources/Enemies/airenemy.tres"))
-	enemies.append(preload("res://Resources/Enemies/airenemy2.tres"))
-	enemies.append(preload("res://Resources/Enemies/leapfrog.tres"))

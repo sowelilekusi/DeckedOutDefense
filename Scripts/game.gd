@@ -1,13 +1,14 @@
+class_name GameManager
 extends Node
 
 signal wave_started(wave_number: int)
 signal wave_finished(wave_number: int)
 signal base_took_damage(remaining_health: int)
-signal rng_seeded
 signal game_setup
 signal game_started
 signal lost_game
 signal won_game
+signal rng_seeded
 signal switch_to_single_player
 signal switch_to_multi_player
 signal switch_to_main_menu
@@ -29,7 +30,7 @@ var wave_limit: int = 20
 var starting_cash: int = 25
 var shop_chance: float = 0.0
 var stats: RoundStats
-var rng: FastNoiseLite
+
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
 var connected_player_profiles: Dictionary = {}
@@ -50,25 +51,6 @@ func _ready() -> void:
 	UILayer.add_child(version_label)
 	Input.set_custom_mouse_cursor(load("res://Assets/Textures/cursor_none.png"), Input.CURSOR_ARROW, Vector2(9, 6))
 	Input.set_custom_mouse_cursor(load("res://Assets/Textures/bracket_b_vertical.png"), Input.CURSOR_IBEAM, Vector2(16, 16))
-
-
-@rpc("reliable", "call_local")
-func set_seed(value: int) -> void:
-	rng = FastNoiseLite.new()
-	rng.noise_type = FastNoiseLite.TYPE_VALUE
-	rng.frequency = 30
-	rng.fractal_octaves = 2
-	rng.fractal_gain = 0.1
-	rng.seed = value
-	rng_seeded.emit()
-
-
-func randi_in_range(sample: float, output_start: int, output_end: int) -> int:
-	return floori(remap(rng.get_noise_1d(sample), -1.0, 1.0, float(output_start), float(output_end + 1)))
-
-
-func randf_in_range(sample: float, output_start: float, output_end: float) -> float:
-	return remap(rng.get_noise_1d(sample), -1.0, 1.0, output_start, output_end)
 
 
 func parse_command(text: String, peer_id: int) -> void:
@@ -110,7 +92,7 @@ func parse_command(text: String, peer_id: int) -> void:
 		else:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to set wave")
 	elif text.substr(1, 4) == "seed":
-		chatbox.append_message("SERVER", Color.TOMATO, str(rng.seed))
+		chatbox.append_message("SERVER", Color.TOMATO, str(NoiseRandom.noise.seed))
 #	if text.substr(1, 17) == "show tower ranges":
 #		pass
 #	if text.substr(1, 20) = "show gauntlet ranges":
@@ -128,8 +110,10 @@ func networked_set_wave(wave_number: int) -> void:
 
 func spawn_level() -> void:
 	level = level_scene.instantiate() as Level
+	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
 		#x.path = level.a_star_graph_3d.visualized_path
+		x.game_manager = self
 		x.enemy_died_callback = enemy_died
 		x.enemy_reached_goal_callback = damage_goal
 		x.enemy_spawned.connect(increase_enemy_count)
@@ -143,6 +127,9 @@ func spawn_players() -> void:
 	for peer_id: int in player_array:
 		var player: Hero = player_scene.instantiate() as Hero
 		player.name = str(peer_id)
+		player.game_manager = self
+		player.edit_tool.level = level
+		player.hud.map_anchor = level
 		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = connected_player_profiles[peer_id]
@@ -264,7 +251,7 @@ func end_wave() -> void:
 	#level.a_star_graph_3d.enable_non_path_tower_frames()
 	level.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
-		if randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
+		if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			networked_spawn_shop.rpc()
 			shop_chance = 0.0
 		else:
@@ -305,6 +292,12 @@ func setup() -> void:
 	game_setup.emit()
 
 
+@rpc("reliable", "call_local")
+func set_seed(value: int) -> void:
+	NoiseRandom.set_seed(value)
+	rng_seeded.emit()
+
+
 func start() -> void:
 	if is_multiplayer_authority():
 		set_seed.rpc(gamemode.rng_seed)
@@ -329,7 +322,7 @@ func start() -> void:
 	
 	#Start game
 	game_active = true
-	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(rng.seed))
+	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(NoiseRandom.noise.seed))
 	game_started.emit()
 	#print("started game with seed: " + str(gamemode.rng_seed))
 
@@ -341,6 +334,7 @@ func end(outcome: bool) -> void:
 	Data.save_data.add_game_outcome(outcome)
 	Data.save_data.save_to_disc()
 	var menu: GameEndScreen = game_end_scene.instantiate() as GameEndScreen
+	menu.game_manager = self
 	match outcome:
 		false:
 			menu.set_outcome_message("You lost...")

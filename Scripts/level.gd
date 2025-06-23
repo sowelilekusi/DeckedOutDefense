@@ -16,6 +16,7 @@ var wall_id: int = 0
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
 var tower_frame_scene: PackedScene = load("res://Scenes/tower_frame.tscn")
 var tower_frames: Dictionary[FlowNode, Node3D] = {}
+var game_manager: GameManager
 
 
 func _ready() -> void:
@@ -56,8 +57,8 @@ func set_wall(point: FlowNode, caller_id: int) -> void:
 
 func remove_wall(point: FlowNode) -> void:
 	var wall: TowerBase = walls[point]
-	Game.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
-	Game.connected_players_nodes[wall.owner_id].unready_self()
+	game_manager.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
+	game_manager.connected_players_nodes[wall.owner_id].unready_self()
 	walls.erase(point)
 	wall.queue_free()
 	point.traversable = true
@@ -68,6 +69,7 @@ func remove_wall(point: FlowNode) -> void:
 
 func spawn_wall(point: FlowNode, name_id: int, caller_id: int) -> void:
 	var base: TowerBase = tower_base_scene.instantiate() as TowerBase
+	base.game_manager = game_manager
 	base.position = point.global_position
 	base.name = "Wall" + str(name_id)
 	base.owner_id = caller_id
@@ -79,7 +81,7 @@ func spawn_wall(point: FlowNode, name_id: int, caller_id: int) -> void:
 
 func generate_obstacles() -> void:
 	#print(str(multiplayer.get_unique_id()) + " spawning obstacles with seed: " + str(Game.rng.seed))
-	var obstacle_count: int = Game.randi_in_range(1, 0, 5)
+	var obstacle_count: int = NoiseRandom.randi_in_range(1, 0, 5)
 	obstacle_count = 0
 #	for index: int in obstacle_count:
 #		#var x: int = Game.randi_in_range(10 * index, 1 - a_star_graph_3d.grid_size.x, a_star_graph_3d.grid_size.x - 1)

@@ -7,13 +7,14 @@ class_name PathEditTool extends Node3D
 @export var progress_bar: TextureProgressBar
 
 var enabled: bool = true
-var point: FlowNode = null
+var level: Level
+var point: FlowNode
 var obstacle_last_point: int = -1
 var valid_point: bool = false # a point is valid if the path would still be traversable overall if this point was made untraversable
 var tower_preview: Tower
 var ray_collider: Object
 var ray_point: Vector3
-var last_point: FlowNode = null
+var last_point: FlowNode
 var last_tower_base: TowerBase
 
 var interact_key_held: bool = false
@@ -66,13 +67,13 @@ func _process(delta: float) -> void:
 		if !interact_key_held:
 			wall_preview.set_visible(true)
 			if is_instance_valid(ray_collider) and ray_collider is TowerBase:
-				Game.level.walls[ray_collider.point].set_float(1.0)
+				level.walls[ray_collider.point].set_float(1.0)
 			ray_collider = ray.get_collider()
 			ray_point = ray.get_collision_point()
 		
 		if ray_collider is TowerBase:
 			process_looking_at_tower()
-		elif Game.level:
+		elif level:
 			process_looking_at_level()
 	elif !interact_key_held:
 		reset()
@@ -84,8 +85,8 @@ func _process(delta: float) -> void:
 
 
 func reset() -> void:
-	if is_instance_valid(ray_collider) and ray_collider is TowerBase and Game.level.walls.has(ray_collider.point):
-		Game.level.walls[ray_collider.point].set_float(1.0)
+	if is_instance_valid(ray_collider) and ray_collider is TowerBase and level.walls.has(ray_collider.point):
+		level.walls[ray_collider.point].set_float(1.0)
 	ray_collider = null
 	delete_tower_preview()
 	wall_preview.set_visible(false)
@@ -96,8 +97,8 @@ func reset() -> void:
 func process_looking_at_level() -> void:
 	if tower_preview:
 		delete_tower_preview()
-	point = Game.level.flow_field.get_closest_buildable_point(ray_point)
-	if Game.level.walls.has(point) or !point.buildable or hero.currency < Data.wall_cost:
+	point = level.flow_field.get_closest_buildable_point(ray_point)
+	if level.walls.has(point) or !point.buildable or hero.currency < Data.wall_cost:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()
@@ -106,8 +107,8 @@ func process_looking_at_level() -> void:
 		if last_point != point:
 			clear_previous_point()
 			last_point = point
-			if !Game.level.walls.has(point) and Game.level.flow_field.traversable_after_blocking_point(point):
-				Game.level.flow_field.toggle_traversable(point)
+			if !level.walls.has(point) and level.flow_field.traversable_after_blocking_point(point):
+				level.flow_field.toggle_traversable(point)
 				wall_preview.set_float(0.0)
 				valid_point = true
 			else:
@@ -115,8 +116,8 @@ func process_looking_at_level() -> void:
 
 
 func clear_previous_point() -> void:
-	if last_point and !Game.level.walls.has(last_point) and !last_point.traversable:
-		Game.level.flow_field.toggle_traversable(last_point)
+	if last_point and !level.walls.has(last_point) and !last_point.traversable:
+		level.flow_field.toggle_traversable(last_point)
 
 
 func process_looking_at_tower() -> void:
@@ -162,7 +163,7 @@ func interact() -> void:
 func build_wall() -> void:
 	if point and valid_point and hero.currency >= Data.wall_cost:
 		hero.currency -= Data.wall_cost
-		Game.level.set_wall(point, multiplayer.get_unique_id())
+		level.set_wall(point, multiplayer.get_unique_id())
 	wall_preview.visible = false
 
 
@@ -171,7 +172,7 @@ func refund_wall(wall: TowerBase) -> void:
 		return
 	if wall.has_card:
 		wall.remove_card()
-	Game.level.remove_wall(wall.point)
+	level.remove_wall(wall.point)
 
 
 func put_card_in_tower_base(tower_base: TowerBase) -> void:

@@ -6,14 +6,12 @@ signal enemy_spawned()
 @export var leap_enemy_scene: PackedScene
 @export var air_enemy_scene: PackedScene
 @export var path: VisualizedPath
-var astar: AStarGraph3D
 @export var flow_field: FlowField
 @export var own_id: int = 0
 @export var type: Data.EnemyType
 @export var dest: Node3D
 @export var enemy_path: Node
 
-var astar_point_id: int = 0
 var enemy_died_callback: Callable
 var enemy_reached_goal_callback: Callable
 var current_wave: Array[EnemyCard]
@@ -25,6 +23,7 @@ var done_spawning: bool = true
 var enemy_id: int = 0
 var new_path: Path3D
 var path_polygon: PackedScene = preload("res://path_polygon.tscn")
+var game_manager: GameManager
 
 
 func _ready() -> void:
@@ -63,11 +62,12 @@ func _process(delta: float) -> void:
 @rpc("reliable", "call_local")
 func networked_spawn_land_enemy(enemy_stats: String, id1: int, id2: int) -> void:
 	var e_stats: Enemy = null
-	for enemy: Enemy in Data.enemies:
+	for enemy: Enemy in game_manager.level.enemy_pool:
 		if enemy.title == enemy_stats:
 			e_stats = enemy
 	var enemy: EnemyController
 	enemy = e_stats.scene.instantiate()
+	enemy.corpse_root = game_manager.level.corpses
 	enemy.name = str(id1) + str(id2)
 	enemy.stats = e_stats
 	enemy.died.connect(enemy_died_callback)
@@ -110,11 +110,12 @@ func update_path() -> void:
 @rpc("reliable", "call_local")
 func networked_spawn_air_enemy(enemy_stats: String, pos: Vector3, id1: int, id2: int) -> void:
 	var e_stats: Enemy = null
-	for enemy: Enemy in Data.enemies:
+	for enemy: Enemy in game_manager.level.enemy_pool:
 		if enemy.title == enemy_stats:
 			e_stats = enemy
 	var enemy: EnemyController
 	enemy = e_stats.scene.instantiate()
+	enemy.corpse_root = game_manager.level.corpses
 	enemy.name = str(id1) + str(id2)
 	enemy.position = pos + global_position
 	enemy.stats = e_stats

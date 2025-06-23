@@ -2,7 +2,6 @@ class_name EnemyMovement extends Node
 
 @export var character: EnemyController
 
-var astar: AStarGraph3D
 var distance_remaining: float = 0.0
 var speed: float = 0.0
 

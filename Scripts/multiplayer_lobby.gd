@@ -53,9 +53,9 @@ func create_server() -> void:
 func setup_game(peer_id: int) -> void:
 	loadout_editor = character_select_screen.instantiate() as CharacterSelect
 	add_child(loadout_editor)
-	player_disconnected.connect(Game.remove_player)
-	scoreboard.all_players_ready.connect(start_game)
-	Game.chatbox = chatbox
+	player_disconnected.connect(game_manager.remove_player)
+	#scoreboard.all_players_ready.connect(start_game)
+	game_manager.chatbox = chatbox
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
 	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
@@ -72,7 +72,7 @@ func connect_to_server() -> void:
 
 func ready_player() -> void:
 	var peer_id: int = multiplayer.get_unique_id()
-	networked_ready_player.rpc(peer_id)
+	#networked_ready_player.rpc(peer_id)
 
 
 func start_game() -> void:
@@ -102,6 +102,6 @@ func add_player(new_player_profile_dict: Dictionary) -> void:
 	player_connected.emit(new_player_peer_id, new_player_profile)
 
 
-@rpc("any_peer", "reliable", "call_local")
-func networked_ready_player(peer_id: int) -> void:
-	scoreboard.set_player_ready_state(peer_id, true)
+#@rpc("any_peer", "reliable", "call_local")
+#func networked_ready_player(peer_id: int) -> void:
+	#scoreboard.set_player_ready_state(peer_id, true)

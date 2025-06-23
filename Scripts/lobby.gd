@@ -6,6 +6,7 @@ class_name Lobby extends Control
 #@export var ready_button: Button
 @export var audio_player: AudioStreamPlayer
 
+var game_manager: GameManager
 var gamemode: GameMode = null
 var loadout_editor: CharacterSelect = null
 var connected_players_profiles: Dictionary = {}
@@ -16,16 +17,17 @@ func setup_the_ui() -> void:
 	#scoreboard.set_visible(true)
 	loadout_editor.set_visible(true)
 	chatbox.set_visible(true)
+	chatbox.game_manager = game_manager
 	#ready_button.set_visible(true)
 
 
 func start_game() -> void:
-	Game.setup()
+	game_manager.setup()
 	#scoreboard.set_visible(false)
 	loadout_editor.queue_free()
 	#ready_button.set_visible(false)
-	Game.connected_player_profiles = connected_players_profiles
-	Game.start()
+	game_manager.connected_player_profiles = connected_players_profiles
+	game_manager.start()
 
 
 func _on_button_mouse_entered() -> void:

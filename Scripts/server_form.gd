@@ -12,6 +12,7 @@ signal host_button_pressed
 @export var players_field: HBoxContainer
 @export var start_button: Button
 
+var game_manager: GameManager
 var menu: int = 0
 var hosting: bool = false
 
@@ -40,7 +41,7 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_pressed() -> void:
 	if menu == 0:
-		Game.scene_switch_main_menu()
+		game_manager.scene_switch_main_menu()
 	else:
 		menu -= 1
 		host_button.visible = true

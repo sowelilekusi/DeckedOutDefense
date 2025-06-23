@@ -7,6 +7,7 @@ var keybind_boxes: Array[KeybindEntry] = []
 var key_event: InputEvent
 var selected_entry: KeybindEntry
 var listening_for_key: bool = false
+var ui_layer: CanvasLayer
 
 
 func _ready() -> void:
@@ -44,7 +45,7 @@ func load_keybind_labels() -> void:
 func _on_keybind_button_pressed(button: Button, keybind_entry: KeybindEntry) -> void:
 	var popup: KeybindPopup = keybind_popup.instantiate()
 	popup.event_detected.connect(keybind_entry.set_button_bind.bind(button))
-	Game.UILayer.add_child(popup)
+	ui_layer.add_child(popup)
 
 
 func save() -> void:

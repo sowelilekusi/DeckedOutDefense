@@ -3,6 +3,11 @@ class_name OptionsMenu extends Control
 @export var gameplay: GameplayOptionsMenu
 @export var graphics: GraphicsOptionsMenu
 @export var keybinds: KeybindsOptionsMenu
+var game_manager: GameManager
+
+
+func _ready() -> void:
+	keybinds.ui_layer = game_manager.UILayer
 
 
 func _on_cancel_pressed() -> void:
