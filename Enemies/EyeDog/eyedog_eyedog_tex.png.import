@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wx4d2upch81n"
-path.s3tc="res://.godot/imported/eyedog_eyedog_tex.png-e59f4e3560f0b0a0e86e8b4afbd1a1e9.s3tc.ctex"
+path.s3tc="res://.godot/imported/eyedog_eyedog_tex.png-1f14344e8bf95fbf8ece2e5fc948c9ad.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://eyedog_eyedog_tex.png"
-dest_files=["res://.godot/imported/eyedog_eyedog_tex.png-e59f4e3560f0b0a0e86e8b4afbd1a1e9.s3tc.ctex"]
+source_file="res://Enemies/EyeDog/eyedog_eyedog_tex.png"
+dest_files=["res://.godot/imported/eyedog_eyedog_tex.png-1f14344e8bf95fbf8ece2e5fc948c9ad.s3tc.ctex"]
 
 [params]
 

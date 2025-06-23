@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dlhx6r23m5ceg"
-path="res://.godot/imported/eyedog.glb-e332c2bd7f518d74bf3d38e536e40139.scn"
+path="res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"
 
 [deps]
 
-source_file="res://eyedog.glb"
-dest_files=["res://.godot/imported/eyedog.glb-e332c2bd7f518d74bf3d38e536e40139.scn"]
+source_file="res://Enemies/EyeDog/eyedog.glb"
+dest_files=["res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"]
 
 [params]
 

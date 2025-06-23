@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cveiaa0y66gln"]
 
 [ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="1_aormu"]
-[ext_resource type="PackedScene" uid="uid://o6whohcbalui" path="res://crystal_enemy.glb" id="2_myjng"]
+[ext_resource type="PackedScene" uid="uid://o6whohcbalui" path="res://Enemies/Crystalisk/crystal_enemy.glb" id="2_myjng"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_myjng"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c5uwa"]

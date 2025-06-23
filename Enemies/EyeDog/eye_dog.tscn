@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="7_bkkhh"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="8_k2835"]
 [ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="9_t4oco"]
-[ext_resource type="PackedScene" uid="uid://dlhx6r23m5ceg" path="res://eyedog.glb" id="10_h25mw"]
+[ext_resource type="PackedScene" uid="uid://dlhx6r23m5ceg" path="res://Enemies/EyeDog/eyedog.glb" id="10_h25mw"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="11_kpdsm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cavbv"]

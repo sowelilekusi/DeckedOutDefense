@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Resources/Enemies/dog_heavy.tres" id="10_day26"]
 [ext_resource type="Resource" uid="uid://boik1gnpl4v0a" path="res://Resources/Enemies/dog_boss.tres" id="11_1mes0"]
 [ext_resource type="Resource" uid="uid://dsgkwh3opyqtx" path="res://Resources/Enemies/airenemy.tres" id="12_5vny5"]
-[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Resources/Enemies/airenemy2.tres" id="13_xb7gj"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/airenemy2.tres" id="13_xb7gj"]
 [ext_resource type="Texture2D" uid="uid://cr1ucbuw3iotp" path="res://Assets/Textures/first_win_achievements.png" id="15_74epv"]
 [ext_resource type="Script" uid="uid://cjr0pbqisd51v" path="res://Scenes/Menus/MainMenu/achievements_menu.gd" id="15_sv1gy"]
 [ext_resource type="Texture2D" uid="uid://cpa1hl36xfplg" path="res://Assets/Textures/first_scroll_seen.png" id="16_sv1gy"]

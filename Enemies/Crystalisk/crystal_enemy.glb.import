@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://o6whohcbalui"
-path="res://.godot/imported/crystal_enemy.glb-5db02a6c9798f184be321fd8ed4734ae.scn"
+path="res://.godot/imported/crystal_enemy.glb-c13aa4a405d2f70db8609b6b88d49905.scn"
 
 [deps]
 
-source_file="res://crystal_enemy.glb"
-dest_files=["res://.godot/imported/crystal_enemy.glb-5db02a6c9798f184be321fd8ed4734ae.scn"]
+source_file="res://Enemies/Crystalisk/crystal_enemy.glb"
+dest_files=["res://.godot/imported/crystal_enemy.glb-c13aa4a405d2f70db8609b6b88d49905.scn"]
 
 [params]
 

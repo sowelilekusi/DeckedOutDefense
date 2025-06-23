@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_ivs7a"]
 [ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="1_r8gpy"]
 [ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="2_tyyee"]
-[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://eye_dog.tscn" id="3_tyyee"]
+[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/eye_dog.tscn" id="3_tyyee"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="4_7ypa6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6kdu"]

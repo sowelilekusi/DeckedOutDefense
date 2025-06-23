@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://bffhb5krs5elm"]
+
+[ext_resource type="Texture2D" uid="uid://b1lwaxw62yp3p" path="res://Assets/Textures/dead_spike.png" id="1_skyfd"]
+[ext_resource type="Texture2D" uid="uid://duywsy7jmh4u" path="res://Assets/Textures/spike.png" id="2_idym2"]
+[ext_resource type="PackedScene" uid="uid://cveiaa0y66gln" path="res://Enemies/Crystalisk/crystal_enemy.tscn" id="3_7w5fm"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_x2l2n"]
+[ext_resource type="Texture2D" uid="uid://sybn6bjbj5fh" path="res://Assets/TextureAtlases/spike.tres" id="5_okcvf"]
+
+[resource]
+script = ExtResource("4_x2l2n")
+title = "Crystalisk"
+target_type = 2
+scene = ExtResource("3_7w5fm")
+icon = ExtResource("2_idym2")
+death_sprite = ExtResource("1_skyfd")
+sprite = ExtResource("5_okcvf")
+spawn_power = 6
+health = 120
+penalty = 7
+movement_speed = 1.0
+spawn_cooldown = 1.0
+common_group = 5
+common_cost = 2
+uncommon_group = 10
+uncommon_cost = 3
+rare_group = 18
+rare_cost = 4
+epic_group = 26
+epic_cost = 6
+legendary_group = 42
+legendary_cost = 8
