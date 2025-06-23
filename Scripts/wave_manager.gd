@@ -26,7 +26,7 @@ static func calculate_pot(wave_number: int, number_of_players: int) -> int:
 ## among the given set of enemy spawners
 static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
 	var wave: Wave = Wave.new()
-	
+
 	var points: int = spawn_power / 10.0
 	#print("Generating wave with " + str(points) + " points to spend")
 	while points > 0:
@@ -63,7 +63,7 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 				#a different enemy and try this process again
 				var enemy_id: int = spawn_pool.find(new_card.enemy)
 				enemy_id -= 1
-				if enemy_id <= 0:
+				if enemy_id < 0:
 					new_card.enemy = spawn_pool[spawn_pool.size() - 1]
 				else:
 					new_card.enemy = spawn_pool[enemy_id]

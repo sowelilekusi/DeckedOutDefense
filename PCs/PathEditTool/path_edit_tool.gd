@@ -32,13 +32,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !enabled:
-		ray_collider = null
-		wall_preview.set_visible(false)
+		reset()
 		return
 	
 	if interact_key_held:
 		if !interacted_once:
-			if valid_point and hero.currency >= Data.wall_cost and ray.is_colliding() and point.buildable:
+			if valid_point and hero.currency >= Data.wall_cost and ray_collider and point.buildable:
 				interact_held_time += delta
 				set_progress_percent(interact_held_time / interact_hold_time)
 				wall_preview.set_float(interact_held_time / interact_hold_time)
@@ -46,13 +45,13 @@ func _process(delta: float) -> void:
 					set_progress_percent(0)
 					interacted_once = true
 					build_wall()
-			elif ray.is_colliding() and ray.get_collider() is TowerBase:
+			elif ray_collider is TowerBase:
 				interact_held_time += delta
 				set_progress_percent(interact_held_time / interact_hold_time)
 				if interact_held_time >= interact_hold_time:
 					set_progress_percent(0)
 					interacted_once = true
-					refund_wall(ray.get_collider())
+					refund_wall(ray_collider)
 	else:
 		interact_held_time = 0.0
 		interacted_once = false
@@ -75,16 +74,23 @@ func _process(delta: float) -> void:
 			process_looking_at_tower()
 		elif Game.level:
 			process_looking_at_level()
-	else:
-		if is_instance_valid(ray_collider) and ray_collider is TowerBase and Game.level.walls.has(ray_collider.point):
-			Game.level.walls[ray_collider.point].set_float(1.0)
-		ray_collider = null
-		delete_tower_preview()
-		wall_preview.set_visible(false)
-		clear_previous_point()
-		last_point = null
+	elif !interact_key_held:
+		reset()
 	if !valid_point:
 		wall_preview.set_visible(false)
+	if point:
+		wall_preview.global_position = point.global_position
+		wall_preview.global_rotation = Vector3.ZERO
+
+
+func reset() -> void:
+	if is_instance_valid(ray_collider) and ray_collider is TowerBase and Game.level.walls.has(ray_collider.point):
+		Game.level.walls[ray_collider.point].set_float(1.0)
+	ray_collider = null
+	delete_tower_preview()
+	wall_preview.set_visible(false)
+	clear_previous_point()
+	last_point = null
 
 
 func process_looking_at_level() -> void:
@@ -97,8 +103,6 @@ func process_looking_at_level() -> void:
 		clear_previous_point()
 		last_point = point
 	else:
-		wall_preview.global_position = point.global_position
-		wall_preview.global_rotation = Vector3.ZERO
 		if last_point != point:
 			clear_previous_point()
 			last_point = point

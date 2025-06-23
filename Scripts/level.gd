@@ -41,8 +41,8 @@ func enable_non_path_tower_frames() -> void:
 
 func disable_path_tower_frames() -> void:
 	for node: FlowNode in tower_frames:
-		if !node.traversable and flow_field.traversable_after_blocking_point(node):
-			tower_frames[node].visible = true
+		if node.traversable and !flow_field.traversable_after_blocking_point(node):
+			tower_frames[node].visible = false
 
 
 func set_wall(point: FlowNode, caller_id: int) -> void:
