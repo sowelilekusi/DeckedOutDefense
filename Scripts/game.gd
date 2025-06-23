@@ -8,12 +8,12 @@ signal game_setup
 signal game_started
 signal lost_game
 signal won_game
+signal switch_to_single_player
+signal switch_to_multi_player
+signal switch_to_main_menu
 
 var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/first_level.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
-var main_menu_scene_path: String = "res://Scenes/Menus/MainMenu/main_menu.tscn"
-var multiplayer_lobby_scene_path: String = "res://Scenes/Menus/multiplayer_lobby.tscn"
-var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lobby.tscn"
 var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
 var game_active: bool = false
@@ -262,12 +262,13 @@ func end_wave() -> void:
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.path.enable_visualization()
 	#level.a_star_graph_3d.enable_non_path_tower_frames()
+	level.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
 		if randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			networked_spawn_shop.rpc()
 			shop_chance = 0.0
 		else:
-			shop_chance += 0.07
+			shop_chance += 0.09
 	wave_finished.emit(wave)
 	set_upcoming_wave()
 
@@ -365,12 +366,15 @@ func scene_switch_main_menu() -> void:
 	connected_players_nodes.clear()
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
-	get_tree().change_scene_to_file(main_menu_scene_path)
+	switch_to_main_menu.emit()
+	#get_tree().change_scene_to_file(main_menu_scene_path)
 
 
 func scene_switch_to_multiplayer_lobby() -> void:
-	get_tree().change_scene_to_file(multiplayer_lobby_scene_path)
+	switch_to_multi_player.emit()
+	#get_tree().change_scene_to_file(multiplayer_lobby_scene_path)
 
 
 func scene_switch_to_singleplayer_lobby() -> void:
-	get_tree().change_scene_to_file(singleplayer_lobby_scene_path)
+	switch_to_single_player.emit()
+	#get_tree().change_scene_to_file(singleplayer_lobby_scene_path)

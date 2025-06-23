@@ -12,7 +12,7 @@ class_name WaveManager extends Object
 ## Takes in wave number and number of players and returns a spawn power value
 ## intended for passing into the generate_wave method
 static func calculate_spawn_power(wave_number: int, number_of_players: int) -> int:
-	return (20 * number_of_players) + (5 * wave_number)
+	return (40 * number_of_players) + (6 * wave_number)
 
 
 ## Takes in wave number and number of players and returns the amount of coins

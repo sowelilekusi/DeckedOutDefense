@@ -1,17 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjo2q6vca5qlv"]
+[gd_scene load_steps=10 format=3 uid="uid://bjo2q6vca5qlv"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_m83kr"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_aed6c"]
 [ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="3_wiose"]
 [ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_mhq3m"]
-[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="6_ke2c8"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="9_4xla1"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_7hati"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_7yfyh"]
 [ext_resource type="Script" uid="uid://d147vuqksqhis" path="res://Scripts/EnemyAI/beelining_controller.gd" id="9_cx8mv"]
-[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="10_4ayno"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_yxqm6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ss5ir"]
 viewport_path = NodePath("SubViewport")
@@ -30,17 +26,6 @@ corpse_scene = ExtResource("2_aed6c")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_wiose")
 damage_particle_scene = ExtResource("4_mhq3m")
-
-[node name="Hitbox" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_yxqm6")
-script = ExtResource("10_4ayno")
-metadata/_custom_type_script = "uid://cummt2be3r1gq"
-
-[node name="DirectionSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, 0, 0.0251125, 0)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("6_ke2c8")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.637873, 0)
@@ -86,4 +71,3 @@ metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="die"]
-[connection signal="took_damage" from="Hitbox" to="Health" method="take_damage"]

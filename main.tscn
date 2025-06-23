@@ -1,36 +1,101 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2k8y13qfvch0"]
+[gd_scene load_steps=8 format=3 uid="uid://d2k8y13qfvch0"]
 
-[ext_resource type="Shader" uid="uid://y78cbva8erip" path="res://psx.gdshader" id="1_0xm2m"]
+[ext_resource type="Shader" uid="uid://diugvmtoos1ti" path="res://pixeldither.gdshader" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://6frn8lcwwehv" path="res://Assets/TextureAtlases/puppyfruit.png" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://p1ugbcmjuwxg" path="res://gif_animation.gd" id="3_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bpo5fu2a26mr7" path="res://blk-nx64-1x.png" id="3_h2yge"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
-shader = ExtResource("1_0xm2m")
-shader_parameter/enabled = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("2_lquwl")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("2_1bvp3")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = ExtResource("3_h2yge")
 shader_parameter/dithering = true
-shader_parameter/colors = 12
-shader_parameter/dither_size = 1
+shader_parameter/dithering_size = 4
+shader_parameter/resolution_scale = 1
+shader_parameter/quantization_level = 8
 
-[node name="SubViewportContainer" type="SubViewportContainer"]
-material = SubResource("ShaderMaterial_1bvp3")
+[node name="Main" type="Node" node_paths=PackedStringArray("scene", "movies")]
+script = ExtResource("2_h2yge")
+scene = NodePath("Scene")
+movies = NodePath("Movies")
+metadata/_custom_type_script = "uid://cx1xj7esl03ui"
+
+[node name="Movies" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_h2yge")
+color = Color(0.193592, 0.4164, 0.224909, 1)
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1920, 1080)
-
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
-anchors_preset = 14
+[node name="TextureRect" type="TextureRect" parent="Movies" node_paths=PackedStringArray("color_rect")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -13.5
-offset_bottom = 13.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-show_percentage = false
+texture = SubResource("AtlasTexture_272bh")
+script = ExtResource("3_7mycd")
+color_rect = NodePath("../ColorRect")
 
-[node name="Node" type="Node" parent="SubViewport"]
+[node name="Label" type="Label" parent="Movies"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 205.0
+offset_right = 52.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 91
+text = "puppyfruit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Movies"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = 85.0
+offset_right = 190.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.415686, 0.223529, 1)
+
+[node name="Scene" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_7mycd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="animation_finished" from="Movies/TextureRect" to="." method="load_main_menu"]

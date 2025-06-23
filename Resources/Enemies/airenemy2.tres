@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b1lwaxw62yp3p" path="res://Assets/Textures/dead_spike.png" id="1_1js8q"]
 [ext_resource type="Texture2D" uid="uid://duywsy7jmh4u" path="res://Assets/Textures/spike.png" id="1_22o7e"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_q5r05"]
-[ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="3_b3axe"]
+[ext_resource type="PackedScene" uid="uid://cveiaa0y66gln" path="res://crystal_enemy.tscn" id="3_b3axe"]
 [ext_resource type="Texture2D" uid="uid://sybn6bjbj5fh" path="res://Assets/TextureAtlases/spike.tres" id="3_tbb38"]
 
 [resource]

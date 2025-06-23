@@ -112,15 +112,15 @@ defense"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainControls" type="VBoxContainer" parent="."]
+[node name="MainControls" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 130.0
-offset_top = -188.0
-offset_right = 143.0
-offset_bottom = -80.0
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_top = -60.0
+grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlayButton" type="Button" parent="MainControls"]
@@ -149,14 +149,12 @@ text = "Quit
 [node name="ProfileEditor" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -429.0
-offset_top = -140.0
-offset_right = -55.0
-offset_bottom = -40.0
+anchor_left = 0.97
+anchor_top = 0.95
+anchor_right = 0.97
+anchor_bottom = 0.95
+offset_left = -421.0
+offset_top = -150.0
 grow_horizontal = 0
 grow_vertical = 0
 

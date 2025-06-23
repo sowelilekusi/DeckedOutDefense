@@ -3,10 +3,24 @@ class_name PathingController extends EnemyMovement
 #var path: Curve3D
 #var path_progress: float = 0.0
 var flow_field: FlowField
-var next_node: FlowNode
+var next_node: FlowNode : 
+	get():
+		return next_node
+	set(value):
+		next_node = value
+		var found_point: bool = false
+		while !found_point:
+			#TODO: make deterministic random
+			var x: float = randf_range(-1, 1)
+			var y: float = randf_range(-1, 1)
+			if Vector3(next_node.global_position.x + x, next_node.global_position.y, next_node.global_position.z + y).distance_to(next_node.global_position) <= 1.0:
+				found_point = true
+				next_pos = Vector3(next_node.global_position.x + x, next_node.global_position.y, next_node.global_position.z + y)
+var next_pos: Vector3
 
 
 func _ready() -> void:
+	super._ready()
 	#if path:
 	#	distance_remaining = path.get_baked_length()
 	next_node = flow_field.get_closest_traversable_point(character.global_position)
@@ -26,11 +40,11 @@ func calculate_distance_to_goal(node: FlowNode) -> float:
 
 
 func walk(delta: float) -> void:
-	var distance_travelled: float = (character.stats.movement_speed * clampf(character.movement_speed_penalty, 0.0, 1.0)) * delta
+	var distance_travelled: float = (speed * clampf(speed, 0.0, 1.0)) * delta
 	distance_remaining -= distance_travelled
-	character.global_position = character.global_position.move_toward(next_node.global_position, distance_travelled)
-	character.look_at(next_node.global_position)
-	if character.global_position.distance_to(next_node.global_position) <= 0.05:
+	character.global_position = character.global_position.move_toward(next_pos, distance_travelled)
+	character.look_at(next_pos)
+	if character.global_position.distance_to(next_pos) <= 0.05:
 		next_node = next_node.best_path
 
 

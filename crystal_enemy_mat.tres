@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dylmoyx1tasat"]
+
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://jitter.gdshader" id="1_4cwdh"]
+[ext_resource type="Texture2D" uid="uid://d01y8kogfuayr" path="res://crystal_enemy.png" id="2_l5awy"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4cwdh")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("2_l5awy")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
