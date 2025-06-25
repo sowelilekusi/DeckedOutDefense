@@ -29,8 +29,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847404, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
-press_cost = 15
-hover_text = "[center]#Interact# draft a card for $15"
+press_cost = 3
+hover_text = "[center]#Interact# draft a card for 3 Energy"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -6.55949e-05, 0.349496, -0.579584)

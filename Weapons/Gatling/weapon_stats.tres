@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_fi7tc"]
 script = ExtResource("1_7oh83")
 key = "Fire Delay"
-value = 0.4
+value = 0.3
 
 [sub_resource type="Resource" id="Resource_r6h5d"]
 script = ExtResource("1_7oh83")
@@ -31,7 +31,7 @@ value = 4.0
 [sub_resource type="Resource" id="Resource_d1lvi"]
 script = ExtResource("1_7oh83")
 key = "Energy"
-value = 20.0
+value = 30.0
 
 [resource]
 script = ExtResource("2_y36gr")

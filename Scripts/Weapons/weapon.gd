@@ -22,6 +22,7 @@ var recharging: bool = false
 var recharge_speed: float = 0.0
 var recharge_acceleration: float = 2.0
 var recharge_max_speed: float = 25.0
+var duration: int = 0
 #var time_since_trigger: float = 0.0
 
 

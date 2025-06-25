@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_5vmtk")
+duration = 6
 rarity = 1
 faction = 1
 turret_scene = ExtResource("4_k5nhs")

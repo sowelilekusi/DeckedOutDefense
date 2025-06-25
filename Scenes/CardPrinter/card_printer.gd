@@ -79,6 +79,10 @@ func card_picked_up(card_item: CardItem) -> void:
 
 func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 	reply_player = reply
+	if reply.energy >= 3:
+		reply.energy -= 3
+	else:
+		return
 	button_collider.disabled = true
 	$StaticBody3D/AudioStreamPlayer3D.play()
 	randomize_cards(reply.hero_class.faction)

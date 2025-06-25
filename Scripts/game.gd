@@ -27,7 +27,6 @@ var pot: float
 var UILayer: CanvasLayer
 var chatbox: Chatbox
 var wave_limit: int = 20
-var starting_cash: int = 25
 var shop_chance: float = 0.0
 var stats: RoundStats
 
@@ -175,6 +174,8 @@ func spawn_enemy_wave() -> void:
 		#spawn.path.disable_visualization()
 		spawn.visible = false
 		spawn.spawn_wave()
+	for tower_base: TowerBase in level.walls.values():
+		tower_base.disable_duration_sprites()
 	wave_started.emit(wave)
 
 
@@ -245,10 +246,18 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 
 func end_wave() -> void:
 	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
-		connected_players_nodes[peer_id].unready_self()
+		var player: Hero = connected_players_nodes[peer_id] as Hero
+		player.currency += ceili(pot / connected_players_nodes.size())
+		player.energy = 8
+		player.iterate_duration()
+		player.draw_to_hand_size()
+		player.unready_self()
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.visible = true
+	for tower_base: TowerBase in level.walls.values():
+		if tower_base.has_card:
+			tower_base.enable_duration_sprites()
+			tower_base.iterate_duration()
 	#level.a_star_graph_3d.enable_non_path_tower_frames()
 	level.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
@@ -308,7 +317,10 @@ func start() -> void:
 	#Relies on player list having been decided
 	spawn_players()
 	for peer_id: int in connected_players_nodes:
-		connected_players_nodes[peer_id].currency = ceili(float(starting_cash) / float(connected_players_nodes.size()))
+		connected_players_nodes[peer_id].currency = ceili(float(Data.starting_cash) / float(connected_players_nodes.size()))
+		connected_players_nodes[peer_id].energy = 8
+		connected_players_nodes[peer_id].draw_pile.shuffle()
+		connected_players_nodes[peer_id].draw_to_hand_size()
 	
 	#Relies on rng having been seeded
 	set_upcoming_wave()
@@ -318,7 +330,7 @@ func start() -> void:
 	level.generate_obstacles()
 	level.enable_non_path_tower_frames()
 	#level.a_star_graph_3d.disable_all_tower_frames()
-	#level.a_star_graph_3d.enable_non_path_tower_frames()z
+	#level.a_star_graph_3d.enable_non_path_tower_frames()
 	#level.a_star_graph_3d.find_path()
 	
 	#Start game

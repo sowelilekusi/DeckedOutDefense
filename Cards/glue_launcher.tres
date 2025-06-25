@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_tdu8a")
+duration = 4
 rarity = 0
 faction = 1
 turret_scene = ExtResource("4_xcrut")

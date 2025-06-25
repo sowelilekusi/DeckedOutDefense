@@ -18,6 +18,7 @@ enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
 
+static var starting_cash: int = 10
 static var wall_cost: int = 1
 static var printer_cost: int = 15
 static var rarity_weights: Dictionary = {

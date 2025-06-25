@@ -6,6 +6,8 @@ var stats: Card
 @export var title_text: Label
 @export var description: RichTextLabel
 @export var target_label: Label
+@export var energy_cost: Label
+@export var duration: Label
 
 
 func set_card(value: Card) -> void:
@@ -13,6 +15,17 @@ func set_card(value: Card) -> void:
 	title_text.text = stats.display_name
 	target_label.text = str(Data.TargetType.keys()[stats.tower_stats.target_type])
 	rarity_sprite.region_rect = Rect2(64 * stats.rarity, 0, 64, 64)
+	if stats.rarity == Data.Rarity.COMMON:
+		energy_cost.text = "1"
+	if stats.rarity == Data.Rarity.UNCOMMON:
+		energy_cost.text = "2"
+	if stats.rarity == Data.Rarity.RARE:
+		energy_cost.text = "3"
+	if stats.rarity == Data.Rarity.EPIC:
+		energy_cost.text = "4"
+	if stats.rarity == Data.Rarity.LEGENDARY:
+		energy_cost.text = "5"
+	duration.text = str(value.duration)
 
 
 func process_card_text(card_text: CardText) -> String:

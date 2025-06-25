@@ -1,21 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddbbwx0yy16lh"]
+[gd_scene load_steps=8 format=3 uid="uid://ddbbwx0yy16lh"]
 
 [ext_resource type="Script" uid="uid://si58bm4r7r2i" path="res://Scenes/TowerBase/tower_base.gd" id="1_kalmg"]
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="2_m0oxx"]
 [ext_resource type="Material" uid="uid://bi0grduhgdma4" path="res://Scenes/TowerBase/new_shader_material.tres" id="3_ueedj"]
-[ext_resource type="ArrayMesh" uid="uid://cr83c74ys8rll" path="res://Scenes/TowerBase/textmesh.res" id="4_8j8ue"]
+[ext_resource type="ArrayMesh" uid="uid://cm5xjp442ew0y" path="res://Scenes/TowerBase/textmesh.res" id="4_8j8ue"]
 [ext_resource type="Texture2D" uid="uid://ba85u6i558x4w" path="res://Assets/Textures/minimap_node.png" id="4_lbvtm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lc72v"]
 size = Vector3(1.381, 1.377, 1.381)
 
-[node name="TowerBase" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon") groups=["TowerBases"]]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ueedj"]
+viewport_path = NodePath("SubViewport")
+
+[node name="TowerBase" type="StaticBody3D" node_paths=PackedStringArray("inventory", "block", "collider", "minimap_icon", "duration_label", "duration_sprites") groups=["TowerBases"]]
 collision_layer = 17
 script = ExtResource("1_kalmg")
 inventory = NodePath("Inventory")
 block = NodePath("MeshInstance3D")
 collider = NodePath("CollisionShape3D")
 minimap_icon = NodePath("MinimapIcon")
+duration_label = NodePath("SubViewport/Label")
+duration_sprites = [NodePath("Sprite3D"), NodePath("Sprite3D2"), NodePath("Sprite3D3"), NodePath("Sprite3D4")]
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_m0oxx")
@@ -35,3 +40,42 @@ layers = 4
 modulate = Color(0, 1, 0, 1)
 texture_filter = 0
 texture = ExtResource("4_lbvtm")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="Label" type="Label" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.6)
+visible = false
+double_sided = false
+texture = SubResource("ViewportTexture_ueedj")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, -0.6)
+visible = false
+double_sided = false
+texture = SubResource("ViewportTexture_ueedj")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.6, 2, 0)
+visible = false
+double_sided = false
+texture = SubResource("ViewportTexture_ueedj")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.6, 2, 0)
+visible = false
+double_sided = false
+texture = SubResource("ViewportTexture_ueedj")

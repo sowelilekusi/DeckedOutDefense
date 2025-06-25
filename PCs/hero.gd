@@ -7,7 +7,6 @@ signal ready_state_changed(state: bool)
 @export var camera: Camera3D
 @export var gun_camera: Camera3D
 @export var left_hand_sprite: Sprite3D
-@export var card_sprites: Array[CardInHand]
 @export var left_hand: Node3D
 @export var right_hand: Node3D
 @export var right_hand_animator: AnimationPlayer
@@ -16,7 +15,9 @@ signal ready_state_changed(state: bool)
 @export var sprite: EightDirectionSprite3D
 @export var hand_sprite: Sprite2D
 @export var interaction_raycast: RayCast3D
-@export var inventory: Inventory
+@export var draw_pile: Inventory
+@export var hand: Inventory
+@export var discard_pile: Inventory
 @export var gauntlet_cards: Array[CardInHand]
 @export var pause_menu_scene: PackedScene
 @export var hud: HUD
@@ -36,10 +37,12 @@ signal ready_state_changed(state: bool)
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+var hand_card_scene: PackedScene = preload("res://Scenes/UI/card_hand.tscn")
+var card_sprites: Array[CardInHand]
 var game_manager: GameManager
 var hovering_item: InteractButton = null
 var weapons_spawn_count: int = 0 #Used to prevent node name collisions for multiplayer
-var inventory_selected_index: int = 0
+var hand_selected_index: int = 0
 var equipped_weapon: int = 0
 var weapons: Array[Weapon] = [null, null]
 var cards: Array[Card] = [null, null]
@@ -57,6 +60,12 @@ var currency: int = 0 :
 		hud.set_currency_count(value)
 	get:
 		return currency
+var energy: int = 0 :
+	set(value):
+		energy = value
+		hud.set_energy_amount(value)
+	get:
+		return energy
 
 
 func set_zoom_factor(value: float) -> void:
@@ -70,10 +79,11 @@ func _ready() -> void:
 		ears.make_current()
 		camera.make_current()
 		sprite.queue_free()
+		hand.max_size = 5
 		hand_sprite.texture = hero_class.hand_texture
 		player_name_tag.queue_free()
 		for card: Card in hero_class.deck:
-			inventory.add(card)
+			draw_pile.add(card)
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
@@ -118,38 +128,21 @@ func _process(delta: float) -> void:
 				hovering_item.disable_hover_effect()
 				hovering_item = null
 		
-		if is_instance_valid(edit_tool.ray_collider) and edit_tool.ray_collider is TowerBase:
-			card_sprites[0].view_tower()
-		else:
-			card_sprites[0].view_weapon()
 		if Input.is_action_just_pressed("Interact"):
 			edit_tool.interact()
 			if interaction_raycast.get_collider() is InteractButton:
 				var button: InteractButton = interaction_raycast.get_collider() as InteractButton
-				if currency >= button.press_cost:
-					button.press(self)
-					currency -= button.press_cost
+				button.press(self)
 			if interaction_raycast.get_collider() is ItemCard:
 				add_card(interaction_raycast.get_collider().pick_up())
-		#if Input.is_action_just_pressed("Equip In Gauntlet"):
-		#	equip_weapon()
-		#if Input.is_action_just_pressed("Secondary Fire"):
-		#	if equipped_card or offhand_card:
-		#		swap_weapons()
 		if Input.is_action_just_pressed("Equip Primary Weapon"):
-			if weapons[0]:
-				unequip_weapon(0)
-			else:
-				equip_weapon(0)
+			equip_weapon(0)
 		if Input.is_action_just_pressed("Equip Secondary Weapon"):
-			if weapons[1]:
-				unequip_weapon(1)
-			else:
-				equip_weapon(1)
-		if Input.is_action_just_pressed("Select Next Card") and inventory.contents.size() > 1:
+			equip_weapon(1)
+		if Input.is_action_just_pressed("Select Next Card") and hand.size > 1:
 			increment_selected()
 			swap_card_audio.play()
-		if Input.is_action_just_pressed("Select Previous Card") and inventory.contents.size() > 1:
+		if Input.is_action_just_pressed("Select Previous Card") and hand.size > 1:
 			decrement_selected()
 			swap_card_audio.play()
 		if Input.is_action_just_pressed("Primary Fire"):
@@ -180,7 +173,8 @@ func _process(delta: float) -> void:
 			if equipped_weapon == 0 and weapons[1]:
 				swap_weapons()
 		if Input.is_action_just_pressed("Swap Weapons"):
-			swap_weapons()
+			if weapons[0] and weapons[1]:
+				swap_weapons()
 	
 	if movement.sprinting:
 		movement.zoom_factor -= sprint_zoom_speed * delta
@@ -198,15 +192,18 @@ func _process(delta: float) -> void:
 
 
 func increment_selected() -> void:
-	inventory_selected_index += 1
-	if inventory_selected_index >= inventory.contents.keys().size():
-		inventory_selected_index = 0
+	hand_selected_index += 1
+	if hand_selected_index >= hand.size:
+		hand_selected_index = 0
 
 
 func decrement_selected() -> void:
-	inventory_selected_index -= 1
-	if inventory_selected_index < 0:
-		inventory_selected_index = max(inventory.contents.keys().size() - 1, 0)
+	if hand.size == 0:
+		hand_selected_index = 0
+		return
+	hand_selected_index -= 1
+	if hand_selected_index < 0:
+		hand_selected_index = hand.size - 1
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -241,17 +238,13 @@ func ready_self() -> void:
 func unready_self() -> void:
 	if ready_state:
 		ready_state = false
-		#if !equipped_card:
-		#	hud.place_icon.set_visible(true)
-		#if !offhand_card:
-		#	hud.swap_icon.set_visible(true)
 		hud.grow_wave_start_label()
 		unready_audio.play()
 		networked_set_ready_state(ready_state)
 
 
 func add_card(new_card: Card) -> void:
-	inventory.add(new_card)
+	hand.append(new_card)
 	hud.pickup(new_card)
 	place_card_audio.play()
 
@@ -286,17 +279,13 @@ func exit_editing_mode(value: int) -> void:
 	gauntlet_sprite.visible = false
 	weapons_active = false
 	hud.set_wave_count(value)
-	#if !weapon and offhand_weapon:
-	#	swap_weapons()
 	var offhand_weapon: Weapon = weapons[0] if equipped_weapon == 1 else weapons[1]
 	if offhand_weapon:
 		offhand_weapon.current_energy = offhand_weapon.max_energy
-		#offhand_weapon.energy_changed.emit(offhand_weapon.current_energy)
 	if (!weapons[equipped_weapon] and offhand_weapon) or (weapons[0] and equipped_weapon == 1):
 		swap_weapons()
 	if weapons[equipped_weapon]:
 		hud.set_energy_visible(true)
-		#weapon.set_visible(false)
 		weapons[equipped_weapon].current_energy = weapons[equipped_weapon].max_energy
 		#this had to be commented out coz the new energy bar thinks "energy changed" is "energy used"
 		#weapons[equipped_weapon].energy_changed.emit(weapons[equipped_weapon].current_energy)
@@ -311,38 +300,93 @@ func exit_editing_mode(value: int) -> void:
 func check_left_hand_valid() -> void:
 	if !editing_mode:
 		return
-	if inventory.size == 0:
+	if hand.size == 0:
 		left_hand_sprite.visible = false
 		#gauntlet.texture.region = Rect2(64, 0, 64, 64)
 	else:
 		left_hand_sprite.visible = true
 		#gauntlet.texture.region = Rect2(0, 0, 64, 64)
-		var selected_card: Card = inventory.contents.keys()[inventory_selected_index]
+		var selected_card: Card = hand.item_at(hand_selected_index)
 		for index: int in card_sprites.size():
-			if index < inventory.contents[selected_card]:
-				card_sprites[index].visible = true
-				card_sprites[index].set_card(selected_card)
-				#card_sprites[index].view_weapon()
+			if hand_selected_index == index:
+				var tween: Tween = create_tween()
+				tween.set_ease(Tween.EASE_OUT)
+				tween.set_trans(Tween.TRANS_CUBIC)
+				tween.tween_property(card_sprites[index], "position", Vector2(200.0 * index, -20.0), 0.5)
 			else:
-				card_sprites[index].visible = false
+				var tween: Tween = create_tween()
+				tween.set_ease(Tween.EASE_OUT)
+				tween.set_trans(Tween.TRANS_CUBIC)
+				tween.tween_property(card_sprites[index], "position", Vector2(200.0 * index, 80.0), 0.5)
+			#if index < inventory.contents[selected_card]:
+				#card_sprites[index].visible = true
+				#card_sprites[index].set_card(selected_card)
+				##card_sprites[index].view_weapon()
+			#else:
+				#card_sprites[index].visible = false
+
+
+func iterate_duration() -> void:
+	for slot: int in weapons.size():
+		if weapons[slot] == null:
+			continue
+		weapons[slot].duration -= 1
+		if slot == 0:
+			hud.primary_duration.text = "primary weapon rounds left = " + str(weapons[slot].duration)
+		elif slot == 1:
+			hud.secondary_duration.text = "secondary weapon rounds left = " + str(weapons[slot].duration)
+		if weapons[slot].duration <= 0:
+			unequip_weapon(slot)
+
+
+func draw_to_hand_size() -> void:
+	while hand.size < hand.max_size:
+		if draw_pile.size == 0 and discard_pile.size == 0:
+			return
+		if draw_pile.size > 0:
+			var card: Card = draw_pile.remove_at(0)
+			hand.add(card)
+			var display: CardInHand = hand_card_scene.instantiate()
+			display.set_card(card)
+			$FirstPersonViewport/Head2/LeftHand/SubViewport.add_child(display)
+			card_sprites.append(display)
+			var tween: Tween = create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_CUBIC)
+			tween.tween_property(display, "position", Vector2(200.0 * hand.size, 80.0), 0.5)
+		else:
+			for x: int in discard_pile.size:
+				draw_pile.add(discard_pile.remove_at(0))
+				draw_pile.shuffle()
 
 
 func equip_weapon(slot: int = 0) -> void:
-	if weapons[slot] != null:
-		unequip_weapon()
+	var energy_cost: int = int(hand.item_at(hand_selected_index).rarity) + 1
+	if energy < energy_cost:
 		return
-	if inventory.size > 0:
+	if weapons[slot] != null:
+		unequip_weapon(slot)
+	if hand.size > 0:
+		energy -= energy_cost
 		place_card_audio.play()
-		cards[slot] = inventory.remove_at(inventory_selected_index)
-		if !inventory.contents.has(cards[slot]):
-			decrement_selected()
+		cards[slot] = hand.remove_at(hand_selected_index)
+		card_sprites[hand_selected_index].queue_free()
+		card_sprites.remove_at(hand_selected_index)
+		discard_pile.add(cards[slot])
+		#TODO: Alternate thing to do with the hand i guess
+		#if !inventory.contents.has(cards[slot]):
+		decrement_selected()
 		weapons[slot] = cards[slot].weapon_scene.instantiate()
 		weapons[slot].name = str(weapons_spawn_count)
+		weapons[slot].duration = cards[slot].duration
 		networked_equip_weapon.rpc(Data.cards.find(cards[slot]), 0, weapons_spawn_count)
 		weapons_spawn_count += 1
-		#weapons[slot].energy_changed.connect(hud.set_weapon_energy.bind(weapons[slot].stats.energy_type))
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
 		gauntlet_cards[slot].set_card(cards[slot])
+		if slot == 0:
+			hud.primary_duration.text = "primary weapon rounds left = " + str(weapons[slot].duration)
+		elif slot == 1:
+			hud.secondary_duration.text = "secondary weapon rounds left = " + str(weapons[slot].duration)
 		if slot == 0:
 			hud.place_icon.visible = false
 		else:
@@ -425,10 +469,8 @@ func unequip_weapon(slot: int = 0) -> void:
 	else:
 		hud.swap_icon.visible = true
 		hud.new_energy_bar.disable_secondary_energy()
-	#gauntlet_sprite.set_visible(true)
 	weapons[slot].queue_free()
 	weapons[slot] = null
-	inventory.add(cards[slot])
 	cards[slot] = null
 	place_card_audio.play()
 	check_left_hand_valid()

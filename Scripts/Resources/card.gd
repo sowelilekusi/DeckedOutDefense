@@ -7,6 +7,7 @@ enum Faction {
 	MAGE = 2,
 	}
 
+@export var duration: int
 @export var rarity: Data.Rarity
 @export var faction: Faction
 @export var turret_scene: PackedScene

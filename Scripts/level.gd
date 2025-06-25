@@ -58,7 +58,7 @@ func set_wall(point: FlowNode, caller_id: int) -> void:
 
 func remove_wall(point: FlowNode) -> void:
 	var wall: TowerBase = walls[point]
-	game_manager.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
+	#game_manager.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
 	game_manager.connected_players_nodes[wall.owner_id].unready_self()
 	walls.erase(point)
 	wall.queue_free()

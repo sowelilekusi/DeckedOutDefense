@@ -2,7 +2,6 @@ class_name PathEditTool
 extends Node3D
 
 @export var hero: Hero
-@export var inventory: Inventory
 @export var ray: RayCast3D
 @export var wall_preview: TowerBase
 @export var progress_bar: TextureProgressBar
@@ -13,6 +12,7 @@ var point: FlowNode
 var obstacle_last_point: int = -1
 var valid_point: bool = false # a point is valid if the path would still be traversable overall if this point was made untraversable
 var tower_preview: Tower
+var tower_preview_card: Card
 var ray_collider: Object
 var ray_point: Vector3
 var last_point: FlowNode
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	
 	if interact_key_held:
 		if !interacted_once:
-			if valid_point and hero.currency >= Data.wall_cost and ray_collider and point.buildable:
+			if valid_point and hero.energy >= Data.wall_cost and ray_collider and point.buildable:
 				interact_held_time += delta
 				set_progress_percent(interact_held_time / interact_hold_time)
 				wall_preview.set_float(interact_held_time / interact_hold_time)
@@ -98,7 +98,7 @@ func process_looking_at_level() -> void:
 	if tower_preview:
 		delete_tower_preview()
 	point = level.flow_field.get_closest_buildable_point(ray_point)
-	if level.walls.has(point) or !point.buildable or hero.currency < Data.wall_cost:
+	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()
@@ -131,15 +131,16 @@ func process_looking_at_tower() -> void:
 	wall_preview.set_visible(false)
 	ray_collider.set_color(Color.RED)
 	ray_collider.set_float(0.0)
-	if inventory.contents.size() > 0 and !ray_collider.has_card:
-		if ray_collider != last_tower_base or inventory.selected_item != inventory.contents.keys()[hero.inventory_selected_index]:
+	if hero.hand.size > 0 and !ray_collider.has_card:
+		if ray_collider != last_tower_base or hero.hand.item_at(hero.hand_selected_index) != tower_preview_card:
 			spawn_tower_preview()
 
 
 func spawn_tower_preview() -> void:
 	delete_tower_preview()
 	last_tower_base = ray_collider
-	var card: Card = inventory.contents.keys()[hero.inventory_selected_index]
+	var card: Card = hero.hand.item_at(hero.hand_selected_index)
+	tower_preview_card = card
 	tower_preview = card.turret_scene.instantiate() as Tower
 	tower_preview.stats = card.tower_stats
 	tower_preview.position = Vector3.UP
@@ -152,6 +153,7 @@ func delete_tower_preview() -> void:
 	if is_instance_valid(tower_preview):
 		tower_preview.queue_free()
 		tower_preview = null
+		tower_preview_card = null
 
 
 func interact() -> void:
@@ -161,8 +163,8 @@ func interact() -> void:
 
 
 func build_wall() -> void:
-	if point and valid_point and hero.currency >= Data.wall_cost:
-		hero.currency -= Data.wall_cost
+	if point and valid_point and hero.energy >= Data.wall_cost:
+		hero.energy -= Data.wall_cost
 		level.set_wall(point, multiplayer.get_unique_id())
 	wall_preview.visible = false
 
@@ -176,14 +178,21 @@ func refund_wall(wall: TowerBase) -> void:
 
 
 func put_card_in_tower_base(tower_base: TowerBase) -> void:
-	if tower_base.has_card:
-		tower_base.remove_card()
-	elif inventory.size > 0:
-		var card: Card = inventory.remove_at(hero.inventory_selected_index)
-		if !inventory.contents.has(card):
-			hero.decrement_selected()
+	var energy_cost: int = int(hero.hand.item_at(hero.hand_selected_index).rarity) + 1
+	if hero.energy < energy_cost:
+		return
+	if hero.hand.size > 0:
+		if tower_base.has_card:
+			tower_base.remove_card()
+		var card: Card = hero.hand.remove_at(hero.hand_selected_index)
+		hero.card_sprites[hero.hand_selected_index].queue_free()
+		hero.card_sprites.remove_at(hero.hand_selected_index)
+		#if !hero.hand.contents.has(card):
+		hero.decrement_selected()
 		tower_base.add_card(card, multiplayer.get_unique_id())
+		hero.discard_pile.add(card)
 		hero.place_card_audio.play()
+		hero.energy -= energy_cost
 
 
 func set_progress_percent(value: float) -> void:

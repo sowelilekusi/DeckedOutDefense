@@ -22,6 +22,9 @@ extends CanvasLayer
 @export var swap_text: RichTextLabel
 @export var enemy_card_scene: PackedScene
 @export var new_energy_bar: EnergyBar
+@export var energy_label: Label
+@export var primary_duration: Label
+@export var secondary_duration: Label
 
 var last_lives_count: int = 120
 var enemy_names: Array[String]
@@ -150,6 +153,10 @@ func set_upcoming_wave(value: Dictionary) -> void:
 
 func set_currency_count(value: int) -> void:
 	currency_count.text = str(value)
+
+
+func set_energy_amount(value: int) -> void:
+	energy_label.text = "energy = " + str(value)
 
 
 func set_crosshair_visible(value: bool) -> void:

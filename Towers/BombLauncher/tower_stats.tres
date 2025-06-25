@@ -21,5 +21,6 @@ value = 8.0
 [resource]
 script = ExtResource("2_1vuma")
 target_type = 1
+energy_type = 0
 attributes = Array[ExtResource("1_eglp5")]([SubResource("Resource_yb48y"), SubResource("Resource_ewwvw"), SubResource("Resource_qu5dv")])
 text = "Launch a bomb that deals /Damage\\ damage every /Fire Delay\\ seconds"
