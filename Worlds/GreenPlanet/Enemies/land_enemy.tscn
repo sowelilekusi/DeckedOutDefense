@@ -1,11 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0nady5xm88bo"]
+[gd_scene load_steps=14 format=3 uid="uid://b0nady5xm88bo"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_fwsjt"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_o7jmg"]
-[ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="2_swu53"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_y7h25"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="3_naknq"]
-[ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://Scenes/damage_particle.tscn" id="4_tn1tu"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_5eo4w"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_f8btv"]
 [ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="10_gljle"]
@@ -23,19 +21,14 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4tj6k"]
 viewport_path = NodePath("SubViewport")
 
-[node name="WalkingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "d_n") groups=["Enemies"]]
+[node name="WalkingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_fwsjt")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
-health = NodePath("Health")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_y7h25")
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_swu53")
-damage_particle_scene = ExtResource("4_tn1tu")
 
 [node name="DirectionSprite" parent="." instance=ExtResource("2_o7jmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585, 0)
@@ -95,7 +88,3 @@ metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429125, 0)
-
-[connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]
-[connection signal="health_depleted" from="Health" to="." method="die"]
-[connection signal="took_damage" from="Hitbox" to="Health" method="take_damage"]

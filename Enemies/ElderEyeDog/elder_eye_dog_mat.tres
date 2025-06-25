@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://gyrbycd3icjr"]
+
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_x1doh"]
+[ext_resource type="Texture2D" uid="uid://bd1hlqvfpaxy0" path="res://Enemies/ElderEyeDog/elder_eyedog_tex.png" id="2_jh2nf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_x1doh")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("2_jh2nf")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)

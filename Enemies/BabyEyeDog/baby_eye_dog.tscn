@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtahuv0kpxx03"]
+
+[ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_8k5ts"]
+[ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_vl30x"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="5_f7xim"]
+[ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="6_lbm5h"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="7_o1784"]
+[ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="8_1fak8"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_yrbee"]
+[ext_resource type="PackedScene" uid="uid://bgxr27by7jruo" path="res://Enemies/BabyEyeDog/baby_eyedog.glb" id="10_8k5ts"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cavbv"]
+radius = 0.269119
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h25mw"]
+radius = 0.150315
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
+viewport_path = NodePath("SubViewport")
+
+[node name="BabyEyeDog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_8k5ts")
+status_manager = NodePath("StatusEffector")
+movement_controller = NodePath("PathingController")
+d_n = NodePath("Node3D")
+corpse_scene = ExtResource("2_vl30x")
+metadata/_custom_type_script = "uid://ejqql2660u6h"
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195078, -0.0104714)
+shape = SubResource("SphereShape3D_cavbv")
+script = ExtResource("5_f7xim")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="Hitbox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.368244, -0.278334)
+shape = SubResource("SphereShape3D_h25mw")
+script = ExtResource("5_f7xim")
+critical_zone = true
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="HealthBar" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
+sorting_offset = 1.0
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_1kwxq")
+
+[node name="MinimapIcon" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("6_lbm5h")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 55)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("7_o1784")]
+visible = false
+offset_top = 36.0
+offset_bottom = 236.0
+
+[node name="PathingController" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("8_1fak8")
+character = NodePath("..")
+
+[node name="StatusEffector" type="Node" parent="." node_paths=PackedStringArray("sprite_container")]
+script = ExtResource("9_yrbee")
+sprite_container = NodePath("../SubViewport/HBoxContainer")
+metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
+
+[node name="baby_eyedog" parent="." instance=ExtResource("10_8k5ts")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="baby_eyedog/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.511974, 0.0877357, 0.0585473, 0.852501)
+bones/3/rotation = Quaternion(0.205478, 0.0638658, 0.760554, 0.612583)
+bones/4/rotation = Quaternion(0.180197, 0.674315, 0.227389, 0.67906)
+bones/5/rotation = Quaternion(0.219411, 0.0676687, 0.265248, 0.936442)
+bones/6/rotation = Quaternion(0.357553, 0.0231832, 0.0724564, 0.930789)
+bones/7/rotation = Quaternion(0.181041, -0.117802, -0.730943, 0.647355)
+bones/8/rotation = Quaternion(0.233133, -0.689549, -0.187324, 0.659607)
+bones/9/rotation = Quaternion(0.274914, -0.0648911, -0.304984, 0.909503)
+bones/10/rotation = Quaternion(0.381465, -0.0179444, -0.0905277, 0.919765)
+bones/11/position = Vector3(-0.125201, 0.0850381, 0.00341609)
+bones/13/rotation = Quaternion(-0.287812, -0.240553, 0.773797, 0.510428)
+bones/14/rotation = Quaternion(-0.235014, -0.561232, -0.113218, 0.785474)
+bones/15/rotation = Quaternion(0.443157, -0.0165556, 0.3712, 0.815811)
+bones/16/rotation = Quaternion(0.407896, 0.0131239, 0.109742, 0.906314)
+bones/17/rotation = Quaternion(-0.208372, 0.320971, -0.692574, 0.611474)
+bones/18/rotation = Quaternion(-0.295573, 0.573472, 0.215253, 0.733098)
+bones/19/rotation = Quaternion(0.3789, 0.0293754, -0.343993, 0.858627)
+bones/20/rotation = Quaternion(0.392383, -0.0149631, -0.101692, 0.914041)
+bones/21/rotation = Quaternion(0.397177, -1.084e-07, -4.91965e-08, 0.917742)
+bones/22/position = Vector3(-0.234358, 0.0193642, 0.253277)
+bones/22/scale = Vector3(0.893472, 1, 1)
+bones/23/position = Vector3(0.175382, 0.0791651, 0.387213)
+bones/23/scale = Vector3(0.893472, 1, 1)
+bones/24/position = Vector3(0.189246, 0.0193879, -0.23164)
+
+[node name="AnimationPlayer" parent="baby_eyedog" index="1"]
+autoplay = "Walk"
+
+[connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="Hitbox" to="." method="take_damage"]
+[connection signal="recieved_effect" from="Hitbox2" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="Hitbox2" to="." method="take_damage"]
+
+[editable path="baby_eyedog"]

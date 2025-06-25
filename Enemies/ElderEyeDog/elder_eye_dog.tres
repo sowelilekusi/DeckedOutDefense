@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_q48il"]
 [ext_resource type="Texture2D" uid="uid://e7lahg40lq8a" path="res://Assets/Textures/dead_eye_dog_heavy.png" id="1_qveaa"]
 [ext_resource type="Texture2D" uid="uid://c0543ucoalwmi" path="res://Assets/TextureAtlases/dog_fast_heavy.tres" id="2_7nc4x"]
-[ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_t3gih"]
+[ext_resource type="PackedScene" uid="uid://dl3rwqwbgrq2m" path="res://Enemies/ElderEyeDog/elder_eye_dog.tscn" id="3_m808b"]
 
 [resource]
 script = ExtResource("1_q48il")
-title = "heavy dog"
+title = "Elder Eye Dog"
 target_type = 1
-scene = ExtResource("3_t3gih")
+scene = ExtResource("3_m808b")
 icon = ExtResource("1_lck53")
 death_sprite = ExtResource("1_qveaa")
 sprite = ExtResource("2_7nc4x")

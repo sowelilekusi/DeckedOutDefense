@@ -4,7 +4,6 @@ extends Node
 signal health_depleted
 signal health_changed(health: int)
 
-@export var damage_particle_scene: PackedScene
 @export var max_health: int = 10
 
 var current_health: int

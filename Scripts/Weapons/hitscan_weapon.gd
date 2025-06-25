@@ -19,23 +19,17 @@ func shoot() -> void:
 	super.shoot()
 	if raycast.is_colliding():
 		var target: CharacterBody3D = raycast.get_collider()
-		if target != null:
-			var target_hitbox: CollisionShape3D = target.shape_owner_get_owner(raycast.get_collider_shape())
-			if target_hitbox is Hitbox:
-				hit(target, target_hitbox)
-				if Data.preferences.display_self_damage_indicators:
-					spawn_damage_indicator(raycast.get_collision_point())
-				networked_hit.rpc(get_tree().root.get_path_to(target), get_tree().root.get_path_to(target_hitbox))
+		if target != null and target is EnemyController:
+			var hitbox: Hitbox = target.shape_owner_get_owner(raycast.get_collider_shape())
+			hit(hitbox, raycast.get_collision_point())
+			networked_hit.rpc(get_tree().root.get_path_to(hitbox), raycast.get_collision_point())
 
 
-func hit(_target: CharacterBody3D, target_hitbox: Hitbox) -> void:
-	target_hitbox.damage(damage)
+func hit(hitbox: Hitbox, hit_pos: Vector3) -> void:
+	hitbox.damage(damage, Data.DamageIndicationType.PLAYER, hit_pos)
 
 
 @rpc("reliable")
-func networked_hit(target_path: String, target_hitbox_path: String) -> void:
-	var target: CharacterBody3D = get_tree().root.get_node(target_path)
-	var target_hitbox: Hitbox = get_tree().root.get_node(target_hitbox_path) as Hitbox
-	hit(target, target_hitbox)
-	if Data.preferences.display_party_damage_indicators:
-		spawn_damage_indicator(target.d_n.global_position)
+func networked_hit(hitbox_path: String, hit_pos: Vector3) -> void:
+	var hitbox: Hitbox = get_tree().root.get_node(hitbox_path) as Hitbox
+	hitbox.damage(damage, Data.DamageIndicationType.OTHER_PLAYER, hit_pos)

@@ -173,6 +173,7 @@ func spawn_enemy_wave() -> void:
 	level.flow_field.calculate()
 	for spawn: EnemySpawner in level.enemy_spawns:
 		#spawn.path.disable_visualization()
+		spawn.visible = false
 		spawn.spawn_wave()
 	wave_started.emit(wave)
 
@@ -247,7 +248,7 @@ func end_wave() -> void:
 		connected_players_nodes[peer_id].currency += ceili(pot / connected_players_nodes.size())
 		connected_players_nodes[peer_id].unready_self()
 	for spawn: EnemySpawner in level.enemy_spawns:
-		spawn.path.enable_visualization()
+		spawn.visible = true
 	#level.a_star_graph_3d.enable_non_path_tower_frames()
 	level.enable_non_path_tower_frames()
 	if is_multiplayer_authority():

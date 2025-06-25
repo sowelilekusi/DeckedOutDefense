@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_o41vb")
 shader_parameter/scroll_speed = 0.6
-shader_parameter/angle_degrees = 45.0
+shader_parameter/angle_degrees = 0.0
 shader_parameter/repeat_x = 1.0
 shader_parameter/repeat_y = 1.0
 shader_parameter/row_offset = 1.0

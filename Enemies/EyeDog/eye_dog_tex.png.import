@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wx4d2upch81n"
-path.s3tc="res://.godot/imported/eyedog_eyedog_tex.png-1f14344e8bf95fbf8ece2e5fc948c9ad.s3tc.ctex"
+uid="uid://br44qpy5v6ymr"
+path="res://.godot/imported/eye_dog_tex.png-7d4de85274337ceeb649543e4825dc79.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "27dfa54e4c46b8fd6e6f12450e4ca070"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/EyeDog/eyedog_eyedog_tex.png"
-dest_files=["res://.godot/imported/eyedog_eyedog_tex.png-1f14344e8bf95fbf8ece2e5fc948c9ad.s3tc.ctex"]
+source_file="res://Enemies/EyeDog/eye_dog_tex.png"
+dest_files=["res://.godot/imported/eye_dog_tex.png-7d4de85274337ceeb649543e4825dc79.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

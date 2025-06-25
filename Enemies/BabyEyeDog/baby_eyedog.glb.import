@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlhx6r23m5ceg"
-path="res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"
+uid="uid://bgxr27by7jruo"
+path="res://.godot/imported/baby_eyedog.glb-a187781f666218849f29856d9c82f6de.scn"
 
 [deps]
 
-source_file="res://Enemies/EyeDog/eyedog.glb"
-dest_files=["res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"]
+source_file="res://Enemies/BabyEyeDog/baby_eyedog.glb"
+dest_files=["res://.godot/imported/baby_eyedog.glb-a187781f666218849f29856d9c82f6de.scn"]
 
 [params]
 
@@ -1837,7 +1837,7 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/path": "uid://bo82o88d7vo1x"
+"use_external/path": "uid://bm7wkdbbvgscq"
 }
 }
 }

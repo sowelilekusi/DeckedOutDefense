@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dlhx6r23m5ceg"
-path="res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"
+uid="uid://r2s4pd42y0ma"
+path="res://.godot/imported/elder_eyedog.glb-783079ff3d8c9e21679649baf7fc5dfa.scn"
 
 [deps]
 
-source_file="res://Enemies/EyeDog/eyedog.glb"
-dest_files=["res://.godot/imported/eyedog.glb-066d1d46e7943baa72fec506b08447f4.scn"]
+source_file="res://Enemies/ElderEyeDog/elder_eyedog.glb"
+dest_files=["res://.godot/imported/elder_eyedog.glb-783079ff3d8c9e21679649baf7fc5dfa.scn"]
 
 [params]
 
@@ -27,7 +27,7 @@ meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=30
+animation/fps=24.0
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
@@ -1837,7 +1837,7 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/path": "uid://bo82o88d7vo1x"
+"use_external/path": "uid://gyrbycd3icjr"
 }
 }
 }

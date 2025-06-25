@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://cv5p03aw78vwd" path="res://Assets/Textures/icon_eye_dog_fast.png" id="1_xgen5"]
 [ext_resource type="Texture2D" uid="uid://dgdofekr7ow73" path="res://Assets/Textures/dead_eye_dog_fast.png" id="1_yj87d"]
 [ext_resource type="Texture2D" uid="uid://dd212gh03wloa" path="res://Assets/TextureAtlases/dog_fast.tres" id="2_mkbm6"]
-[ext_resource type="PackedScene" uid="uid://b0nady5xm88bo" path="res://Worlds/GreenPlanet/Enemies/land_enemy.tscn" id="3_e3fq0"]
+[ext_resource type="PackedScene" uid="uid://dtahuv0kpxx03" path="res://Enemies/BabyEyeDog/baby_eye_dog.tscn" id="3_otbdk"]
 
 [resource]
 script = ExtResource("1_k5sd1")
-title = "fast dog"
+title = "Baby Eye Dog"
 target_type = 1
-scene = ExtResource("3_e3fq0")
+scene = ExtResource("3_otbdk")
 icon = ExtResource("1_xgen5")
 death_sprite = ExtResource("1_yj87d")
 sprite = ExtResource("2_mkbm6")
@@ -18,7 +18,7 @@ spawn_power = 16
 health = 70
 penalty = 4
 movement_speed = 3.5
-spawn_cooldown = 0.7
+spawn_cooldown = 0.6
 common_group = 4
 common_cost = 2
 uncommon_group = 8

@@ -12,6 +12,7 @@ var save_data: SaveData
 var keymap_data: KeymapData
 
 const DEFAULT_SERVER_PORT: int = 58008
+enum DamageIndicationType {PLAYER = 0, TOWER = 1, OTHER_PLAYER = 2, STATUS = 3}
 enum EnergyType {UNDEFINED = 0, DISCRETE = 1, CONTINUOUS = 2}
 enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}

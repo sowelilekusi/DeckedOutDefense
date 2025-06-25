@@ -2,15 +2,18 @@ class_name EnemyController extends CharacterBody3D
 
 signal reached_goal(enemy: Enemy, penalty: int)
 signal died(enemy: Enemy)
+signal health_changed(health: int)
 
 @export var stats: Enemy
 @export var status_manager: StatusEffector
 @export var movement_controller: EnemyMovement
-@export var health: Health
+@export var max_health: int = 10
 @export var d_n: Node3D
 #@export var sprite: Sprite3D
 @export var corpse_scene: PackedScene
 
+var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
+var current_health: int
 var corpse_root: Node
 var movement_speed: float
 var movement_speed_penalty: float = 1.0
@@ -18,16 +21,61 @@ var alive: bool = true
 
 
 func _ready() -> void:
-	health.max_health = stats.health
-	health.current_health = stats.health
+	max_health = stats.health
+	current_health = stats.health
+	health_changed.connect($SubViewport/HealthBar.on_health_changed)
 	$SubViewport/HealthBar.setup(stats.health)
-	#sprite.texture = stats.sprite.duplicate()
 	movement_speed = stats.movement_speed
 	status_manager.enemy = self
 
 
+func spawn_damage_indicator(damage: int, pos: Vector3, damage_type: Data.DamageIndicationType) -> void:
+	var color: Color = Color.WHITE
+	if damage_type == Data.DamageIndicationType.PLAYER:
+		if !Data.preferences.display_self_damage_indicators:
+			return
+		else:
+			color = Color.FIREBRICK
+	if damage_type == Data.DamageIndicationType.TOWER:
+		if !Data.preferences.display_tower_damage_indicators:
+			return
+		else:
+			color = Color.WHITE_SMOKE
+	if damage_type == Data.DamageIndicationType.OTHER_PLAYER:
+		if !Data.preferences.display_party_damage_indicators:
+			return
+		else:
+			color = Color.AQUAMARINE
+	if damage_type == Data.DamageIndicationType.STATUS:
+		if !Data.preferences.display_status_effect_damage_indicators:
+			return
+		else:
+			color = Color.INDIAN_RED
+	var marker: DamageParticle = damage_particle_scene.instantiate()
+	get_tree().root.add_child(marker)
+	marker.set_number(damage)
+	marker.set_color(color)
+	marker.position = pos
+
+
+func take_damage(damage: int, damage_type: Data.DamageIndicationType = Data.DamageIndicationType.TOWER, damage_point: Vector3 = global_position) -> void:
+	current_health -= damage
+	health_changed.emit(current_health)
+	if damage > 0:
+		spawn_damage_indicator(damage, damage_point, damage_type)
+	if current_health <= 0:
+		die()
+
+
+func heal_damage(healing: int) -> void:
+	current_health += healing
+	if current_health > max_health:
+		current_health = max_health
+	health_changed.emit(current_health)
+
+
 func apply_effect(effect: Effect) -> void:
-	health.take_damage(effect.damage)
+	take_damage(effect.damage)
 	for status: StatusEffect in effect.status_effects:
 		status_manager.add_effect(status)
 

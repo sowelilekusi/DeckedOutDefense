@@ -9,7 +9,6 @@ signal energy_recharged(energy: int, type: Data.EnergyType)
 @export var audio_player: AudioStreamPlayer3D
 @export var recharge_timer: Timer
 
-var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
 var hero: Hero
 var trigger_held: bool = false
 var second_trigger_held: bool = false
@@ -84,14 +83,6 @@ func hold_second_trigger() -> void:
 
 func release_second_trigger() -> void:
 	second_trigger_held = false
-
-
-func spawn_damage_indicator(pos: Vector3) -> void:
-	if damage > 0:
-		var marker: Node3D = damage_particle_scene.instantiate()
-		get_tree().root.add_child(marker)
-		marker.set_number(damage)
-		marker.position = pos
 
 
 func shoot() -> void:

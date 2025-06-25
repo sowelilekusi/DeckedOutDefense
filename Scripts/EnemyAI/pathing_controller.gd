@@ -9,6 +9,8 @@ var next_node: FlowNode :
 		return next_node
 	set(value):
 		next_node = value
+		if next_node == null:
+			return
 		var found_point: bool = false
 		while !found_point:
 			#TODO: make deterministic random
@@ -44,9 +46,11 @@ func walk(delta: float) -> void:
 	var distance_travelled: float = (speed * clampf(speed, 0.0, 1.0)) * delta
 	distance_remaining -= distance_travelled
 	character.global_position = character.global_position.move_toward(next_pos, distance_travelled)
-	character.look_at(next_pos)
-	if character.global_position.distance_to(next_pos) <= 0.05:
+	var distance_to_next_pos: float = character.global_position.distance_to(next_pos)
+	if distance_to_next_pos <= 0.05:
 		next_node = next_node.best_path
+	else:
+		character.look_at(next_pos)
 
 
 func _physics_process(delta: float) -> void:
