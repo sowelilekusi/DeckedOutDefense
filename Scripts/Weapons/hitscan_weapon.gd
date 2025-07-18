@@ -11,7 +11,7 @@ func _ready() -> void:
 	super._ready()
 	attack_range = stats.get_attribute("Range")
 	raycast.target_position = Vector3(0, 0, -attack_range)
-	range_debug_indicator.radius = attack_range
+	#range_debug_indicator.radius = attack_range
 	raycast.global_position = hero.camera.global_position
 
 

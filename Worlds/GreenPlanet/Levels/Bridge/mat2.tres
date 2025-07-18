@@ -3,6 +3,8 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mrvo6"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ah5r4"]
+width = 256
+height = 256
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_mrvo6")
@@ -10,7 +12,5 @@ noise = SubResource("FastNoiseLite_mrvo6")
 [resource]
 albedo_color = Color(0.207653, 0.448041, 0.223187, 1)
 normal_enabled = true
-normal_scale = 3.91
 normal_texture = SubResource("NoiseTexture2D_ah5r4")
-uv1_scale = Vector3(97.955, 97.955, 97.955)
-texture_filter = 0
+texture_filter = 2

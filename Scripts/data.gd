@@ -17,6 +17,7 @@ enum EnergyType {UNDEFINED = 0, DISCRETE = 1, CONTINUOUS = 2}
 enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
+enum CardTags {DAMAGE = 0, UTILITY = 1, TARGETS_FLYING = 2}
 
 static var starting_cash: int = 10
 static var wall_cost: int = 1
@@ -26,8 +27,15 @@ static var rarity_weights: Dictionary = {
 	"UNCOMMON" = 30,
 	"RARE" = 10,
 	"EPIC" = 4,
-	"LEGENDARY" = 1
+	"LEGENDARY" = 1,
 }
+static var rarity_colors: Array[Color] = [
+	Color8(255, 255, 255),
+	Color8(50, 204, 36),
+	Color8(36, 59, 204),
+	Color8(181, 36, 204),
+	Color8(225, 112, 30),
+]
 
 
 ## Recursively searches a folder for any Card resources and loads them

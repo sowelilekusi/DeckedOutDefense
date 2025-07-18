@@ -248,7 +248,7 @@ func end_wave() -> void:
 	for peer_id: int in connected_players_nodes:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.currency += ceili(pot / connected_players_nodes.size())
-		player.energy = 8
+		player.energy = 12
 		player.iterate_duration()
 		player.draw_to_hand_size()
 		player.unready_self()
@@ -318,7 +318,7 @@ func start() -> void:
 	spawn_players()
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency = ceili(float(Data.starting_cash) / float(connected_players_nodes.size()))
-		connected_players_nodes[peer_id].energy = 8
+		connected_players_nodes[peer_id].energy = 12
 		connected_players_nodes[peer_id].draw_pile.shuffle()
 		connected_players_nodes[peer_id].draw_to_hand_size()
 	

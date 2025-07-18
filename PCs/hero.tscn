@@ -5,14 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
 [ext_resource type="Texture2D" uid="uid://dkbkam81k355s" path="res://Assets/TextureAtlases/gauntlet.tres" id="3_5myy0"]
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://Scenes/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
+[ext_resource type="PackedScene" uid="uid://n8ab1cy7ordc" path="res://card_model/3d_card.tscn" id="4_2mqvj"]
 [ext_resource type="Script" uid="uid://cij76at0nbs1v" path="res://PCs/view_movement.gd" id="4_mhexa"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="4_mwtvp"]
+[ext_resource type="PackedScene" uid="uid://gdd1xupf4oxx" path="res://UI/CardSelectionBox/card_selection_box.tscn" id="5_h82f6"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://PCs/PathEditTool/path_edit_tool.tscn" id="5_jlxb3"]
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="6_cf5ap"]
 [ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://Classes/Engineer/red.png" id="6_yyp8i"]
+[ext_resource type="Script" uid="uid://3wvxl8jo4uis" path="res://PCs/weapon_movement.gd" id="7_14ugt"]
 [ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
-[ext_resource type="Texture2D" uid="uid://ctkixdue3o7ec" path="res://Classes/Engineer/red_hand.png" id="9_gxh2h"]
 [ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
+[ext_resource type="PackedScene" uid="uid://ckl5tw5rmewhp" path="res://left_hand/card_hand_model.glb" id="11_h82f6"]
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
 [ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="15_cqpib"]
@@ -48,25 +51,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 radius = 0.3
 height = 1.8
-
-[sub_resource type="Environment" id="Environment_ekmug"]
-
-[sub_resource type="Animation" id="Animation_2q50p"]
-resource_name = "weapon_sway"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.615, -0.275, -1, 0.2, 1, 0.59, -0.255, -1, 0.4, 1, 0.615, -0.275, -1, 0.6, 1, 0.66, -0.255, -1, 0.8, 1, 0.615, -0.275, -1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wknc"]
-_data = {
-&"weapon_sway": SubResource("Animation_2q50p")
-}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8f12g"]
 viewport_path = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport")
@@ -129,7 +113,7 @@ stream_0/stream = ExtResource("36_lsvj8")
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "right_hand_animator", "edit_tool", "gauntlet_sprite", "sprite", "hand_sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "gauntlet_cards", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand_sprite", "left_hand", "right_hand", "edit_tool", "gauntlet_sprite", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "gauntlet_cards", "hud", "movement", "player_name_tag", "weapon_swap_timer", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -139,11 +123,9 @@ gun_camera = NodePath("FirstPersonViewport/Head2")
 left_hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/Sprite3D")
 left_hand = NodePath("FirstPersonViewport/Head2/LeftHand")
 right_hand = NodePath("FirstPersonViewport/Head2/RightHand")
-right_hand_animator = NodePath("FirstPersonViewport/Head2/RightHand/AnimationPlayer")
 edit_tool = NodePath("ViewMovement/Head/EditTool")
 gauntlet_sprite = NodePath("FirstPersonViewport/Head2/RightHand/Gauntlet")
 sprite = NodePath("EightDirectionSprite")
-hand_sprite = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport/Sprite2D")
 interaction_raycast = NodePath("ViewMovement/Head/RayCast3D")
 draw_pile = NodePath("DrawPile")
 hand = NodePath("Hand")
@@ -154,6 +136,8 @@ hud = NodePath("HUD")
 movement = NodePath("PlayerMovement")
 player_name_tag = NodePath("NametagViewport/Label")
 weapon_swap_timer = NodePath("WeaponSwapTimer")
+card3d_scene = ExtResource("4_2mqvj")
+card_select_scene = ExtResource("5_h82f6")
 ears = NodePath("AudioListener3D")
 place_card_audio = NodePath("PlaceCardAudio")
 swap_card_audio = NodePath("SwapCardAudio")
@@ -177,6 +161,8 @@ script = ExtResource("4_mhexa")
 player = NodePath("..")
 camera = NodePath("Head")
 focus_raycast = NodePath("Head/RayCast3D")
+enable_strafe_tilt = true
+tilt_amount_x = 0.7
 
 [node name="Head" type="Camera3D" parent="ViewMovement"]
 keep_aspect = 0
@@ -202,37 +188,27 @@ render_target_update_mode = 4
 [node name="Head2" type="Camera3D" parent="FirstPersonViewport" node_paths=PackedStringArray("clone_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 cull_mask = 2
-environment = SubResource("Environment_ekmug")
-projection = 1
 script = ExtResource("11_4sdwe")
 clone_camera = NodePath("../../ViewMovement/Head")
 
-[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.66, -0.255, -0.221557)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstPersonViewport/Head2/RightHand"]
-libraries = {
-&"": SubResource("AnimationLibrary_2wknc")
-}
+[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2" node_paths=PackedStringArray("player")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.41, -0.17, -0.495)
+script = ExtResource("7_14ugt")
+player = NodePath("../../..")
+enable_strafe_tilt = true
+tilt_amount_x = 12.0
+tilt_amount_y = 3.0
+weapon_rotation_amount = 0.001
 
 [node name="Gauntlet" type="Sprite3D" parent="FirstPersonViewport/Head2/RightHand"]
+visible = false
 layers = 2
 texture_filter = 0
 texture = ExtResource("3_5myy0")
 
 [node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2"]
-transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.665, -0.275, -0.221557)
-
-[node name="SubViewport" type="SubViewport" parent="FirstPersonViewport/Head2/LeftHand"]
-transparent_bg = true
-size = Vector2i(1400, 800)
-render_target_update_mode = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="FirstPersonViewport/Head2/LeftHand/SubViewport"]
-texture_filter = 1
-position = Vector2(512, 256)
-scale = Vector2(8, 8)
-texture = ExtResource("9_gxh2h")
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.645, -0.26, -1.04)
+visible = false
 
 [node name="SubViewport2" type="SubViewport" parent="FirstPersonViewport/Head2/LeftHand"]
 transparent_bg = true
@@ -267,6 +243,15 @@ layers = 2
 sorting_offset = 1.0
 texture_filter = 0
 texture = SubResource("ViewportTexture_xme80")
+
+[node name="card_hand_model" parent="FirstPersonViewport/Head2/LeftHand" instance=ExtResource("11_h82f6")]
+transform = Transform3D(-4.16989, -0.848374, -3.61733e-07, -0.824933, 4.05468, -0.993384, 0.198049, -0.973442, -4.13774, 1.56596, 0.519149, 3.37051)
+
+[node name="Body_004" parent="FirstPersonViewport/Head2/LeftHand/card_hand_model/Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Cards" type="Node3D" parent="FirstPersonViewport/Head2/LeftHand"]
+transform = Transform3D(4.25532, 0, 0, 0, 4.25532, 0, 0, 0, 4.25532, 2.01277, 0.787234, 3.39179)
 
 [node name="MiniMapViewport" type="SubViewport" parent="."]
 size = Vector2i(256, 256)
@@ -325,7 +310,7 @@ script = ExtResource("6_cf5ap")
 [node name="DiscardPile" type="Node" parent="."]
 script = ExtResource("6_cf5ap")
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "head")]
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "head", "weapon_holder")]
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
@@ -333,6 +318,7 @@ toggle_sprint = true
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
 enable_jumping = true
+weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
 [node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "primary_duration", "secondary_duration")]
 script = ExtResource("8_yl6ka")
@@ -370,6 +356,7 @@ mouse_filter = 2
 texture = SubResource("ViewportTexture_mk87g")
 
 [node name="PlaceIcon" type="TextureRect" parent="HUD"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -391,12 +378,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "#Equip Primary Weapon#"
+text = "#Primary Fire#"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SwapIcon" type="TextureRect" parent="HUD"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -418,7 +406,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "#Equip Secondary Weapon#"
+text = "#Secondary Fire#"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -781,6 +769,14 @@ text = "secondary weapon rounds left = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="selection_boxes" type="HBoxContainer" parent="HUD"]
+visible = false
+offset_left = 73.0
+offset_top = 457.0
+offset_right = 753.0
+offset_bottom = 585.0
+alignment = 1
+
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
@@ -821,3 +817,5 @@ stream = ExtResource("41_hussy")
 bus = &"SFX"
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
+
+[editable path="FirstPersonViewport/Head2/LeftHand/card_hand_model"]

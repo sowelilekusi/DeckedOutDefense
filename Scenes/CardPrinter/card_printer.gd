@@ -79,8 +79,8 @@ func card_picked_up(card_item: CardItem) -> void:
 
 func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 	reply_player = reply
-	if reply.energy >= 3:
-		reply.energy -= 3
+	if reply.energy >= 8:
+		reply.energy -= 8
 	else:
 		return
 	button_collider.disabled = true

@@ -9,11 +9,11 @@ signal ready_state_changed(state: bool)
 @export var left_hand_sprite: Sprite3D
 @export var left_hand: Node3D
 @export var right_hand: Node3D
-@export var right_hand_animator: AnimationPlayer
+#@export var right_hand_animator: AnimationPlayer
 @export var edit_tool: PathEditTool
 @export var gauntlet_sprite: Sprite3D
 @export var sprite: EightDirectionSprite3D
-@export var hand_sprite: Sprite2D
+#@export var hand_sprite: Sprite2D
 @export var interaction_raycast: RayCast3D
 @export var draw_pile: Inventory
 @export var hand: Inventory
@@ -25,6 +25,8 @@ signal ready_state_changed(state: bool)
 @export var sprint_zoom_speed: float = 0.2
 @export var player_name_tag: Label
 @export var weapon_swap_timer: Timer
+@export var card3d_scene: PackedScene
+@export var card_select_scene: PackedScene
 
 @export_subgroup("Audio")
 @export var ears: AudioListener3D
@@ -37,6 +39,9 @@ signal ready_state_changed(state: bool)
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+var building_mode: bool = true
+var selection_boxes: Array[CardSelectionBox] = []
+var unique_cards: Array[Card] = []
 var hand_card_scene: PackedScene = preload("res://Scenes/UI/card_hand.tscn")
 var card_sprites: Array[CardInHand]
 var game_manager: GameManager
@@ -66,6 +71,11 @@ var energy: int = 0 :
 		hud.set_energy_amount(value)
 	get:
 		return energy
+var selected_card: Card :
+	set(_value):
+		pass
+	get():
+		return unique_cards[hand_selected_index]
 
 
 func set_zoom_factor(value: float) -> void:
@@ -74,13 +84,13 @@ func set_zoom_factor(value: float) -> void:
 
 func _ready() -> void:
 	if is_multiplayer_authority():
-		right_hand_animator.play("weapon_sway")
-		right_hand_animator.speed_scale = 0
+		#right_hand_animator.play("weapon_sway")
+		#right_hand_animator.speed_scale = 0
 		ears.make_current()
 		camera.make_current()
 		sprite.queue_free()
 		hand.max_size = 5
-		hand_sprite.texture = hero_class.hand_texture
+		#hand_sprite.texture = hero_class.hand_texture
 		player_name_tag.queue_free()
 		for card: Card in hero_class.deck:
 			draw_pile.add(card)
@@ -98,12 +108,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if !is_multiplayer_authority() or paused:
 		return
-	if movement.input_vector == Vector2.ZERO:
-		right_hand_animator.speed_scale = 0
-	elif movement.sprinting:
-		right_hand_animator.speed_scale = 1
-	else:
-		right_hand_animator.speed_scale = 0.6
+	#if movement.input_vector == Vector2.ZERO:
+		#right_hand_animator.speed_scale = 0
+	#elif movement.sprinting:
+		#right_hand_animator.speed_scale = 1
+	#else:
+		#right_hand_animator.speed_scale = 0.6
 
 
 func _process(delta: float) -> void:
@@ -135,20 +145,61 @@ func _process(delta: float) -> void:
 				button.press(self)
 			if interaction_raycast.get_collider() is ItemCard:
 				add_card(interaction_raycast.get_collider().pick_up())
-		if Input.is_action_just_pressed("Equip Primary Weapon"):
-			equip_weapon(0)
-		if Input.is_action_just_pressed("Equip Secondary Weapon"):
-			equip_weapon(1)
-		if Input.is_action_just_pressed("Select Next Card") and hand.size > 1:
-			increment_selected()
-			swap_card_audio.play()
-		if Input.is_action_just_pressed("Select Previous Card") and hand.size > 1:
-			decrement_selected()
-			swap_card_audio.play()
-		if Input.is_action_just_pressed("Primary Fire"):
-			edit_tool.interact_key_held = true
-		if Input.is_action_just_released("Primary Fire"):
-			edit_tool.interact_key_held = false
+		if building_mode:
+			if Input.is_action_just_pressed("Primary Fire"):
+				edit_tool.interact_key_held = true
+			if Input.is_action_just_released("Primary Fire"):
+				edit_tool.interact_key_held = false
+			if Input.is_action_just_pressed("Swap Weapons"):
+				edit_tool.interact_key_held = false
+				building_mode = false
+				$FirstPersonViewport/Head2/LeftHand.visible = true
+				$HUD/selection_boxes.visible = true
+				$HUD/PlaceIcon.visible = true
+				$HUD/SwapIcon.visible = true
+		else:
+			if Input.is_action_just_pressed("Primary Fire"):
+				equip_weapon(0)
+			if Input.is_action_just_pressed("Secondary Fire"):
+				equip_weapon(1)
+			if Input.is_action_just_pressed("Select Next Card") and hand.size > 1:
+				increment_selected()
+				swap_card_audio.play()
+			if Input.is_action_just_pressed("Select Previous Card") and hand.size > 1:
+				decrement_selected()
+				swap_card_audio.play()
+			if Input.is_action_just_pressed("Select 1st Card"):
+				if unique_cards.size() >= 1:
+					hand_selected_index = 0
+					swap_card_audio.play()
+					update_selected_box()
+			if Input.is_action_just_pressed("Select 2nd Card"):
+				if unique_cards.size() >= 2:
+					hand_selected_index = 1
+					swap_card_audio.play()
+					update_selected_box()
+			if Input.is_action_just_pressed("Select 3rd Card"):
+				if unique_cards.size() >= 3:
+					hand_selected_index = 2
+					swap_card_audio.play()
+					update_selected_box()
+			if Input.is_action_just_pressed("Select 4th Card"):
+				if unique_cards.size() >= 4:
+					hand_selected_index = 3
+					swap_card_audio.play()
+					update_selected_box()
+			if Input.is_action_just_pressed("Select 5th Card"):
+				if unique_cards.size() >= 5:
+					hand_selected_index = 4
+					swap_card_audio.play()
+					update_selected_box()
+			if Input.is_action_just_pressed("Swap Weapons"):
+				building_mode = true
+				$FirstPersonViewport/Head2/LeftHand.visible = false
+				$HUD/selection_boxes.visible = false
+				$HUD/PlaceIcon.visible = false
+				$HUD/SwapIcon.visible = false
+		
 		if weapons[equipped_weapon] != null:
 			weapons[equipped_weapon].release_trigger()
 			weapons[equipped_weapon].release_second_trigger()
@@ -193,17 +244,19 @@ func _process(delta: float) -> void:
 
 func increment_selected() -> void:
 	hand_selected_index += 1
-	if hand_selected_index >= hand.size:
+	if hand_selected_index >= unique_cards.size():
 		hand_selected_index = 0
+	update_selected_box()
 
 
 func decrement_selected() -> void:
-	if hand.size == 0:
+	if unique_cards.size() == 0:
 		hand_selected_index = 0
 		return
 	hand_selected_index -= 1
 	if hand_selected_index < 0:
-		hand_selected_index = hand.size - 1
+		hand_selected_index = unique_cards.size() - 1
+	update_selected_box()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -267,6 +320,10 @@ func enter_editing_mode(value: int) -> void:
 	hud.set_wave_count(value + 1)
 	hud.set_energy_visible(false)
 	hud.grow_wave_start_label()
+	$HUD/selection_boxes.visible = true
+	$HUD/EnergyLabel.visible = true
+	$HUD/weapon_duration.visible = true
+	$HUD/weapon_duration2.visible = true
 	editing_mode = true
 	edit_tool.enabled = true
 	left_hand.visible = true
@@ -277,6 +334,10 @@ func enter_editing_mode(value: int) -> void:
 
 func exit_editing_mode(value: int) -> void:
 	gauntlet_sprite.visible = false
+	$HUD/selection_boxes.visible = false
+	$HUD/EnergyLabel.visible = false
+	$HUD/weapon_duration.visible = false
+	$HUD/weapon_duration2.visible = false
 	weapons_active = false
 	hud.set_wave_count(value)
 	var offhand_weapon: Weapon = weapons[0] if equipped_weapon == 1 else weapons[1]
@@ -302,28 +363,27 @@ func check_left_hand_valid() -> void:
 		return
 	if hand.size == 0:
 		left_hand_sprite.visible = false
-		#gauntlet.texture.region = Rect2(64, 0, 64, 64)
 	else:
 		left_hand_sprite.visible = true
-		#gauntlet.texture.region = Rect2(0, 0, 64, 64)
-		var selected_card: Card = hand.item_at(hand_selected_index)
-		for index: int in card_sprites.size():
-			if hand_selected_index == index:
-				var tween: Tween = create_tween()
-				tween.set_ease(Tween.EASE_OUT)
-				tween.set_trans(Tween.TRANS_CUBIC)
-				tween.tween_property(card_sprites[index], "position", Vector2(200.0 * index, -20.0), 0.5)
-			else:
-				var tween: Tween = create_tween()
-				tween.set_ease(Tween.EASE_OUT)
-				tween.set_trans(Tween.TRANS_CUBIC)
-				tween.tween_property(card_sprites[index], "position", Vector2(200.0 * index, 80.0), 0.5)
-			#if index < inventory.contents[selected_card]:
-				#card_sprites[index].visible = true
-				#card_sprites[index].set_card(selected_card)
-				##card_sprites[index].view_weapon()
-			#else:
-				#card_sprites[index].visible = false
+		update_selected_box()
+
+
+func check_removal() -> void:
+	var index: int = -1
+	for card: Card in unique_cards:
+		if !hand.contents.has(card):
+			index = unique_cards.find(card)
+	if index >= 0:
+		unique_cards.remove_at(index)
+		selection_boxes[index].queue_free()
+		selection_boxes.remove_at(index)
+		for i: int in selection_boxes.size():
+			var card: Card = unique_cards[i]
+			selection_boxes[i].set_card(card)
+			selection_boxes[i].set_key(i)
+		if hand_selected_index == index:
+			decrement_selected()
+		update_selected_box()
 
 
 func iterate_duration() -> void:
@@ -346,22 +406,46 @@ func draw_to_hand_size() -> void:
 		if draw_pile.size > 0:
 			var card: Card = draw_pile.remove_at(0)
 			hand.add(card)
-			var display: CardInHand = hand_card_scene.instantiate()
+			var display: Card3D = card3d_scene.instantiate()
 			display.set_card(card)
-			$FirstPersonViewport/Head2/LeftHand/SubViewport.add_child(display)
-			card_sprites.append(display)
-			var tween: Tween = create_tween()
-			tween.set_ease(Tween.EASE_OUT)
-			tween.set_trans(Tween.TRANS_CUBIC)
-			tween.tween_property(display, "position", Vector2(200.0 * hand.size, 80.0), 0.5)
+			display.position = Vector3(0.01 * hand.size, 0.0, -0.001 * hand.size)
+			display.rotation_degrees = Vector3(0.0, 0.0, -10.0 * hand.size)
+			$FirstPersonViewport/Head2/LeftHand/Cards.add_child(display)
+			#var tween: Tween = create_tween()
+			#tween.set_ease(Tween.EASE_OUT)
+			#tween.set_trans(Tween.TRANS_CUBIC)
+			#tween.tween_property(display, "position", Vector2(200.0 * hand.size, 80.0), 0.5)
 		else:
 			for x: int in discard_pile.size:
 				draw_pile.add(discard_pile.remove_at(0))
 				draw_pile.shuffle()
+	unique_cards = []
+	selection_boxes = []
+	for card: Card in hand.contents:
+		if !unique_cards.has(card):
+			unique_cards.append(card)
+	for i: int in $HUD/selection_boxes.get_child_count():
+		$HUD/selection_boxes.get_child(i).queue_free()
+	for i: int in unique_cards.size():
+		var card: Card = unique_cards[i]
+		var box: CardSelectionBox = card_select_scene.instantiate()
+		box.set_card(card)
+		box.set_key(i)
+		selection_boxes.append(box)
+		$HUD/selection_boxes.add_child(box)
+	hand_selected_index = 0
+	update_selected_box()
+
+
+func update_selected_box() -> void:
+	for box: CardSelectionBox in selection_boxes:
+		box.deselect()
+	selection_boxes[hand_selected_index].select()
 
 
 func equip_weapon(slot: int = 0) -> void:
 	var energy_cost: int = int(hand.item_at(hand_selected_index).rarity) + 1
+	energy_cost *= 2
 	if energy < energy_cost:
 		return
 	if weapons[slot] != null:
@@ -369,13 +453,13 @@ func equip_weapon(slot: int = 0) -> void:
 	if hand.size > 0:
 		energy -= energy_cost
 		place_card_audio.play()
-		cards[slot] = hand.remove_at(hand_selected_index)
-		card_sprites[hand_selected_index].queue_free()
-		card_sprites.remove_at(hand_selected_index)
+		cards[slot] = hand.remove_at(hand.contents.find(selected_card))
+		#card_sprites[hand_selected_index].queue_free()
+		#card_sprites.remove_at(hand_selected_index)
 		discard_pile.add(cards[slot])
 		#TODO: Alternate thing to do with the hand i guess
 		#if !inventory.contents.has(cards[slot]):
-		decrement_selected()
+		#decrement_selected()
 		weapons[slot] = cards[slot].weapon_scene.instantiate()
 		weapons[slot].name = str(weapons_spawn_count)
 		weapons[slot].duration = cards[slot].duration
@@ -396,6 +480,7 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].set_hero(self)
 		weapons[slot].visible = false
 		right_hand.add_child(weapons[slot])
+		check_removal()
 		check_left_hand_valid()
 		if slot == 0:
 			weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)

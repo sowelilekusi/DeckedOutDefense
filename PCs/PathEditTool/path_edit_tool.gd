@@ -98,7 +98,7 @@ func process_looking_at_level() -> void:
 	if tower_preview:
 		delete_tower_preview()
 	point = level.flow_field.get_closest_buildable_point(ray_point)
-	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost:
+	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost or !hero.building_mode:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()
@@ -132,14 +132,14 @@ func process_looking_at_tower() -> void:
 	ray_collider.set_color(Color.RED)
 	ray_collider.set_float(0.0)
 	if hero.hand.size > 0 and !ray_collider.has_card:
-		if ray_collider != last_tower_base or hero.hand.item_at(hero.hand_selected_index) != tower_preview_card:
+		if ray_collider != last_tower_base or hero.selected_card != tower_preview_card:
 			spawn_tower_preview()
 
 
 func spawn_tower_preview() -> void:
 	delete_tower_preview()
 	last_tower_base = ray_collider
-	var card: Card = hero.hand.item_at(hero.hand_selected_index)
+	var card: Card = hero.selected_card
 	tower_preview_card = card
 	tower_preview = card.turret_scene.instantiate() as Tower
 	tower_preview.stats = card.tower_stats
@@ -178,21 +178,25 @@ func refund_wall(wall: TowerBase) -> void:
 
 
 func put_card_in_tower_base(tower_base: TowerBase) -> void:
-	var energy_cost: int = int(hero.hand.item_at(hero.hand_selected_index).rarity) + 1
+	if hero.hand.size <= 0:
+		return
+	var card: Card = hero.selected_card
+	var energy_cost: int = int(card.rarity) + 1
+	energy_cost *= 2
 	if hero.energy < energy_cost:
 		return
-	if hero.hand.size > 0:
-		if tower_base.has_card:
-			tower_base.remove_card()
-		var card: Card = hero.hand.remove_at(hero.hand_selected_index)
-		hero.card_sprites[hero.hand_selected_index].queue_free()
-		hero.card_sprites.remove_at(hero.hand_selected_index)
-		#if !hero.hand.contents.has(card):
-		hero.decrement_selected()
-		tower_base.add_card(card, multiplayer.get_unique_id())
-		hero.discard_pile.add(card)
-		hero.place_card_audio.play()
-		hero.energy -= energy_cost
+	if tower_base.has_card:
+		tower_base.remove_card()
+	hero.hand.remove_at(hero.hand.contents.find(card))
+	hero.check_removal()
+	#hero.card_sprites[hero.hand_selected_index].queue_free()
+	#hero.card_sprites.remove_at(hero.hand_selected_index)
+	#if !hero.hand.contents.has(card):
+	#hero.decrement_selected()
+	tower_base.add_card(card, multiplayer.get_unique_id())
+	hero.discard_pile.add(card)
+	hero.place_card_audio.play()
+	hero.energy -= energy_cost
 
 
 func set_progress_percent(value: float) -> void:

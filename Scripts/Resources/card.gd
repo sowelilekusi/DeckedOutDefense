@@ -14,3 +14,4 @@ enum Faction {
 @export var weapon_scene: PackedScene
 @export var weapon_stats: CardText
 @export var tower_stats: CardText
+@export var tags: Array[Data.CardTags]

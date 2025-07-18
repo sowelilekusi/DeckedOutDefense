@@ -64,6 +64,7 @@ var prev_crouch_height: float = 0.0
 var new_crouch_height: float = 0.0
 var default_camera_height: float = 0.0
 var change_crouch: bool = false
+@export var weapon_holder: WeaponMovement
 
 var head_angle: float = 0.0
 var look_sens: float :
@@ -225,6 +226,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		head_angle -= event.relative.y * (look_sens / zoom_factor) * (-1 if invert_y else 1)
 		head_angle = clamp(head_angle, deg_to_rad(-max_look_down_angle), deg_to_rad(max_look_up_angle))
 		head.rotation.x = head_angle
+		if weapon_holder:
+			weapon_holder.mouse_input = event.relative
 	elif event is InputEventJoypadMotion:
 		if event.axis == JOY_AXIS_RIGHT_X:
 			look_vector.x = event.axis_value

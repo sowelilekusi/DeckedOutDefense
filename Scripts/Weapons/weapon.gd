@@ -87,7 +87,7 @@ func release_second_trigger() -> void:
 
 
 func shoot() -> void:
-	animator.play("shoot")
+	#animator.play("shoot")
 	audio_player.play()
 	recharging = false
 	recharge_speed = 0.0

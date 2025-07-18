@@ -24,8 +24,8 @@ func add(item: Item) -> bool:
 
 
 func item_at(index: int) -> Item:
-	#if size == 0:
-		#return null
+	if size == 0:
+		return null
 	var item: Item = contents[index]
 	return item
 
