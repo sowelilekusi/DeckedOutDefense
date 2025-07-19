@@ -6,13 +6,11 @@ extends Node3D
 @export var wall_preview: TowerBase
 @export var progress_bar: TextureProgressBar
 
-var enabled: bool = true
+var enabled: bool = false
 var level: Level
 var point: FlowNode
 var obstacle_last_point: int = -1
 var valid_point: bool = false # a point is valid if the path would still be traversable overall if this point was made untraversable
-var tower_preview: Tower
-var tower_preview_card: Card
 var ray_collider: Object
 var ray_point: Vector3
 var last_point: FlowNode
@@ -88,17 +86,14 @@ func reset() -> void:
 	if is_instance_valid(ray_collider) and ray_collider is TowerBase and level.walls.has(ray_collider.point):
 		level.walls[ray_collider.point].set_float(1.0)
 	ray_collider = null
-	delete_tower_preview()
 	wall_preview.set_visible(false)
 	clear_previous_point()
 	last_point = null
 
 
 func process_looking_at_level() -> void:
-	if tower_preview:
-		delete_tower_preview()
 	point = level.flow_field.get_closest_buildable_point(ray_point)
-	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost or !hero.building_mode:
+	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()
@@ -126,40 +121,9 @@ func process_looking_at_tower() -> void:
 	if last_point != point:
 		clear_previous_point()
 	
-	if tower_preview:
-		delete_tower_preview()
 	wall_preview.set_visible(false)
 	ray_collider.set_color(Color.RED)
 	ray_collider.set_float(0.0)
-	if hero.hand.size > 0 and !ray_collider.has_card:
-		if ray_collider != last_tower_base or hero.selected_card != tower_preview_card:
-			spawn_tower_preview()
-
-
-func spawn_tower_preview() -> void:
-	delete_tower_preview()
-	last_tower_base = ray_collider
-	var card: Card = hero.selected_card
-	tower_preview_card = card
-	tower_preview = card.turret_scene.instantiate() as Tower
-	tower_preview.stats = card.tower_stats
-	tower_preview.position = Vector3.UP
-	tower_preview.preview_range(true)
-	ray_collider.add_child(tower_preview)
-
-
-func delete_tower_preview() -> void:
-	last_tower_base = null
-	if is_instance_valid(tower_preview):
-		tower_preview.queue_free()
-		tower_preview = null
-		tower_preview_card = null
-
-
-func interact() -> void:
-	if ray_collider is TowerBase:
-		var tower_base: TowerBase = ray_collider as TowerBase
-		put_card_in_tower_base(tower_base)
 
 
 func build_wall() -> void:
@@ -175,28 +139,6 @@ func refund_wall(wall: TowerBase) -> void:
 	if wall.has_card:
 		wall.remove_card()
 	level.remove_wall(wall.point)
-
-
-func put_card_in_tower_base(tower_base: TowerBase) -> void:
-	if hero.hand.size <= 0:
-		return
-	var card: Card = hero.selected_card
-	var energy_cost: int = int(card.rarity) + 1
-	energy_cost *= 2
-	if hero.energy < energy_cost:
-		return
-	if tower_base.has_card:
-		tower_base.remove_card()
-	hero.hand.remove_at(hero.hand.contents.find(card))
-	hero.check_removal()
-	#hero.card_sprites[hero.hand_selected_index].queue_free()
-	#hero.card_sprites.remove_at(hero.hand_selected_index)
-	#if !hero.hand.contents.has(card):
-	#hero.decrement_selected()
-	tower_base.add_card(card, multiplayer.get_unique_id())
-	hero.discard_pile.add(card)
-	hero.place_card_audio.play()
-	hero.energy -= energy_cost
 
 
 func set_progress_percent(value: float) -> void:

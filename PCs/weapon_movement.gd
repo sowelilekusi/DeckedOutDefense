@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	if enable_strafe_tilt:
 		tilt = get_strafe_tilt(player.velocity)
 	if enable_mouse_sway:
-		sway = weapon_sway(delta)
+		sway = weapon_sway()
 	rotation = lerp(rotation, tilt + sway, 10 * delta)
 
 
@@ -35,7 +35,7 @@ func get_strafe_tilt(player_velocity: Vector3) -> Vector3:
 	return tilt_vector
 
 
-func weapon_sway(delta: float) -> Vector3:
+func weapon_sway() -> Vector3:
 	var vector: Vector3 = Vector3.ZERO
 	vector.x = mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1)
 	vector.y = mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1)

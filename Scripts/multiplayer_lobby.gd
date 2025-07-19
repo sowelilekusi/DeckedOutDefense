@@ -72,7 +72,8 @@ func connect_to_server() -> void:
 
 
 func ready_player() -> void:
-	var peer_id: int = multiplayer.get_unique_id()
+	pass
+	#var peer_id: int = multiplayer.get_unique_id()
 	#networked_ready_player.rpc(peer_id)
 
 

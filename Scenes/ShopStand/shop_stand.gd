@@ -48,7 +48,7 @@ func randomize_cards() -> void:
 			cards[x].set_card(chosen_card)
 			cards[x].view_tower()
 			choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x].hover_text = "Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			choice_buttons[x].hover_text = "#Interact# Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 2:
@@ -61,7 +61,7 @@ func randomize_cards() -> void:
 			cards[x+3].set_card(chosen_card)
 			cards[x+3].view_tower()
 			choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x+3].hover_text = "Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			choice_buttons[x+3].hover_text = "#Interact# Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 1:
@@ -76,7 +76,7 @@ func randomize_cards() -> void:
 			cards[x+5].set_card(chosen_card)
 			cards[x+5].view_tower()
 			choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x+5].hover_text = "Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name + "?"
+			choice_buttons[x+5].hover_text = "#Interact# Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: CollisionShape3D in choice_colliders:

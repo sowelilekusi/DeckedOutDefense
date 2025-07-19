@@ -30,15 +30,25 @@ func set_card(card: Card) -> void:
 func set_key(slot: int) -> void:
 	match(slot):
 		0:
-			$Label.text = parse_action_tag("#Select 1st Card#")
+			$Label.text = parse_action_tag("#Equip 1#")
 		1:
-			$Label.text = parse_action_tag("#Select 2nd Card#")
+			$Label.text = parse_action_tag("#Equip 2#")
 		2:
-			$Label.text = parse_action_tag("#Select 3rd Card#")
+			$Label.text = parse_action_tag("#Equip 3#")
 		3:
-			$Label.text = parse_action_tag("#Select 4th Card#")
-		44:
-			$Label.text = parse_action_tag("#Select 5th Card#")
+			$Label.text = parse_action_tag("#Equip 4#")
+		4:
+			$Label.text = parse_action_tag("#Equip 5#")
+		5:
+			$Label.text = parse_action_tag("#Equip 6#")
+		6:
+			$Label.text = parse_action_tag("#Equip 7#")
+		7:
+			$Label.text = parse_action_tag("#Equip 8#")
+		8:
+			$Label.text = parse_action_tag("#Equip 9#")
+		9:
+			$Label.text = parse_action_tag("#Equip 10#")
 
 
 func parse_action_tag(text: String) -> String:

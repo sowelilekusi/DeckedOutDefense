@@ -1,8 +1,8 @@
 class_name GameManager
 extends Node
 
-signal wave_started(wave_number: int)
-signal wave_finished(wave_number: int)
+signal wave_started()
+signal wave_finished()
 signal base_took_damage(remaining_health: int)
 signal game_setup
 signal game_started
@@ -92,10 +92,6 @@ func parse_command(text: String, peer_id: int) -> void:
 			chatbox.append_message("SERVER", Color.TOMATO, "Unable to set wave")
 	elif text.substr(1, 4) == "seed":
 		chatbox.append_message("SERVER", Color.TOMATO, str(NoiseRandom.noise.seed))
-#	if text.substr(1, 17) == "show tower ranges":
-#		pass
-#	if text.substr(1, 20) = "show gauntlet ranges":
-#		pass
 
 
 @rpc("reliable", "call_local")
@@ -111,7 +107,6 @@ func spawn_level() -> void:
 	level = level_scene.instantiate() as Level
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
-		#x.path = level.a_star_graph_3d.visualized_path
 		x.game_manager = self
 		x.enemy_died_callback = enemy_died
 		x.enemy_reached_goal_callback = damage_goal
@@ -139,8 +134,8 @@ func spawn_players() -> void:
 			chatbox.closed.connect(player.unpause)
 		player.set_multiplayer_authority(peer_id)
 		connected_players_nodes[peer_id] = player
-		wave_started.connect(player.exit_editing_mode)
-		wave_finished.connect(player.enter_editing_mode)
+		wave_started.connect(player.enter_fighting_state)
+		wave_finished.connect(player.exit_fighting_state)
 		base_took_damage.connect(player.hud.set_lives_count)
 		add_child(player)
 		p_i += 1
@@ -158,7 +153,6 @@ func ready_player(player_ready_true: bool) -> void:
 			ready_players += 1
 	if ready_players == connected_players_nodes.size():
 		spawn_enemy_wave()
-		#chatbox.append_message("SERVER", Color.TOMATO, "Wave Started!")
 	else:
 		chatbox.append_message("SERVER", Color.TOMATO, str(ready_players) + "/" + str(connected_players_nodes.size()) + " Players ready")
 
@@ -167,16 +161,13 @@ func spawn_enemy_wave() -> void:
 	level.shop.close()
 	wave += 1
 	level.disable_all_tower_frames()
-	#level.a_star_graph_3d.find_path()
-	#level.a_star_graph_3d.disable_all_tower_frames()
 	level.flow_field.calculate()
 	for spawn: EnemySpawner in level.enemy_spawns:
-		#spawn.path.disable_visualization()
 		spawn.visible = false
 		spawn.spawn_wave()
 	for tower_base: TowerBase in level.walls.values():
 		tower_base.disable_duration_sprites()
-	wave_started.emit(wave)
+	wave_started.emit()
 
 
 func set_upcoming_wave() -> void:
@@ -188,10 +179,10 @@ func set_upcoming_wave() -> void:
 		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 
 
-func temp_set_upcoming_wave(wave: Wave, coins: int) -> void:
+func temp_set_upcoming_wave(new_wave: Wave, coins: int) -> void:
 	pot = coins
-	connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(wave)
-	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(wave.to_dict())
+	connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(new_wave)
+	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(new_wave.to_dict())
 
 #TODO: You'll probably have to write a to_dict function for the new wave system 
 #before any of this shit works in multiplayer
@@ -247,6 +238,7 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 func end_wave() -> void:
 	for peer_id: int in connected_players_nodes:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
+		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
 		player.energy = 12
 		player.iterate_duration()
@@ -258,15 +250,13 @@ func end_wave() -> void:
 		if tower_base.has_card:
 			tower_base.enable_duration_sprites()
 			tower_base.iterate_duration()
-	#level.a_star_graph_3d.enable_non_path_tower_frames()
-	level.enable_non_path_tower_frames()
 	if is_multiplayer_authority():
 		if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			networked_spawn_shop.rpc()
 			shop_chance = 0.0
 		else:
 			shop_chance += 0.09
-	wave_finished.emit(wave)
+	wave_finished.emit()
 	set_upcoming_wave()
 
 
@@ -326,18 +316,12 @@ func start() -> void:
 	set_upcoming_wave()
 	level.flow_field.calculate()
 	level.enemy_spawns[0].update_path()
-	#level.a_star_graph_3d.make_grid()
 	level.generate_obstacles()
-	level.enable_non_path_tower_frames()
-	#level.a_star_graph_3d.disable_all_tower_frames()
-	#level.a_star_graph_3d.enable_non_path_tower_frames()
-	#level.a_star_graph_3d.find_path()
 	
 	#Start game
 	game_active = true
 	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(NoiseRandom.noise.seed))
 	game_started.emit()
-	#print("started game with seed: " + str(gamemode.rng_seed))
 
 
 func end(outcome: bool) -> void:
@@ -374,14 +358,11 @@ func scene_switch_main_menu() -> void:
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
 	switch_to_main_menu.emit()
-	#get_tree().change_scene_to_file(main_menu_scene_path)
 
 
 func scene_switch_to_multiplayer_lobby() -> void:
 	switch_to_multi_player.emit()
-	#get_tree().change_scene_to_file(multiplayer_lobby_scene_path)
 
 
 func scene_switch_to_singleplayer_lobby() -> void:
 	switch_to_single_player.emit()
-	#get_tree().change_scene_to_file(singleplayer_lobby_scene_path)

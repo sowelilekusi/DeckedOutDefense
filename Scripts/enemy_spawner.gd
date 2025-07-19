@@ -97,7 +97,6 @@ func create_path() -> void:
 func update_path() -> void:
 	if type != Data.EnemyType.LAND:
 		return
-		path.curve.add_point(global_position + Vector3(0, 0.5, 0))
 	path.curve = Curve3D.new()
 	var node: FlowNode = flow_field.get_closest_traversable_point(global_position)
 	path.curve.add_point(node.global_position + Vector3(0, 0.5, 0))

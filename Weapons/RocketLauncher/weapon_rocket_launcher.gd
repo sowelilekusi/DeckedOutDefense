@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	targets = target_list
 	for x: int in target_icons.size():
 		if x < targets.size():
-			target_icons[x].global_position = targets[x].sprite.global_position
+			target_icons[x].global_position = targets[x].d_n.global_position
 			target_icons[x].set_visible(true)
 		else:
 			target_icons[x].set_visible(false)

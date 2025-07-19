@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgxr27by7jruo" path="res://Enemies/BabyEyeDog/baby_eyedog.glb" id="10_8k5ts"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cavbv"]
-radius = 0.269119
+radius = 0.364
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h25mw"]
 radius = 0.150315

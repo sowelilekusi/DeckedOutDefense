@@ -17,7 +17,7 @@ var tolerance: float = 50.0
 var jumping: bool = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	tolerance = remap(character.health.current_health, character.health.max_health * 0.20, character.health.max_health, 10, 50)
 	tolerance = maxf(tolerance, 10)
 

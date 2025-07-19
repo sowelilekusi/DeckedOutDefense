@@ -17,7 +17,7 @@ func set_card(new_card: Card) -> void:
 	#print(rarity_colors[card.rarity])
 
 
-func press(callback_player: Hero) -> void:
+func press(_callback_player: Hero) -> void:
 	pressed.emit(self)
 
 

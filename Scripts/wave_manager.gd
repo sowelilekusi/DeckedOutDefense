@@ -28,7 +28,7 @@ static func calculate_pot(wave_number: int, number_of_players: int) -> int:
 static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
 	var wave: Wave = Wave.new()
 
-	var points: int = spawn_power / 10.0
+	var points: int = int(spawn_power / 10.0)
 	#print("Generating wave with " + str(points) + " points to spend")
 	while points > 0:
 		var new_card: EnemyCard = EnemyCard.new()
@@ -72,7 +72,7 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 		#Now that we know which rarities we could afford, lets just choose a
 		#random one
 		var chosen_rarity: int = randi_range(0, highest_rarity)
-		new_card.rarity = chosen_rarity
+		new_card.rarity = chosen_rarity as Data.Rarity
 		
 		#Add that new enemy to the wave and spend the points!
 		wave.enemy_groups.append(new_card)

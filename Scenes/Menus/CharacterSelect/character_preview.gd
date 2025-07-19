@@ -34,7 +34,6 @@ func setup_with_basic_text(hero: HeroClass, text: String) -> void:
 	for tag: TowerLabel in added_tags:
 		tag.queue_free()
 	added_tags = []
-	var added_labels: Array[Card] = []
 	var new_label: Label = Label.new()
 	new_label.text = text
 	tower_label_container.add_child(new_label)

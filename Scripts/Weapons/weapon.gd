@@ -20,13 +20,14 @@ var current_energy: float = 100.0
 var energy_cost: float = 1.0
 var recharging: bool = false
 var recharge_speed: float = 0.0
-var recharge_acceleration: float = 2.0
-var recharge_max_speed: float = 25.0
+var recharge_acceleration: float = 3.0
+var recharge_max_speed: float = 30.0
 var duration: int = 0
 #var time_since_trigger: float = 0.0
 
 
 func _ready() -> void:
+	recharge_timer.wait_time = Data.weapon_recharge_delay
 	time_between_shots = stats.get_attribute("Fire Delay")
 	damage = int(stats.get_attribute("Damage"))
 	#energy_cost = stats.get_attribute("Energy")

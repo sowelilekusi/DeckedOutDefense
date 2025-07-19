@@ -71,7 +71,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08327, 0.835364, 0.235621)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButton"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -83,7 +82,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 1
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractButton2"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -95,7 +93,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 2
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="InteractButton3"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -107,7 +104,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 5
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="InteractButton4"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -119,7 +115,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 4
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="InteractButton5"]
 shape = SubResource("BoxShape3D_3r1g8")
@@ -131,7 +126,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_x8sts")
 button_press_value = 3
-hover_text = "[center]#Interact# to [do thing]"
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="InteractButton6"]
 shape = SubResource("BoxShape3D_3r1g8")

@@ -29,7 +29,6 @@ extends CanvasLayer
 var last_lives_count: int = 120
 var enemy_names: Array[String]
 var map_anchor: Node3D
-var audio_guard: bool = false
 var cards: Array[EnemyCardUI] = []
 
 
@@ -162,20 +161,13 @@ func set_energy_amount(value: int) -> void:
 func set_crosshair_visible(value: bool) -> void:
 	crosshair.set_visible(value)
 
-#TODO: the fuck is audio_guard for?
+
 @warning_ignore("unused_parameter")
 func set_weapon_energy(value: int, energy_type: Data.EnergyType) -> void:
-	#weapon_energy_bar.value = value
-	if player.editing_mode:
-		audio_guard = true
-	if value == 0 and !audio_guard:
+	if value == 0:
 		player.zeropower_audio.play()
-		audio_guard = true
-	if value == 100 and !audio_guard:
+	if value == 100:
 		player.fullpower_audio.play()
-		audio_guard = true
-	if value > 0 and value < 100:
-		audio_guard = false
 
 
 func maximise_minimap() -> void:
@@ -227,6 +219,6 @@ func parse_action_tag(text: String) -> String:
 				output.append("[img=top,50]%s[/img]" % KeyIconMap.keys[str(event.physical_keycode)])
 			if event is InputEventMouseButton:
 				output.append("[img=top,50]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)])
-	string_array[1] = "".join(output)
+		string_array[1] = "".join(output)
 	text = "".join(string_array)
 	return text
