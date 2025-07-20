@@ -42,8 +42,7 @@ func put_card_in_tower_base(tower_base: TowerBase) -> void:
 	if hero.hand.size <= 0:
 		return
 	var card: Card = hero.selected_card
-	var energy_cost: int = int(card.rarity) + 1
-	energy_cost *= 2
+	var energy_cost: int = card.cost
 	if hero.energy < energy_cost:
 		return
 	if tower_base.has_card:

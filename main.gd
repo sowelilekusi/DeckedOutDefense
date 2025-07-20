@@ -13,6 +13,10 @@ var multiplayer_lobby_scene_path: String = "res://Scenes/Menus/multiplayer_lobby
 var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lobby.tscn"
 
 
+func _ready() -> void:
+	Engine.max_fps = 60
+
+
 func load_main_menu() -> void:
 	load_scene(main_menu_scene_path)
 	await loaded_scene

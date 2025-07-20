@@ -1,6 +1,5 @@
-[gd_scene load_steps=27 format=3 uid="uid://8yv7excojcg0"]
+[gd_scene load_steps=25 format=3 uid="uid://8yv7excojcg0"]
 
-[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_p1cib"]
 [ext_resource type="Script" uid="uid://ci8vq73u23viy" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="2_ivytu"]
 [ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn" id="3_l8r4a"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="5_cwn2i"]
@@ -18,24 +17,23 @@
 [ext_resource type="Texture2D" uid="uid://cpa1hl36xfplg" path="res://Assets/Textures/first_scroll_seen.png" id="16_sv1gy"]
 [ext_resource type="Texture2D" uid="uid://ctbi3gm1me1t5" path="res://Assets/Textures/unlock_mage_achievement.png" id="17_6t4jd"]
 [ext_resource type="Script" uid="uid://cxrm2naq75jo1" path="res://Scripts/mod_menu.gd" id="19_6t4jd"]
-[ext_resource type="FontFile" uid="uid://c3hwdjscf2hnk" path="res://Assets/Fonts/OpenType (.otf)/Kaph-Regular.otf" id="20_y5bw6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u75i"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6t4jd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_74epv"]
 resource_local_to_scene = true
 atlas = ExtResource("8_1vnym")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="Resource" id="Resource_y5bw6"]
+[sub_resource type="Resource" id="Resource_sv1gy"]
 resource_local_to_scene = true
 script = ExtResource("5_u514r")
 title = "dog"
 target_type = 1
 icon = ExtResource("7_2sylv")
 death_sprite = ExtResource("6_rsxwm")
-sprite = SubResource("AtlasTexture_6t4jd")
+sprite = SubResource("AtlasTexture_74epv")
 spawn_power = 10
 health = 180
 penalty = 10
@@ -69,23 +67,22 @@ region = Rect2(0, 0, 36, 36)
 atlas = ExtResource("17_6t4jd")
 region = Rect2(0, 0, 36, 36)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level", "game_select_menu", "main_controls", "seed_entry", "profile_controls", "mods_controls")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level", "game_select_menu", "main_controls", "seed_entry", "mods_controls")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_p1cib")
 script = ExtResource("2_ivytu")
 bg_level = NodePath("SubViewport/GridMap")
 game_select_menu = NodePath("GameSelectMenu")
 main_controls = NodePath("MainControls")
 seed_entry = NodePath("GameSelectMenu/VBoxContainer/HBoxContainer2/LineEdit")
-profile_controls = NodePath("ProfileEditor")
 mods_controls = NodePath("ModsMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,34 +97,27 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.8, 0.5644, 0.344, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -35
-theme_override_constants/outline_size = 55
-theme_override_fonts/font = ExtResource("20_y5bw6")
-theme_override_font_sizes/font_size = 146
 text = "decked
 out
 defense"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainControls" type="HBoxContainer" parent="."]
+[node name="MainControls" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.95
-anchor_right = 0.95
-anchor_bottom = 0.95
-offset_top = -60.0
-grow_horizontal = 2
-grow_vertical = 0
+anchor_left = 0.1
+anchor_top = 0.4
+anchor_right = 0.9
+anchor_bottom = 0.9
+alignment = 2
 
 [node name="PlayButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Play"
 
 [node name="MultiplayerButton" type="Button" parent="MainControls"]
+visible = false
 layout_mode = 2
 disabled = true
 text = "Multiplayer"
@@ -135,6 +125,10 @@ text = "Multiplayer"
 [node name="ModsButton" type="Button" parent="MainControls"]
 layout_mode = 2
 text = "Mods"
+
+[node name="StatsButton" type="Button" parent="MainControls"]
+layout_mode = 2
+text = "Stats"
 
 [node name="OptionsButton" type="Button" parent="MainControls"]
 layout_mode = 2
@@ -146,50 +140,11 @@ layout_mode = 2
 text = "Quit
 "
 
-[node name="ProfileEditor" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.97
-anchor_top = 0.95
-anchor_right = 0.97
-anchor_bottom = 0.95
-offset_left = -421.0
-offset_top = -150.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ProfileEditor"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ProfileEditor/VBoxContainer"]
-layout_mode = 2
-text = "Current Profile"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ProfileEditor/VBoxContainer"]
-layout_mode = 2
-
-[node name="DisplayName" type="Label" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Dummy Name"
-
-[node name="MarginContainer" type="MarginContainer" parent="ProfileEditor/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 29
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 31
-theme_override_constants/margin_bottom = 4
-
-[node name="DisplayNameEdit" type="Button" parent="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "View Profile"
-
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
 
 [node name="GridMap" parent="SubViewport" instance=ExtResource("3_l8r4a")]
-enemy_pool = Array[ExtResource("5_u514r")]([SubResource("Resource_y5bw6"), ExtResource("9_hdp0s"), ExtResource("10_day26"), ExtResource("11_1mes0"), ExtResource("12_5vny5"), ExtResource("13_xb7gj")])
+enemy_pool = Array[ExtResource("5_u514r")]([SubResource("Resource_sv1gy"), ExtResource("9_hdp0s"), ExtResource("10_day26"), ExtResource("11_1mes0"), ExtResource("12_5vny5"), ExtResource("13_xb7gj")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_2jyua")
@@ -617,8 +572,6 @@ text = "Confirm"
 [connection signal="pressed" from="MainControls/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/QuitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="mouse_entered" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="ProfileEditor/VBoxContainer/HBoxContainer/MarginContainer/DisplayNameEdit" to="." method="_on_display_name_edit_pressed"]
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/StandardButton" to="." method="_on_standard_button_pressed"]
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/DailyButton" to="." method="_on_daily_button_pressed"]

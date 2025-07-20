@@ -32,6 +32,11 @@ var map_anchor: Node3D
 var cards: Array[EnemyCardUI] = []
 
 
+func _ready() -> void:
+	$StartWaveLabel.theme_type_variation = "WaveStartLabel"
+	$InteractLabel.theme_type_variation = "InteractLabel"
+
+
 func show_wave_generation_anim(wave: Wave) -> void:
 	for card: EnemyCardUI in cards:
 		card.queue_free()
@@ -155,7 +160,7 @@ func set_currency_count(value: int) -> void:
 
 
 func set_energy_amount(value: int) -> void:
-	energy_label.text = "energy = " + str(value)
+	energy_label.text = str(value)
 
 
 func set_crosshair_visible(value: bool) -> void:

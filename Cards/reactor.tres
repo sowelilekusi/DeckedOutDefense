@@ -8,11 +8,12 @@
 
 [resource]
 script = ExtResource("1_0ciid")
-duration = 4
+cost = 5
 rarity = 4
 faction = 1
 turret_scene = ExtResource("3_l4xwa")
 weapon_scene = ExtResource("3_de72q")
 weapon_stats = ExtResource("4_wilo7")
 tower_stats = ExtResource("3_7vuex")
+tags = Array[int]([])
 display_name = "Reactor"

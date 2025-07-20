@@ -222,8 +222,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if !is_multiplayer_authority():
 		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		player.rotation.y -= event.relative.x * (look_sens / zoom_factor) * (-1 if invert_x else 1)
-		head_angle -= event.relative.y * (look_sens / zoom_factor) * (-1 if invert_y else 1)
+		player.rotation.y -= (event.relative.x * get_viewport().get_final_transform().x.x) * (look_sens / zoom_factor) * (-1 if invert_x else 1)
+		head_angle -= (event.relative.y * get_viewport().get_final_transform().y.y) * (look_sens / zoom_factor) * (-1 if invert_y else 1)
 		head_angle = clamp(head_angle, deg_to_rad(-max_look_down_angle), deg_to_rad(max_look_up_angle))
 		head.rotation.x = head_angle
 		if weapon_holder:

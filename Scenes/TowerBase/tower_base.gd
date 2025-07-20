@@ -71,8 +71,8 @@ func networked_spawn_tower(card_index: int, caller_id: int) -> void:
 	tower.owner_id = caller_id
 	tower.position = Vector3(0, 1.2, 0)
 	minimap_icon.modulate = Color.RED
-	duration = card.duration
-	enable_duration_sprites()
+	duration = 999
+	#enable_duration_sprites()
 	add_child(tower)
 
 
@@ -82,6 +82,6 @@ func networked_remove_tower() -> void:
 	#game_manager.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
 	#game_manager.connected_players_nodes[tower.owner_id].unready_self()
 	tower.queue_free()
-	disable_duration_sprites()
+	#disable_duration_sprites()
 	tower = null
 	minimap_icon.modulate = Color.GREEN

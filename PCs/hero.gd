@@ -137,6 +137,8 @@ func check_removal() -> void:
 	for card: Card in unique_cards:
 		if !hand.contents.has(card):
 			index = unique_cards.find(card)
+	for i: int in selection_boxes.size():
+		selection_boxes[i].set_amount(hand.contents.count(unique_cards[i]))
 	if index >= 0:
 		unique_cards.remove_at(index)
 		selection_boxes[index].queue_free()
@@ -327,6 +329,7 @@ func draw_to_hand_size() -> void:
 		var box: CardSelectionBox = card_select_scene.instantiate()
 		box.set_card(card)
 		box.set_key(i)
+		box.set_amount(hand.contents.count(unique_cards[i]))
 		selection_boxes.append(box)
 		$HUD/selection_boxes.add_child(box)
 	hand_selected_index = 0
@@ -342,8 +345,7 @@ func update_selected_box() -> void:
 func equip_weapon(slot: int = 0) -> void:
 	if hand.size == 0:
 		return
-	var energy_cost: int = int(hand.item_at(hand_selected_index).rarity) + 1
-	energy_cost *= 2
+	var energy_cost: int = selected_card.cost
 	if energy < energy_cost:
 		return
 	if weapons[slot] != null:
@@ -360,7 +362,7 @@ func equip_weapon(slot: int = 0) -> void:
 		#decrement_selected()
 		weapons[slot] = cards[slot].weapon_scene.instantiate()
 		weapons[slot].name = str(weapons_spawn_count)
-		weapons[slot].duration = cards[slot].duration
+		weapons[slot].duration = 1
 		networked_equip_weapon.rpc(Data.cards.find(cards[slot]), 0, weapons_spawn_count)
 		weapons_spawn_count += 1
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())

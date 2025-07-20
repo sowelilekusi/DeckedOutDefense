@@ -8,11 +8,12 @@
 
 [resource]
 script = ExtResource("1_5html")
-duration = 4
+cost = 2
 rarity = 0
 faction = 1
 turret_scene = ExtResource("4_thk7u")
 weapon_scene = ExtResource("3_wkjyf")
 weapon_stats = ExtResource("4_76fd1")
 tower_stats = ExtResource("3_4hykq")
+tags = Array[int]([])
 display_name = "Gatling"

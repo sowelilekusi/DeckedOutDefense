@@ -21,7 +21,6 @@ var temp_data: SaveData
 
 
 func _ready() -> void:
-	$ProfileEditor/VBoxContainer/HBoxContainer/DisplayName.text = Data.player_profile.display_name
 	load_stats(Data.save_data)
 	#bg_level.a_star_graph_3d.make_grid()
 	#bg_level.a_star_graph_3d.find_path()

@@ -119,6 +119,8 @@ func gain_energy(energy_gained: float, energy_type: Data.EnergyType = Data.Energ
 	energy += energy_gained
 	progress_bar.value = energy
 	big_progress_bar.value = energy
+	#TODO: Theres a bug here that should be fixed by making the discrete and continuous bars
+	#into a different ui element which i think i wanna do anyway
 	if energy_type == Data.EnergyType.DISCRETE and int(energy) > prev_energy_int:
 		cell_icons[int(energy) - 1].visible = true
 	prev_energy_int = int(energy)

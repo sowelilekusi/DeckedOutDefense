@@ -19,8 +19,9 @@ enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
 enum CardTags {DAMAGE = 0, UTILITY = 1, TARGETS_FLYING = 2}
 
-static var weapon_recharge_delay: float = 1.5
+static var weapon_recharge_delay: float = 0.5
 static var starting_cash: int = 10
+static var player_energy: int = 6
 static var wall_cost: int = 1
 static var printer_cost: int = 15
 static var rarity_weights: Dictionary = {

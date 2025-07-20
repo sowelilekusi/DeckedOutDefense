@@ -30,7 +30,8 @@ gdscript/warnings/inferred_declaration=2
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor]
 
@@ -55,7 +56,8 @@ import/blender/enabled=false
 
 [gui]
 
-theme/custom="res://UI/new_theme.tres"
+theme/custom="uid://b6a0ip4p72tgx"
+theme/default_font_antialiasing=0
 
 [input]
 
@@ -221,3 +223,14 @@ Pause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+
+[shader_globals]
+
+affine_mapping={
+"type": "bool",
+"value": true
+}
+jitter_resolution={
+"type": "ivec2",
+"value": Vector2i(320, 240)
+}

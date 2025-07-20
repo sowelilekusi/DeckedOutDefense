@@ -4,15 +4,18 @@ extends Control
 @export var icon: TextureRect
 @export var tags: VBoxContainer
 @export var cost_label: Label
-@export var lifetime_label: Label
 @export var unselected_style_box: StyleBoxFlat
 @export var selected_style_box: StyleBoxFlat
+@export var amount_label: Label
+
+
+func set_amount(num: int) -> void:
+	amount_label.text = "x" + str(num)
 
 
 func set_card(card: Card) -> void:
 	icon.texture = card.icon
-	cost_label.text = str(card.rarity + 1)
-	lifetime_label.text = str(card.duration)
+	cost_label.text = str(card.cost)
 	for i: int in tags.get_child_count():
 		tags.get_child(i).queue_free()
 	for tag: Data.CardTags in card.tags:

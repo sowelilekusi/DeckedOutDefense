@@ -6,8 +6,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_0addr")
-shader_parameter/affine_mapping = true
 shader_parameter/albedo = ExtResource("2_4kam3")
 shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)

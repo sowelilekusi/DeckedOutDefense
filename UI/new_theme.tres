@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://b6a0ip4p72tgx"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://b6a0ip4p72tgx"]
 
+[ext_resource type="FontFile" uid="uid://bqy8dm2o3piqm" path="res://Assets/Fonts/Quaver v1.0/quaver.ttf" id="2_i4k6b"]
 [ext_resource type="StyleBox" uid="uid://lpof3jdy7hr7" path="res://UI/new_style_box_flat.tres" id="4_o03gw"]
 [ext_resource type="FontFile" uid="uid://c17ml15e2qan0" path="res://Assets/Fonts/TrueType (.ttf)/Sagewold-Regular.ttf" id="4_v3wda"]
 
@@ -97,6 +98,9 @@ CheckButton/styles/hover = SubResource("StyleBoxEmpty_v4c6d")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_pdxi3")
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_8epi8")
 CheckButton/styles/pressed = SubResource("StyleBoxEmpty_o02xp")
+DamageNumLabel/base_type = &"Label"
+DamageNumLabel/font_sizes/font_size = 8
+DamageNumLabel/fonts/font = ExtResource("2_i4k6b")
 HBoxContainer/constants/separation = 10
 Label/colors/font_color = Color(0.941129, 0.938917, 0.927802, 1)
 Label/font_sizes/font_size = 34
@@ -108,6 +112,7 @@ LineEdit/fonts/font = ExtResource("4_v3wda")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_s5vy1")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_s5vy1")
 PanelContainer/styles/panel = ExtResource("4_o03gw")
+StartWaveLabel/base_type = &"Label"
 TabBar/fonts/font = ExtResource("4_v3wda")
 TabContainer/colors/font_hovered_color = Color(0.894118, 0.890196, 0.870588, 1)
 TabContainer/colors/font_selected_color = Color(0.895148, 0.891833, 0.869117, 1)
@@ -120,3 +125,6 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_ehga6")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_tuxkj")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_ehga6")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_tuxkj")
+VersionLabel/base_type = &"Label"
+VersionLabel/colors/font_color = Color(0.85, 0.85, 0.85, 0.7)
+VersionLabel/font_sizes/font_size = 16

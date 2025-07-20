@@ -44,8 +44,9 @@ func _ready() -> void:
 	version_label.text = "WORK IN PROGRESS | ALPHA - VERSION " + version + " | PLAYTEST"
 	version_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	version_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	version_label.add_theme_font_size_override("font_size", 18)
-	version_label.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85, 0.7))
+	version_label.theme_type_variation = "VersionLabel"
+	#version_label.add_theme_font_size_override("font_size", 18)
+	#version_label.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85, 0.7))
 	version_label.set_anchors_preset(Control.PRESET_TOP_WIDE)
 	UILayer.add_child(version_label)
 	Input.set_custom_mouse_cursor(load("res://Assets/Textures/cursor_none.png"), Input.CURSOR_ARROW, Vector2(9, 6))
@@ -59,7 +60,7 @@ func parse_command(text: String, peer_id: int) -> void:
 		for x: Card in Data.cards:
 			if x.display_name == gift_name:
 				gift = x
-		connected_players_nodes[peer_id].inventory.add(gift)
+		connected_players_nodes[peer_id].hand.add(gift)
 	elif text.substr(1, 2) == "tr":
 		chatbox.append_message("SERVER", Color.TOMATO, "[color=#f7a8b8]t[color=#55cdfc]r[color=#ffffff]a[color=#55cdfc]n[color=#f7a8b8]s [color=#e50000]r[color=#ff8d00]i[color=#ffee00]g[color=#028121]h[color=#004cff]t[color=#760088]s[color=white]!!")
 	elif text.substr(1, 6) == "length":
@@ -165,8 +166,8 @@ func spawn_enemy_wave() -> void:
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.visible = false
 		spawn.spawn_wave()
-	for tower_base: TowerBase in level.walls.values():
-		tower_base.disable_duration_sprites()
+	#for tower_base: TowerBase in level.walls.values():
+		#tower_base.disable_duration_sprites()
 	wave_started.emit()
 
 
@@ -240,7 +241,7 @@ func end_wave() -> void:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
-		player.energy = 12
+		player.energy = Data.player_energy
 		player.iterate_duration()
 		player.draw_to_hand_size()
 		player.unready_self()
@@ -248,7 +249,7 @@ func end_wave() -> void:
 		spawn.visible = true
 	for tower_base: TowerBase in level.walls.values():
 		if tower_base.has_card:
-			tower_base.enable_duration_sprites()
+			#tower_base.enable_duration_sprites()
 			tower_base.iterate_duration()
 	if is_multiplayer_authority():
 		if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
@@ -308,7 +309,7 @@ func start() -> void:
 	spawn_players()
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency = ceili(float(Data.starting_cash) / float(connected_players_nodes.size()))
-		connected_players_nodes[peer_id].energy = 12
+		connected_players_nodes[peer_id].energy = Data.player_energy
 		connected_players_nodes[peer_id].draw_pile.shuffle()
 		connected_players_nodes[peer_id].draw_to_hand_size()
 	

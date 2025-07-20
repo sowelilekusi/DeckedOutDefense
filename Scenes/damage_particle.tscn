@@ -6,10 +6,11 @@
 viewport_path = NodePath("SubViewport")
 
 [node name="Node3D" type="Sprite3D"]
-pixel_size = 0.0006
+pixel_size = 0.005
 billboard = 1
 no_depth_test = true
 fixed_size = true
+texture_filter = 2
 render_priority = 1
 texture = SubResource("ViewportTexture_ppqlh")
 script = ExtResource("1_lgvaq")
@@ -25,9 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 60
+theme_type_variation = &"DamageNumLabel"
 text = "12345"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,23 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2k8y13qfvch0"]
+[gd_scene load_steps=7 format=3 uid="uid://d2k8y13qfvch0"]
 
-[ext_resource type="Shader" uid="uid://diugvmtoos1ti" path="res://Shaders/pixeldither.gdshader" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://6frn8lcwwehv" path="res://Assets/TextureAtlases/puppyfruit.png" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://p1ugbcmjuwxg" path="res://Scripts/boot_logo.gd" id="3_7mycd"]
-[ext_resource type="Texture2D" uid="uid://bpo5fu2a26mr7" path="res://blk-nx64-1x.png" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://dvvn4x6geogiv" path="res://Shaders/mightyduke.gdshader" id="6_7mycd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
 atlas = ExtResource("2_lquwl")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
-shader = ExtResource("2_1bvp3")
-shader_parameter/shader_enabled = true
-shader_parameter/palette = ExtResource("3_h2yge")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("6_7mycd")
+shader_parameter/color_depth = 5
 shader_parameter/dithering = true
-shader_parameter/dithering_size = 4
 shader_parameter/resolution_scale = 1
-shader_parameter/quantization_level = 8
 
 [node name="Main" type="Node" node_paths=PackedStringArray("scene", "movies")]
 script = ExtResource("2_h2yge")
@@ -41,9 +37,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -128.0
+offset_top = -147.0
 offset_right = 128.0
-offset_bottom = 128.0
+offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_272bh")
@@ -54,16 +50,11 @@ color_rect = NodePath("../ColorRect")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.77
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = 205.0
-offset_right = 52.0
-offset_bottom = 20.0
+anchor_bottom = 0.77
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 91
 text = "puppyfruit"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -76,9 +67,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -165.0
-offset_top = 85.0
+offset_top = 50.0
 offset_right = 190.0
-offset_bottom = 170.0
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.415686, 0.223529, 1)
@@ -89,8 +80,8 @@ color = Color(0.192157, 0.415686, 0.223529, 1)
 layer = 2
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_7mycd")
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_272bh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

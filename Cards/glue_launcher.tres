@@ -8,11 +8,12 @@
 
 [resource]
 script = ExtResource("1_tdu8a")
-duration = 4
+cost = 2
 rarity = 0
 faction = 1
 turret_scene = ExtResource("4_xcrut")
 weapon_scene = ExtResource("5_l3c38")
 weapon_stats = ExtResource("3_dukui")
 tower_stats = ExtResource("3_e5fta")
+tags = Array[int]([])
 display_name = "Glue Launcher"

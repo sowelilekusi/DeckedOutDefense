@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=68 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
@@ -36,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
 [ext_resource type="AudioStream" uid="uid://d32gpcu8w1yvn" path="res://Audio/cardSlide2.ogg" id="29_s0a0l"]
 [ext_resource type="AudioStream" uid="uid://val5n418yebw" path="res://Audio/cardSlide3.ogg" id="30_djhlg"]
+[ext_resource type="Texture2D" uid="uid://up7omskwg0yx" path="res://Assets/Textures/battery.png" id="30_rim6q"]
 [ext_resource type="AudioStream" uid="uid://ck6g061w7i6ro" path="res://Audio/cardSlide4.ogg" id="31_546e6"]
 [ext_resource type="AudioStream" uid="uid://bj8eitlsjdotb" path="res://Audio/cardSlide5.ogg" id="32_tg7y0"]
 [ext_resource type="AudioStream" uid="uid://d0620p56ad34a" path="res://Audio/cardSlide6.ogg" id="33_2v5co"]
@@ -50,6 +51,8 @@
 [ext_resource type="Script" uid="uid://b5h7jfwkyokes" path="res://PCs/FSM/building_state.gd" id="47_d8pnf"]
 [ext_resource type="Script" uid="uid://cjdv1onyfej0m" path="res://PCs/FSM/carding_state.gd" id="48_7d213"]
 [ext_resource type="Script" uid="uid://cf7m4yyiqhhru" path="res://PCs/FSM/fighting_state.gd" id="49_60hic"]
+[ext_resource type="PackedScene" uid="uid://bg4pmewlvshu8" path="res://coin/Coin.glb" id="51_w13oc"]
+[ext_resource type="Script" uid="uid://dq0yemhxscvtm" path="res://rotate.gd" id="52_rim6q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 radius = 0.3
@@ -78,6 +81,9 @@ viewport_path = NodePath("FirstPersonViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_574jy"]
 viewport_path = NodePath("MiniMapViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w13oc"]
+viewport_path = NodePath("CoinViewport")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tsiqi"]
 properties/0/path = NodePath(".:position")
@@ -318,7 +324,7 @@ script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("EnemyTracker/WaveCount")
 lives_count = NodePath("LivesBar/LivesCount")
-currency_count = NodePath("Minimap/CurrencyCount")
+currency_count = NodePath("Currencies/CoinCounter/CurrencyCount")
 minimap_outline = NodePath("Minimap/MinimapBorder")
 minimap = NodePath("Minimap")
 minimap_cam = NodePath("../MiniMapViewport/Camera3D")
@@ -328,14 +334,14 @@ hover_text = NodePath("InteractLabel")
 enemy_sprites = [NodePath("EnemyTracker/TextureRect"), NodePath("EnemyTracker/TextureRect2"), NodePath("EnemyTracker/TextureRect3"), NodePath("EnemyTracker/TextureRect4"), NodePath("EnemyTracker/TextureRect5")]
 enemy_counts = [NodePath("EnemyTracker/TextureRect/Label"), NodePath("EnemyTracker/TextureRect2/Label2"), NodePath("EnemyTracker/TextureRect3/Label3"), NodePath("EnemyTracker/TextureRect4/Label4"), NodePath("EnemyTracker/TextureRect5/Label5")]
 pickup_notif_scene = ExtResource("17_oyeww")
-wave_start_label = NodePath("RichTextLabel")
+wave_start_label = NodePath("StartWaveLabel")
 place_icon = NodePath("PlaceIcon")
 swap_icon = NodePath("SwapIcon")
 place_text = NodePath("PlaceIcon/RichTextLabel")
 swap_text = NodePath("SwapIcon/RichTextLabel")
 enemy_card_scene = ExtResource("18_dfkac")
 new_energy_bar = NodePath("EnergyBar")
-energy_label = NodePath("EnergyLabel")
+energy_label = NodePath("Currencies/HBoxContainer/EnergyLabel")
 primary_duration = NodePath("weapon_duration")
 secondary_duration = NodePath("weapon_duration2")
 
@@ -361,6 +367,7 @@ offset_right = -331.0
 offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 texture = ExtResource("18_okmpi")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/PlaceIcon"]
@@ -370,6 +377,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "#Primary Fire#"
 scroll_active = false
@@ -389,6 +397,7 @@ offset_right = -6.0
 offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 texture = ExtResource("18_okmpi")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/SwapIcon"]
@@ -398,6 +407,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "#Secondary Fire#"
 scroll_active = false
@@ -405,6 +415,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Minimap" type="TextureRect" parent="HUD"]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -430,22 +441,8 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = ExtResource("16_x1xjr")
 
-[node name="CurrencyCount" type="Label" parent="HUD/Minimap"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -61.0
-offset_top = 260.0
-offset_bottom = 318.0
-grow_horizontal = 0
-theme_override_colors/font_color = Color(0.988235, 0.909804, 0.65098, 1)
-theme_override_font_sizes/font_size = 37
-text = "20"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="FPSCounter" type="Label" parent="HUD"]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -630,13 +627,12 @@ offset_right = 296.0
 offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/normal_font_size = 32
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center]Press Button To do thing"
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
 anchors_preset = 4
@@ -647,20 +643,19 @@ offset_top = -295.0
 offset_right = 445.0
 offset_bottom = -40.0
 grow_vertical = 0
+mouse_filter = 2
 alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_top = 110.0
-offset_right = 300.0
-offset_bottom = 160.0
+[node name="StartWaveLabel" type="RichTextLabel" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.085
+anchor_right = 0.69
+anchor_bottom = 0.155
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
+mouse_filter = 2
 bbcode_enabled = true
-text = "[center]Press #Ready# to start wave[/center]"
+text = "[center]#Ready# Start wave[/center]"
 scroll_active = false
 
 [node name="Control2" type="Control" parent="HUD"]
@@ -672,6 +667,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Control3" type="Control" parent="HUD"]
 layout_mode = 3
@@ -682,6 +678,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
 visible = false
@@ -723,42 +720,31 @@ texture = ExtResource("26_dfkac")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="EnergyLabel" type="Label" parent="HUD"]
-anchors_preset = -1
-anchor_left = 0.978
-anchor_top = 0.341
-anchor_right = 0.978
-anchor_bottom = 0.341
-offset_left = -103.0
-offset_bottom = 40.0
-grow_horizontal = 0
-text = "energy = 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="weapon_duration" type="Label" parent="HUD"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.978
-anchor_top = 0.376
+anchor_top = 0.186
 anchor_right = 0.978
-anchor_bottom = 0.376
+anchor_bottom = 0.186
 offset_left = -103.0
 offset_bottom = 40.0
 grow_horizontal = 0
-text = "primary weapon rounds left = 0"
+text = "w1 = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="weapon_duration2" type="Label" parent="HUD"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.978
-anchor_top = 0.411
+anchor_top = 0.251
 anchor_right = 0.978
-anchor_bottom = 0.411
+anchor_bottom = 0.261
 offset_left = -103.0
 offset_bottom = 40.0
 grow_horizontal = 0
-text = "secondary weapon rounds left = 0"
+text = "w2 = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -768,7 +754,45 @@ offset_left = 73.0
 offset_top = 457.0
 offset_right = 753.0
 offset_bottom = 585.0
+mouse_filter = 2
 alignment = 1
+
+[node name="Currencies" type="VBoxContainer" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.05
+grow_horizontal = 0
+
+[node name="CoinCounter" type="HBoxContainer" parent="HUD/Currencies"]
+layout_mode = 2
+
+[node name="CoinTexture" type="TextureRect" parent="HUD/Currencies/CoinCounter"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_w13oc")
+
+[node name="CurrencyCount" type="Label" parent="HUD/Currencies/CoinCounter"]
+layout_mode = 2
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Currencies"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Currencies/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("30_rim6q")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="EnergyLabel" type="Label" parent="HUD/Currencies/HBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -826,6 +850,26 @@ script = ExtResource("49_60hic")
 hero = NodePath("..")
 metadata/_custom_type_script = "uid://cf7m4yyiqhhru"
 
+[node name="CoinViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="Coin" parent="CoinViewport" instance=ExtResource("51_w13oc")]
+
+[node name="Cylinder" parent="CoinViewport/Coin" index="0"]
+layers = 8
+
+[node name="Node3D" type="Node3D" parent="CoinViewport"]
+script = ExtResource("52_rim6q")
+speed = 70.0
+
+[node name="Camera3D" type="Camera3D" parent="CoinViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.74214, 0.670245, 0, -0.670245, 0.74214, 0, 0.977616, 1.08572)
+cull_mask = 1047560
+projection = 1
+size = 2.243
+
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 
 [editable path="FirstPersonViewport/Head2/LeftHand/card_hand_model"]
+[editable path="CoinViewport/Coin"]

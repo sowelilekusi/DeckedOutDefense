@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	
 	if interact_key_held:
 		if !interacted_once:
-			if valid_point and hero.energy >= Data.wall_cost and ray_collider and point.buildable:
+			if valid_point and hero.currency >= Data.wall_cost and ray_collider and point.buildable:
 				interact_held_time += delta
 				set_progress_percent(interact_held_time / interact_hold_time)
 				wall_preview.set_float(interact_held_time / interact_hold_time)
@@ -93,7 +93,7 @@ func reset() -> void:
 
 func process_looking_at_level() -> void:
 	point = level.flow_field.get_closest_buildable_point(ray_point)
-	if level.walls.has(point) or !point.buildable or hero.energy < Data.wall_cost:
+	if level.walls.has(point) or !point.buildable or hero.currency < Data.wall_cost:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()
@@ -127,8 +127,8 @@ func process_looking_at_tower() -> void:
 
 
 func build_wall() -> void:
-	if point and valid_point and hero.energy >= Data.wall_cost:
-		hero.energy -= Data.wall_cost
+	if point and valid_point and hero.currency >= Data.wall_cost:
+		hero.currency -= Data.wall_cost
 		level.set_wall(point, multiplayer.get_unique_id())
 	wall_preview.visible = false
 

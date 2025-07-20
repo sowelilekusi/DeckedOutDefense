@@ -27,8 +27,8 @@ func exit_state() -> void:
 		hero.weapons[hero.equipped_weapon].visible = false
 	hero.hud.set_energy_visible(false)
 	hero.hud.grow_wave_start_label()
-	hero.hud.primary_duration.visible = true
-	hero.hud.secondary_duration.visible = true
+	#hero.hud.primary_duration.visible = true
+	#hero.hud.secondary_duration.visible = true
 	hero.hud.energy_label.visible = true
 
 

@@ -1,11 +1,14 @@
-[gd_scene load_steps=33 format=3 uid="uid://y1qa1g3ic8sp"]
+[gd_scene load_steps=38 format=3 uid="uid://y1qa1g3ic8sp"]
 
 [ext_resource type="Script" uid="uid://cvejbo3srx8py" path="res://Scripts/level.gd" id="1_ws6nn"]
 [ext_resource type="PackedScene" uid="uid://d2yv447trxkwt" path="res://Scenes/enemy_spawner.tscn" id="3_5imwp"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="3_6od8s"]
-[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="5_6od8s"]
+[ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="3_uh5sr"]
+[ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="4_g08yk"]
+[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/eye_dog.tscn" id="5_asmpj"]
 [ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="5_j6d65"]
 [ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="6_ks6qx"]
+[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="6_vrxvq"]
 [ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="9_4gdda"]
 [ext_resource type="PackedScene" uid="uid://1b2ikdanl66b" path="res://Scenes/CardPrinter/card_printer.tscn" id="9_r25gu"]
 [ext_resource type="Script" uid="uid://cxwtuxytavfu5" path="res://Scripts/enemy_goal.gd" id="9_s3rd7"]
@@ -20,6 +23,36 @@
 [ext_resource type="PackedScene" uid="uid://c2avjln5vmr0y" path="res://Scenes/Shredder/shredder.tscn" id="27_gppb4"]
 [ext_resource type="Texture2D" uid="uid://dqrfgw65d0sq8" path="res://Assets/Textures/bridge_map.png" id="28_6od8s"]
 [ext_resource type="PackedScene" uid="uid://ca174636iktc6" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.glb" id="30_ttr7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1iv6"]
+resource_local_to_scene = true
+atlas = ExtResource("6_vrxvq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_uvxyn"]
+resource_local_to_scene = true
+script = ExtResource("3_6od8s")
+title = "Eye Dog"
+target_type = 1
+scene = ExtResource("5_asmpj")
+icon = ExtResource("4_g08yk")
+death_sprite = ExtResource("3_uh5sr")
+sprite = SubResource("AtlasTexture_p1iv6")
+spawn_power = 10
+health = 180
+penalty = 10
+movement_speed = 1.5
+spawn_cooldown = 1.2
+common_group = 6
+common_cost = 1
+uncommon_group = 10
+uncommon_cost = 2
+rare_group = 16
+rare_cost = 3
+epic_group = 22
+epic_cost = 5
+legendary_group = 28
+legendary_cost = 6
 
 [sub_resource type="Curve3D" id="Curve3D_3rdl2"]
 _data = {
@@ -235,7 +268,7 @@ size = Vector3(70.0478, 1, 73.4615)
 
 [node name="Bridge" type="Node3D" node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "flow_field", "cinematic_cam", "printer", "shop")]
 script = ExtResource("1_ws6nn")
-enemy_pool = Array[ExtResource("3_6od8s")]([ExtResource("5_6od8s"), ExtResource("9_4gdda"), ExtResource("5_j6d65"), ExtResource("6_ks6qx")])
+enemy_pool = Array[ExtResource("3_6od8s")]([SubResource("Resource_uvxyn"), ExtResource("9_4gdda"), ExtResource("5_j6d65"), ExtResource("6_ks6qx")])
 tower_path = NodePath("Towers")
 player_spawns = [NodePath("PlayerSpawnLocations/PlayerSpawn1"), NodePath("PlayerSpawnLocations/PlayerSpawn2"), NodePath("PlayerSpawnLocations/PlayerSpawn3"), NodePath("PlayerSpawnLocations/PlayerSpawn4")]
 enemy_spawns = [NodePath("GroundSpawn"), NodePath("GroundSpawn2"), NodePath("GroundSpawn3"), NodePath("GroundSpawn4"), NodePath("GroundSpawn5"), NodePath("AirSpawn")]
@@ -292,9 +325,6 @@ loop = false
 [node name="Camera3D2" type="Camera3D" parent="CinemaCam/Path3D3/PathFollow3D2"]
 transform = Transform3D(3.27007e-05, 0.999663, -0.0260566, -0.00250896, 0.0260566, 0.99966, 0.999999, 3.26858e-05, 0.00250896, 0, 0, 0)
 cull_mask = 1
-
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.917074, 0.155176, 0.367281, -0.398717, 0.356914, 0.84477, 8.88179e-16, -0.921158, 0.389188, 0, 100, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l41d0")

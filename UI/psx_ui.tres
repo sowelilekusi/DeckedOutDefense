@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://jn4qqx5hxc5i"]
+
+[resource]
+Button/font_sizes/font_size = 8
+InteractLabel/base_type = &"Label"
+StartWaveLabel/base_type = &"Label"
+VersionLabel/base_type = &"Label"
+VersionLabel/colors/font_color = Color(0.85, 0.85, 0.85, 0.7)
+VersionLabel/font_sizes/font_size = 8

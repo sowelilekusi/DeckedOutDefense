@@ -15,17 +15,7 @@ func set_card(value: Card) -> void:
 	title_text.text = stats.display_name
 	target_label.text = str(Data.TargetType.keys()[stats.tower_stats.target_type])
 	rarity_sprite.region_rect = Rect2(64 * stats.rarity, 0, 64, 64)
-	if stats.rarity == Data.Rarity.COMMON:
-		energy_cost.text = "2"
-	if stats.rarity == Data.Rarity.UNCOMMON:
-		energy_cost.text = "4"
-	if stats.rarity == Data.Rarity.RARE:
-		energy_cost.text = "6"
-	if stats.rarity == Data.Rarity.EPIC:
-		energy_cost.text = "8"
-	if stats.rarity == Data.Rarity.LEGENDARY:
-		energy_cost.text = "10"
-	duration.text = str(value.duration)
+	energy_cost.text = str(value.cost)
 
 
 func process_card_text(card_text: CardText) -> String:

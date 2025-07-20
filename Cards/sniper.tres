@@ -8,11 +8,12 @@
 
 [resource]
 script = ExtResource("1_5vmtk")
-duration = 6
+cost = 2
 rarity = 1
 faction = 1
 turret_scene = ExtResource("4_k5nhs")
 weapon_scene = ExtResource("3_qfpvu")
 weapon_stats = ExtResource("4_7kvq1")
 tower_stats = ExtResource("3_6i55t")
+tags = Array[int]([])
 display_name = "Sniper"

@@ -11,7 +11,7 @@ title_text = NodePath("Title")
 description = NodePath("Description")
 target_label = NodePath("Title2")
 energy_cost = NodePath("EnergyCost")
-duration = NodePath("Duration")
+duration = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -70,15 +70,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.228497, 0.570097, 0.884935, 1)
 text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Duration" type="Label" parent="."]
-offset_left = 125.0
-offset_top = 55.0
-offset_right = 42.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0.228497, 0.570097, 0.884935, 1)
-text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
