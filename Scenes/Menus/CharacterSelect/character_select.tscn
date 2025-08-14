@@ -55,12 +55,14 @@ hero_name_label = NodePath("HBoxContainer2/Label")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/HBoxContainer2"]
+auto_translate_mode = 2
 layout_mode = 2
 text = "character name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="PanelContainer/HBoxContainer2"]
+auto_translate_mode = 2
 layout_mode = 2
 text = "------------------------"
 horizontal_alignment = 1
@@ -69,7 +71,7 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Controls" type="VBoxContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -82,23 +84,23 @@ offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="PrevButton" type="Button" parent="Controls/HBoxContainer"]
 layout_mode = 2
-text = "prev"
+text = "BUTTON_PREVIOUS"
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="NextButton" type="Button" parent="Controls/HBoxContainer"]
 layout_mode = 2
-text = "next"
+text = "BUTTON_NEXT"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="Controls"]
 layout_mode = 2
-text = "Confirm"
+text = "BUTTON_CONFIRM"
 
 [node name="Podiums" type="Node3D" parent="."]
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="retreat_selector"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="advance_selector"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="Controls/HBoxContainer/PrevButton" to="." method="retreat_selector"]
+[connection signal="pressed" from="Controls/HBoxContainer/NextButton" to="." method="advance_selector"]
+[connection signal="pressed" from="Controls/ConfirmButton" to="." method="_on_confirm_button_pressed"]

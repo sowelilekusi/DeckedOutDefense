@@ -8,11 +8,13 @@
 
 [resource]
 script = ExtResource("1_wkie7")
+cost = 0
 rarity = 1
 faction = 2
 turret_scene = ExtResource("2_vk6xf")
 weapon_scene = ExtResource("4_3q334")
 weapon_stats = ExtResource("5_dw3gx")
 tower_stats = ExtResource("2_uoj3t")
-display_name = "Ascension"
+tags = Array[int]([])
+display_name = "CARD_NAME_PLATFORM_DASH"
 metadata/_custom_type_script = "uid://d40isem6w5d8"

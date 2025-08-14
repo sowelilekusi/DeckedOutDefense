@@ -24,7 +24,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Master"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Master"
+text = "OPTION_MASTER_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -52,7 +52,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Music"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Music"
+text = "OPTION_MUSIC_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -80,7 +80,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="SFX"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "SFX"
+text = "OPTION_SFX_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 

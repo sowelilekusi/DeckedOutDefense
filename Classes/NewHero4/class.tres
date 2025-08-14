@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_t7plg")
-hero_name = "Under Construction"
+hero_name = "CLASS_NAME_FOURTH"
 deck = Array[ExtResource("1_rtgxw")]([])
 faction = 0
 podium = ExtResource("2_quxjv")

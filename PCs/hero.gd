@@ -305,10 +305,6 @@ func iterate_duration() -> void:
 		if weapons[slot] == null:
 			continue
 		weapons[slot].duration -= 1
-		if slot == 0:
-			hud.primary_duration.text = "primary weapon rounds left = " + str(weapons[slot].duration)
-		elif slot == 1:
-			hud.secondary_duration.text = "secondary weapon rounds left = " + str(weapons[slot].duration)
 		if weapons[slot].duration <= 0:
 			unequip_weapon(slot)
 
@@ -388,10 +384,6 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons_spawn_count += 1
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
 		gauntlet_cards[slot].set_card(cards[slot])
-		if slot == 0:
-			hud.primary_duration.text = "primary weapon rounds left = " + str(weapons[slot].duration)
-		elif slot == 1:
-			hud.secondary_duration.text = "secondary weapon rounds left = " + str(weapons[slot].duration)
 		if slot == 0:
 			hud.place_icon.visible = false
 		else:

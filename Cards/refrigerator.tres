@@ -8,10 +8,12 @@
 
 [resource]
 script = ExtResource("1_84afc")
+cost = 0
 rarity = 1
 faction = 2
 turret_scene = ExtResource("3_pq7e0")
 weapon_scene = ExtResource("4_0oufq")
 weapon_stats = ExtResource("5_dqmyh")
 tower_stats = ExtResource("3_bihii")
-display_name = "Refrigerator"
+tags = Array[int]([])
+display_name = "CARD_NAME_FREEZER"

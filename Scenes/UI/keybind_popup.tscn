@@ -33,6 +33,6 @@ offset_right = 99.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press a key to bind action"
+text = "LABEL_BIND_KEY"
 horizontal_alignment = 1
 vertical_alignment = 1

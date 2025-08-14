@@ -17,5 +17,5 @@ weapon_scene = ExtResource("4_m52ff")
 weapon_stats = ExtResource("4_est7t")
 tower_stats = ExtResource("3_ks0jw")
 tags = Array[int]([0])
-display_name = "Assault"
+display_name = "CARD_NAME_BASIC_GUN"
 icon = ExtResource("1_us0mt")

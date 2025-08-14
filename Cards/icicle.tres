@@ -8,10 +8,12 @@
 
 [resource]
 script = ExtResource("1_cmmto")
+cost = 0
 rarity = 3
 faction = 2
 turret_scene = ExtResource("3_gum2m")
 weapon_scene = ExtResource("3_ve3rv")
 weapon_stats = ExtResource("4_yv37w")
 tower_stats = ExtResource("3_p8y0m")
-display_name = "Icicle"
+tags = Array[int]([])
+display_name = "CARD_NAME_ICE_SPIKE"

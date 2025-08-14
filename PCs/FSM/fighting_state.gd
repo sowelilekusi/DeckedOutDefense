@@ -17,8 +17,6 @@ func enter_state() -> void:
 	for x: int in hero.hand.contents.size():
 		hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
 	hero.weapon_swap_timer.start()
-	hero.hud.primary_duration.visible = false
-	hero.hud.secondary_duration.visible = false
 	hero.hud.energy_label.visible = false
 
 

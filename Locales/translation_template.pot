@@ -1,0 +1,366 @@
+# LANGUAGE translation for Decked Out Defense for the following files:
+# res://Scenes/Menus/MainMenu/main_menu.tscn
+# res://Scenes/Menus/PauseMenu/pause_menu.tscn
+# res://Scenes/Menus/GameEndScreen/game_end_screen.tscn
+# res://Scenes/Menus/CharacterSelect/character_select.tscn
+# res://Scenes/Menus/audio_options.tscn
+# res://Scenes/Menus/gameplay_options.tscn
+# res://Scenes/Menus/graphics_options.tscn
+# res://Scenes/Menus/keybind_options.tscn
+# res://Scenes/UI/keybind_popup.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Decked Out Defense\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_GAME_NAME"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_PLAY"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_MODS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_PLAYER_STATS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_OPTIONS\n"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_QUIT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_BACK"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_GAME_MODE_SELECT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_STANDARD_GAME"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_DAILY_CHALLENGE"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_ENDLESS_GAME"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_SEED"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_SEED_PLACEHOLDER"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_STATS_MENU"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_DISPLAY_NAME"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_DISPLAY_NAME_PLACEHOLDER"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_STATS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WINS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_LOSSES"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WINRATE"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_ENGINEER_CARDS_BOUGHT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_MAGE_CARDS_BOUGHT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_UNLOCK_CONTENT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_LOCK_CONTENT"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_ACHIEVEMENTS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_CANCEL"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_CONFIRM"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_ACHIEVEMENTS"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_WIN_GAME"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_BUY_MAGE_CARD"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_UNLOCK_MAGE"
+msgstr ""
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_MODS"
+msgstr ""
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_RESUME"
+msgstr ""
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_OPTIONS"
+msgstr ""
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "BUTTON_MAIN_MENU"
+msgstr ""
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WIN_MESSAGE"
+msgstr ""
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_GAMES"
+msgstr ""
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "BUTTON_RESTART"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "character name"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "------------------------"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_PREVIOUS"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_NEXT"
+msgstr ""
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_MASTER_AUDIO"
+msgstr ""
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_MUSIC_AUDIO"
+msgstr ""
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_SFX_AUDIO"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_MOUSE_SENSITIVITY"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_TOGGLE_SPRINT"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_INVERT_MOUSE_Y"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_INVERT_MOUSE_X"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_FIXED_MINIMAP"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_DISPLAY_DAMAGE_INDICATORS"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_TOWER_DAMAGE"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_SELF_DAMAGE"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_PARTY_DAMAGE"
+msgstr ""
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_STATUS_DAMAGE"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FOV"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_VSYNC"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_OFF"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_ON"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_ADAPTIVE"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_TRIPLE_BUFFERED"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_AA"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FXAA"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_TAA"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_WINDOW_TYPE"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_WINDOWED"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_BORDERLESS"
+msgstr ""
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FULLSCREEN"
+msgstr ""
+
+#: Scenes/UI/keybind_popup.tscn
+msgid "LABEL_BIND_KEY"
+msgstr ""
+
+#: Classes/Engineer/class.tres
+msgid "CLASS_NAME_ENGINEER"
+msgstr ""
+
+#: Classes/Mage/class.tres
+msgid "CLASS_NAME_MAGE"
+msgstr ""
+
+#: Cards/ascension.tres
+msgid "CARD_NAME_PLATFORM_DASH"
+msgstr ""
+
+#: Cards/assault.tres
+msgid "CARD_NAME_BASIC_GUN"
+msgstr ""
+
+#: Cards/blowdart.tres
+msgid "CARD_NAME_POISON"
+msgstr ""
+
+#: Cards/bomb_launcher.tres
+msgid "CARD_NAME_BOMB"
+msgstr ""
+
+#: Cards/fireball.tres
+msgid "CARD_NAME_FIREBALL"
+msgstr ""
+
+#: Cards/flamethrower.tres
+msgid "CARD_NAME_FLAMETHROWER"
+msgstr ""
+
+#: Cards/gatling.tres
+msgid "CARD_NAME_ACCEL"
+msgstr ""
+
+#: Cards/glue_launcher.tres
+msgid "CARD_NAME_GLUE"
+msgstr ""
+
+#: Cards/icicle.tres
+msgid "CARD_NAME_ICE_SPIKE"
+msgstr ""
+
+#: Cards/overclock.tres
+msgid "CARD_NAME_SPEED_TOWER"
+msgstr ""
+
+#: Cards/reactor.tres
+msgid "CARD_NAME_RADIATION"
+msgstr ""
+
+#: Cards/refrigerator.tres
+msgid "CARD_NAME_FREEZER"
+msgstr ""
+
+#: Cards/rocket_launcher.tres
+msgid "CARD_NAME_ROCKET"
+msgstr ""
+
+#: Cards/sniper.tres
+msgid "CARD_NAME_SNIPER"
+msgstr ""

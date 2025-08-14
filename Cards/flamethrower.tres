@@ -8,11 +8,12 @@
 
 [resource]
 script = ExtResource("1_xmwih")
-duration = 3
+cost = 0
 rarity = 2
 faction = 1
 turret_scene = ExtResource("4_rgkdc")
 weapon_scene = ExtResource("4_800j1")
 weapon_stats = ExtResource("5_qi4e4")
 tower_stats = ExtResource("3_sjxkl")
-display_name = "Flamethrower"
+tags = Array[int]([])
+display_name = "CARD_NAME_FLAMETHROWER"

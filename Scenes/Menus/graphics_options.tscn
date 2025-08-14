@@ -24,7 +24,7 @@ alignment = 1
 [node name="Label" type="Label" parent="FOV"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Field Of View"
+text = "OPTION_FOV"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -58,22 +58,22 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VSync"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "V-Sync"
+text = "OPTION_VSYNC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionButton" type="OptionButton" parent="VSync"]
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 4
 selected = 1
-popup/item_0/text = "Off"
+item_count = 4
+popup/item_0/text = "OPTION_OFF"
 popup/item_0/id = 0
-popup/item_1/text = "On"
+popup/item_1/text = "OPTION_ON"
 popup/item_1/id = 1
-popup/item_2/text = "Adaptive"
+popup/item_2/text = "OPTION_ADAPTIVE"
 popup/item_2/id = 2
-popup/item_3/text = "Triple Buffered"
+popup/item_3/text = "OPTION_TRIPLE_BUFFERED"
 popup/item_3/id = 3
 
 [node name="AntiAliasing" type="HBoxContainer" parent="."]
@@ -82,21 +82,20 @@ layout_mode = 2
 [node name="Label" type="Label" parent="AntiAliasing"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Anti-Aliasing
-"
+text = "OPTION_AA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionButton" type="OptionButton" parent="AntiAliasing"]
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 3
 selected = 0
-popup/item_0/text = "Off"
+item_count = 3
+popup/item_0/text = "OPTION_OFF"
 popup/item_0/id = 0
-popup/item_1/text = "FXAA"
+popup/item_1/text = "OPTION_FXAA"
 popup/item_1/id = 1
-popup/item_2/text = "TAA"
+popup/item_2/text = "OPTION_TAA"
 popup/item_2/id = 2
 
 [node name="Windowed" type="HBoxContainer" parent="."]
@@ -105,20 +104,20 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Windowed"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Window Mode"
+text = "OPTION_WINDOW_TYPE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionButton" type="OptionButton" parent="Windowed"]
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 3
 selected = 0
-popup/item_0/text = "Windowed"
+item_count = 3
+popup/item_0/text = "OPTION_WINDOWED"
 popup/item_0/id = 0
-popup/item_1/text = "Borderless Windowed"
+popup/item_1/text = "OPTION_BORDERLESS"
 popup/item_1/id = 1
-popup/item_2/text = "Fullscreen"
+popup/item_2/text = "OPTION_FULLSCREEN"
 popup/item_2/id = 2
 
 [connection signal="value_changed" from="FOV/HBoxContainer/SpinBox" to="." method="_on_fov_spin_box_value_changed"]

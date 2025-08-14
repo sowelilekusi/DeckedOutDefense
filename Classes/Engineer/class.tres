@@ -10,7 +10,7 @@
 
 [resource]
 script = ExtResource("7_ftkad")
-hero_name = "Engineer"
+hero_name = "CLASS_NAME_ENGINEER"
 texture = ExtResource("8_0o0bw")
 hand_texture = ExtResource("6_a8dvt")
 deck = Array[ExtResource("1_t4fvj")]([ExtResource("2_62g46"), ExtResource("2_62g46"), ExtResource("2_62g46")])

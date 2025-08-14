@@ -97,9 +97,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
-text = "decked
-out
-defense"
+text = "TITLE_GAME_NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -114,31 +112,24 @@ alignment = 2
 
 [node name="PlayButton" type="Button" parent="MainControls"]
 layout_mode = 2
-text = "Play"
-
-[node name="MultiplayerButton" type="Button" parent="MainControls"]
-visible = false
-layout_mode = 2
-disabled = true
-text = "Multiplayer"
+text = "BUTTON_PLAY"
 
 [node name="ModsButton" type="Button" parent="MainControls"]
 layout_mode = 2
-text = "Mods"
+text = "BUTTON_MODS"
 
 [node name="StatsButton" type="Button" parent="MainControls"]
 layout_mode = 2
-text = "Stats"
+text = "BUTTON_PLAYER_STATS"
 
 [node name="OptionsButton" type="Button" parent="MainControls"]
 layout_mode = 2
-text = "Options
+text = "BUTTON_OPTIONS
 "
 
 [node name="QuitButton" type="Button" parent="MainControls"]
 layout_mode = 2
-text = "Quit
-"
+text = "BUTTON_QUIT"
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
@@ -177,134 +168,35 @@ layout_mode = 2
 
 [node name="BackButton" type="Button" parent="GameSelectMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BUTTON_BACK"
 
 [node name="Title" type="Label" parent="GameSelectMenu/VBoxContainer"]
 layout_mode = 2
-text = "Select a game to begin"
+text = "LABEL_GAME_MODE_SELECT"
 
 [node name="StandardButton" type="Button" parent="GameSelectMenu/VBoxContainer"]
 layout_mode = 2
-text = "Standard (20 waves)"
+text = "BUTTON_STANDARD_GAME"
 
 [node name="DailyButton" type="Button" parent="GameSelectMenu/VBoxContainer"]
 layout_mode = 2
-text = "Daily Challenge"
+text = "BUTTON_DAILY_CHALLENGE"
 
 [node name="EndlessButton" type="Button" parent="GameSelectMenu/VBoxContainer"]
 layout_mode = 2
-text = "Endless"
+text = "BUTTON_ENDLESS_GAME"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GameSelectMenu/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="GameSelectMenu/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Seed:"
+text = "LABEL_SEED"
 
 [node name="LineEdit" type="LineEdit" parent="GameSelectMenu/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "leave blank for random game"
-
-[node name="Changelog" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = 100.0
-offset_right = -200.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Changelog"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Changelog/VBoxContainer"]
-layout_mode = 2
-text = "Changelog"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Changelog/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Changelog/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Label6" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label10" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Added: New Mage card: Ascension"
-
-[node name="Label13" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Added: New Mechanic card: Overclock"
-
-[node name="Label11" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Fixed: Interaction text now properly disappears if the wave starts"
-
-[node name="Label3" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Fixed: Refrigerator tower now applies cold to enemies"
-
-[node name="Label12" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Fixed: Seed now correctly changes on consecutive random seed runs"
-
-[node name="Label4" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label5" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Increased Bubble movement speed 1.5 > 2.0"
-
-[node name="Label7" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Increased Spike health 9 > 12"
-
-[node name="Label8" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Increased Heavy Dog speed 0.8 > 0.9"
-
-[node name="Label14" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Decreased Boss Dog speed 1.0 > 0.8"
-
-[node name="Label15" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Increased Boss Dog health 1000 > 3000"
-
-[node name="Label16" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Increased Boss Dog spawn chance"
-
-[node name="Label9" type="Label" parent="Changelog/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Balance: Adjusted Glue Launcher rarity [Uncommon -> Common]"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Changelog/VBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="Button" type="Button" parent="Changelog/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Close"
+placeholder_text = "LABEL_SEED_PLACEHOLDER"
 
 [node name="ProfileManager" type="PanelContainer" parent="."]
 visible = false
@@ -326,19 +218,19 @@ layout_mode = 2
 
 [node name="TitleBar" type="Label" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
-text = "Profile Viewer"
+text = "TITLE_STATS_MENU"
 
 [node name="DisplayName" type="HBoxContainer" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/DisplayName"]
 layout_mode = 2
-text = "Display Name"
+text = "LABEL_DISPLAY_NAME"
 
 [node name="LineEdit" type="LineEdit" parent="ProfileManager/VBoxContainer/DisplayName"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Display name"
+placeholder_text = "LABEL_DISPLAY_NAME_PLACEHOLDER"
 alignment = 1
 
 [node name="Stats" type="VBoxContainer" parent="ProfileManager/VBoxContainer"]
@@ -346,7 +238,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats"]
 layout_mode = 2
-text = "Stats"
+text = "LABEL_STATS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -356,10 +248,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats/Wins"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Wins"
+text = "LABEL_WINS"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ProfileManager/VBoxContainer/Stats/Wins"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -372,10 +265,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats/Losses"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Losses"
+text = "LABEL_LOSSES"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ProfileManager/VBoxContainer/Stats/Losses"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -388,10 +282,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats/Winrate"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Winrate (last 20 games)"
+text = "LABEL_WINRATE"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ProfileManager/VBoxContainer/Stats/Winrate"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -404,10 +299,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats/EngineerCardsBought"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "plans bought"
+text = "LABEL_ENGINEER_CARDS_BOUGHT"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ProfileManager/VBoxContainer/Stats/EngineerCardsBought"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -420,10 +316,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ProfileManager/VBoxContainer/Stats/MageCardsBought"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "scrolls bought"
+text = "LABEL_MAGE_CARDS_BOUGHT"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ProfileManager/VBoxContainer/Stats/MageCardsBought"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -432,15 +329,15 @@ vertical_alignment = 1
 
 [node name="UnlockAll" type="Button" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
-text = "Unlock All Content"
+text = "BUTTON_UNLOCK_CONTENT"
 
 [node name="LockAll" type="Button" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
-text = "Lock All Content"
+text = "BUTTON_LOCK_CONTENT"
 
 [node name="AchievementsButton" type="Button" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
-text = "View Achievements"
+text = "BUTTON_ACHIEVEMENTS"
 
 [node name="Controls" type="HBoxContainer" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
@@ -448,12 +345,12 @@ layout_mode = 2
 [node name="Cancel" type="Button" parent="ProfileManager/VBoxContainer/Controls"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
+text = "BUTTON_CANCEL"
 
 [node name="Confirm" type="Button" parent="ProfileManager/VBoxContainer/Controls"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Confirm"
+text = "BUTTON_CONFIRM"
 
 [node name="AchievementsMenu" type="PanelContainer" parent="."]
 visible = false
@@ -480,13 +377,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="AchievementsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Achievements"
+text = "TITLE_ACHIEVEMENTS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="AchievementsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BUTTON_BACK"
 
 [node name="GridContainer" type="GridContainer" parent="AchievementsMenu/VBoxContainer"]
 layout_mode = 2
@@ -495,7 +392,7 @@ columns = 9
 [node name="FirstWin" type="Button" parent="AchievementsMenu/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-tooltip_text = "What could I possibly have to do to earn this??"
+tooltip_text = "ACHIEVEMENT_TOOLTIP_WIN_GAME"
 icon = SubResource("AtlasTexture_y5bw6")
 icon_alignment = 1
 expand_icon = true
@@ -503,7 +400,7 @@ expand_icon = true
 [node name="SeenMageCard" type="Button" parent="AchievementsMenu/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-tooltip_text = "Who would use this old thing anyway?"
+tooltip_text = "ACHIEVEMENT_TOOLTIP_BUY_MAGE_CARD"
 icon = SubResource("AtlasTexture_q26na")
 icon_alignment = 1
 expand_icon = true
@@ -511,8 +408,7 @@ expand_icon = true
 [node name="UnlockedMage" type="Button" parent="AchievementsMenu/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-tooltip_text = "Ok, here me out
-"
+tooltip_text = "ACHIEVEMENT_TOOLTIP_UNLOCK_MAGE"
 icon = SubResource("AtlasTexture_3aj5m")
 icon_alignment = 1
 expand_icon = true
@@ -538,7 +434,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ModsMenu/VBoxContainer"]
 layout_mode = 2
-text = "Mods"
+text = "TITLE_MODS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -556,16 +452,14 @@ alignment = 2
 
 [node name="CancelMods" type="Button" parent="ModsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Confirm"
+text = "BUTTON_CANCEL"
 
 [node name="ConfirmMods" type="Button" parent="ModsMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Confirm"
+text = "BUTTON_CONFIRM"
 
 [connection signal="mouse_entered" from="MainControls/PlayButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="mouse_entered" from="MainControls/MultiplayerButton" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="MainControls/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/ModsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/ModsButton" to="." method="_on_mods_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/OptionsButton" to="." method="_on_button_mouse_entered"]
@@ -576,7 +470,6 @@ text = "Confirm"
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/StandardButton" to="." method="_on_standard_button_pressed"]
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/DailyButton" to="." method="_on_daily_button_pressed"]
 [connection signal="pressed" from="GameSelectMenu/VBoxContainer/EndlessButton" to="." method="_on_endless_button_pressed"]
-[connection signal="pressed" from="Changelog/VBoxContainer/HBoxContainer/Button" to="." method="_on_changelog_button_pressed"]
 [connection signal="pressed" from="ProfileManager/VBoxContainer/UnlockAll" to="." method="_on_unlock_all_pressed"]
 [connection signal="pressed" from="ProfileManager/VBoxContainer/LockAll" to="." method="_on_lock_all_pressed"]
 [connection signal="pressed" from="ProfileManager/VBoxContainer/AchievementsButton" to="." method="_on_achievements_button_pressed"]

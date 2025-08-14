@@ -38,31 +38,31 @@ alignment = 1
 
 [node name="OutcomeLabel" type="Label" parent="VBoxContainer/Labels"]
 layout_mode = 2
-text = "You WIN :3"
+text = "LABEL_WIN_MESSAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels"]
 layout_mode = 2
-text = "Your winrate is now: 80%"
+text = "LABEL_WINRATE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels"]
 layout_mode = 2
-text = "Total games played: 315"
+text = "LABEL_GAMES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels"]
 layout_mode = 2
-text = "Total wins"
+text = "LABEL_WINS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels"]
 layout_mode = 2
-text = "Total losses"
+text = "LABEL_LOSSES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -76,11 +76,11 @@ alignment = 2
 
 [node name="PlayButton" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
-text = "Play Again"
+text = "BUTTON_RESTART"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
-text = "Return to menu"
+text = "BUTTON_MAIN_MENU"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_dram5")

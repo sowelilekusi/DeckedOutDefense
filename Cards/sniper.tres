@@ -16,4 +16,4 @@ weapon_scene = ExtResource("3_qfpvu")
 weapon_stats = ExtResource("4_7kvq1")
 tower_stats = ExtResource("3_6i55t")
 tags = Array[int]([])
-display_name = "Sniper"
+display_name = "CARD_NAME_SNIPER"

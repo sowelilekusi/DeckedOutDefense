@@ -8,10 +8,12 @@
 
 [resource]
 script = ExtResource("1_qktm8")
+cost = 0
 rarity = 3
 faction = 2
 turret_scene = ExtResource("3_gdfiu")
 weapon_scene = ExtResource("4_mpiuf")
 weapon_stats = ExtResource("5_ey1sc")
 tower_stats = ExtResource("2_yfpht")
-display_name = "Fireball"
+tags = Array[int]([])
+display_name = "CARD_NAME_FIREBALL"

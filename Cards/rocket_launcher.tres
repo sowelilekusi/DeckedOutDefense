@@ -17,5 +17,5 @@ weapon_scene = ExtResource("3_qo5gv")
 weapon_stats = ExtResource("4_cmvfg")
 tower_stats = ExtResource("3_06my6")
 tags = Array[int]([0, 2])
-display_name = "Rocket Launcher"
+display_name = "CARD_NAME_ROCKET"
 icon = ExtResource("1_qabk3")

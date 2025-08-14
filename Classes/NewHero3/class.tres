@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("1_cpfpk")
-hero_name = "Under Construction"
+hero_name = "CLASS_NAME_THIRD"
 texture = ExtResource("5_vhx4f")
 hand_texture = ExtResource("4_jgbmi")
 deck = Array[ExtResource("1_sapu8")]([])

@@ -9,7 +9,7 @@ var regular_label: Label = null
 
 
 func set_preview(hero: HeroClass) -> void:
-	hero_name_label.text = hero.hero_name
+	hero_name_label.text = tr(hero.hero_name)
 	if regular_label:
 		regular_label.queue_free()
 		regular_label = null
@@ -20,14 +20,14 @@ func set_preview(hero: HeroClass) -> void:
 	for card: Card in hero.deck:
 		if !added_labels.has(card):
 			var new_label: TowerLabel = tower_label_scene.instantiate() as TowerLabel
-			new_label.change_label(card.display_name, str(hero.deck.count(card)))
+			new_label.change_label(tr(card.display_name), str(hero.deck.count(card)))
 			added_labels.append(card)
 			tower_label_container.add_child(new_label)
 			added_tags.append(new_label)
 
 
 func setup_with_basic_text(hero: HeroClass, text: String) -> void:
-	hero_name_label.text = hero.hero_name
+	hero_name_label.text = tr(hero.hero_name)
 	if regular_label:
 		regular_label.queue_free()
 		regular_label = null

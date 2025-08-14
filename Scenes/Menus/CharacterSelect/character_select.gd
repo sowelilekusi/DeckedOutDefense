@@ -35,13 +35,13 @@ func reset_button() -> void:
 func setup_ui() -> void:
 	#TODO: This should all tie into a proper achievements system
 	if character_selected == 0 or (character_selected == 1 and Data.save_data.mage_unlocked):
-		$VBoxContainer/Button.disabled = false
+		$Controls/ConfirmButton.disabled = false
 		hero_preview_panel.set_preview(Data.characters[character_selected])
 		hero_selected.emit(character_selected)
 	elif character_selected == 1 and !Data.save_data.mage_unlocked and Data.save_data.mage_card_seen_in_shop:
 		hero_preview_panel.setup_with_basic_text(Data.characters[character_selected], "Buy " + str(Data.save_data.mage_cards_bought) + "/10 scrolls in the shop to unlock")
 	else:
-		$VBoxContainer/Button.disabled = true
+		$Controls/ConfirmButton.disabled = true
 		hero_preview_panel.setup_with_basic_text(Data.characters[character_selected], podiums[character_selected].text)
 
 

@@ -1,0 +1,314 @@
+# LANGUAGE translation for Decked Out Defense for the following files:
+# res://Scenes/Menus/MainMenu/main_menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Decked Out Defense\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_GAME_NAME"
+msgstr ""
+"Decked\n"
+"Out\n"
+"Defense"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_PLAY"
+msgstr "Play"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_MODS"
+msgstr "Mods"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_PLAYER_STATS"
+msgstr "Stats"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_OPTIONS\n"
+msgstr "Options\n"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_QUIT"
+msgstr "Quit"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_BACK"
+msgstr "Back"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_GAME_MODE_SELECT"
+msgstr "Select Game Mode"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_STANDARD_GAME"
+msgstr "Standard (20 Waves)"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_DAILY_CHALLENGE"
+msgstr "Daily Challenge"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_ENDLESS_GAME"
+msgstr "Endless"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_SEED"
+msgstr "Seed:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_SEED_PLACEHOLDER"
+msgstr "Leave empty for random game"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_STATS_MENU"
+msgstr "Stats"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_DISPLAY_NAME"
+msgstr "Display Name:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_DISPLAY_NAME_PLACEHOLDER"
+msgstr "Unknown Player"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_STATS"
+msgstr "Stats"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WINS"
+msgstr "Wins:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_LOSSES"
+msgstr "Losses:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WINRATE"
+msgstr "Winrate (last 20 games):"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_ENGINEER_CARDS_BOUGHT"
+msgstr "Plans Bought:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "LABEL_MAGE_CARDS_BOUGHT"
+msgstr "Scrolls Bought:"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_UNLOCK_CONTENT"
+msgstr "Unlock all content"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_LOCK_CONTENT"
+msgstr "Lock all content"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_ACHIEVEMENTS"
+msgstr "Achievements"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "BUTTON_CANCEL"
+msgstr "Cancel"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_CONFIRM"
+msgstr "Confirm"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_ACHIEVEMENTS"
+msgstr "Achievements"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_WIN_GAME"
+msgstr "Win at least 1 game"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_BUY_MAGE_CARD"
+msgstr "Purchase a mage scroll"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "ACHIEVEMENT_TOOLTIP_UNLOCK_MAGE"
+msgstr "Unlock the mage"
+
+#: Scenes/Menus/MainMenu/main_menu.tscn
+msgid "TITLE_MODS"
+msgstr "Mods"
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_RESUME"
+msgstr "Resume"
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+msgid "BUTTON_OPTIONS"
+msgstr "Options"
+
+#: Scenes/Menus/PauseMenu/pause_menu.tscn
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "BUTTON_MAIN_MENU"
+msgstr "Main Menu"
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_WIN_MESSAGE"
+msgstr "You Win :3"
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "LABEL_GAMES"
+msgstr "Total Games:"
+
+#: Scenes/Menus/GameEndScreen/game_end_screen.tscn
+msgid "BUTTON_RESTART"
+msgstr "Play Again"
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "character name"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "------------------------"
+msgstr ""
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_PREVIOUS"
+msgstr "Prev"
+
+#: Scenes/Menus/CharacterSelect/character_select.tscn
+msgid "BUTTON_NEXT"
+msgstr "Next"
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_MASTER_AUDIO"
+msgstr "Master"
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_MUSIC_AUDIO"
+msgstr "Music"
+
+#: Scenes/Menus/audio_options.tscn
+msgid "OPTION_SFX_AUDIO"
+msgstr "SFX"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_MOUSE_SENSITIVITY"
+msgstr "Look Sensitivity"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_TOGGLE_SPRINT"
+msgstr "Toggle Sprint"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_INVERT_MOUSE_Y"
+msgstr "Invert Y"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_INVERT_MOUSE_X"
+msgstr "Invert X"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_FIXED_MINIMAP"
+msgstr "Fixed Minimap"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_DISPLAY_DAMAGE_INDICATORS"
+msgstr "Damage Indicators"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_TOWER_DAMAGE"
+msgstr "Tower"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_SELF_DAMAGE"
+msgstr "Self"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_PARTY_DAMAGE"
+msgstr "Party"
+
+#: Scenes/Menus/gameplay_options.tscn
+msgid "OPTION_STATUS_DAMAGE"
+msgstr "Status"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FOV"
+msgstr "Field Of Vision"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_VSYNC"
+msgstr "V-Sync"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_OFF"
+msgstr "Off"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_ON"
+msgstr "On"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_ADAPTIVE"
+msgstr "Adaptive"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_TRIPLE_BUFFERED"
+msgstr "Triple Buffered"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_AA"
+msgstr "Anti-Aliasing"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FXAA"
+msgstr "FXAA"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_TAA"
+msgstr "TAA"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_WINDOW_TYPE"
+msgstr "Window Type"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_WINDOWED"
+msgstr "Windowed"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_BORDERLESS"
+msgstr "Borderless Windowed"
+
+#: Scenes/Menus/graphics_options.tscn
+msgid "OPTION_FULLSCREEN"
+msgstr "Fullscreen"
+
+#: Scenes/Menus/keybind_options.tscn
+msgid "Action"
+msgstr ""
+
+#: Scenes/Menus/keybind_options.tscn
+msgid "Primary Bind"
+msgstr ""
+
+#: Scenes/Menus/keybind_options.tscn
+msgid "Secondary Bind"
+msgstr ""
+
+#: Scenes/UI/keybind_popup.tscn
+msgid "LABEL_BIND_KEY"
+msgstr "Press a key to bind action"

@@ -13,7 +13,7 @@
 
 [resource]
 script = ExtResource("1_aeu85")
-hero_name = "Mage"
+hero_name = "CLASS_NAME_MAGE"
 texture = ExtResource("6_jda20")
 hand_texture = ExtResource("4_srskc")
 deck = Array[ExtResource("1_gq5ju")]([ExtResource("2_3yr5a"), ExtResource("2_3yr5a"), ExtResource("3_wyb0n"), ExtResource("3_sh7d1"), ExtResource("5_k7b5b")])

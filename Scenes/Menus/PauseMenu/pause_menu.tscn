@@ -47,19 +47,19 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
+text = "BUTTON_RESUME"
 
 [node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "BUTTON_OPTIONS"
 
 [node name="QuitToMainMenu" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit to main menu"
+text = "BUTTON_MAIN_MENU"
 
 [node name="QuitToDesktop" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit to desktop"
+text = "BUTTON_QUIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_n6ixr")

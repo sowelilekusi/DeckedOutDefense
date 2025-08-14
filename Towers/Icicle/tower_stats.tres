@@ -21,5 +21,6 @@ value = 15.0
 [resource]
 script = ExtResource("2_dorn5")
 target_type = 3
+energy_type = 0
 attributes = Array[ExtResource("1_wgjcy")]([SubResource("Resource_68ba3"), SubResource("Resource_gogvm"), SubResource("Resource_pswb4")])
 text = "Conjures an icicle every /Fire Delay\\s that deals /Damage\\ and applies Cold to enemies caught in its blast"
