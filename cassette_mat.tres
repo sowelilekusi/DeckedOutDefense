@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d224ea5fdnmh2"]
+
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_j6syw"]
+[ext_resource type="Texture2D" uid="uid://epo8me1kxpba" path="res://cassette_cassette_tex.png" id="2_wj756"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j6syw")
+shader_parameter/albedo = ExtResource("2_wj756")
+shader_parameter/alpha_scissor = 0.5

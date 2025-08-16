@@ -7,6 +7,14 @@ extends HeroState
 func enter_state() -> void:
 	hero.edit_tool.enabled = true
 	hero.game_manager.level.enable_non_path_tower_frames()
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(anim, hero.anim_tree.get("parameters/Blend3/blend_amount"), -1.0, 0.5)
+
+
+func anim(x: float) -> void:
+	hero.anim_tree.set("parameters/Blend3/blend_amount", x)
 
 
 func exit_state() -> void:

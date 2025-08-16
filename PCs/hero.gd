@@ -39,6 +39,9 @@ signal ready_state_changed(state: bool)
 @export var swap_off_audio: AudioStreamPlayer
 @export var swap_on_audio: AudioStreamPlayer
 
+@export var anim_tree: AnimationTree
+@export var weapon_pivot: Node3D
+
 var current_state: HeroState
 var pre_fighting_state: HeroState
 var hand_card_scene: PackedScene = preload("res://UI/card_hand.tscn")
@@ -353,7 +356,7 @@ func equip_weapon(slot: int = 0) -> void:
 			hud.set_secondary_button(cards[slot])
 		weapons[slot].set_hero(self)
 		weapons[slot].visible = false
-		right_hand.add_child(weapons[slot])
+		weapon_pivot.add_child(weapons[slot])
 		if slot == 0:
 			weapons[slot].energy_changed.connect(hud.set_energy_pips)
 			hud.energy_pips.max_energy = weapons[slot].max_energy

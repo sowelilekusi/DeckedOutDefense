@@ -20,6 +20,16 @@ func enter_state() -> void:
 			hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
 	hero.weapon_swap_timer.start()
 	hero.hud.energy_label.visible = false
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(anim, hero.anim_tree.get("parameters/Blend3/blend_amount"), 1.0, 0.5)
+	var tween2: Tween = create_tween()
+	tween2.tween_property(hero.right_hand, "position", Vector3(0.385, -0.19, -0.275), 0.5)
+
+
+func anim(x: float) -> void:
+	hero.anim_tree.set("parameters/Blend3/blend_amount", x)
 
 
 func exit_state() -> void:
@@ -34,6 +44,8 @@ func exit_state() -> void:
 	#hero.hud.secondary_duration.visible = true
 	if hero.game_manager.card_gameplay:
 		hero.hud.energy_label.visible = true
+	var tween: Tween = create_tween()
+	tween.tween_property(hero.right_hand, "position", Vector3(0.17, -0.085, -0.195), 0.5)
 
 
 func process_state(_delta: float) -> void:

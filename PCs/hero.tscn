@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=74 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bj2q72ch8nkek" path="res://card_placing_tool.tscn" id="8_7d213"]
 [ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
 [ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
+[ext_resource type="PackedScene" uid="uid://rc0qcrcbmw7p" path="res://gauntlet.glb" id="11_h1yfy"]
 [ext_resource type="PackedScene" uid="uid://ckl5tw5rmewhp" path="res://left_hand/card_hand_model.glb" id="11_h82f6"]
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
@@ -59,6 +60,36 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 radius = 0.3
 height = 1.8
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o55s8"]
+animation = &"read"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h1yfy"]
+animation = &"hold_gun"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2yb6"]
+animation = &"point"
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_o55s8"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hueaw"]
+graph_offset = Vector2(-465.524, 74.1432)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_r2yb6")
+nodes/Animation/position = Vector2(-80, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_o55s8")
+"nodes/Animation 2/position" = Vector2(-180, 300)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_h1yfy")
+"nodes/Animation 3/position" = Vector2(0, 400)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_o55s8")
+nodes/Blend3/position = Vector2(200, 140)
+nodes/output/position = Vector2(460, 140)
+node_connections = [&"Blend3", 0, &"Animation", &"Blend3", 1, &"Animation 2", &"Blend3", 2, &"Animation 3", &"output", 0, &"Blend3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v8f6r"]
+viewport_path = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xme80"]
+viewport_path = NodePath("FirstPersonViewport/Head2/LeftHand/SubViewport3")
 
 [sub_resource type="Environment" id="Environment_cilxe"]
 background_mode = 1
@@ -115,7 +146,7 @@ stream_0/stream = ExtResource("36_lsvj8")
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio")]
+[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "gauntlet_cards", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "weapon_pivot")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -151,6 +182,8 @@ fullpower_audio = NodePath("FullPowerAudio")
 zeropower_audio = NodePath("ZeroPowerAudio")
 swap_off_audio = NodePath("SwapOffAudio")
 swap_on_audio = NodePath("SwapOnAudio")
+anim_tree = NodePath("FirstPersonViewport/Head2/RightHand/AnimationTree")
+weapon_pivot = NodePath("FirstPersonViewport/Head2/RightHand/WeaponPivot")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -199,13 +232,52 @@ script = ExtResource("11_4sdwe")
 clone_camera = NodePath("../../ViewMovement/Head")
 
 [node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2" node_paths=PackedStringArray("player")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.41, -0.17, -0.495)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.17, -0.085, -0.195)
 script = ExtResource("7_14ugt")
 player = NodePath("../../..")
 enable_strafe_tilt = true
 tilt_amount_x = 12.0
 tilt_amount_y = 3.0
 weapon_rotation_amount = 0.001
+
+[node name="WeaponPivot" type="Node3D" parent="FirstPersonViewport/Head2/RightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0414536, 0.0611196, -0.21211)
+
+[node name="gauntlet" parent="FirstPersonViewport/Head2/RightHand" instance=ExtResource("11_h1yfy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.136704)
+
+[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Armature_001" index="0"]
+bones/0/position = Vector3(0.447738, -0.00470265, -0.00198592)
+bones/0/rotation = Quaternion(0.00247606, 0.00245146, 0.70252, 0.711655)
+bones/4/rotation = Quaternion(0.105534, 0.106025, 0.700766, 0.69753)
+bones/5/rotation = Quaternion(0.288152, -0.000666995, -0.00221661, 0.957582)
+bones/6/rotation = Quaternion(0.399595, -0.00287466, -0.00659437, 0.916663)
+bones/7/rotation = Quaternion(0.199494, 0.196378, 0.673471, 0.68416)
+bones/8/rotation = Quaternion(0.707098, 0.00349973, 0.00349977, 0.707098)
+bones/9/rotation = Quaternion(0.465232, 0.00294272, 0.005599, 0.885166)
+bones/12/rotation = Quaternion(0.204347, -0.197904, -0.666953, 0.688659)
+bones/13/rotation = Quaternion(0.565223, -0.00627945, -0.00916402, 0.824864)
+bones/14/rotation = Quaternion(0.251991, 0.00117743, 0.00452201, 0.967718)
+bones/15/rotation = Quaternion(0.204079, -0.198503, -0.668395, 0.687166)
+bones/16/rotation = Quaternion(0.707103, 0.00233569, 0.00233565, 0.707103)
+bones/17/rotation = Quaternion(0.418178, 0.00746156, 0.0162048, 0.90819)
+bones/18/rotation = Quaternion(0.614035, -0.337092, -0.360225, 0.616091)
+bones/19/rotation = Quaternion(0.00975128, -0.00888968, 0.673639, 0.738943)
+
+[node name="Cube" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Armature_001/Skeleton3D" index="0"]
+layers = 2
+
+[node name="door" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Armature_001/Skeleton3D" index="1"]
+layers = 2
+
+[node name="door_001" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Armature_001/Skeleton3D" index="2"]
+layers = 2
+
+[node name="AnimationTree" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand"]
+root_node = NodePath("../gauntlet")
+tree_root = SubResource("AnimationNodeBlendTree_hueaw")
+anim_player = NodePath("../gauntlet/AnimationPlayer")
+parameters/Blend3/blend_amount = 1.0
 
 [node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2"]
 transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.645, -0.26, -1.04)
@@ -825,5 +897,6 @@ size = 2.243
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 
+[editable path="FirstPersonViewport/Head2/RightHand/gauntlet"]
 [editable path="FirstPersonViewport/Head2/LeftHand/card_hand_model"]
 [editable path="CoinViewport/Coin"]
