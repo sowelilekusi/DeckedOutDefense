@@ -40,7 +40,11 @@ signal ready_state_changed(state: bool)
 @export var swap_on_audio: AudioStreamPlayer
 
 @export var anim_tree: AnimationTree
+@export var anim_tree2: AnimationTree
 @export var weapon_pivot: Node3D
+@export var cassette: Node3D
+@export var left_hand_model: Node3D
+@export var gauntlet_model: Node3D
 
 var current_state: HeroState
 var pre_fighting_state: HeroState

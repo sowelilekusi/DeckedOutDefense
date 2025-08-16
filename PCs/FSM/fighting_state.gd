@@ -4,6 +4,7 @@ extends HeroState
 
 func enter_state() -> void:
 	hero.hud.set_currencies_visible(false)
+	hero.left_hand_model.visible = false
 	if hero.weapons[hero.equipped_weapon]:
 		hero.hud.set_energy_visible(true)
 	var offhand_weapon: Weapon = hero.weapons[0] if hero.equipped_weapon == 1 else hero.weapons[1]
@@ -20,12 +21,12 @@ func enter_state() -> void:
 			hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
 	hero.weapon_swap_timer.start()
 	hero.hud.energy_label.visible = false
+	if !hero.weapons[hero.equipped_weapon] and !offhand_weapon:
+		hero.gauntlet_model.visible = false
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_method(anim, hero.anim_tree.get("parameters/Blend3/blend_amount"), 1.0, 0.5)
-	var tween2: Tween = create_tween()
-	tween2.tween_property(hero.right_hand, "position", Vector3(0.385, -0.19, -0.275), 0.5)
 
 
 func anim(x: float) -> void:

@@ -37,6 +37,6 @@ func get_strafe_tilt(player_velocity: Vector3) -> Vector3:
 
 func weapon_sway() -> Vector3:
 	var vector: Vector3 = Vector3.ZERO
-	vector.x = mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1)
-	vector.y = mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1)
+	vector.x = mouse_input.y * (weapon_rotation_amount / 1000) * (-1 if invert_weapon_sway else 1)
+	vector.y = mouse_input.x * (weapon_rotation_amount / 1000) * (-1 if invert_weapon_sway else 1)
 	return vector

@@ -31,10 +31,6 @@ stream = SubResource("AudioStreamRandomizer_1hdrg")
 bus = &"SFX"
 
 [node name="Gun Thing" parent="." instance=ExtResource("3_2k4c7")]
-transform = Transform3D(-0.175, 0, -2.64243e-08, 0, 0.175, 0, 2.64243e-08, 0, -0.175, 0, 0.132477, -0.0524789)
-
-[node name="Cube" parent="Gun Thing" index="0"]
-layers = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
