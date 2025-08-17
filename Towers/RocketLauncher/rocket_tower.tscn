@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bidr1m71pajma" path="res://Scenes/Towers/projectile_tower.tscn" id="1_743vv"]
 [ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_exq6d"]
 [ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="3_11qtm"]
-[ext_resource type="ArrayMesh" uid="uid://dltxsh8ppubj3" path="res://Towers/RocketLauncher/rocket_launcher_model.res" id="4_exq6d"]
 [ext_resource type="PackedScene" uid="uid://p2vwo8ivben6" path="res://Projectiles/Rocket/rocket_projectile.tscn" id="4_vxjrf"]
+[ext_resource type="PackedScene" uid="uid://divwamj7e5iw5" path="res://Towers/RocketLauncher/box_o_rockets.glb" id="5_5dmv2"]
 
 [sub_resource type="Resource" id="Resource_idxp2"]
 script = ExtResource("2_exq6d")
@@ -20,10 +20,13 @@ visible = false
 
 [node name="Yaw" parent="." index="2"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.55964, 0)
-mesh = ExtResource("4_exq6d")
+visible = false
 
 [node name="TargetFinder" parent="." index="5"]
 max_targets = 3
 
 [node name="SpawnAffect" parent="." index="6"]
 spawn_scene = ExtResource("4_vxjrf")
+
+[node name="box_o_rockets" parent="." index="7" instance=ExtResource("5_5dmv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.907264, 0)

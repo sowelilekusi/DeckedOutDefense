@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://due2j42y7qutw"]
+
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_8cr8g"]
+[ext_resource type="Texture2D" uid="uid://b54i2pdjv31xi" path="res://Towers/RocketLauncher/box_o_rockets_boxorockets.png" id="2_k3cta"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8cr8g")
+shader_parameter/albedo = ExtResource("2_k3cta")
+shader_parameter/alpha_scissor = 0.5
