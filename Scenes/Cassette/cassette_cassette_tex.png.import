@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://epo8me1kxpba"
-path="res://.godot/imported/cassette_cassette_tex.png-da7d4a59937ccdc92dab6cdfdc532ae5.ctex"
+path="res://.godot/imported/cassette_cassette_tex.png-893a130cfc3aa343a5ac596ef3c7f2df.ctex"
 metadata={
 "vram_texture": false
 }
@@ -13,8 +13,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://cassette_cassette_tex.png"
-dest_files=["res://.godot/imported/cassette_cassette_tex.png-da7d4a59937ccdc92dab6cdfdc532ae5.ctex"]
+source_file="res://Scenes/Cassette/cassette_cassette_tex.png"
+dest_files=["res://.godot/imported/cassette_cassette_tex.png-893a130cfc3aa343a5ac596ef3c7f2df.ctex"]
 
 [params]
 

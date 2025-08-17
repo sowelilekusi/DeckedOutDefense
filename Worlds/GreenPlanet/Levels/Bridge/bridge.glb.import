@@ -22,11 +22,11 @@ nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=true
+meshes/generate_lods=false
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-meshes/force_disable_compression=false
+meshes/force_disable_compression=true
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -39,20 +39,9 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Dirt": {
+"levelmat": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/mat13.tres",
-"use_external/path": "uid://bjr7u7ixxokw6"
-},
-"Grass": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/mat2.tres",
-"use_external/path": "uid://jdg8tb7g3d4o"
-},
-"Stone": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/mat1.tres",
-"use_external/path": "uid://bajfn46md8pyy"
+"use_external/path": "uid://u2y4es6qqkqd"
 }
 }
 }

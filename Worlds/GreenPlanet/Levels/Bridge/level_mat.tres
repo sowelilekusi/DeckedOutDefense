@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://u2y4es6qqkqd"]
+
+[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_icpg6"]
+[ext_resource type="Texture2D" uid="uid://deh5dk1wn7n46" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge_level_tex.png" id="2_2g76a"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_icpg6")
+shader_parameter/albedo = ExtResource("2_2g76a")
+shader_parameter/alpha_scissor = 0.5
