@@ -161,11 +161,13 @@ func _on_achievements_button_pressed() -> void:
 
 
 func _on_profile_manager_cancel_pressed() -> void:
-	$ProfileManager.visible = false
+	profile_controls.visible = false
+	main_controls.visible = true
 
 
 func _on_profile_manager_confirm_pressed() -> void:
-	$ProfileManager.visible = false
+	profile_controls.visible = false
+	main_controls.visible = true
 	if $ProfileManager/VBoxContainer/DisplayName/LineEdit.text != "":
 		change_profile_display_name($ProfileManager/VBoxContainer/DisplayName/LineEdit.text)
 		$ProfileManager/VBoxContainer/DisplayName/LineEdit.text = ""
@@ -188,10 +190,16 @@ func _on_mods_button_pressed() -> void:
 
 
 func _on_cancel_mods_pressed() -> void:
-	profile_controls.visible = true
 	main_controls.visible = true
 	mods_controls.visible = false
 
 
 func _on_confirm_mods_pressed() -> void:
 	mods_controls.load_mod_list()
+	main_controls.visible = true
+	mods_controls.visible = false
+
+
+func _on_stats_button_pressed() -> void:
+	main_controls.visible = false
+	profile_controls.visible = true

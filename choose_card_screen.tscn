@@ -12,7 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_y4oar")
 choice_buttons = NodePath("PanelContainer/Content/HBoxContainer/ChoicesVBox")
 card_name_label = NodePath("PanelContainer/Content/HBoxContainer/VBoxContainer/NameLabel")
-card_description_label = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox/RichTextLabel")
+card_description_label = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox/DescriptionText")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -82,7 +82,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "LABEL_CARD_DESCRIPTION"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+[node name="DescriptionText" type="RichTextLabel" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"

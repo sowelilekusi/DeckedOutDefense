@@ -8,6 +8,8 @@
 # res://Scenes/Menus/graphics_options.tscn
 # res://Scenes/Menus/keybind_options.tscn
 # res://Scenes/UI/keybind_popup.tscn
+# res://choose_card_screen.tscn
+# res://Scenes/Menus/options_menu.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -124,11 +126,13 @@ msgid "BUTTON_ACHIEVEMENTS"
 msgstr ""
 
 #: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/options_menu.tscn
 msgid "BUTTON_CANCEL"
 msgstr ""
 
 #: Scenes/Menus/MainMenu/main_menu.tscn
 #: Scenes/Menus/CharacterSelect/character_select.tscn
+#: Scenes/Menus/options_menu.tscn
 msgid "BUTTON_CONFIRM"
 msgstr ""
 
@@ -175,14 +179,6 @@ msgstr ""
 
 #: Scenes/Menus/GameEndScreen/game_end_screen.tscn
 msgid "BUTTON_RESTART"
-msgstr ""
-
-#: Scenes/Menus/CharacterSelect/character_select.tscn
-msgid "character name"
-msgstr ""
-
-#: Scenes/Menus/CharacterSelect/character_select.tscn
-msgid "------------------------"
 msgstr ""
 
 #: Scenes/Menus/CharacterSelect/character_select.tscn
@@ -301,6 +297,54 @@ msgstr ""
 msgid "LABEL_BIND_KEY"
 msgstr ""
 
+#: choose_card_screen.tscn
+msgid "LABEL_CHOOSE_CARD"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "LABEL_CARD_NAME"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "BUTTON_VIEW_TOWER"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "BUTTON_VIEW_WEAPON"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "BUTTON_FINALIZE_CARD_CHOICE"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "LABEL_CARD_DESCRIPTION"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "LABEL_CARD_FEATURES"
+msgstr ""
+
+#: choose_card_screen.tscn
+msgid "LABEL_TARGET_LIST"
+msgstr ""
+
+#: Scenes/Menus/options_menu.tscn
+msgid "Gameplay"
+msgstr ""
+
+#: Scenes/Menus/options_menu.tscn
+msgid "Graphics"
+msgstr ""
+
+#: Scenes/Menus/options_menu.tscn
+msgid "Keybinds"
+msgstr ""
+
+#: Scenes/Menus/options_menu.tscn
+msgid "Audio"
+msgstr ""
+
 #: Classes/Engineer/class.tres
 msgid "CLASS_NAME_ENGINEER"
 msgstr ""
@@ -313,54 +357,206 @@ msgstr ""
 msgid "CARD_NAME_PLATFORM_DASH"
 msgstr ""
 
+#: Towers/Ascension/tower_stats.tres
+msgid "DESC_TOWER_PLATFORM_DASH"
+msgstr ""
+
+#: Weapons/Ascension/weapon_stats.tres
+msgid "DESC_WEAPON_PLATFORM_DASH"
+msgstr ""
+
 #: Cards/assault.tres
 msgid "CARD_NAME_BASIC_GUN"
+msgstr ""
+
+#: Towers/Assault/tower_stats.tres
+msgid "DESC_TOWER_BASIC_GUN"
+msgstr ""
+
+#: Weapons/Assault/weapon_stats.tres
+msgid "DESC_WEAPON_BASIC_GUN"
 msgstr ""
 
 #: Cards/blowdart.tres
 msgid "CARD_NAME_POISON"
 msgstr ""
 
+#: Towers/Blowdart/tower_stats.tres
+msgid "DESC_TOWER_POISON"
+msgstr ""
+
+#: Weapon/Blowdart/weapon_stats.tres
+msgid "DESC_WEAPON_POISON"
+msgstr ""
+
 #: Cards/bomb_launcher.tres
 msgid "CARD_NAME_BOMB"
+msgstr ""
+
+#: Towers/BombLauncher/tower_stats.tres
+msgid "DESC_TOWER_BOMB"
+msgstr ""
+
+#: Weapon/BombLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_BOMB"
 msgstr ""
 
 #: Cards/fireball.tres
 msgid "CARD_NAME_FIREBALL"
 msgstr ""
 
+#: Towers/Fireball/tower_stats.tres
+msgid "DESC_TOWER_FIREBALL"
+msgstr ""
+
+#: Weapon/Fireball/weapon_stats.tres
+msgid "DESC_WEAPON_FIREBALL"
+msgstr ""
+
 #: Cards/flamethrower.tres
 msgid "CARD_NAME_FLAMETHROWER"
+msgstr ""
+
+#: Towers/Flamethrower/tower_stats.tres
+msgid "DESC_TOWER_FLAMETHROWER"
+msgstr ""
+
+#: Weapons/Flamethrower/weapon_stats.tres
+msgid "DESC_WEAPON_FLAMETHROWER"
 msgstr ""
 
 #: Cards/gatling.tres
 msgid "CARD_NAME_ACCEL"
 msgstr ""
 
+#: Towers/Gatling/tower_stats.tres
+msgid "DESC_TOWER_ACCEL"
+msgstr ""
+
+#: Weapons/Gatling/weapon_stats.tres
+msgid "DESC_WEAPON_ACCEL"
+msgstr ""
+
 #: Cards/glue_launcher.tres
 msgid "CARD_NAME_GLUE"
+msgstr ""
+
+#: Towers/GlueLauncher/tower_stats.tres
+msgid "DESC_TOWER_GLUE"
+msgstr ""
+
+#: Weapons/GlueLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_GLUE"
 msgstr ""
 
 #: Cards/icicle.tres
 msgid "CARD_NAME_ICE_SPIKE"
 msgstr ""
 
+#: Towers/Icicle/tower_stats.tres
+msgid "DESC_TOWER_ICE_SPIKE"
+msgstr ""
+
+#: Weapons/Icicle/weapon_stats.tres
+msgid "DESC_WEAPON_ICE_SPIKE"
+msgstr ""
+
 #: Cards/overclock.tres
-msgid "CARD_NAME_SPEED_TOWER"
+msgid "CARD_NAME_SPEED_INCREASER"
+msgstr ""
+
+#: Towers/Overclock/tower_stats.tres
+msgid "DESC_TOWER_SPEED_INCREASER"
+msgstr ""
+
+#: Weapons/Overclock/weapon_stats.tres
+msgid "DESC_WEAPON_SPEED_INCREASER"
 msgstr ""
 
 #: Cards/reactor.tres
 msgid "CARD_NAME_RADIATION"
 msgstr ""
 
+#: Towers/Reactor/tower_stats.tres
+msgid "DESC_TOWER_RADIATION"
+msgstr ""
+
+#: Weapons/Reactor/weapon_stats.tres
+msgid "DESC_WEAPON_RADIATION"
+msgstr ""
+
 #: Cards/refrigerator.tres
 msgid "CARD_NAME_FREEZER"
+msgstr ""
+
+#: Towers/Refrigerator/tower_stats.tres
+msgid "DESC_TOWER_FREEZER"
+msgstr ""
+
+#: Weapons/Refrigerator/weapon_stats.tres
+msgid "DESC_WEAPON_FREEZER"
 msgstr ""
 
 #: Cards/rocket_launcher.tres
 msgid "CARD_NAME_ROCKET"
 msgstr ""
 
+#: Towers/RocketLauncher/tower_stats.tres
+msgid "DESC_TOWER_ROCKET"
+msgstr ""
+
+#: Weapons/RocketLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_ROCKET"
+msgstr ""
+
 #: Cards/sniper.tres
 msgid "CARD_NAME_SNIPER"
+msgstr ""
+
+#: Towers/Sniper/tower_stats.tres
+msgid "DESC_TOWER_SNIPER"
+msgstr ""
+
+#: Weapons/Sniper/weapon_stats.tres
+msgid "DESC_WEAPON_SNIPER"
+msgstr ""
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_GAMEPLAY"
+msgstr ""
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_GRAPHICS"
+msgstr ""
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_KEYBINDS"
+msgstr ""
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_AUDIO"
+msgstr ""
+
+#: PCs/hud.gd
+msgid "PROMPT_START_WAVE"
+msgstr ""
+
+#: Enemies/BabyEyeDog/baby_eye_dog.tres
+msgid "ENEMY_FAST_BABY"
+msgstr ""
+
+#: Enemies/Crystalisk/crystalisk.tres
+msgid "ENEMY_FLYING_CRYSTAL"
+msgstr ""
+
+#: Enemies/ElderEyeDog/elder_eye_dog.tres
+msgid "ENEMY_HEAVY_WALKER"
+msgstr ""
+
+#: Enemies/EyeDog/eye_dog.tres
+msgid "ENEMY_DOG"
+msgstr ""
+
+#: Scenes/CardPrinter/card_printer.gd
+msgid "BUTTON_RADIO_INTERACT"
 msgstr ""

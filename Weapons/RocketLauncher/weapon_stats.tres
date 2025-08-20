@@ -28,4 +28,4 @@ script = ExtResource("2_ow0r7")
 target_type = 0
 energy_type = 1
 attributes = Array[ExtResource("1_5gy7w")]([SubResource("Resource_4fjm2"), SubResource("Resource_uwj4j"), SubResource("Resource_6qv5v"), SubResource("Resource_ymyed")])
-text = "Every /Fire Delay\\s, hold to target up to /Target Limit\\ enemies and release to fire homing rockets that deal /Damage\\ damage"
+text = "DESC_WEAPON_ROCKET"

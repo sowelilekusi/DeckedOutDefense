@@ -19,8 +19,9 @@ stream_0/stream = ExtResource("5_m033a")
 [sub_resource type="BoxShape3D" id="BoxShape3D_21y4o"]
 size = Vector3(2.11176, 1.16345, 0.664978)
 
-[node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button_collider")]
+[node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button", "button_collider")]
 script = ExtResource("1_qft15")
+button = NodePath("StaticBody3D")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
 card_selection_menu = ExtResource("2_kpujb")
 
@@ -34,7 +35,6 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
 press_cost = 1
-hover_text = "[center]#Interact# Record to blank cassette"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00542301, 0.653175, 0.254328)

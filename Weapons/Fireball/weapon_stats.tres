@@ -28,4 +28,4 @@ script = ExtResource("2_yto3f")
 target_type = 0
 energy_type = 1
 attributes = Array[ExtResource("1_kqy5w")]([SubResource("Resource_68ba3"), SubResource("Resource_gogvm"), SubResource("Resource_pswb4"), SubResource("Resource_y1gjj")])
-text = "Conjure a fireball every /Fire Delay\\s that can be thrown to deal /Damage\\ and apply Burning to enemies caught in its blast"
+text = "DESC_WEAPON_FIREBALL"

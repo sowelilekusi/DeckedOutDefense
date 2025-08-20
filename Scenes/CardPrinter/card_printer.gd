@@ -1,5 +1,6 @@
 class_name CardPrinter extends StaticBody3D
 
+@export var button: InteractButton
 @export var button_collider: CollisionShape3D
 @export var card_selection_menu: PackedScene
 
@@ -8,6 +9,10 @@ var base_faction: int = 1
 var cards_generated: int = 0
 var reply_player: Hero
 var spawned_cards: Array[CardItem] = []
+
+
+func _ready() -> void:
+	button.hover_text = tr("BUTTON_RADIO_INTERACT")
 
 
 func get_faction_cards(faction: Card.Faction) -> Array[Card]:

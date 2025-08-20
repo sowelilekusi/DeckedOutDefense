@@ -67,7 +67,7 @@ region = Rect2(0, 0, 36, 36)
 atlas = ExtResource("17_6t4jd")
 region = Rect2(0, 0, 36, 36)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level", "game_select_menu", "main_controls", "seed_entry", "mods_controls")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("bg_level", "game_select_menu", "main_controls", "seed_entry", "profile_controls", "mods_controls")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +79,7 @@ bg_level = NodePath("SubViewport/GridMap")
 game_select_menu = NodePath("GameSelectMenu")
 main_controls = NodePath("MainControls")
 seed_entry = NodePath("GameSelectMenu/VBoxContainer/HBoxContainer2/LineEdit")
+profile_controls = NodePath("ProfileManager")
 mods_controls = NodePath("ModsMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -462,6 +463,7 @@ text = "BUTTON_CONFIRM"
 [connection signal="pressed" from="MainControls/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/ModsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/ModsButton" to="." method="_on_mods_button_pressed"]
+[connection signal="pressed" from="MainControls/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/OptionsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/QuitButton" to="." method="_on_button_mouse_entered"]

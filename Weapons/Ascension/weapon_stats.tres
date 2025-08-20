@@ -26,5 +26,5 @@ script = ExtResource("2_hwijr")
 target_type = 2
 energy_type = 1
 attributes = Array[ExtResource("1_c5ghd")]([SubResource("Resource_c5ghd"), SubResource("Resource_hwijr"), SubResource("Resource_5pac0")])
-text = "Send yourself flying"
+text = "DESC_WEAPON_PLATFORM_DASH"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

@@ -82,7 +82,7 @@ func set_energy_visible(value: bool) -> void:
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
-	wave_start_label.text = parse_action_tag("[center]Press #Ready# to start wave")
+	wave_start_label.text = tr(parse_action_tag("PROMPT_START_WAVE"))
 	place_text.text = parse_action_tag("[center]#Primary Fire#")
 	swap_text.text = parse_action_tag("[center]#Secondary Fire#")
 
@@ -110,7 +110,7 @@ func tween_label(x: float) -> void:
 func set_hover_text(text: String) -> void:
 	$TextureRect2.visible = true
 	$TextureRect.visible = false
-	hover_text.text = parse_action_tag(text)
+	hover_text.text = tr(parse_action_tag(text))
 	hover_text.visible = true
 
 

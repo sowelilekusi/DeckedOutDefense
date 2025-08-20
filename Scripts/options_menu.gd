@@ -4,11 +4,20 @@ extends Control
 @export var gameplay: GameplayOptionsMenu
 @export var graphics: GraphicsOptionsMenu
 @export var keybinds: KeybindsOptionsMenu
+@export var audio: AudioOptionsMenu
 var game_manager: GameManager
 
 
 func _ready() -> void:
+	set_tab_locale()
 	keybinds.ui_layer = game_manager.UILayer
+
+
+func set_tab_locale() -> void:
+	gameplay.name = tr("OPTIONS_TAB_GAMEPLAY")
+	graphics.name = tr("OPTIONS_TAB_GRAPHICS")
+	keybinds.name = tr("OPTIONS_TAB_KEYBINDS")
+	audio.name = tr("OPTIONS_TAB_AUDIO")
 
 
 func _on_cancel_pressed() -> void:

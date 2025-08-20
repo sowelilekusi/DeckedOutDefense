@@ -126,7 +126,6 @@ func spawn_players() -> void:
 		player.game_manager = self
 		player.edit_tool.level = level
 		player.hud.map_anchor = level
-		player.blank_cassettes += 1
 		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = connected_player_profiles[peer_id]

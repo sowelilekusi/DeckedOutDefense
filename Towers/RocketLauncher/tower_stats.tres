@@ -28,4 +28,4 @@ script = ExtResource("2_lag26")
 target_type = 2
 energy_type = 0
 attributes = Array[ExtResource("1_jajj0")]([SubResource("Resource_4fjm2"), SubResource("Resource_uwj4j"), SubResource("Resource_6qv5v"), SubResource("Resource_y1rtq")])
-text = "Every /Fire Delay\\s, fires a homing rocket at up to /Target Limit\\ flying enemies up to /Range\\m away that deal /Damage\\ damage"
+text = "DESC_TOWER_ROCKET"

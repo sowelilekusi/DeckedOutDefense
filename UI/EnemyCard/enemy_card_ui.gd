@@ -8,7 +8,7 @@ extends Control
 
 
 func set_enemy(enemy: EnemyCard) -> void:
-	enemy_name.text = enemy.enemy.title
+	enemy_name.text = tr(enemy.enemy.title)
 	enemy_rarity.texture.region = Rect2(0.0, 92.0 - (23.0 * int(enemy.rarity)), 124.0, 23.0)
 	enemy_tex.texture = enemy.enemy.icon
 	if enemy.rarity == Data.Rarity.COMMON:

@@ -1,4 +1,4 @@
-class_name AudioOptions
+class_name AudioOptionsMenu
 extends VBoxContainer
 
 @export var master_input: SpinBox

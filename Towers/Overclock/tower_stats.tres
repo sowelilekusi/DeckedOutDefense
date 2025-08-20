@@ -26,5 +26,5 @@ script = ExtResource("2_fax6y")
 target_type = 1
 energy_type = 0
 attributes = Array[ExtResource("1_0swcp")]([SubResource("Resource_0swcp"), SubResource("Resource_fax6y"), SubResource("Resource_v0e26")])
-text = "Speeds up the fire rate of towers within /Range\\m by 10%"
+text = "DESC_TOWER_SPEED_INCREASER"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

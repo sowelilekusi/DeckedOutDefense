@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 
 func set_card(card: Card) -> void:
-	$HBoxContainer/Label.text = card.display_name
+	$HBoxContainer/Label.text = tr(card.display_name)
 	match(card.rarity):
 		Data.Rarity.COMMON:
 			style.bg_color = common_background

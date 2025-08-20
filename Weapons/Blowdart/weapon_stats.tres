@@ -28,4 +28,4 @@ script = ExtResource("2_lbj0i")
 target_type = 0
 energy_type = 1
 attributes = Array[ExtResource("1_3nyhi")]([SubResource("Resource_1txa7"), SubResource("Resource_46kv2"), SubResource("Resource_gb76x"), SubResource("Resource_dtjel")])
-text = "Fires every /Fire Delay\\s, applying one stack of Poison at a range of /Range\\m"
+text = "DESC_WEAPON_POISON"

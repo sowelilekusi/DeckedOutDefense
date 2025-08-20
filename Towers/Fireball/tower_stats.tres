@@ -23,4 +23,4 @@ script = ExtResource("2_nconk")
 target_type = 3
 energy_type = 0
 attributes = Array[ExtResource("1_wvk31")]([SubResource("Resource_68ba3"), SubResource("Resource_gogvm"), SubResource("Resource_pswb4")])
-text = "Conjures a fireball every /Fire Delay\\s that deals /Damage\\ and apply Burning to enemies caught in its blast"
+text = "DESC_TOWER_FIREBALL"

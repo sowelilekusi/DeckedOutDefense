@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("4_x2l2n")
-title = "Crystalisk"
+title = "ENEMY_FLYING_CRYSTAL"
 target_type = 2
 scene = ExtResource("3_7w5fm")
 icon = ExtResource("2_idym2")

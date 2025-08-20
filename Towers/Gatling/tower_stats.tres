@@ -33,6 +33,4 @@ script = ExtResource("2_ky46y")
 target_type = 1
 energy_type = 0
 attributes = Array[ExtResource("1_w20qq")]([SubResource("Resource_oayfg"), SubResource("Resource_fekle"), SubResource("Resource_ud8xi"), SubResource("Resource_cvkxf"), SubResource("Resource_pivwn")])
-text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m
-
-While attacking the same target, gradually accelerates to /Speed Multiplier\\x the fire rate over /Speed Time\\s"
+text = "DESC_TOWER_ACCEL"

@@ -15,7 +15,7 @@ func add_cards(cards: Array[Card]) -> void:
 	var x: int = 0
 	for card: Card in cards:
 		var button: Button = Button.new()
-		button.text = card.display_name
+		button.text = tr(card.display_name)
 		button.pressed.connect(choose_card.bind(x))
 		choices.append(card)
 		choice_buttons.add_child(button)
@@ -25,13 +25,13 @@ func add_cards(cards: Array[Card]) -> void:
 
 func choose_card(choice: int) -> void:
 	chosen_card = choices[choice]
-	card_name_label.text = chosen_card.display_name
+	card_name_label.text = tr(chosen_card.display_name)
 	choose_side(side_a)
 
 
 func choose_side(side_a_chosen: bool) -> void:
 	side_a = side_a_chosen
-	card_description_label.text = chosen_card.tower_stats.text if side_a else chosen_card.weapon_stats.text
+	card_description_label.text = tr(chosen_card.tower_stats.text) if side_a else tr(chosen_card.weapon_stats.text)
 
 
 func _on_confirm_button_pressed() -> void:

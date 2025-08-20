@@ -23,4 +23,4 @@ script = ExtResource("2_226sm")
 target_type = 1
 energy_type = 0
 attributes = Array[ExtResource("1_ytycf")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0")])
-text = "Fires every /Fire Delay\\s, making the target Sticky at a range of /Range\\m"
+text = "DESC_TOWER_GLUE"

@@ -16,5 +16,5 @@ weapon_scene = ExtResource("2_67wu0")
 weapon_stats = ExtResource("3_o52qt")
 tower_stats = ExtResource("2_o52qt")
 tags = Array[int]([])
-display_name = "CARD_NAME_SPEED_TOWER"
+display_name = "CARD_NAME_SPEED_INCREASER"
 metadata/_custom_type_script = "uid://d40isem6w5d8"

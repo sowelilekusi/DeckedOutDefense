@@ -28,4 +28,4 @@ script = ExtResource("2_qyvv8")
 target_type = 0
 energy_type = 1
 attributes = Array[ExtResource("1_aub52")]([SubResource("Resource_58kde"), SubResource("Resource_jl4jv"), SubResource("Resource_28kyj"), SubResource("Resource_7pvmq")])
-text = "Fires a shot every /Fire Delay\\ seconds dealing /Damage\\ damage at a range of /Range\\m"
+text = "DESC_WEAPON_SNIPER"

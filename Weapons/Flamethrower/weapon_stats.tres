@@ -28,4 +28,4 @@ script = ExtResource("2_drgp3")
 target_type = 0
 energy_type = 2
 attributes = Array[ExtResource("1_xqcf3")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk"), SubResource("Resource_rjpjf")])
-text = "Hold to apply Burning to enemies in front of you"
+text = "DESC_WEAPON_FLAMETHROWER"
