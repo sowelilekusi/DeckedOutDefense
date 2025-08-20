@@ -25,6 +25,7 @@ extends CanvasLayer
 @export var energy_label: Label
 @export var primary_duration: Label
 @export var secondary_duration: Label
+@export var blank_cassette_label: Label
 
 var last_lives_count: int = 120
 var enemy_names: Array[String]
@@ -35,6 +36,12 @@ var cards: Array[EnemyCardUI] = []
 func _ready() -> void:
 	$StartWaveLabel.theme_type_variation = "WaveStartLabel"
 	$InteractLabel.theme_type_variation = "InteractLabel"
+	if player.game_manager.card_gameplay:
+		energy_label.visible = true
+
+
+func set_blank_cassette_count(value: int) -> void:
+	blank_cassette_label.text = str(value)
 
 
 func show_wave_generation_anim(wave: Wave) -> void:

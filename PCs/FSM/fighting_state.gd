@@ -31,7 +31,8 @@ func exit_state() -> void:
 	hero.hud.grow_wave_start_label()
 	#hero.hud.primary_duration.visible = true
 	#hero.hud.secondary_duration.visible = true
-	hero.hud.energy_label.visible = true
+	if hero.game_manager.card_gameplay:
+		hero.hud.energy_label.visible = true
 
 
 func process_state(_delta: float) -> void:

@@ -65,6 +65,12 @@ var currency: int = 0 :
 		hud.set_currency_count(value)
 	get:
 		return currency
+var blank_cassettes: int = 0 :
+	set(value):
+		blank_cassettes = value
+		hud.set_blank_cassette_count(value)
+	get():
+		return blank_cassettes
 var energy: int = 0 :
 	set(value):
 		energy = value
@@ -75,7 +81,7 @@ var selected_card: Card :
 	set(_value):
 		pass
 	get():
-		return unique_cards[hand_selected_index]
+		return unique_cards[hand_selected_index] if unique_cards.size() > 0 else null
 
 
 func set_zoom_factor(value: float) -> void:
@@ -89,7 +95,11 @@ func _ready() -> void:
 		sprite.queue_free()
 		player_name_tag.queue_free()
 		for card: Card in hero_class.deck:
-			draw_pile.add(card)
+			if game_manager.card_gameplay:
+				draw_pile.add(card)
+			else:
+				add_card(card)
+				update_selected_box()
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
@@ -128,8 +138,15 @@ func add_selection(card: Card) -> void:
 		var box: CardSelectionBox = card_select_scene.instantiate()
 		box.set_card(card)
 		box.set_key(unique_cards.size() - 1)
+		box.set_amount(1)
 		selection_boxes.append(box)
 		$HUD/selection_boxes.add_child(box)
+	else:
+		var box: CardSelectionBox
+		for existing_box: CardSelectionBox in selection_boxes:
+			if existing_box.card == card:
+				box = existing_box
+		box.set_amount(hand.contents.count(card))
 
 
 func check_removal() -> void:
@@ -346,17 +363,21 @@ func equip_weapon(slot: int = 0) -> void:
 	if hand.size == 0:
 		return
 	var energy_cost: int = selected_card.cost
-	if energy < energy_cost:
+	if game_manager.card_gameplay and energy < energy_cost:
 		return
 	if weapons[slot] != null:
 		unequip_weapon(slot)
+		if !game_manager.card_gameplay:
+			return
 	if hand.size > 0:
-		energy -= energy_cost
+		if game_manager.card_gameplay:
+			energy -= energy_cost
 		place_card_audio.play()
 		cards[slot] = hand.remove_at(hand.contents.find(selected_card))
 		#card_sprites[hand_selected_index].queue_free()
 		#card_sprites.remove_at(hand_selected_index)
-		discard_pile.add(cards[slot])
+		if game_manager.card_gameplay:
+			discard_pile.add(cards[slot])
 		#TODO: Alternate thing to do with the hand i guess
 		#if !inventory.contents.has(cards[slot]):
 		#decrement_selected()
@@ -454,6 +475,8 @@ func unequip_weapon(slot: int = 0) -> void:
 		hud.new_energy_bar.disable_secondary_energy()
 	weapons[slot].queue_free()
 	weapons[slot] = null
+	if !game_manager.card_gameplay:
+		add_card(cards[slot])
 	cards[slot] = null
 	place_card_audio.play()
 

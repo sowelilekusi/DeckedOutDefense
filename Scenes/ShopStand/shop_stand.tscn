@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7g3jev3v6d3l"]
+[gd_scene load_steps=17 format=3 uid="uid://7g3jev3v6d3l"]
 
 [ext_resource type="Script" uid="uid://colk6js4wet11" path="res://Scenes/ShopStand/shop_stand.gd" id="1_4in53"]
 [ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="1_x8sts"]
@@ -16,6 +16,9 @@ albedo_color = Color(0.313726, 0.180392, 0.00392157, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3a288"]
 size = Vector3(2.95542, 2.01704, 1.92446)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txjtg"]
+size = Vector3(0.427765, 0.430664, 0.898926)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3r1g8"]
 size = Vector3(0.69, 0.665, 0.34)
@@ -38,16 +41,20 @@ viewport_path = NodePath("SubViewport5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_rnm0u"]
 viewport_path = NodePath("SubViewport6")
 
-[node name="ShopStand" type="Node3D" node_paths=PackedStringArray("cards", "choice_colliders", "choice_buttons", "choice_sprites")]
+[node name="ShopStand" type="Node3D" node_paths=PackedStringArray("cards", "choice_colliders", "choice_buttons", "choice_sprites", "blank_button", "blank_button_collider", "blank_models")]
 script = ExtResource("1_4in53")
 cards = [NodePath("SubViewport/Node2D"), NodePath("SubViewport2/Node2D"), NodePath("SubViewport3/Node2D"), NodePath("SubViewport4/Node2D"), NodePath("SubViewport5/Node2D"), NodePath("SubViewport6/Node2D")]
 choice_colliders = [NodePath("InteractButton/CollisionShape3D"), NodePath("InteractButton2/CollisionShape3D2"), NodePath("InteractButton3/CollisionShape3D3"), NodePath("InteractButton6/CollisionShape3D6"), NodePath("InteractButton5/CollisionShape3D5"), NodePath("InteractButton4/CollisionShape3D4")]
 choice_buttons = [NodePath("InteractButton"), NodePath("InteractButton2"), NodePath("InteractButton3"), NodePath("InteractButton6"), NodePath("InteractButton5"), NodePath("InteractButton4")]
 choice_sprites = [NodePath("Sprites/Sprite3D"), NodePath("Sprites/Sprite3D2"), NodePath("Sprites/Sprite3D3"), NodePath("Sprites/Sprite3D4"), NodePath("Sprites/Sprite3D5"), NodePath("Sprites/Sprite3D6")]
 item_card_scene = ExtResource("2_qh00w")
+blank_button = NodePath("InteractButton7")
+blank_button_collider = NodePath("InteractButton7/CollisionShape3D")
+blank_models = [NodePath("CSGBox3D4"), NodePath("CSGBox3D5"), NodePath("CSGBox3D6"), NodePath("CSGBox3D7"), NodePath("CSGBox3D8")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(2.95902, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294425, 0, 0)
+size = Vector3(3.54787, 1, 1)
 material = SubResource("StandardMaterial3D_lhc2g")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
@@ -65,6 +72,17 @@ material = SubResource("StandardMaterial3D_4tjcf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502094, -0.465026)
 shape = SubResource("BoxShape3D_3a288")
+
+[node name="InteractButton7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73285, 0.835364, 0.235621)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_x8sts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButton7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0624237, -0.101074, -0.214111)
+shape = SubResource("BoxShape3D_txjtg")
+disabled = true
 
 [node name="InteractButton" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08327, 0.835364, 0.235621)
@@ -211,6 +229,32 @@ pixel_size = 0.0015
 texture_filter = 0
 texture = SubResource("ViewportTexture_rnm0u")
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79147, 0.620414, 0.236721)
+visible = false
+size = Vector3(0.367981, 0.236755, 0.0673828)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79147, 0.620414, 0.14049)
+visible = false
+size = Vector3(0.367981, 0.236755, 0.0673828)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79147, 0.620414, 0.0426871)
+visible = false
+size = Vector3(0.367981, 0.236755, 0.0673828)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79147, 0.620414, -0.0568752)
+visible = false
+size = Vector3(0.367981, 0.236755, 0.0673828)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79147, 0.620414, -0.151894)
+visible = false
+size = Vector3(0.367981, 0.236755, 0.0673828)
+
+[connection signal="button_interacted" from="InteractButton7" to="." method="retrieve_blank"]
 [connection signal="button_interacted" from="InteractButton" to="." method="retrieve_card"]
 [connection signal="button_interacted" from="InteractButton2" to="." method="retrieve_card"]
 [connection signal="button_interacted" from="InteractButton3" to="." method="retrieve_card"]

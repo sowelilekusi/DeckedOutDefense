@@ -78,9 +78,10 @@ func networked_spawn_tower(card_index: int, caller_id: int) -> void:
 
 @rpc("reliable", "call_local", "any_peer")
 func networked_remove_tower() -> void:
-	inventory.remove_at(0)
-	#game_manager.connected_players_nodes[tower.owner_id].add_card(inventory.remove_at(0))
-	#game_manager.connected_players_nodes[tower.owner_id].unready_self()
+	var card: Card = inventory.remove_at(0)
+	if !game_manager.card_gameplay:
+		game_manager.connected_players_nodes[tower.owner_id].add_card(card)
+		game_manager.connected_players_nodes[tower.owner_id].unready_self()
 	tower.queue_free()
 	#disable_duration_sprites()
 	tower = null

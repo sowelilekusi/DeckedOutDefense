@@ -1,6 +1,7 @@
 class_name CardSelectionBox
 extends Control
 
+var card: Card
 @export var icon: TextureRect
 @export var tags: VBoxContainer
 @export var cost_label: Label
@@ -14,6 +15,7 @@ func set_amount(num: int) -> void:
 
 
 func set_card(card: Card) -> void:
+	self.card = card
 	icon.texture = card.icon
 	cost_label.text = str(card.cost)
 	for i: int in tags.get_child_count():

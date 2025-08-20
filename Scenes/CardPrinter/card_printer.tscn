@@ -1,27 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene load_steps=9 format=3 uid="uid://1b2ikdanl66b"]
 
 [ext_resource type="Script" uid="uid://bivtfdl3p1brv" path="res://Scenes/CardPrinter/card_printer.gd" id="1_qft15"]
+[ext_resource type="PackedScene" uid="uid://bcvjgl0s1wp8y" path="res://choose_card_screen.tscn" id="2_kpujb"]
 [ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="4_eavi1"]
-[ext_resource type="PackedScene" uid="uid://b6i5w3mowcfcs" path="res://Scenes/DraftingTable/drafting_table.glb" id="4_kpujb"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="5_m033a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ebt5"]
-size = Vector3(2.17, 1.55307, 1.12)
+size = Vector3(3.00441, 1.21416, 2.14176)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ikdwj"]
-size = Vector3(2.20033, 0.260753, 1.27008)
+size = Vector3(0.57883, 0.375308, 0.190803)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73g2w"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_m033a")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_21y4o"]
+size = Vector3(2.11176, 1.16345, 0.664978)
+
 [node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button_collider")]
 script = ExtResource("1_qft15")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
+card_selection_menu = ExtResource("2_kpujb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776539, 0.0332634)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000722647, 0.607083, -0.000626981)
 shape = SubResource("BoxShape3D_0ebt5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -29,11 +33,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847404, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
-press_cost = 8
-hover_text = "[center]#Interact# draft a card for 8 Energy"
+press_cost = 1
+hover_text = "[center]#Interact# Record to blank cassette"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -6.55949e-05, 0.349496, -0.579584)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00542301, 0.653175, 0.254328)
 shape = SubResource("BoxShape3D_ikdwj")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D"]
@@ -41,7 +45,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578748, -0.587001)
 stream = SubResource("AudioStreamRandomizer_73g2w")
 bus = &"SFX"
 
-[node name="drafting_table" parent="." instance=ExtResource("4_kpujb")]
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0.385809, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76287, 0.437195)
+size = Vector3(2.1, 1.21, 0.66)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50532, 0.844074)
+size = Vector3(0.57, 0.365, 0.22)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07889, 0)
+size = Vector3(3.01, 0.275, 2.145)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17866, 0.464503, 0.722973)
+size = Vector3(0.355, 1, 0.37)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20564, 0.464503, 0.744042)
+size = Vector3(0.355, 1, 0.37)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21651, 0.464503, -0.703903)
+size = Vector3(0.355, 1, 0.37)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20425, 0.464503, -0.796043)
+size = Vector3(0.355, 1, 0.37)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.791895, -0.610657, 0, 0.610657, 0.791895, 0, 0, 0, 1, -0.894404, 2.86265, 0.47663)
+radius = 0.131
+height = 1.627
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.74906, 0.662502, 0, -0.662502, 0.74906, 0, 0, 0, 1, 1.08608, 2.86265, 0.47663)
+radius = 0.131
+height = 1.627
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00228882, 1.78986, 0.431061)
+shape = SubResource("BoxShape3D_21y4o")
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]

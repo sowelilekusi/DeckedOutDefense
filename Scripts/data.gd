@@ -23,7 +23,6 @@ static var weapon_recharge_delay: float = 0.5
 static var starting_cash: int = 10
 static var player_energy: int = 6
 static var wall_cost: int = 1
-static var printer_cost: int = 15
 static var rarity_weights: Dictionary = {
 	"COMMON" = 50,
 	"UNCOMMON" = 30,

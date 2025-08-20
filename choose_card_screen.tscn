@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcvjgl0s1wp8y"]
+
+[ext_resource type="Script" uid="uid://nc0df5y8tll7" path="res://choose_card_screen.gd" id="1_y4oar"]
+
+[node name="ChooseCardScreen" type="Control" node_paths=PackedStringArray("choice_buttons", "card_name_label", "card_description_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y4oar")
+choice_buttons = NodePath("PanelContainer/Content/HBoxContainer/ChoicesVBox")
+card_name_label = NodePath("PanelContainer/Content/HBoxContainer/VBoxContainer/NameLabel")
+card_description_label = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox/RichTextLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.03
+anchor_right = 0.97
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ScreenTitleLabel" type="Label" parent="PanelContainer/Content"]
+layout_mode = 2
+text = "LABEL_CHOOSE_CARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChoicesVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="NameLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "LABEL_CARD_NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TowerButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "BUTTON_VIEW_TOWER"
+
+[node name="WeaponButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "BUTTON_VIEW_WEAPON"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ConfirmButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BUTTON_FINALIZE_CARD_CHOICE"
+
+[node name="DescriptionVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DescriptionLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+text = "LABEL_CARD_DESCRIPTION"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"
+
+[node name="FeaturesLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+text = "LABEL_CARD_FEATURES"
+
+[node name="FeaturesVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TargettingLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+text = "LABEL_TARGET_LIST"
+
+[node name="TargetVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer/TowerButton" to="." method="choose_side" binds= [true]]
+[connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer/WeaponButton" to="." method="choose_side" binds= [false]]
+[connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
