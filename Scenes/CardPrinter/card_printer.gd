@@ -1,6 +1,7 @@
 class_name CardPrinter extends StaticBody3D
 
 @export var button_collider: CollisionShape3D
+@export var card_selection_menu: PackedScene
 
 #TODO: use faction enum
 var base_faction: int = 1
@@ -64,7 +65,20 @@ func randomize_cards(faction: Card.Faction) -> void:
 			pos_x += 1.25
 		item.pressed.connect(card_picked_up)
 		spawned_cards.append(item)
-		add_child(item)
+
+
+func find_cards(faction: Card.Faction) -> void:
+	var decided_rarity: int = generate_rarity()
+	var card_choices: Array[Card] = get_faction_cards(faction)
+	var cards: Array[Card] = []
+	for card: Card in card_choices:
+		if card.rarity == decided_rarity:
+			cards.append(card)
+	var menu: ChooseCardScreen = card_selection_menu.instantiate() as ChooseCardScreen
+	menu.add_cards(cards)
+	menu.card_chosen.connect(output_card)
+	reply_player.pause()
+	reply_player.hud.add_child(menu)
 
 
 func card_picked_up(card_item: CardItem) -> void:
@@ -77,12 +91,20 @@ func card_picked_up(card_item: CardItem) -> void:
 	$StaticBody3D/AudioStreamPlayer3D.play()
 
 
+func output_card(card: Card) -> void:
+	reply_player.add_card(card)
+	reply_player.unpause()
+	reply_player = null
+	button_collider.disabled = false
+	$StaticBody3D/AudioStreamPlayer3D.play()
+
+
 func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 	reply_player = reply
-	if reply.energy >= 8:
-		reply.energy -= 8
+	if reply.blank_cassettes >= 1:
+		reply.blank_cassettes -= 1
 	else:
 		return
 	button_collider.disabled = true
 	$StaticBody3D/AudioStreamPlayer3D.play()
-	randomize_cards(reply.hero_class.faction)
+	find_cards(reply.hero_class.faction)

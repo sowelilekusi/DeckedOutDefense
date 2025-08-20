@@ -77,6 +77,5 @@ offset_top = 100.0
 offset_right = 25.0
 offset_bottom = 150.0
 bbcode_enabled = true
-text = "[img=top,50]/home/lexi/godot/multiplayer_tower_defense/UI/Keybinding/XeluController&KeyPrompts/Keyboard & Mouse/Light/1_Key_Light.png[/img]"
 fit_content = true
 vertical_alignment = 2

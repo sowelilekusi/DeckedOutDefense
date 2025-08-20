@@ -5,6 +5,9 @@ class_name ShopStand extends Node3D
 @export var choice_buttons: Array[InteractButton]
 @export var choice_sprites: Array[Sprite3D]
 @export var item_card_scene: PackedScene
+@export var blank_button: InteractButton
+@export var blank_button_collider: CollisionShape3D
+@export var blank_models: Array[CSGBox3D]
 
 var price_dict: Dictionary = {
 	Data.Rarity.UNCOMMON : 25,
@@ -14,13 +17,18 @@ var price_dict: Dictionary = {
 }
 
 var cards_generated: int = 0
+var blanks_available: int = 5
+var blank_cost: int = 20
 
 
 func close() -> void:
 	for x: CollisionShape3D in choice_colliders:
 		x.disabled = true
 	for x: Sprite3D in choice_sprites:
-		x.set_visible(false)
+		x.visible = false
+	for x: CSGBox3D in blank_models:
+		x.visible = false
+	blank_button_collider.disabled = true
 
 
 func randomize_cards() -> void:
@@ -82,7 +90,11 @@ func randomize_cards() -> void:
 	for x: CollisionShape3D in choice_colliders:
 		x.set_deferred("disabled", false)
 	for x: Sprite3D in choice_sprites:
-		x.set_visible(true)
+		x.visible = true
+	for x: CSGBox3D in blank_models:
+		x.visible = true
+	blank_button_collider.disabled = false
+	blank_button.hover_text = "#Interact# Spend $" + str(blank_cost) + " to acquire a blank cassette"
 
 
 func retrieve_card(i: int, callback: Hero) -> void:
@@ -101,3 +113,13 @@ func retrieve_card(i: int, callback: Hero) -> void:
 	#add_child(item)
 	#button_collider.disabled = false
 	#button_box.position = Vector3(0,0,0)
+
+
+func retrieve_blank(i: int, callback: Hero) -> void:
+	if callback.currency >= blank_cost:
+		blank_models[5 - blanks_available].visible = false
+		blanks_available -= 1
+		callback.currency -= blank_cost
+		callback.blank_cassettes += 1
+		if blanks_available == 0:
+			blank_button_collider.disabled = true

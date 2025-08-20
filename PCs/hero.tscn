@@ -300,13 +300,13 @@ no_depth_test = true
 fixed_size = true
 texture = SubResource("ViewportTexture_m3ots")
 
-[node name="DrawPile" type="Node" parent="."]
-script = ExtResource("6_cf5ap")
-
 [node name="Hand" type="Node" parent="."]
 script = ExtResource("6_cf5ap")
 
 [node name="DiscardPile" type="Node" parent="."]
+script = ExtResource("6_cf5ap")
+
+[node name="DrawPile" type="Node" parent="."]
 script = ExtResource("6_cf5ap")
 
 [node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "head", "weapon_holder")]
@@ -319,7 +319,7 @@ max_look_up_angle = 80.0
 enable_jumping = true
 weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "primary_duration", "secondary_duration")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "primary_duration", "secondary_duration", "blank_cassette_label")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("EnemyTracker/WaveCount")
@@ -344,6 +344,7 @@ new_energy_bar = NodePath("EnergyBar")
 energy_label = NodePath("Currencies/HBoxContainer/EnergyLabel")
 primary_duration = NodePath("weapon_duration")
 secondary_duration = NodePath("weapon_duration2")
+blank_cassette_label = NodePath("Currencies/BlankCassetteLabel")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -775,11 +776,13 @@ texture = SubResource("ViewportTexture_w13oc")
 
 [node name="CurrencyCount" type="Label" parent="HUD/Currencies/CoinCounter"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "20"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Currencies"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Currencies/HBoxContainer"]
@@ -790,8 +793,14 @@ stretch_mode = 5
 
 [node name="EnergyLabel" type="Label" parent="HUD/Currencies/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "0"
-horizontal_alignment = 1
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BlankCassetteLabel" type="Label" parent="HUD/Currencies"]
+layout_mode = 2
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]

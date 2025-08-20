@@ -29,6 +29,7 @@ var chatbox: Chatbox
 var wave_limit: int = 20
 var shop_chance: float = 0.0
 var stats: RoundStats
+var card_gameplay: bool = false
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -125,6 +126,7 @@ func spawn_players() -> void:
 		player.game_manager = self
 		player.edit_tool.level = level
 		player.hud.map_anchor = level
+		player.blank_cassettes += 1
 		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = connected_player_profiles[peer_id]
@@ -242,8 +244,10 @@ func end_wave() -> void:
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
 		player.energy = Data.player_energy
-		player.iterate_duration()
-		player.draw_to_hand_size()
+		player.blank_cassettes += 1
+		if card_gameplay:
+			player.iterate_duration()
+			player.draw_to_hand_size()
 		player.unready_self()
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.visible = true
@@ -309,9 +313,10 @@ func start() -> void:
 	spawn_players()
 	for peer_id: int in connected_players_nodes:
 		connected_players_nodes[peer_id].currency = ceili(float(Data.starting_cash) / float(connected_players_nodes.size()))
-		connected_players_nodes[peer_id].energy = Data.player_energy
-		connected_players_nodes[peer_id].draw_pile.shuffle()
-		connected_players_nodes[peer_id].draw_to_hand_size()
+		if card_gameplay:
+			connected_players_nodes[peer_id].energy = Data.player_energy
+			connected_players_nodes[peer_id].draw_pile.shuffle()
+			connected_players_nodes[peer_id].draw_to_hand_size()
 	
 	#Relies on rng having been seeded
 	set_upcoming_wave()

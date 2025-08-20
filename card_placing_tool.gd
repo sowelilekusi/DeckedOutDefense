@@ -35,28 +35,34 @@ func _process(_delta: float) -> void:
 func interact() -> void:
 	if ray.is_colliding() and ray.get_collider() is TowerBase:
 		var tower_base: TowerBase = ray.get_collider() as TowerBase
-		put_card_in_tower_base(tower_base)
+		if hero.game_manager.card_gameplay:
+			if hero.hand.size > 0:
+				place_card(tower_base)
+		else:
+			if tower_base.has_card:
+				remove_card(tower_base)
+			elif hero.hand.size > 0:
+				place_card(tower_base)
 
 
-func put_card_in_tower_base(tower_base: TowerBase) -> void:
-	if hero.hand.size <= 0:
-		return
+func place_card(tower_base: TowerBase) -> void:
 	var card: Card = hero.selected_card
 	var energy_cost: int = card.cost
-	if hero.energy < energy_cost:
+	if hero.game_manager.card_gameplay and hero.energy < energy_cost:
 		return
-	if tower_base.has_card:
-		tower_base.remove_card()
+	remove_card(tower_base)
 	hero.hand.remove_at(hero.hand.contents.find(card))
 	hero.check_removal()
-	#hero.card_sprites[hero.hand_selected_index].queue_free()
-	#hero.card_sprites.remove_at(hero.hand_selected_index)
-	#if !hero.hand.contents.has(card):
-	#hero.decrement_selected()
 	tower_base.add_card(card, multiplayer.get_unique_id())
-	hero.discard_pile.add(card)
 	hero.place_card_audio.play()
-	hero.energy -= energy_cost
+	if hero.game_manager.card_gameplay:
+		hero.discard_pile.add(card)
+		hero.energy -= energy_cost
+
+
+func remove_card(tower_base: TowerBase) -> void:
+	if tower_base.has_card:
+		tower_base.remove_card()
 
 
 func spawn_tower_preview() -> void:
