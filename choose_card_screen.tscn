@@ -47,8 +47,8 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="NameLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 2
 layout_mode = 2
-text = "LABEL_CARD_NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -86,6 +86,7 @@ text = "LABEL_CARD_DESCRIPTION"
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
+bbcode_enabled = true
 text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"
 
 [node name="FeaturesLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]

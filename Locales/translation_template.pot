@@ -302,10 +302,6 @@ msgid "LABEL_CHOOSE_CARD"
 msgstr ""
 
 #: choose_card_screen.tscn
-msgid "LABEL_CARD_NAME"
-msgstr ""
-
-#: choose_card_screen.tscn
 msgid "BUTTON_VIEW_TOWER"
 msgstr ""
 
@@ -327,22 +323,6 @@ msgstr ""
 
 #: choose_card_screen.tscn
 msgid "LABEL_TARGET_LIST"
-msgstr ""
-
-#: Scenes/Menus/options_menu.tscn
-msgid "Gameplay"
-msgstr ""
-
-#: Scenes/Menus/options_menu.tscn
-msgid "Graphics"
-msgstr ""
-
-#: Scenes/Menus/options_menu.tscn
-msgid "Keybinds"
-msgstr ""
-
-#: Scenes/Menus/options_menu.tscn
-msgid "Audio"
 msgstr ""
 
 #: Classes/Engineer/class.tres
@@ -558,5 +538,16 @@ msgid "ENEMY_DOG"
 msgstr ""
 
 #: Scenes/CardPrinter/card_printer.gd
-msgid "BUTTON_RADIO_INTERACT"
+msgid "PROMPT_RADIO_INTERACT"
+msgstr ""
+
+#: Scenes/ShopStand/shop_stand.gd
+msgid "PROMPT_BUY_BLANK"
+msgstr ""
+
+msgid "PROMPT_BUY_CARD"
+msgstr ""
+
+#: UI/enemybox.gd
+msgid "LABEL_WAVE"
 msgstr ""

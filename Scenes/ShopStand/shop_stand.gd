@@ -19,6 +19,8 @@ var price_dict: Dictionary = {
 var cards_generated: int = 0
 var blanks_available: int = 5
 var blank_cost: int = 20
+var buy_blank_prompt: String = "PROMPT_BUY_BLANK"
+var buy_card_prompt: String = "PROMPT_BUY_CARD"
 
 
 func close() -> void:
@@ -56,7 +58,7 @@ func randomize_cards() -> void:
 			cards[x].set_card(chosen_card)
 			cards[x].view_tower()
 			choice_buttons[x].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x].hover_text = "#Interact# Spend $" + str(choice_buttons[x].press_cost) + " to acquire " + chosen_card.display_name
+			choice_buttons[x].hover_text = tr(buy_card_prompt).format({Card_Name = tr(chosen_card.display_name), Card_Cost = str(price_dict[chosen_card.rarity])})
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 2:
@@ -69,7 +71,7 @@ func randomize_cards() -> void:
 			cards[x+3].set_card(chosen_card)
 			cards[x+3].view_tower()
 			choice_buttons[x+3].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x+3].hover_text = "#Interact# Spend $" + str(choice_buttons[x+3].press_cost) + " to acquire " + chosen_card.display_name
+			choice_buttons[x+3].hover_text = tr(buy_card_prompt).format({Card_Name = tr(chosen_card.display_name), Card_Cost = str(price_dict[chosen_card.rarity])})
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: int in 1:
@@ -84,7 +86,7 @@ func randomize_cards() -> void:
 			cards[x+5].set_card(chosen_card)
 			cards[x+5].view_tower()
 			choice_buttons[x+5].press_cost = price_dict[chosen_card.rarity]
-			choice_buttons[x+5].hover_text = "#Interact# Spend $" + str(choice_buttons[x+5].press_cost) + " to acquire " + chosen_card.display_name
+			choice_buttons[x+5].hover_text = tr(buy_card_prompt).format({Card_Name = tr(chosen_card.display_name), Card_Cost = str(price_dict[chosen_card.rarity])})
 			if chosen_card.faction == Card.Faction.MAGE:
 				Data.save_data.saw_mage_card_in_shop()
 	for x: CollisionShape3D in choice_colliders:
@@ -93,29 +95,24 @@ func randomize_cards() -> void:
 		x.visible = true
 	for x: CSGBox3D in blank_models:
 		x.visible = true
-	blank_button_collider.disabled = false
-	blank_button.hover_text = "#Interact# Spend $" + str(blank_cost) + " to acquire a blank cassette"
+	blank_button_collider.set_deferred("disabled", false)
+	blank_button.hover_text = tr(buy_blank_prompt).format({Blank_Cost = str(blank_cost)})
 
 
 func retrieve_card(i: int, callback: Hero) -> void:
-	#close()
-	choice_colliders[i].disabled = true
-	choice_sprites[i].set_visible(false)
-	var card: Card = cards[i].stats
-	if card.faction == Card.Faction.ENGINEER:
-		Data.save_data.bought_engineer_card()
-	if card.faction == Card.Faction.MAGE:
-		Data.save_data.bought_mage_card()
-	callback.add_card(card)
-	#var item: ItemCard = item_card_scene.instantiate() as ItemCard
-	#item.card = card
-	#item.position = Vector3(2.128, 0, 0)
-	#add_child(item)
-	#button_collider.disabled = false
-	#button_box.position = Vector3(0,0,0)
+	if callback.currency >= price_dict[cards[i].stats.rarity]:
+		choice_colliders[i].disabled = true
+		choice_sprites[i].set_visible(false)
+		var card: Card = cards[i].stats
+		if card.faction == Card.Faction.ENGINEER:
+			Data.save_data.bought_engineer_card()
+		if card.faction == Card.Faction.MAGE:
+			Data.save_data.bought_mage_card()
+		callback.currency -= price_dict[cards[i].stats.rarity]
+		callback.add_card(card)
 
 
-func retrieve_blank(i: int, callback: Hero) -> void:
+func retrieve_blank(_i: int, callback: Hero) -> void:
 	if callback.currency >= blank_cost:
 		blank_models[5 - blanks_available].visible = false
 		blanks_available -= 1

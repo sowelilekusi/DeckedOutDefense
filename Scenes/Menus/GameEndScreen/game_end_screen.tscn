@@ -22,10 +22,10 @@ grow_vertical = 2
 script = ExtResource("1_oa7nq")
 box = ExtResource("2_xm8em")
 outcome_label = NodePath("VBoxContainer/Labels/OutcomeLabel")
-winrate_label = NodePath("VBoxContainer/Labels/WinRateLabel")
-total_games_label = NodePath("VBoxContainer/Labels/TotalGamesLabel")
-total_wins_label = NodePath("VBoxContainer/Labels/TotalWinsLabel")
-total_losses_label = NodePath("VBoxContainer/Labels/TotalLossesLabel")
+winrate_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer/WinRateLabel2")
+total_games_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer2/WinRateLabel3")
+total_wins_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer3/WinRateLabel4")
+total_losses_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer4/WinRateLabel5")
 undefeated_enemies = NodePath("VBoxContainer/UndefeatedEnemies")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -42,28 +42,76 @@ text = "LABEL_WIN_MESSAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Labels"]
 layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+layout_mode = 2
+
+[node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "LABEL_WINRATE"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels"]
+[node name="WinRateLabel2" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 2
 layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "LABEL_GAMES"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels"]
+[node name="WinRateLabel3" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 2
 layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "LABEL_WINS"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels"]
+[node name="WinRateLabel4" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 2
 layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "LABEL_LOSSES"
-horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinRateLabel5" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4"]
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="UndefeatedEnemies" type="VBoxContainer" parent="VBoxContainer"]

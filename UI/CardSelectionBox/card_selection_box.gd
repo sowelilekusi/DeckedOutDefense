@@ -14,8 +14,8 @@ func set_amount(num: int) -> void:
 	amount_label.text = "x" + str(num)
 
 
-func set_card(card: Card) -> void:
-	self.card = card
+func set_card(new_card: Card) -> void:
+	card = new_card
 	icon.texture = card.icon
 	cost_label.text = str(card.cost)
 	for i: int in tags.get_child_count():

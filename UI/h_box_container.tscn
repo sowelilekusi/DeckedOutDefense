@@ -7,4 +7,4 @@ script = ExtResource("1_lcu0c")
 
 [node name="WaveLabel" type="Label" parent="."]
 layout_mode = 2
-text = "wave 1: "
+text = "LABEL_WAVE"

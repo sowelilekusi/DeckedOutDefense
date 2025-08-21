@@ -22,7 +22,7 @@ var gamemode: GameMode = null
 var level: Level
 var enemies: int = 0
 var objective_health: int = 120
-var wave: int = 0
+var wave: int
 var pot: float
 var UILayer: CanvasLayer
 var chatbox: Chatbox
@@ -161,7 +161,7 @@ func ready_player(player_ready_true: bool) -> void:
 
 func spawn_enemy_wave() -> void:
 	level.shop.close()
-	wave += 1
+	#wave += 1
 	level.disable_all_tower_frames()
 	level.flow_field.calculate()
 	for spawn: EnemySpawner in level.enemy_spawns:
@@ -174,10 +174,10 @@ func spawn_enemy_wave() -> void:
 
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
-		var spawn_power: int = WaveManager.calculate_spawn_power(wave + 1, connected_players_nodes.size())
+		var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
 		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
 		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns)
-		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave + 1, connected_players_nodes.size()))
+		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 
 
@@ -238,12 +238,14 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 
 
 func end_wave() -> void:
+	wave += 1
 	for peer_id: int in connected_players_nodes:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
 		player.energy = Data.player_energy
-		player.blank_cassettes += 1
+		if wave % 2 == 0:
+			player.blank_cassettes += 1
 		if card_gameplay:
 			player.iterate_duration()
 			player.draw_to_hand_size()
@@ -291,7 +293,7 @@ func setup() -> void:
 	game_active = false
 	enemies = 0
 	objective_health = 120
-	wave = 0
+	wave = 1
 	stats = RoundStats.new()
 	game_setup.emit()
 

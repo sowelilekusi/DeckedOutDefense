@@ -145,9 +145,10 @@ func _on_changelog_button_pressed() -> void:
 
 
 func load_stats(stats: SaveData) -> void:
-	$ProfileManager/VBoxContainer/Stats/Wins/Label2.text = str(stats.wins)
-	$ProfileManager/VBoxContainer/Stats/Losses/Label2.text = str(stats.losses)
-	$ProfileManager/VBoxContainer/Stats/Winrate/Label2.text = str(stats.winrate) + "%"
+	$ProfileManager/VBoxContainer/Stats/Games/Label2.text = str(Data.save_data.wins + Data.save_data.losses)
+	$ProfileManager/VBoxContainer/Stats/Wins/Label2.text = str(Data.save_data.wins)
+	$ProfileManager/VBoxContainer/Stats/Losses/Label2.text = str(Data.save_data.losses)
+	$ProfileManager/VBoxContainer/Stats/Winrate/Label2.text = str(Data.save_data.winrate) + "%"
 	$ProfileManager/VBoxContainer/Stats/EngineerCardsBought/Label2.text = str(stats.engineer_cards_bought)
 	$ProfileManager/VBoxContainer/Stats/MageCardsBought/Label2.text = str(stats.mage_cards_bought)
 

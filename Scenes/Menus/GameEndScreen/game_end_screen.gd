@@ -13,10 +13,10 @@ var game_manager: GameManager
 
 
 func _ready() -> void:
-	winrate_label.text = "Your 20-game winrate is now: " + str(Data.save_data.winrate) + "%!"
-	total_games_label.text = "Total games: " + str(Data.save_data.wins + Data.save_data.losses)
-	total_wins_label.text = "Total wins: " + str(Data.save_data.wins)
-	total_losses_label.text = "Total losses: " + str(Data.save_data.losses)
+	winrate_label.text = str(Data.save_data.winrate) + "%"
+	total_games_label.text = str(Data.save_data.wins + Data.save_data.losses)
+	total_wins_label.text = str(Data.save_data.wins)
+	total_losses_label.text = str(Data.save_data.losses)
 	for wave_key: int in game_manager.stats.enemies_undefeated:
 		var spawned_box: EnemyBox = box.instantiate() as EnemyBox
 		undefeated_enemies.add_child(spawned_box)

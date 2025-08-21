@@ -25,7 +25,7 @@ value = 20.0
 
 [resource]
 script = ExtResource("2_k26ta")
-target_type = 0
+target_type = Array[int]([])
 energy_type = 2
 attributes = Array[ExtResource("1_rbqj6")]([SubResource("Resource_bcrtt"), SubResource("Resource_llper"), SubResource("Resource_7i2dt"), SubResource("Resource_8cirl")])
 text = "DESC_WEAPON_BASIC_GUN"

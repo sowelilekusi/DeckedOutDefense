@@ -20,7 +20,7 @@ value = 50.0
 
 [resource]
 script = ExtResource("2_5j62t")
-target_type = 3
+target_type = Array[int]([1, 2])
 energy_type = 0
 attributes = Array[ExtResource("1_5wjgg")]([SubResource("Resource_1ct8q"), SubResource("Resource_erx05"), SubResource("Resource_vfpmb")])
 text = "DESC_TOWER_SNIPER"

@@ -20,7 +20,7 @@ value = 2.0
 
 [resource]
 script = ExtResource("2_226sm")
-target_type = 1
+target_type = Array[int]([1])
 energy_type = 0
 attributes = Array[ExtResource("1_ytycf")]([SubResource("Resource_gbocu"), SubResource("Resource_6a2im"), SubResource("Resource_7npe0")])
 text = "DESC_TOWER_GLUE"

@@ -14,7 +14,7 @@ var keymap_data: KeymapData
 const DEFAULT_SERVER_PORT: int = 58008
 enum DamageIndicationType {PLAYER = 0, TOWER = 1, OTHER_PLAYER = 2, STATUS = 3}
 enum EnergyType {UNDEFINED = 0, DISCRETE = 1, CONTINUOUS = 2}
-enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2, BOTH = 3}
+enum TargetType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
 enum CardTags {DAMAGE = 0, UTILITY = 1, TARGETS_FLYING = 2}

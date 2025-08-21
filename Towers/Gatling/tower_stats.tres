@@ -30,7 +30,7 @@ value = 3.0
 
 [resource]
 script = ExtResource("2_ky46y")
-target_type = 1
+target_type = Array[int]([1])
 energy_type = 0
 attributes = Array[ExtResource("1_w20qq")]([SubResource("Resource_oayfg"), SubResource("Resource_fekle"), SubResource("Resource_ud8xi"), SubResource("Resource_cvkxf"), SubResource("Resource_pivwn")])
 text = "DESC_TOWER_ACCEL"

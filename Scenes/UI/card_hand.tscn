@@ -4,14 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dlqnhs8or4ik2" path="res://Assets/Textures/cardhand.png" id="1_d5oo3"]
 [ext_resource type="Texture2D" uid="uid://buf8t5gc7iw3a" path="res://Assets/TextureAtlases/rarityborders.tres" id="3_pclfx"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "description", "target_label", "energy_cost", "duration")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("rarity_sprite", "title_text", "description", "target_label", "energy_cost")]
 script = ExtResource("1_2cfmh")
 rarity_sprite = NodePath("Sprite2D2")
 title_text = NodePath("Title")
 description = NodePath("Description")
 target_label = NodePath("Title2")
 energy_cost = NodePath("EnergyCost")
-duration = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

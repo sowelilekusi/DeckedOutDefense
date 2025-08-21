@@ -49,7 +49,7 @@ func find_multiple_targets() -> Array[EnemyController]:
 			continue
 		if tower.global_position.distance_to(enemy.global_position) > tower.target_range:
 			continue
-		if !(enemy.stats.target_type & tower.stats.target_type):
+		if !tower.stats.target_type.has(enemy.stats.target_type):
 			continue
 		#if multiple_targets_cache.has(enemy):
 		#	continue

@@ -82,9 +82,9 @@ func set_energy_visible(value: bool) -> void:
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
-	wave_start_label.text = tr(parse_action_tag("PROMPT_START_WAVE"))
-	place_text.text = parse_action_tag("[center]#Primary Fire#")
-	swap_text.text = parse_action_tag("[center]#Secondary Fire#")
+	wave_start_label.text = parse_action_tag(tr("PROMPT_START_WAVE"))
+	place_text.text = parse_action_tag("[center]%Primary Fire%")
+	swap_text.text = parse_action_tag("[center]%Secondary Fire%")
 
 
 func grow_wave_start_label() -> void:
@@ -215,7 +215,7 @@ func pickup(card: Card) -> void:
 
 
 func parse_action_tag(text: String) -> String:
-	var string_array: PackedStringArray = text.split("#")
+	var string_array: PackedStringArray = text.split("%")
 	var output: Array[String] = []
 	if string_array.size() > 1:
 		for i: int in InputMap.action_get_events(string_array[1]).size():

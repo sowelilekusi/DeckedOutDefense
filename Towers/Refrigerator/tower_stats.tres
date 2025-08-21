@@ -20,7 +20,7 @@ value = 3.0
 
 [resource]
 script = ExtResource("2_w4q6a")
-target_type = 1
+target_type = Array[int]([1])
 energy_type = 0
 attributes = Array[ExtResource("1_wa26m")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
 text = "DESC_TOWER_FREEZER"

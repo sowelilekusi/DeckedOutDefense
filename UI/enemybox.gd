@@ -3,7 +3,7 @@ extends HBoxContainer
 
 
 func set_wave(wave: int) -> void:
-	$WaveLabel.text = "Wave " + str(wave) + ": "
+	$WaveLabel.text = tr("LABEL_WAVE").format({Wave_Number = str(wave)})
 
 
 func add_enemy_tag(enemy: Enemy, num: int) -> void:

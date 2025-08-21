@@ -123,12 +123,13 @@ msgstr "Lock all content"
 msgid "BUTTON_ACHIEVEMENTS"
 msgstr "Achievements"
 
-#: Scenes/Menus/MainMenu/main_menu.tscn
+#: Scenes/Menus/MainMenu/main_menu.tscn Scenes/Menus/options_menu.tscn
 msgid "BUTTON_CANCEL"
 msgstr "Cancel"
 
 #: Scenes/Menus/MainMenu/main_menu.tscn
 #: Scenes/Menus/CharacterSelect/character_select.tscn
+#: Scenes/Menus/options_menu.tscn
 msgid "BUTTON_CONFIRM"
 msgstr "Confirm"
 
@@ -176,14 +177,6 @@ msgstr "Total Games:"
 #: Scenes/Menus/GameEndScreen/game_end_screen.tscn
 msgid "BUTTON_RESTART"
 msgstr "Play Again"
-
-#: Scenes/Menus/CharacterSelect/character_select.tscn
-msgid "character name"
-msgstr ""
-
-#: Scenes/Menus/CharacterSelect/character_select.tscn
-msgid "------------------------"
-msgstr ""
 
 #: Scenes/Menus/CharacterSelect/character_select.tscn
 msgid "BUTTON_PREVIOUS"
@@ -297,18 +290,305 @@ msgstr "Borderless Windowed"
 msgid "OPTION_FULLSCREEN"
 msgstr "Fullscreen"
 
-#: Scenes/Menus/keybind_options.tscn
-msgid "Action"
-msgstr ""
-
-#: Scenes/Menus/keybind_options.tscn
-msgid "Primary Bind"
-msgstr ""
-
-#: Scenes/Menus/keybind_options.tscn
-msgid "Secondary Bind"
-msgstr ""
-
 #: Scenes/UI/keybind_popup.tscn
 msgid "LABEL_BIND_KEY"
 msgstr "Press a key to bind action"
+
+#: choose_card_screen.tscn
+msgid "LABEL_CHOOSE_CARD"
+msgstr "Currently Playing..."
+
+#: choose_card_screen.tscn
+msgid "BUTTON_VIEW_TOWER"
+msgstr "Side A"
+
+#: choose_card_screen.tscn
+msgid "BUTTON_VIEW_WEAPON"
+msgstr "Side B"
+
+#: choose_card_screen.tscn
+msgid "BUTTON_FINALIZE_CARD_CHOICE"
+msgstr "Record"
+
+#: choose_card_screen.tscn
+msgid "LABEL_CARD_DESCRIPTION"
+msgstr "Description"
+
+#: choose_card_screen.tscn
+msgid "LABEL_CARD_FEATURES"
+msgstr "Features"
+
+#: choose_card_screen.tscn
+msgid "LABEL_TARGET_LIST"
+msgstr "Can Target"
+
+#: Classes/Engineer/class.tres
+msgid "CLASS_NAME_ENGINEER"
+msgstr "Engineer"
+
+#: Classes/Mage/class.tres
+msgid "CLASS_NAME_MAGE"
+msgstr "Mage"
+
+#: Cards/ascension.tres
+msgid "CARD_NAME_PLATFORM_DASH"
+msgstr "Ascension"
+
+#: Towers/Ascension/tower_stats.tres
+msgid "DESC_TOWER_PLATFORM_DASH"
+msgstr "Grants access to a stable high canopy"
+
+#: Weapons/Ascension/weapon_stats.tres
+msgid "DESC_WEAPON_PLATFORM_DASH"
+msgstr "Send yourself flying"
+
+#: Cards/assault.tres
+msgid "CARD_NAME_BASIC_GUN"
+msgstr "Pipe Rifle"
+
+#: Towers/Assault/tower_stats.tres
+msgid "DESC_TOWER_BASIC_GUN"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage% damage at a range "
+"of %Range%m"
+
+#: Weapons/Assault/weapon_stats.tres
+msgid "DESC_WEAPON_BASIC_GUN"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage% damage at a range "
+"of %Range%m"
+
+#: Cards/blowdart.tres
+msgid "CARD_NAME_POISON"
+msgstr "Blowdart"
+
+#: Towers/Blowdart/tower_stats.tres
+msgid "DESC_TOWER_POISON"
+msgstr ""
+"Fires every %Fire Delay%s, applying one stack of Poison at a range of "
+"%Range%m"
+
+#: Weapon/Blowdart/weapon_stats.tres
+msgid "DESC_WEAPON_POISON"
+msgstr ""
+"Fires every %Fire Delay%s, applying one stack of Poison at a range of "
+"%Range%m"
+
+#: Cards/bomb_launcher.tres
+msgid "CARD_NAME_BOMB"
+msgstr "Bomb Launcher"
+
+#: Towers/BombLauncher/tower_stats.tres
+msgid "DESC_TOWER_BOMB"
+msgstr "Launch a bomb that deals %Damage% damage every %Fire Delay% seconds"
+
+#: Weapon/BombLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_BOMB"
+msgstr "Launch a bomb that deals %Damage% damage every %Fire Delay% seconds"
+
+#: Cards/fireball.tres
+msgid "CARD_NAME_FIREBALL"
+msgstr "Fireball"
+
+#: Towers/Fireball/tower_stats.tres
+msgid "DESC_TOWER_FIREBALL"
+msgstr ""
+"Conjures a fireball every %Fire Delay%s that deals %Damage% and apply "
+"Burning to enemies caught in its blast"
+
+#: Weapon/Fireball/weapon_stats.tres
+msgid "DESC_WEAPON_FIREBALL"
+msgstr ""
+"Conjure a fireball every %Fire Delay%s that can be thrown to deal %Damage% "
+"and apply Burning to enemies caught in its blast"
+
+#: Cards/flamethrower.tres
+msgid "CARD_NAME_FLAMETHROWER"
+msgstr "Flamethrower"
+
+#: Towers/Flamethrower/tower_stats.tres
+msgid "DESC_TOWER_FLAMETHROWER"
+msgstr "Applies burning to enemies in front of it"
+
+#: Weapons/Flamethrower/weapon_stats.tres
+msgid "DESC_WEAPON_FLAMETHROWER"
+msgstr "Hold to apply Burning to enemies in front of you"
+
+#: Cards/gatling.tres
+msgid "CARD_NAME_ACCEL"
+msgstr "Gatling"
+
+#: Towers/Gatling/tower_stats.tres
+msgid "DESC_TOWER_ACCEL"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage% damage at a range "
+"of %Range%m\n"
+"\n"
+"While attacking the same target, gradually accelerates to %Speed "
+"Multiplier%x the fire rate over %Speed Time%s"
+
+#: Weapons/Gatling/weapon_stats.tres
+msgid "DESC_WEAPON_ACCEL"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage% damage at a range "
+"of %Range%m\n"
+"\n"
+"While held, gradually accelerates to %Speed Multiplier%x the fire rate over "
+"%Speed Time%s"
+
+#: Cards/glue_launcher.tres
+msgid "CARD_NAME_GLUE"
+msgstr "Glue Launcher"
+
+#: Towers/GlueLauncher/tower_stats.tres
+msgid "DESC_TOWER_GLUE"
+msgstr ""
+"Fires every %Fire Delay%s, making the target Sticky at a range of %Range%m"
+
+#: Weapons/GlueLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_GLUE"
+msgstr ""
+"Fires every %Fire Delay%s, making the target Sticky at a range of %Range%m"
+
+#: Cards/icicle.tres
+msgid "CARD_NAME_ICE_SPIKE"
+msgstr "Icicle"
+
+#: Towers/Icicle/tower_stats.tres
+msgid "DESC_TOWER_ICE_SPIKE"
+msgstr ""
+"Conjures an icicle every %Fire Delay%s that deals %Damage% and applies Cold "
+"to enemies caught in its blast"
+
+#: Weapons/Icicle/weapon_stats.tres
+msgid "DESC_WEAPON_ICE_SPIKE"
+msgstr ""
+"Conjure an icicle every %Fire Delay%s that can be thrown to deal %Damage% "
+"and apply Cold to enemies caught in its blast"
+
+#: Cards/overclock.tres
+msgid "CARD_NAME_SPEED_INCREASER"
+msgstr "Overclock"
+
+#: Towers/Overclock/tower_stats.tres
+msgid "DESC_TOWER_SPEED_INCREASER"
+msgstr "Speeds up the fire rate of towers within %Range%m by 10%"
+
+#: Weapons/Overclock/weapon_stats.tres
+msgid "DESC_WEAPON_SPEED_INCREASER"
+msgstr ""
+"Fire a machine-energizing pellet every %Fire Delay% seconds that speeds up "
+"tower fire rate by 35% for %EffectDuration% seconds at a range of %Range%m"
+
+#: Cards/reactor.tres
+msgid "CARD_NAME_RADIATION"
+msgstr "Reactor"
+
+#: Towers/Reactor/tower_stats.tres
+msgid "DESC_TOWER_RADIATION"
+msgstr ""
+"Slowly applies Radioactive to enemies around itself at a range of %Range%m"
+
+#: Weapons/Reactor/weapon_stats.tres
+msgid "DESC_WEAPON_RADIATION"
+msgstr "Hold to apply Radioactive to enemies in front of you"
+
+#: Cards/refrigerator.tres
+msgid "CARD_NAME_FREEZER"
+msgstr "Refrigerator"
+
+#: Towers/Refrigerator/tower_stats.tres
+msgid "DESC_TOWER_FREEZER"
+msgstr "Applies Cold to enemies around itself"
+
+#: Weapons/Refrigerator/weapon_stats.tres
+msgid "DESC_WEAPON_FREEZER"
+msgstr "Hold to apply Cold to enemies in front of you"
+
+#: Cards/rocket_launcher.tres
+msgid "CARD_NAME_ROCKET"
+msgstr "Fireworks"
+
+#: Towers/RocketLauncher/tower_stats.tres
+msgid "DESC_TOWER_ROCKET"
+msgstr ""
+"Every %Fire Delay%s, fires a homing rocket at up to %Target Limit% flying "
+"enemies up to %Range%m away that deal %Damage% damage"
+
+#: Weapons/RocketLauncher/weapon_stats.tres
+msgid "DESC_WEAPON_ROCKET"
+msgstr ""
+"Every %Fire Delay%s, hold to target up to %Target Limit% enemies and release "
+"to fire homing rockets that deal %Damage% damage"
+
+#: Cards/sniper.tres
+msgid "CARD_NAME_SNIPER"
+msgstr "Sniper"
+
+#: Towers/Sniper/tower_stats.tres
+msgid "DESC_TOWER_SNIPER"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage%damage at a range of "
+"%Range%m"
+
+#: Weapons/Sniper/weapon_stats.tres
+msgid "DESC_WEAPON_SNIPER"
+msgstr ""
+"Fires a shot every %Fire Delay% seconds dealing %Damage% damage at a range "
+"of %Range%m"
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_GAMEPLAY"
+msgstr "Gameplay"
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_GRAPHICS"
+msgstr "Graphics"
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_KEYBINDS"
+msgstr "Keybinds"
+
+#: Scripts/options_menu.gd
+msgid "OPTIONS_TAB_AUDIO"
+msgstr "Audio"
+
+#: PCs/hud.gd
+msgid "PROMPT_START_WAVE"
+msgstr "Press %Ready% to start wave"
+
+#: Enemies/BabyEyeDog/baby_eye_dog.tres
+msgid "ENEMY_FAST_BABY"
+msgstr "Baby Eye Dog"
+
+#: Enemies/Crystalisk/crystalisk.tres
+msgid "ENEMY_FLYING_CRYSTAL"
+msgstr "Crystalisk"
+
+#: Enemies/ElderEyeDog/elder_eye_dog.tres
+msgid "ENEMY_HEAVY_WALKER"
+msgstr "Heavy Eye Dog"
+
+#: Enemies/EyeDog/eye_dog.tres
+msgid "ENEMY_DOG"
+msgstr "Eye Dog"
+
+#: Scenes/CardPrinter/card_printer.gd
+msgid "PROMPT_RADIO_INTERACT"
+msgstr "%Interact% Insert blank cassette"
+
+#: Scenes/ShopStand/shop_stand.gd
+msgid "PROMPT_BUY_BLANK"
+msgstr "%Interact% Buy blank cassette for ${Blank_Cost}"
+
+msgid "PROMPT_BUY_CARD"
+msgstr "%Interact% Buy {Card_Name} for ${Card_Cost}"
+
+#: UI/enemybox.gd
+msgid "LABEL_WAVE"
+msgstr "Wave {Wave_Number}:"
+
+#, fuzzy
+#~| msgid "LABEL_DISPLAY_NAME"
+#~ msgid "LABEL_CARD_NAME"
+#~ msgstr "Display Name:"

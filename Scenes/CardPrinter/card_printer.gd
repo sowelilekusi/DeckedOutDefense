@@ -12,7 +12,7 @@ var spawned_cards: Array[CardItem] = []
 
 
 func _ready() -> void:
-	button.hover_text = tr("BUTTON_RADIO_INTERACT")
+	button.hover_text = tr("PROMPT_RADIO_INTERACT")
 
 
 func get_faction_cards(faction: Card.Faction) -> Array[Card]:
@@ -76,9 +76,20 @@ func find_cards(faction: Card.Faction) -> void:
 	var decided_rarity: int = generate_rarity()
 	var card_choices: Array[Card] = get_faction_cards(faction)
 	var cards: Array[Card] = []
-	for card: Card in card_choices:
-		if card.rarity == decided_rarity:
-			cards.append(card)
+	var valid_cards_found: bool = false
+	var testing_rarity: int = decided_rarity
+	while !valid_cards_found:
+		for card: Card in card_choices:
+			if card.rarity == testing_rarity:
+				cards.append(card)
+		if cards.size() != 0:
+			valid_cards_found = true
+		testing_rarity -= 1
+		if testing_rarity < 0:
+			testing_rarity = 4
+		if testing_rarity == decided_rarity:
+			print("This character doesn't have any cards!")
+			return
 	var menu: ChooseCardScreen = card_selection_menu.instantiate() as ChooseCardScreen
 	menu.add_cards(cards)
 	menu.card_chosen.connect(output_card)
