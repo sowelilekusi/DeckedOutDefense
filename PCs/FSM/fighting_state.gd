@@ -45,8 +45,6 @@ func exit_state() -> void:
 	#hero.hud.secondary_duration.visible = true
 	if hero.game_manager.card_gameplay:
 		hero.hud.energy_label.visible = true
-	var tween: Tween = create_tween()
-	tween.tween_property(hero.right_hand, "position", Vector3(0.17, -0.085, -0.195), 0.5)
 
 
 func process_state(_delta: float) -> void:

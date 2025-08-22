@@ -2,24 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deh5dk1wn7n46"
-path="res://.godot/imported/bridge_level_tex.png-285a08b52860b75771157e135c44ca0b.ctex"
+uid="uid://duleoj3uq56bx"
+path.s3tc="res://.godot/imported/gauntlet_gauntlet_tex.png-cae4f050d72bb27c1a64aa459990d0ca.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
-"md5": "ba963c984781211fb82f1802a965d534"
+"md5": "b5dacbb73c4af204c185f2e11311fec6"
 }
 
 [deps]
 
-source_file="res://Worlds/GreenPlanet/Levels/Bridge/bridge_level_tex.png"
-dest_files=["res://.godot/imported/bridge_level_tex.png-285a08b52860b75771157e135c44ca0b.ctex"]
+source_file="res://gauntlet_gauntlet_tex.png"
+dest_files=["res://.godot/imported/gauntlet_gauntlet_tex.png-cae4f050d72bb27c1a64aa459990d0ca.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=true
+compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

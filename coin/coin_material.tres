@@ -1,10 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://5mnnhn5p1tll"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5mnnhn5p1tll"]
 
 [ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_38tga"]
-[ext_resource type="Texture2D" uid="uid://ctjkfe23t6crn" path="res://coin/coin.png" id="2_kttjc"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_38tga")
-shader_parameter/albedo = ExtResource("2_kttjc")
-shader_parameter/alpha_scissor = 0.5

@@ -90,7 +90,6 @@ func _process(delta: float) -> void:
 
 func hfov_to_vfov(hfov_degrees: float) -> void:
 	return rad_to_deg(2.0 * atan(tan(deg_to_rad(hfov_degrees) / 2.0) * 9.0 / 16.0))
-	46.8264
 
 
 func minecraft_translation(amplitude: float) -> Vector3:

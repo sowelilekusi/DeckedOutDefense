@@ -29,4 +29,4 @@ max_targets = 3
 spawn_scene = ExtResource("4_vxjrf")
 
 [node name="box_o_rockets" parent="." index="7" instance=ExtResource("5_5dmv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.907264, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.467609, 0)

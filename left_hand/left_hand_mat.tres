@@ -1,11 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cmrs1ubeqtl71"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cmrs1ubeqtl71"]
 
 [ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_bpyoj"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6krsv"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_bpyoj")
-shader_parameter/albedo = SubResource("PlaceholderTexture2D_6krsv")
-shader_parameter/alpha_scissor = 0.5

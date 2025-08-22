@@ -1,10 +1,12 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bo82o88d7vo1x"]
 
-[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_crvh7"]
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_1d6vt"]
 [ext_resource type="Texture2D" uid="uid://br44qpy5v6ymr" path="res://Enemies/EyeDog/eye_dog_tex.png" id="2_1d6vt"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_crvh7")
+shader = ExtResource("1_1d6vt")
 shader_parameter/albedo = ExtResource("2_1d6vt")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
 shader_parameter/alpha_scissor = 0.5
