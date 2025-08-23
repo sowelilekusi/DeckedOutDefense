@@ -1,26 +1,17 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://bdmsiw45xxhiv"]
+[gd_resource type="Resource" script_class="CardText" load_steps=4 format=3 uid="uid://bdmsiw45xxhiv"]
 
-[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_qgv2j"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_7wr4x"]
-
-[sub_resource type="Resource" id="Resource_bukji"]
-script = ExtResource("1_qgv2j")
-key = "Fire Delay"
-value = 0.45
-
-[sub_resource type="Resource" id="Resource_2e75s"]
-script = ExtResource("1_qgv2j")
-key = "Damage"
-value = 2.0
-
-[sub_resource type="Resource" id="Resource_1vpnf"]
-script = ExtResource("1_qgv2j")
-key = "Range"
-value = 10.0
+[ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="2_74txn"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="3_wqog5"]
 
 [resource]
 script = ExtResource("2_7wr4x")
 target_type = Array[int]([1])
 energy_type = 0
-attributes = Array[ExtResource("1_qgv2j")]([SubResource("Resource_bukji"), SubResource("Resource_2e75s"), SubResource("Resource_1vpnf")])
+attributes = Dictionary[String, float]({
+"Damage": 2.0,
+"Fire Delay": 0.5,
+"Range": 10.0
+})
+features = Array[ExtResource("2_74txn")]([ExtResource("3_wqog5")])
 text = "DESC_TOWER_BASIC_GUN"

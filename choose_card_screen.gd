@@ -3,8 +3,8 @@ class_name ChooseCardScreen extends Control
 signal card_chosen(card: Card)
 
 @export var choice_buttons: VBoxContainer
+@export var card_desc: CardDescriptionUI
 @export var card_name_label: Label
-@export var card_description_label: RichTextLabel
 
 var choices: Array[Card] = []
 var chosen_card: Card = null
@@ -23,14 +23,6 @@ func add_cards(cards: Array[Card]) -> void:
 	choose_card(0)
 
 
-func process_card_text(card_text: CardText) -> String:
-	var processed_string: String = tr(card_text.text)
-	for stat: StatAttribute in card_text.attributes:
-		processed_string = processed_string.replace(stat.key, "[color=red]" + str(stat.value) + "[color=black]")
-	processed_string = processed_string.replace("%", "")
-	return processed_string
-
-
 func choose_card(choice: int) -> void:
 	chosen_card = choices[choice]
 	card_name_label.text = tr(chosen_card.display_name)
@@ -39,7 +31,7 @@ func choose_card(choice: int) -> void:
 
 func choose_side(side_a_chosen: bool) -> void:
 	side_a = side_a_chosen
-	card_description_label.text = process_card_text(chosen_card.tower_stats) if side_a else process_card_text(chosen_card.weapon_stats)
+	card_desc.set_card(chosen_card, side_a)
 
 
 func _on_confirm_button_pressed() -> void:

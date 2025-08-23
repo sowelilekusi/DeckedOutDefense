@@ -35,6 +35,7 @@ func close() -> void:
 
 func randomize_cards() -> void:
 	#TODO: use seeded randomness
+	blanks_available = 5
 	var random_faction: int = randi_range(1, Card.Faction.values().size() - 1)
 	var cheap_cards: Array[Card] = []
 	var medium_cards: Array[Card] = []

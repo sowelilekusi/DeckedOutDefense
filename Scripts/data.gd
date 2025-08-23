@@ -19,6 +19,11 @@ enum EnemyType {UNDEFINED = 0, LAND = 1, AIR = 2}
 enum Rarity {COMMON = 0, UNCOMMON = 1, RARE = 2, EPIC = 3, LEGENDARY = 4}
 enum CardTags {DAMAGE = 0, UTILITY = 1, TARGETS_FLYING = 2}
 
+static var target_type_names: Dictionary[TargetType, String] = {
+	TargetType.LAND : "TARGET_TYPE_LAND",
+	TargetType.AIR : "TARGET_TYPE_AIR",
+}
+
 static var weapon_recharge_delay: float = 0.5
 static var starting_cash: int = 10
 static var player_energy: int = 6

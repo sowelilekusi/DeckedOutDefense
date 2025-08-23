@@ -24,6 +24,7 @@ var small_speed_buff_timer: float = 0.0
 
 
 func _ready() -> void:
+	stats = stats.tower_features_applied()
 	time_between_shots = stats.get_attribute("Fire Delay")
 	effect.damage = int(stats.get_attribute("Damage"))
 	target_range = stats.get_attribute("Range")

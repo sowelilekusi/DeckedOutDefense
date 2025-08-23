@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcvjgl0s1wp8y"]
+[gd_scene load_steps=3 format=3 uid="uid://bcvjgl0s1wp8y"]
 
 [ext_resource type="Script" uid="uid://nc0df5y8tll7" path="res://choose_card_screen.gd" id="1_y4oar"]
+[ext_resource type="PackedScene" uid="uid://cmlpmr78tmo6p" path="res://card_description_ui.tscn" id="2_3npvv"]
 
-[node name="ChooseCardScreen" type="Control" node_paths=PackedStringArray("choice_buttons", "card_name_label", "card_description_label")]
+[node name="ChooseCardScreen" type="Control" node_paths=PackedStringArray("choice_buttons", "card_desc", "card_name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +12,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y4oar")
 choice_buttons = NodePath("PanelContainer/Content/HBoxContainer/ChoicesVBox")
+card_desc = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox")
 card_name_label = NodePath("PanelContainer/Content/HBoxContainer/VBoxContainer/NameLabel")
-card_description_label = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox/DescriptionText")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -74,36 +75,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "BUTTON_FINALIZE_CARD_CHOICE"
 
-[node name="DescriptionVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+[node name="DescriptionVBox" parent="PanelContainer/Content/HBoxContainer" instance=ExtResource("2_3npvv")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="DescriptionLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-layout_mode = 2
-text = "LABEL_CARD_DESCRIPTION"
-
-[node name="DescriptionText" type="RichTextLabel" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-auto_translate_mode = 2
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"
-
-[node name="FeaturesLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-layout_mode = 2
-text = "LABEL_CARD_FEATURES"
-
-[node name="FeaturesVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TargettingLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-layout_mode = 2
-text = "LABEL_TARGET_LIST"
-
-[node name="TargetVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer/DescriptionVBox"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer/TowerButton" to="." method="choose_side" binds= [true]]
 [connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer/WeaponButton" to="." method="choose_side" binds= [false]]

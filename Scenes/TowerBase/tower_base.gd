@@ -33,11 +33,28 @@ func set_float(value: float) -> void:
 
 
 func add_card(card: Card, caller_id: int) -> void:
-	networked_spawn_tower.rpc(Data.cards.find(card), caller_id)
+	inventory.add(card)
+	tower = inventory.item_at(0).turret_scene.instantiate() as Tower
+	tower.stats = inventory.item_at(0).tower_stats
+	tower.name = "tower"
+	tower.base_name = name
+	tower.owner_id = caller_id
+	tower.position = Vector3(0, 1.2, 0)
+	minimap_icon.modulate = Color.RED
+	duration = 999
+	#enable_duration_sprites()
+	add_child(tower)
 
 
 func remove_card() -> void:
-	networked_remove_tower.rpc()
+	var card: Card = inventory.remove_at(0)
+	if !game_manager.card_gameplay:
+		game_manager.connected_players_nodes[tower.owner_id].add_card(card)
+		game_manager.connected_players_nodes[tower.owner_id].unready_self()
+	tower.queue_free()
+	#disable_duration_sprites()
+	tower = null
+	minimap_icon.modulate = Color.GREEN
 
 
 func toggle_collision() -> void:

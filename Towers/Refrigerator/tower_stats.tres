@@ -1,26 +1,16 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=6 format=3 uid="uid://st0qrut5nxrm"]
+[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://st0qrut5nxrm"]
 
-[ext_resource type="Script" uid="uid://yjb0uv6og430" path="res://Scripts/Resources/stat_attribute.gd" id="1_wa26m"]
+[ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_mfkpu"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_w4q6a"]
-
-[sub_resource type="Resource" id="Resource_j28f4"]
-script = ExtResource("1_wa26m")
-key = "Fire Delay"
-value = 1.0
-
-[sub_resource type="Resource" id="Resource_likes"]
-script = ExtResource("1_wa26m")
-key = "Damage"
-value = 0.0
-
-[sub_resource type="Resource" id="Resource_b65mk"]
-script = ExtResource("1_wa26m")
-key = "Range"
-value = 3.0
 
 [resource]
 script = ExtResource("2_w4q6a")
 target_type = Array[int]([1])
 energy_type = 0
-attributes = Array[ExtResource("1_wa26m")]([SubResource("Resource_j28f4"), SubResource("Resource_likes"), SubResource("Resource_b65mk")])
+attributes = Dictionary[String, float]({
+"Damage": 0.0,
+"Fire Delay": 1.0,
+"Range": 3.0
+})
+features = Array[ExtResource("1_mfkpu")]([])
 text = "DESC_TOWER_FREEZER"

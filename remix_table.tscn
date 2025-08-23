@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6isprnkaliqr"]
+
+[ext_resource type="Script" uid="uid://bpvmvx10q4ayd" path="res://remix_table.gd" id="1_q8doq"]
+[ext_resource type="PackedScene" uid="uid://cqdft7j5pwg4b" path="res://remix_menu.tscn" id="2_ibyhf"]
+[ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="2_mjah6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibyhf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78x4u"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Node3D" type="StaticBody3D"]
+script = ExtResource("1_q8doq")
+remix_menu_scene = ExtResource("2_ibyhf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ibyhf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524303, 0)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_mjah6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_78x4u")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]

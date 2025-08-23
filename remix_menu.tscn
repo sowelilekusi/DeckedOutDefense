@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqdft7j5pwg4b"]
+
+[ext_resource type="Script" uid="uid://ccnvchtd8tlaw" path="res://remix_menu.gd" id="1_jyl8o"]
+[ext_resource type="PackedScene" uid="uid://cmlpmr78tmo6p" path="res://card_description_ui.tscn" id="2_vjjvi"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("card_ui_one", "card_ui_two", "option_button_one", "option_button_two")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyl8o")
+card_ui_one = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Card1")
+card_ui_two = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Card2")
+option_button_one = NodePath("PanelContainer/VBoxContainer/HBoxContainer2/OptionButton")
+option_button_two = NodePath("PanelContainer/VBoxContainer/HBoxContainer2/OptionButton2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.03
+anchor_right = 0.97
+anchor_bottom = 0.97
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TITLE_REMIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="OptionButton2" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Card1" parent="PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_vjjvi")]
+layout_mode = 2
+
+[node name="UI" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/UI"]
+layout_mode = 2
+text = "BUTTON_SHOW_REMIX_RESULT"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/UI"]
+layout_mode = 2
+text = "BUTTON_CONFIRM_REMIX"
+
+[node name="Card2" parent="PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_vjjvi")]
+layout_mode = 2
+
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="set_card_one"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/HBoxContainer2/OptionButton2" to="." method="set_card_two"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/UI/Button" to="." method="remix"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/UI/Button2" to="." method="_on_button_2_pressed"]

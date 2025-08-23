@@ -20,8 +20,8 @@ func set_card(value: Card) -> void:
 
 func process_card_text(card_text: CardText) -> String:
 	var processed_string: String = card_text.text
-	for stat: StatAttribute in card_text.attributes:
-		processed_string = processed_string.replace(stat.key, str(stat.value))
+	for key: String in card_text.attributes:
+		processed_string = processed_string.replace(key, str(card_text.attributes[key]))
 	processed_string = processed_string.replace("%", "")
 	return processed_string
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ExtendedBarrelFeature" load_steps=3 format=3 uid="uid://bij61ul87ka0r"]
+
+[ext_resource type="Script" uid="uid://dwff1058vp6af" path="res://Scripts/Features/ExtendedBarrel/extended_barrel.gd" id="1_5j68e"]
+[ext_resource type="Texture2D" uid="uid://dixdtcy64v4s0" path="res://Scripts/Features/ExtendedBarrel/extended_barrel_icon.png" id="1_grhjs"]
+
+[resource]
+script = ExtResource("1_5j68e")
+display_name = "FEATURE_NAME_EXTENDED_BARREL"
+description = "FEATURE_DESC_EXTENDED_BARREL"
+icon = ExtResource("1_grhjs")
+strength = 30.0
+metadata/_custom_type_script = "uid://dwff1058vp6af"

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8xdsg6gtwvh3"]
+
+[ext_resource type="Script" uid="uid://o668c5lfhgm5" path="res://feature_ui.gd" id="1_tms0v"]
+[ext_resource type="Texture2D" uid="uid://cps7onfe2s1gi" path="res://Scripts/Features/Radar/radar_icon.png" id="2_w6jf0"]
+
+[node name="FeatureUI" type="VBoxContainer" node_paths=PackedStringArray("icon", "name_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tms0v")
+icon = NodePath("TextureRect")
+name_label = NodePath("Label")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_w6jf0")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Radar"
+horizontal_alignment = 1
+vertical_alignment = 1

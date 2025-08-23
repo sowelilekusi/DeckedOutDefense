@@ -30,6 +30,7 @@ var wave_limit: int = 20
 var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
+var starting_blanks: int = 10
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -126,6 +127,7 @@ func spawn_players() -> void:
 		player.game_manager = self
 		player.edit_tool.level = level
 		player.hud.map_anchor = level
+		player.blank_cassettes += starting_blanks
 		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = connected_player_profiles[peer_id]
