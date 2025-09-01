@@ -30,7 +30,7 @@ var wave_limit: int = 20
 var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
-var starting_blanks: int = 10
+var starting_blanks: int = 0
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
