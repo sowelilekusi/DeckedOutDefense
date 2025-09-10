@@ -94,6 +94,11 @@ func set_zoom_factor(value: float) -> void:
 
 
 func _ready() -> void:
+	hud.disable_card_gameplay_ui()
+	if game_manager:
+		if game_manager.card_gameplay:
+			hud.enable_card_gameplay_ui()
+	
 	if is_multiplayer_authority():
 		ears.make_current()
 		camera.make_current()

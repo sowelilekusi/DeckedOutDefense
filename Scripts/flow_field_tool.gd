@@ -13,6 +13,7 @@ extends Node
 @export var x_size_field: LineEdit
 @export var y_size_field: LineEdit
 @export var gap_field: LineEdit
+@export var save_path: LineEdit
 
 var hover: FlowNode = null
 var selected: Array[FlowNode] = []
@@ -44,9 +45,9 @@ func _process(delta: float) -> void:
 			node.set_color(Color.CORAL)
 		else:
 			node.set_color(Color.BLACK)
-		if flow_field.goals.has(node):
+		if flow_field.goal_nodes.has(node):
 			node.set_color(Color.BLUE)
-		if flow_field.starts.has(node):
+		if flow_field.start_nodes.has(node):
 			node.set_color(Color.PINK)
 		if selected.has(node):
 			node.set_color(Color.GREEN)
@@ -70,6 +71,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			vector_dirty = true
 	if event is InputEventMouseButton and event.button_index == 2 and selected.size() > 0:
 		selected = []
+	if event is InputEventKey and event.keycode == KEY_UP:
+		var vector: Vector3 = camera.position - camera_pivot.position
+		vector = vector.normalized()
+		camera.position += vector
+	if event is InputEventKey and event.keycode == KEY_DOWN:
+		var vector: Vector3 = camera.position - camera_pivot.position
+		vector = vector.normalized()
+		camera.position -= vector
 
 
 func _on_x_field_changed(text: String) -> void:
@@ -138,11 +147,6 @@ func _on_toggle_buildable_button_pressed() -> void:
 		flow_field.toggle_buildable(node)
 
 
-func _on_finalize_button_pressed() -> void:
-	var packed_scene: PackedScene = PackedScene.new()
-	packed_scene.pack(flow_field)
-	ResourceSaver.save(packed_scene, "res://flow_field_tool_output.tscn")
-
 #TODO: This doesnt work as you'd expect because of physics frames
 func _on_project_downwards_button_pressed() -> void:
 	for node: FlowNode in selected: 
@@ -154,3 +158,32 @@ func _on_project_downwards_button_pressed() -> void:
 		await get_tree().physics_frame
 		if project_raycast.is_colliding():
 			node.global_position = project_raycast.get_collision_point()
+
+
+func _on_save_button_pressed() -> void:
+	var new_flow_field_data: FlowFieldData = FlowFieldData.new()
+	var dict: Dictionary[FlowNode, FlowNodeData] = {}
+	for node: FlowNode in flow_field.nodes:
+		var new_flow_node_data: FlowNodeData = FlowNodeData.new()
+		new_flow_node_data.position = node.global_position
+		new_flow_node_data.buildable = node.buildable
+		if flow_field.start_nodes.has(node):
+			new_flow_node_data.type = FlowNodeData.NodeType.START
+		elif flow_field.goal_nodes.has(node):
+			new_flow_node_data.type = FlowNodeData.NodeType.GOAL
+		else:
+			new_flow_node_data.type = FlowNodeData.NodeType.STANDARD
+		dict[node] = new_flow_node_data
+	for node: FlowNode in flow_field.nodes:
+		var flow_node_data: FlowNodeData = dict[node]
+		for neighbor: FlowNode in node.connections:
+			flow_node_data.connected_nodes.append(dict[neighbor])
+		new_flow_field_data.nodes.append(flow_node_data)
+	ResourceSaver.save(new_flow_field_data, save_path.text)
+
+
+func _on_load_button_pressed() -> void:
+	if ResourceLoader.exists(save_path.text):
+		var resource: Resource = ResourceLoader.load(save_path.text)
+		if resource is FlowFieldData:
+			flow_field.load_from_data(resource)

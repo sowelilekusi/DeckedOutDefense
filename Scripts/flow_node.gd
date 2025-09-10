@@ -3,9 +3,10 @@ extends StaticBody3D
 
 @export var connections: Array[FlowNode]
 @export var visualisers: Array[Node3D]
-var visual_scene: PackedScene = preload("res://Scenes/FlowField/cube2.tscn")
 @export var traversable: bool = true
 @export var buildable: bool = true
+
+var visual_scene: PackedScene = preload("res://Scenes/FlowField/cube2.tscn")
 var best_path: FlowNode : 
 	get():
 		return best_path

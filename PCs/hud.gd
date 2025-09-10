@@ -48,6 +48,14 @@ func _ready() -> void:
 		energy_label.visible = true
 
 
+func enable_card_gameplay_ui() -> void:
+	energy_label.visible = true
+
+
+func disable_card_gameplay_ui() -> void:
+	energy_label.visible = false
+
+
 func show_hot_wheel() -> void:
 	hot_wheel.visible = true
 

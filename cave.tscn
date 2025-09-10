@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://8jabmf7c6p71"]
+
+[ext_resource type="PackedScene" uid="uid://bhroqr4s1qso5" path="res://Worlds/GreenPlanet/Levels/Cave/cave_level.glb" id="1_yhhov"]
+[ext_resource type="PackedScene" uid="uid://b7dwsqfmdqr8" path="res://Scenes/FlowField/flow_field.tscn" id="2_shk3w"]
+[ext_resource type="PackedScene" uid="uid://cccowrgelgswj" path="res://Scenes/FlowField/flow_field_tool.tscn" id="3_23xot"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ads45"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_shk3w"]
+sky_material = SubResource("ProceduralSkyMaterial_ads45")
+
+[sub_resource type="Environment" id="Environment_23xot"]
+background_mode = 2
+sky = SubResource("Sky_shk3w")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Cave" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_23xot")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="cave_level" parent="." instance=ExtResource("1_yhhov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99917, 0)
+
+[node name="FlowField" parent="." instance=ExtResource("2_shk3w")]
+
+[node name="FlowFieldTool" parent="." node_paths=PackedStringArray("flow_field") instance=ExtResource("3_23xot")]
+flow_field = NodePath("../FlowField")

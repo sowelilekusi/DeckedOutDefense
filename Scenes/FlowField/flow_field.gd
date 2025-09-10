@@ -3,17 +3,42 @@ extends Node3D
 
 signal path_updated()
 
+@export var data_file: FlowFieldData
 @export var flow_node_scene: PackedScene
-@export var nodes: Array[FlowNode] = []
-@export var goals: Array[FlowNode] = []
-@export var starts: Array[FlowNode] = []
+@export var start_points: Array[Node3D]
+@export var goal_points: Array[Node3D]
 @export var nodes_visible: bool = false
+
+var nodes: Array[FlowNode] = []
+var start_nodes: Array[FlowNode] = []
+var goal_nodes: Array[FlowNode] = []
 
 
 func _ready() -> void:
 	if !nodes_visible:
 		for node: FlowNode in nodes:
 			node.visible = false
+
+
+func load_from_data(data: FlowFieldData = data_file) -> void:
+	for node: FlowNode in nodes:
+		delete_node(node)
+	nodes = []
+	start_nodes = []
+	goal_nodes = []
+	var dict: Dictionary[FlowNodeData, FlowNode] = {}
+	for node_data: FlowNodeData in data_file.nodes:
+		var new_flow_node: FlowNode = create_node(node_data.position)
+		new_flow_node.buildable = node_data.buildable
+		dict[node_data] = new_flow_node
+		nodes.append(new_flow_node)
+		if node_data.type == FlowNodeData.NodeType.START:
+			start_nodes.append(new_flow_node)
+		elif node_data.type == FlowNodeData.NodeType.GOAL:
+			goal_nodes.append(new_flow_node)
+	for node_data: FlowNodeData in dict.keys():
+		for neighbor: FlowNodeData in node_data.connected_nodes:
+			dict[node_data].add_connection(dict[neighbor])
 
 
 @warning_ignore("unused_parameter")
@@ -27,9 +52,9 @@ func _process(delta: float) -> void:
 			node.set_color(Color.CORAL)
 		else:
 			node.set_color(Color.BLACK)
-		if goals.has(node):
+		if goal_nodes.has(node):
 			node.set_color(Color.BLUE)
-		if starts.has(node):
+		if start_nodes.has(node):
 			node.set_color(Color.PINK)
 		if magic_node:
 			magic_node.set_color(Color.DEEP_PINK)
@@ -66,7 +91,7 @@ func get_closest_buildable_point(pos: Vector3) -> FlowNode:
 
 
 func test_traversability() -> bool:
-	for node: FlowNode in starts:
+	for node: FlowNode in start_nodes:
 		while node.best_path != null:
 			if node.best_path.traversable:
 				node = node.best_path
@@ -88,7 +113,7 @@ func iterate_search(search_frontier: Array[FlowNode], reached: Array[FlowNode]) 
 func calculate() -> void:
 	var reached: Array[FlowNode] = []
 	var search_frontier: Array[FlowNode] = []
-	for node: FlowNode in goals:
+	for node: FlowNode in goal_nodes:
 		node.best_path = null
 		reached.append(node)
 		search_frontier.append(node)
@@ -135,18 +160,18 @@ func connect_many_nodes(common_node: FlowNode, child_nodes: Array[FlowNode]) -> 
 
 func toggle_goal(nodes_to_toggle: Array[FlowNode]) -> void:
 	for node: FlowNode in nodes_to_toggle:
-		if goals.has(node):
-			goals.erase(node)
+		if goal_nodes.has(node):
+			goal_nodes.erase(node)
 		else:
-			goals.append(node)
+			goal_nodes.append(node)
 
 
 func toggle_start(nodes_to_toggle: Array[FlowNode]) -> void:
 	for node: FlowNode in nodes_to_toggle:
-		if starts.has(node):
-			starts.erase(node)
+		if start_nodes.has(node):
+			start_nodes.erase(node)
 		else:
-			starts.append(node)
+			start_nodes.append(node)
 
 
 func toggle_traversable(node: FlowNode) -> bool:

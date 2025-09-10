@@ -6,7 +6,8 @@
 ambient_light_source = 2
 ambient_light_color = Color(0.728822, 0.728822, 0.728822, 1)
 
-[node name="FlowFieldTool" type="Node" unique_id=730814717 node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field")]
+
+[node name="FlowFieldTool" type="Node" node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field", "save_path")]
 script = ExtResource("1_e7pmn")
 raycast = NodePath("CameraFocus/Camera3D/RayCast3D")
 project_raycast = NodePath("RayCast3D")
@@ -19,6 +20,7 @@ z_field = NodePath("Position/z")
 x_size_field = NodePath("VBoxContainer/HBoxContainer/x_size")
 y_size_field = NodePath("VBoxContainer/HBoxContainer/y_size")
 gap_field = NodePath("VBoxContainer/HBoxContainer/gap")
+save_path = NodePath("VBoxContainer/FileNameInput")
 metadata/_custom_type_script = "uid://05c5q1v2nv8p"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1159336300]
@@ -87,9 +89,27 @@ text = "Extrude"
 layout_mode = 2
 text = "Calculate"
 
+<<<<<<< HEAD
 [node name="Finalize" type="Button" parent="VBoxContainer" unique_id=1604655281]
+=======
+[node name="FileNameInput" type="LineEdit" parent="VBoxContainer"]
+>>>>>>> 48b1add (first flow field resource draft)
 layout_mode = 2
-text = "Finalize"
+placeholder_text = "level title"
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
 
 [node name="Position" type="HBoxContainer" parent="." unique_id=1194117729]
 visible = false
@@ -134,7 +154,8 @@ collision_mask = 64
 [connection signal="pressed" from="VBoxContainer/ToggleBuildable" to="." method="_on_toggle_buildable_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Extrude" to="." method="_on_extrude_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Calculate" to="." method="_on_calculate_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Finalize" to="." method="_on_finalize_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Save" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_load_button_pressed"]
 [connection signal="text_changed" from="Position/x" to="." method="_on_x_field_changed"]
 [connection signal="text_changed" from="Position/y" to="." method="_on_y_field_changed"]
 [connection signal="text_changed" from="Position/z" to="." method="_on_z_field_changed"]
