@@ -588,6 +588,18 @@ msgstr "%Interact% Buy {Card_Name} for ${Card_Cost}"
 msgid "LABEL_WAVE"
 msgstr "Wave {Wave_Number}:"
 
+msgid "LABEL_CASSETTE_SELECTOR"
+msgstr "Cassette"
+
+msgid "FEATURE_NAME_RADAR"
+msgstr "Radar"
+
+msgid "FEATURE_NAME_HEAVY_ROUNDS"
+msgstr "Heavy Rounds"
+
+msgid "FEATURE_NAME_EXTENDED_BARREL"
+msgstr "Extended Barrel"
+
 #, fuzzy
 #~| msgid "LABEL_DISPLAY_NAME"
 #~ msgid "LABEL_CARD_NAME"

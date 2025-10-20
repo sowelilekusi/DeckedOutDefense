@@ -7,7 +7,6 @@
 [resource]
 script = ExtResource("2_7wr4x")
 target_type = Array[int]([1])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 2.0,
 "Fire Delay": 0.5,

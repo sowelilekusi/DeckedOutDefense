@@ -73,7 +73,7 @@ function = 15
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_always, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha;
+render_mode blend_mix, depth_draw_always, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha;
 
 uniform sampler2D Texture2DParameter : source_color, filter_nearest;
 uniform sampler2D tex_frg_7;
@@ -147,7 +147,7 @@ void fragment() {
 "
 modes/depth_draw = 1
 flags/depth_prepass_alpha = true
-preview_params/Texture2DParameter = "Resource(\"res://Scenes/TowerBase/funboxtex.png\")"
+preview_params/Texture2DParameter = "Resource(\"uid://bmor4v4j7krgh\", \"res://Scenes/TowerBase/funboxtex.png\")"
 preview_params/Float = "1.0"
 nodes/fragment/0/position = Vector2(1220, 280)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_nxokf")

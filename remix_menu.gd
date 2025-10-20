@@ -44,33 +44,17 @@ func set_card_two(option: int) -> void:
 
 
 func remix() -> void:
-	temp_card_one = Card.new()
-	temp_card_one.cost = card_one.cost
-	temp_card_one.faction = card_one.faction
-	temp_card_one.rarity = card_one.rarity
-	temp_card_one.tags = card_one.tags
-	temp_card_one.icon = card_one.icon
-	temp_card_one.display_name = card_one.display_name
-	temp_card_one.turret_scene = card_one.turret_scene
-	temp_card_one.weapon_scene = card_one.weapon_scene
-	temp_card_one.tower_stats = card_one.tower_stats.duplicate()
-	temp_card_one.weapon_stats = card_one.weapon_stats.duplicate()
+	temp_card_one = card_one.duplicate(true)
+	temp_card_one.tower_stats = temp_card_one.tower_stats.duplicate_deep()
+	temp_card_one.weapon_stats = temp_card_one.weapon_stats.duplicate_deep()
 	for feature: Feature in card_two.tower_stats.features:
 		temp_card_one.tower_stats.features.append(feature)
 	for feature: Feature in card_two.weapon_stats.features:
 		temp_card_one.weapon_stats.features.append(feature)
 	
-	temp_card_two = Card.new()
-	temp_card_two.cost = card_two.cost
-	temp_card_two.faction = card_two.faction
-	temp_card_two.rarity = card_two.rarity
-	temp_card_two.tags = card_two.tags
-	temp_card_two.icon = card_two.icon
-	temp_card_two.display_name = card_two.display_name
-	temp_card_two.turret_scene = card_two.turret_scene
-	temp_card_two.weapon_scene = card_two.weapon_scene
-	temp_card_two.tower_stats = card_two.tower_stats.duplicate()
-	temp_card_two.weapon_stats = card_two.weapon_stats.duplicate()
+	temp_card_two = card_two.duplicate(true)
+	temp_card_two.tower_stats = temp_card_two.tower_stats.duplicate_deep()
+	temp_card_two.weapon_stats = temp_card_two.weapon_stats.duplicate_deep()
 	for feature: Feature in card_one.tower_stats.features:
 		temp_card_two.tower_stats.features.append(feature)
 	for feature: Feature in card_one.weapon_stats.features:

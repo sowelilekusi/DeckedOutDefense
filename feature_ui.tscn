@@ -9,12 +9,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 script = ExtResource("1_tms0v")
 icon = NodePath("TextureRect")
 name_label = NodePath("Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_w6jf0")
 stretch_mode = 5
 

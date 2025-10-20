@@ -551,3 +551,15 @@ msgstr ""
 #: UI/enemybox.gd
 msgid "LABEL_WAVE"
 msgstr ""
+
+msgid "LABEL_CASSETTE_SELECTOR"
+msgstr ""
+
+msgid "FEATURE_NAME_RADAR"
+msgstr ""
+
+msgid "FEATURE_NAME_HEAVY_ROUNDS"
+msgstr ""
+
+msgid "FEATURE_NAME_EXTENDED_BARREL"
+msgstr ""
