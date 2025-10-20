@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bajli4d3nqwll"]
+[gd_scene load_steps=4 format=3 uid="uid://bajli4d3nqwll"]
 
 [ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://feature_ui.tscn" id="1_y6tpq"]
 [ext_resource type="Script" uid="uid://mrv5vrlxfc13" path="res://track_editor.gd" id="1_yrnbk"]
-[ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="3_dya4i"]
-[ext_resource type="Resource" uid="uid://nh7g23b3rnvr" path="res://Scripts/Features/Radar/radar_feature.tres" id="4_4gmyw"]
-[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="5_dxngn"]
-[ext_resource type="Resource" uid="uid://bij61ul87ka0r" path="res://Scripts/Features/ExtendedBarrel/extended_barrel_feature.tres" id="6_1rakx"]
+[ext_resource type="PackedScene" uid="uid://cmlpmr78tmo6p" path="res://card_description_ui.tscn" id="3_q6wwl"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("drag_feature", "sample_library", "parts")]
+[node name="Control" type="Control" node_paths=PackedStringArray("drag_feature", "sample_library", "parts", "drop_down", "card_desc")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,10 +13,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yrnbk")
 drag_feature = NodePath("FeatureUI")
-sample_library = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/SampleLibrary")
+sample_library = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/ScrollContainer/SampleLibrary")
 feature_scene = ExtResource("1_y6tpq")
-features_list = Array[ExtResource("3_dya4i")]([ExtResource("4_4gmyw"), ExtResource("5_dxngn"), ExtResource("6_1rakx")])
 parts = NodePath("PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/Parts")
+drop_down = NodePath("PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector/OptionButton")
+card_desc = NodePath("PanelContainer/VBoxContainer/InfoPanel/DescriptionVBox")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -78,31 +76,8 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel"]
+[node name="DescriptionVBox" parent="PanelContainer/VBoxContainer/InfoPanel" instance=ExtResource("3_q6wwl")]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
-text = "LABEL_CARD_DESCRIPTION"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good  size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"
-
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
-text = "LABEL_TARGET_LIST"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/InfoPanel"]
 layout_mode = 2
@@ -123,7 +98,11 @@ text = "TITLE_SAMPLES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SampleLibrary" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SampleLibrary" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -150,5 +129,6 @@ grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
 
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector/OptionButton" to="." method="select_card"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton" to="." method="_on_confirm_button_pressed"]

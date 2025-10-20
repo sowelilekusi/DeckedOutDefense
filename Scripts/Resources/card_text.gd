@@ -18,15 +18,23 @@ func set_attribute(attribute: String, value: float) -> void:
 	attributes[attribute] = value
 
 
-func tower_features_applied() -> CardText:
+func get_duplicate() -> CardText:
 	var card_text: CardText = self.duplicate()
+	card_text.target_type = target_type.duplicate()
+	card_text.attributes = attributes.duplicate()
+	card_text.features = features.duplicate()
+	return card_text
+
+
+func tower_features_applied() -> CardText:
+	var card_text: CardText = get_duplicate()
 	for feature: Feature in features:
 		feature.attach_to_tower(card_text)
 	return card_text
 
 
 func weapon_features_applied() -> CardText:
-	var card_text: CardText = self.duplicate()
+	var card_text: CardText = get_duplicate()
 	for feature: Feature in features:
 		feature.attach_to_weapon(card_text)
 	return card_text

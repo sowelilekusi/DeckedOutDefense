@@ -28,6 +28,11 @@ func set_card(new_card: Card, side: bool) -> void:
 	populate_targets()
 
 
+func hide_features() -> void:
+	$FeaturesLabel.visible = false
+	$FeaturesVBox.visible = false
+
+
 func populate_features() -> void:
 	for child: Node in feature_list.get_children():
 		child.queue_free()
@@ -55,6 +60,6 @@ func populate_targets() -> void:
 func process_card_text(card_text: CardText) -> String:
 	var processed_string: String = tr(card_text.text)
 	for key: String in card_text.attributes:
-		processed_string = processed_string.replace(key, "[color=red]" + str(card_text.attributes[key]) + "[color=white]")
+		processed_string = processed_string.replace(key, "[color=red]" + str(snapped(card_text.attributes[key], 0.01)) + "[color=white]")
 	processed_string = processed_string.replace("%", "")
 	return processed_string

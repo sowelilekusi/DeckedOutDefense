@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6isprnkaliqr"]
 
 [ext_resource type="Script" uid="uid://bpvmvx10q4ayd" path="res://remix_table.gd" id="1_q8doq"]
-[ext_resource type="PackedScene" uid="uid://cqdft7j5pwg4b" path="res://remix_menu.tscn" id="2_ibyhf"]
+[ext_resource type="PackedScene" uid="uid://bajli4d3nqwll" path="res://track_editor.tscn" id="2_ibyhf"]
 [ext_resource type="Script" uid="uid://dkfswql8ui0bt" path="res://Scripts/interact_button.gd" id="2_mjah6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ibyhf"]
@@ -9,9 +9,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_78x4u"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Node3D" type="StaticBody3D"]
+[node name="RemixTable" type="StaticBody3D" node_paths=PackedStringArray("button")]
 script = ExtResource("1_q8doq")
 remix_menu_scene = ExtResource("2_ibyhf")
+button = NodePath("StaticBody3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ibyhf")

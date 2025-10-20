@@ -356,15 +356,15 @@ func update_selected_box() -> void:
 
 
 func equip_weapon(slot: int = 0) -> void:
+	if weapons[slot] != null:
+		unequip_weapon(slot)
+		if !game_manager.card_gameplay or hand.size == 1:
+			return
 	if hand.size == 0:
 		return
 	var energy_cost: int = selected_card.cost
 	if game_manager.card_gameplay and energy < energy_cost:
 		return
-	if weapons[slot] != null:
-		unequip_weapon(slot)
-		if !game_manager.card_gameplay:
-			return
 	if hand.size > 0:
 		if game_manager.card_gameplay:
 			energy -= energy_cost

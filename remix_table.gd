@@ -2,17 +2,22 @@ class_name RemixTable
 extends StaticBody3D
 
 @export var remix_menu_scene: PackedScene
+@export var button: InteractButton
 
 var reply_player: Hero
 
+func _ready() -> void:
+	button.hover_text = tr("PROMPT_REMIX_INTERACT")
 
-func _on_static_body_3d_button_interacted(value: int, callback: Hero) -> void:
-	if callback.hand.size >= 2:
+
+func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
+	if callback.hand.size >= 1:
 		reply_player = callback
-		var menu: RemixMenu = remix_menu_scene.instantiate() as RemixMenu
+		var menu: TrackEditor = remix_menu_scene.instantiate() as TrackEditor
 		var card_array: Array[Card] = []
 		for card: Card in callback.hand.contents:
 			card_array.append(card)
+		menu.populate_feature_slots()
 		menu.add_option(card_array)
 		menu.cards_remixed.connect(output)
 		reply_player.pause()
@@ -22,6 +27,7 @@ func _on_static_body_3d_button_interacted(value: int, callback: Hero) -> void:
 func output(cards_to_remove: Array[Card], cards_to_add: Array[Card]) -> void:
 	for card: Card in cards_to_remove:
 		reply_player.hand.contents.erase(card)
+		reply_player.check_removal()
 	for card: Card in cards_to_add:
 		reply_player.add_card(card)
 	reply_player.unpause()
