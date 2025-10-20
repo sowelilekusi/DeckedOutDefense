@@ -28,6 +28,7 @@ var duration: int = 0
 
 func _ready() -> void:
 	recharge_timer.wait_time = Data.weapon_recharge_delay
+	stats = stats.weapon_features_applied()
 	time_between_shots = stats.get_attribute("Fire Delay")
 	damage = int(stats.get_attribute("Damage"))
 	#energy_cost = stats.get_attribute("Energy")

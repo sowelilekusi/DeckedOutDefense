@@ -8,8 +8,6 @@
 
 [sub_resource type="Resource" id="Resource_c6gqc"]
 script = ExtResource("3_75shm")
-damage = 0
-status_effects = Array[ExtResource("4_lkplr")]([])
 
 [node name="DirectAffectTower" instance=ExtResource("1_cn3qe")]
 stats = ExtResource("2_gg1gn")

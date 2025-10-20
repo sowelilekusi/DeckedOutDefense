@@ -378,6 +378,7 @@ func equip_weapon(slot: int = 0) -> void:
 		#if !inventory.contents.has(cards[slot]):
 		#decrement_selected()
 		weapons[slot] = cards[slot].weapon_scene.instantiate()
+		weapons[slot].stats = cards[slot].weapon_stats
 		weapons[slot].name = str(weapons_spawn_count)
 		weapons[slot].duration = 1
 		networked_equip_weapon.rpc(Data.cards.find(cards[slot]), 0, weapons_spawn_count)

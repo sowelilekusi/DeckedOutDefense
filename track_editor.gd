@@ -6,18 +6,23 @@ signal cards_remixed(cards_consumed: Array[Card], cards_created: Array[Card])
 @export var drag_feature: FeatureUI
 @export var sample_library: VBoxContainer
 @export var feature_scene: PackedScene
-@export var parts: HBoxContainer
+@export var tower_parts: HBoxContainer
+@export var weapon_parts: HBoxContainer
 @export var drop_down: OptionButton
 @export var card_desc: CardDescriptionUI
+@export var check_button: CheckButton
 
 const FEATURE_SLOTS: int = 6
 
 var dragging: bool = false
 var hovered_feature: Feature
 var hovered_drop_slot: int = -2
-var feature_uis: Array[FeatureUI]
+var hovered_drop_track: int = 0
+var tower_feature_uis: Array[FeatureUI]
+var weapon_feature_uis: Array[FeatureUI]
 var features_list: Array[Feature]
-var slots: Array[VBoxContainer]
+var tower_slots: Array[VBoxContainer]
+var weapon_slots: Array[VBoxContainer]
 var cards: Array[Card]
 var card_selected: Card
 var temp_card: Card
@@ -27,8 +32,10 @@ func _ready() -> void:
 	#populate_sample_library()
 	#populate_feature_slots()
 	card_desc.hide_features()
-	parts.mouse_entered.connect(set_hovered_drop_slot.bind(-1))
-	parts.mouse_exited.connect(unset_hovered_drop_slot)
+	tower_parts.mouse_entered.connect(set_hovered_drop_slot.bind(-1, 0))
+	weapon_parts.mouse_entered.connect(set_hovered_drop_slot.bind(-1, 1))
+	tower_parts.mouse_exited.connect(unset_hovered_drop_slot)
+	weapon_parts.mouse_exited.connect(unset_hovered_drop_slot)
 
 
 func _process(_delta: float) -> void:
@@ -45,16 +52,21 @@ func _input(event: InputEvent) -> void:
 
 
 func select_card(option: int) -> void:
-	for feature_ui: FeatureUI in feature_uis:
+	for feature_ui: FeatureUI in tower_feature_uis:
 		feature_ui.queue_free()
-	feature_uis = []
+	tower_feature_uis = []
+	for feature_ui: FeatureUI in weapon_feature_uis:
+		feature_ui.queue_free()
+	weapon_feature_uis = []
 	card_selected = cards[option]
 	temp_card = card_selected.duplicate()
 	temp_card.tower_stats = temp_card.tower_stats.get_duplicate()
 	temp_card.weapon_stats = temp_card.weapon_stats.get_duplicate()
-	card_desc.set_card(temp_card, true)
+	card_desc.set_card(temp_card, check_button.button_pressed)
 	for feature: Feature in temp_card.tower_stats.features:
-		add_feature(feature, false)
+		add_feature(feature, 0, false)
+	for feature: Feature in temp_card.weapon_stats.features:
+		add_feature(feature, 1, false)
 
 
 func add_option(card_options: Array[Card]) -> void:
@@ -95,43 +107,56 @@ func populate_sample_library() -> void:
 func populate_feature_slots() -> void:
 	for x: int in FEATURE_SLOTS:
 		var vbox: VBoxContainer = VBoxContainer.new()
-		var label: Label = Label.new()
-		match slots.size():
-			0: label.text = tr("SLOT_FIRST")
-			1: label.text = tr("SLOT_SECOND")
-			2: label.text = tr("SLOT_THIRD")
-			3: label.text = tr("SLOT_FOURTH")
-			4: label.text = tr("SLOT_FIFTH")
-			5: label.text = tr("SLOT_SIXTH")
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		vbox.add_child(label)
 		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		vbox.mouse_filter = Control.MOUSE_FILTER_STOP
-		vbox.mouse_entered.connect(set_hovered_drop_slot.bind(slots.size()))
+		vbox.mouse_entered.connect(set_hovered_drop_slot.bind(tower_slots.size(), 0))
 		vbox.mouse_exited.connect(unset_hovered_drop_slot)
-		parts.add_child(vbox)
-		slots.append(vbox)
+		tower_parts.add_child(vbox)
+		tower_slots.append(vbox)
+	for x: int in FEATURE_SLOTS:
+		var vbox: VBoxContainer = VBoxContainer.new()
+		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		vbox.mouse_filter = Control.MOUSE_FILTER_STOP
+		vbox.mouse_entered.connect(set_hovered_drop_slot.bind(weapon_slots.size(), 1))
+		vbox.mouse_exited.connect(unset_hovered_drop_slot)
+		weapon_parts.add_child(vbox)
+		weapon_slots.append(vbox)
 
 
-func add_feature(feature: Feature, modify_resource: bool = true) -> void:
-	if hovered_drop_slot >= 0 and hovered_drop_slot < feature_uis.size():
-		change_feature(feature_uis[hovered_drop_slot], feature)
-	elif feature_uis.size() < FEATURE_SLOTS:
-		var feature_visual: FeatureUI = feature_scene.instantiate()
-		feature_visual.set_feature(feature)
-		slots[feature_uis.size()].add_child(feature_visual)
-		feature_uis.append(feature_visual)
-		if modify_resource:
-			temp_card.tower_stats.features.append(feature)
-			card_desc.set_card(temp_card, true)
+func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> void:
+	if track == 0:
+		if hovered_drop_slot >= 0 and hovered_drop_slot < tower_feature_uis.size():
+			change_feature(tower_feature_uis[hovered_drop_slot], feature, 0)
+		elif tower_feature_uis.size() < FEATURE_SLOTS:
+			var feature_visual: FeatureUI = feature_scene.instantiate()
+			feature_visual.set_feature(feature)
+			tower_slots[tower_feature_uis.size()].add_child(feature_visual)
+			tower_feature_uis.append(feature_visual)
+			if modify_resource:
+				temp_card.tower_stats.features.append(feature)
+				card_desc.set_card(temp_card, check_button.button_pressed)
+	elif track == 1:
+		if hovered_drop_slot >= 0 and hovered_drop_slot < weapon_feature_uis.size():
+			change_feature(weapon_feature_uis[hovered_drop_slot], feature, 1)
+		elif weapon_feature_uis.size() < FEATURE_SLOTS:
+			var feature_visual: FeatureUI = feature_scene.instantiate()
+			feature_visual.set_feature(feature)
+			weapon_slots[weapon_feature_uis.size()].add_child(feature_visual)
+			weapon_feature_uis.append(feature_visual)
+			if modify_resource:
+				temp_card.weapon_stats.features.append(feature)
+				card_desc.set_card(temp_card, check_button.button_pressed)
 
 
-func change_feature(existing_feature: FeatureUI, new_feature: Feature) -> void:
+func change_feature(existing_feature: FeatureUI, new_feature: Feature, track: int) -> void:
 	existing_feature.set_feature(new_feature)
-	var i: int = feature_uis.find(existing_feature)
-	temp_card.tower_stats.features[i] = new_feature
-	card_desc.set_card(temp_card, true)
+	if track == 0:
+		var i: int = tower_feature_uis.find(existing_feature)
+		temp_card.tower_stats.features[i] = new_feature
+	elif track == 1:
+		var i: int = weapon_feature_uis.find(existing_feature)
+		temp_card.weapon_stats.features[i] = new_feature
+	card_desc.set_card(temp_card, check_button.button_pressed)
 
 
 func attach_feat_to_mouse(feature: Feature) -> void:
@@ -143,7 +168,7 @@ func attach_feat_to_mouse(feature: Feature) -> void:
 func detach_feat_from_mouse() -> void:
 	drag_feature.visible = false
 	if hovered_drop_slot >= -1 and dragging == true:
-		add_feature(drag_feature.feature)
+		add_feature(drag_feature.feature, hovered_drop_track)
 	dragging = false
 
 
@@ -155,12 +180,14 @@ func unset_hovered_feature() -> void:
 	hovered_feature = null
 
 
-func set_hovered_drop_slot(slot: int = -2) -> void:
+func set_hovered_drop_slot(slot: int = -2, track: int = 0) -> void:
 	hovered_drop_slot = slot
+	hovered_drop_track = track
 
 
 func unset_hovered_drop_slot() -> void:
 	hovered_drop_slot = -2
+	hovered_drop_track = -1
 
 
 func _on_cancel_button_pressed() -> void:
@@ -177,3 +204,7 @@ func _on_confirm_button_pressed() -> void:
 	cards_to_add.append(temp_card)
 	cards_remixed.emit(cards_to_remove, cards_to_add)
 	queue_free()
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	card_desc.set_card(temp_card, toggled_on)
