@@ -20,9 +20,9 @@ selected_style_box = ExtResource("2_ek0dh")
 amount_label = NodePath("PanelContainer/VBoxContainer/Label")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 2
-offset_right = 152.0
-offset_bottom = 124.0
+layout_mode = 0
+offset_right = 127.0
+offset_bottom = 85.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_ek0dh")
 

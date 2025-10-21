@@ -228,9 +228,9 @@ func parse_action_tag(text: String) -> String:
 				elif !first:
 					output.append(", ")
 			if event is InputEventKey:
-				output.append("[img=top,50]%s[/img]" % KeyIconMap.keys[str(event.physical_keycode)])
+				output.append("[img=32]%s[/img]" % KeyIconMap.keys[str(event.physical_keycode)])
 			if event is InputEventMouseButton:
-				output.append("[img=top,50]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)])
+				output.append("[img=32]%s[/img]" % KeyIconMap.mouse_buttons[str(event.button_index)])
 		string_array[1] = "".join(output)
 	text = "".join(string_array)
 	return text

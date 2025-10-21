@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
 [ext_resource type="PackedScene" uid="uid://ckl5tw5rmewhp" path="res://left_hand/card_hand_model.glb" id="11_h82f6"]
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
-[ext_resource type="Texture2D" uid="uid://b6iego7256jf2" path="res://Assets/Textures/wavecounter.png" id="14_l34nu"]
 [ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="15_cqpib"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
@@ -29,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://csu2hce4bfoki" path="res://Audio/cardPlace1.ogg" id="24_8ch4w"]
 [ext_resource type="AudioStream" uid="uid://dxq8b77wa41os" path="res://Audio/cardPlace2.ogg" id="25_awl6m"]
 [ext_resource type="Texture2D" uid="uid://bs2mskoyvyehv" path="res://Assets/Textures/crosshair159.png" id="25_l7gpx"]
+[ext_resource type="Texture2D" uid="uid://biwol65o5rwc7" path="res://Assets/Textures/enemy_frame.png" id="25_rim6q"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
 [ext_resource type="Texture2D" uid="uid://0x80ptif1diq" path="res://Assets/Textures/hand_small_point.png" id="26_dfkac"]
 [ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://UI/EnergyBar/energy_bar.tscn" id="27_14ugt"]
@@ -193,7 +193,7 @@ collision_mask = 65535
 
 [node name="FirstPersonViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(1920, 1080)
+size = Vector2i(320, 240)
 render_target_update_mode = 4
 
 [node name="Head2" type="Camera3D" parent="FirstPersonViewport" node_paths=PackedStringArray("clone_camera")]
@@ -356,19 +356,16 @@ texture = SubResource("ViewportTexture_mk87g")
 
 [node name="PlaceIcon" type="TextureRect" parent="HUD"]
 visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -657.0
-offset_top = -455.0
-offset_right = -331.0
-offset_bottom = -1.0
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.95
+anchor_right = 0.8
+anchor_bottom = 0.95
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("18_okmpi")
+stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/PlaceIcon"]
 layout_mode = 1
@@ -386,19 +383,16 @@ vertical_alignment = 1
 
 [node name="SwapIcon" type="TextureRect" parent="HUD"]
 visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -332.0
-offset_top = -455.0
-offset_right = -6.0
-offset_bottom = -1.0
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.95
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("18_okmpi")
+stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/SwapIcon"]
 layout_mode = 1
@@ -463,7 +457,7 @@ offset_right = 214.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
-scale = Vector2(3, 3)
+scale = Vector2(0.32, 0.32)
 mouse_filter = 2
 
 [node name="LivesCount" type="Label" parent="HUD/LivesBar"]
@@ -479,22 +473,22 @@ vertical_alignment = 1
 
 [node name="EnemyTracker" type="TextureRect" parent="HUD"]
 texture_filter = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.05
 anchor_right = 0.5
-offset_left = -154.0
-offset_top = 22.0
-offset_right = 154.0
-offset_bottom = 116.0
+anchor_bottom = 0.05
 grow_horizontal = 2
 mouse_filter = 2
-texture = ExtResource("14_l34nu")
+texture = ExtResource("25_rim6q")
+stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label" type="Label" parent="HUD/EnemyTracker/TextureRect"]
@@ -514,9 +508,10 @@ vertical_alignment = 1
 [node name="TextureRect2" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 61.0
-offset_right = 125.0
+offset_left = 32.0
+offset_right = 96.0
 offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label2" type="Label" parent="HUD/EnemyTracker/TextureRect2"]
@@ -536,9 +531,10 @@ vertical_alignment = 1
 [node name="TextureRect3" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 122.0
-offset_right = 186.0
+offset_left = 64.0
+offset_right = 128.0
 offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label3" type="Label" parent="HUD/EnemyTracker/TextureRect3"]
@@ -558,9 +554,10 @@ vertical_alignment = 1
 [node name="TextureRect4" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 183.0
-offset_right = 247.0
+offset_left = 96.0
+offset_right = 160.0
 offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label4" type="Label" parent="HUD/EnemyTracker/TextureRect4"]
@@ -580,9 +577,10 @@ vertical_alignment = 1
 [node name="TextureRect5" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 244.0
-offset_right = 308.0
+offset_left = 128.0
+offset_right = 192.0
 offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label5" type="Label" parent="HUD/EnemyTracker/TextureRect5"]
@@ -601,33 +599,28 @@ vertical_alignment = 1
 
 [node name="WaveCount" type="Label" parent="HUD/EnemyTracker"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -30.0
-offset_top = 59.0
-offset_right = 30.0
-offset_bottom = 87.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+grow_vertical = 0
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InteractLabel" type="RichTextLabel" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -304.0
-offset_top = 37.0
-offset_right = 296.0
-offset_bottom = 84.0
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.55
+anchor_right = 0.8
+anchor_bottom = 0.65
+offset_left = -0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"InteractLabel"
 bbcode_enabled = true
 text = "[center]Press Button To do thing"
 scroll_active = false
@@ -648,10 +641,9 @@ alignment = 2
 
 [node name="StartWaveLabel" type="RichTextLabel" parent="HUD"]
 anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.1
-anchor_right = 0.6
-anchor_bottom = 0.15
+anchor_top = 0.261
+anchor_right = 1.0
+anchor_bottom = 0.395
 grow_horizontal = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -684,6 +676,7 @@ mouse_filter = 2
 
 [node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
 visible = false
+scale = Vector2(0.235, 0.235)
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="HUD"]
@@ -723,13 +716,23 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="selection_boxes" type="HBoxContainer" parent="HUD"]
-visible = false
-offset_left = 73.0
-offset_top = 457.0
-offset_right = 753.0
-offset_bottom = 585.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.8
+anchor_right = 0.2
+anchor_bottom = 0.8
+grow_vertical = 0
 mouse_filter = 2
 alignment = 1
+
+[node name="Control" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
+layout_mode = 2
+
+[node name="Control2" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
+layout_mode = 2
+
+[node name="Control3" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
+layout_mode = 2
 
 [node name="Currencies" type="VBoxContainer" parent="HUD"]
 anchors_preset = -1
@@ -834,7 +837,7 @@ metadata/_custom_type_script = "uid://cf7m4yyiqhhru"
 
 [node name="CoinViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(64, 64)
+size = Vector2i(32, 32)
 
 [node name="Coin" parent="CoinViewport" instance=ExtResource("51_w13oc")]
 
