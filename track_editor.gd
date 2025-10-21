@@ -1,7 +1,7 @@
 class_name TrackEditor
 extends Control
 
-signal cards_remixed(cards_consumed: Array[Card], cards_created: Array[Card])
+signal cards_remixed(cards_consumed: Array[Card], cards_created: Array[Card], amount_spent: int)
 
 @export var drag_feature: FeatureUI
 @export var sample_library: VBoxContainer
@@ -11,9 +11,12 @@ signal cards_remixed(cards_consumed: Array[Card], cards_created: Array[Card])
 @export var drop_down: OptionButton
 @export var card_desc: CardDescriptionUI
 @export var check_button: CheckButton
+@export var price_panel_scene: PackedScene
+@export var price_label: Label
 
 const FEATURE_SLOTS: int = 6
 
+var hero: Hero
 var dragging: bool = false
 var hovered_feature: Feature
 var hovered_drop_slot: int = -2
@@ -21,11 +24,14 @@ var hovered_drop_track: int = 0
 var tower_feature_uis: Array[FeatureUI]
 var weapon_feature_uis: Array[FeatureUI]
 var features_list: Array[Feature]
-var tower_slots: Array[VBoxContainer]
-var weapon_slots: Array[VBoxContainer]
+var tower_slots: Array[MarginContainer]
+var weapon_slots: Array[MarginContainer]
+var tower_prices: Array[PricePanel]
+var weapon_prices: Array[PricePanel]
 var cards: Array[Card]
 var card_selected: Card
 var temp_card: Card
+var cost: int = 0
 
 
 func _ready() -> void:
@@ -36,6 +42,7 @@ func _ready() -> void:
 	weapon_parts.mouse_entered.connect(set_hovered_drop_slot.bind(-1, 1))
 	tower_parts.mouse_exited.connect(unset_hovered_drop_slot)
 	weapon_parts.mouse_exited.connect(unset_hovered_drop_slot)
+	price_label.text = "$" + str(cost)
 
 
 func _process(_delta: float) -> void:
@@ -106,26 +113,38 @@ func populate_sample_library() -> void:
 
 func populate_feature_slots() -> void:
 	for x: int in FEATURE_SLOTS:
-		var vbox: VBoxContainer = VBoxContainer.new()
+		var vbox: MarginContainer = MarginContainer.new()
 		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		vbox.mouse_filter = Control.MOUSE_FILTER_STOP
 		vbox.mouse_entered.connect(set_hovered_drop_slot.bind(tower_slots.size(), 0))
 		vbox.mouse_exited.connect(unset_hovered_drop_slot)
 		tower_parts.add_child(vbox)
 		tower_slots.append(vbox)
+		if x != 0:
+			var panel: PricePanel = price_panel_scene.instantiate() as PricePanel
+			panel.set_price(Data.slot_prices[x - 1])
+			vbox.add_child(panel)
+			tower_prices.append(panel)
 	for x: int in FEATURE_SLOTS:
-		var vbox: VBoxContainer = VBoxContainer.new()
+		var vbox: MarginContainer = MarginContainer.new()
 		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		vbox.mouse_filter = Control.MOUSE_FILTER_STOP
 		vbox.mouse_entered.connect(set_hovered_drop_slot.bind(weapon_slots.size(), 1))
 		vbox.mouse_exited.connect(unset_hovered_drop_slot)
 		weapon_parts.add_child(vbox)
 		weapon_slots.append(vbox)
+		if x != 0:
+			var panel: PricePanel = price_panel_scene.instantiate() as PricePanel
+			panel.set_price(Data.slot_prices[x - 1])
+			vbox.add_child(panel)
+			weapon_prices.append(panel)
 
 
 func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> void:
+	if hovered_drop_slot == 0:
+		return
 	if track == 0:
-		if hovered_drop_slot >= 0 and hovered_drop_slot < tower_feature_uis.size():
+		if hovered_drop_slot > 0 and hovered_drop_slot < tower_feature_uis.size():
 			change_feature(tower_feature_uis[hovered_drop_slot], feature, 0)
 		elif tower_feature_uis.size() < FEATURE_SLOTS:
 			var feature_visual: FeatureUI = feature_scene.instantiate()
@@ -134,9 +153,14 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 			tower_feature_uis.append(feature_visual)
 			if modify_resource:
 				temp_card.tower_stats.features.append(feature)
+				tower_prices[tower_feature_uis.size() - 2].visible = false
+				cost += Data.slot_prices[tower_feature_uis.size() - 2]
+				price_label.text = "$" + str(cost)
 				card_desc.set_card(temp_card, check_button.button_pressed)
+				if cost > hero.currency:
+					$PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton.disabled = true
 	elif track == 1:
-		if hovered_drop_slot >= 0 and hovered_drop_slot < weapon_feature_uis.size():
+		if hovered_drop_slot > 0 and hovered_drop_slot < weapon_feature_uis.size():
 			change_feature(weapon_feature_uis[hovered_drop_slot], feature, 1)
 		elif weapon_feature_uis.size() < FEATURE_SLOTS:
 			var feature_visual: FeatureUI = feature_scene.instantiate()
@@ -145,7 +169,12 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 			weapon_feature_uis.append(feature_visual)
 			if modify_resource:
 				temp_card.weapon_stats.features.append(feature)
+				weapon_prices[weapon_feature_uis.size() - 2].visible = false
+				cost += Data.slot_prices[weapon_feature_uis.size() - 2]
+				price_label.text = "$" + str(cost)
 				card_desc.set_card(temp_card, check_button.button_pressed)
+				if cost > hero.currency:
+					$PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton.disabled = true
 
 
 func change_feature(existing_feature: FeatureUI, new_feature: Feature, track: int) -> void:
@@ -193,7 +222,7 @@ func unset_hovered_drop_slot() -> void:
 func _on_cancel_button_pressed() -> void:
 	var cards_to_remove: Array[Card] = []
 	var cards_to_add: Array[Card] = []
-	cards_remixed.emit(cards_to_remove, cards_to_add)
+	cards_remixed.emit(cards_to_remove, cards_to_add, 0)
 	queue_free()
 
 
@@ -202,7 +231,7 @@ func _on_confirm_button_pressed() -> void:
 	var cards_to_add: Array[Card] = []
 	cards_to_remove.append(card_selected)
 	cards_to_add.append(temp_card)
-	cards_remixed.emit(cards_to_remove, cards_to_add)
+	cards_remixed.emit(cards_to_remove, cards_to_add, cost)
 	queue_free()
 
 

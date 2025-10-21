@@ -17,6 +17,7 @@ func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
 		var card_array: Array[Card] = []
 		for card: Card in callback.hand.contents:
 			card_array.append(card)
+		menu.hero = reply_player
 		menu.populate_feature_slots()
 		menu.add_option(card_array)
 		menu.cards_remixed.connect(output)
@@ -24,10 +25,11 @@ func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
 		reply_player.hud.add_child(menu)
 
 
-func output(cards_to_remove: Array[Card], cards_to_add: Array[Card]) -> void:
+func output(cards_to_remove: Array[Card], cards_to_add: Array[Card], amount_spent: int) -> void:
 	for card: Card in cards_to_remove:
 		reply_player.hand.contents.erase(card)
 		reply_player.check_removal()
 	for card: Card in cards_to_add:
 		reply_player.add_card(card)
+	reply_player.currency -= amount_spent
 	reply_player.unpause()

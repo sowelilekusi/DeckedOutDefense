@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://da471yc1kajfo"]
+
+[ext_resource type="Script" uid="uid://cdrpqvf37mehj" path="res://test_ui.gd" id="1_3tn64"]
+[ext_resource type="PackedScene" uid="uid://dik1j1w8vrul5" path="res://drag_n_drop_container.tscn" id="1_w4nob"]
+[ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://feature_ui.tscn" id="2_3tn64"]
+[ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="2_w3nqu"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="3_55qp5"]
+[ext_resource type="Resource" uid="uid://nh7g23b3rnvr" path="res://Scripts/Features/Radar/radar_feature.tres" id="4_mlaor"]
+
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("slots", "other_slots")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = -200.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3tn64")
+slots = [NodePath("VBoxContainer/HBoxContainer/DragNDropContainer"), NodePath("VBoxContainer/HBoxContainer/DragNDropContainer2"), NodePath("VBoxContainer/HBoxContainer/DragNDropContainer3")]
+other_slots = [NodePath("VBoxContainer/HBoxContainer2/DragNDropContainer"), NodePath("VBoxContainer/HBoxContainer2/DragNDropContainer2")]
+features = Array[ExtResource("2_w3nqu")]([ExtResource("3_55qp5"), ExtResource("4_mlaor")])
+feature_ui = ExtResource("2_3tn64")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DragNDropContainer" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_w4nob")]
+layout_mode = 2
+
+[node name="DragNDropContainer2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_w4nob")]
+layout_mode = 2
+
+[node name="DragNDropContainer3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_w4nob")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DragNDropContainer" parent="VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("contents") instance=ExtResource("1_w4nob")]
+layout_mode = 2
+finite_contents = false
+contents = NodePath("")
+
+[node name="DragNDropContainer2" parent="VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("contents") instance=ExtResource("1_w4nob")]
+layout_mode = 2
+finite_contents = false
+contents = NodePath("")

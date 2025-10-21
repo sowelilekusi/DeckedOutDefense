@@ -42,6 +42,13 @@ static var rarity_colors: Array[Color] = [
 	Color8(181, 36, 204),
 	Color8(225, 112, 30),
 ]
+static var slot_prices: Array[int] = [
+	10,
+	15,
+	20,
+	25,
+	30,
+]
 
 
 ## Recursively searches a folder for any Card resources and loads them
