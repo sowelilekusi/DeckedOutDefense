@@ -78,7 +78,6 @@ color = Color(0.192157, 0.415686, 0.223529, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_272bh")

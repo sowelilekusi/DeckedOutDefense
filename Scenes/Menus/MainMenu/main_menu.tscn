@@ -29,26 +29,13 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="Resource" id="Resource_sv1gy"]
 resource_local_to_scene = true
 script = ExtResource("5_u514r")
-title = "dog"
 target_type = 1
 icon = ExtResource("7_2sylv")
 death_sprite = ExtResource("6_rsxwm")
 sprite = SubResource("AtlasTexture_74epv")
-spawn_power = 10
 health = 180
-penalty = 10
 movement_speed = 1.2
 spawn_cooldown = 1.2
-common_group = 1
-common_cost = 1
-uncommon_group = 1
-uncommon_cost = 1
-rare_group = 1
-rare_cost = 1
-epic_group = 1
-epic_cost = 1
-legendary_group = 1
-legendary_cost = 1
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jyua"]
 random_pitch = 1.1
@@ -198,6 +185,7 @@ text = "LABEL_SEED"
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "LABEL_SEED_PLACEHOLDER"
+expand_to_text_length = true
 
 [node name="ProfileManager" type="PanelContainer" parent="."]
 visible = false
@@ -233,6 +221,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "LABEL_DISPLAY_NAME_PLACEHOLDER"
 alignment = 1
+expand_to_text_length = true
 
 [node name="Stats" type="VBoxContainer" parent="ProfileManager/VBoxContainer"]
 layout_mode = 2
@@ -434,15 +423,11 @@ expand_icon = true
 [node name="ModsMenu" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_6t4jd")
@@ -457,8 +442,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ModsMenu/VBoxContainer"]
-custom_minimum_size = Vector2(800, 400)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModsMenu/VBoxContainer/ScrollContainer"]
 layout_mode = 2

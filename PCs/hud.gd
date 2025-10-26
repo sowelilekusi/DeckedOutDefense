@@ -26,11 +26,14 @@ extends CanvasLayer
 @export var primary_duration: Label
 @export var secondary_duration: Label
 @export var blank_cassette_label: Label
+@export var feature_preview: HBoxContainer
+@export var hot_wheel: HotWheel
 
 var last_lives_count: int = 120
 var enemy_names: Array[String]
 var map_anchor: Node3D
 var cards: Array[EnemyCardUI] = []
+var feature_preview_tween: Tween
 
 
 func _ready() -> void:
@@ -38,6 +41,14 @@ func _ready() -> void:
 	$InteractLabel.theme_type_variation = "InteractLabel"
 	if player.game_manager.card_gameplay:
 		energy_label.visible = true
+
+
+func show_hot_wheel() -> void:
+	hot_wheel.visible = true
+
+
+func hide_hot_wheel() -> void:
+	hot_wheel.visible = false
 
 
 func set_blank_cassette_count(value: int) -> void:
@@ -85,6 +96,33 @@ func _process(_delta: float) -> void:
 	wave_start_label.text = parse_action_tag(tr("PROMPT_START_WAVE"))
 	place_text.text = parse_action_tag("[center]%Primary Fire%")
 	swap_text.text = parse_action_tag("[center]%Secondary Fire%")
+
+
+func show_features(cassette: Card) -> void:
+	for child: Node in feature_preview.get_children():
+		child.queue_free()
+	var cols: int = max(cassette.tower_stats.features.size(), cassette.weapon_stats.features.size())
+	for x: int in cols:
+		var vbox: VBoxContainer = VBoxContainer.new()
+		vbox.alignment = BoxContainer.ALIGNMENT_END
+		if x < cassette.tower_stats.features.size():
+			vbox.alignment = BoxContainer.ALIGNMENT_BEGIN
+			var tex: TextureRect = TextureRect.new()
+			tex.texture = cassette.tower_stats.features[x].icon
+			vbox.add_child(tex)
+		if x < cassette.weapon_stats.features.size():
+			var tex: TextureRect = TextureRect.new()
+			tex.texture = cassette.weapon_stats.features[x].icon
+			vbox.add_child(tex)
+		feature_preview.add_child(vbox)
+	if feature_preview_tween:
+		feature_preview_tween.kill()
+	feature_preview_tween = create_tween()
+	feature_preview_tween.set_ease(Tween.EASE_OUT)
+	feature_preview_tween.set_trans(Tween.TRANS_CUBIC)
+	feature_preview.modulate = Color.WHITE
+	feature_preview_tween.tween_interval(0.7)
+	feature_preview_tween.tween_property(feature_preview, "modulate", Color8(255, 255, 255, 0), 0.5)
 
 
 func grow_wave_start_label() -> void:
@@ -209,6 +247,7 @@ func minimize_minimap() -> void:
 
 
 func pickup(card: Card) -> void:
+	hot_wheel.add_cassette(card)
 	var notif: PickupNotification = pickup_notif_scene.instantiate()
 	notif.set_card(card)
 	$VBoxContainer.add_child(notif)

@@ -52,7 +52,6 @@ func place_card(tower_base: TowerBase) -> void:
 		return
 	remove_card(tower_base)
 	hero.hand.remove_at(hero.hand.contents.find(card))
-	hero.check_removal()
 	tower_base.add_card(card, multiplayer.get_unique_id())
 	hero.place_card_audio.play()
 	if hero.game_manager.card_gameplay:

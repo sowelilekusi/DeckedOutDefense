@@ -24,6 +24,7 @@ func load_main_menu() -> void:
 		game_manager.queue_free()
 	game_manager = GameManager.new()
 	game_manager.name = "GameManager"
+	game_manager.root_scene = scene
 	add_child(game_manager)
 	game_manager.switch_to_main_menu.connect(load_main_menu)
 	game_manager.switch_to_single_player.connect(load_singleplayer)

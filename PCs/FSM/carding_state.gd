@@ -60,7 +60,6 @@ func process_state(_delta: float) -> void:
 
 
 func swap_to_slot(num: int) -> void:
-	if hero.unique_cards.size() >= num:
+	if hero.hand.size >= num:
 		hero.hand_selected_index = num - 1
 		hero.swap_card_audio.play()
-		hero.update_selected_box()

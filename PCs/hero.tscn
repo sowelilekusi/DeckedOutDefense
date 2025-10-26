@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=69 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
@@ -38,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://val5n418yebw" path="res://Audio/cardSlide3.ogg" id="30_djhlg"]
 [ext_resource type="Texture2D" uid="uid://up7omskwg0yx" path="res://Assets/Textures/battery.png" id="30_rim6q"]
 [ext_resource type="AudioStream" uid="uid://ck6g061w7i6ro" path="res://Audio/cardSlide4.ogg" id="31_546e6"]
+[ext_resource type="PackedScene" uid="uid://ga21hoa8fxmm" path="res://hot_wheel.tscn" id="31_h1yfy"]
 [ext_resource type="AudioStream" uid="uid://bj8eitlsjdotb" path="res://Audio/cardSlide5.ogg" id="32_tg7y0"]
 [ext_resource type="AudioStream" uid="uid://d0620p56ad34a" path="res://Audio/cardSlide6.ogg" id="33_2v5co"]
 [ext_resource type="AudioStream" uid="uid://uvoxbl1fbtu0" path="res://Audio/cardSlide7.ogg" id="34_6acmc"]
@@ -320,7 +321,7 @@ max_look_up_angle = 80.0
 enable_jumping = true
 weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "blank_cassette_label")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("EnemyTracker/WaveCount")
@@ -344,6 +345,8 @@ enemy_card_scene = ExtResource("18_dfkac")
 new_energy_bar = NodePath("EnergyBar")
 energy_label = NodePath("Currencies/HBoxContainer/EnergyLabel")
 blank_cassette_label = NodePath("Currencies/BlankCassetteLabel")
+feature_preview = NodePath("FeaturePreview")
+hot_wheel = NodePath("HotWheel")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -715,25 +718,6 @@ texture = ExtResource("26_dfkac")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="selection_boxes" type="HBoxContainer" parent="HUD"]
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.8
-anchor_right = 0.2
-anchor_bottom = 0.8
-grow_vertical = 0
-mouse_filter = 2
-alignment = 1
-
-[node name="Control" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
-layout_mode = 2
-
-[node name="Control2" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
-layout_mode = 2
-
-[node name="Control3" parent="HUD/selection_boxes" instance=ExtResource("5_h82f6")]
-layout_mode = 2
-
 [node name="Currencies" type="VBoxContainer" parent="HUD"]
 anchors_preset = -1
 anchor_left = 0.95
@@ -778,6 +762,26 @@ vertical_alignment = 1
 layout_mode = 2
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="HotWheel" parent="HUD" instance=ExtResource("31_h1yfy")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.893
+anchor_right = 0.5
+anchor_bottom = 0.893
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FeaturePreview" type="HBoxContainer" parent="HUD"]
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.4

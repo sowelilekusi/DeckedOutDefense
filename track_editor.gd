@@ -47,6 +47,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	drag_feature.position = get_viewport().get_mouse_position()
+	if Input.is_action_just_pressed("Pause"):
+		_on_cancel_button_pressed()
 
 
 func _input(event: InputEvent) -> void:
@@ -101,6 +103,7 @@ func populate_sample_library() -> void:
 			sample_library.add_child(hbox)
 		var feat: FeatureUI = feature_scene.instantiate() as FeatureUI
 		feat.set_feature(feature)
+		feat.show_title()
 		feat.mouse_filter = Control.MOUSE_FILTER_PASS
 		feat.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		feat.mouse_entered.connect(set_hovered_feature.bind(feat.feature))

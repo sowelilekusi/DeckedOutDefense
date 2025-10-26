@@ -600,6 +600,24 @@ msgstr "Heavy Rounds"
 msgid "FEATURE_NAME_EXTENDED_BARREL"
 msgstr "Extended Barrel"
 
+msgid "TITLE_REMIX"
+msgstr "T.O.W.E.R. Editor"
+
+msgid "LABEL_TOWER_TRACK"
+msgstr "Turret Track"
+
+msgid "LABEL_WEAPON_TRACK"
+msgstr "Weapon Track"
+
+msgid "TITLE_SAMPLES"
+msgstr "Sample Library"
+
+msgid "BUTTON_CONFIRM_REMIX"
+msgstr "REMIX"
+
+msgid "PROMPT_REMIX_INTERACT"
+msgstr "%Interact% Remix Cassette"
+
 #, fuzzy
 #~| msgid "LABEL_DISPLAY_NAME"
 #~ msgid "LABEL_CARD_NAME"

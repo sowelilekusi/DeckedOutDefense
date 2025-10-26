@@ -21,6 +21,7 @@ texture = ExtResource("2_w6jf0")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 2
 text = "Radar"
 horizontal_alignment = 1

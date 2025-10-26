@@ -563,3 +563,21 @@ msgstr ""
 
 msgid "FEATURE_NAME_EXTENDED_BARREL"
 msgstr ""
+
+msgid "TITLE_REMIX"
+msgstr ""
+
+msgid "LABEL_TOWER_TRACK"
+msgstr ""
+
+msgid "LABEL_WEAPON_TRACK"
+msgstr ""
+
+msgid "TITLE_SAMPLES"
+msgstr ""
+
+msgid "BUTTON_CONFIRM_REMIX"
+msgstr ""
+
+msgid "PROMPT_REMIX_INTERACT"
+msgstr ""

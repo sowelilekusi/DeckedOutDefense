@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ga21hoa8fxmm"]
+
+[ext_resource type="Script" uid="uid://laoxiep4e5x0" path="res://hot_wheel.gd" id="1_2sjpl"]
+
+[node name="HotWheel" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_2sjpl")

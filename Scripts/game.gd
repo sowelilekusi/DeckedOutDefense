@@ -13,6 +13,7 @@ signal switch_to_single_player
 signal switch_to_multi_player
 signal switch_to_main_menu
 
+var root_scene: Node
 var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
 var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
@@ -40,7 +41,7 @@ var connected_player_profiles: Dictionary = {}
 func _ready() -> void:
 	UILayer = CanvasLayer.new()
 	UILayer.layer = 2
-	get_tree().root.add_child.call_deferred(UILayer)
+	root_scene.add_child.call_deferred(UILayer)
 	var version_label: Label = Label.new()
 	var version: String = ProjectSettings.get_setting("application/config/version")
 	version_label.text = "WORK IN PROGRESS | ALPHA - VERSION " + version + " | PLAYTEST"
@@ -114,7 +115,7 @@ func spawn_level() -> void:
 		x.enemy_died_callback = enemy_died
 		x.enemy_reached_goal_callback = damage_goal
 		x.enemy_spawned.connect(increase_enemy_count)
-	add_child(level)
+	root_scene.add_child(level)
 
 
 func spawn_players() -> void:
@@ -141,7 +142,7 @@ func spawn_players() -> void:
 		wave_started.connect(player.enter_fighting_state)
 		wave_finished.connect(player.exit_fighting_state)
 		base_took_damage.connect(player.hud.set_lives_count)
-		add_child(player)
+		root_scene.add_child(player)
 		p_i += 1
 	level.cinematic_cam.does_its_thing = false
 

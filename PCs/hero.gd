@@ -41,8 +41,6 @@ signal ready_state_changed(state: bool)
 
 var current_state: HeroState
 var pre_fighting_state: HeroState
-var selection_boxes: Array[CardSelectionBox] = []
-var unique_cards: Array[Card] = []
 var hand_card_scene: PackedScene = preload("res://Scenes/UI/card_hand.tscn")
 var card_sprites: Array[CardInHand]
 var game_manager: GameManager
@@ -81,7 +79,7 @@ var selected_card: Card :
 	set(_value):
 		pass
 	get():
-		return unique_cards[hand_selected_index] if unique_cards.size() > 0 else null
+		return hand.item_at(hand_selected_index) if hand.size > 0 else null
 
 
 func set_zoom_factor(value: float) -> void:
@@ -99,7 +97,6 @@ func _ready() -> void:
 				draw_pile.add(card)
 			else:
 				add_card(card)
-				update_selected_box()
 	else:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
@@ -130,44 +127,6 @@ func enter_fighting_state() -> void:
 
 func exit_fighting_state() -> void:
 	update_state(pre_fighting_state)
-
-
-func add_selection(card: Card) -> void:
-	if !unique_cards.has(card):
-		unique_cards.append(card)
-		var box: CardSelectionBox = card_select_scene.instantiate()
-		box.set_card(card)
-		box.set_key(unique_cards.size() - 1)
-		box.set_amount(1)
-		selection_boxes.append(box)
-		$HUD/selection_boxes.add_child(box)
-	else:
-		var box: CardSelectionBox
-		for existing_box: CardSelectionBox in selection_boxes:
-			if existing_box.card == card:
-				box = existing_box
-		box.set_amount(hand.contents.count(card))
-
-
-func check_removal() -> void:
-	var index: int = -1
-	for card: Card in unique_cards:
-		if !hand.contents.has(card):
-			index = unique_cards.find(card)
-	for i: int in selection_boxes.size():
-		selection_boxes[i].set_amount(hand.contents.count(unique_cards[i]))
-	if index >= 0:
-		unique_cards.remove_at(index)
-		selection_boxes[index].queue_free()
-		selection_boxes.remove_at(index)
-		if selection_boxes.size() > 0:
-			for i: int in selection_boxes.size():
-				var card: Card = unique_cards[i]
-				selection_boxes[i].set_card(card)
-				selection_boxes[i].set_key(i)
-			if hand_selected_index == index:
-				decrement_selected()
-			update_selected_box()
 
 
 func _physics_process(_delta: float) -> void:
@@ -223,24 +182,25 @@ func check_world_button() -> void:
 
 func increment_selected() -> void:
 	hand_selected_index += 1
-	if hand_selected_index >= unique_cards.size():
+	if hand_selected_index >= hand.size:
 		hand_selected_index = 0
-	update_selected_box()
 
 
 func decrement_selected() -> void:
-	if unique_cards.size() == 0:
+	if hand.size == 0:
 		hand_selected_index = 0
 		return
 	hand_selected_index -= 1
 	if hand_selected_index < 0:
-		hand_selected_index = unique_cards.size() - 1
-	update_selected_box()
+		hand_selected_index = hand.size - 1
 
 
 func set_card_elements_visibility(value: bool) -> void:
+	if value:
+		hud.show_hot_wheel()
+	else:
+		hud.hide_hot_wheel()
 	$FirstPersonViewport/Head2/LeftHand.visible = value
-	$HUD/selection_boxes.visible = value
 	$HUD/PlaceIcon.visible = value
 	$HUD/SwapIcon.visible = value
 	if cards[0]:
@@ -270,7 +230,6 @@ func ready_self() -> void:
 		hud.swap_icon.set_visible(false)
 		hud.shrink_wave_start_label()
 		ready_audio.play()
-		networked_set_ready_state.rpc(ready_state)
 
 
 func unready_self() -> void:
@@ -278,14 +237,12 @@ func unready_self() -> void:
 		ready_state = false
 		hud.grow_wave_start_label()
 		unready_audio.play()
-		networked_set_ready_state(ready_state)
 
 
 func add_card(new_card: Card) -> void:
 	hand.add(new_card)
 	hud.pickup(new_card)
 	place_card_audio.play()
-	add_selection(new_card)
 
 
 func unpause() -> void:
@@ -322,37 +279,11 @@ func draw_to_hand_size() -> void:
 			display.position = Vector3(0.01 * hand.size, 0.0, -0.001 * hand.size)
 			display.rotation_degrees = Vector3(0.0, 0.0, -10.0 * hand.size)
 			$FirstPersonViewport/Head2/LeftHand/Cards.add_child(display)
-			#var tween: Tween = create_tween()
-			#tween.set_ease(Tween.EASE_OUT)
-			#tween.set_trans(Tween.TRANS_CUBIC)
-			#tween.tween_property(display, "position", Vector2(200.0 * hand.size, 80.0), 0.5)
 		else:
 			for x: int in discard_pile.size:
 				draw_pile.add(discard_pile.remove_at(0))
 				draw_pile.shuffle()
-	unique_cards = []
-	selection_boxes = []
-	for card: Card in hand.contents:
-		if !unique_cards.has(card):
-			unique_cards.append(card)
-	for i: int in $HUD/selection_boxes.get_child_count():
-		$HUD/selection_boxes.get_child(i).queue_free()
-	for i: int in unique_cards.size():
-		var card: Card = unique_cards[i]
-		var box: CardSelectionBox = card_select_scene.instantiate()
-		box.set_card(card)
-		box.set_key(i)
-		box.set_amount(hand.contents.count(unique_cards[i]))
-		selection_boxes.append(box)
-		$HUD/selection_boxes.add_child(box)
 	hand_selected_index = 0
-	update_selected_box()
-
-
-func update_selected_box() -> void:
-	for box: CardSelectionBox in selection_boxes:
-		box.deselect()
-	selection_boxes[hand_selected_index].select()
 
 
 func equip_weapon(slot: int = 0) -> void:
@@ -381,7 +312,6 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].stats = cards[slot].weapon_stats
 		weapons[slot].name = str(weapons_spawn_count)
 		weapons[slot].duration = 1
-		networked_equip_weapon.rpc(Data.cards.find(cards[slot]), 0, weapons_spawn_count)
 		weapons_spawn_count += 1
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
 		gauntlet_cards[slot].set_card(cards[slot])
@@ -394,7 +324,6 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].set_hero(self)
 		weapons[slot].visible = false
 		right_hand.add_child(weapons[slot])
-		check_removal()
 		if slot == 0:
 			weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
 			weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
@@ -458,7 +387,6 @@ func _on_timer_timeout() -> void:
 
 
 func unequip_weapon(slot: int = 0) -> void:
-	networked_unequip_weapon.rpc(slot)
 	gauntlet_cards[slot].visible = false
 	if slot == 0:
 		hud.place_icon.visible = true
@@ -472,33 +400,3 @@ func unequip_weapon(slot: int = 0) -> void:
 		add_card(cards[slot])
 	cards[slot] = null
 	place_card_audio.play()
-
-
-#MULTIPLAYER NETWORKED FUNCTIONS
-@rpc("reliable")
-func networked_set_ready_state(state: bool) -> void:
-	ready_state = state
-
-
-@rpc("reliable")
-func networked_swap_weapon() -> void:
-	swap_weapons()
-
-
-@rpc("reliable")
-func networked_equip_weapon(card_index: int, slot: int, id: int) -> void:
-	var new_card: Card = Data.cards[card_index]
-	var new_weapon: Weapon = new_card.weapon_scene.instantiate()
-	new_weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
-	new_weapon.name = str(id)
-	new_weapon.set_hero(self)
-	right_hand.add_child(new_weapon)
-	cards[slot] = new_card
-	weapons[slot] = new_weapon
-
-
-@rpc("reliable")
-func networked_unequip_weapon(slot: int) -> void:
-	weapons[slot].queue_free()
-	weapons[slot] = null
-	cards[slot] = null
