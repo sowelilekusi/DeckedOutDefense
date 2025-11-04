@@ -581,3 +581,9 @@ msgstr ""
 
 msgid "PROMPT_REMIX_INTERACT"
 msgstr ""
+
+msgid "LABEL_REMIX_PRICE"
+msgstr ""
+
+msgid "LABEL_REMIX_CURRENCY"
+msgstr ""

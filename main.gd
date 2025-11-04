@@ -4,10 +4,12 @@ extends Node
 signal loaded_scene
 
 @export var scene: Node
+@export var ui_viewport: SubViewport
 @export var movies: Node
 
 var game_manager: GameManager
 var loaded: bool = false
+var UILayer: CanvasLayer
 var main_menu_scene_path: String = "res://Scenes/Menus/MainMenu/main_menu.tscn"
 var multiplayer_lobby_scene_path: String = "res://Scenes/Menus/multiplayer_lobby.tscn"
 var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lobby.tscn"
@@ -15,6 +17,21 @@ var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lob
 
 func _ready() -> void:
 	Engine.max_fps = 60
+	UILayer = CanvasLayer.new()
+	UILayer.layer = 2
+	ui_viewport.add_child.call_deferred(UILayer)
+	var version_label: Label = Label.new()
+	var version: String = ProjectSettings.get_setting("application/config/version")
+	version_label.text = "WORK IN PROGRESS | ALPHA - VERSION " + version + " | PLAYTEST"
+	version_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	version_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	version_label.theme_type_variation = "VersionLabel"
+	#version_label.add_theme_font_size_override("font_size", 18)
+	#version_label.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85, 0.7))
+	version_label.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	UILayer.add_child(version_label)
+	Input.set_custom_mouse_cursor(load("res://Assets/Textures/cursor_none.png"), Input.CURSOR_ARROW, Vector2(9, 6))
+	Input.set_custom_mouse_cursor(load("res://Assets/Textures/bracket_b_vertical.png"), Input.CURSOR_IBEAM, Vector2(16, 16))
 
 
 func load_main_menu() -> void:
@@ -25,6 +42,7 @@ func load_main_menu() -> void:
 	game_manager = GameManager.new()
 	game_manager.name = "GameManager"
 	game_manager.root_scene = scene
+	game_manager.UILayer = UILayer
 	add_child(game_manager)
 	game_manager.switch_to_main_menu.connect(load_main_menu)
 	game_manager.switch_to_single_player.connect(load_singleplayer)

@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bajli4d3nqwll"]
+[gd_scene load_steps=7 format=3 uid="uid://bajli4d3nqwll"]
 
 [ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://feature_ui.tscn" id="1_y6tpq"]
 [ext_resource type="Script" uid="uid://mrv5vrlxfc13" path="res://track_editor.gd" id="1_yrnbk"]
 [ext_resource type="PackedScene" uid="uid://dekexkjl37dvh" path="res://price_panel.tscn" id="3_48m6c"]
 [ext_resource type="PackedScene" uid="uid://cmlpmr78tmo6p" path="res://card_description_ui.tscn" id="3_q6wwl"]
+[ext_resource type="Texture2D" uid="uid://cll2vlvf1h454" path="res://track_one_patch.png" id="4_dya4i"]
+[ext_resource type="Texture2D" uid="uid://cvhkk22pxxuqj" path="res://track_two_patch.png" id="5_4gmyw"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("drag_feature", "sample_library", "tower_parts", "weapon_parts", "drop_down", "card_desc", "check_button", "price_label")]
+[node name="TrackEditor" type="Control" node_paths=PackedStringArray("drag_feature", "sample_library", "tower_parts", "weapon_parts", "drop_down", "card_desc", "price_label", "money_label", "confirm_button", "switch_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,21 +18,23 @@ script = ExtResource("1_yrnbk")
 drag_feature = NodePath("FeatureUI")
 sample_library = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/ScrollContainer/SampleLibrary")
 feature_scene = ExtResource("1_y6tpq")
-tower_parts = NodePath("PanelContainer/VBoxContainer/VBoxContainer/TowerTrack/TowerParts")
-weapon_parts = NodePath("PanelContainer/VBoxContainer/VBoxContainer/WeaponTrack/WeaponParts")
-drop_down = NodePath("PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector/OptionButton")
+tower_parts = NodePath("PanelContainer/VBoxContainer/Tracks/TowerTrack/MarginContainer/MarginContainer/TowerParts")
+weapon_parts = NodePath("PanelContainer/VBoxContainer/Tracks/WeaponTrack/MarginContainer/MarginContainer/WeaponParts")
+drop_down = NodePath("PanelContainer/VBoxContainer/Tracks/SourceCartridge/CassetteSelector/OptionButton")
 card_desc = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/DescriptionVBox")
-check_button = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/CheckButton")
 price_panel_scene = ExtResource("3_48m6c")
-price_label = NodePath("PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/MarginContainer/Label")
+price_label = NodePath("PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer/PriceLabel")
+money_label = NodePath("PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer/MoneyLabel")
+confirm_button = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton")
+switch_button = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.04
-anchor_top = 0.04
-anchor_right = 0.96
-anchor_bottom = 0.96
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -43,81 +47,124 @@ text = "TITLE_REMIX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Tracks" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SourceCartridge" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="SourceCartridge" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CassetteSelector" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge"]
+[node name="CassetteSelector" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector"]
-layout_mode = 2
-text = "LABEL_CASSETTE_SELECTOR"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/CassetteSelector"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+text = "Coins: $0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TowerTrack" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="PriceLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Price: $0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TowerTrack" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/TowerTrack"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Tracks/TowerTrack"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_TOWER_TRACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TowerParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/TowerTrack"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/TowerTrack"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/TowerTrack/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_4gmyw")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/TowerTrack/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TowerParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/TowerTrack/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
 
-[node name="WeaponTrack" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="WeaponTrack" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/WeaponTrack"]
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/Tracks/WeaponTrack"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_WEAPON_TRACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WeaponParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/WeaponTrack"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/WeaponTrack"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/WeaponTrack/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_dya4i")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/WeaponTrack/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="WeaponParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/WeaponTrack/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -133,10 +180,12 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-button_pressed = true
+theme_type_variation = &"SideCheckButton"
+toggle_mode = true
+text = "Side A"
 
 [node name="DescriptionVBox" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer" instance=ExtResource("3_q6wwl")]
 layout_mode = 2
@@ -192,7 +241,7 @@ grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
 
-[connection signal="item_selected" from="PanelContainer/VBoxContainer/VBoxContainer/SourceCartridge/CassetteSelector/OptionButton" to="." method="select_card"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/Tracks/SourceCartridge/CassetteSelector/OptionButton" to="." method="select_card"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/Button" to="." method="press_check_button"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton" to="." method="_on_confirm_button_pressed"]

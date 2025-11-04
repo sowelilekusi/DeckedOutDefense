@@ -3,6 +3,7 @@ extends HeroState
 
 
 func enter_state() -> void:
+	hero.hud.set_currencies_visible(false)
 	if hero.weapons[hero.equipped_weapon]:
 		hero.hud.set_energy_visible(true)
 	var offhand_weapon: Weapon = hero.weapons[0] if hero.equipped_weapon == 1 else hero.weapons[1]
@@ -21,6 +22,7 @@ func enter_state() -> void:
 
 
 func exit_state() -> void:
+	hero.hud.set_currencies_visible(true)
 	if hero.weapons[hero.equipped_weapon]:
 		hero.weapons[hero.equipped_weapon].release_trigger()
 		hero.weapons[hero.equipped_weapon].release_second_trigger()

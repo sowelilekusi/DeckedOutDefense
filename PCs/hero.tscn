@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
 [ext_resource type="PackedScene" uid="uid://ckl5tw5rmewhp" path="res://left_hand/card_hand_model.glb" id="11_h82f6"]
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
-[ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="15_cqpib"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
@@ -31,7 +30,6 @@
 [ext_resource type="Texture2D" uid="uid://biwol65o5rwc7" path="res://Assets/Textures/enemy_frame.png" id="25_rim6q"]
 [ext_resource type="AudioStream" uid="uid://bxripx3suub1v" path="res://Audio/cardPlace3.ogg" id="26_7tm07"]
 [ext_resource type="Texture2D" uid="uid://0x80ptif1diq" path="res://Assets/Textures/hand_small_point.png" id="26_dfkac"]
-[ext_resource type="PackedScene" uid="uid://c2id8hjico4w8" path="res://UI/EnergyBar/energy_bar.tscn" id="27_14ugt"]
 [ext_resource type="AudioStream" uid="uid://k1lsqkvohjpa" path="res://Audio/cardPlace4.ogg" id="27_xvxs8"]
 [ext_resource type="AudioStream" uid="uid://bn8lkvy5wibvo" path="res://Audio/cardSlide1.ogg" id="28_1thk8"]
 [ext_resource type="AudioStream" uid="uid://d32gpcu8w1yvn" path="res://Audio/cardSlide2.ogg" id="29_s0a0l"]
@@ -39,6 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://up7omskwg0yx" path="res://Assets/Textures/battery.png" id="30_rim6q"]
 [ext_resource type="AudioStream" uid="uid://ck6g061w7i6ro" path="res://Audio/cardSlide4.ogg" id="31_546e6"]
 [ext_resource type="PackedScene" uid="uid://ga21hoa8fxmm" path="res://hot_wheel.tscn" id="31_h1yfy"]
+[ext_resource type="PackedScene" uid="uid://cqslp83lf0ku0" path="res://shield_ui.tscn" id="31_o55s8"]
+[ext_resource type="PackedScene" uid="uid://q73cllewm7pj" path="res://energy_pips.tscn" id="32_o55s8"]
 [ext_resource type="AudioStream" uid="uid://bj8eitlsjdotb" path="res://Audio/cardSlide5.ogg" id="32_tg7y0"]
 [ext_resource type="AudioStream" uid="uid://d0620p56ad34a" path="res://Audio/cardSlide6.ogg" id="33_2v5co"]
 [ext_resource type="AudioStream" uid="uid://uvoxbl1fbtu0" path="res://Audio/cardSlide7.ogg" id="34_6acmc"]
@@ -321,11 +321,10 @@ max_look_up_angle = 80.0
 enable_jumping = true
 weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "lives_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "new_energy_bar", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_icon", "swap_icon", "place_text", "swap_text", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel", "shield_ui", "currencies", "energy_pips")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("EnemyTracker/WaveCount")
-lives_count = NodePath("LivesBar/LivesCount")
 currency_count = NodePath("Currencies/CoinCounter/CurrencyCount")
 minimap_outline = NodePath("Minimap/MinimapBorder")
 minimap = NodePath("Minimap")
@@ -342,11 +341,13 @@ swap_icon = NodePath("SwapIcon")
 place_text = NodePath("PlaceIcon/RichTextLabel")
 swap_text = NodePath("SwapIcon/RichTextLabel")
 enemy_card_scene = ExtResource("18_dfkac")
-new_energy_bar = NodePath("EnergyBar")
 energy_label = NodePath("Currencies/HBoxContainer/EnergyLabel")
 blank_cassette_label = NodePath("Currencies/BlankCassetteLabel")
 feature_preview = NodePath("FeaturePreview")
 hot_wheel = NodePath("HotWheel")
+shield_ui = NodePath("ShieldUI")
+currencies = NodePath("Currencies")
+energy_pips = NodePath("EnergyPips")
 
 [node name="FirstPersonCam" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -450,30 +451,6 @@ text = "FPS: "
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LivesBar" parent="HUD" instance=ExtResource("15_cqpib")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 214.0
-offset_bottom = 32.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.32, 0.32)
-mouse_filter = 2
-
-[node name="LivesCount" type="Label" parent="HUD/LivesBar"]
-layout_mode = 0
-offset_right = 79.0
-offset_bottom = 70.0
-scale = Vector2(0.33, 0.33)
-theme_override_colors/font_color = Color(0.65098, 0.227451, 0.243137, 1)
-theme_override_font_sizes/font_size = 37
-text = "120"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="EnemyTracker" type="TextureRect" parent="HUD"]
 texture_filter = 1
 anchors_preset = -1
@@ -489,115 +466,101 @@ stretch_mode = 4
 [node name="TextureRect" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_right = 64.0
+offset_left = 0.5
+offset_right = 64.5
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label" type="Label" parent="HUD/EnemyTracker/TextureRect"]
 layout_mode = 0
-offset_left = 28.01
-offset_top = 41.81
-offset_right = 68.01
-offset_bottom = 66.8101
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+offset_left = 28.000006
+offset_top = 46.000004
+offset_right = 43.000008
+offset_bottom = 54.000004
+scale = Vector2(2, 2)
 text = "999"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 32.0
-offset_right = 96.0
+offset_left = 32.5
+offset_right = 96.5
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label2" type="Label" parent="HUD/EnemyTracker/TextureRect2"]
 layout_mode = 0
-offset_left = 28.745
-offset_top = 41.81
-offset_right = 68.7451
-offset_bottom = 66.8101
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+offset_left = 28.000006
+offset_top = 46.000004
+offset_right = 43.000008
+offset_bottom = 54.000004
+scale = Vector2(2, 2)
 text = "999"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextureRect3" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 64.0
-offset_right = 128.0
+offset_left = 62.5
+offset_right = 126.5
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label3" type="Label" parent="HUD/EnemyTracker/TextureRect3"]
 layout_mode = 0
-offset_left = 29.29
-offset_top = 41.81
-offset_right = 69.2901
-offset_bottom = 66.8101
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+offset_left = 29.999992
+offset_top = 46.000004
+offset_right = 44.999992
+offset_bottom = 54.000004
+scale = Vector2(2, 2)
 text = "999"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextureRect4" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 96.0
-offset_right = 160.0
+offset_left = 94.5
+offset_right = 158.5
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label4" type="Label" parent="HUD/EnemyTracker/TextureRect4"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 41.81
-offset_right = 69.0
-offset_bottom = 66.8101
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+offset_left = 30.0
+offset_top = 46.000004
+offset_right = 45.0
+offset_bottom = 54.000004
+scale = Vector2(2, 2)
 text = "999"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextureRect5" type="TextureRect" parent="HUD/EnemyTracker"]
 visible = false
 layout_mode = 0
-offset_left = 128.0
-offset_right = 192.0
+offset_left = 127.5
+offset_right = 191.5
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
 [node name="Label5" type="Label" parent="HUD/EnemyTracker/TextureRect5"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 41.81
-offset_right = 69.0
-offset_bottom = 66.8101
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+offset_left = 26.0
+offset_top = 46.000004
+offset_right = 41.0
+offset_bottom = 54.000004
+scale = Vector2(2, 2)
 text = "999"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="WaveCount" type="Label" parent="HUD/EnemyTracker"]
@@ -607,6 +570,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -12.0
+offset_right = 1.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "1"
@@ -675,11 +642,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-
-[node name="EnergyBar" parent="HUD" instance=ExtResource("27_14ugt")]
-visible = false
-scale = Vector2(0.235, 0.235)
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="HUD"]
@@ -782,6 +744,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 alignment = 1
+
+[node name="ShieldUI" parent="HUD" instance=ExtResource("31_o55s8")]
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.035
+anchor_bottom = 0.035
+
+[node name="EnergyPips" parent="HUD" instance=ExtResource("32_o55s8")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.97
+anchor_right = 0.97
+anchor_bottom = 0.97
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="WeaponSwapTimer" type="Timer" parent="."]
 wait_time = 0.4

@@ -3,7 +3,6 @@ extends CanvasLayer
 
 @export var player: Hero
 @export var wave_count: Label
-@export var lives_count: Label
 @export var currency_count: Label
 @export var minimap_outline: TextureRect
 @export var crosshair: Control
@@ -21,15 +20,17 @@ extends CanvasLayer
 @export var place_text: RichTextLabel
 @export var swap_text: RichTextLabel
 @export var enemy_card_scene: PackedScene
-@export var new_energy_bar: EnergyBar
 @export var energy_label: Label
 @export var primary_duration: Label
 @export var secondary_duration: Label
 @export var blank_cassette_label: Label
 @export var feature_preview: HBoxContainer
 @export var hot_wheel: HotWheel
+@export var shield_ui: ShieldUI
+@export var currencies: VBoxContainer
+@export var energy_pips: EnergyPips
 
-var last_lives_count: int = 120
+var last_lives_count: int = Data.starting_lives
 var enemy_names: Array[String]
 var map_anchor: Node3D
 var cards: Array[EnemyCardUI] = []
@@ -88,7 +89,7 @@ func show_wave_generation_anim(wave: Wave) -> void:
 
 
 func set_energy_visible(value: bool) -> void:
-	new_energy_bar.visible = value
+	energy_pips.visible = value
 
 
 func _process(_delta: float) -> void:
@@ -163,10 +164,17 @@ func set_wave_count(value: int) -> void:
 
 
 func set_lives_count(value: int) -> void:
-	lives_count.text = str(value)
-	for x: int in last_lives_count - value:
-		$LivesBar.take_life()
+	var damage: int = last_lives_count - value
+	shield_ui.take_damage(damage)
 	last_lives_count = value
+
+
+func set_currencies_visible(value: bool) -> void:
+	currencies.visible = value
+
+
+func set_energy_pips(value: int) -> void:
+	energy_pips.energy = value
 
 
 func enemy_count_down(enemy: Enemy) -> void:

@@ -10,11 +10,17 @@ signal cards_remixed(cards_consumed: Array[Card], cards_created: Array[Card], am
 @export var weapon_parts: HBoxContainer
 @export var drop_down: OptionButton
 @export var card_desc: CardDescriptionUI
-@export var check_button: CheckButton
 @export var price_panel_scene: PackedScene
 @export var price_label: Label
+@export var money_label: Label
+@export var confirm_button: Button
+@export var switch_button: Button
 
 const FEATURE_SLOTS: int = 6
+const PRICE_STR: String = "LABEL_REMIX_PRICE"
+const MONEY_STR: String = "LABEL_REMIX_CURRENCY"
+const SIDE_A_STR: String = "BUTTON_VIEW_TOWER"
+const SIDE_B_STR: String = "BUTTON_VIEW_WEAPON"
 
 var hero: Hero
 var dragging: bool = false
@@ -32,6 +38,7 @@ var cards: Array[Card]
 var card_selected: Card
 var temp_card: Card
 var cost: int = 0
+var check_button_pressed: bool = false
 
 
 func _ready() -> void:
@@ -42,7 +49,20 @@ func _ready() -> void:
 	weapon_parts.mouse_entered.connect(set_hovered_drop_slot.bind(-1, 1))
 	tower_parts.mouse_exited.connect(unset_hovered_drop_slot)
 	weapon_parts.mouse_exited.connect(unset_hovered_drop_slot)
-	price_label.text = "$" + str(cost)
+	price_label.text = tr(PRICE_STR) + str(cost)
+
+
+func set_money(money: int) -> void:
+	money_label.text = tr(MONEY_STR) + str(money)
+
+
+func press_check_button(value: bool) -> void:
+	check_button_pressed = value
+	if check_button_pressed:
+		switch_button.text = tr(SIDE_B_STR)
+	else:
+		switch_button.text = tr(SIDE_A_STR)
+	card_desc.set_card(temp_card, check_button_pressed)
 
 
 func _process(_delta: float) -> void:
@@ -71,7 +91,7 @@ func select_card(option: int) -> void:
 	temp_card = card_selected.duplicate()
 	temp_card.tower_stats = temp_card.tower_stats.get_duplicate()
 	temp_card.weapon_stats = temp_card.weapon_stats.get_duplicate()
-	card_desc.set_card(temp_card, check_button.button_pressed)
+	card_desc.set_card(temp_card, check_button_pressed)
 	for feature: Feature in temp_card.tower_stats.features:
 		add_feature(feature, 0, false)
 	for feature: Feature in temp_card.weapon_stats.features:
@@ -158,10 +178,10 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 				temp_card.tower_stats.features.append(feature)
 				tower_prices[tower_feature_uis.size() - 2].visible = false
 				cost += Data.slot_prices[tower_feature_uis.size() - 2]
-				price_label.text = "$" + str(cost)
-				card_desc.set_card(temp_card, check_button.button_pressed)
+				price_label.text = tr(PRICE_STR) + str(cost)
+				card_desc.set_card(temp_card, check_button_pressed)
 				if cost > hero.currency:
-					$PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton.disabled = true
+					confirm_button.disabled = true
 	elif track == 1:
 		if hovered_drop_slot > 0 and hovered_drop_slot < weapon_feature_uis.size():
 			change_feature(weapon_feature_uis[hovered_drop_slot], feature, 1)
@@ -174,10 +194,10 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 				temp_card.weapon_stats.features.append(feature)
 				weapon_prices[weapon_feature_uis.size() - 2].visible = false
 				cost += Data.slot_prices[weapon_feature_uis.size() - 2]
-				price_label.text = "$" + str(cost)
-				card_desc.set_card(temp_card, check_button.button_pressed)
+				price_label.text = tr(PRICE_STR) + str(cost)
+				card_desc.set_card(temp_card, check_button_pressed)
 				if cost > hero.currency:
-					$PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton.disabled = true
+					confirm_button.disabled = true
 
 
 func change_feature(existing_feature: FeatureUI, new_feature: Feature, track: int) -> void:
@@ -188,7 +208,7 @@ func change_feature(existing_feature: FeatureUI, new_feature: Feature, track: in
 	elif track == 1:
 		var i: int = weapon_feature_uis.find(existing_feature)
 		temp_card.weapon_stats.features[i] = new_feature
-	card_desc.set_card(temp_card, check_button.button_pressed)
+	card_desc.set_card(temp_card, check_button_pressed)
 
 
 func attach_feat_to_mouse(feature: Feature) -> void:
@@ -236,7 +256,3 @@ func _on_confirm_button_pressed() -> void:
 	cards_to_add.append(temp_card)
 	cards_remixed.emit(cards_to_remove, cards_to_add, cost)
 	queue_free()
-
-
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	card_desc.set_card(temp_card, toggled_on)

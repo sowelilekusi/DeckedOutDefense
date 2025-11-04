@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://buvgdem68wtev"]
+[gd_scene load_steps=4 format=3 uid="uid://buvgdem68wtev"]
 
-[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_gaupv"]
 [ext_resource type="Script" uid="uid://cjyyepxaf4xl8" path="res://Scenes/Menus/PauseMenu/pause_menu.gd" id="2_4pn2l"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="3_0bid7"]
 
@@ -16,7 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_gaupv")
 script = ExtResource("2_4pn2l")
 
 [node name="ColorRect" type="ColorRect" parent="."]

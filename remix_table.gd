@@ -18,6 +18,7 @@ func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
 		for card: Card in callback.hand.contents:
 			card_array.append(card)
 		menu.hero = reply_player
+		menu.set_money(reply_player.currency)
 		menu.populate_feature_slots()
 		menu.add_option(card_array)
 		menu.cards_remixed.connect(output)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://3t3kdhagmayy"]
+
+[ext_resource type="Script" uid="uid://biuqlk7ulx83" path="res://shield_ui_test.gd" id="1_uywwg"]
+[ext_resource type="PackedScene" uid="uid://cqslp83lf0ku0" path="res://shield_ui.tscn" id="2_iketu"]
+[ext_resource type="PackedScene" uid="uid://24x18qxqhy0i" path="res://Scenes/UI/lives_bar.tscn" id="3_eamca"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("shield", "lives_bar", "damage_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uywwg")
+shield = NodePath("ShieldUI")
+lives_bar = NodePath("LivesBar")
+damage_label = NodePath("Controls/Label")
+
+[node name="Controls" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 13.0
+offset_right = 311.00003
+offset_bottom = 29.0
+
+[node name="Label" type="Label" parent="Controls"]
+layout_mode = 2
+text = "1"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Controls/VBoxContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="Button2" type="Button" parent="Controls/VBoxContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="Button" type="Button" parent="Controls"]
+layout_mode = 2
+text = "hit"
+
+[node name="ShieldUI" parent="." instance=ExtResource("2_iketu")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 31.0
+offset_right = 130.0
+offset_bottom = 31.0
+
+[node name="LivesBar" parent="." instance=ExtResource("3_eamca")]
+layout_mode = 1
+offset_left = 69.0
+offset_top = 115.0
+offset_right = 69.0
+offset_bottom = 115.0
+
+[connection signal="pressed" from="Controls/VBoxContainer/Button" to="." method="decrease_damage"]
+[connection signal="pressed" from="Controls/VBoxContainer/Button2" to="." method="increase_damage"]
+[connection signal="pressed" from="Controls/Button" to="." method="hit"]

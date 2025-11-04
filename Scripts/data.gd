@@ -26,6 +26,7 @@ static var target_type_names: Dictionary[TargetType, String] = {
 
 static var weapon_recharge_delay: float = 0.5
 static var starting_cash: int = 10
+static var starting_lives: int = 144
 static var player_energy: int = 6
 static var wall_cost: int = 1
 static var rarity_weights: Dictionary = {

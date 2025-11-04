@@ -325,46 +325,23 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].visible = false
 		right_hand.add_child(weapons[slot])
 		if slot == 0:
-			weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
-			weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
-			hud.new_energy_bar.max_energy = weapons[slot].max_energy
-			if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
-				hud.new_energy_bar.enable_progress_bar()
-			if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
-				hud.new_energy_bar.create_discrete_icons(int(weapons[slot].max_energy))
-		else:
-			weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_secondary_energy)
-			hud.new_energy_bar.secondary_max_energy = weapons[slot].max_energy
-			hud.new_energy_bar.secondary_energy = weapons[slot].current_energy
+			weapons[slot].energy_changed.connect(hud.set_energy_pips)
+			hud.energy_pips.max_energy = weapons[slot].max_energy
 
 
 func stow_weapon(slot: int = 0) -> void:
 	weapons[slot].release_trigger()
 	weapons[slot].release_second_trigger()
 	weapons[slot].visible = false
-	weapons[slot].energy_spent.disconnect(hud.new_energy_bar.use_energy)
-	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar.gain_energy)
-	weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_secondary_energy)
-	hud.new_energy_bar.secondary_max_energy = weapons[slot].max_energy
-	hud.new_energy_bar.secondary_energy = weapons[slot].current_energy
+	weapons[slot].energy_changed.disconnect(hud.set_energy_pips)
 
 
 func show_weapon(slot: int = 0) -> void:
 	weapons[slot].release_trigger()
 	weapons[slot].release_second_trigger()
-	weapons[slot].energy_recharged.disconnect(hud.new_energy_bar.gain_secondary_energy)
-	weapons[slot].energy_spent.connect(hud.new_energy_bar.use_energy)
-	weapons[slot].energy_recharged.connect(hud.new_energy_bar.gain_energy)
+	weapons[slot].energy_changed.connect(hud.set_energy_pips)
 	hud.set_weapon_energy(int(weapons[slot].current_energy), weapons[slot].stats.energy_type)
-	hud.new_energy_bar.max_energy = weapons[slot].max_energy
-	if weapons[slot].stats.energy_type == Data.EnergyType.CONTINUOUS:
-		hud.new_energy_bar.enable_progress_bar()
-	if weapons[slot].stats.energy_type == Data.EnergyType.DISCRETE:
-		hud.new_energy_bar.create_discrete_icons(int(weapons[slot].max_energy))
-	hud.new_energy_bar.use_energy(weapons[slot].max_energy - weapons[slot].current_energy, weapons[slot].stats.energy_type)
-	var offhand: int = 0 if equipped_weapon == 1 else 1
-	if !weapons[offhand]:
-		hud.new_energy_bar.disable_secondary_energy()
+	hud.energy_pips.max_energy = weapons[slot].max_energy
 
 
 func swap_weapons() -> void:
@@ -390,10 +367,8 @@ func unequip_weapon(slot: int = 0) -> void:
 	gauntlet_cards[slot].visible = false
 	if slot == 0:
 		hud.place_icon.visible = true
-		hud.new_energy_bar.blank()
 	else:
 		hud.swap_icon.visible = true
-		hud.new_energy_bar.disable_secondary_energy()
 	weapons[slot].queue_free()
 	weapons[slot] = null
 	if !game_manager.card_gameplay:

@@ -3,6 +3,7 @@ extends Node3D
 
 signal energy_spent(energy: int, type: Data.EnergyType)
 signal energy_recharged(energy: int, type: Data.EnergyType)
+signal energy_changed(energy: float)
 
 @export var stats: CardText
 @export var animator: AnimationPlayer
@@ -50,11 +51,13 @@ func _process(delta: float) -> void:
 			current_energy = max_energy
 			recharging = false
 		energy_recharged.emit(recharge_speed * delta, stats.energy_type)
+		energy_changed.emit(current_energy)
 	if time_since_firing < time_between_shots:
 		time_since_firing += delta
 	if trigger_held and stats.energy_type == Data.EnergyType.CONTINUOUS:
 		current_energy -= delta
 		energy_spent.emit(delta, stats.energy_type)
+		energy_changed.emit(current_energy)
 
 
 @warning_ignore("unused_parameter")
@@ -64,6 +67,7 @@ func _physics_process(delta: float) -> void:
 			current_energy -= 1
 			current_energy = floorf(current_energy)
 			energy_spent.emit(1, stats.energy_type)
+			energy_changed.emit(current_energy)
 		time_since_firing -= time_between_shots
 		shoot()
 		networked_shoot.rpc()
