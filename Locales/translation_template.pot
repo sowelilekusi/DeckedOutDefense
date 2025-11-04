@@ -587,3 +587,6 @@ msgstr ""
 
 msgid "LABEL_REMIX_CURRENCY"
 msgstr ""
+
+msgid "PROMPT_QUIT"
+msgstr ""

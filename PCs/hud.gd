@@ -15,8 +15,6 @@ extends CanvasLayer
 @export var enemy_counts: Array[Label]
 @export var pickup_notif_scene: PackedScene
 @export var wave_start_label: RichTextLabel
-@export var place_icon: TextureRect
-@export var swap_icon: TextureRect
 @export var place_text: RichTextLabel
 @export var swap_text: RichTextLabel
 @export var enemy_card_scene: PackedScene
@@ -29,12 +27,18 @@ extends CanvasLayer
 @export var shield_ui: ShieldUI
 @export var currencies: VBoxContainer
 @export var energy_pips: EnergyPips
+@export var enemy_count_label: Label
+@export var primary_button: Button
+@export var secondary_button: Button
+@export var null_icon: Texture
+@export var slots: VBoxContainer
 
 var last_lives_count: int = Data.starting_lives
 var enemy_names: Array[String]
 var map_anchor: Node3D
 var cards: Array[EnemyCardUI] = []
 var feature_preview_tween: Tween
+var enemy_count: int = 0
 
 
 func _ready() -> void:
@@ -50,6 +54,28 @@ func show_hot_wheel() -> void:
 
 func hide_hot_wheel() -> void:
 	hot_wheel.visible = false
+
+
+func show_slots() -> void:
+	slots.visible = true
+
+
+func hide_slots() -> void:
+	slots.visible = false
+
+
+func set_primary_button(card: Card) -> void:
+	if card:
+		primary_button.icon = card.icon
+	else:
+		primary_button.icon = null_icon
+
+
+func set_secondary_button(card: Card) -> void:
+	if card:
+		secondary_button.icon = card.icon
+	else:
+		secondary_button.icon = null_icon
 
 
 func set_blank_cassette_count(value: int) -> void:
@@ -100,6 +126,7 @@ func _process(_delta: float) -> void:
 
 
 func show_features(cassette: Card) -> void:
+	print("shown features")
 	for child: Node in feature_preview.get_children():
 		child.queue_free()
 	var cols: int = max(cassette.tower_stats.features.size(), cassette.weapon_stats.features.size())
@@ -184,9 +211,12 @@ func enemy_count_down(enemy: Enemy) -> void:
 	if num == 0:
 		enemy_counts[index].set_visible(false)
 		enemy_sprites[index].set_visible(false)
+	enemy_count -= 1
+	enemy_count_label.text = str(enemy_count)
 
 
 func set_upcoming_wave(value: Dictionary) -> void:
+	enemy_count = 0
 	var frame_count: int = 0
 	enemy_names = []
 	var wave: Dictionary = {}
@@ -196,6 +226,7 @@ func set_upcoming_wave(value: Dictionary) -> void:
 			if enemy.title == key:
 				new_enemy = enemy
 		wave[new_enemy] = value[key]
+		enemy_count += value[key]
 	for x: int in enemy_sprites.size():
 		enemy_sprites[x].set_visible(false)
 		enemy_counts[x].set_visible(false)
@@ -206,6 +237,7 @@ func set_upcoming_wave(value: Dictionary) -> void:
 		enemy_sprites[frame_count].set_visible(true)
 		enemy_counts[frame_count].set_visible(true)
 		frame_count += 1
+	enemy_count_label.text = str(enemy_count)
 
 
 func set_currency_count(value: int) -> void:
@@ -255,7 +287,6 @@ func minimize_minimap() -> void:
 
 
 func pickup(card: Card) -> void:
-	hot_wheel.add_cassette(card)
 	var notif: PickupNotification = pickup_notif_scene.instantiate()
 	notif.set_card(card)
 	$VBoxContainer.add_child(notif)

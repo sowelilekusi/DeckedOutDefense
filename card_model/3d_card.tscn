@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cr6hn1pbu35o1" path="res://card_model/3d_card.gd" id="1_o6jcx"]
 [ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="2_o6jcx"]
-[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://Scenes/UI/card_hand.tscn" id="3_bnh6n"]
+[ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://UI/card_hand.tscn" id="3_bnh6n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gfbg"]
 resource_name = "Face"

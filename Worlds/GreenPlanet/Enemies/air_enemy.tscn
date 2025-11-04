@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_m83kr"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_aed6c"]
-[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="9_4xla1"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="9_4xla1"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_7hati"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_7yfyh"]
 [ext_resource type="Script" uid="uid://d147vuqksqhis" path="res://Scripts/EnemyAI/beelining_controller.gd" id="9_cx8mv"]

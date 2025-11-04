@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d3h3lmlf3hljl" path="res://Worlds/GreenPlanet/Decorations/bush.tscn" id="16_lhsvw"]
 [ext_resource type="PackedScene" uid="uid://7g3jev3v6d3l" path="res://Scenes/ShopStand/shop_stand.tscn" id="19_h6brl"]
 [ext_resource type="PackedScene" uid="uid://cmneu5o0m02l8" path="res://Worlds/GreenPlanet/Enemies/leaping_enemy.tscn" id="20_ttr7n"]
-[ext_resource type="PackedScene" uid="uid://c6isprnkaliqr" path="res://remix_table.tscn" id="21_ks6qx"]
+[ext_resource type="PackedScene" uid="uid://c6isprnkaliqr" path="res://Scenes/MixingTable/remix_table.tscn" id="21_ks6qx"]
 [ext_resource type="PackedScene" uid="uid://2vv6mrxiwibf" path="res://Scenes/FlowField/flow_field_tool_output.tscn" id="24_sbix1"]
 [ext_resource type="Script" uid="uid://cy6oj2hr8q8br" path="res://Scripts/killbox.gd" id="26_tuncf"]
 [ext_resource type="PackedScene" uid="uid://c2avjln5vmr0y" path="res://Scenes/Shredder/shredder.tscn" id="27_gppb4"]

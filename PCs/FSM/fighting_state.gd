@@ -15,8 +15,9 @@ func enter_state() -> void:
 		hero.weapons[hero.equipped_weapon].current_energy = hero.weapons[hero.equipped_weapon].max_energy
 		#this had to be commented out coz the new energy bar thinks "energy changed" is "energy used"
 		#weapons[equipped_weapon].energy_changed.emit(weapons[equipped_weapon].current_energy)
-	for x: int in hero.hand.contents.size():
-		hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
+	if hero.game_manager.card_gameplay:
+		for x: int in hero.hand.contents.size():
+			hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
 	hero.weapon_swap_timer.start()
 	hero.hud.energy_label.visible = false
 

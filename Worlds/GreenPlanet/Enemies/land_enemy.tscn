@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_5eo4w"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="9_f8btv"]
 [ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="10_gljle"]
-[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="10_or8n6"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="10_or8n6"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="10_txouh"]
 [ext_resource type="Script" uid="uid://cp77etg1m1hc2" path="res://Scripts/sprite_bobber.gd" id="12_2nmk0"]
 

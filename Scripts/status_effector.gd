@@ -4,7 +4,7 @@ extends Node
 @export var sprite_container: Container ## Container that effect icons should be instantiated under
 
 var enemy: EnemyController ## Enemy Controller that this node should affect
-var icon_scene: PackedScene = preload("res://Scenes/status_icon.tscn")
+var icon_scene: PackedScene = preload("res://UI/status_icon.tscn")
 var immunities: Array[StatusEffect] = [] ## The set of status effects that this effector shouldn't apply
 var effects: Dictionary[StatusEffect, int] = {}
 var icons: Dictionary[StatusEffect, TextureRect] = {}

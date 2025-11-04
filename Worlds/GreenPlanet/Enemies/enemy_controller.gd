@@ -12,7 +12,7 @@ signal health_changed(health: int)
 #@export var sprite: Sprite3D
 @export var corpse_scene: PackedScene
 
-var damage_particle_scene: PackedScene = preload("res://Scenes/damage_particle.tscn")
+var damage_particle_scene: PackedScene = preload("res://UI/DamageParticle/damage_particle.tscn")
 var current_health: int
 var corpse_root: Node
 var movement_speed: float

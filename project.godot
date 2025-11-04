@@ -47,6 +47,8 @@ folder_colors={
 "res://Scenes/": "yellow",
 "res://Scripts/": "red",
 "res://UI/Keybinding/": "green",
+"res://UI/Menus/": "orange",
+"res://UI/Themes/": "pink",
 "res://Worlds/": "teal"
 }
 

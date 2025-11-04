@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvfit0sy2tnw4"]
 
 [ext_resource type="Script" uid="uid://dyyhbd2pbfygi" path="res://Scripts/server_form.gd" id="1_43oaq"]
-[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="2_hirre"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="2_hirre"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3o7ni"]
 random_pitch = 1.1

@@ -624,6 +624,9 @@ msgstr "Cost: $"
 msgid "LABEL_REMIX_CURRENCY"
 msgstr "Coins: $"
 
+msgid "PROMPT_QUIT"
+msgstr "Are you sure you want to quit?"
+
 #, fuzzy
 #~| msgid "LABEL_DISPLAY_NAME"
 #~ msgid "LABEL_CARD_NAME"

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_lirjc"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="5_bi7k0"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="6_k6khd"]
-[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://Scenes/health_bar.tscn" id="7_wko6w"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="7_wko6w"]
 [ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="8_2jssq"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_2x8lp"]
 [ext_resource type="PackedScene" uid="uid://r2s4pd42y0ma" path="res://Enemies/ElderEyeDog/elder_eyedog.glb" id="10_17xxt"]

@@ -168,7 +168,7 @@ func set_upcoming_wave() -> void:
 
 func temp_set_upcoming_wave(new_wave: Wave, coins: int) -> void:
 	pot = coins
-	connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(new_wave)
+	#connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(new_wave)
 	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(new_wave.to_dict())
 
 #TODO: You'll probably have to write a to_dict function for the new wave system 

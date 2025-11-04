@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ciagj1hfn4gou"]
 
-[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://Scenes/Menus/CharacterSelect/character_podium.gd" id="1_fo804"]
+[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://UI/Menus/CharacterSelect/character_podium.gd" id="1_fo804"]
 [ext_resource type="Texture2D" uid="uid://d4jd718brpsed" path="res://Classes/Engineer/doe.png" id="2_4b5pd"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="3_pmyku"]
 [ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_1jafm"]

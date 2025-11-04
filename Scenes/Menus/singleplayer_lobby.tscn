@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://176c6fuhg5ic"]
+[gd_scene load_steps=6 format=3 uid="uid://176c6fuhg5ic"]
 
-[ext_resource type="Theme" uid="uid://b6a0ip4p72tgx" path="res://UI/new_theme.tres" id="1_2aur6"]
 [ext_resource type="Script" uid="uid://e5gf7hd5jsw3" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
-[ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://Scenes/UI/chatbox.tscn" id="3_l8xy3"]
-[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="6_6nu57"]
-[ext_resource type="PackedScene" uid="uid://bc6m3cluulpis" path="res://Scenes/Menus/CharacterSelect/character_select.tscn" id="6_ltm04"]
+[ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://UI/chatbox.tscn" id="3_l8xy3"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="6_6nu57"]
+[ext_resource type="PackedScene" uid="uid://bc6m3cluulpis" path="res://UI/Menus/CharacterSelect/character_select.tscn" id="6_ltm04"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g5har"]
 random_pitch = 1.1
@@ -19,7 +18,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_2aur6")
 script = ExtResource("1_nd17k")
 character_select_screen = ExtResource("6_ltm04")
 chatbox = NodePath("Chatbox")
@@ -27,6 +25,13 @@ audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Chatbox" parent="." instance=ExtResource("3_l8xy3")]
 layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.65
+anchor_right = 0.4
+anchor_bottom = 0.98
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_g5har")

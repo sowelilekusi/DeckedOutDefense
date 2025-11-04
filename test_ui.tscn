@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdrpqvf37mehj" path="res://test_ui.gd" id="1_3tn64"]
 [ext_resource type="PackedScene" uid="uid://dik1j1w8vrul5" path="res://drag_n_drop_container.tscn" id="1_w4nob"]
-[ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://feature_ui.tscn" id="2_3tn64"]
+[ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://UI/FeatureUI/feature_ui.tscn" id="2_3tn64"]
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="2_w3nqu"]
 [ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="3_55qp5"]
 [ext_resource type="Resource" uid="uid://nh7g23b3rnvr" path="res://Scripts/Features/Radar/radar_feature.tres" id="4_mlaor"]

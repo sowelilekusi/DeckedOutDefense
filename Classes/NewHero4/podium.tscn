@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://6givglesbjef"]
 
-[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://Scenes/Menus/CharacterSelect/character_podium.gd" id="1_h2nqs"]
+[ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://UI/Menus/CharacterSelect/character_podium.gd" id="1_h2nqs"]
 [ext_resource type="Texture2D" uid="uid://bvybr3fwnw46p" path="res://Classes/Mage/yeen.png" id="2_e7ajb"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="3_brui3"]
 [ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_6igfd"]

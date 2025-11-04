@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dekexkjl37dvh"]
+
+[ext_resource type="Script" uid="uid://bs73eocafngiu" path="res://UI/Menus/MixingMenu/price_panel.gd" id="1_sn84y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_517dt"]
+bg_color = Color(0.2702219, 0.27022195, 0.27022177, 0.09019608)
+corner_detail = 1
+
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_517dt")
+script = ExtResource("1_sn84y")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "$15"
+horizontal_alignment = 1
+vertical_alignment = 1

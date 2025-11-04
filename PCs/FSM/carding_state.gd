@@ -63,3 +63,4 @@ func swap_to_slot(num: int) -> void:
 	if hero.hand.size >= num:
 		hero.hand_selected_index = num - 1
 		hero.swap_card_audio.play()
+		hero.hud.hot_wheel.update_cassettes(hero.get_wheel_cards())

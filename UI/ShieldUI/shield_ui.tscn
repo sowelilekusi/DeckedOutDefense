@@ -1,0 +1,201 @@
+[gd_scene load_steps=22 format=3 uid="uid://cqslp83lf0ku0"]
+
+[ext_resource type="Script" uid="uid://kiivev1q63p0" path="res://UI/ShieldUI/shield_ui.gd" id="1_aa64g"]
+[ext_resource type="Texture2D" uid="uid://bv3alwpq8esky" path="res://UI/ShieldUI/health_border.png" id="2_lvnxo"]
+[ext_resource type="Texture2D" uid="uid://d0yfidlyfyxff" path="res://UI/ShieldUI/health-Sheet.png" id="3_uoync"]
+[ext_resource type="Texture2D" uid="uid://bifqfvhsu4c2f" path="res://UI/ShieldUI/health_hit-Sheet.png" id="4_yanml"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gv4u"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 0, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye2cs"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 66, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmtb0"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 132, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylmjw"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 198, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulao6"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 264, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usluy"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 330, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgv6k"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 396, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymret"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 462, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d35xv"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 528, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyjyl"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 594, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3fdm"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 660, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xxhe"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 726, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cwn3"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 792, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q14re"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 858, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmmm8"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 924, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp71v"]
+atlas = ExtResource("3_uoync")
+region = Rect2(0, 990, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slxus"]
+atlas = ExtResource("4_yanml")
+region = Rect2(0, 0, 66, 66)
+
+[node name="ShieldUI" type="Control" node_paths=PackedStringArray("cells", "hit_glow", "fade_timer")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_aa64g")
+cells = [NodePath("Border/Cell1"), NodePath("Border/Cell2"), NodePath("Border/Cell3"), NodePath("Border/Cell4"), NodePath("Border/Cell5"), NodePath("Border/Cell6"), NodePath("Border/Cell7"), NodePath("Border/Cell8"), NodePath("Border/Cell9"), NodePath("Border/Cell10"), NodePath("Border/Cell11"), NodePath("Border/Cell12"), NodePath("Border/Cell13"), NodePath("Border/Cell14"), NodePath("Border/Cell15"), NodePath("Border/Cell16")]
+hit_glow = NodePath("HitGlow")
+fade_timer = NodePath("Timer")
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_lvnxo")
+stretch_mode = 5
+
+[node name="Cell1" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_5gv4u")
+
+[node name="Cell2" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_ye2cs")
+
+[node name="Cell3" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_gmtb0")
+
+[node name="Cell4" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_ylmjw")
+
+[node name="Cell5" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_ulao6")
+
+[node name="Cell6" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_usluy")
+
+[node name="Cell7" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_kgv6k")
+
+[node name="Cell8" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_ymret")
+
+[node name="Cell9" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_d35xv")
+
+[node name="Cell10" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_yyjyl")
+
+[node name="Cell11" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_p3fdm")
+
+[node name="Cell12" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_2xxhe")
+
+[node name="Cell13" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8cwn3")
+
+[node name="Cell14" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_q14re")
+
+[node name="Cell15" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_nmmm8")
+
+[node name="Cell16" type="TextureRect" parent="Border"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_vp71v")
+
+[node name="HitGlow" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_slxus")
+stretch_mode = 5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="fade_out"]

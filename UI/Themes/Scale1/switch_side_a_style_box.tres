@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cm3wsvk3woory"]
+
+[ext_resource type="Texture2D" uid="uid://cp3yr2676jkjx" path="res://UI/Themes/Scale1/sidea_patch.png" id="1_bunl1"]
+
+[resource]
+texture = ExtResource("1_bunl1")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 10.0
+texture_margin_bottom = 5.0

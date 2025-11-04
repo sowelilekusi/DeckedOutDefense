@@ -15,7 +15,6 @@ signal ready_state_changed(state: bool)
 @export var draw_pile: Inventory
 @export var hand: Inventory
 @export var discard_pile: Inventory
-@export var gauntlet_cards: Array[CardInHand]
 @export var pause_menu_scene: PackedScene
 @export var hud: HUD
 @export var movement: PlayerMovement
@@ -41,7 +40,7 @@ signal ready_state_changed(state: bool)
 
 var current_state: HeroState
 var pre_fighting_state: HeroState
-var hand_card_scene: PackedScene = preload("res://Scenes/UI/card_hand.tscn")
+var hand_card_scene: PackedScene = preload("res://UI/card_hand.tscn")
 var card_sprites: Array[CardInHand]
 var game_manager: GameManager
 var hovering_item: InteractButton = null
@@ -184,6 +183,7 @@ func increment_selected() -> void:
 	hand_selected_index += 1
 	if hand_selected_index >= hand.size:
 		hand_selected_index = 0
+	hud.hot_wheel.update_cassettes(get_wheel_cards())
 
 
 func decrement_selected() -> void:
@@ -193,20 +193,43 @@ func decrement_selected() -> void:
 	hand_selected_index -= 1
 	if hand_selected_index < 0:
 		hand_selected_index = hand.size - 1
+	hud.hot_wheel.update_cassettes(get_wheel_cards())
+
+
+func get_wheel_cards() -> Array[Card]:
+	var wheel_cards: Array[Card] = []
+	if hand.size > 0:
+		wheel_cards.append(hand.contents[hand_selected_index])
+		var left_searches: int = floori((min(5, hand.size) - 1) / 2.0)
+		var right_searches: int = ceili((min(5, hand.size) - 1) / 2.0)
+		while left_searches > 0 or right_searches > 0:
+			for x: int in left_searches:
+				if hand_selected_index - (x + 1) >= 0:
+					wheel_cards.append(hand.contents[hand_selected_index - (x + 1)])
+					left_searches -= 1
+				else:
+					right_searches += left_searches
+					left_searches = 0
+			for x: int in right_searches:
+				if hand_selected_index + (x + 1) < hand.size:
+					wheel_cards.append(hand.contents[hand_selected_index + (x + 1)])
+					right_searches -= 1
+				else:
+					left_searches += right_searches
+					right_searches = 0
+	return wheel_cards
+
 
 
 func set_card_elements_visibility(value: bool) -> void:
 	if value:
 		hud.show_hot_wheel()
+		hud.hot_wheel.update_cassettes(get_wheel_cards())
+		hud.show_slots()
 	else:
 		hud.hide_hot_wheel()
+		hud.hide_slots()
 	$FirstPersonViewport/Head2/LeftHand.visible = value
-	$HUD/PlaceIcon.visible = value
-	$HUD/SwapIcon.visible = value
-	if cards[0]:
-		$HUD/PlaceIcon.visible = false
-	if cards[1]:
-		$HUD/SwapIcon.visible = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -226,8 +249,6 @@ func ready_self() -> void:
 	edit_tool.interact_key_held = false
 	if !ready_state:
 		ready_state = true
-		hud.place_icon.set_visible(false)
-		hud.swap_icon.set_visible(false)
 		hud.shrink_wave_start_label()
 		ready_audio.play()
 
@@ -243,6 +264,7 @@ func add_card(new_card: Card) -> void:
 	hand.add(new_card)
 	hud.pickup(new_card)
 	place_card_audio.play()
+	hud.hot_wheel.update_cassettes(get_wheel_cards())
 
 
 func unpause() -> void:
@@ -301,6 +323,8 @@ func equip_weapon(slot: int = 0) -> void:
 			energy -= energy_cost
 		place_card_audio.play()
 		cards[slot] = hand.remove_at(hand.contents.find(selected_card))
+		decrement_selected()
+		hud.hot_wheel.update_cassettes(get_wheel_cards())
 		#card_sprites[hand_selected_index].queue_free()
 		#card_sprites.remove_at(hand_selected_index)
 		if game_manager.card_gameplay:
@@ -314,13 +338,10 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].duration = 1
 		weapons_spawn_count += 1
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
-		gauntlet_cards[slot].set_card(cards[slot])
 		if slot == 0:
-			hud.place_icon.visible = false
+			hud.set_primary_button(cards[slot])
 		else:
-			hud.swap_icon.visible = false
-		gauntlet_cards[slot].view_weapon()
-		gauntlet_cards[slot].visible = true
+			hud.set_secondary_button(cards[slot])
 		weapons[slot].set_hero(self)
 		weapons[slot].visible = false
 		right_hand.add_child(weapons[slot])
@@ -364,14 +385,14 @@ func _on_timer_timeout() -> void:
 
 
 func unequip_weapon(slot: int = 0) -> void:
-	gauntlet_cards[slot].visible = false
 	if slot == 0:
-		hud.place_icon.visible = true
+		hud.set_primary_button(null)
 	else:
-		hud.swap_icon.visible = true
+		hud.set_secondary_button(null)
 	weapons[slot].queue_free()
 	weapons[slot] = null
 	if !game_manager.card_gameplay:
 		add_card(cards[slot])
 	cards[slot] = null
 	place_card_audio.play()
+	hud.hot_wheel.update_cassettes(get_wheel_cards())

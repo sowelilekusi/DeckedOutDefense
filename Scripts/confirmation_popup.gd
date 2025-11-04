@@ -4,9 +4,9 @@ extends PanelContainer
 signal completed(outcome: bool)
 
 func set_popup(prompt_text: String, confirm_text: String, cancel_text: String) -> void:
-	$VBoxContainer/Label.text = prompt_text
-	$VBoxContainer/HBoxContainer/Confirm.text = confirm_text
-	$VBoxContainer/HBoxContainer/Cancel.text = cancel_text
+	$VBoxContainer/Label.text = tr(prompt_text)
+	$VBoxContainer/HBoxContainer/Confirm.text = tr(confirm_text)
+	$VBoxContainer/HBoxContainer/Cancel.text = tr(cancel_text)
 
 
 func _on_confirm_pressed() -> void:

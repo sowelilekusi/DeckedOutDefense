@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f46qh73hrk4y"]
 
 [ext_resource type="Script" uid="uid://bjt72v1wym5ie" path="res://Scripts/confirmation_popup.gd" id="1_x7akt"]
-[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://Scenes/UI/drop_003.ogg" id="2_3w36n"]
+[ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="2_3w36n"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_22wuj"]
 random_pitch = 1.1
@@ -27,24 +27,28 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Some Text?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-
-[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Confirm"
+alignment = 2
 
 [node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Cancel"
 
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_22wuj")
 bus = &"SFX"
 
-[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
