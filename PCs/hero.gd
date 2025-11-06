@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 signal ready_state_changed(state: bool)
 
+@export var wave_preview_scene: PackedScene
 @export var hero_class: HeroClass
 @export var camera: Camera3D
 @export var gun_camera: Camera3D
@@ -184,6 +185,7 @@ func increment_selected() -> void:
 	if hand_selected_index >= hand.size:
 		hand_selected_index = 0
 	hud.hot_wheel.update_cassettes(get_wheel_cards())
+	hud.show_features(selected_card)
 
 
 func decrement_selected() -> void:
@@ -194,6 +196,7 @@ func decrement_selected() -> void:
 	if hand_selected_index < 0:
 		hand_selected_index = hand.size - 1
 	hud.hot_wheel.update_cassettes(get_wheel_cards())
+	hud.show_features(selected_card)
 
 
 func get_wheel_cards() -> Array[Card]:
@@ -243,6 +246,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		menu.quit_to_main_menu_pressed.connect(game_manager.scene_switch_main_menu)
 		menu.closed.connect(unpause)
 		hud.add_child(menu)
+	if event.is_action_pressed("Show Wave Preview"):
+		var wave_preview: WaveViewer = wave_preview_scene.instantiate() as WaveViewer
+		pause()
+		hud.add_child(wave_preview)
+		wave_preview.set_waves(game_manager.pre_generate_waves(), game_manager.wave)
+		wave_preview.closed.connect(unpause)
 
 
 func ready_self() -> void:

@@ -74,7 +74,6 @@ atlas = ExtResource("4_yanml")
 region = Rect2(0, 0, 66, 66)
 
 [node name="ShieldUI" type="Control" node_paths=PackedStringArray("cells", "hit_glow", "fade_timer")]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_aa64g")

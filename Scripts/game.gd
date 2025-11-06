@@ -16,7 +16,7 @@ signal switch_to_main_menu
 var root_scene: Node
 var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
-var game_end_scene: PackedScene = load("res://Scenes/Menus/GameEndScreen/game_end_screen.tscn")
+var game_end_scene: PackedScene = load("res://UI/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
 var game_active: bool = false
 var gamemode: GameMode = null
@@ -157,11 +157,37 @@ func spawn_enemy_wave() -> void:
 	wave_started.emit()
 
 
+func pre_generate_waves() -> Array[Wave]:
+	var wave_list: Array[Wave] = []
+	for i: int in range(wave, wave_limit + 1):
+		var spawn_power: int = WaveManager.calculate_spawn_power(i, connected_players_nodes.size())
+		var generated_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+		wave_list.append(generated_wave)
+	return wave_list
+
+
+func set_wave_to_spawners(wave_thing: Wave, wave_number: int) -> void:
+	var spawners: Array[EnemySpawner] = level.enemy_spawns
+	var ground_spawners: Array[EnemySpawner] = []
+	var air_spawners: Array[EnemySpawner] = []
+	for spawner: EnemySpawner in spawners:
+		if spawner.type == Data.EnemyType.LAND:
+			ground_spawners.append(spawner)
+		else:
+			air_spawners.append(spawner)
+	for card: EnemyCard in wave_thing.enemy_groups:
+		if card.enemy.target_type == Data.EnemyType.LAND:
+			ground_spawners[NoiseRandom.randi_in_range(wave_number, 0, ground_spawners.size() - 1)].add_card(card)
+		else:
+			air_spawners[NoiseRandom.randi_in_range(wave_number, 0, air_spawners.size() - 1)].add_card(card)
+
+
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
 		var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
 		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns)
+		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+		set_wave_to_spawners(new_wave, wave)
 		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 

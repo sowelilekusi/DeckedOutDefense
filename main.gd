@@ -4,7 +4,6 @@ extends Node
 signal loaded_scene
 
 @export var scene: Node
-@export var ui_viewport: SubViewport
 @export var movies: Node
 
 var game_manager: GameManager
@@ -18,8 +17,9 @@ var singleplayer_lobby_scene_path: String = "res://Scenes/Menus/singleplayer_lob
 func _ready() -> void:
 	Engine.max_fps = 60
 	UILayer = CanvasLayer.new()
+	UILayer.name = "UILayer"
 	UILayer.layer = 2
-	ui_viewport.add_child.call_deferred(UILayer)
+	add_child.call_deferred(UILayer)
 	var version_label: Label = Label.new()
 	var version: String = ProjectSettings.get_setting("application/config/version")
 	version_label.text = "WORK IN PROGRESS | ALPHA - VERSION " + version + " | PLAYTEST"
@@ -58,6 +58,7 @@ func load_singleplayer() -> void:
 	await loaded_scene
 	var single_player_lobby: SinglePlayerLobby = scene.get_child(0) as SinglePlayerLobby
 	single_player_lobby.game_manager = game_manager
+	single_player_lobby.setup_the_ui()
 	single_player_lobby.setup_game()
 
 
@@ -81,6 +82,6 @@ func load_scene(scene_path: String) -> void:
 			if movies:
 				movies.queue_free()
 				movies = null
-				$CanvasLayer.visible = true
+				UILayer.visible = true
 			scene.add_child(new_scene.instantiate())
 			loaded_scene.emit()

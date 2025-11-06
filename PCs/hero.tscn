@@ -1,8 +1,9 @@
-[gd_scene load_steps=67 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene load_steps=68 format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
+[ext_resource type="PackedScene" uid="uid://ct6gic4shy5qw" path="res://wave_viewer.tscn" id="2_o55s8"]
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://UI/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
 [ext_resource type="PackedScene" uid="uid://n8ab1cy7ordc" path="res://card_model/3d_card.tscn" id="4_2mqvj"]
 [ext_resource type="Script" uid="uid://cij76at0nbs1v" path="res://PCs/view_movement.gd" id="4_mhexa"]
@@ -118,6 +119,7 @@ stream_0/stream = ExtResource("37_kv1mg")
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
+wave_preview_scene = ExtResource("2_o55s8")
 hero_class = ExtResource("2_dbyo0")
 camera = NodePath("ViewMovement/Head")
 gun_camera = NodePath("FirstPersonViewport/Head2")

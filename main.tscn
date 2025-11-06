@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2k8y13qfvch0"]
+[gd_scene load_steps=7 format=3 uid="uid://d2k8y13qfvch0"]
 
 [ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://6frn8lcwwehv" path="res://Assets/TextureAtlases/puppyfruit.png" id="2_lquwl"]
@@ -9,19 +9,15 @@
 atlas = ExtResource("2_lquwl")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
-viewport_path = NodePath("UI")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 shader = ExtResource("6_7mycd")
 shader_parameter/color_depth = 5
 shader_parameter/dithering = true
 shader_parameter/resolution_scale = 1
 
-[node name="Main" type="Node" node_paths=PackedStringArray("scene", "ui_viewport", "movies")]
+[node name="Main" type="Node" node_paths=PackedStringArray("scene", "movies")]
 script = ExtResource("2_h2yge")
 scene = NodePath("Scene")
-ui_viewport = NodePath("UI")
 movies = NodePath("Movies")
 metadata/_custom_type_script = "uid://cx1xj7esl03ui"
 
@@ -80,25 +76,10 @@ color = Color(0.192157, 0.415686, 0.223529, 1)
 
 [node name="Scene" type="Node" parent="."]
 
-[node name="UI" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(320, 240)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PostProcessingLayer" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("ViewportTexture_1bvp3")
-expand_mode = 1
-
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect2" type="ColorRect" parent="PostProcessingLayer"]
 material = SubResource("ShaderMaterial_272bh")
 anchors_preset = 15
 anchor_right = 1.0

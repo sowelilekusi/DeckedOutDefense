@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct6gic4shy5qw"]
+[gd_scene load_steps=5 format=3 uid="uid://ct6gic4shy5qw"]
 
-[ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="1_0v4fq"]
+[ext_resource type="Script" uid="uid://ps6sgjd0b5qr" path="res://wave_viewer.gd" id="1_0v4fq"]
+[ext_resource type="PackedScene" uid="uid://b5hp43bm07b8a" path="res://UI/Menus/GameEndScreen/enemy_row.tscn" id="2_lbx3o"]
 [ext_resource type="Texture2D" uid="uid://3ywtwfpuuknr" path="res://Assets/Textures/leapfrog.png" id="2_tptaq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0v4fq"]
@@ -9,13 +10,16 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 
-[node name="WaveViewer" type="Control"]
+[node name="WaveViewer" type="Control" node_paths=PackedStringArray("wave_vbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0v4fq")
+wave_vbox = NodePath("PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Waves")
+enemy_row_scene = ExtResource("2_lbx3o")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -32,7 +36,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Upcoming waves"
+text = "TITLE_WAVE_VIEWER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -45,153 +49,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+[node name="Waves" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Wave 1"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect5" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect6" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-layout_mode = 2
-text = "Wave 2"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect5" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect6" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-text = "Wave 3"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect5" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect6" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
-layout_mode = 2
-text = "Wave 1"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect5" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
-
-[node name="TextureRect6" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_0v4fq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -218,10 +79,8 @@ text = "this dawg is so big itll make your big meaty nuts fall off from how fuck
 layout_mode = 2
 alignment = 2
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "BUTTON_CANCEL"
-
 [node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "BUTTON_CONFIRM"
+text = "BUTTON_CLOSE"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_button_2_pressed"]

@@ -8,6 +8,7 @@ region = Rect2(75, 4, 2, 2)
 
 [resource]
 content_margin_top = 2.0
+content_margin_right = 2.0
 texture = SubResource("AtlasTexture_uj2su")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1

@@ -17,4 +17,3 @@ func setup_game() -> void:
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
 	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
 	connected_players_profiles[1] = Data.player_profile
-	setup_the_ui()

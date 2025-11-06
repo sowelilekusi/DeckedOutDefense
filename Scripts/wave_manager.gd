@@ -25,17 +25,16 @@ static func calculate_pot(wave_number: int, number_of_players: int) -> int:
 ## Uses a spawn power budget to "buy" cards of enemies at random selection from
 ## the given spawn pool, returns the resulting wave but also assigns the cards
 ## among the given set of enemy spawners
-static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: Array[EnemySpawner]) -> Wave:
+static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy]) -> Wave:
 	var wave: Wave = Wave.new()
-
+	
 	var points: int = int(spawn_power / 10.0)
 	#print("Generating wave with " + str(points) + " points to spend")
 	while points > 0:
 		var new_card: EnemyCard = EnemyCard.new()
 		
 		#First, choose an enemy at random
-		#TODO: Use seeded random
-		new_card.enemy = spawn_pool.pick_random()
+		new_card.enemy = spawn_pool[NoiseRandom.randi_in_range(spawn_power, 0, spawn_pool.size() - 1)]
 		
 		#Next, we have to figure out if we can actually buy that enemy
 		#and, if not, then we have to pick a different enemy, repeat until
@@ -71,7 +70,7 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 		
 		#Now that we know which rarities we could afford, lets just choose a
 		#random one
-		var chosen_rarity: int = randi_range(0, highest_rarity)
+		var chosen_rarity: int = NoiseRandom.randi_in_range(spawn_power, 0, highest_rarity)
 		new_card.rarity = chosen_rarity as Data.Rarity
 		
 		#Add that new enemy to the wave and spend the points!
@@ -86,18 +85,4 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 			points -= new_card.enemy.epic_cost
 		elif chosen_rarity == Data.Rarity.LEGENDARY:
 			points -= new_card.enemy.legendary_cost
-	
-	var ground_spawners: Array[EnemySpawner] = []
-	var air_spawners: Array[EnemySpawner] = []
-	for spawner: EnemySpawner in spawners:
-		if spawner.type == Data.EnemyType.LAND:
-			ground_spawners.append(spawner)
-		else:
-			air_spawners.append(spawner)
-	for card: EnemyCard in wave.enemy_groups:
-		if card.enemy.target_type == Data.EnemyType.LAND:
-			#TODO: make this use determinisic noise rng
-			ground_spawners.pick_random().add_card(card)
-		else:
-			air_spawners.pick_random().add_card(card)
 	return wave

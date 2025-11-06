@@ -29,7 +29,7 @@ func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
 func output(cards_to_remove: Array[Card], cards_to_add: Array[Card], amount_spent: int) -> void:
 	for card: Card in cards_to_remove:
 		reply_player.hand.contents.erase(card)
-		reply_player.check_removal()
+		reply_player.hud.hot_wheel.update_cassettes(reply_player.get_wheel_cards())
 	for card: Card in cards_to_add:
 		reply_player.add_card(card)
 	reply_player.currency -= amount_spent

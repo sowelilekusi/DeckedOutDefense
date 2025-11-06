@@ -12,7 +12,7 @@ static func set_seed(value: int) -> void:
 	noise.fractal_gain = 0.1
 	noise.seed = value
 
-
+## output_end is inclusive
 static func randi_in_range(sample: float, output_start: int, output_end: int) -> int:
 	return floori(remap(noise.get_noise_1d(sample), -1.0, 1.0, float(output_start), float(output_end + 1)))
 

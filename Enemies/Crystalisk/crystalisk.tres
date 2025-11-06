@@ -18,7 +18,6 @@ spawn_power = 6
 health = 120
 penalty = 7
 movement_speed = 1.0
-spawn_cooldown = 1.0
 common_group = 5
 common_cost = 2
 uncommon_group = 10

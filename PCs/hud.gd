@@ -126,7 +126,6 @@ func _process(_delta: float) -> void:
 
 
 func show_features(cassette: Card) -> void:
-	print("shown features")
 	for child: Node in feature_preview.get_children():
 		child.queue_free()
 	var cols: int = max(cassette.tower_stats.features.size(), cassette.weapon_stats.features.size())

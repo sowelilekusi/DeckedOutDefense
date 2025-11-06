@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func set_wave() -> void:
 	for wave_key: int in game_manager.stats.enemies_undefeated:
-		var spawned_box: EnemyBox = box.instantiate() as EnemyBox
+		var spawned_box: EnemyRow = box.instantiate() as EnemyRow
 		undefeated_enemies.add_child(spawned_box)
 		spawned_box.set_wave(wave_key)
 		for enemy_key: Enemy in game_manager.stats.enemies_undefeated[wave_key]:

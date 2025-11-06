@@ -2,9 +2,19 @@
 
 [ext_resource type="Script" uid="uid://b0h5oewxd48lv" path="res://UI/Menus/GameEndScreen/enemy_row.gd" id="1_th4b3"]
 
-[node name="EnemyRow" type="HBoxContainer"]
+[node name="EnemyRow" type="VBoxContainer" node_paths=PackedStringArray("wave_label", "enemy_hbox")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_th4b3")
+wave_label = NodePath("WaveLabel")
+enemy_hbox = NodePath("Enemies")
 
 [node name="WaveLabel" type="Label" parent="."]
 layout_mode = 2
 text = "LABEL_WAVE"
+
+[node name="Enemies" type="HBoxContainer" parent="."]
+layout_mode = 2
