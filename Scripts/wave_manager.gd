@@ -13,13 +13,13 @@ extends Object
 ## Takes in wave number and number of players and returns a spawn power value
 ## intended for passing into the generate_wave method
 static func calculate_spawn_power(wave_number: int, number_of_players: int) -> int:
-	return (20 * number_of_players) + (5 * wave_number)
+	return (20 * number_of_players) + (4 * wave_number)
 
 
 ## Takes in wave number and number of players and returns the amount of coins
 ## that should be divided between each player after completing the wave
 static func calculate_pot(wave_number: int, number_of_players: int) -> int:
-	return ceili((2.5 * number_of_players) + (0.5 * wave_number))
+	return ceili((3.0 * number_of_players) + (2.5 * wave_number))
 
 
 ## Uses a spawn power budget to "buy" cards of enemies at random selection from

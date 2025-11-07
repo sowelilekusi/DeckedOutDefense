@@ -62,7 +62,7 @@ func press_check_button(value: bool) -> void:
 		switch_button.text = tr(SIDE_B_STR)
 	else:
 		switch_button.text = tr(SIDE_A_STR)
-	card_desc.set_card(temp_card, check_button_pressed)
+	card_desc.set_card(temp_card, !check_button_pressed)
 
 
 func _process(_delta: float) -> void:

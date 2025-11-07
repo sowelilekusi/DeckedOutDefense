@@ -8,5 +8,5 @@ script = ExtResource("1_hyapt")
 display_name = "FEATURE_NAME_HEAVY_ROUNDS"
 description = "FEATURE_DESC_HEAVY_ROUNDS"
 icon = ExtResource("1_drp05")
-strength = 15.0
+strength = 30.0
 metadata/_custom_type_script = "uid://uabrepvb5cur"

@@ -31,7 +31,6 @@ var wave_limit: int = 20
 var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
-var starting_blanks: int = 0
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -110,7 +109,7 @@ func spawn_players() -> void:
 		player.game_manager = self
 		player.edit_tool.level = level
 		player.hud.map_anchor = level
-		player.blank_cassettes += starting_blanks
+		player.blank_cassettes += Data.starting_blanks
 		player.player_name_tag.text = connected_player_profiles[peer_id].display_name
 		player.position = level.player_spawns[p_i].global_position
 		player.profile = connected_player_profiles[peer_id]
@@ -145,7 +144,7 @@ func ready_player(player_ready_true: bool) -> void:
 
 
 func spawn_enemy_wave() -> void:
-	level.shop.close()
+	#level.shop.close()
 	#wave += 1
 	level.disable_all_tower_frames()
 	level.flow_field.calculate()
@@ -255,8 +254,8 @@ func end_wave() -> void:
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
 		player.energy = Data.player_energy
-		if wave % 2 == 0:
-			player.blank_cassettes += 1
+		#if wave % 2 == 0:
+		#	player.blank_cassettes += 1
 		if card_gameplay:
 			player.iterate_duration()
 			player.draw_to_hand_size()
@@ -339,6 +338,7 @@ func start() -> void:
 	#Start game
 	game_active = true
 	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(NoiseRandom.noise.seed))
+	networked_spawn_shop.rpc()
 	game_started.emit()
 
 

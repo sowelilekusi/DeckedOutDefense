@@ -22,6 +22,7 @@ func _on_static_body_3d_button_interacted(_value: int, callback: Hero) -> void:
 		menu.populate_feature_slots()
 		menu.add_option(card_array)
 		menu.cards_remixed.connect(output)
+		menu.press_check_button(false)
 		reply_player.pause()
 		reply_player.hud.add_child(menu)
 

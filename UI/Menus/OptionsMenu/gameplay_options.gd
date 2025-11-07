@@ -1,6 +1,7 @@
 class_name GameplayOptionsMenu
 extends VBoxContainer
 
+@export var resolution_drop_down: OptionButton
 @export var look_sens_slider: HSlider
 @export var look_sens_input: SpinBox
 @export var toggle_sprint_checkbox: CheckButton
@@ -14,6 +15,10 @@ extends VBoxContainer
 
 
 func _ready() -> void:
+	resolution_drop_down.add_item("320x240")
+	resolution_drop_down.add_item("1920x1080")
+	$MouseSens2/HBoxContainer/SpinBox.value = get_window().content_scale_factor
+	$MouseSens2/HBoxContainer/HSlider.value = get_window().content_scale_factor
 	look_sens_slider.value = Data.preferences.mouse_sens
 	look_sens_input.value = Data.preferences.mouse_sens
 	toggle_sprint_checkbox.button_pressed = Data.preferences.toggle_sprint
@@ -44,3 +49,23 @@ func _on_mouse_sens_spin_box_value_changed(value: float) -> void:
 
 func _on_mouse_sens_h_slider_value_changed(value: float) -> void:
 	look_sens_input.value = value
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	print(index)
+	if index == 0:
+		get_tree().root.size = Vector2i(320, 240)
+		#DisplayServer.window_set_size(Vector2i(320, 240))
+		print(get_tree().root.size)
+	if index == 1:
+		get_tree().root.size = Vector2i(1920, 1080)
+		#DisplayServer.window_set_size(Vector2i(1920, 1080))
+		print(get_tree().root.size)
+
+
+func _on_spin_box_value_changed(value: float) -> void:
+	get_window().content_scale_factor = value
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	get_window().content_scale_factor = value

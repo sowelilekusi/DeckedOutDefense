@@ -189,7 +189,7 @@ collision_mask = 65535
 
 [node name="FirstPersonViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(320, 240)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="Head2" type="Camera3D" parent="FirstPersonViewport" node_paths=PackedStringArray("clone_camera")]
