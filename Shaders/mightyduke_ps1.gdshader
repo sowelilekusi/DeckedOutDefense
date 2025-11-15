@@ -11,7 +11,7 @@ render_mode vertex_lighting,
 //	specular_disabled,
 //	vertex_lighting;
 
-uniform sampler2D albedo: source_color, filter_nearest;
+uniform sampler2D albedo: source_color, filter_nearest_mipmap;
 
 global uniform float vertex_jitter: hint_range(0.0, 1.0) = 0.5;
 uniform bool jitter_z_coordinate = true;

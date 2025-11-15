@@ -39,9 +39,20 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"levelmat": {
+"Grass": {
 "use_external/enabled": true,
-"use_external/path": "uid://u2y4es6qqkqd"
+"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/grass.tres",
+"use_external/path": "uid://1lymu5otuh7f"
+},
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/bricks.tres",
+"use_external/path": "uid://eey3o4c8r2sb"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Worlds/GreenPlanet/Levels/Bridge/cobblestone.tres",
+"use_external/path": "uid://dc8e1xjspjt32"
 }
 }
 }
