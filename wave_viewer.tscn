@@ -10,7 +10,7 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 
-[node name="WaveViewer" type="Control" node_paths=PackedStringArray("wave_vbox")]
+[node name="WaveViewer" type="Control" node_paths=PackedStringArray("wave_vbox", "enemy_icon_tex", "enemy_name_label", "enemy_desc_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,9 @@ grow_vertical = 2
 script = ExtResource("1_0v4fq")
 wave_vbox = NodePath("PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Waves")
 enemy_row_scene = ExtResource("2_lbx3o")
+enemy_icon_tex = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription/TextureRect")
+enemy_name_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription/Label")
+enemy_desc_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -54,22 +57,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="EnemyDescription" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
 layout_mode = 2
 text = "Big dawg"
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_tptaq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0v4fq")

@@ -33,6 +33,7 @@ alignment = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c3kb6")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer"]
