@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear;
 uniform int color_depth : hint_range(1, 8) = 5;
 uniform bool dithering = true;
 uniform int resolution_scale = 4;

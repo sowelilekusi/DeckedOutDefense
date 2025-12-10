@@ -9,4 +9,4 @@ shader = ExtResource("1_13w0y")
 shader_parameter/albedo = ExtResource("2_l5awy")
 shader_parameter/jitter_z_coordinate = true
 shader_parameter/jitter_depth_independent = true
-shader_parameter/alpha_scissor = 0.5
+shader_parameter/alpha_scissor = 1.0

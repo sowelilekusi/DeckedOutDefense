@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ccltaimvldxfu"
+uid="uid://6qv8uwwuoiys"
 path="res://.godot/imported/Gun Thing.glb-346cc6d756ff806bd7662c149c6ed8f0.scn"
 
 [deps]
@@ -37,17 +37,6 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Weapons/Assault/weapon_material.tres",
-"use_external/path": "uid://bjdi4f801k0xt"
-"nodes": {
-"PATH:Cube_001": {
-"mesh_instance/layers": 2
-}
-}
-}
-gltf/naming_version=1
+_subresources={}
+gltf/naming_version=0
 gltf/embedded_image_handling=1

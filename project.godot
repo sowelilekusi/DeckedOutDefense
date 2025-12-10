@@ -37,6 +37,10 @@ window/stretch/scale_mode="integer"
 
 export/convert_text_resources_to_binary=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
@@ -60,6 +64,12 @@ import/blender/enabled=false
 
 theme/default_font_antialiasing=0
 theme/custom="uid://jn4qqx5hxc5i"
+
+[importer_defaults]
+
+wavefront_obj={
+&"generate_lods": false
+}
 
 [input]
 
@@ -245,5 +255,5 @@ affine_mapping={
 }
 vertex_jitter={
 "type": "float",
-"value": 0.5
+"value": 0.2
 }

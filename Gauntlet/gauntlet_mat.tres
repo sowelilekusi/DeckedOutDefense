@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b2rsi4vlkfpp1"]
+
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_i1hsh"]
+[ext_resource type="Texture2D" uid="uid://b5es3jtoiurk0" path="res://Gauntlet/gauntlet_gauntlet_test_sprite.png" id="2_vslqm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i1hsh")
+shader_parameter/albedo = ExtResource("2_vslqm")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0

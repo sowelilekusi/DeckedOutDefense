@@ -38,14 +38,14 @@ script = ExtResource("3_myjng")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
 [node name="MiniHitbox" type="CollisionShape3D" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.601335, 0.59523, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60133517, 0.5952302, 0)
 shape = SubResource("CapsuleShape3D_d7aub")
 script = ExtResource("3_myjng")
 critical_zone = true
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
 [node name="MiniHitbox2" type="CollisionShape3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.599804, -0.600394, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59980416, -0.60039425, 0)
 shape = SubResource("CapsuleShape3D_d7aub")
 script = ExtResource("3_myjng")
 critical_zone = true

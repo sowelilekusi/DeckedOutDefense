@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://msn0x7d83tc1"]
+
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_7m0va"]
+[ext_resource type="Texture2D" uid="uid://ccg78jovw5432" path="res://BigTree1/big_tree_leaf.png" id="2_qmu85"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7m0va")
+shader_parameter/albedo = ExtResource("2_qmu85")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0
