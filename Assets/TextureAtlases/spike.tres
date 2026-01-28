@@ -1,4 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://sybn6bjbj5fh"]
+[gd_resource type="AtlasTexture" format=3 uid="uid://sybn6bjbj5fh"]
 
 [ext_resource type="Texture2D" uid="uid://duywsy7jmh4u" path="res://Assets/Textures/spike.png" id="1_nf07h"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjo2q6vca5qlv"]
+[gd_scene format=3 uid="uid://bjo2q6vca5qlv"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_m83kr"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_aed6c"]
@@ -10,7 +10,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_ss5ir"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Dog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+[node name="Dog" type="CharacterBody3D" unique_id=208032021 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
@@ -20,7 +20,7 @@ movement_controller = NodePath("BeeliningController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_aed6c")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2020998819]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.637873, 0)
 sorting_offset = 1.0
 pixel_size = 0.02
@@ -28,36 +28,36 @@ billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_ss5ir")
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=962994983]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0.886933, 0)
 layers = 4
 texture_filter = 0
 texture = ExtResource("9_7yfyh")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1270775896]
 transparent_bg = true
 size = Vector2i(200, 55)
 render_target_update_mode = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport" unique_id=1986225173]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="HealthBar" parent="SubViewport" instance=ExtResource("9_4xla1")]
+[node name="HealthBar" parent="SubViewport" unique_id=220775598 instance=ExtResource("9_4xla1")]
 visible = false
 offset_top = 36.0
 offset_bottom = 236.0
 
-[node name="BeeliningController" type="Node" parent="." node_paths=PackedStringArray("character")]
+[node name="BeeliningController" type="Node" parent="." unique_id=1156329369 node_paths=PackedStringArray("character")]
 script = ExtResource("9_cx8mv")
 character = NodePath("..")
 
-[node name="StatusEffector" type="Node" parent="." node_paths=PackedStringArray("sprite_container")]
+[node name="StatusEffector" type="Node" parent="." unique_id=98421530 node_paths=PackedStringArray("sprite_container")]
 script = ExtResource("9_7hati")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=1433335904]

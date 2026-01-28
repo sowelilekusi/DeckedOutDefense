@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://dsgkwh3opyqtx"]
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://dsgkwh3opyqtx"]
 
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="1_57rr1"]
 [ext_resource type="Texture2D" uid="uid://ta47gpiwloxm" path="res://Assets/Textures/dead_bubble.png" id="1_ioqxi"]
@@ -20,7 +20,6 @@ penalty = 4
 movement_speed = 2.0
 spawn_cooldown = 0.5
 common_group = 8
-common_cost = 1
 uncommon_group = 14
 uncommon_cost = 2
 rare_group = 20

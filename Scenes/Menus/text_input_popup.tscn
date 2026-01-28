@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dccsyymk4uko6"]
+[gd_scene format=3 uid="uid://dccsyymk4uko6"]
 
 [ext_resource type="Script" uid="uid://b0asb3pmu8pqb" path="res://Scripts/text_input_popup.gd" id="1_ve6eb"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="2_mec4u"]
@@ -8,7 +8,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_mec4u")
 
-[node name="TextInputPopup" type="PanelContainer"]
+[node name="TextInputPopup" type="PanelContainer" unique_id=601601243]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,19 +22,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ve6eb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=868959961]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=704296503]
 layout_mode = 2
 placeholder_text = "Dummy Text"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1043501287]
 layout_mode = 2
 text = "Confirm
 "
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1455592164]
 stream = SubResource("AudioStreamRandomizer_w0x7l")
 bus = &"SFX"
 

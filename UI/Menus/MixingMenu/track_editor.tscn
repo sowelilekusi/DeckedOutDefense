@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bajli4d3nqwll"]
+[gd_scene format=3 uid="uid://bajli4d3nqwll"]
 
 [ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://UI/FeatureUI/feature_ui.tscn" id="1_y6tpq"]
 [ext_resource type="Script" uid="uid://mrv5vrlxfc13" path="res://UI/Menus/MixingMenu/track_editor.gd" id="1_yrnbk"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cll2vlvf1h454" path="res://UI/Themes/Scale1/track_one_patch.png" id="4_dya4i"]
 [ext_resource type="Texture2D" uid="uid://cvhkk22pxxuqj" path="res://UI/Themes/Scale1/track_two_patch.png" id="5_4gmyw"]
 
-[node name="TrackEditor" type="Control" node_paths=PackedStringArray("drag_feature", "sample_library", "tower_parts", "weapon_parts", "drop_down", "card_desc", "price_label", "money_label", "confirm_button", "switch_button")]
+[node name="TrackEditor" type="Control" unique_id=1189474502 node_paths=PackedStringArray("drag_feature", "sample_library", "tower_parts", "weapon_parts", "drop_down", "card_desc", "price_label", "money_label", "confirm_button", "switch_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ money_label = NodePath("PanelContainer/VBoxContainer/Tracks/SourceCartridge/Marg
 confirm_button = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls/ConfirmButton")
 switch_button = NodePath("PanelContainer/VBoxContainer/InfoPanel/VBoxContainer/Button")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1962957964]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -38,64 +38,64 @@ anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=52145940]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1297899052]
 layout_mode = 2
 text = "TITLE_REMIX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Tracks" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Tracks" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=569992226]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SourceCartridge" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks"]
+[node name="SourceCartridge" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks" unique_id=931537259]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CassetteSelector" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge" unique_id=1025925653]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/CassetteSelector"]
+[node name="CassetteSelector" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge" unique_id=1362428608]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/CassetteSelector" unique_id=2057426198]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge" unique_id=56504458]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer" unique_id=401386073]
 layout_mode = 2
 
-[node name="MoneyLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer" unique_id=1228771446]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Coins: $0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PriceLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer"]
+[node name="PriceLabel" type="Label" parent="PanelContainer/VBoxContainer/Tracks/SourceCartridge/MarginContainer/VBoxContainer" unique_id=10984916]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Price: $0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks" unique_id=1364917513]
 layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer"]
+[node name="Labels" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer" unique_id=710296334]
 layout_mode = 2
 
-[node name="Tower" type="Label" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/Labels"]
+[node name="Tower" type="Label" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/Labels" unique_id=289304279]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -103,7 +103,7 @@ text = "LABEL_TOWER_TRACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Weapon" type="Label" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/Labels"]
+[node name="Weapon" type="Label" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/Labels" unique_id=1334584466]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -111,16 +111,16 @@ text = "LABEL_WEAPON_TRACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TrackUIs" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer"]
+[node name="TrackUIs" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer" unique_id=1502640378]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Tower" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs"]
+[node name="Tower" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs" unique_id=1754951909]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower"]
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower" unique_id=1043876948]
 layout_mode = 2
 texture = ExtResource("5_4gmyw")
 patch_margin_left = 1
@@ -128,24 +128,24 @@ patch_margin_top = 1
 patch_margin_right = 1
 patch_margin_bottom = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower" unique_id=2041795880]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="TowerParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower/MarginContainer"]
+[node name="TowerParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Tower/MarginContainer" unique_id=1372896552]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Weapon" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs"]
+[node name="Weapon" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs" unique_id=784957506]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon"]
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon" unique_id=1367707421]
 layout_mode = 2
 texture = ExtResource("4_dya4i")
 patch_margin_left = 1
@@ -153,79 +153,79 @@ patch_margin_top = 1
 patch_margin_right = 1
 patch_margin_bottom = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon" unique_id=1073473458]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="WeaponParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon/MarginContainer"]
+[node name="WeaponParts" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Tracks/HBoxContainer/TrackUIs/Weapon/MarginContainer" unique_id=1207309530]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoPanel" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="InfoPanel" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=200656580]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel" unique_id=760510393]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer" unique_id=833264766]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"SideCheckButton"
 toggle_mode = true
 text = "Side A"
 
-[node name="DescriptionVBox" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer" instance=ExtResource("3_q6wwl")]
+[node name="DescriptionVBox" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer" unique_id=1832289499 instance=ExtResource("3_q6wwl")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/InfoPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/InfoPanel" unique_id=525893430]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel" unique_id=1230571449]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SamplePanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2"]
+[node name="SamplePanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2" unique_id=21833113]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel" unique_id=1994154810]
 layout_mode = 2
 text = "TITLE_SAMPLES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel" unique_id=979137095]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SampleLibrary" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/ScrollContainer"]
+[node name="SampleLibrary" type="VBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/SamplePanel/ScrollContainer" unique_id=456687569]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Controls" type="HBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2"]
+[node name="Controls" type="HBoxContainer" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2" unique_id=1461793061]
 layout_mode = 2
 alignment = 2
 
-[node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls"]
+[node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls" unique_id=1859473013]
 layout_mode = 2
 text = "BUTTON_CANCEL"
 
-[node name="ConfirmButton" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls"]
+[node name="ConfirmButton" type="Button" parent="PanelContainer/VBoxContainer/InfoPanel/VBoxContainer2/Controls" unique_id=367270034]
 layout_mode = 2
 text = "BUTTON_CONFIRM_REMIX"
 
-[node name="FeatureUI" parent="." instance=ExtResource("1_y6tpq")]
+[node name="FeatureUI" parent="." unique_id=697389351 instance=ExtResource("1_y6tpq")]
 visible = false
 layout_mode = 0
 anchors_preset = 0

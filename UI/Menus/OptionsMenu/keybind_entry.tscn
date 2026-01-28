@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb8irvp2y2p6g"]
+[gd_scene format=3 uid="uid://cb8irvp2y2p6g"]
 
 [ext_resource type="Script" uid="uid://y2pxkfjn0wa2" path="res://UI/Menus/OptionsMenu/keybind_entry.gd" id="1_it8q2"]
 
-[node name="KeybindEntry" type="HBoxContainer"]
+[node name="KeybindEntry" type="HBoxContainer" unique_id=2041313667]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,19 +12,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_it8q2")
 
-[node name="ActionName" type="Label" parent="."]
+[node name="ActionName" type="Label" parent="." unique_id=1413481849]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Action Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="GridContainer" parent="."]
+[node name="Buttons" type="GridContainer" parent="." unique_id=312221019]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
 
-[node name="AddBindButton" type="Button" parent="Buttons"]
+[node name="AddBindButton" type="Button" parent="Buttons" unique_id=329539958]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "+"

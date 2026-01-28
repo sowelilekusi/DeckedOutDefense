@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7idyi1c67ou4"]
+[gd_scene format=3 uid="uid://b7idyi1c67ou4"]
 
 [ext_resource type="PackedScene" uid="uid://kioik38usbqj" path="res://Scenes/Towers/area_tower.tscn" id="1_0qp3f"]
 [ext_resource type="Resource" uid="uid://cssdyxk8oefsd" path="res://Towers/Reactor/tower_stats.tres" id="2_gthqr"]
@@ -15,17 +15,16 @@ metadata/_custom_type_script = "uid://c6eghujlaqhwi"
 
 [sub_resource type="Resource" id="Resource_joohe"]
 script = ExtResource("2_v1m7x")
-damage = 0
 status_effects = Array[ExtResource("3_amg2o")]([SubResource("Resource_ltmnh")])
 metadata/_custom_type_script = "uid://djp7tepdsda8w"
 
-[node name="Tower" instance=ExtResource("1_0qp3f")]
+[node name="Tower" unique_id=601372327 instance=ExtResource("1_0qp3f")]
 turns_to_aim = false
 stats = ExtResource("2_gthqr")
 effect = SubResource("Resource_joohe")
 
-[node name="Yaw" parent="." index="2"]
+[node name="Yaw" parent="." index="2" unique_id=1867477]
 mesh = ExtResource("6_7kedu")
 
-[node name="CSGSphere3D" parent="." index="4"]
+[node name="CSGSphere3D" parent="." index="4" unique_id=1039990115]
 radius = 5.0

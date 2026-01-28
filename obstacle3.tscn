@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds4sa5xyfgyo0"]
+[gd_scene format=3 uid="uid://ds4sa5xyfgyo0"]
 
 [ext_resource type="MeshLibrary" uid="uid://jfr8j8kycfa5" path="res://Worlds/GreenPlanet/tilemap.tres" id="1_rgq2d"]
 
-[node name="Node3D" type="GridMap"]
+[node name="Node3D" type="GridMap" unique_id=1467787585]
 mesh_library = ExtResource("1_rgq2d")
 cell_size = Vector3(1, 1, 1)
 cell_center_x = false

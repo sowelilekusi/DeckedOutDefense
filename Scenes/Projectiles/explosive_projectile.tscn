@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7f4dfphgiswr"]
+[gd_scene format=3 uid="uid://7f4dfphgiswr"]
 
 [ext_resource type="PackedScene" uid="uid://c8qjlgam6wuo0" path="res://Scenes/Projectiles/projectile.tscn" id="1_136w8"]
 [ext_resource type="Script" uid="uid://cubn2iabwg3" path="res://Scripts/Projectiles/explosive_projectile.gd" id="2_3adg2"]
@@ -27,14 +27,14 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_dqr5j")
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="ExplosiveProjectile" instance=ExtResource("1_136w8")]
+[node name="ExplosiveProjectile" unique_id=1515091441 instance=ExtResource("1_136w8")]
 script = ExtResource("2_3adg2")
 explosion_range = 3.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1138017970]
 bus = &"SFX"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="3"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="3" unique_id=729922247]
 emitting = false
 amount = 80
 lifetime = 0.5

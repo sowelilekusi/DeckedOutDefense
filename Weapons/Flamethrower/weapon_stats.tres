@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://yjknwdimtm8g"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://yjknwdimtm8g"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_rinww"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_drgp3"]
 
 [resource]
 script = ExtResource("2_drgp3")
-target_type = Array[int]([])
 energy_type = 2
 attributes = Dictionary[String, float]({
 "Damage": 1.0,
@@ -13,5 +12,4 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 0.4,
 "Range": 3.0
 })
-features = Array[ExtResource("1_rinww")]([])
 text = "DESC_WEAPON_FLAMETHROWER"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvfit0sy2tnw4"]
+[gd_scene format=3 uid="uid://bvfit0sy2tnw4"]
 
 [ext_resource type="Script" uid="uid://dyyhbd2pbfygi" path="res://Scripts/server_form.gd" id="1_43oaq"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="2_hirre"]
@@ -8,7 +8,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_hirre")
 
-[node name="ServerForm" type="PanelContainer" node_paths=PackedStringArray("ip_entry", "port_entry", "host_button", "join_button", "ip_field", "port_field", "players_field", "start_button")]
+[node name="ServerForm" type="PanelContainer" unique_id=1145091654 node_paths=PackedStringArray("ip_entry", "port_entry", "host_button", "join_button", "ip_field", "port_field", "players_field", "start_button")]
 custom_minimum_size = Vector2(500, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,60 +31,60 @@ port_field = NodePath("VBoxContainer/PortField")
 players_field = NodePath("VBoxContainer/PlayersField")
 start_button = NodePath("VBoxContainer/StartButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=561935001]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=569188032]
 layout_mode = 2
 text = "Back"
 
-[node name="ModeContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ModeContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=412577610]
 layout_mode = 2
 
-[node name="HostButton" type="Button" parent="VBoxContainer/ModeContainer"]
+[node name="HostButton" type="Button" parent="VBoxContainer/ModeContainer" unique_id=631449156]
 layout_mode = 2
 text = "Host Game"
 
-[node name="JoinButton" type="Button" parent="VBoxContainer/ModeContainer"]
+[node name="JoinButton" type="Button" parent="VBoxContainer/ModeContainer" unique_id=1935206321]
 layout_mode = 2
 text = "Join Game"
 
-[node name="IPField" type="HBoxContainer" parent="VBoxContainer"]
+[node name="IPField" type="HBoxContainer" parent="VBoxContainer" unique_id=1725471186]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/IPField"]
+[node name="Label" type="Label" parent="VBoxContainer/IPField" unique_id=1622344831]
 layout_mode = 2
 text = "Server IP:"
 
-[node name="ServerIP" type="LineEdit" parent="VBoxContainer/IPField"]
+[node name="ServerIP" type="LineEdit" parent="VBoxContainer/IPField" unique_id=2021046132]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "localhost"
 
-[node name="PortField" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PortField" type="HBoxContainer" parent="VBoxContainer" unique_id=803673382]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/PortField"]
+[node name="Label" type="Label" parent="VBoxContainer/PortField" unique_id=1598783998]
 layout_mode = 2
 text = "Server Port:"
 
-[node name="ServerPort" type="LineEdit" parent="VBoxContainer/PortField"]
+[node name="ServerPort" type="LineEdit" parent="VBoxContainer/PortField" unique_id=1709303077]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "default"
 
-[node name="PlayersField" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PlayersField" type="HBoxContainer" parent="VBoxContainer" unique_id=1542923946]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/PlayersField"]
+[node name="Label" type="Label" parent="VBoxContainer/PlayersField" unique_id=1691764369]
 layout_mode = 2
 text = "Max Players"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/PlayersField"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/PlayersField" unique_id=1035713116]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -93,16 +93,16 @@ value = 4.0
 tick_count = 5
 ticks_on_borders = true
 
-[node name="Label2" type="Label" parent="VBoxContainer/PlayersField"]
+[node name="Label2" type="Label" parent="VBoxContainer/PlayersField" unique_id=821854456]
 layout_mode = 2
 text = "4"
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1563391807]
 visible = false
 layout_mode = 2
 text = "Start"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=698870317]
 stream = SubResource("AudioStreamRandomizer_3o7ni")
 bus = &"SFX"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://buvgdem68wtev"]
+[gd_scene format=3 uid="uid://buvgdem68wtev"]
 
 [ext_resource type="Script" uid="uid://cjyyepxaf4xl8" path="res://UI/Menus/PauseMenu/pause_menu.gd" id="2_4pn2l"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="3_0bid7"]
@@ -8,7 +8,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("3_0bid7")
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1157017318]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_4pn2l")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1723382929]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.278431, 0.278431, 0.278431, 0.545098)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1006913241]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,26 +40,26 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1192605916]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1026126243]
 layout_mode = 2
 text = "BUTTON_RESUME"
 
-[node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1050921293]
 layout_mode = 2
 text = "BUTTON_OPTIONS"
 
-[node name="QuitToMainMenu" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="QuitToMainMenu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=356852954]
 layout_mode = 2
 text = "BUTTON_MAIN_MENU"
 
-[node name="QuitToDesktop" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="QuitToDesktop" type="Button" parent="PanelContainer/VBoxContainer" unique_id=11070618]
 layout_mode = 2
 text = "BUTTON_QUIT"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1218417780]
 stream = SubResource("AudioStreamRandomizer_n6ixr")
 bus = &"SFX"
 

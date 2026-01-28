@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://d3qmy6puuh1gl"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://d3qmy6puuh1gl"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_m84e5"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_rl1ek"]
 
 [resource]
 script = ExtResource("2_rl1ek")
-target_type = Array[int]([])
 energy_type = 2
 attributes = Dictionary[String, float]({
 "Damage": 0.0,
@@ -14,6 +13,5 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 0.3,
 "Range": 100.0
 })
-features = Array[ExtResource("1_m84e5")]([])
 text = "DESC_WEAPON_SPEED_INCREASER"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

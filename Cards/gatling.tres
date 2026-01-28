@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://cvto66tp7rrst"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cvto66tp7rrst"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_5html"]
 [ext_resource type="Resource" uid="uid://nxl5wabgl36t" path="res://Towers/Gatling/tower_stats.tres" id="3_4hykq"]
@@ -9,11 +9,9 @@
 [resource]
 script = ExtResource("1_5html")
 cost = 2
-rarity = 0
 faction = 1
 turret_scene = ExtResource("4_thk7u")
 weapon_scene = ExtResource("3_wkjyf")
 weapon_stats = ExtResource("4_76fd1")
 tower_stats = ExtResource("3_4hykq")
-tags = Array[int]([])
 display_name = "CARD_NAME_ACCEL"

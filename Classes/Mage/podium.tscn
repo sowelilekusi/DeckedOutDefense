@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd4k48bdgiddy"]
+[gd_scene format=3 uid="uid://bd4k48bdgiddy"]
 
 [ext_resource type="Script" uid="uid://bc0xyfr5nj1ul" path="res://UI/Menus/CharacterSelect/character_podium.gd" id="1_0wn84"]
 [ext_resource type="Texture2D" uid="uid://bvybr3fwnw46p" path="res://Classes/Mage/yeen.png" id="2_skplt"]
@@ -9,56 +9,56 @@
 [ext_resource type="PackedScene" uid="uid://dk1pt2f1qya1m" path="res://Towers/Ascension/tower.tscn" id="7_3ilqd"]
 [ext_resource type="Resource" uid="uid://c756rtt7ujowk" path="res://Towers/Ascension/tower_stats.tres" id="8_2wywa"]
 
-[node name="MagePodium" type="Node3D"]
+[node name="MagePodium" type="Node3D" unique_id=337303496]
 script = ExtResource("1_0wn84")
 text = "Watch out for a shop to find out how to unlock this mysterious friend!"
 metadata/_custom_type_script = "uid://bc0xyfr5nj1ul"
 
-[node name="Base" type="CSGCylinder3D" parent="."]
+[node name="Base" type="CSGCylinder3D" parent="." unique_id=437192101]
 transform = Transform3D(0.789716, 0, -0.613472, 0, 1, 0, 0.613472, 0, 0.789716, 0, 0, 0)
 radius = 3.0
 height = 1.0
 sides = 32
 
-[node name="Node3D" parent="Base" instance=ExtResource("3_m1210")]
+[node name="Node3D" parent="Base" unique_id=1576441595 instance=ExtResource("3_m1210")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21433, 0.5, -1.47375)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Base"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Base" unique_id=1567380798]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 4, 0)
 spot_range = 10.0
 spot_attenuation = 0.39
 
-[node name="Content" type="Node3D" parent="Base"]
+[node name="Content" type="Node3D" parent="Base" unique_id=864404875]
 visible = false
 
-[node name="Sprite3D" type="Sprite3D" parent="Base/Content"]
+[node name="Sprite3D" type="Sprite3D" parent="Base/Content" unique_id=381859847]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.91885, 0)
 modulate = Color(0.446777, 0.446777, 0.446777, 1)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("2_skplt")
 
-[node name="Assaultmod" type="MeshInstance3D" parent="Base/Content"]
+[node name="Assaultmod" type="MeshInstance3D" parent="Base/Content" unique_id=451079832]
 transform = Transform3D(-0.216168, 0.271014, 0.279012, 0.174778, 0.352842, -0.207317, -0.347489, 0.00887582, -0.277844, 1.62687, 1.06376, -1.0274)
 mesh = ExtResource("4_5wuy8")
 skeleton = NodePath("../../../..")
 
-[node name="Snipermodel" type="MeshInstance3D" parent="Base/Content"]
+[node name="Snipermodel" type="MeshInstance3D" parent="Base/Content" unique_id=881616058]
 transform = Transform3D(0.332265, 0.0519786, -0.251592, -8.9882e-09, 0.411314, 0.0849769, 0.256905, -0.0672257, 0.325393, 0.500198, 0.978789, 1.90895)
 mesh = ExtResource("5_tnndn")
 skeleton = NodePath("../../../..")
 
-[node name="Magetowermesh" type="MeshInstance3D" parent="Base/Content"]
+[node name="Magetowermesh" type="MeshInstance3D" parent="Base/Content" unique_id=476811829]
 transform = Transform3D(0.432921, 0, 0.719847, 0, 0.84, 0, -0.719847, 0, 0.432921, -1.62727, 0.5, -0.0085029)
 mesh = ExtResource("6_67jsi")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Base/Content/Magetowermesh"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Base/Content/Magetowermesh" unique_id=1769865592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.38274, 0)
 light_color = Color(0.697081, 0.170704, 0.131545, 1)
 light_energy = 3.586
 omni_range = 1.824
 
-[node name="Tower" parent="Base/Content" instance=ExtResource("7_3ilqd")]
+[node name="Tower" parent="Base/Content" unique_id=1811392610 instance=ExtResource("7_3ilqd")]
 transform = Transform3D(-0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, -0.642788, 0.228261, 1.16271, -1.45948)
 stats = ExtResource("8_2wywa")

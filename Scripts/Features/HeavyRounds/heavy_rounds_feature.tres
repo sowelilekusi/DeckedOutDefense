@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeavyRoundsFeature" load_steps=3 format=3 uid="uid://dfup264h2pun7"]
+[gd_resource type="Resource" script_class="HeavyRoundsFeature" format=3 uid="uid://dfup264h2pun7"]
 
 [ext_resource type="Texture2D" uid="uid://dykfm5ad0mxfw" path="res://Scripts/Features/HeavyRounds/HeavyRounds_icon.png" id="1_drp05"]
 [ext_resource type="Script" uid="uid://uabrepvb5cur" path="res://Scripts/Features/HeavyRounds/heavy_rounds.gd" id="1_hyapt"]

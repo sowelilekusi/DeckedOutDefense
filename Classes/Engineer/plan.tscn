@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dq8v5e11rvyi6"]
+[gd_scene format=4 uid="uid://dq8v5e11rvyi6"]
 
 [ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://Scripts/card_item.gd" id="2_kobsv"]
 [ext_resource type="Script" uid="uid://cl2mi4bnpatwk" path="res://Scripts/float_and_spin.gd" id="3_b2a1t"]
@@ -89,7 +89,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lw2q8")
 
-[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("outline_mesh", "card_ui")]
+[node name="Node3D" type="StaticBody3D" unique_id=1261182387 node_paths=PackedStringArray("outline_mesh", "card_ui")]
 collision_layer = 16
 script = ExtResource("2_kobsv")
 outline_mesh = NodePath("Node3D/Plane")
@@ -97,17 +97,17 @@ card_ui = NodePath("SubViewport/Node2D")
 hover_text = "[center]#Interact# to pick up"
 metadata/_custom_type_script = "uid://bj7oafusrrsk"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1308972897]
 shape = SubResource("BoxShape3D_2u312")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=182315876]
 transparent_bg = true
 size = Vector2i(352, 512)
 
-[node name="Node2D" parent="SubViewport" instance=ExtResource("6_etati")]
+[node name="Node2D" parent="SubViewport" unique_id=1968457567 instance=ExtResource("6_etati")]
 position = Vector2(-56, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1625188673]
 transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
 visible = false
 billboard = 1
@@ -115,7 +115,7 @@ no_depth_test = true
 fixed_size = true
 texture = SubResource("ViewportTexture_b2a1t")
 
-[node name="Node3D" type="RayCast3D" parent="."]
+[node name="Node3D" type="RayCast3D" parent="." unique_id=2066614285]
 target_position = Vector3(0, -2, 0)
 script = ExtResource("3_b2a1t")
 float_height = 1.4
@@ -125,17 +125,15 @@ spin_speed = 0.4
 curve = SubResource("Curve_kobsv")
 metadata/_custom_type_script = "uid://cl2mi4bnpatwk"
 
-[node name="Plane" type="MeshInstance3D" parent="Node3D"]
+[node name="Plane" type="MeshInstance3D" parent="Node3D" unique_id=1273647181]
 transform = Transform3D(0.129, 0, 0, 0, 0.108, 0, 0, 0, 0.097, -0.536755, 0.0293462, -0.257914)
 mesh = SubResource("ArrayMesh_kobsv")
-skeleton = NodePath("")
 surface_material_override/0 = ExtResource("5_2u312")
 
-[node name="Plane2" type="MeshInstance3D" parent="Node3D"]
+[node name="Plane2" type="MeshInstance3D" parent="Node3D" unique_id=848706958]
 transform = Transform3D(0.129, 0, 0, 0, 0.108, 0, 0, 0, 0.097, -0.536755, 0.0293462, -0.257914)
 mesh = SubResource("ArrayMesh_75s6s")
-skeleton = NodePath("")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Node3D"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Node3D" unique_id=1178893434]
 remote_path = NodePath("../../CollisionShape3D")
 use_global_coordinates = false

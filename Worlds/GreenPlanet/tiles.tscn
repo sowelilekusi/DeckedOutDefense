@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7s8i67yqvwbw"]
+[gd_scene format=3 uid="uid://b7s8i67yqvwbw"]
 
 [ext_resource type="Texture2D" uid="uid://blnfsojw4ukq4" path="res://Assets/Textures/grass.png" id="1_nc7wu"]
 [ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="2_udt8k"]
@@ -33,28 +33,28 @@ material = SubResource("StandardMaterial3D_e3y4s")
 size = Vector2(2, 2)
 center_offset = Vector3(0, -1, 1)
 
-[node name="Library" type="Node3D"]
+[node name="Library" type="Node3D" unique_id=678648360]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=844142537]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = SubResource("QuadMesh_yxhjj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1992170065]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1567932571]
 shape = SubResource("BoxShape3D_mtfk2")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1032001072]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 0, 0)
 mesh = SubResource("QuadMesh_twahx")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=2120756386]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=689462354]
 shape = SubResource("BoxShape3D_d3j6k")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1503953683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 mesh = SubResource("QuadMesh_u8bp3")

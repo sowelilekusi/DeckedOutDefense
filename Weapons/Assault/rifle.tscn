@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn3t6sjupdxgi"]
+[gd_scene format=3 uid="uid://bn3t6sjupdxgi"]
 
 [ext_resource type="Script" uid="uid://bp3o5klntwmhd" path="res://Scripts/Weapons/hitscan_weapon.gd" id="1_yvp43"]
 [ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://Weapons/Assault/weapon_stats.tres" id="2_2k4c7"]
@@ -10,7 +10,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_5wfsb")
 
-[node name="Rifle" type="Node3D" node_paths=PackedStringArray("raycast", "audio_player", "recharge_timer")]
+[node name="Rifle" type="Node3D" unique_id=1518167828 node_paths=PackedStringArray("raycast", "audio_player", "recharge_timer")]
 script = ExtResource("1_yvp43")
 raycast = NodePath("RayCast3D")
 stats = ExtResource("2_2k4c7")
@@ -18,21 +18,21 @@ audio_player = NodePath("AudioStreamPlayer3D")
 recharge_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://bp3o5klntwmhd"
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1349784403]
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2110782459]
 wait_time = 4.0
 one_shot = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2124501556]
 stream = SubResource("AudioStreamRandomizer_1hdrg")
 bus = &"SFX"
 
-[node name="Gun Thing" parent="." instance=ExtResource("3_2k4c7")]
+[node name="Gun Thing" parent="." unique_id=1024288520 instance=ExtResource("3_2k4c7")]
 
-[node name="Cube_001" parent="Gun Thing" index="0"]
+[node name="Cube_001" parent="Gun Thing" index="0" unique_id=1455961016]
 layers = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bosqtuvhckh3g"]
+[gd_scene format=3 uid="uid://bosqtuvhckh3g"]
 
 [ext_resource type="Texture2D" uid="uid://ddjrq1h4mkn6a" path="res://addons/proton_scatter/icons/load.svg" id="1_0auay"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/presets/preset_entry.gd" id="1_bqha3"]
+[ext_resource type="Script" uid="uid://sog2ulr5d47b" path="res://addons/proton_scatter/src/presets/preset_entry.gd" id="1_bqha3"]
 [ext_resource type="Texture2D" uid="uid://btb6rqhhi27mx" path="res://addons/proton_scatter/icons/remove.svg" id="2_p04k2"]
 
 [sub_resource type="SystemFont" id="SystemFont_kgkwq"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_poli7"]
 font = SubResource("SystemFont_kgkwq")
 
-[node name="PresetEntry" type="MarginContainer"]
+[node name="PresetEntry" type="MarginContainer" unique_id=788386003]
 custom_minimum_size = Vector2(450, 0)
 anchors_preset = 14
 anchor_top = 0.5
@@ -22,70 +23,70 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_bqha3")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1810999652]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=893203090]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=592298118]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2093177859]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Preset name"
 label_settings = SubResource("LabelSettings_poli7")
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1953144010]
 layout_mode = 2
 
-[node name="LoadButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="LoadButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1136403838]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="LoadStackOnly" type="Button" parent="MarginContainer/HBoxContainer/LoadButtons"]
+[node name="LoadStackOnly" type="Button" parent="MarginContainer/HBoxContainer/LoadButtons" unique_id=1981836634]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load modifier stack"
 icon = ExtResource("1_0auay")
 alignment = 0
 
-[node name="LoadFullPreset" type="Button" parent="MarginContainer/HBoxContainer/LoadButtons"]
+[node name="LoadFullPreset" type="Button" parent="MarginContainer/HBoxContainer/LoadButtons" unique_id=154594447]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Load full preset"
 icon = ExtResource("1_0auay")
 alignment = 0
 
-[node name="SaveButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="SaveButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=35604200]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
 alignment = 1
 
-[node name="OverrideButton" type="Button" parent="MarginContainer/HBoxContainer/SaveButtons"]
+[node name="OverrideButton" type="Button" parent="MarginContainer/HBoxContainer/SaveButtons" unique_id=261729701]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Override preset"
 icon = ExtResource("1_0auay")
 alignment = 0
 
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1358792488]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=866815469]
 layout_mode = 2
 alignment = 1
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1745324372]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/icon_normal_color = Color(0.917647, 0.0784314, 0, 1)

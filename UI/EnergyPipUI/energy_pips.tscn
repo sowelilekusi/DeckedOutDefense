@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://q73cllewm7pj"]
+[gd_scene format=3 uid="uid://q73cllewm7pj"]
 
 [ext_resource type="Script" uid="uid://cvdb5y5wmkvmm" path="res://UI/EnergyPipUI/energy_pips.gd" id="1_6l017"]
 [ext_resource type="Texture2D" uid="uid://h1m3ss2ln5hq" path="res://UI/EnergyPipUI/energy_sheet.png" id="2_q2m70"]
@@ -7,14 +7,14 @@
 atlas = ExtResource("2_q2m70")
 region = Rect2(0, 0, 21, 149)
 
-[node name="EnergyBar" type="Control" node_paths=PackedStringArray("tex")]
+[node name="EnergyBar" type="Control" unique_id=1745658302 node_paths=PackedStringArray("tex")]
 custom_minimum_size = Vector2(149, 21)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6l017")
 tex = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1685841292]
 layout_mode = 0
 offset_top = 21.0
 offset_right = 21.0

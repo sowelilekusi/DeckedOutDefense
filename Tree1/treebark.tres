@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dgkyl751a1muh"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dgkyl751a1muh"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_84kqg"]
 [ext_resource type="Texture2D" uid="uid://dovi2js4g7jnu" path="res://Tree1/tree1_tree1_bark.png" id="2_s6boq"]

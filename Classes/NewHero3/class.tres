@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=6 format=3 uid="uid://ogbkbf1v7j7l"]
+[gd_resource type="Resource" script_class="HeroClass" format=3 uid="uid://ogbkbf1v7j7l"]
 
 [ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="1_cpfpk"]
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_sapu8"]
@@ -11,6 +11,4 @@ script = ExtResource("1_cpfpk")
 hero_name = "CLASS_NAME_THIRD"
 texture = ExtResource("5_vhx4f")
 hand_texture = ExtResource("4_jgbmi")
-deck = Array[ExtResource("1_sapu8")]([])
-faction = 0
 podium = ExtResource("3_dhih8")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusStats" load_steps=3 format=3 uid="uid://dxlisoas4xlmo"]
+[gd_resource type="Resource" script_class="StatusStats" format=3 uid="uid://dxlisoas4xlmo"]
 
 [ext_resource type="Texture2D" uid="uid://bvc4b3v0wke84" path="res://Assets/Textures/radioactive.png" id="1_2vw1n"]
 [ext_resource type="Script" uid="uid://bq6jp8bwub6je" path="res://Scripts/Resources/status_stats.gd" id="1_eh52x"]
@@ -6,8 +6,6 @@
 [resource]
 script = ExtResource("1_eh52x")
 name = "Radioactive"
-max_stacks = 0
 proc_cd = 5.0
 duration = 0.0
-potency = 1.0
 icon = ExtResource("1_2vw1n")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp4gfr5h0tbcd"]
+[gd_scene format=3 uid="uid://dp4gfr5h0tbcd"]
 
 [ext_resource type="PackedScene" uid="uid://b7nargdyg28fj" path="res://Scenes/Weapons/weapon.tscn" id="1_gfchc"]
 [ext_resource type="Script" uid="uid://1l1qccgmp5ih" path="res://Scripts/Weapons/shapecast_weapon.gd" id="2_lg6v5"]
@@ -18,25 +18,25 @@ cull_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 0, 0.415686, 0.223529)
 
-[node name="ShapecastWeapon" node_paths=PackedStringArray("shapecast", "range_debug_indicator", "particles") instance=ExtResource("1_gfchc")]
+[node name="ShapecastWeapon" unique_id=1265681011 node_paths=PackedStringArray("shapecast", "range_debug_indicator", "particles") instance=ExtResource("1_gfchc")]
 script = ExtResource("2_lg6v5")
 shapecast = NodePath("ShapeCast3D")
 range_debug_indicator = NodePath("CSGSphere3D")
 status_stats = null
 particles = NodePath("ShapeCast3D/GPUParticles3D")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="." index="2"]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." index="2" unique_id=1138406404]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
 shape = SubResource("BoxShape3D_uk6ey")
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="ShapeCast3D" index="0"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ShapeCast3D" index="0" unique_id=1743469147]
 amount = 36
 visibility_aabb = AABB(-1.02851, -1.00566, -3.03983, 2.05703, 2.01132, 6.07966)
 draw_pass_1 = SubResource("BoxMesh_o37rs")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="." index="3"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." index="3" unique_id=959798617]
 visible = false
 radius = 4.104
 radial_segments = 16

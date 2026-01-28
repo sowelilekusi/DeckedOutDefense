@@ -1,17 +1,14 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://c756rtt7ujowk"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://c756rtt7ujowk"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_tiqmf"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_bpl71"]
 
 [resource]
 script = ExtResource("2_bpl71")
-target_type = Array[int]([])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 0.0,
 "Fire Delay": 9999.0,
 "Range": 1.0
 })
-features = Array[ExtResource("1_tiqmf")]([])
 text = "DESC_TOWER_PLATFORM_DASH"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

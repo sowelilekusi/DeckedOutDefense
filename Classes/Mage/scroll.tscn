@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bfxgtf1v1okat"]
+[gd_scene format=4 uid="uid://bfxgtf1v1okat"]
 
 [ext_resource type="Script" uid="uid://bj7oafusrrsk" path="res://Scripts/card_item.gd" id="1_rlle2"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://UI/card_hand.tscn" id="2_aiko0"]
@@ -57,25 +57,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_476un")
 
-[node name="Node3D" type="StaticBody3D" node_paths=PackedStringArray("outline_mesh", "card_ui")]
+[node name="Node3D" type="StaticBody3D" unique_id=1107406081 node_paths=PackedStringArray("outline_mesh", "card_ui")]
 collision_layer = 16
 script = ExtResource("1_rlle2")
 outline_mesh = NodePath("Node3D/Cube2")
 card_ui = NodePath("SubViewport/Node2D")
 metadata/_custom_type_script = "uid://bj7oafusrrsk"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=236535100]
 transform = Transform3D(0.952656, -0.30405, 0, 0.30405, 0.952656, 0, 0, 0, 1, -0.0390961, -0.0919519, 0)
 shape = SubResource("BoxShape3D_mfxja")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1305874278]
 transparent_bg = true
 size = Vector2i(352, 512)
 
-[node name="Node2D" parent="SubViewport" instance=ExtResource("2_aiko0")]
+[node name="Node2D" parent="SubViewport" unique_id=1919471054 instance=ExtResource("2_aiko0")]
 position = Vector2(-56, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2037203735]
 transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
 visible = false
 billboard = 1
@@ -83,7 +83,7 @@ no_depth_test = true
 fixed_size = true
 texture = SubResource("ViewportTexture_11rd4")
 
-[node name="Node3D" type="RayCast3D" parent="."]
+[node name="Node3D" type="RayCast3D" parent="." unique_id=1811321940]
 target_position = Vector3(0, -2, 0)
 script = ExtResource("3_jjaja")
 float_height = 1.4
@@ -93,17 +93,15 @@ spin_speed = 0.4
 curve = SubResource("Curve_ehsyn")
 metadata/_custom_type_script = "uid://cl2mi4bnpatwk"
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Node3D"]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Node3D" unique_id=125670260]
 remote_path = NodePath("../../CollisionShape3D")
 use_global_coordinates = false
 
-[node name="Cube" type="MeshInstance3D" parent="Node3D"]
+[node name="Cube" type="MeshInstance3D" parent="Node3D" unique_id=1104555417]
 transform = Transform3D(-3.18561e-08, -0.255402, 0.795468, -1.01672e-08, 0.800231, 0.253882, -0.765, -3.68173e-16, -3.6499e-08, 0.1297, -0.115073, 0)
 mesh = SubResource("ArrayMesh_jjaja")
-skeleton = NodePath("")
 
-[node name="Cube2" type="MeshInstance3D" parent="Node3D"]
+[node name="Cube2" type="MeshInstance3D" parent="Node3D" unique_id=365823974]
 transform = Transform3D(-3.18561e-08, -0.255402, 0.795468, -1.01672e-08, 0.800231, 0.253882, -0.765, -3.68173e-16, -3.6499e-08, 0.1297, -0.115073, 0)
 mesh = SubResource("ArrayMesh_jjaja")
-skeleton = NodePath("")
 surface_material_override/0 = ExtResource("5_jjaja")

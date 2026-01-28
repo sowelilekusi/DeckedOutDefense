@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://nxl5wabgl36t"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://nxl5wabgl36t"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_5mpl7"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_ky46y"]
@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("2_ky46y")
 target_type = Array[int]([1])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 1.0,
 "Fire Delay": 0.6,
@@ -14,5 +13,4 @@ attributes = Dictionary[String, float]({
 "Speed Multiplier": 2.0,
 "Speed Time": 3.0
 })
-features = Array[ExtResource("1_5mpl7")]([])
 text = "DESC_TOWER_ACCEL"

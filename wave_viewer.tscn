@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct6gic4shy5qw"]
+[gd_scene format=3 uid="uid://ct6gic4shy5qw"]
 
 [ext_resource type="Script" uid="uid://ps6sgjd0b5qr" path="res://wave_viewer.gd" id="1_0v4fq"]
 [ext_resource type="PackedScene" uid="uid://b5hp43bm07b8a" path="res://UI/Menus/GameEndScreen/enemy_row.tscn" id="2_lbx3o"]
@@ -10,7 +10,7 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 
-[node name="WaveViewer" type="Control" node_paths=PackedStringArray("wave_vbox", "enemy_icon_tex", "enemy_name_label", "enemy_desc_label")]
+[node name="WaveViewer" type="Control" unique_id=499270441 node_paths=PackedStringArray("wave_vbox", "enemy_icon_tex", "enemy_name_label", "enemy_desc_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ enemy_icon_tex = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescr
 enemy_name_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription/Label")
 enemy_desc_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription/RichTextLabel")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=788649331]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -34,55 +34,55 @@ anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=579941125]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=402227846]
 layout_mode = 2
 text = "TITLE_WAVE_VIEWER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1508928028]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=719335415]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Waves" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+[node name="Waves" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer" unique_id=1502502154]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EnemyDescription" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="EnemyDescription" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=2098653550]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription" unique_id=2117809796]
 layout_mode = 2
 text = "Big dawg"
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription" unique_id=1623597859]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_tptaq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/HBoxContainer/EnemyDescription" unique_id=975689037]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0v4fq")
 text = "this dawg is so big itll make your big meaty nuts fall off from how fucking scared you are. this dog will rip your balls off. this dog will make you cum on yourself. you'll be so scared you'll cum on yourself. and horny"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1208475978]
 layout_mode = 2
 alignment = 2
 
-[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1478517318]
 layout_mode = 2
 text = "BUTTON_CLOSE"
 

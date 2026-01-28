@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=7 format=3 uid="uid://b37r54q84vqoi"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://b37r54q84vqoi"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_ly0o5"]
 [ext_resource type="Texture2D" uid="uid://bfhliqv803dku" path="res://Assets/Textures/rocket_launcher_icon.png" id="1_qabk3"]
@@ -10,7 +10,6 @@
 [resource]
 script = ExtResource("1_ly0o5")
 cost = 3
-rarity = 0
 faction = 1
 turret_scene = ExtResource("3_73c50")
 weapon_scene = ExtResource("3_qo5gv")

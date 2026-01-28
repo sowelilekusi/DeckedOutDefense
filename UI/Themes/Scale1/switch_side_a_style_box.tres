@@ -1,4 +1,4 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cm3wsvk3woory"]
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cm3wsvk3woory"]
 
 [ext_resource type="Texture2D" uid="uid://cp3yr2676jkjx" path="res://UI/Themes/Scale1/sidea_patch.png" id="1_bunl1"]
 

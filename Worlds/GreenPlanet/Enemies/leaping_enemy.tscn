@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmneu5o0m02l8"]
+[gd_scene format=3 uid="uid://cmneu5o0m02l8"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_joiuq"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_ssgps"]
 [ext_resource type="Script" uid="uid://bamhci3kawuyt" path="res://Scripts/health.gd" id="3_dhcpw"]
-[ext_resource type="PackedScene" uid="uid://cqtew0t8sttpm" path="res://UI/DamageParticle/damage_particle.tscn" id="4_yref6"]
 [ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="5_5u3uw"]
 [ext_resource type="Texture2D" uid="uid://cb66pspr16scy" path="res://Assets/Textures/leapfrog_2.png" id="6_joiuq"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_72t32"]
@@ -13,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cp77etg1m1hc2" path="res://Scripts/sprite_bobber.gd" id="12_g2knp"]
 [ext_resource type="Script" uid="uid://dqluvn05min37" path="res://Scripts/EnemyAI/leaping_controller.gd" id="12_joiuq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3ikr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhskb"]
 resource_local_to_scene = true
 atlas = ExtResource("6_joiuq")
 region = Rect2(0, 0, 32, 32)
@@ -38,32 +37,30 @@ viewport_path = NodePath("SubViewport5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u3uw"]
 viewport_path = NodePath("SubViewport6")
 
-[node name="LeapingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "health", "d_n") groups=["Enemies"]]
+[node name="LeapingEnemy" type="CharacterBody3D" unique_id=1033726948 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_joiuq")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("LeapingController")
-health = NodePath("Health")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_ssgps")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." unique_id=1287231964]
 script = ExtResource("3_dhcpw")
-damage_particle_scene = ExtResource("4_yref6")
 
-[node name="DirectionSprite" parent="." instance=ExtResource("5_5u3uw")]
+[node name="DirectionSprite" parent="." unique_id=1545646745 instance=ExtResource("5_5u3uw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585, 0)
 pixel_size = 0.04
-texture = SubResource("AtlasTexture_o3ikr")
+texture = SubResource("AtlasTexture_nhskb")
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=149936442]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441355, 0)
 shape = SubResource("SphereShape3D_132sr")
 script = ExtResource("7_72t32")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
-[node name="HealthBar" type="Sprite3D" parent="."]
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=1144119778]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
 sorting_offset = 1.0
 pixel_size = 0.02
@@ -71,35 +68,35 @@ billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_4tj6k")
 
-[node name="MinimapIcon" type="Sprite3D" parent="."]
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=574287380]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
 layers = 4
 texture_filter = 0
 texture = ExtResource("8_egpbw")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=781492532]
 transparent_bg = true
 size = Vector2i(200, 55)
 render_target_update_mode = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport" unique_id=1769007611]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="HealthBar" parent="SubViewport" instance=ExtResource("10_lce6w")]
+[node name="HealthBar" parent="SubViewport" unique_id=841823713 instance=ExtResource("10_lce6w")]
 visible = false
 offset_top = 36.0
 offset_bottom = 236.0
 
-[node name="SpriteBobber" type="Node" parent="." node_paths=PackedStringArray("character", "sprite")]
+[node name="SpriteBobber" type="Node" parent="." unique_id=1364493813 node_paths=PackedStringArray("character", "sprite")]
 script = ExtResource("12_g2knp")
 character = NodePath("..")
 sprite = NodePath("../DirectionSprite")
 
-[node name="LeapingController" type="Node" parent="." node_paths=PackedStringArray("eastl", "westl", "northl", "southl", "easts", "wests", "norths", "souths", "box", "tol", "character")]
+[node name="LeapingController" type="Node" parent="." unique_id=289839880 node_paths=PackedStringArray("eastl", "westl", "northl", "southl", "easts", "wests", "norths", "souths", "box", "tol", "character")]
 script = ExtResource("12_joiuq")
 eastl = NodePath("../SubViewport2/East")
 westl = NodePath("../SubViewport3/West")
@@ -114,11 +111,11 @@ tol = NodePath("../SubViewport6/North")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://dqluvn05min37"
 
-[node name="SubViewport2" type="SubViewport" parent="."]
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=166337897]
 transparent_bg = true
 size = Vector2i(277, 52)
 
-[node name="East" type="Label" parent="SubViewport2"]
+[node name="East" type="Label" parent="SubViewport2" unique_id=114038959]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -128,11 +125,11 @@ text = "east"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewport3" type="SubViewport" parent="."]
+[node name="SubViewport3" type="SubViewport" parent="." unique_id=1474605948]
 transparent_bg = true
 size = Vector2i(277, 52)
 
-[node name="West" type="Label" parent="SubViewport3"]
+[node name="West" type="Label" parent="SubViewport3" unique_id=1999915202]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -142,11 +139,11 @@ text = "west"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewport4" type="SubViewport" parent="."]
+[node name="SubViewport4" type="SubViewport" parent="." unique_id=1404404895]
 transparent_bg = true
 size = Vector2i(277, 52)
 
-[node name="South" type="Label" parent="SubViewport4"]
+[node name="South" type="Label" parent="SubViewport4" unique_id=1892141100]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -156,11 +153,11 @@ text = "south"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewport5" type="SubViewport" parent="."]
+[node name="SubViewport5" type="SubViewport" parent="." unique_id=184881268]
 transparent_bg = true
 size = Vector2i(277, 52)
 
-[node name="North" type="Label" parent="SubViewport5"]
+[node name="North" type="Label" parent="SubViewport5" unique_id=223752275]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -170,11 +167,11 @@ text = "north"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewport6" type="SubViewport" parent="."]
+[node name="SubViewport6" type="SubViewport" parent="." unique_id=743109019]
 transparent_bg = true
 size = Vector2i(277, 52)
 
-[node name="North" type="Label" parent="SubViewport6"]
+[node name="North" type="Label" parent="SubViewport6" unique_id=555532262]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -184,47 +181,47 @@ text = "north"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="east" type="Sprite3D" parent="."]
+[node name="east" type="Sprite3D" parent="." unique_id=888319817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.955188, 0.919993, 0)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_joiuq")
 
-[node name="west" type="Sprite3D" parent="."]
+[node name="west" type="Sprite3D" parent="." unique_id=1565886875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.366, 0.919993, 0)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_ssgps")
 
-[node name="south" type="Sprite3D" parent="."]
+[node name="south" type="Sprite3D" parent="." unique_id=1853039429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919993, 1.05626)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_dhcpw")
 
-[node name="north" type="Sprite3D" parent="."]
+[node name="north" type="Sprite3D" parent="." unique_id=80770086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919993, -1.24258)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_yref6")
 
-[node name="north2" type="Sprite3D" parent="."]
+[node name="north2" type="Sprite3D" parent="." unique_id=1420705378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.215, 0)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_5u3uw")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1412742097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141846, 0)
 visible = false
 size = Vector3(0.5, 0.783691, 0.5)
 
-[node name="StatusEffector" type="Node" parent="." node_paths=PackedStringArray("sprite_container")]
+[node name="StatusEffector" type="Node" parent="." unique_id=1259259265 node_paths=PackedStringArray("sprite_container")]
 script = ExtResource("9_47ywr")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=2094647009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.440026, 0)
 
 [connection signal="health_changed" from="Health" to="SubViewport/HealthBar" method="on_health_changed"]

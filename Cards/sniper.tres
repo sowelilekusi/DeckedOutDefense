@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://ckm88acryitl4"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://ckm88acryitl4"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_5vmtk"]
 [ext_resource type="Resource" uid="uid://eb0by6ba1d43" path="res://Towers/Sniper/tower_stats.tres" id="3_6i55t"]
@@ -15,5 +15,4 @@ turret_scene = ExtResource("4_k5nhs")
 weapon_scene = ExtResource("3_qfpvu")
 weapon_stats = ExtResource("4_7kvq1")
 tower_stats = ExtResource("3_6i55t")
-tags = Array[int]([])
 display_name = "CARD_NAME_SNIPER"

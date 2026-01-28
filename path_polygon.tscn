@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1srd60cohcdj"]
+[gd_scene format=3 uid="uid://d1srd60cohcdj"]
 
 [ext_resource type="Material" uid="uid://cfv5g36sjq3bo" path="res://tile.tres" id="1_4v084"]
 
-[node name="CSGPolygon3D" type="CSGPolygon3D"]
+[node name="CSGPolygon3D" type="CSGPolygon3D" unique_id=1752224390]
 polygon = PackedVector2Array(0.0272499, 0.0545001, 0.0586923, 0.00419231, 0.0314424, -0.039827, -0.0335385, -0.0440193, -0.0670769, 0.00209616, -0.0314423, 0.0545001)
 mode = 2
 path_node = NodePath("..")

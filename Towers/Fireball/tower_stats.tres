@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://dnvqghpwyuw84"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://dnvqghpwyuw84"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_may4k"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_nconk"]
@@ -6,11 +6,9 @@
 [resource]
 script = ExtResource("2_nconk")
 target_type = Array[int]([1, 2])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 5.0,
 "Fire Delay": 3.0,
 "Range": 15.0
 })
-features = Array[ExtResource("1_may4k")]([])
 text = "DESC_TOWER_FIREBALL"

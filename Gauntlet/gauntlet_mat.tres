@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b2rsi4vlkfpp1"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b2rsi4vlkfpp1"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_i1hsh"]
 [ext_resource type="Texture2D" uid="uid://b5es3jtoiurk0" path="res://Gauntlet/gauntlet_gauntlet_test_sprite.png" id="2_vslqm"]

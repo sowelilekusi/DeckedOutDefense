@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://gyrbycd3icjr"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://gyrbycd3icjr"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_x1doh"]
 [ext_resource type="Texture2D" uid="uid://bd1hlqvfpaxy0" path="res://Enemies/ElderEyeDog/elder_eyedog_tex.png" id="2_jh2nf"]

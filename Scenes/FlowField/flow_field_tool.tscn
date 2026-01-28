@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cccowrgelgswj"]
+[gd_scene format=3 uid="uid://cccowrgelgswj"]
 
 [ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scripts/flow_field_tool.gd" id="1_e7pmn"]
 
@@ -6,7 +6,7 @@
 ambient_light_source = 2
 ambient_light_color = Color(0.728822, 0.728822, 0.728822, 1)
 
-[node name="FlowFieldTool" type="Node" node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field")]
+[node name="FlowFieldTool" type="Node" unique_id=730814717 node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field")]
 script = ExtResource("1_e7pmn")
 raycast = NodePath("CameraFocus/Camera3D/RayCast3D")
 project_raycast = NodePath("RayCast3D")
@@ -21,77 +21,77 @@ y_size_field = NodePath("VBoxContainer/HBoxContainer/y_size")
 gap_field = NodePath("VBoxContainer/HBoxContainer/gap")
 metadata/_custom_type_script = "uid://05c5q1v2nv8p"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1159336300]
 offset_right = 296.0
 offset_bottom = 572.0
 
-[node name="Create" type="Button" parent="VBoxContainer"]
+[node name="Create" type="Button" parent="VBoxContainer" unique_id=1093532280]
 layout_mode = 2
 text = "Create Node"
 
-[node name="Delete" type="Button" parent="VBoxContainer"]
+[node name="Delete" type="Button" parent="VBoxContainer" unique_id=118550812]
 layout_mode = 2
 text = "Remove Node"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=616970402]
 layout_mode = 2
 
-[node name="GenerateGrid" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="GenerateGrid" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1844049824]
 layout_mode = 2
 text = "Generate Grid"
 
-[node name="x_size" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="x_size" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1197701586]
 layout_mode = 2
 text = "15"
 placeholder_text = "x_size"
 
-[node name="y_size" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="y_size" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=900625826]
 layout_mode = 2
 text = "7"
 placeholder_text = "y_size"
 
-[node name="gap" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="gap" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1334558468]
 layout_mode = 2
 text = "2.5"
 placeholder_text = "gap"
 
-[node name="Connect" type="Button" parent="VBoxContainer"]
+[node name="Connect" type="Button" parent="VBoxContainer" unique_id=330867073]
 layout_mode = 2
 text = "Connect Nodes"
 
-[node name="ProjectDownwards" type="Button" parent="VBoxContainer"]
+[node name="ProjectDownwards" type="Button" parent="VBoxContainer" unique_id=2071376561]
 layout_mode = 2
 text = "Stick node to floor"
 
-[node name="MarkGoal" type="Button" parent="VBoxContainer"]
+[node name="MarkGoal" type="Button" parent="VBoxContainer" unique_id=474927781]
 layout_mode = 2
 text = "Toggle Goal"
 
-[node name="MarkStart" type="Button" parent="VBoxContainer"]
+[node name="MarkStart" type="Button" parent="VBoxContainer" unique_id=535844071]
 layout_mode = 2
 text = "Toggle Start"
 
-[node name="ToggleTraversable" type="Button" parent="VBoxContainer"]
+[node name="ToggleTraversable" type="Button" parent="VBoxContainer" unique_id=1888674029]
 layout_mode = 2
 text = "Toggle Traversable"
 
-[node name="ToggleBuildable" type="Button" parent="VBoxContainer"]
+[node name="ToggleBuildable" type="Button" parent="VBoxContainer" unique_id=1196891911]
 layout_mode = 2
 text = "Toggle Buildable"
 
-[node name="Extrude" type="Button" parent="VBoxContainer"]
+[node name="Extrude" type="Button" parent="VBoxContainer" unique_id=114169861]
 layout_mode = 2
 text = "Extrude"
 
-[node name="Calculate" type="Button" parent="VBoxContainer"]
+[node name="Calculate" type="Button" parent="VBoxContainer" unique_id=966487363]
 layout_mode = 2
 text = "Calculate"
 
-[node name="Finalize" type="Button" parent="VBoxContainer"]
+[node name="Finalize" type="Button" parent="VBoxContainer" unique_id=1604655281]
 layout_mode = 2
 text = "Finalize"
 
-[node name="Position" type="HBoxContainer" parent="."]
+[node name="Position" type="HBoxContainer" parent="." unique_id=1194117729]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -100,28 +100,28 @@ offset_left = -323.0
 offset_bottom = 41.0
 grow_horizontal = 0
 
-[node name="x" type="LineEdit" parent="Position"]
+[node name="x" type="LineEdit" parent="Position" unique_id=1634710518]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="y" type="LineEdit" parent="Position"]
+[node name="y" type="LineEdit" parent="Position" unique_id=2145405236]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="z" type="LineEdit" parent="Position"]
+[node name="z" type="LineEdit" parent="Position" unique_id=1899083093]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CameraFocus" type="Node3D" parent="."]
+[node name="CameraFocus" type="Node3D" parent="." unique_id=1567712529]
 
-[node name="Camera3D" type="Camera3D" parent="CameraFocus"]
+[node name="Camera3D" type="Camera3D" parent="CameraFocus" unique_id=1970273041]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 8.50452, 3.40739)
 environment = SubResource("Environment_e7pmn")
 
-[node name="RayCast3D" type="RayCast3D" parent="CameraFocus/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="CameraFocus/Camera3D" unique_id=1801773920]
 collision_mask = 64
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=431196612]
 
 [connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Delete" to="." method="_on_create_button_pressed"]

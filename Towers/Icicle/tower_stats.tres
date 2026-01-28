@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://d34bfj5togyyt"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://d34bfj5togyyt"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_ju6am"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_dorn5"]
@@ -6,11 +6,9 @@
 [resource]
 script = ExtResource("2_dorn5")
 target_type = Array[int]([1, 2])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 4.0,
 "Fire Delay": 3.0,
 "Range": 15.0
 })
-features = Array[ExtResource("1_ju6am")]([])
 text = "DESC_TOWER_ICE_SPIKE"

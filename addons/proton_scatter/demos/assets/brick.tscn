@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4ted6l27vuyd"]
+[gd_scene format=3 uid="uid://b4ted6l27vuyd"]
 
 [ext_resource type="PackedScene" uid="uid://d1d1fag0m04yc" path="res://addons/proton_scatter/demos/assets/models/brick.glb" id="1_bkmk2"]
 [ext_resource type="Texture2D" uid="uid://dqa2jfs1jy0hq" path="res://addons/proton_scatter/demos/assets/textures/t_rock.jpg" id="2_235bd"]
@@ -12,12 +12,12 @@ uv1_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_0rrnn"]
 size = Vector3(0.4, 0.4, 0.4)
 
-[node name="brick" instance=ExtResource("1_bkmk2")]
+[node name="brick" unique_id=173845558 instance=ExtResource("1_bkmk2")]
 
-[node name="Cube" parent="." index="0"]
+[node name="Cube" parent="." index="0" unique_id=1784917327]
 material_override = SubResource("StandardMaterial3D_nwvh2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=541261264]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=487803427]
 shape = SubResource("BoxShape3D_0rrnn")

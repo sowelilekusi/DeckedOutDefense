@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://boj1ho5x0sxtq"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://boj1ho5x0sxtq"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_58qpp"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_nlx26"]
 
 [resource]
 script = ExtResource("2_nlx26")
-target_type = Array[int]([])
 energy_type = 1
 attributes = Dictionary[String, float]({
 "Damage": 0.0,
@@ -13,5 +12,4 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 0.5,
 "Range": 13.0
 })
-features = Array[ExtResource("1_58qpp")]([])
 text = "DESC_WEAPON_GLUE"

@@ -1,25 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://clabkhnbn75rf"]
+[gd_scene format=3 uid="uid://clabkhnbn75rf"]
 
 [ext_resource type="Script" uid="uid://b5iw4ig76ws7l" path="res://UI/tower_label.gd" id="1_kjcmy"]
 
-[node name="HBoxContainer" type="HBoxContainer" node_paths=PackedStringArray("tower_name", "tower_amount")]
+[node name="HBoxContainer" type="HBoxContainer" unique_id=119305255 node_paths=PackedStringArray("tower_name", "tower_amount")]
 script = ExtResource("1_kjcmy")
 tower_name = NodePath("Label")
 tower_amount = NodePath("Label3")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=480147942]
 layout_mode = 2
 text = "tower name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=1032703461]
 layout_mode = 2
 text = " | "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="." unique_id=243819419]
 layout_mode = 2
 text = "2"
 horizontal_alignment = 1

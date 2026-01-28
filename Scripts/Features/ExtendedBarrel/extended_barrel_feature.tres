@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ExtendedBarrelFeature" load_steps=3 format=3 uid="uid://bij61ul87ka0r"]
+[gd_resource type="Resource" script_class="ExtendedBarrelFeature" format=3 uid="uid://bij61ul87ka0r"]
 
 [ext_resource type="Script" uid="uid://dwff1058vp6af" path="res://Scripts/Features/ExtendedBarrel/extended_barrel.gd" id="1_5j68e"]
 [ext_resource type="Texture2D" uid="uid://dixdtcy64v4s0" path="res://Scripts/Features/ExtendedBarrel/extended_barrel_icon.png" id="1_grhjs"]

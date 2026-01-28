@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce0m8vbjbng6o"]
+[gd_scene format=3 uid="uid://ce0m8vbjbng6o"]
 
 [ext_resource type="Script" uid="uid://bdknvktw033g3" path="res://UI/Menus/GameEndScreen/game_end_screen.gd" id="1_oa7nq"]
 [ext_resource type="PackedScene" uid="uid://b5hp43bm07b8a" path="res://UI/Menus/GameEndScreen/enemy_row.tscn" id="2_xm8em"]
@@ -9,7 +9,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("3_ro1yg")
 
-[node name="GameEndScreen" type="PanelContainer" node_paths=PackedStringArray("outcome_label", "winrate_label", "total_games_label", "total_wins_label", "total_losses_label", "undefeated_enemies")]
+[node name="GameEndScreen" type="PanelContainer" unique_id=385780924 node_paths=PackedStringArray("outcome_label", "winrate_label", "total_games_label", "total_wins_label", "total_losses_label", "undefeated_enemies")]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.05
@@ -26,33 +26,33 @@ total_wins_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer3/W
 total_losses_label = NodePath("VBoxContainer/Labels/VBoxContainer/HBoxContainer4/WinRateLabel5")
 undefeated_enemies = NodePath("VBoxContainer/ScrollContainer/UndefeatedEnemies")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1602527228]
 layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer" unique_id=786722908]
 layout_mode = 2
 alignment = 1
 
-[node name="OutcomeLabel" type="Label" parent="VBoxContainer/Labels"]
+[node name="OutcomeLabel" type="Label" parent="VBoxContainer/Labels" unique_id=132993466]
 layout_mode = 2
 text = "LABEL_WIN_MESSAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Labels"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Labels" unique_id=84006447]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer" unique_id=707771486]
 layout_mode = 2
 
-[node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer"]
+[node name="WinRateLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer" unique_id=335128429]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_WINRATE"
 vertical_alignment = 1
 
-[node name="WinRateLabel2" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer"]
+[node name="WinRateLabel2" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer" unique_id=597730893]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -60,16 +60,16 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer" unique_id=529298520]
 layout_mode = 2
 
-[node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2"]
+[node name="TotalGamesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2" unique_id=1090711143]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_GAMES"
 vertical_alignment = 1
 
-[node name="WinRateLabel3" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2"]
+[node name="WinRateLabel3" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer2" unique_id=1346901729]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -77,16 +77,16 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer" unique_id=1084468622]
 layout_mode = 2
 
-[node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3"]
+[node name="TotalWinsLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3" unique_id=1320799082]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_WINS"
 vertical_alignment = 1
 
-[node name="WinRateLabel4" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3"]
+[node name="WinRateLabel4" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer3" unique_id=16447985]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -94,16 +94,16 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Labels/VBoxContainer" unique_id=1326560529]
 layout_mode = 2
 
-[node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4"]
+[node name="TotalLossesLabel" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4" unique_id=1596583596]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LABEL_LOSSES"
 vertical_alignment = 1
 
-[node name="WinRateLabel5" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4"]
+[node name="WinRateLabel5" type="Label" parent="VBoxContainer/Labels/VBoxContainer/HBoxContainer4" unique_id=934370969]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -111,27 +111,27 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1827543223]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="UndefeatedEnemies" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="UndefeatedEnemies" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1470052916]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer" unique_id=1225984919]
 layout_mode = 2
 alignment = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="PlayButton" type="Button" parent="VBoxContainer/Buttons" unique_id=774071211]
 layout_mode = 2
 text = "BUTTON_RESTART"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/Buttons" unique_id=2059159081]
 layout_mode = 2
 text = "BUTTON_MAIN_MENU"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1265670542]
 stream = SubResource("AudioStreamRandomizer_dram5")
 bus = &"SFX"
 

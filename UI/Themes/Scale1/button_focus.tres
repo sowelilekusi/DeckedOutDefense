@@ -1,4 +1,4 @@
-[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://buu2yn08s4wc7"]
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://buu2yn08s4wc7"]
 
 [ext_resource type="Texture2D" uid="uid://b5h32okh8yu6f" path="res://UI/Themes/Scale1/ui_atlas.png" id="1_axkac"]
 

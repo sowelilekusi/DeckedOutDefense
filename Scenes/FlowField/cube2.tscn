@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ravcalfsha76"]
+[gd_scene format=3 uid="uid://ravcalfsha76"]
 
 [ext_resource type="PackedScene" uid="uid://bkokjrjns7l6j" path="res://Scenes/FlowField/cube.glb" id="1_7p7qy"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8upr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35c3u"]
 resource_local_to_scene = true
 
-[node name="cube" instance=ExtResource("1_7p7qy")]
+[node name="cube" unique_id=163499116 instance=ExtResource("1_7p7qy")]
 
-[node name="Cube" parent="." index="0"]
-material_override = SubResource("StandardMaterial3D_d8upr")
+[node name="Cube" parent="." index="0" unique_id=583197030]
+material_override = SubResource("StandardMaterial3D_35c3u")

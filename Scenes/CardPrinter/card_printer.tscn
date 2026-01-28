@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1b2ikdanl66b"]
+[gd_scene format=3 uid="uid://1b2ikdanl66b"]
 
 [ext_resource type="Script" uid="uid://bivtfdl3p1brv" path="res://Scenes/CardPrinter/card_printer.gd" id="1_qft15"]
 [ext_resource type="PackedScene" uid="uid://bcvjgl0s1wp8y" path="res://UI/Menus/RadioMenu/choose_card_screen.tscn" id="2_kpujb"]
@@ -19,71 +19,71 @@ stream_0/stream = ExtResource("5_m033a")
 [sub_resource type="BoxShape3D" id="BoxShape3D_21y4o"]
 size = Vector3(2.11176, 1.16345, 0.664978)
 
-[node name="CardPrinter" type="StaticBody3D" node_paths=PackedStringArray("button", "button_collider")]
+[node name="CardPrinter" type="StaticBody3D" unique_id=459800869 node_paths=PackedStringArray("button", "button_collider")]
 script = ExtResource("1_qft15")
 button = NodePath("StaticBody3D")
 button_collider = NodePath("StaticBody3D/CollisionShape3D2")
 card_selection_menu = ExtResource("2_kpujb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=30960146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000722647, 0.607083, -0.000626981)
 shape = SubResource("BoxShape3D_0ebt5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=427437411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847404, 0.610684)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_eavi1")
 press_cost = 1
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=914833676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00542301, 0.653175, 0.254328)
 shape = SubResource("BoxShape3D_ikdwj")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D" unique_id=2125771228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578748, -0.587001)
 stream = SubResource("AudioStreamRandomizer_73g2w")
 bus = &"SFX"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1403603208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76287, 0.437195)
 size = Vector3(2.1, 1.21, 0.66)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1998404784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50532, 0.844074)
 size = Vector3(0.57, 0.365, 0.22)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1739651585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07889, 0)
 size = Vector3(3.01, 0.275, 2.145)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1331903082]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17866, 0.464503, 0.722973)
 size = Vector3(0.355, 1, 0.37)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=792536346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20564, 0.464503, 0.744042)
 size = Vector3(0.355, 1, 0.37)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=924404615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21651, 0.464503, -0.703903)
 size = Vector3(0.355, 1, 0.37)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=1351624555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20425, 0.464503, -0.796043)
 size = Vector3(0.355, 1, 0.37)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1627726465]
 transform = Transform3D(0.791895, -0.610657, 0, 0.610657, 0.791895, 0, 0, 0, 1, -0.894404, 2.86265, 0.47663)
 radius = 0.131
 height = 1.627
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=2001644920]
 transform = Transform3D(0.74906, 0.662502, 0, -0.662502, 0.74906, 0, 0, 0, 1, 1.08608, 2.86265, 0.47663)
 radius = 0.131
 height = 1.627
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1288587195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00228882, 1.78986, 0.431061)
 shape = SubResource("BoxShape3D_21y4o")
 

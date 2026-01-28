@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dik1j1w8vrul5"]
+[gd_scene format=3 uid="uid://dik1j1w8vrul5"]
 
 [ext_resource type="Script" uid="uid://c75aw4btsld8n" path="res://drag_n_drop_container.gd" id="1_4pe2q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvy6u"]
 bg_color = Color(0, 0, 0, 0.25)
 
-[node name="DragNDropContainer" type="MarginContainer" node_paths=PackedStringArray("panel", "panel_label", "drag_parent")]
+[node name="DragNDropContainer" type="MarginContainer" unique_id=475204277 node_paths=PackedStringArray("panel", "panel_label", "drag_parent")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,16 +19,16 @@ panel = NodePath("PanelContainer")
 panel_label = NodePath("PanelContainer/Label")
 drag_parent = NodePath("DragParent")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=48099753]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xvy6u")
 
-[node name="Label" type="Label" parent="PanelContainer"]
+[node name="Label" type="Label" parent="PanelContainer" unique_id=73959817]
 layout_mode = 2
 size_flags_vertical = 1
 text = "PRICE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DragParent" type="Node" parent="."]
+[node name="DragParent" type="Node" parent="." unique_id=9209525]

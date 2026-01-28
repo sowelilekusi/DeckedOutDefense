@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://bffhb5krs5elm"]
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://bffhb5krs5elm"]
 
 [ext_resource type="Texture2D" uid="uid://b1lwaxw62yp3p" path="res://Assets/Textures/dead_spike.png" id="1_skyfd"]
 [ext_resource type="Texture2D" uid="uid://duywsy7jmh4u" path="res://Assets/Textures/spike.png" id="2_idym2"]

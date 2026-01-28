@@ -1,26 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://8d452unjpoiu"]
+[gd_scene format=3 uid="uid://8d452unjpoiu"]
 
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="1_6ftnx"]
-[ext_resource type="Script" uid="uid://uomjb4sj4enc" path="res://Scripts/Resources/item.gd" id="2_a0o80"]
-[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_hayav"]
-[ext_resource type="Resource" uid="uid://bibx2my7igspq" path="res://Cards/fireball.tres" id="3_sq8ai"]
-[ext_resource type="Resource" uid="uid://b3o112jw3loiu" path="res://Cards/reactor.tres" id="4_3jmlk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lscco"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3jqa"]
 albedo_color = Color(0.509804, 0.505882, 0, 1)
 
-[node name="ItemContainer" type="StaticBody3D"]
+[node name="ItemContainer" type="StaticBody3D" unique_id=1917739256]
 
-[node name="Inventory" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." unique_id=1822580678]
 script = ExtResource("1_6ftnx")
-contents = Array[ExtResource("2_a0o80")]([ExtResource("2_hayav"), ExtResource("3_sq8ai"), ExtResource("4_3jmlk")])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=380640726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_lscco")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1992274411]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material = SubResource("StandardMaterial3D_b3jqa")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvq6tbkuv2mfp"]
+[gd_scene format=3 uid="uid://bvq6tbkuv2mfp"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_1dh2f"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_1dh2f"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_2t2qp"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="6_3v8fr"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="7_bkkhh"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="8_k2835"]
@@ -18,30 +19,31 @@ radius = 0.194271
 [sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
 viewport_path = NodePath("SubViewport")
 
-[node name="EyeDog" type="CharacterBody3D" node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+[node name="EyeDog" type="CharacterBody3D" unique_id=1016179251 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_1dh2f")
+stats = ExtResource("2_2t2qp")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_1dh2f")
 metadata/_custom_type_script = "uid://ejqql2660u6h"
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1815903905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33811, -0.0104714)
 shape = SubResource("SphereShape3D_cavbv")
 script = ExtResource("6_3v8fr")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
-[node name="Hitbox2" type="CollisionShape3D" parent="."]
+[node name="Hitbox2" type="CollisionShape3D" parent="." unique_id=906346229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559695, -0.45924)
 shape = SubResource("SphereShape3D_h25mw")
 script = ExtResource("6_3v8fr")
 critical_zone = true
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
-[node name="HealthBar" type="Sprite3D" parent="."]
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=2000995258]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
 sorting_offset = 1.0
 pixel_size = 0.02
@@ -49,72 +51,71 @@ billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_1kwxq")
 
-[node name="MinimapIcon" type="Sprite3D" parent="."]
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1546496505]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
 layers = 4
 texture_filter = 0
 texture = ExtResource("7_bkkhh")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=251608558]
 transparent_bg = true
 size = Vector2i(200, 55)
 render_target_update_mode = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport" unique_id=1540953160]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="HealthBar" parent="SubViewport" instance=ExtResource("8_k2835")]
+[node name="HealthBar" parent="SubViewport" unique_id=872017926 instance=ExtResource("8_k2835")]
 visible = false
 offset_top = 36.0
 offset_bottom = 236.0
 
-[node name="PathingController" type="Node" parent="." node_paths=PackedStringArray("character")]
+[node name="PathingController" type="Node" parent="." unique_id=1871390739 node_paths=PackedStringArray("character")]
 script = ExtResource("9_t4oco")
 character = NodePath("..")
 
-[node name="StatusEffector" type="Node" parent="." node_paths=PackedStringArray("sprite_container")]
+[node name="StatusEffector" type="Node" parent="." unique_id=89491965 node_paths=PackedStringArray("sprite_container")]
 script = ExtResource("11_kpdsm")
 sprite_container = NodePath("../SubViewport/HBoxContainer")
 metadata/_custom_type_script = "uid://cojjgevmbhwal"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=815240025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
 
-[node name="eyedog" parent="." instance=ExtResource("10_h25mw")]
+[node name="eyedog" parent="." unique_id=588577646 instance=ExtResource("10_h25mw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="eyedog/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.5023906, 0.075574934, 0.050432257, 0.8598538)
-bones/3/rotation = Quaternion(0.21053463, 0.16882902, 0.68990326, 0.6717183)
-bones/4/rotation = Quaternion(0.21643554, 0.6950716, 0.19331414, 0.65776956)
-bones/5/rotation = Quaternion(0.19133137, 0.08228369, 0.22566509, 0.9516812)
-bones/6/rotation = Quaternion(0.31210625, 0.029582461, 0.048017807, 0.9483717)
-bones/7/rotation = Quaternion(0.17991859, -0.02120418, -0.7875835, 0.58897555)
-bones/8/rotation = Quaternion(0.18775536, -0.672328, -0.21866119, 0.6818434)
-bones/9/rotation = Quaternion(0.29144275, -0.051640283, -0.33432224, 0.8947754)
-bones/10/rotation = Quaternion(0.41561264, -0.012154149, -0.11101786, 0.9026591)
-bones/11/position = Vector3(-0.16280325, 0.07974865, -0.16812053)
-bones/13/rotation = Quaternion(-0.1910879, -0.29201618, 0.7069325, 0.6151898)
-bones/14/rotation = Quaternion(-0.29846585, -0.5750957, -0.20405039, 0.7338573)
-bones/15/rotation = Quaternion(0.48737815, -0.04054384, 0.42137182, 0.7637176)
-bones/16/rotation = Quaternion(0.46019027, 0.0035901088, 0.14397956, 0.8760605)
-bones/17/rotation = Quaternion(-0.2920196, 0.276165, -0.7524576, 0.5217902)
-bones/18/rotation = Quaternion(-0.2439201, 0.5653468, 0.13032612, 0.77711076)
-bones/19/rotation = Quaternion(0.36528137, 0.015252313, -0.31966648, 0.8741569)
-bones/20/rotation = Quaternion(0.36237866, -0.01935457, -0.08421751, 0.9280164)
-bones/21/rotation = Quaternion(0.41539147, -1.0843781e-07, -4.9518494e-08, 0.9096428)
-bones/22/position = Vector3(-0.18090886, 0.016805895, 0.38714543)
+[node name="Skeleton3D" parent="eyedog/Armature" parent_id_path=PackedInt32Array(588577646, 473381473) index="0" unique_id=323158019]
+bones/1/rotation = Quaternion(-0.43930408, -1.0709029e-07, 5.2369124e-08, 0.89833844)
+bones/3/rotation = Quaternion(0.23378512, 0.32485124, 0.5427555, 0.7383988)
+bones/4/rotation = Quaternion(0.2025959, 0.7308365, 0.13344719, 0.637985)
+bones/5/rotation = Quaternion(0.08071687, 0.11379393, 0.103388034, 0.98480797)
+bones/6/rotation = Quaternion(0.18970048, 0.045550477, -0.014727625, 0.9806743)
+bones/7/rotation = Quaternion(0.21259236, -0.040924743, -0.77614677, 0.5922212)
+bones/8/rotation = Quaternion(0.14559563, -0.673764, -0.22377312, 0.68903524)
+bones/9/rotation = Quaternion(0.21457952, -0.06795216, -0.27383056, 0.9350695)
+bones/10/rotation = Quaternion(0.36169595, -0.022981033, -0.07378154, 0.9290878)
+bones/11/position = Vector3(-0.18218139, 0.024974564, -0.29701275)
+bones/13/rotation = Quaternion(-0.19031386, -0.3437138, 0.6673053, 0.6327283)
+bones/14/rotation = Quaternion(-0.31594613, -0.57630664, -0.23705915, 0.71543807)
+bones/15/rotation = Quaternion(0.36767012, -0.03635548, 0.34470242, 0.8629468)
+bones/16/rotation = Quaternion(0.39200988, 0.014128355, 0.1034986, 0.91401124)
+bones/17/rotation = Quaternion(-0.41564333, 0.23491889, -0.8066817, 0.34830806)
+bones/18/rotation = Quaternion(-0.15507148, 0.54643595, 0.03793797, 0.8221443)
+bones/19/rotation = Quaternion(0.16323948, -0.017942403, -0.15406615, 0.97431755)
+bones/20/rotation = Quaternion(0.20094736, -0.03854681, -0.0018878406, 0.9788416)
+bones/22/position = Vector3(-0.1285572, 0.015959304, 0.5192608)
 bones/22/scale = Vector3(0.89347196, 1, 1)
-bones/23/position = Vector3(0.22532098, 0.07340215, 0.26439643)
+bones/23/position = Vector3(0.25597548, 0.022818465, 0.20058686)
 bones/23/scale = Vector3(0.89347196, 1, 1)
-bones/24/position = Vector3(0.14499767, 0.015681228, -0.051600434)
+bones/24/position = Vector3(0.08454189, 0.014853473, 0.12984678)
 
-[node name="AnimationPlayer" parent="eyedog" index="1"]
-autoplay = "Walk"
+[node name="AnimationPlayer" parent="eyedog" index="1" unique_id=993841819]
+autoplay = &"Walk"
 
 [connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
 [connection signal="took_damage" from="Hitbox" to="." method="take_damage"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://176c6fuhg5ic"]
+[gd_scene format=3 uid="uid://176c6fuhg5ic"]
 
 [ext_resource type="Script" uid="uid://e5gf7hd5jsw3" path="res://Scripts/singleplayer_lobby.gd" id="1_nd17k"]
 [ext_resource type="PackedScene" uid="uid://ddmg342ff2qaq" path="res://UI/chatbox.tscn" id="3_l8xy3"]
@@ -10,7 +10,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_6nu57")
 
-[node name="singleplayer_lobby" type="Control" node_paths=PackedStringArray("audio_player")]
+[node name="singleplayer_lobby" type="Control" unique_id=1948631640 node_paths=PackedStringArray("audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,6 @@ character_select_screen = ExtResource("6_ltm04")
 audio_player = NodePath("AudioStreamPlayer")
 chatbox_scene = ExtResource("3_l8xy3")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1662384823]
 stream = SubResource("AudioStreamRandomizer_g5har")
 bus = &"SFX"

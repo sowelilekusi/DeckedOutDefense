@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqtew0t8sttpm"]
+[gd_scene format=3 uid="uid://cqtew0t8sttpm"]
 
 [ext_resource type="Script" uid="uid://blt7umrgo3tfh" path="res://UI/DamageParticle/damage_particle.gd" id="1_lgvaq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ppqlh"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Node3D" type="Sprite3D"]
+[node name="Node3D" type="Sprite3D" unique_id=1014123125]
 pixel_size = 0.005
 billboard = 1
 no_depth_test = true
@@ -15,12 +15,12 @@ render_priority = 1
 texture = SubResource("ViewportTexture_ppqlh")
 script = ExtResource("1_lgvaq")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1770696222]
 transparent_bg = true
 size = Vector2i(172, 57)
 render_target_update_mode = 4
 
-[node name="Label" type="Label" parent="SubViewport"]
+[node name="Label" type="Label" parent="SubViewport" unique_id=1905792669]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

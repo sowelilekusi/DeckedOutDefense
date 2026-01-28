@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://boik1gnpl4v0a"]
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://boik1gnpl4v0a"]
 
 [ext_resource type="Texture2D" uid="uid://cde0voyrwnqkl" path="res://Assets/Textures/icon_eye_dog_boss.png" id="1_2o720"]
 [ext_resource type="Texture2D" uid="uid://bp3njt3h0qfbg" path="res://Assets/Textures/dead_eye_dog_boss.png" id="1_5xm32"]
@@ -18,8 +18,6 @@ spawn_power = 100
 health = 7000
 penalty = 40
 movement_speed = 0.8
-spawn_cooldown = 1.0
-common_group = 1
 common_cost = 7
 uncommon_group = 2
 uncommon_cost = 9

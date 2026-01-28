@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bssfvyxv5uo1f"]
+[gd_scene format=3 uid="uid://bssfvyxv5uo1f"]
 
 [ext_resource type="Script" uid="uid://c86ygtor5tksd" path="res://Scripts/flow_node.gd" id="1_ng65h"]
 [ext_resource type="PackedScene" uid="uid://h7el2c2awv6" path="res://Scenes/FlowField/flow_node2.tscn" id="2_bmgs5"]
@@ -6,13 +6,13 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_bmgs5"]
 radius = 0.4
 
-[node name="FlowNode" type="StaticBody3D"]
+[node name="FlowNode" type="StaticBody3D" unique_id=693964790]
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_ng65h")
 metadata/_custom_type_script = "uid://c86ygtor5tksd"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218852378]
 shape = SubResource("SphereShape3D_bmgs5")
 
-[node name="flow_node" parent="." instance=ExtResource("2_bmgs5")]
+[node name="flow_node" parent="." unique_id=1362505504 instance=ExtResource("2_bmgs5")]

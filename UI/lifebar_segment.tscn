@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dko38egcaxubd"]
+[gd_scene format=3 uid="uid://dko38egcaxubd"]
 
 [ext_resource type="Script" uid="uid://c3ark32u3lct8" path="res://Scripts/lifebar_segment.gd" id="1_dvlcq"]
 [ext_resource type="Texture2D" uid="uid://0ey8r48lgjw1" path="res://Assets/Textures/lifebar_pip.png" id="1_pianw"]
@@ -473,42 +473,30 @@ _data = {
 &"lose6": SubResource("Animation_rctjq")
 }
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1161969589]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dvlcq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=244183235]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=949947909]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="." unique_id=1706547506]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="AnimationPlayer4" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="." unique_id=1153443945]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="AnimationPlayer5" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer5" type="AnimationPlayer" parent="." unique_id=885170384]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="AnimationPlayer6" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1s8yp")
-}
+[node name="AnimationPlayer6" type="AnimationPlayer" parent="." unique_id=307263940]
+libraries/ = SubResource("AnimationLibrary_1s8yp")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=9205291]
 texture_filter = 1
 layout_mode = 0
 offset_left = -4.0
@@ -517,7 +505,7 @@ offset_right = -1.0
 offset_bottom = -1.0
 texture = ExtResource("1_pianw")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=29487978]
 texture_filter = 1
 layout_mode = 0
 offset_top = -4.0
@@ -525,7 +513,7 @@ offset_right = 3.0
 offset_bottom = -1.0
 texture = ExtResource("1_pianw")
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=692052350]
 texture_filter = 1
 layout_mode = 0
 offset_left = -4.0
@@ -533,14 +521,14 @@ offset_right = -1.0
 offset_bottom = 3.0
 texture = ExtResource("1_pianw")
 
-[node name="TextureRect4" type="TextureRect" parent="."]
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=1227936244]
 texture_filter = 1
 layout_mode = 0
 offset_right = 3.0
 offset_bottom = 3.0
 texture = ExtResource("1_pianw")
 
-[node name="TextureRect5" type="TextureRect" parent="."]
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1660005670]
 texture_filter = 1
 layout_mode = 0
 offset_left = -4.0
@@ -549,7 +537,7 @@ offset_right = -1.0
 offset_bottom = 7.0
 texture = ExtResource("1_pianw")
 
-[node name="TextureRect6" type="TextureRect" parent="."]
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=969991985]
 texture_filter = 1
 layout_mode = 0
 offset_top = 4.0

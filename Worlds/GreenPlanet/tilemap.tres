@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=18 format=3 uid="uid://jfr8j8kycfa5"]
+[gd_resource type="MeshLibrary" format=3 uid="uid://jfr8j8kycfa5"]
 
 [ext_resource type="Texture2D" uid="uid://blnfsojw4ukq4" path="res://Assets/Textures/grass.png" id="1_ghpvv"]
 [ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="2_gf3ck"]

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dc8e1xjspjt32"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dc8e1xjspjt32"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_rwo67"]
 [ext_resource type="Texture2D" uid="uid://b2prrul2qc8j2" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge_cobblestone.png" id="2_punq1"]

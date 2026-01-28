@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://clulh7v8c7h85"]
+[gd_scene format=3 uid="uid://clulh7v8c7h85"]
 
 [ext_resource type="Script" uid="uid://48rvmybi18wj" path="res://UI/Menus/OptionsMenu/options_menu.gd" id="1_bievw"]
 [ext_resource type="PackedScene" uid="uid://bjk7jf0bau5lv" path="res://UI/Menus/OptionsMenu/gameplay_options.tscn" id="3_25wuw"]
@@ -12,7 +12,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_hhyef")
 
-[node name="OptionsMenu" type="PanelContainer" node_paths=PackedStringArray("gameplay", "graphics", "keybinds", "audio")]
+[node name="OptionsMenu" type="PanelContainer" unique_id=891478447 node_paths=PackedStringArray("gameplay", "graphics", "keybinds", "audio")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,46 +28,46 @@ graphics = NodePath("VBoxContainer/TabContainer/Graphics")
 keybinds = NodePath("VBoxContainer/TabContainer/Keybinds")
 audio = NodePath("VBoxContainer/TabContainer/Audio")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1706117892]
 layout_mode = 2
 
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1945339047]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Gameplay" parent="VBoxContainer/TabContainer" instance=ExtResource("3_25wuw")]
+[node name="Gameplay" parent="VBoxContainer/TabContainer" unique_id=1603835818 instance=ExtResource("3_25wuw")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Graphics" parent="VBoxContainer/TabContainer" instance=ExtResource("4_ckcvq")]
+[node name="Graphics" parent="VBoxContainer/TabContainer" unique_id=1564378673 instance=ExtResource("4_ckcvq")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Keybinds" parent="VBoxContainer/TabContainer" instance=ExtResource("5_4k33c")]
+[node name="Keybinds" parent="VBoxContainer/TabContainer" unique_id=854093688 instance=ExtResource("5_4k33c")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Audio" parent="VBoxContainer/TabContainer" instance=ExtResource("6_4vs8p")]
+[node name="Audio" parent="VBoxContainer/TabContainer" unique_id=783102281 instance=ExtResource("6_4vs8p")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=481503461]
 layout_mode = 2
 alignment = 2
 
-[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1274004537]
 layout_mode = 2
 text = "BUTTON_CANCEL"
 
-[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=716108741]
 layout_mode = 2
 text = "BUTTON_CONFIRM"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=103920719]
 stream = SubResource("AudioStreamRandomizer_5otwj")
 
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_button_hovered"]

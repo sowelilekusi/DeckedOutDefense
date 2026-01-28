@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://dxgxbtf68lcv5"]
+[gd_scene format=3 uid="uid://dxgxbtf68lcv5"]
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
@@ -109,7 +109,7 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation 2", &"Ble
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_npkso"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hueaw"]
 resource_local_to_scene = true
 atlas = ExtResource("6_yyp8i")
 region = Rect2(0, 0, 96, 96)
@@ -160,7 +160,7 @@ stream_0/stream = ExtResource("36_lsvj8")
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
 
-[node name="Hero" type="CharacterBody3D" node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
+[node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -203,14 +203,14 @@ cassette = NodePath("FirstPersonViewport/Head2/RightHand/card_hand/Empty_001")
 left_hand_model = NodePath("FirstPersonViewport/Head2/RightHand/card_hand")
 gauntlet_model = NodePath("FirstPersonViewport/Head2/RightHand/gauntlet")
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1396328287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1279010072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_jbu13")
 
-[node name="ViewMovement" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera", "focus_raycast")]
+[node name="ViewMovement" type="Node3D" parent="." unique_id=2029540853 node_paths=PackedStringArray("player", "camera", "focus_raycast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 script = ExtResource("4_mhexa")
 player = NodePath("..")
@@ -219,38 +219,38 @@ focus_raycast = NodePath("Head/RayCast3D")
 enable_strafe_tilt = true
 tilt_amount_x = 0.8
 
-[node name="Head" type="Camera3D" parent="ViewMovement"]
+[node name="Head" type="Camera3D" parent="ViewMovement" unique_id=614493089]
 keep_aspect = 0
 cull_mask = 1048569
 fov = 100.0
 
-[node name="EditTool" parent="ViewMovement/Head" node_paths=PackedStringArray("hero") instance=ExtResource("5_jlxb3")]
+[node name="EditTool" parent="ViewMovement/Head" unique_id=899304678 node_paths=PackedStringArray("hero") instance=ExtResource("5_jlxb3")]
 hero = NodePath("../../..")
 
-[node name="RayCast3D" type="RayCast3D" parent="ViewMovement/Head"]
+[node name="RayCast3D" type="RayCast3D" parent="ViewMovement/Head" unique_id=302302801]
 target_position = Vector3(0, 0, -2)
 collision_mask = 24
 
-[node name="CardPlacingTool" parent="ViewMovement/Head" node_paths=PackedStringArray("hero") instance=ExtResource("8_7d213")]
+[node name="CardPlacingTool" parent="ViewMovement/Head" unique_id=1227455090 node_paths=PackedStringArray("hero") instance=ExtResource("8_7d213")]
 hero = NodePath("../../..")
 
-[node name="RayCast3D" type="RayCast3D" parent="ViewMovement"]
+[node name="RayCast3D" type="RayCast3D" parent="ViewMovement" unique_id=522176621]
 target_position = Vector3(0, 0, -100)
 collision_mask = 65535
 
-[node name="FirstPersonViewport" type="SubViewport" parent="."]
+[node name="FirstPersonViewport" type="SubViewport" parent="." unique_id=785328163]
 transparent_bg = true
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Head2" type="Camera3D" parent="FirstPersonViewport" node_paths=PackedStringArray("clone_camera")]
+[node name="Head2" type="Camera3D" parent="FirstPersonViewport" unique_id=1933686603 node_paths=PackedStringArray("clone_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 cull_mask = 2
 fov = 60.0
 script = ExtResource("11_4sdwe")
 clone_camera = NodePath("../../ViewMovement/Head")
 
-[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2" node_paths=PackedStringArray("player")]
+[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2" unique_id=729288273 node_paths=PackedStringArray("player")]
 script = ExtResource("7_14ugt")
 player = NodePath("../../..")
 enable_strafe_tilt = true
@@ -258,9 +258,9 @@ tilt_amount_x = 4.0
 tilt_amount_y = 1.0
 weapon_rotation_amount = 0.15
 
-[node name="gauntlet" parent="FirstPersonViewport/Head2/RightHand" instance=ExtResource("11_h1yfy")]
+[node name="gauntlet" parent="FirstPersonViewport/Head2/RightHand" unique_id=75711217 instance=ExtResource("11_h1yfy")]
 
-[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet" index="0"]
+[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet" parent_id_path=PackedInt32Array(75711217, 838866754) index="0" unique_id=1318948419]
 bones/0/position = Vector3(0.28492117, -0.2668743, 0.1757814)
 bones/0/rotation = Quaternion(-0.4969382, -0.50358063, 0.49639297, 0.5030438)
 bones/5/rotation = Quaternion(-0.38194385, -0.19379175, 0.8146388, -0.39105925)
@@ -279,21 +279,21 @@ bones/20/rotation = Quaternion(0.41824344, 0.0010558192, 0.0022930033, 0.9083314
 bones/21/rotation = Quaternion(0.61313385, -0.33047637, -0.34370533, 0.6298563)
 bones/22/rotation = Quaternion(-0.002244999, 0.0020464794, 0.6736945, 0.7390037)
 
-[node name="Cube" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="0"]
+[node name="Cube" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="0" unique_id=403437350]
 layers = 2
 
-[node name="door" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="1"]
+[node name="door" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="1" unique_id=1100068149]
 layers = 2
 
-[node name="door_001" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="2"]
+[node name="door_001" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="2" unique_id=1162616444]
 layers = 2
 
-[node name="Node3D" type="Node3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="3"]
+[node name="Node3D" type="Node3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="3" unique_id=1528034935]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257481, -0.237301, -0.452066)
 
-[node name="card_hand" parent="FirstPersonViewport/Head2/RightHand" instance=ExtResource("12_r2yb6")]
+[node name="card_hand" parent="FirstPersonViewport/Head2/RightHand" unique_id=1949070143 instance=ExtResource("12_r2yb6")]
 
-[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature" index="0"]
+[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature" parent_id_path=PackedInt32Array(1949070143, 779813012) index="0" unique_id=1687711431]
 bones/0/position = Vector3(0.003709482, 0.14446077, 0.042393185)
 bones/0/rotation = Quaternion(-0.03916115, -0.009479229, 0.7379919, 0.67360556)
 bones/1/rotation = Quaternion(0.033827104, 0.020153234, -0.037197568, 0.99853194)
@@ -326,46 +326,46 @@ bones/23/rotation = Quaternion(-0.04489054, -0.044890743, 0.70568043, 0.7056804)
 bones/24/position = Vector3(-2.8036966, 0.39121616, -0.41559562)
 bones/24/rotation = Quaternion(-0.084565006, -0.08456521, 0.70203185, 0.7020319)
 
-[node name="Body_004" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature/Skeleton3D" index="0"]
+[node name="Body_004" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature/Skeleton3D" index="0" unique_id=330536477]
 layers = 2
 
-[node name="Empty_001" parent="FirstPersonViewport/Head2/RightHand/card_hand" index="1"]
+[node name="Empty_001" parent="FirstPersonViewport/Head2/RightHand/card_hand" index="1" unique_id=124279582]
 transform = Transform3D(0.996286, -0.0860546, -0.00298578, -0.00927826, -0.0728151, -0.997302, 0.0856051, 0.993626, -0.0733431, -0.086853, -0.100784, -0.288736)
 
-[node name="cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001" index="0" instance=ExtResource("13_7immr")]
+[node name="cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001" index="0" unique_id=1368647028 instance=ExtResource("13_7immr")]
 
-[node name="Cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001/cassette" index="0"]
+[node name="Cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001/cassette" index="0" unique_id=360288089]
 layers = 2
 
-[node name="AnimationTree" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand"]
+[node name="AnimationTree" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand" unique_id=1068524091]
 root_node = NodePath("../gauntlet")
 tree_root = SubResource("AnimationNodeBlendTree_hueaw")
 anim_player = NodePath("../gauntlet/AnimationPlayer")
 parameters/Blend3/blend_amount = 1.0
 
-[node name="AnimationTree2" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand"]
+[node name="AnimationTree2" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand" unique_id=2004934987]
 root_node = NodePath("../card_hand")
 tree_root = SubResource("AnimationNodeBlendTree_xav2s")
 anim_player = NodePath("../card_hand/AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
 
-[node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2"]
+[node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2" unique_id=117309443]
 transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.645, -0.26, -1.04)
 
-[node name="card_hand_model" parent="FirstPersonViewport/Head2/LeftHand" instance=ExtResource("11_h82f6")]
+[node name="card_hand_model" parent="FirstPersonViewport/Head2/LeftHand" unique_id=141858112 instance=ExtResource("11_h82f6")]
 transform = Transform3D(-4.16989, -0.848374, -3.61733e-07, -0.824933, 4.05468, -0.993384, 0.198049, -0.973442, -4.13774, 1.56596, 0.519149, 3.37051)
 
-[node name="Body_004" parent="FirstPersonViewport/Head2/LeftHand/card_hand_model/Armature/Skeleton3D" index="0"]
+[node name="Body_004" parent="FirstPersonViewport/Head2/LeftHand/card_hand_model/Armature/Skeleton3D" parent_id_path=PackedInt32Array(141858112, 1120957052) index="0" unique_id=1372468431]
 layers = 2
 
-[node name="Cards" type="Node3D" parent="FirstPersonViewport/Head2/LeftHand"]
+[node name="Cards" type="Node3D" parent="FirstPersonViewport/Head2/LeftHand" unique_id=140136041]
 transform = Transform3D(4.25532, 0, 0, 0, 4.25532, 0, 0, 0, 4.25532, 2.01277, 0.787234, 3.39179)
 
-[node name="MiniMapViewport" type="SubViewport" parent="."]
+[node name="MiniMapViewport" type="SubViewport" parent="." unique_id=384727742]
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="MiniMapViewport" node_paths=PackedStringArray("anchor")]
+[node name="Camera3D" type="Camera3D" parent="MiniMapViewport" unique_id=982714909 node_paths=PackedStringArray("anchor")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.28551, 0)
 cull_mask = 4
 environment = SubResource("Environment_cilxe")
@@ -374,12 +374,12 @@ size = 15.0
 script = ExtResource("12_3hpi3")
 anchor = NodePath("../..")
 
-[node name="NametagViewport" type="SubViewport" parent="."]
+[node name="NametagViewport" type="SubViewport" parent="." unique_id=1829906785]
 transparent_bg = true
 size = Vector2i(1000, 40)
 render_target_update_mode = 4
 
-[node name="Label" type="Label" parent="NametagViewport"]
+[node name="Label" type="Label" parent="NametagViewport" unique_id=1265368101]
 auto_translate_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -390,17 +390,17 @@ text = "xXx_TransgenderHyena_xXx"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EightDirectionSprite" parent="." instance=ExtResource("2_ib0t5")]
+[node name="EightDirectionSprite" parent="." unique_id=438977751 instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_npkso")
+texture = SubResource("AtlasTexture_hueaw")
 
-[node name="MinimapIcon" type="Sprite3D" parent="."]
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1797025603]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
 layers = 4
 texture_filter = 0
 texture = ExtResource("15_nhlam")
 
-[node name="NametagSprite" type="Sprite3D" parent="."]
+[node name="NametagSprite" type="Sprite3D" parent="." unique_id=818573754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 layers = 5
 sorting_offset = 500.0
@@ -410,16 +410,16 @@ no_depth_test = true
 fixed_size = true
 texture = SubResource("ViewportTexture_m3ots")
 
-[node name="Hand" type="Node" parent="."]
+[node name="Hand" type="Node" parent="." unique_id=326433039]
 script = ExtResource("6_cf5ap")
 
-[node name="DiscardPile" type="Node" parent="."]
+[node name="DiscardPile" type="Node" parent="." unique_id=600967318]
 script = ExtResource("6_cf5ap")
 
-[node name="DrawPile" type="Node" parent="."]
+[node name="DrawPile" type="Node" parent="." unique_id=509340074]
 script = ExtResource("6_cf5ap")
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player", "head", "weapon_holder")]
+[node name="PlayerMovement" type="Node" parent="." unique_id=955245038 node_paths=PackedStringArray("player", "head", "weapon_holder")]
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
@@ -429,7 +429,7 @@ max_look_up_angle = 80.0
 enable_jumping = true
 weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "wave_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_text", "swap_text", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel", "shield_ui", "currencies", "energy_pips", "enemy_count_label", "primary_button", "secondary_button", "slots")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=499382586 node_paths=PackedStringArray("player", "wave_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_text", "swap_text", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel", "shield_ui", "currencies", "energy_pips", "enemy_count_label", "primary_button", "secondary_button", "slots")]
 script = ExtResource("8_yl6ka")
 player = NodePath("..")
 wave_count = NodePath("EnemyTracker/WaveCount")
@@ -460,7 +460,7 @@ secondary_button = NodePath("VBoxContainer2/HBoxContainer2/Button2")
 null_icon = ExtResource("22_o55s8")
 slots = NodePath("VBoxContainer2")
 
-[node name="FirstPersonCam" type="TextureRect" parent="HUD"]
+[node name="FirstPersonCam" type="TextureRect" parent="HUD" unique_id=1345632904]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -469,7 +469,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_mk87g")
 
-[node name="Minimap" type="TextureRect" parent="HUD"]
+[node name="Minimap" type="TextureRect" parent="HUD" unique_id=614380579]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -482,7 +482,7 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = SubResource("ViewportTexture_574jy")
 
-[node name="MinimapBorder" type="TextureRect" parent="HUD/Minimap"]
+[node name="MinimapBorder" type="TextureRect" parent="HUD/Minimap" unique_id=385822527]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
@@ -496,7 +496,7 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = ExtResource("16_x1xjr")
 
-[node name="FPSCounter" type="Label" parent="HUD"]
+[node name="FPSCounter" type="Label" parent="HUD" unique_id=1903110855]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -508,7 +508,7 @@ text = "FPS: "
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="EnemyTracker" type="TextureRect" parent="HUD"]
+[node name="EnemyTracker" type="TextureRect" parent="HUD" unique_id=798711655]
 visible = false
 texture_filter = 1
 anchors_preset = -1
@@ -521,7 +521,7 @@ mouse_filter = 2
 texture = ExtResource("25_rim6q")
 stretch_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="HUD/EnemyTracker"]
+[node name="TextureRect" type="TextureRect" parent="HUD/EnemyTracker" unique_id=1528627423]
 visible = false
 layout_mode = 0
 offset_left = 0.5
@@ -530,7 +530,7 @@ offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
-[node name="Label" type="Label" parent="HUD/EnemyTracker/TextureRect"]
+[node name="Label" type="Label" parent="HUD/EnemyTracker/TextureRect" unique_id=1908656507]
 layout_mode = 0
 offset_left = 28.000006
 offset_top = 46.000004
@@ -541,7 +541,7 @@ text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="HUD/EnemyTracker"]
+[node name="TextureRect2" type="TextureRect" parent="HUD/EnemyTracker" unique_id=759739286]
 visible = false
 layout_mode = 0
 offset_left = 32.5
@@ -550,7 +550,7 @@ offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
-[node name="Label2" type="Label" parent="HUD/EnemyTracker/TextureRect2"]
+[node name="Label2" type="Label" parent="HUD/EnemyTracker/TextureRect2" unique_id=126767832]
 layout_mode = 0
 offset_left = 28.000006
 offset_top = 46.000004
@@ -561,7 +561,7 @@ text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="HUD/EnemyTracker"]
+[node name="TextureRect3" type="TextureRect" parent="HUD/EnemyTracker" unique_id=672016183]
 visible = false
 layout_mode = 0
 offset_left = 62.5
@@ -570,7 +570,7 @@ offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
-[node name="Label3" type="Label" parent="HUD/EnemyTracker/TextureRect3"]
+[node name="Label3" type="Label" parent="HUD/EnemyTracker/TextureRect3" unique_id=986219862]
 layout_mode = 0
 offset_left = 29.999992
 offset_top = 46.000004
@@ -581,7 +581,7 @@ text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="HUD/EnemyTracker"]
+[node name="TextureRect4" type="TextureRect" parent="HUD/EnemyTracker" unique_id=2074688594]
 visible = false
 layout_mode = 0
 offset_left = 94.5
@@ -590,7 +590,7 @@ offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
-[node name="Label4" type="Label" parent="HUD/EnemyTracker/TextureRect4"]
+[node name="Label4" type="Label" parent="HUD/EnemyTracker/TextureRect4" unique_id=63613737]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 46.000004
@@ -601,7 +601,7 @@ text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect5" type="TextureRect" parent="HUD/EnemyTracker"]
+[node name="TextureRect5" type="TextureRect" parent="HUD/EnemyTracker" unique_id=1953197733]
 visible = false
 layout_mode = 0
 offset_left = 127.5
@@ -610,7 +610,7 @@ offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_q3yot")
 
-[node name="Label5" type="Label" parent="HUD/EnemyTracker/TextureRect5"]
+[node name="Label5" type="Label" parent="HUD/EnemyTracker/TextureRect5" unique_id=1087586391]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 46.000004
@@ -621,7 +621,7 @@ text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="WaveCount" type="Label" parent="HUD/EnemyTracker"]
+[node name="WaveCount" type="Label" parent="HUD/EnemyTracker" unique_id=408288197]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -638,7 +638,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractLabel" type="RichTextLabel" parent="HUD"]
+[node name="InteractLabel" type="RichTextLabel" parent="HUD" unique_id=607443901]
 anchors_preset = -1
 anchor_left = 0.2
 anchor_top = 0.55
@@ -655,7 +655,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1936762399]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -666,7 +666,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="StartWaveLabel" type="RichTextLabel" parent="HUD"]
+[node name="StartWaveLabel" type="RichTextLabel" parent="HUD" unique_id=2070700104]
 anchors_preset = -1
 anchor_top = 0.136
 anchor_right = 1.0
@@ -679,7 +679,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="HUD"]
+[node name="Control2" type="Control" parent="HUD" unique_id=603213142]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -690,7 +690,7 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Control3" type="Control" parent="HUD"]
+[node name="Control3" type="Control" parent="HUD" unique_id=1929165601]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -701,7 +701,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=1259937928]
 modulate = Color(0.54324, 0.193653, 0.15885, 0.9)
 anchors_preset = 8
 anchor_left = 0.5
@@ -719,7 +719,7 @@ texture = ExtResource("25_l7gpx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="HUD"]
+[node name="TextureRect2" type="TextureRect" parent="HUD" unique_id=329694226]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -737,7 +737,7 @@ texture = ExtResource("26_dfkac")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Currencies" type="VBoxContainer" parent="HUD"]
+[node name="Currencies" type="VBoxContainer" parent="HUD" unique_id=1553382808]
 anchors_preset = -1
 anchor_left = 0.95
 anchor_top = 0.05
@@ -745,44 +745,44 @@ anchor_right = 0.95
 anchor_bottom = 0.05
 grow_horizontal = 0
 
-[node name="CoinCounter" type="HBoxContainer" parent="HUD/Currencies"]
+[node name="CoinCounter" type="HBoxContainer" parent="HUD/Currencies" unique_id=492820376]
 layout_mode = 2
 
-[node name="CoinTexture" type="TextureRect" parent="HUD/Currencies/CoinCounter"]
+[node name="CoinTexture" type="TextureRect" parent="HUD/Currencies/CoinCounter" unique_id=2027246245]
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_w13oc")
 
-[node name="CurrencyCount" type="Label" parent="HUD/Currencies/CoinCounter"]
+[node name="CurrencyCount" type="Label" parent="HUD/Currencies/CoinCounter" unique_id=173450556]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "20"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Currencies"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Currencies" unique_id=972748604]
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HUD/Currencies/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HUD/Currencies/HBoxContainer" unique_id=1295748351]
 layout_mode = 2
 texture = ExtResource("30_rim6q")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="EnergyLabel" type="Label" parent="HUD/Currencies/HBoxContainer"]
+[node name="EnergyLabel" type="Label" parent="HUD/Currencies/HBoxContainer" unique_id=238470216]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BlankCassetteLabel" type="Label" parent="HUD/Currencies"]
+[node name="BlankCassetteLabel" type="Label" parent="HUD/Currencies" unique_id=1251931345]
 layout_mode = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HotWheel" parent="HUD" instance=ExtResource("31_h1yfy")]
+[node name="HotWheel" parent="HUD" unique_id=1175112633 instance=ExtResource("31_h1yfy")]
 visible = false
 anchors_preset = -1
 anchor_left = 0.5
@@ -792,7 +792,7 @@ anchor_bottom = 0.973
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="FeaturePreview" type="HBoxContainer" parent="HUD"]
+[node name="FeaturePreview" type="HBoxContainer" parent="HUD" unique_id=1938391238]
 anchors_preset = -1
 anchor_top = 0.6
 anchor_right = 1.0
@@ -802,14 +802,14 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="ShieldUI" parent="HUD" instance=ExtResource("31_o55s8")]
+[node name="ShieldUI" parent="HUD" unique_id=51414104 instance=ExtResource("31_o55s8")]
 anchors_preset = -1
 anchor_left = 0.025
 anchor_top = 0.025
 anchor_right = 0.035
 anchor_bottom = 0.035
 
-[node name="EnergyPips" parent="HUD" instance=ExtResource("32_o55s8")]
+[node name="EnergyPips" parent="HUD" unique_id=855623643 instance=ExtResource("32_o55s8")]
 visible = false
 anchors_preset = -1
 anchor_left = 0.97
@@ -819,7 +819,7 @@ anchor_bottom = 0.97
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=864512666]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -829,17 +829,17 @@ offset_bottom = 40.0
 grow_horizontal = 2
 rotation = 0.008726646
 
-[node name="TextureRect" type="TextureRect" parent="HUD/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HUD/HBoxContainer" unique_id=1430954072]
 layout_mode = 2
 texture = ExtResource("32_r2yb6")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="HUD/HBoxContainer"]
+[node name="Label" type="Label" parent="HUD/HBoxContainer" unique_id=94707143]
 layout_mode = 2
 text = "15"
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HUD"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD" unique_id=527981074]
 visible = false
 anchors_preset = -1
 anchor_left = 0.98
@@ -850,10 +850,10 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer2" unique_id=1294455347]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/VBoxContainer2/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/VBoxContainer2/HBoxContainer" unique_id=1579098023]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_filter = 2
@@ -863,17 +863,17 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="HUD/VBoxContainer2/HBoxContainer"]
+[node name="Button" type="Button" parent="HUD/VBoxContainer2/HBoxContainer" unique_id=491656792]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = ExtResource("22_o55s8")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/VBoxContainer2" unique_id=604802452]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/VBoxContainer2/HBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/VBoxContainer2/HBoxContainer2" unique_id=234580806]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_filter = 2
@@ -883,83 +883,83 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button2" type="Button" parent="HUD/VBoxContainer2/HBoxContainer2"]
+[node name="Button2" type="Button" parent="HUD/VBoxContainer2/HBoxContainer2" unique_id=58186727]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = ExtResource("22_o55s8")
 icon_alignment = 1
 expand_icon = true
 
-[node name="WeaponSwapTimer" type="Timer" parent="."]
+[node name="WeaponSwapTimer" type="Timer" parent="." unique_id=1247169236]
 wait_time = 0.4
 one_shot = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1897693906]
 replication_config = SubResource("SceneReplicationConfig_tsiqi")
 
-[node name="PlaceCardAudio" type="AudioStreamPlayer" parent="."]
+[node name="PlaceCardAudio" type="AudioStreamPlayer" parent="." unique_id=1230517992]
 stream = SubResource("AudioStreamRandomizer_wyb7c")
 bus = &"SFX"
 
-[node name="SwapCardAudio" type="AudioStreamPlayer" parent="."]
+[node name="SwapCardAudio" type="AudioStreamPlayer" parent="." unique_id=382203637]
 stream = SubResource("AudioStreamRandomizer_0lyoo")
 bus = &"SFX"
 
-[node name="ReadyAudio" type="AudioStreamPlayer" parent="."]
+[node name="ReadyAudio" type="AudioStreamPlayer" parent="." unique_id=1512085855]
 stream = SubResource("AudioStreamRandomizer_evsqr")
 bus = &"SFX"
 
-[node name="UnreadyAudio" type="AudioStreamPlayer" parent="."]
+[node name="UnreadyAudio" type="AudioStreamPlayer" parent="." unique_id=12065125]
 stream = SubResource("AudioStreamRandomizer_pc8yw")
 bus = &"SFX"
 
-[node name="FullPowerAudio" type="AudioStreamPlayer" parent="."]
+[node name="FullPowerAudio" type="AudioStreamPlayer" parent="." unique_id=204432375]
 stream = ExtResource("37_sa2xu")
 bus = &"SFX"
 
-[node name="ZeroPowerAudio" type="AudioStreamPlayer" parent="."]
+[node name="ZeroPowerAudio" type="AudioStreamPlayer" parent="." unique_id=842811877]
 stream = ExtResource("36_cd8og")
 bus = &"SFX"
 
-[node name="SwapOffAudio" type="AudioStreamPlayer" parent="."]
+[node name="SwapOffAudio" type="AudioStreamPlayer" parent="." unique_id=2115799468]
 stream = ExtResource("40_pnv0q")
 bus = &"SFX"
 
-[node name="SwapOnAudio" type="AudioStreamPlayer" parent="."]
+[node name="SwapOnAudio" type="AudioStreamPlayer" parent="." unique_id=1891077839]
 stream = ExtResource("41_hussy")
 bus = &"SFX"
 
-[node name="BuildingState" type="Node" parent="." node_paths=PackedStringArray("swap_state", "hero")]
+[node name="BuildingState" type="Node" parent="." unique_id=744789457 node_paths=PackedStringArray("swap_state", "hero")]
 script = ExtResource("47_d8pnf")
 swap_state = NodePath("../CardingState")
 hero = NodePath("..")
 metadata/_custom_type_script = "uid://b5h7jfwkyokes"
 
-[node name="CardingState" type="Node" parent="." node_paths=PackedStringArray("swap_state", "hero")]
+[node name="CardingState" type="Node" parent="." unique_id=724551609 node_paths=PackedStringArray("swap_state", "hero")]
 script = ExtResource("48_7d213")
 swap_state = NodePath("../BuildingState")
 hero = NodePath("..")
 metadata/_custom_type_script = "uid://cjdv1onyfej0m"
 
-[node name="FightingState" type="Node" parent="." node_paths=PackedStringArray("hero")]
+[node name="FightingState" type="Node" parent="." unique_id=1902080937 node_paths=PackedStringArray("hero")]
 script = ExtResource("49_60hic")
 hero = NodePath("..")
 metadata/_custom_type_script = "uid://cf7m4yyiqhhru"
 
-[node name="CoinViewport" type="SubViewport" parent="."]
+[node name="CoinViewport" type="SubViewport" parent="." unique_id=275333248]
 transparent_bg = true
 size = Vector2i(32, 32)
 
-[node name="Coin" parent="CoinViewport" instance=ExtResource("51_w13oc")]
+[node name="Coin" parent="CoinViewport" unique_id=1538763687 instance=ExtResource("51_w13oc")]
 
-[node name="Cylinder" parent="CoinViewport/Coin" index="0"]
+[node name="Cylinder" parent="CoinViewport/Coin" index="0" unique_id=109227366]
 layers = 8
 
-[node name="Node3D" type="Node3D" parent="CoinViewport"]
+[node name="Node3D" type="Node3D" parent="CoinViewport" unique_id=1150784365]
 script = ExtResource("52_rim6q")
 speed = 70.0
 
-[node name="Camera3D" type="Camera3D" parent="CoinViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="CoinViewport/Node3D" unique_id=811908859]
 transform = Transform3D(1, 0, 0, 0, 0.74214, 0.670245, 0, -0.670245, 0.74214, 0, 0.977616, 1.08572)
 cull_mask = 1047560
 projection = 1

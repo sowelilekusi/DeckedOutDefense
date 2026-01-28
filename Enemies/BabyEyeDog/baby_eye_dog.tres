@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://cvehqh4tt28g7"]
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://cvehqh4tt28g7"]
 
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_k5sd1"]
 [ext_resource type="Texture2D" uid="uid://cv5p03aw78vwd" path="res://Assets/Textures/icon_eye_dog_fast.png" id="1_xgen5"]

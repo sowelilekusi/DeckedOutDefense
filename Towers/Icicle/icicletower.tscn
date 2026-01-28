@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk73g30y8kri4"]
+[gd_scene format=3 uid="uid://bk73g30y8kri4"]
 
 [ext_resource type="PackedScene" uid="uid://bidr1m71pajma" path="res://Scenes/Towers/projectile_tower.tscn" id="1_2424i"]
 [ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="2_5bkvv"]
@@ -15,18 +15,17 @@ metadata/_custom_type_script = "uid://bh74uangqekuk"
 
 [sub_resource type="Resource" id="Resource_woy0n"]
 script = ExtResource("2_5bkvv")
-damage = 0
 status_effects = Array[ExtResource("3_e2nh7")]([SubResource("Resource_t3ens")])
 metadata/_custom_type_script = "uid://djp7tepdsda8w"
 
-[node name="ProjectileTower" instance=ExtResource("1_2424i")]
+[node name="ProjectileTower" unique_id=1892608213 instance=ExtResource("1_2424i")]
 effect = SubResource("Resource_woy0n")
 
-[node name="Pitch" parent="." index="1"]
+[node name="Pitch" parent="." index="1" unique_id=2005074924]
 mesh = ExtResource("6_tyyed")
 
-[node name="Yaw" parent="." index="2"]
+[node name="Yaw" parent="." index="2" unique_id=36855242]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 1.72661, 0)
 
-[node name="SpawnAffect" parent="." index="6"]
+[node name="SpawnAffect" parent="." index="6" unique_id=595069188]
 spawn_scene = ExtResource("7_goltw")

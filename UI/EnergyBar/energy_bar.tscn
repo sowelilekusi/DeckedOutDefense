@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2id8hjico4w8"]
+[gd_scene format=3 uid="uid://c2id8hjico4w8"]
 
 [ext_resource type="Script" uid="uid://gjcl34fan741" path="res://UI/EnergyBar/energy_bar.gd" id="1_rdnti"]
 [ext_resource type="Texture2D" uid="uid://bm13bgpre6ubr" path="res://Assets/Textures/energy_cell.png" id="2_q48n7"]
@@ -21,7 +21,7 @@ bg_color = Color(0, 0.667, 0.87, 1)
 atlas = ExtResource("4_77ucw")
 region = Rect2(0, 0, 117, 442)
 
-[node name="EnergyBar" type="Control" node_paths=PackedStringArray("bar_overlay", "progress_bar", "big_progress_bar", "secondary_progress_bar", "bg")]
+[node name="EnergyBar" type="Control" unique_id=1094426611 node_paths=PackedStringArray("bar_overlay", "progress_bar", "big_progress_bar", "secondary_progress_bar", "bg")]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -38,7 +38,7 @@ big_progress_bar = NodePath("ProgressBar2")
 secondary_progress_bar = NodePath("Background2/ProgressBar2")
 bg = NodePath("Background")
 
-[node name="Background4" type="TextureRect" parent="."]
+[node name="Background4" type="TextureRect" parent="." unique_id=171908061]
 layout_mode = 0
 offset_left = -142.0
 offset_top = -461.0
@@ -46,7 +46,7 @@ offset_right = -25.0
 offset_bottom = -19.0
 texture = ExtResource("3_wymtn")
 
-[node name="Background3" type="TextureRect" parent="."]
+[node name="Background3" type="TextureRect" parent="." unique_id=494820497]
 layout_mode = 0
 offset_left = -142.0
 offset_top = -461.0
@@ -54,7 +54,7 @@ offset_right = -25.0
 offset_bottom = -19.0
 texture = ExtResource("3_efdny")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=372407187]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -72,7 +72,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="ProgressBar2" type="ProgressBar" parent="."]
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1955474802]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -90,7 +90,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=242261943]
 visible = false
 layout_mode = 0
 offset_left = -142.0
@@ -99,7 +99,7 @@ offset_right = -25.0
 offset_bottom = -19.0
 texture = ExtResource("3_wymtn")
 
-[node name="Background2" type="TextureRect" parent="."]
+[node name="Background2" type="TextureRect" parent="." unique_id=1963524165]
 layout_mode = 0
 offset_left = -142.0
 offset_top = -461.0
@@ -107,7 +107,7 @@ offset_right = -25.0
 offset_bottom = -19.0
 texture = ExtResource("4_eh880")
 
-[node name="ProgressBar2" type="ProgressBar" parent="Background2"]
+[node name="ProgressBar2" type="ProgressBar" parent="Background2" unique_id=900433905]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -124,7 +124,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_77ucw")
 fill_mode = 3
 show_percentage = false
 
-[node name="Foreground" type="TextureRect" parent="."]
+[node name="Foreground" type="TextureRect" parent="." unique_id=741408598]
 layout_mode = 0
 offset_left = -142.0
 offset_top = -461.0
@@ -133,7 +133,7 @@ offset_bottom = -19.0
 texture = ExtResource("3_d65ol")
 stretch_mode = 5
 
-[node name="LimitOverlay" type="TextureRect" parent="Foreground"]
+[node name="LimitOverlay" type="TextureRect" parent="Foreground" unique_id=1228564161]
 visible = false
 layout_mode = 0
 offset_right = 117.0

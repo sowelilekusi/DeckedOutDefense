@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmlpmr78tmo6p"]
+[gd_scene format=3 uid="uid://cmlpmr78tmo6p"]
 
 [ext_resource type="Script" uid="uid://dipne6u86gxth" path="res://UI/card_description_ui.gd" id="1_bxjpl"]
 [ext_resource type="PackedScene" uid="uid://c8xdsg6gtwvh3" path="res://UI/FeatureUI/feature_ui.tscn" id="2_hr2hd"]
 
-[node name="DescriptionVBox" type="VBoxContainer" node_paths=PackedStringArray("card_name_label", "card_description_label", "feature_list", "target_list")]
+[node name="DescriptionVBox" type="VBoxContainer" unique_id=1070794448 node_paths=PackedStringArray("card_name_label", "card_description_label", "feature_list", "target_list")]
 size_flags_horizontal = 3
 script = ExtResource("1_bxjpl")
 card_name_label = NodePath("NameLabel")
@@ -12,35 +12,35 @@ feature_list = NodePath("FeaturesVBox")
 feature_scene = ExtResource("2_hr2hd")
 target_list = NodePath("TargetVBox")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="." unique_id=1049651313]
 visible = false
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="."]
+[node name="DescriptionLabel" type="Label" parent="." unique_id=1546958976]
 layout_mode = 2
 text = "LABEL_CARD_DESCRIPTION"
 
-[node name="DescriptionText" type="RichTextLabel" parent="."]
+[node name="DescriptionText" type="RichTextLabel" parent="." unique_id=967796591]
 auto_translate_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "a long ass example description of a card that goes into honestly way too much detail but at least if we can support a lot of text at a good size then we dont have to worry about really complicated cards fucking up our UI later in developement if we end up needing to explain a lot"
 
-[node name="FeaturesLabel" type="Label" parent="."]
+[node name="FeaturesLabel" type="Label" parent="." unique_id=858959817]
 layout_mode = 2
 text = "LABEL_CARD_FEATURES"
 
-[node name="FeaturesVBox" type="VBoxContainer" parent="."]
+[node name="FeaturesVBox" type="VBoxContainer" parent="." unique_id=1575296610]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TargettingLabel" type="Label" parent="."]
+[node name="TargettingLabel" type="Label" parent="." unique_id=1805537978]
 layout_mode = 2
 text = "LABEL_TARGET_LIST"
 
-[node name="TargetVBox" type="VBoxContainer" parent="."]
+[node name="TargetVBox" type="VBoxContainer" parent="." unique_id=1956145894]
 layout_mode = 2
 size_flags_vertical = 3

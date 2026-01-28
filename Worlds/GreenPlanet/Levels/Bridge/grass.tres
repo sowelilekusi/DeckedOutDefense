@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://1lymu5otuh7f"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://1lymu5otuh7f"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_ubi2a"]
 [ext_resource type="Texture2D" uid="uid://b8lj1l8gqpftn" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge_grass.png" id="2_ubi2a"]

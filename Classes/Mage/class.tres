@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=11 format=3 uid="uid://dxonpv8qbyrjy"]
+[gd_resource type="Resource" script_class="HeroClass" format=3 uid="uid://dxonpv8qbyrjy"]
 
 [ext_resource type="PackedScene" uid="uid://bfxgtf1v1okat" path="res://Classes/Mage/scroll.tscn" id="1_6eh1f"]
 [ext_resource type="Script" uid="uid://dcwtg2gev3uia" path="res://Scripts/Resources/hero_class.gd" id="1_aeu85"]

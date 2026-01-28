@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ci822ash3mbhi"]
+[gd_scene format=3 uid="uid://ci822ash3mbhi"]
 
 [ext_resource type="Script" uid="uid://b43lbaanefmj3" path="res://Towers/Gatling/tower_gatling.gd" id="2_ipjp1"]
 [ext_resource type="Script" uid="uid://rvnacmxsrh4w" path="res://Scripts/target_finder.gd" id="3_co24a"]
@@ -10,8 +10,6 @@
 
 [sub_resource type="Resource" id="Resource_7ovr8"]
 script = ExtResource("3_tykap")
-damage = 0
-status_effects = Array[ExtResource("4_sc4bm")]([])
 
 [sub_resource type="Animation" id="Animation_vk4a8"]
 resource_name = "shoot"
@@ -29,7 +27,7 @@ cull_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 0, 0.415686, 0.223529)
 
-[node name="DirectAffectTower" type="Node3D" node_paths=PackedStringArray("target_finder", "affector", "animator", "pitch_model", "yaw_model", "range_indicator", "audio_player")]
+[node name="DirectAffectTower" type="Node3D" unique_id=1985284737 node_paths=PackedStringArray("target_finder", "affector", "animator", "pitch_model", "yaw_model", "range_indicator", "audio_player")]
 script = ExtResource("2_ipjp1")
 stats = ExtResource("3_oicqw")
 target_finder = NodePath("TargetFinder")
@@ -41,27 +39,25 @@ range_indicator = NodePath("CSGSphere3D")
 audio_player = NodePath("Yaw/AudioStreamPlayer3D")
 effect = SubResource("Resource_7ovr8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_cebsq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=465705952]
+libraries/ = SubResource("AnimationLibrary_cebsq")
 
-[node name="Pitch" type="MeshInstance3D" parent="."]
+[node name="Pitch" type="MeshInstance3D" parent="." unique_id=1271621174]
 visible = false
 mesh = SubResource("BoxMesh_42byu")
 
-[node name="Yaw" type="MeshInstance3D" parent="."]
+[node name="Yaw" type="MeshInstance3D" parent="." unique_id=1859077506]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.515143, 0)
 mesh = ExtResource("4_wihc0")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Yaw"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Yaw" unique_id=191478224]
 bus = &"SFX"
 
-[node name="MinimapIcon" type="Sprite3D" parent="."]
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=201604380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 layers = 4
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=2094286709]
 visible = false
 layers = 5
 radius = 10.0
@@ -69,9 +65,9 @@ radial_segments = 16
 rings = 16
 material = SubResource("StandardMaterial3D_1ucq4")
 
-[node name="TargetFinder" type="Node" parent="." node_paths=PackedStringArray("tower")]
+[node name="TargetFinder" type="Node" parent="." unique_id=1002978697 node_paths=PackedStringArray("tower")]
 script = ExtResource("3_co24a")
 tower = NodePath("..")
 
-[node name="DirectAffect" type="Node" parent="."]
+[node name="DirectAffect" type="Node" parent="." unique_id=1425059731]
 script = ExtResource("4_v2roj")

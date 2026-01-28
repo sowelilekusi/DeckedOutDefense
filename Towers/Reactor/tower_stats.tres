@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://cssdyxk8oefsd"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://cssdyxk8oefsd"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_8hcmy"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_8w61k"]
@@ -6,10 +6,8 @@
 [resource]
 script = ExtResource("2_8w61k")
 target_type = Array[int]([1, 2])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Fire Delay": 4.0,
 "Range": 30.0
 })
-features = Array[ExtResource("1_8hcmy")]([])
 text = "DESC_TOWER_RADIATION"

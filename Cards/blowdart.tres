@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bywwtjdjsgdsj"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bywwtjdjsgdsj"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_nobd8"]
 [ext_resource type="PackedScene" uid="uid://cy05ssd52exf0" path="res://Weapons/Blowdart/weapon_blowdart.tscn" id="3_shm45"]
@@ -8,12 +8,9 @@
 
 [resource]
 script = ExtResource("1_nobd8")
-cost = 0
 rarity = 1
-faction = 0
 turret_scene = ExtResource("4_wvh75")
 weapon_scene = ExtResource("3_shm45")
 weapon_stats = ExtResource("4_x71t4")
 tower_stats = ExtResource("3_t7ppb")
-tags = Array[int]([])
 display_name = "CARD_NAME_POISON"

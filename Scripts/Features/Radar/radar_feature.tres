@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RadarFeature" load_steps=3 format=3 uid="uid://nh7g23b3rnvr"]
+[gd_resource type="Resource" script_class="RadarFeature" format=3 uid="uid://nh7g23b3rnvr"]
 
 [ext_resource type="Texture2D" uid="uid://cps7onfe2s1gi" path="res://Scripts/Features/Radar/radar_icon.png" id="1_tw681"]
 [ext_resource type="Script" uid="uid://b8tigm0aru8nu" path="res://Scripts/Features/Radar/radar.gd" id="2_f4mox"]

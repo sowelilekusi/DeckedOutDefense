@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://uv7hjsgisy31"]
+[gd_scene format=3 uid="uid://uv7hjsgisy31"]
 
 [ext_resource type="Texture2D" uid="uid://dgwsvkmnesjjm" path="res://Assets/Textures/stone.png" id="1_45ikc"]
 [ext_resource type="Script" uid="uid://cjensbjuji22t" path="res://Worlds/TestingRange/Levels/training_arena.gd" id="1_dgqrn"]
@@ -35,13 +35,10 @@ target_type = 1
 icon = ExtResource("6_ukkm8")
 death_sprite = ExtResource("5_aqj4m")
 sprite = SubResource("AtlasTexture_aqj4m")
-spawn_power = 10
 health = 180
-penalty = 10
 movement_speed = 1.2
 spawn_cooldown = 1.2
 common_group = 4
-common_cost = 1
 uncommon_group = 6
 uncommon_cost = 2
 rare_group = 8
@@ -64,13 +61,10 @@ target_type = 1
 icon = ExtResource("6_ukkm8")
 death_sprite = ExtResource("5_aqj4m")
 sprite = SubResource("AtlasTexture_5p2fi")
-spawn_power = 10
 health = 180
-penalty = 10
 movement_speed = 1.2
 spawn_cooldown = 1.2
 common_group = 4
-common_cost = 1
 uncommon_group = 6
 uncommon_cost = 2
 rare_group = 8
@@ -93,13 +87,10 @@ target_type = 1
 icon = ExtResource("6_ukkm8")
 death_sprite = ExtResource("5_aqj4m")
 sprite = SubResource("AtlasTexture_dl7a1")
-spawn_power = 10
 health = 180
-penalty = 10
 movement_speed = 1.2
 spawn_cooldown = 1.2
 common_group = 4
-common_cost = 1
 uncommon_group = 6
 uncommon_cost = 2
 rare_group = 8
@@ -122,13 +113,10 @@ target_type = 1
 icon = ExtResource("6_ukkm8")
 death_sprite = ExtResource("5_aqj4m")
 sprite = SubResource("AtlasTexture_dgy1v")
-spawn_power = 10
 health = 180
-penalty = 10
 movement_speed = 1.2
 spawn_cooldown = 1.2
 common_group = 4
-common_cost = 1
 uncommon_group = 6
 uncommon_cost = 2
 rare_group = 8
@@ -141,113 +129,113 @@ legendary_cost = 5
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqj4m"]
 size = Vector3(1, 1, 10)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=537337151]
 script = ExtResource("1_dgqrn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=106373413]
 physics_material_override = SubResource("PhysicsMaterial_mqtlc")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D" unique_id=2140913800]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 size = Vector3(15, 1, 30)
 material = SubResource("StandardMaterial3D_75uqo")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2087084036]
 shape = SubResource("BoxShape3D_3mcyj")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1255744167]
 transform = Transform3D(1, 0, 0, 0, 0.503804, 0.863818, 0, -0.863818, 0.503804, 0.00649166, 26.8242, 4.02927e-05)
 
-[node name="Character" parent="." instance=ExtResource("2_w387b")]
+[node name="Character" parent="." unique_id=1582337925 instance=ExtResource("2_w387b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805513, 0.5, 2.30163)
 
-[node name="Enemy" parent="." instance=ExtResource("3_y4upj")]
+[node name="Enemy" parent="." unique_id=1907780488 instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28337, 0.601179, -1.23188)
 stats = SubResource("Resource_ukkm8")
 
-[node name="Enemy2" parent="." instance=ExtResource("3_y4upj")]
+[node name="Enemy2" parent="." unique_id=1502597998 instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59318, 0.601179, -2.16648)
 stats = SubResource("Resource_4y2w1")
 
-[node name="Enemy3" parent="." instance=ExtResource("3_y4upj")]
+[node name="Enemy3" parent="." unique_id=312995356 instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38431, 0.601179, -2.44026)
 stats = SubResource("Resource_tilno")
 
-[node name="Enemy4" parent="." instance=ExtResource("3_y4upj")]
+[node name="Enemy4" parent="." unique_id=1766569744 instance=ExtResource("3_y4upj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.49476, 0.601179, -2.4969)
 stats = SubResource("Resource_1enkk")
 
-[node name="assaultcard" parent="." instance=ExtResource("4_i7krx")]
+[node name="assaultcard" parent="." unique_id=1978257147 instance=ExtResource("4_i7krx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7802, 0.5, 3.16356)
 card = ExtResource("5_806m0")
 
-[node name="towerbase" parent="." instance=ExtResource("9_imodf")]
+[node name="towerbase" parent="." unique_id=2001476931 instance=ExtResource("9_imodf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77234, 0.5, 2.6958)
 
-[node name="towerbase2" parent="." node_paths=PackedStringArray("inventory", "collider") instance=ExtResource("9_imodf")]
+[node name="towerbase2" parent="." unique_id=715244310 node_paths=PackedStringArray("inventory", "collider") instance=ExtResource("9_imodf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0766634, 0.5, -9.7488)
 inventory = NodePath("../towerbase/Inventory")
 collider = NodePath("../towerbase/CollisionShape3D")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1364474801]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 1.16471, 0.5, 12.4493)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1064097078]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2" unique_id=255590226]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=838491110]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.0990853, 0.5, 11.5008)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=424176763]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3" unique_id=914489697]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=220648789]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, -1.00031, 0.5, 11.0314)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=1789938936]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D4"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D4" unique_id=1407827657]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=1803466350]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, -2.09458, 0.5, 10.7668)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=751929666]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D5"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D5" unique_id=837434705]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+[node name="StaticBody3D6" type="StaticBody3D" parent="." unique_id=1620840542]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -3.20157, 0.5, 10.5973)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6" unique_id=711030824]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D6"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D6" unique_id=265735087]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D7" type="StaticBody3D" parent="."]
+[node name="StaticBody3D7" type="StaticBody3D" parent="." unique_id=691722760]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -4.31944, 0.5, 10.4654)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7" unique_id=669831173]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D7"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D7" unique_id=444032968]
 size = Vector3(1, 1, 10)
 
-[node name="StaticBody3D8" type="StaticBody3D" parent="."]
+[node name="StaticBody3D8" type="StaticBody3D" parent="." unique_id=2055252995]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -5.47159, 0.5, 10.4089)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D8" unique_id=394847838]
 shape = SubResource("BoxShape3D_aqj4m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D8"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D8" unique_id=301209776]
 size = Vector3(1, 1, 10)

@@ -1,17 +1,14 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=3 format=3 uid="uid://v13yoous66bc"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://v13yoous66bc"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_0swcp"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_fax6y"]
 
 [resource]
 script = ExtResource("2_fax6y")
-target_type = Array[int]([])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 0.0,
 "Fire Delay": 0.0,
 "Range": 4.0
 })
-features = Array[ExtResource("1_0swcp")]([])
 text = "DESC_TOWER_SPEED_INCREASER"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

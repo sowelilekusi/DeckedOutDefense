@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcvjgl0s1wp8y"]
+[gd_scene format=3 uid="uid://bcvjgl0s1wp8y"]
 
 [ext_resource type="Script" uid="uid://nc0df5y8tll7" path="res://UI/Menus/RadioMenu/choose_card_screen.gd" id="1_y4oar"]
 [ext_resource type="PackedScene" uid="uid://cmlpmr78tmo6p" path="res://UI/card_description_ui.tscn" id="2_3npvv"]
 
-[node name="ChooseCardScreen" type="Control" node_paths=PackedStringArray("choice_buttons", "card_desc", "card_name_label")]
+[node name="ChooseCardScreen" type="Control" unique_id=1927453152 node_paths=PackedStringArray("choice_buttons", "card_desc", "card_name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ choice_buttons = NodePath("PanelContainer/Content/HBoxContainer/ChoicesVBox")
 card_desc = NodePath("PanelContainer/Content/HBoxContainer/DescriptionVBox")
 card_name_label = NodePath("PanelContainer/Content/HBoxContainer/VBoxContainer/NameLabel")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1752212475]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03
@@ -25,57 +25,57 @@ anchor_bottom = 0.97
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Content" type="VBoxContainer" parent="PanelContainer"]
+[node name="Content" type="VBoxContainer" parent="PanelContainer" unique_id=1298216398]
 layout_mode = 2
 
-[node name="ScreenTitleLabel" type="Label" parent="PanelContainer/Content"]
+[node name="ScreenTitleLabel" type="Label" parent="PanelContainer/Content" unique_id=829360403]
 layout_mode = 2
 text = "LABEL_CHOOSE_CARD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content" unique_id=970485434]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ChoicesVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+[node name="ChoicesVBox" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer" unique_id=2067688065]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/HBoxContainer" unique_id=1254645687]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="NameLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="PanelContainer/Content/HBoxContainer/VBoxContainer" unique_id=207760313]
 auto_translate_mode = 2
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content/HBoxContainer/VBoxContainer" unique_id=634615252]
 layout_mode = 2
 alignment = 1
 
-[node name="TowerButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TowerButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1824675004]
 layout_mode = 2
 text = "BUTTON_VIEW_TOWER"
 
-[node name="WeaponButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="WeaponButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=91256030]
 layout_mode = 2
 text = "BUTTON_VIEW_WEAPON"
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Content/HBoxContainer/VBoxContainer" unique_id=72383687]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ConfirmButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="PanelContainer/Content/HBoxContainer/VBoxContainer" unique_id=1105450397]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "BUTTON_FINALIZE_CARD_CHOICE"
 
-[node name="DescriptionVBox" parent="PanelContainer/Content/HBoxContainer" instance=ExtResource("2_3npvv")]
+[node name="DescriptionVBox" parent="PanelContainer/Content/HBoxContainer" unique_id=261851820 instance=ExtResource("2_3npvv")]
 layout_mode = 2
 
 [connection signal="pressed" from="PanelContainer/Content/HBoxContainer/VBoxContainer/HBoxContainer/TowerButton" to="." method="choose_side" binds= [true]]

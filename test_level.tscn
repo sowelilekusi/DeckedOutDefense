@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://crr8kg4ack7rq"]
+
+[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/eye_dog.tscn" id="1_sb12i"]
+[ext_resource type="PackedScene" uid="uid://dl3rwqwbgrq2m" path="res://Enemies/ElderEyeDog/elder_eye_dog.tscn" id="2_gbhdq"]
+[ext_resource type="PackedScene" uid="uid://cveiaa0y66gln" path="res://Enemies/Crystalisk/crystal_enemy.tscn" id="3_y646j"]
+[ext_resource type="PackedScene" uid="uid://dtahuv0kpxx03" path="res://Enemies/BabyEyeDog/baby_eye_dog.tscn" id="4_lnbra"]
+[ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="5_6emce"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lowby"]
+size = Vector3(20, 1, 20)
+
+[node name="Node3D" type="Node3D" unique_id=747882904]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=845198141]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1480109743]
+shape = SubResource("BoxShape3D_lowby")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D" unique_id=1346362164]
+size = Vector3(20, 1, 20)
+
+[node name="EyeDog" parent="." unique_id=1016179251 instance=ExtResource("1_sb12i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4945354, 0.5048856, -2.1569223)
+
+[node name="ElderEyeDog" parent="." unique_id=1106613653 instance=ExtResource("2_gbhdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93381655, 0.5048856, -2.248024)
+
+[node name="Dog" parent="." unique_id=1355419805 instance=ExtResource("3_y646j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3260669, 1.3925104, -2.4133844)
+
+[node name="BabyEyeDog" parent="." unique_id=1710427344 instance=ExtResource("4_lnbra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4080617, 0.5012214, -2.8630714)
+
+[node name="Hero" parent="." unique_id=1918171232 instance=ExtResource("5_6emce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13215995, 1.5, 3.8140454)

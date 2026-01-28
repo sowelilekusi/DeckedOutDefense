@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8oq5unisjqne"]
+[gd_scene format=3 uid="uid://c8oq5unisjqne"]
 
 [ext_resource type="PackedScene" uid="uid://7f4dfphgiswr" path="res://Scenes/Projectiles/explosive_projectile.tscn" id="1_kf2wi"]
 [ext_resource type="Script" uid="uid://cue37hfrlm61m" path="res://Projectiles/Bomb/bomb_projectile.gd" id="2_qvo4u"]
@@ -13,7 +13,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("4_uh8y6")
 
-[node name="Bomb" instance=ExtResource("1_kf2wi")]
+[node name="Bomb" unique_id=1211608304 instance=ExtResource("1_kf2wi")]
 physics_material_override = SubResource("PhysicsMaterial_bbpul")
 gravity_scale = 1.0
 script = ExtResource("2_qvo4u")

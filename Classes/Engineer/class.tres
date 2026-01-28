@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroClass" load_steps=8 format=3 uid="uid://b5pc3frhx467q"]
+[gd_resource type="Resource" script_class="HeroClass" format=3 uid="uid://b5pc3frhx467q"]
 
 [ext_resource type="PackedScene" uid="uid://dq8v5e11rvyi6" path="res://Classes/Engineer/plan.tscn" id="1_2m5d7"]
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_t4fvj"]

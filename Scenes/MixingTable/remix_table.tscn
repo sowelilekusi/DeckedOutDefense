@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6isprnkaliqr"]
+[gd_scene format=3 uid="uid://c6isprnkaliqr"]
 
 [ext_resource type="Script" uid="uid://bpvmvx10q4ayd" path="res://Scenes/MixingTable/remix_table.gd" id="1_q8doq"]
 [ext_resource type="PackedScene" uid="uid://bajli4d3nqwll" path="res://UI/Menus/MixingMenu/track_editor.tscn" id="2_ibyhf"]
@@ -9,26 +9,26 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_78x4u"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="RemixTable" type="StaticBody3D" node_paths=PackedStringArray("button")]
+[node name="RemixTable" type="StaticBody3D" unique_id=155375437 node_paths=PackedStringArray("button")]
 script = ExtResource("1_q8doq")
 remix_menu_scene = ExtResource("2_ibyhf")
 button = NodePath("StaticBody3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=512153260]
 shape = SubResource("BoxShape3D_ibyhf")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1398049834]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1526369567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524303, 0)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("2_mjah6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=296240418]
 shape = SubResource("BoxShape3D_78x4u")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D" unique_id=2047185618]
 size = Vector3(0.5, 0.5, 0.5)
 
 [connection signal="button_interacted" from="StaticBody3D" to="." method="_on_static_body_3d_button_interacted"]

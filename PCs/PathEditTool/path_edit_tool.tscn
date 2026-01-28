@@ -1,23 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqt1ggtkpkuhs"]
+[gd_scene format=3 uid="uid://dqt1ggtkpkuhs"]
 
 [ext_resource type="Script" uid="uid://ckm02cx0ai624" path="res://PCs/PathEditTool/path_edit_tool.gd" id="1_l8cck"]
 [ext_resource type="PackedScene" uid="uid://ddbbwx0yy16lh" path="res://Scenes/TowerBase/tower_base.tscn" id="2_pjtpe"]
 [ext_resource type="Texture2D" uid="uid://gh4yvnerf1f5" path="res://Assets/Textures/radial.png" id="3_fs118"]
 
-[node name="PathEditTool" type="Node3D" node_paths=PackedStringArray("ray", "wall_preview", "progress_bar")]
+[node name="PathEditTool" type="Node3D" unique_id=1758794248 node_paths=PackedStringArray("ray", "wall_preview", "progress_bar")]
 script = ExtResource("1_l8cck")
 ray = NodePath("RayCast3D")
 wall_preview = NodePath("WallPreview")
 progress_bar = NodePath("ProgressBar")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=399633656]
 target_position = Vector3(0, 0, -20)
 collision_mask = 25
 
-[node name="WallPreview" parent="." instance=ExtResource("2_pjtpe")]
+[node name="WallPreview" parent="." unique_id=530809868 instance=ExtResource("2_pjtpe")]
 visible = false
 
-[node name="ProgressBar" type="TextureProgressBar" parent="."]
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1062723426]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

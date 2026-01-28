@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://cb1uqjl1387kk"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cb1uqjl1387kk"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_cmmto"]
 [ext_resource type="PackedScene" uid="uid://bk73g30y8kri4" path="res://Towers/Icicle/icicletower.tscn" id="3_gum2m"]
@@ -8,12 +8,10 @@
 
 [resource]
 script = ExtResource("1_cmmto")
-cost = 0
 rarity = 3
 faction = 2
 turret_scene = ExtResource("3_gum2m")
 weapon_scene = ExtResource("3_ve3rv")
 weapon_stats = ExtResource("4_yv37w")
 tower_stats = ExtResource("3_p8y0m")
-tags = Array[int]([])
 display_name = "CARD_NAME_ICE_SPIKE"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc6m3cluulpis"]
+[gd_scene format=3 uid="uid://bc6m3cluulpis"]
 
 [ext_resource type="Script" uid="uid://plrd0ckxrabh" path="res://UI/Menus/CharacterSelect/character_select.gd" id="1_lqqhx"]
 [ext_resource type="Script" uid="uid://b1ucgfqilvr67" path="res://UI/Menus/CharacterSelect/character_preview.gd" id="9_8d0rx"]
@@ -18,26 +18,26 @@ sky = SubResource("Sky_atdxu")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="CharacterSelect" type="Node3D" node_paths=PackedStringArray("hero_preview_panel")]
+[node name="CharacterSelect" type="Node3D" unique_id=436729461 node_paths=PackedStringArray("hero_preview_panel")]
 script = ExtResource("1_lqqhx")
 hero_preview_panel = NodePath("PanelContainer")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1371630210]
 environment = SubResource("Environment_pq6wd")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1239254279]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_energy = 0.0
 shadow_enabled = true
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=1629857614]
 
-[node name="Camera3D" type="Camera3D" parent="Node3D"]
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1488123111]
 transform = Transform3D(1, 0, 0, 0, 0.976893, 0.21373, 0, -0.21373, 0.976893, 0, 2.25535, 10.9009)
 cull_mask = 1047553
 fov = 39.4
 
-[node name="PanelContainer" type="PanelContainer" parent="." node_paths=PackedStringArray("tower_label_container", "hero_name_label")]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=39844487 node_paths=PackedStringArray("tower_label_container", "hero_name_label")]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.5
@@ -49,23 +49,23 @@ tower_label_scene = ExtResource("10_jdigy")
 tower_label_container = NodePath("HBoxContainer2/HBoxContainer")
 hero_name_label = NodePath("HBoxContainer2/Label")
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="PanelContainer" unique_id=190920841]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer2" unique_id=728476760]
 auto_translate_mode = 2
 layout_mode = 2
 text = "character name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer2"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer2" unique_id=984564366]
 layout_mode = 2
 
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer2" unique_id=1179176427]
 layout_mode = 2
 
-[node name="Controls" type="VBoxContainer" parent="."]
+[node name="Controls" type="VBoxContainer" parent="." unique_id=1200198613]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.95
@@ -74,22 +74,22 @@ anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls" unique_id=1966478987]
 layout_mode = 2
 
-[node name="PrevButton" type="Button" parent="Controls/HBoxContainer"]
+[node name="PrevButton" type="Button" parent="Controls/HBoxContainer" unique_id=1857725137]
 layout_mode = 2
 text = "BUTTON_PREVIOUS"
 
-[node name="NextButton" type="Button" parent="Controls/HBoxContainer"]
+[node name="NextButton" type="Button" parent="Controls/HBoxContainer" unique_id=1088756994]
 layout_mode = 2
 text = "BUTTON_NEXT"
 
-[node name="ConfirmButton" type="Button" parent="Controls"]
+[node name="ConfirmButton" type="Button" parent="Controls" unique_id=1693979285]
 layout_mode = 2
 text = "BUTTON_CONFIRM"
 
-[node name="Podiums" type="Node3D" parent="."]
+[node name="Podiums" type="Node3D" parent="." unique_id=743227295]
 
 [connection signal="pressed" from="Controls/HBoxContainer/PrevButton" to="." method="retreat_selector"]
 [connection signal="pressed" from="Controls/HBoxContainer/NextButton" to="." method="advance_selector"]

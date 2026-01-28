@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8xdsg6gtwvh3"]
+[gd_scene format=3 uid="uid://c8xdsg6gtwvh3"]
 
 [ext_resource type="Script" uid="uid://o668c5lfhgm5" path="res://UI/FeatureUI/feature_ui.gd" id="1_tms0v"]
 [ext_resource type="Texture2D" uid="uid://cps7onfe2s1gi" path="res://Scripts/Features/Radar/radar_icon.png" id="2_w6jf0"]
 
-[node name="FeatureUI" type="VBoxContainer" node_paths=PackedStringArray("icon", "name_label")]
+[node name="FeatureUI" type="VBoxContainer" unique_id=2142652255 node_paths=PackedStringArray("icon", "name_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,13 +14,13 @@ script = ExtResource("1_tms0v")
 icon = NodePath("TextureRect")
 name_label = NodePath("Label")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1888224261]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_w6jf0")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=479442611]
 visible = false
 layout_mode = 2
 text = "Radar"

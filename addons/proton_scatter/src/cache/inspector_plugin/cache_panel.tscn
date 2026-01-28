@@ -1,49 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://dilbceex72g24"]
+[gd_scene format=3 uid="uid://dilbceex72g24"]
 
-[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/inspector_plugin/cache_panel.gd" id="1_h1g4a"]
+[ext_resource type="Script" uid="uid://crmxxroo1015e" path="res://addons/proton_scatter/src/cache/inspector_plugin/cache_panel.gd" id="1_h1g4a"]
 [ext_resource type="Texture2D" uid="uid://yqlpvcmb7mfi" path="res://addons/proton_scatter/icons/rebuild.svg" id="2_0ml76"]
 [ext_resource type="Texture2D" uid="uid://ddjrq1h4mkn6a" path="res://addons/proton_scatter/icons/load.svg" id="3_i6mdl"]
 [ext_resource type="Texture2D" uid="uid://btb6rqhhi27mx" path="res://addons/proton_scatter/icons/remove.svg" id="4_bfbdy"]
 
-[node name="CachePanel" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 82.5)
+[node name="CachePanel" type="PanelContainer" unique_id=742928300]
+custom_minimum_size = Vector2(0, 140)
 offset_right = 161.0
 offset_bottom = 66.0
 size_flags_horizontal = 3
 script = ExtResource("1_h1g4a")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=477155813]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2018390524]
 layout_mode = 2
 alignment = 1
 
-[node name="RebuildButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="RebuildButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=441285853]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Update Cache"
 icon = ExtResource("2_0ml76")
 
-[node name="RestoreButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="RestoreButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1829127744]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Restore Transforms"
 icon = ExtResource("3_i6mdl")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1065359149]
 layout_mode = 2
 
-[node name="ClearButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ClearButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=15405493]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Clear Cache"
 icon = ExtResource("4_bfbdy")
 
-[node name="EnableForAllButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="EnableForAllButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2136382170]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Enable Cache For All"

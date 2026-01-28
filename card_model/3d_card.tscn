@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://n8ab1cy7ordc"]
+[gd_scene format=4 uid="uid://n8ab1cy7ordc"]
 
 [ext_resource type="Script" uid="uid://cr6hn1pbu35o1" path="res://card_model/3d_card.gd" id="1_o6jcx"]
 [ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="2_o6jcx"]
@@ -13,10 +13,6 @@ roughness = 0.5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdeaa"]
 render_priority = 0
 shader = ExtResource("2_o6jcx")
-shader_parameter/affine_mapping = true
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0gfbg"]
 _surfaces = [{
@@ -98,53 +94,31 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxum5")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bm66m"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ld374"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_o6jcx")
-shader_parameter/affine_mapping = false
-shader_parameter/albedo = SubResource("ViewportTexture_bm66m")
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
-
-[sub_resource type="Gradient" id="Gradient_bvqyy"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.844882, 0.457393, 0.0915536, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8q1at"]
-gradient = SubResource("Gradient_bvqyy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cuxkc"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_o6jcx")
-shader_parameter/affine_mapping = true
-shader_parameter/albedo = SubResource("GradientTexture1D_8q1at")
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
 
-[node name="3DCard" type="Node3D" node_paths=PackedStringArray("card_in_hand", "mesh")]
+[node name="3DCard" type="Node3D" unique_id=1654548650 node_paths=PackedStringArray("card_in_hand", "mesh")]
 script = ExtResource("1_o6jcx")
 card_in_hand = NodePath("SubViewport/Node2D")
 mesh = NodePath("card_model/Cube")
 
-[node name="card_model" type="Node3D" parent="."]
+[node name="card_model" type="Node3D" parent="." unique_id=1348296674]
 
-[node name="Cube" type="MeshInstance3D" parent="card_model"]
+[node name="Cube" type="MeshInstance3D" parent="card_model" unique_id=1142198663]
 layers = 2
 mesh = SubResource("ArrayMesh_4sds6")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_ld374")
 surface_material_override/1 = SubResource("ShaderMaterial_cuxkc")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2134221804]
 size = Vector2i(304, 448)
 
-[node name="Node2D" parent="SubViewport" instance=ExtResource("3_bnh6n")]
+[node name="Node2D" parent="SubViewport" unique_id=1251664599 instance=ExtResource("3_bnh6n")]
 position = Vector2(-80, -32)

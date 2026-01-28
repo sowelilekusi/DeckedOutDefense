@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8ecof4oeng1f"]
+[gd_scene format=3 uid="uid://c8ecof4oeng1f"]
 
 [ext_resource type="PackedScene" uid="uid://dipfsdrfnst0k" path="res://BigTree1/big_tree.glb" id="1_jd860"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=924363235]
 
-[node name="big_tree" parent="." instance=ExtResource("1_jd860")]
+[node name="big_tree" parent="." unique_id=1005968396 instance=ExtResource("1_jd860")]

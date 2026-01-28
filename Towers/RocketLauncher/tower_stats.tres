@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardText" load_steps=4 format=3 uid="uid://c65rq455ma8f6"]
+[gd_resource type="Resource" script_class="CardText" format=3 uid="uid://c65rq455ma8f6"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="2_gaqbj"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_lag26"]
@@ -6,8 +6,6 @@
 
 [resource]
 script = ExtResource("2_lag26")
-target_type = Array[int]([])
-energy_type = 0
 attributes = Dictionary[String, float]({
 "Damage": 8.0,
 "Fire Delay": 5.0,

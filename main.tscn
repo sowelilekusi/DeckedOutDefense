@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2k8y13qfvch0"]
+[gd_scene format=3 uid="uid://d2k8y13qfvch0"]
 
 [ext_resource type="Script" uid="uid://cx1xj7esl03ui" path="res://main.gd" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://6frn8lcwwehv" path="res://Assets/TextureAtlases/puppyfruit.png" id="2_lquwl"]
@@ -15,13 +15,13 @@ shader_parameter/color_depth = 5
 shader_parameter/dithering = true
 shader_parameter/resolution_scale = 1
 
-[node name="Main" type="Node" node_paths=PackedStringArray("scene", "movies")]
+[node name="Main" type="Node" unique_id=346903609 node_paths=PackedStringArray("scene", "movies")]
 script = ExtResource("2_h2yge")
 scene = NodePath("Scene")
 movies = NodePath("Movies")
 metadata/_custom_type_script = "uid://cx1xj7esl03ui"
 
-[node name="Movies" type="ColorRect" parent="."]
+[node name="Movies" type="ColorRect" parent="." unique_id=2131569312]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.193592, 0.4164, 0.224909, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Movies" node_paths=PackedStringArray("color_rect")]
+[node name="TextureRect" type="TextureRect" parent="Movies" unique_id=913151105 node_paths=PackedStringArray("color_rect")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,7 +46,7 @@ texture = SubResource("AtlasTexture_272bh")
 script = ExtResource("3_7mycd")
 color_rect = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="Movies"]
+[node name="Label" type="Label" parent="Movies" unique_id=227652423]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -59,7 +59,7 @@ text = "puppyfruit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Movies"]
+[node name="ColorRect" type="ColorRect" parent="Movies" unique_id=1391735644]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -74,12 +74,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.415686, 0.223529, 1)
 
-[node name="Scene" type="Node" parent="."]
+[node name="Scene" type="Node" parent="." unique_id=1521435243]
 
-[node name="PostProcessingLayer" type="CanvasLayer" parent="."]
+[node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=653120951]
 layer = 3
 
-[node name="ColorRect2" type="ColorRect" parent="PostProcessingLayer"]
+[node name="ColorRect2" type="ColorRect" parent="PostProcessingLayer" unique_id=567490189]
 material = SubResource("ShaderMaterial_272bh")
 anchors_preset = 15
 anchor_right = 1.0

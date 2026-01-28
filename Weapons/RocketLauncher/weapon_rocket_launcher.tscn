@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdp7icdejayvr"]
+[gd_scene format=3 uid="uid://bdp7icdejayvr"]
 
 [ext_resource type="PackedScene" uid="uid://bqdllitxbbpyp" path="res://Scenes/Weapons/projectile_weapon.tscn" id="1_gxaua"]
 [ext_resource type="Script" uid="uid://cuxi02s34ohs" path="res://Weapons/RocketLauncher/weapon_rocket_launcher.gd" id="2_8x1tf"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cc2umukpibmx1" path="res://Weapons/RocketLauncher/target_list.png" id="6_jlv88"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="8_genbv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4p4w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0imp"]
 resource_local_to_scene = true
 atlas = ExtResource("4_iygkf")
 region = Rect2(0, 0, 64, 64)
@@ -23,7 +23,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("8_genbv")
 
-[node name="RocketLauncher" node_paths=PackedStringArray("targeting_raycast", "targeting_ui_rect") instance=ExtResource("1_gxaua")]
+[node name="RocketLauncher" unique_id=2076073673 node_paths=PackedStringArray("targeting_raycast", "targeting_ui_rect") instance=ExtResource("1_gxaua")]
 script = ExtResource("2_8x1tf")
 target_icon_scene = ExtResource("3_2x5va")
 targeting_raycast = NodePath("RayCast3D")
@@ -31,14 +31,14 @@ targeting_ui_rect = NodePath("TextureRect")
 projectile_scene = ExtResource("2_lfuvh")
 stats = ExtResource("3_i1hxj")
 
-[node name="Sprite3D" parent="." index="0"]
-texture = SubResource("AtlasTexture_f4p4w")
+[node name="Sprite3D" parent="." index="0" unique_id=1457062627]
+texture = SubResource("AtlasTexture_y0imp")
 
-[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
+[node name="RayCast3D" type="RayCast3D" parent="." index="2" unique_id=2956936]
 target_position = Vector3(0, 0, -100)
 collision_mask = 4
 
-[node name="TextureRect" type="TextureRect" parent="." index="3"]
+[node name="TextureRect" type="TextureRect" parent="." index="3" unique_id=685568998]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,5 +53,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ewxon")
 
-[node name="AudioStreamPlayer3D" parent="." index="5"]
+[node name="AudioStreamPlayer3D" parent="." index="5" unique_id=1246168083]
 stream = SubResource("AudioStreamRandomizer_5w2i3")

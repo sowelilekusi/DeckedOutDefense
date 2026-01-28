@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj2q72ch8nkek"]
+[gd_scene format=3 uid="uid://bj2q72ch8nkek"]
 
 [ext_resource type="Script" uid="uid://ge2hingujtc8" path="res://card_placing_tool.gd" id="1_7yi0i"]
 
-[node name="CardPlacingTool" type="Node3D" node_paths=PackedStringArray("ray")]
+[node name="CardPlacingTool" type="Node3D" unique_id=847164964 node_paths=PackedStringArray("ray")]
 script = ExtResource("1_7yi0i")
 ray = NodePath("RayCast3D")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1267699718]
 target_position = Vector3(0, 0, -20)
 collision_mask = 25

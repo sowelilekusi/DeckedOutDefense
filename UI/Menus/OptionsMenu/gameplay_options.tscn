@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjk7jf0bau5lv"]
+[gd_scene format=3 uid="uid://bjk7jf0bau5lv"]
 
 [ext_resource type="Script" uid="uid://dtrjph756oq1f" path="res://UI/Menus/OptionsMenu/gameplay_options.gd" id="1_sy26f"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 
-[node name="Gameplay" type="VBoxContainer" node_paths=PackedStringArray("resolution_drop_down", "look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "invert_lookY", "invert_lookX", "fixed_minimap", "tower_damage", "self_damage", "party_damage", "status_damage")]
+[node name="Gameplay" type="VBoxContainer" unique_id=9533751 node_paths=PackedStringArray("resolution_drop_down", "look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "invert_lookY", "invert_lookX", "fixed_minimap", "tower_damage", "self_damage", "party_damage", "status_damage")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,164 +23,164 @@ self_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/S
 party_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/PartyDamage")
 status_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/StatusDamage")
 
-[node name="Resolution" type="HBoxContainer" parent="."]
+[node name="Resolution" type="HBoxContainer" parent="." unique_id=1996706644]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resolution"]
+[node name="Label" type="Label" parent="Resolution" unique_id=1300086140]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_RESOLUTION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Resolution"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Resolution" unique_id=681886116]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionButton" type="OptionButton" parent="Resolution/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="Resolution/HBoxContainer" unique_id=796953193]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="MouseSens" type="HBoxContainer" parent="."]
+[node name="MouseSens" type="HBoxContainer" parent="." unique_id=94044285]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MouseSens"]
+[node name="Label" type="Label" parent="MouseSens" unique_id=121857514]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_MOUSE_SENSITIVITY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MouseSens"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MouseSens" unique_id=1900220297]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinBox" type="SpinBox" parent="MouseSens/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="MouseSens/HBoxContainer" unique_id=1624869113]
 layout_mode = 2
 theme_override_icons/updown = SubResource("ImageTexture_03x6q")
 step = 0.01
 alignment = 1
 update_on_text_changed = true
 
-[node name="HSlider" type="HSlider" parent="MouseSens/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="MouseSens/HBoxContainer" unique_id=1975350654]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 step = 0.01
 scrollable = false
 
-[node name="ToggleSprint" type="HBoxContainer" parent="."]
+[node name="ToggleSprint" type="HBoxContainer" parent="." unique_id=978539197]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ToggleSprint"]
+[node name="Label" type="Label" parent="ToggleSprint" unique_id=1283392954]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_TOGGLE_SPRINT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="ToggleSprint"]
+[node name="CenterContainer" type="CenterContainer" parent="ToggleSprint" unique_id=376741059]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckButton" type="CheckButton" parent="ToggleSprint/CenterContainer"]
+[node name="CheckButton" type="CheckButton" parent="ToggleSprint/CenterContainer" unique_id=2022295218]
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="InvertMouseY" type="HBoxContainer" parent="."]
+[node name="InvertMouseY" type="HBoxContainer" parent="." unique_id=1444600243]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="InvertMouseY"]
+[node name="Label" type="Label" parent="InvertMouseY" unique_id=1572398345]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_INVERT_MOUSE_Y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="InvertMouseY"]
+[node name="CenterContainer" type="CenterContainer" parent="InvertMouseY" unique_id=374128785]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckButton" type="CheckButton" parent="InvertMouseY/CenterContainer"]
+[node name="CheckButton" type="CheckButton" parent="InvertMouseY/CenterContainer" unique_id=2044173913]
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="InvertMouseX" type="HBoxContainer" parent="."]
+[node name="InvertMouseX" type="HBoxContainer" parent="." unique_id=461905582]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="InvertMouseX"]
+[node name="Label" type="Label" parent="InvertMouseX" unique_id=372744415]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_INVERT_MOUSE_X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="InvertMouseX"]
+[node name="CenterContainer" type="CenterContainer" parent="InvertMouseX" unique_id=2040531812]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckButton" type="CheckButton" parent="InvertMouseX/CenterContainer"]
+[node name="CheckButton" type="CheckButton" parent="InvertMouseX/CenterContainer" unique_id=1411305788]
 layout_mode = 2
 size_flags_horizontal = 3
 flat = true
 
-[node name="FixedMinimap" type="HBoxContainer" parent="."]
+[node name="FixedMinimap" type="HBoxContainer" parent="." unique_id=1354501751]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="FixedMinimap"]
+[node name="Label" type="Label" parent="FixedMinimap" unique_id=1118779722]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_FIXED_MINIMAP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="FixedMinimap"]
+[node name="CenterContainer" type="CenterContainer" parent="FixedMinimap" unique_id=32064831]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckButton" type="CheckButton" parent="FixedMinimap/CenterContainer"]
+[node name="CheckButton" type="CheckButton" parent="FixedMinimap/CenterContainer" unique_id=290069283]
 layout_mode = 2
 flat = true
 
-[node name="FloatingDamageIndicators" type="HBoxContainer" parent="."]
+[node name="FloatingDamageIndicators" type="HBoxContainer" parent="." unique_id=259538885]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="FloatingDamageIndicators"]
+[node name="Label" type="Label" parent="FloatingDamageIndicators" unique_id=1583027587]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_DISPLAY_DAMAGE_INDICATORS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="FloatingDamageIndicators"]
+[node name="CenterContainer" type="CenterContainer" parent="FloatingDamageIndicators" unique_id=599427541]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FloatingDamageIndicators/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="FloatingDamageIndicators/CenterContainer" unique_id=1975754983]
 layout_mode = 2
 
-[node name="TowerDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+[node name="TowerDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer" unique_id=241424148]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 text = "OPTION_TOWER_DAMAGE"
 
-[node name="SelfDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+[node name="SelfDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer" unique_id=924745895]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 text = "OPTION_SELF_DAMAGE"
 
-[node name="PartyDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+[node name="PartyDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer" unique_id=852777437]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 text = "OPTION_PARTY_DAMAGE"
 
-[node name="StatusDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer"]
+[node name="StatusDamage" type="Button" parent="FloatingDamageIndicators/CenterContainer/HBoxContainer" unique_id=764996434]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://dg4pjt47q8xpw"]
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dg4pjt47q8xpw"]
 
 [ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_xmwih"]
 [ext_resource type="Resource" uid="uid://cdtjbxs21peqg" path="res://Towers/Flamethrower/tower_stats.tres" id="3_sjxkl"]
@@ -8,12 +8,10 @@
 
 [resource]
 script = ExtResource("1_xmwih")
-cost = 0
 rarity = 2
 faction = 1
 turret_scene = ExtResource("4_rgkdc")
 weapon_scene = ExtResource("4_800j1")
 weapon_stats = ExtResource("5_qi4e4")
 tower_stats = ExtResource("3_sjxkl")
-tags = Array[int]([])
 display_name = "CARD_NAME_FLAMETHROWER"

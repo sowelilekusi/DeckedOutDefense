@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://gyeamtekshor"]
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://gyeamtekshor"]
 
 [sub_resource type="Gradient" id="Gradient_eiw3y"]
 interpolation_color_space = 2

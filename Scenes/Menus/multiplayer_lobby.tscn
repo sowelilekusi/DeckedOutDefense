@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwvprrvk4l2k0"]
+[gd_scene format=3 uid="uid://cwvprrvk4l2k0"]
 
 [ext_resource type="Script" uid="uid://cvm4lyhx1uh0w" path="res://Scripts/multiplayer_lobby.gd" id="2_nb860"]
 [ext_resource type="PackedScene" uid="uid://dpt3kpixawyby" path="res://UI/scoreboard.tscn" id="3_f6bia"]
@@ -12,7 +12,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("7_6mhre")
 
-[node name="multiplayer_lobby" type="Control" node_paths=PackedStringArray("server_form", "chatbox", "audio_player")]
+[node name="multiplayer_lobby" type="Control" unique_id=473106326 node_paths=PackedStringArray("server_form", "chatbox", "audio_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,14 +26,14 @@ character_select_screen = ExtResource("7_kawp7")
 chatbox = NodePath("Chatbox")
 audio_player = NodePath("AudioStreamPlayer")
 
-[node name="ServerForm" parent="." instance=ExtResource("5_bqbwv")]
+[node name="ServerForm" parent="." unique_id=1466097634 instance=ExtResource("5_bqbwv")]
 layout_mode = 1
 offset_left = -151.0
 offset_top = -112.0
 offset_right = 151.0
 offset_bottom = 112.0
 
-[node name="Scoreboard" parent="." instance=ExtResource("3_f6bia")]
+[node name="Scoreboard" parent="." unique_id=1465394887 instance=ExtResource("3_f6bia")]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -43,7 +43,7 @@ offset_left = -472.0
 offset_right = -50.0
 grow_horizontal = 0
 
-[node name="ReadyButton" type="Button" parent="."]
+[node name="ReadyButton" type="Button" parent="." unique_id=7189097]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -59,10 +59,10 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "Ready"
 
-[node name="Chatbox" parent="." instance=ExtResource("6_wtqwd")]
+[node name="Chatbox" parent="." unique_id=1790554118 instance=ExtResource("6_wtqwd")]
 layout_mode = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1774735888]
 stream = SubResource("AudioStreamRandomizer_cwnde")
 bus = &"SFX"
 

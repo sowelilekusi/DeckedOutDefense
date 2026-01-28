@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://csufsbi64asau"]
+[gd_scene format=3 uid="uid://csufsbi64asau"]
 
 [ext_resource type="Texture2D" uid="uid://hnfa76d6tdi" path="res://Weapons/RocketLauncher/target_icon.png" id="1_r4a3f"]
 
-[node name="Node3D" type="Sprite3D"]
+[node name="Node3D" type="Sprite3D" unique_id=1768912620]
 sorting_offset = 20.0
 pixel_size = 0.002
 billboard = 1

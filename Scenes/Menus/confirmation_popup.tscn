@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://f46qh73hrk4y"]
+[gd_scene format=3 uid="uid://f46qh73hrk4y"]
 
 [ext_resource type="Script" uid="uid://bjt72v1wym5ie" path="res://Scripts/confirmation_popup.gd" id="1_x7akt"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="2_3w36n"]
@@ -8,7 +8,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_3w36n")
 
-[node name="ConfirmationPopup" type="PanelContainer"]
+[node name="ConfirmationPopup" type="PanelContainer" unique_id=1165272278]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,29 +22,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x7akt")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1692009644]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1306121466]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Some Text?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1948090750]
 layout_mode = 2
 alignment = 2
 
-[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2050991125]
 layout_mode = 2
 text = "Cancel"
 
-[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=830285956]
 layout_mode = 2
 text = "Confirm"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=195190349]
 stream = SubResource("AudioStreamRandomizer_22wuj")
 bus = &"SFX"
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwc45ogto8thn"]
+[gd_scene format=3 uid="uid://bwc45ogto8thn"]
 
 [ext_resource type="Script" uid="uid://c4ljvgrb81du6" path="res://UI/Menus/OptionsMenu/audio_options.gd" id="1_avc0j"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_hvvdd"]
 
-[node name="Audio" type="VBoxContainer" node_paths=PackedStringArray("master_input", "master_slider", "music_input", "music_slider", "sfx_input", "sfx_slider")]
+[node name="Audio" type="VBoxContainer" unique_id=593801484 node_paths=PackedStringArray("master_input", "master_slider", "music_input", "music_slider", "sfx_input", "sfx_slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,21 +18,21 @@ music_slider = NodePath("Music/HBoxContainer/HSlider")
 sfx_input = NodePath("SFX/HBoxContainer/SpinBox")
 sfx_slider = NodePath("SFX/HBoxContainer/HSlider")
 
-[node name="Master" type="HBoxContainer" parent="."]
+[node name="Master" type="HBoxContainer" parent="." unique_id=1142133925]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Master"]
+[node name="Label" type="Label" parent="Master" unique_id=1552603842]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_MASTER_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Master"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Master" unique_id=1063013261]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinBox" type="SpinBox" parent="Master/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="Master/HBoxContainer" unique_id=1380819438]
 layout_mode = 2
 theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
 value = 100.0
@@ -40,27 +40,27 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="HSlider" type="HSlider" parent="Master/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Master/HBoxContainer" unique_id=497952448]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
-[node name="Music" type="HBoxContainer" parent="."]
+[node name="Music" type="HBoxContainer" parent="." unique_id=812179024]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Music"]
+[node name="Label" type="Label" parent="Music" unique_id=1525069107]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_MUSIC_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Music"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Music" unique_id=1819073536]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinBox" type="SpinBox" parent="Music/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="Music/HBoxContainer" unique_id=1382680787]
 layout_mode = 2
 theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
 value = 100.0
@@ -68,27 +68,27 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="HSlider" type="HSlider" parent="Music/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Music/HBoxContainer" unique_id=441308549]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
-[node name="SFX" type="HBoxContainer" parent="."]
+[node name="SFX" type="HBoxContainer" parent="." unique_id=640927754]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SFX"]
+[node name="Label" type="Label" parent="SFX" unique_id=645474174]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OPTION_SFX_AUDIO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SFX"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SFX" unique_id=315581570]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinBox" type="SpinBox" parent="SFX/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="SFX/HBoxContainer" unique_id=1649673461]
 layout_mode = 2
 theme_override_icons/updown = SubResource("ImageTexture_hvvdd")
 value = 100.0
@@ -96,7 +96,7 @@ rounded = true
 alignment = 1
 update_on_text_changed = true
 
-[node name="HSlider" type="HSlider" parent="SFX/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="SFX/HBoxContainer" unique_id=2086377224]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

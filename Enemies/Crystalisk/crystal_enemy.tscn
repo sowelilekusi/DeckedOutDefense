@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cveiaa0y66gln"]
+[gd_scene format=3 uid="uid://cveiaa0y66gln"]
 
 [ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="1_aormu"]
 [ext_resource type="PackedScene" uid="uid://o6whohcbalui" path="res://Enemies/Crystalisk/crystal_enemy.glb" id="2_myjng"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="2_s62t3"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_myjng"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c5uwa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tjipw"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5uwa"]
@@ -15,37 +16,44 @@ height = 1.415
 radius = 0.133503
 height = 0.56
 
-[node name="Dog" instance=ExtResource("1_aormu")]
+[node name="Dog" unique_id=1355419805 instance=ExtResource("1_aormu")]
+stats = ExtResource("2_s62t3")
 
-[node name="Sprite3D" parent="." index="0"]
-texture = SubResource("ViewportTexture_c5uwa")
+[node name="Sprite3D" parent="." index="0" unique_id=2020998819]
+texture = SubResource("ViewportTexture_tjipw")
 
-[node name="crystal_enemy" parent="." index="6" instance=ExtResource("2_myjng")]
+[node name="crystal_enemy" parent="." index="6" unique_id=86826412 instance=ExtResource("2_myjng")]
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="crystal_enemy/Cube_001" index="0"]
+[node name="Cube_001" parent="crystal_enemy" index="1" unique_id=1809229845]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.59980416, -0.60039425, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="crystal_enemy/Cube_001" index="0" unique_id=1303209050]
 remote_path = NodePath("../../../MiniHitbox2")
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="crystal_enemy/Cube_002" index="0"]
+[node name="Cube_002" parent="crystal_enemy" index="2" unique_id=2142282279]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.60133517, 0.5952302, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="crystal_enemy/Cube_002" index="0" unique_id=42756288]
 remote_path = NodePath("../../../MiniHitbox")
 
-[node name="AnimationPlayer" parent="crystal_enemy" index="3"]
-autoplay = "Spin"
+[node name="AnimationPlayer" parent="crystal_enemy" index="3" unique_id=807474404]
+autoplay = &"Spin"
 speed_scale = 2.0
 
-[node name="MainHitbox" type="CollisionShape3D" parent="." index="7"]
+[node name="MainHitbox" type="CollisionShape3D" parent="." index="7" unique_id=1521729609]
 shape = SubResource("CapsuleShape3D_c5uwa")
 script = ExtResource("3_myjng")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
-[node name="MiniHitbox" type="CollisionShape3D" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60133517, 0.5952302, 0)
+[node name="MiniHitbox" type="CollisionShape3D" parent="." index="8" unique_id=1324997842]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.60133517, 0.5952302, 0)
 shape = SubResource("CapsuleShape3D_d7aub")
 script = ExtResource("3_myjng")
 critical_zone = true
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
-[node name="MiniHitbox2" type="CollisionShape3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59980416, -0.60039425, 0)
+[node name="MiniHitbox2" type="CollisionShape3D" parent="." index="9" unique_id=723617284]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.59980416, -0.60039425, 0)
 shape = SubResource("CapsuleShape3D_d7aub")
 script = ExtResource("3_myjng")
 critical_zone = true
