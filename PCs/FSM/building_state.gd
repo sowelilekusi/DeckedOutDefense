@@ -5,8 +5,9 @@ extends HeroState
 
 
 func enter_state() -> void:
+	if hero.game_manager:
+		hero.game_manager.level.enable_non_path_tower_frames()
 	hero.edit_tool.enabled = true
-	hero.game_manager.level.enable_non_path_tower_frames()
 	hero.left_hand_model.visible = true
 	hero.gauntlet_model.visible = true
 	hero.cassette.visible = false

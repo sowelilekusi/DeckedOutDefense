@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://y1qa1g3ic8sp"]
 
 [ext_resource type="Script" uid="uid://cvejbo3srx8py" path="res://Scripts/level.gd" id="1_ws6nn"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="2_ks6qx"]
 [ext_resource type="PackedScene" uid="uid://d2yv447trxkwt" path="res://Scenes/enemy_spawner.tscn" id="3_5imwp"]
-[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="3_6od8s"]
-[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="3_j6d65"]
-[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="5_j6d65"]
-[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="6_ks6qx"]
-[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="9_4gdda"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="3_6tcu8"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="4_uh5sr"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="5_g08yk"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="6_asmpj"]
 [ext_resource type="PackedScene" uid="uid://1b2ikdanl66b" path="res://Scenes/CardPrinter/card_printer.tscn" id="9_r25gu"]
 [ext_resource type="Script" uid="uid://cxwtuxytavfu5" path="res://Scripts/enemy_goal.gd" id="9_s3rd7"]
 [ext_resource type="Script" uid="uid://yk54owkf7pgj" path="res://Scripts/cinema_cam.gd" id="9_xuyhn"]
@@ -248,7 +248,7 @@ size = Vector2(7.84, 3.69)
 
 [node name="Bridge" type="Node3D" unique_id=1906077552 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "flow_field", "cinematic_cam", "printer", "shop")]
 script = ExtResource("1_ws6nn")
-enemy_pool = Array[ExtResource("3_6od8s")]([ExtResource("3_j6d65"), ExtResource("9_4gdda"), ExtResource("5_j6d65"), ExtResource("6_ks6qx")])
+enemy_pool = Array[ExtResource("2_ks6qx")]([ExtResource("3_6tcu8"), ExtResource("4_uh5sr"), ExtResource("5_g08yk"), ExtResource("6_asmpj")])
 tower_path = NodePath("Towers")
 player_spawns = [NodePath("PlayerSpawnLocations/PlayerSpawn1"), NodePath("PlayerSpawnLocations/PlayerSpawn2"), NodePath("PlayerSpawnLocations/PlayerSpawn3"), NodePath("PlayerSpawnLocations/PlayerSpawn4")]
 enemy_spawns = [NodePath("GroundSpawn"), NodePath("GroundSpawn2"), NodePath("GroundSpawn3"), NodePath("GroundSpawn4"), NodePath("GroundSpawn5"), NodePath("AirSpawn")]

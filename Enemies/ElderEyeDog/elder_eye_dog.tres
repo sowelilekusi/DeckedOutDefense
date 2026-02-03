@@ -10,8 +10,8 @@
 script = ExtResource("1_q48il")
 title = "ENEMY_HEAVY_WALKER"
 target_type = 1
-scene = ExtResource("3_m808b")
 icon = ExtResource("1_lck53")
+scene = ExtResource("3_m808b")
 death_sprite = ExtResource("1_qveaa")
 sprite = ExtResource("2_7nc4x")
 spawn_power = 14

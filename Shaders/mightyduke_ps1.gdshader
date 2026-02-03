@@ -16,8 +16,9 @@ uniform sampler2D albedo: source_color, filter_nearest_mipmap;
 global uniform float vertex_jitter: hint_range(0.0, 1.0) = 0.5;
 uniform bool jitter_z_coordinate = true;
 uniform bool jitter_depth_independent = true;
-global uniform bool affine_mapping = true;
+global uniform float affine_amount: hint_range(0.0, 1.0) = 1.0;
 uniform float alpha_scissor: hint_range(0.0, 1.0) = 1.0;
+varying vec2 perspective_uv;
 
 void vertex() {
 	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -38,19 +39,14 @@ void vertex() {
 		VERTEX.z = z_orig;
 	}
 	POSITION = PROJECTION_MATRIX * vec4(VERTEX, 1.0);
-	if (affine_mapping) {
-
-		POSITION /= abs(POSITION.w);
-		//UV *= VERTEX.z;
-	}
+	perspective_uv = UV;
+	UV *= VERTEX.z;
 }
 
 void fragment() {
 	vec2 uv = UV;
-
-	//if (affine_texture_mapping) {
-	//	uv /= VERTEX.z;
-	//}
+	uv /= (VERTEX.z);
+	uv = mix(perspective_uv, uv, affine_amount);
 
 	ALBEDO = texture(albedo, uv).rgb;
 	ALPHA = texture(albedo, uv).a;

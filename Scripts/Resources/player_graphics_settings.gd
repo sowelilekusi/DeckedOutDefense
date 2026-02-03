@@ -7,6 +7,8 @@ const SAVE_PATH: String = "user://graphics_settings.tres"
 @export var vsync_mode: int = 1
 @export var aa_mode: int = 0
 @export var windowed_mode: int = 0
+@export var vertex_jitter: float = 0.2
+@export var affine_warping: float = 1.0
 
 
 func apply_graphical_settings(viewport: Viewport) -> void:
@@ -28,6 +30,8 @@ func apply_graphical_settings(viewport: Viewport) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	RenderingServer.global_shader_parameter_set("vertex_jitter", vertex_jitter)
+	RenderingServer.global_shader_parameter_set("affine_amount", affine_warping)
 
 
 func save_profile_to_disk() -> void:

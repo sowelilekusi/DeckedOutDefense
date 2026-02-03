@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="1_aormu"]
 [ext_resource type="PackedScene" uid="uid://o6whohcbalui" path="res://Enemies/Crystalisk/crystal_enemy.glb" id="2_myjng"]
-[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="2_s62t3"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_myjng"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tjipw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ij8ev"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5uwa"]
@@ -17,10 +16,9 @@ radius = 0.133503
 height = 0.56
 
 [node name="Dog" unique_id=1355419805 instance=ExtResource("1_aormu")]
-stats = ExtResource("2_s62t3")
 
 [node name="Sprite3D" parent="." index="0" unique_id=2020998819]
-texture = SubResource("ViewportTexture_tjipw")
+texture = SubResource("ViewportTexture_ij8ev")
 
 [node name="crystal_enemy" parent="." index="6" unique_id=86826412 instance=ExtResource("2_myjng")]
 

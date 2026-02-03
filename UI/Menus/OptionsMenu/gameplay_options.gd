@@ -15,10 +15,10 @@ extends VBoxContainer
 
 
 func _ready() -> void:
-	resolution_drop_down.add_item("320x240")
-	resolution_drop_down.add_item("1920x1080")
-	$MouseSens2/HBoxContainer/SpinBox.value = get_window().content_scale_factor
-	$MouseSens2/HBoxContainer/HSlider.value = get_window().content_scale_factor
+	#resolution_drop_down.add_item("320x240")
+	#resolution_drop_down.add_item("1920x1080")
+	#$MouseSens2/HBoxContainer/SpinBox.value = get_window().content_scale_factor
+	#$MouseSens2/HBoxContainer/HSlider.value = get_window().content_scale_factor
 	look_sens_slider.value = Data.preferences.mouse_sens
 	look_sens_input.value = Data.preferences.mouse_sens
 	toggle_sprint_checkbox.button_pressed = Data.preferences.toggle_sprint

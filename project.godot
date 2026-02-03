@@ -249,11 +249,11 @@ textures/canvas_textures/default_texture_filter=0
 
 [shader_globals]
 
-affine_mapping={
-"type": "bool",
-"value": true
-}
 vertex_jitter={
 "type": "float",
 "value": 0.2
+}
+affine_amount={
+"type": "float",
+"value": 1.0
 }

@@ -100,7 +100,7 @@ func _ready() -> void:
 		sprite.queue_free()
 		player_name_tag.queue_free()
 		for card: Card in hero_class.deck:
-			if game_manager.card_gameplay:
+			if game_manager and game_manager.card_gameplay:
 				draw_pile.add(card)
 			else:
 				add_card(card)
@@ -239,7 +239,6 @@ func set_card_elements_visibility(value: bool) -> void:
 	else:
 		hud.hide_hot_wheel()
 		hud.hide_slots()
-	$FirstPersonViewport/Head2/LeftHand.visible = value
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -248,9 +247,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Pause"):
 		var menu: PauseMenu = pause_menu_scene.instantiate() as PauseMenu
 		pause()
-		menu.game_manager = game_manager
-		menu.quit_to_desktop_pressed.connect(game_manager.quit_to_desktop)
-		menu.quit_to_main_menu_pressed.connect(game_manager.scene_switch_main_menu)
+		if game_manager:
+			menu.game_manager = game_manager
+			menu.quit_to_desktop_pressed.connect(game_manager.quit_to_desktop)
+			menu.quit_to_main_menu_pressed.connect(game_manager.scene_switch_main_menu)
 		menu.closed.connect(unpause)
 		hud.add_child(menu)
 	if event.is_action_pressed("Show Wave Preview"):

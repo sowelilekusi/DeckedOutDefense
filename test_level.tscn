@@ -1,13 +1,43 @@
 [gd_scene format=3 uid="uid://crr8kg4ack7rq"]
 
 [ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/eye_dog.tscn" id="1_sb12i"]
+[ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="2_6emce"]
 [ext_resource type="PackedScene" uid="uid://dl3rwqwbgrq2m" path="res://Enemies/ElderEyeDog/elder_eye_dog.tscn" id="2_gbhdq"]
+[ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="3_lowby"]
 [ext_resource type="PackedScene" uid="uid://cveiaa0y66gln" path="res://Enemies/Crystalisk/crystal_enemy.tscn" id="3_y646j"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_58smv"]
 [ext_resource type="PackedScene" uid="uid://dtahuv0kpxx03" path="res://Enemies/BabyEyeDog/baby_eye_dog.tscn" id="4_lnbra"]
 [ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="5_6emce"]
+[ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="5_a25ih"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lowby"]
 size = Vector3(20, 1, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6emce"]
+resource_local_to_scene = true
+atlas = ExtResource("5_a25ih")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Resource" id="Resource_lowby"]
+resource_local_to_scene = true
+script = ExtResource("4_58smv")
+title = "ENEMY_DOG"
+target_type = 1
+icon = ExtResource("3_lowby")
+death_sprite = ExtResource("2_6emce")
+sprite = SubResource("AtlasTexture_6emce")
+health = 180
+movement_speed = 1.5
+spawn_cooldown = 1.2
+common_group = 6
+uncommon_group = 10
+uncommon_cost = 2
+rare_group = 16
+rare_cost = 3
+epic_group = 22
+epic_cost = 5
+legendary_group = 28
+legendary_cost = 6
 
 [node name="Node3D" type="Node3D" unique_id=747882904]
 
@@ -21,6 +51,7 @@ size = Vector3(20, 1, 20)
 
 [node name="EyeDog" parent="." unique_id=1016179251 instance=ExtResource("1_sb12i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4945354, 0.5048856, -2.1569223)
+stats = SubResource("Resource_lowby")
 
 [node name="ElderEyeDog" parent="." unique_id=1106613653 instance=ExtResource("2_gbhdq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93381655, 0.5048856, -2.248024)

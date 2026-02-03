@@ -1,7 +1,10 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cmrs1ubeqtl71"]
 
-[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="1_bpyoj"]
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_bpyoj"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_bpyoj")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0

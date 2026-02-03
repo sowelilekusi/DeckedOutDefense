@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_17xxt"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_lirjc"]
-[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="2_qqld3"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="5_bi7k0"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="6_k6khd"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="7_wko6w"]
@@ -23,7 +22,6 @@ viewport_path = NodePath("SubViewport")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_17xxt")
-stats = ExtResource("2_qqld3")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")

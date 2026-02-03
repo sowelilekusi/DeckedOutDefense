@@ -4,7 +4,7 @@
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 
-[node name="Graphics" type="VBoxContainer" unique_id=1842224615 node_paths=PackedStringArray("fov_input", "fov_slider", "vsync_dropdown", "aa_dropdown", "window_dropdown")]
+[node name="Graphics" type="VBoxContainer" unique_id=1842224615 node_paths=PackedStringArray("fov_input", "fov_slider", "vsync_dropdown", "aa_dropdown", "window_dropdown", "vertex_jitter_input", "vertex_jitter_slider", "affine_warping_input", "affine_warping_slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,6 +16,10 @@ fov_slider = NodePath("FOV/HBoxContainer/HSlider")
 vsync_dropdown = NodePath("VSync/OptionButton")
 aa_dropdown = NodePath("AntiAliasing/OptionButton")
 window_dropdown = NodePath("Windowed/OptionButton")
+vertex_jitter_input = NodePath("VextexJitter/HBoxContainer/SpinBox")
+vertex_jitter_slider = NodePath("VextexJitter/HBoxContainer/HSlider")
+affine_warping_input = NodePath("AffineWarping/HBoxContainer/SpinBox")
+affine_warping_slider = NodePath("AffineWarping/HBoxContainer/HSlider")
 
 [node name="FOV" type="HBoxContainer" parent="." unique_id=693078328]
 layout_mode = 2
@@ -120,5 +124,79 @@ popup/item_1/id = 1
 popup/item_2/text = "OPTION_FULLSCREEN"
 popup/item_2/id = 2
 
+[node name="VextexJitter" type="HBoxContainer" parent="." unique_id=624638999]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VextexJitter" unique_id=890349126]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_VERTEX_JITTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VextexJitter" unique_id=857909591]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="VextexJitter/HBoxContainer" unique_id=319711346]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+max_value = 1.0
+step = 0.01
+value = 0.2
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="VextexJitter/HBoxContainer" unique_id=451280678]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 0.2
+scrollable = false
+
+[node name="AffineWarping" type="HBoxContainer" parent="." unique_id=962591793]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="AffineWarping" unique_id=206915184]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_AFFINE_WARPING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AffineWarping" unique_id=1780949636]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="AffineWarping/HBoxContainer" unique_id=1434191726]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+max_value = 1.0
+step = 0.01
+value = 1.0
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="AffineWarping/HBoxContainer" unique_id=2037498715]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
 [connection signal="value_changed" from="FOV/HBoxContainer/SpinBox" to="." method="_on_fov_spin_box_value_changed"]
 [connection signal="value_changed" from="FOV/HBoxContainer/HSlider" to="." method="_on_fov_h_slider_value_changed"]
+[connection signal="value_changed" from="VextexJitter/HBoxContainer/SpinBox" to="." method="_on_vertex_jitter_spin_box_value_changed"]
+[connection signal="value_changed" from="VextexJitter/HBoxContainer/HSlider" to="." method="_on_vertex_jitter_h_slider_value_changed"]
+[connection signal="value_changed" from="AffineWarping/HBoxContainer/SpinBox" to="." method="_on_affine_warping_spin_box_value_changed"]
+[connection signal="value_changed" from="AffineWarping/HBoxContainer/HSlider" to="." method="_on_affine_warping_h_slider_value_changed"]

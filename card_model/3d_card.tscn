@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://n8ab1cy7ordc"]
 
 [ext_resource type="Script" uid="uid://cr6hn1pbu35o1" path="res://card_model/3d_card.gd" id="1_o6jcx"]
-[ext_resource type="Shader" uid="uid://c5bffujq0l70k" path="res://Shaders/jitter.gdshader" id="2_o6jcx"]
 [ext_resource type="PackedScene" uid="uid://dixtx38u4jhd7" path="res://UI/card_hand.tscn" id="3_bnh6n"]
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="3_hprih"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gfbg"]
 resource_name = "Face"
@@ -12,7 +12,10 @@ roughness = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdeaa"]
 render_priority = 0
-shader = ExtResource("2_o6jcx")
+shader = ExtResource("3_hprih")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0gfbg"]
 _surfaces = [{
@@ -97,12 +100,18 @@ shadow_mesh = SubResource("ArrayMesh_gxum5")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ld374"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2_o6jcx")
+shader = ExtResource("3_hprih")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cuxkc"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2_o6jcx")
+shader = ExtResource("3_hprih")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0
 
 [node name="3DCard" type="Node3D" unique_id=1654548650 node_paths=PackedStringArray("card_in_hand", "mesh")]
 script = ExtResource("1_o6jcx")

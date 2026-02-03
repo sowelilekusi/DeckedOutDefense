@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dtahuv0kpxx03"]
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_8k5ts"]
-[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="2_8v4n0"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_vl30x"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="5_f7xim"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="6_lbm5h"]
@@ -23,7 +22,6 @@ viewport_path = NodePath("SubViewport")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_8k5ts")
-stats = ExtResource("2_8v4n0")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")

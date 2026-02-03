@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_1dh2f"]
 [ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_1dh2f"]
-[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_2t2qp"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="6_3v8fr"]
 [ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="7_bkkhh"]
 [ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="8_k2835"]
@@ -10,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dlhx6r23m5ceg" path="res://Enemies/EyeDog/eyedog.glb" id="10_h25mw"]
 [ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="11_kpdsm"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cavbv"]
-radius = 0.359969
+[sub_resource type="BoxShape3D" id="BoxShape3D_246sn"]
+size = Vector3(0.58, 0.67, 0.92)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h25mw"]
-radius = 0.194271
+radius = 0.25
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
 viewport_path = NodePath("SubViewport")
@@ -23,7 +22,6 @@ viewport_path = NodePath("SubViewport")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_1dh2f")
-stats = ExtResource("2_2t2qp")
 status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
@@ -32,12 +30,12 @@ metadata/_custom_type_script = "uid://ejqql2660u6h"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1815903905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33811, -0.0104714)
-shape = SubResource("SphereShape3D_cavbv")
+shape = SubResource("BoxShape3D_246sn")
 script = ExtResource("6_3v8fr")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 
 [node name="Hitbox2" type="CollisionShape3D" parent="." unique_id=906346229]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559695, -0.45924)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.73585325, -0.58485436)
 shape = SubResource("SphereShape3D_h25mw")
 script = ExtResource("6_3v8fr")
 critical_zone = true
@@ -115,7 +113,7 @@ bones/23/scale = Vector3(0.89347196, 1, 1)
 bones/24/position = Vector3(0.08454189, 0.014853473, 0.12984678)
 
 [node name="AnimationPlayer" parent="eyedog" index="1" unique_id=993841819]
-autoplay = &"Walk"
+autoplay = &"ArmatureAction"
 
 [connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
 [connection signal="took_damage" from="Hitbox" to="." method="take_damage"]

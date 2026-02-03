@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
 [ext_resource type="Script" uid="uid://hy51bq7x0fy8" path="res://Scripts/on_top_camera.gd" id="11_4sdwe"]
 [ext_resource type="PackedScene" uid="uid://rc0qcrcbmw7p" path="res://Gauntlet/gauntlet.glb" id="11_h1yfy"]
-[ext_resource type="PackedScene" uid="uid://ckl5tw5rmewhp" path="res://left_hand/card_hand_model.glb" id="11_h82f6"]
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="PackedScene" uid="uid://clgbmveluyewe" path="res://card_hand.glb" id="12_r2yb6"]
 [ext_resource type="PackedScene" uid="uid://4g0vatb73duj" path="res://Scenes/Cassette/cassette.glb" id="13_7immr"]
@@ -168,7 +167,7 @@ wave_preview_scene = ExtResource("2_o55s8")
 hero_class = ExtResource("2_dbyo0")
 camera = NodePath("ViewMovement/Head")
 gun_camera = NodePath("FirstPersonViewport/Head2")
-left_hand = NodePath("FirstPersonViewport/Head2/LeftHand")
+left_hand = NodePath("FirstPersonViewport/Head2/RightHand/card_hand")
 right_hand = NodePath("FirstPersonViewport/Head2/RightHand")
 edit_tool = NodePath("ViewMovement/Head/EditTool")
 carding_tool = NodePath("ViewMovement/Head/CardPlacingTool")
@@ -348,18 +347,6 @@ root_node = NodePath("../card_hand")
 tree_root = SubResource("AnimationNodeBlendTree_xav2s")
 anim_player = NodePath("../card_hand/AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
-
-[node name="LeftHand" type="Node3D" parent="FirstPersonViewport/Head2" unique_id=117309443]
-transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, -0.645, -0.26, -1.04)
-
-[node name="card_hand_model" parent="FirstPersonViewport/Head2/LeftHand" unique_id=141858112 instance=ExtResource("11_h82f6")]
-transform = Transform3D(-4.16989, -0.848374, -3.61733e-07, -0.824933, 4.05468, -0.993384, 0.198049, -0.973442, -4.13774, 1.56596, 0.519149, 3.37051)
-
-[node name="Body_004" parent="FirstPersonViewport/Head2/LeftHand/card_hand_model/Armature/Skeleton3D" parent_id_path=PackedInt32Array(141858112, 1120957052) index="0" unique_id=1372468431]
-layers = 2
-
-[node name="Cards" type="Node3D" parent="FirstPersonViewport/Head2/LeftHand" unique_id=140136041]
-transform = Transform3D(4.25532, 0, 0, 0, 4.25532, 0, 0, 0, 4.25532, 2.01277, 0.787234, 3.39179)
 
 [node name="MiniMapViewport" type="SubViewport" parent="." unique_id=384727742]
 size = Vector2i(256, 256)
@@ -970,5 +957,4 @@ size = 2.243
 [editable path="FirstPersonViewport/Head2/RightHand/gauntlet"]
 [editable path="FirstPersonViewport/Head2/RightHand/card_hand"]
 [editable path="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001/cassette"]
-[editable path="FirstPersonViewport/Head2/LeftHand/card_hand_model"]
 [editable path="CoinViewport/Coin"]

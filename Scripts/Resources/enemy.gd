@@ -4,8 +4,8 @@ extends Resource
 @export var title: String = "enemy name goes here"
 @export var description: String = "enemy description goes here"
 @export var target_type: Data.EnemyType
-@export var scene: PackedScene
 @export var icon: Texture
+@export var scene: PackedScene
 @export var death_sprite: Texture
 @export var sprite: AtlasTexture
 @export var spawn_power: int = 10

@@ -44,7 +44,7 @@ var enemy_count: int = 0
 func _ready() -> void:
 	$StartWaveLabel.theme_type_variation = "WaveStartLabel"
 	$InteractLabel.theme_type_variation = "InteractLabel"
-	if player.game_manager.card_gameplay:
+	if player.game_manager and player.game_manager.card_gameplay:
 		energy_label.visible = true
 
 

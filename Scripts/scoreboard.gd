@@ -3,7 +3,7 @@ extends PanelContainer
 
 signal all_players_ready()
 
-var entry_scene: PackedScene = preload("res://Scenes/UI/scoreboard_entry.tscn")
+var entry_scene: PackedScene = preload("res://UI/scoreboard_entry.tscn")
 var entries: Dictionary = {}
 
 

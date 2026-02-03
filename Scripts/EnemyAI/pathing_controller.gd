@@ -24,10 +24,9 @@ var next_pos: Vector3
 
 func _ready() -> void:
 	super._ready()
-	#if path:
-	#	distance_remaining = path.get_baked_length()
-	next_node = flow_field.get_closest_traversable_point(character.global_position)
-	distance_remaining += calculate_distance_to_goal(next_node)
+	if flow_field:
+		next_node = flow_field.get_closest_traversable_point(character.global_position)
+		distance_remaining += calculate_distance_to_goal(next_node)
 
 
 func calculate_distance_to_goal(node: FlowNode) -> float:

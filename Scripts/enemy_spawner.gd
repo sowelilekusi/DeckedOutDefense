@@ -44,12 +44,12 @@ func _process(delta: float) -> void:
 		if enemy_spawn_timers[enemy] >= enemy.spawn_cooldown:
 			if is_multiplayer_authority():
 				if type == Data.EnemyType.LAND:
-					networked_spawn_land_enemy.rpc(enemy.title, own_id, enemy_id)
+					networked_spawn_land_enemy.rpc(game_manager.level.enemy_pool.find(enemy), own_id, enemy_id)
 				if type == Data.EnemyType.AIR:
 					var radius: float = 10.0
 					var random_dir: Vector3 = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
 					var random_pos: Vector3 = randf_range(0, radius) * random_dir.normalized()
-					networked_spawn_air_enemy.rpc(enemy.title, random_pos, own_id, enemy_id)
+					networked_spawn_air_enemy.rpc(game_manager.level.enemy_pool.find(enemy), random_pos, own_id, enemy_id)
 			
 			enemy_spawn_timers[enemy] -= enemy.spawn_cooldown
 			enemy_spawned.emit()
@@ -60,16 +60,12 @@ func _process(delta: float) -> void:
 
 #TODO: not sure enemies need all this info over the network
 @rpc("reliable", "call_local")
-func networked_spawn_land_enemy(enemy_stats: String, id1: int, id2: int) -> void:
-	var e_stats: Enemy = null
-	for enemy: Enemy in game_manager.level.enemy_pool:
-		if enemy.title == enemy_stats:
-			e_stats = enemy
+func networked_spawn_land_enemy(enemy_num: int, id1: int, id2: int) -> void:
 	var enemy: EnemyController
-	enemy = e_stats.scene.instantiate()
+	enemy = game_manager.level.enemy_pool[enemy_num].scene.instantiate()
+	enemy.stats = game_manager.level.enemy_pool[enemy_num]
 	enemy.corpse_root = game_manager.level.corpses
 	enemy.name = str(id1) + str(id2)
-	enemy.stats = e_stats
 	enemy.died.connect(enemy_died_callback)
 	enemy.reached_goal.connect(enemy_reached_goal_callback)
 	#enemy.movement_controller.path = path.curve
@@ -107,17 +103,13 @@ func update_path() -> void:
 
 
 @rpc("reliable", "call_local")
-func networked_spawn_air_enemy(enemy_stats: String, pos: Vector3, id1: int, id2: int) -> void:
-	var e_stats: Enemy = null
-	for enemy: Enemy in game_manager.level.enemy_pool:
-		if enemy.title == enemy_stats:
-			e_stats = enemy
+func networked_spawn_air_enemy(enemy_num: int, pos: Vector3, id1: int, id2: int) -> void:
 	var enemy: EnemyController
-	enemy = e_stats.scene.instantiate()
+	enemy = game_manager.level.enemy_pool[enemy_num].scene.instantiate()
+	enemy.stats = game_manager.level.enemy_pool[enemy_num]
 	enemy.corpse_root = game_manager.level.corpses
 	enemy.name = str(id1) + str(id2)
 	enemy.position = pos + global_position
-	enemy.stats = e_stats
 	enemy.died.connect(enemy_died_callback)
 	enemy.reached_goal.connect(enemy_reached_goal_callback)
 	enemy.movement_controller.goal = dest
