@@ -25,7 +25,7 @@ static var target_type_names: Dictionary[TargetType, String] = {
 }
 
 static var weapon_recharge_delay: float = 0.5
-static var starting_blanks: int = 1
+static var starting_blanks: int = 0
 static var starting_cash: int = 15
 static var starting_lives: int = 144
 static var player_energy: int = 6
@@ -102,6 +102,7 @@ func load_mods(mod_list: Dictionary[String, bool]) -> void:
 				print("Failed to load mod: " + mod_name + " at path: " + mods[mod_name])
 	load_classes()
 	load_cards("res://Cards")
+
 
 func _ready() -> void:
 	var mod_dir: DirAccess = DirAccess.open("res://Mods")

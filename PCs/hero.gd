@@ -262,7 +262,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		var wave_preview: WaveViewer = wave_preview_scene.instantiate() as WaveViewer
 		pause()
 		hud.add_child(wave_preview)
-		wave_preview.set_waves(game_manager.pre_generate_waves(), game_manager.wave)
+		var wave_list: Array[Wave] = []
+		var i: int = -1
+		for wave: WaveConfig in game_manager.level_specs.waves.slice(game_manager.wave - 1):
+			i += 1
+			var new_wave: Wave = Wave.new()
+			for enemy: Enemy in game_manager.level_specs.waves[game_manager.wave - 1 + i].enemies.keys():
+				var enemy_card: EnemyCard = EnemyCard.new()
+				enemy_card.enemy = enemy
+				enemy_card.count = game_manager.level_specs.waves[game_manager.wave - 1 + i].enemies[enemy]
+				new_wave.enemy_groups.append(enemy_card)
+			wave_list.append(new_wave)
+		wave_preview.set_waves(wave_list, game_manager.wave)
 		wave_preview.closed.connect(unpause)
 
 

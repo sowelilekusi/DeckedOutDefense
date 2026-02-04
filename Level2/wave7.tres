@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://cvtuui3grpslm"]
+
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_j1606"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="2_6r48e"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="2_uttqy"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="3_ptl2k"]
+
+[resource]
+script = ExtResource("2_uttqy")
+enemies = Dictionary[ExtResource("1_j1606"), int]({
+ExtResource("2_6r48e"): 35,
+ExtResource("3_ptl2k"): 5
+})
+metadata/_custom_type_script = "uid://bp6q371iypd06"

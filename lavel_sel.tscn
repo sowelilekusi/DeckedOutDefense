@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bxdr8webgx483"]
+
+[ext_resource type="Script" uid="uid://dlhwckf6tnx2p" path="res://level_select.gd" id="1_eshvk"]
+[ext_resource type="Texture2D" uid="uid://p0dxw3i45wor" path="res://wrench.png" id="2_ce83v"]
+[ext_resource type="Texture2D" uid="uid://doexsqcmd58yh" path="res://wand.png" id="3_veguw"]
+[ext_resource type="Texture2D" uid="uid://dlrmfamsk3cr2" path="res://tool3.png" id="4_ro7qf"]
+[ext_resource type="Texture2D" uid="uid://c4ck0kcqrvm2a" path="res://tool4.png" id="5_43akl"]
+[ext_resource type="Texture2D" uid="uid://bx1fk6yke4k4o" path="res://cassette_test_image-export.png" id="6_veguw"]
+[ext_resource type="PackedScene" uid="uid://d2vsrj65smnv6" path="res://floating_element.tscn" id="7_ro7qf"]
+
+[node name="Control" type="Control" unique_id=444351615]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eshvk")
+icons = Array[Texture]([ExtResource("2_ce83v"), ExtResource("3_veguw"), ExtResource("4_ro7qf"), ExtResource("5_43akl")])
+cassette_image = ExtResource("6_veguw")
+level_scene = ExtResource("7_ro7qf")
+
+[node name="Label" type="Label" parent="." unique_id=1955641701]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 83.0
+offset_right = 113.0
+offset_bottom = 91.0
+horizontal_alignment = 1
+vertical_alignment = 1

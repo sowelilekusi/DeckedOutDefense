@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://cky3wcbc3kob0"]
+
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_7c1qm"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_6m45b"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="2_n286l"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="3_qjnea"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="4_8uy8t"]
+
+[resource]
+script = ExtResource("2_n286l")
+enemies = Dictionary[ExtResource("1_7c1qm"), int]({
+ExtResource("2_6m45b"): 6,
+ExtResource("3_qjnea"): 2,
+ExtResource("4_8uy8t"): 8
+})
+metadata/_custom_type_script = "uid://bp6q371iypd06"

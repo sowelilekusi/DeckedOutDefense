@@ -32,6 +32,12 @@ func _process(delta: float) -> void:
 		return
 	
 	for enemy: Enemy in enemy_spawn_timers:
+		var enemy_code: int = -1
+		for enemy_in_pool: Enemy in game_manager.level.enemy_pool:
+			enemy_code += 1
+			if enemy.title == enemy_in_pool.title:
+				break
+		
 		if enemies_spawned[enemy] == enemy_types_to_spawn[enemy]:
 			continue
 		
@@ -40,12 +46,15 @@ func _process(delta: float) -> void:
 		if enemy_spawn_timers[enemy] >= enemy.spawn_cooldown:
 			if is_multiplayer_authority():
 				if type == Data.EnemyType.LAND:
-					networked_spawn_land_enemy.rpc(game_manager.level.enemy_pool.find(enemy), own_id, enemy_id)
+					#print(enemy)
+					#print(game_manager.level.enemy_pool[0])
+					#print("Finding " + enemy.title + " in enemy pool and sending to spawn with num " + str(enemy_code))
+					networked_spawn_land_enemy.rpc(enemy_code, own_id, enemy_id)
 				if type == Data.EnemyType.AIR:
 					var radius: float = 10.0
 					var random_dir: Vector3 = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
 					var random_pos: Vector3 = randf_range(0, radius) * random_dir.normalized()
-					networked_spawn_air_enemy.rpc(game_manager.level.enemy_pool.find(enemy), random_pos, own_id, enemy_id)
+					networked_spawn_air_enemy.rpc(enemy_code, random_pos, own_id, enemy_id)
 			
 			enemy_spawn_timers[enemy] -= enemy.spawn_cooldown
 			enemy_spawned.emit()
@@ -58,6 +67,7 @@ func _process(delta: float) -> void:
 @rpc("reliable", "call_local")
 func networked_spawn_land_enemy(enemy_num: int, id1: int, id2: int) -> void:
 	var enemy: EnemyController
+	#print("Received spawn rpc code " + str(enemy_num) + " for " + game_manager.level.enemy_pool[enemy_num].title)
 	enemy = game_manager.level.enemy_pool[enemy_num].scene.instantiate()
 	enemy.stats = game_manager.level.enemy_pool[enemy_num]
 	enemy.corpse_root = game_manager.level.corpses
@@ -116,22 +126,9 @@ func spawn_wave() -> void:
 	enemies_to_spawn = 0
 	enemy_spawn_timers = {}
 	for card: EnemyCard in current_wave:
-		match(card.rarity):
-			Data.Rarity.COMMON:
-				enemy_types_to_spawn[card.enemy] += card.enemy.common_group
-				enemies_to_spawn += card.enemy.common_group
-			Data.Rarity.UNCOMMON:
-				enemy_types_to_spawn[card.enemy] += card.enemy.uncommon_group
-				enemies_to_spawn += card.enemy.uncommon_group
-			Data.Rarity.RARE:
-				enemy_types_to_spawn[card.enemy] += card.enemy.rare_group
-				enemies_to_spawn += card.enemy.rare_group
-			Data.Rarity.EPIC:
-				enemy_types_to_spawn[card.enemy] += card.enemy.epic_group
-				enemies_to_spawn += card.enemy.epic_group
-			Data.Rarity.LEGENDARY:
-				enemy_types_to_spawn[card.enemy] += card.enemy.legendary_group
-				enemies_to_spawn += card.enemy.legendary_group
+		enemy_types_to_spawn[card.enemy] += card.count
+		enemies_to_spawn += card.count
+		#print(card.enemy.title + ": " + str(card.count))
 		enemy_spawn_timers[card.enemy] = 0.0
 		enemies_spawned[card.enemy] = 0
 	current_wave = []

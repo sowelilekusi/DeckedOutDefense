@@ -104,6 +104,7 @@ func open_game_menu() -> void:
 func _on_back_button_pressed() -> void:
 	main_controls.visible = true
 	game_select_menu.visible = false
+	
 
 
 func generate_seed() -> void:
@@ -115,6 +116,14 @@ func generate_seed() -> void:
 		gamemode.seeded = true
 	else:
 		gamemode.rng_seed = randi()
+
+
+func level_selected(level: LevelSpecs) -> void:
+	generate_seed()
+	gamemode.endless = false
+	gamemode.daily = false
+	game.level_specs = level
+	start_game()
 
 
 func _on_standard_button_pressed() -> void:

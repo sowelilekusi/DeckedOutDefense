@@ -11,7 +11,7 @@ extends Node3D
 @export var printer: CardPrinter
 @export var shop: ShopStand
 @export var obstacle_scenes: Array[PackedScene]
-
+@export var obstacles: Array[PackedScene]
 var walls: Dictionary[FlowNode, TowerBase] = {}
 var wall_id: int = 0
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")

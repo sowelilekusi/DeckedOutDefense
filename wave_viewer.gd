@@ -33,16 +33,7 @@ func set_waves(waves: Array[Wave], starting_wave_number: int) -> void:
 
 func group_to_count(group: EnemyCard) -> int:
 	var count: int = 0
-	if group.rarity == Data.Rarity.COMMON:
-		count += group.enemy.common_group
-	elif group.rarity == Data.Rarity.UNCOMMON:
-		count += group.enemy.uncommon_group
-	elif group.rarity == Data.Rarity.RARE:
-		count += group.enemy.rare_group
-	elif group.rarity == Data.Rarity.EPIC:
-		count += group.enemy.epic_group
-	elif group.rarity == Data.Rarity.LEGENDARY:
-		count += group.enemy.legendary_group
+	count = group.count
 	return count
 
 

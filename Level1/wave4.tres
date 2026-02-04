@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://c0ln1sfxmvhaf"]
+
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_k10uy"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="2_6kjfn"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="2_htd28"]
+
+[resource]
+script = ExtResource("2_6kjfn")
+enemies = Dictionary[ExtResource("1_k10uy"), int]({
+ExtResource("2_htd28"): 10
+})
+new_shop = true
+bonus_cash = 20
+metadata/_custom_type_script = "uid://bp6q371iypd06"

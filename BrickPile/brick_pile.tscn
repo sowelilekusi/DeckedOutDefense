@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d1gauy86jxpnj"]
+
+[ext_resource type="PackedScene" uid="uid://c432msvkrfva1" path="res://BrickPile/brick_pile.glb" id="1_x3ssl"]
+
+[node name="Node3D" type="Node3D" unique_id=625195104]
+
+[node name="brick_pile" parent="." unique_id=1818861113 instance=ExtResource("1_x3ssl")]

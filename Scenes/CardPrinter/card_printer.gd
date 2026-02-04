@@ -72,9 +72,13 @@ func randomize_cards(faction: Card.Faction) -> void:
 		spawned_cards.append(item)
 
 
-func find_cards(faction: Card.Faction) -> void:
-	var decided_rarity: int = generate_rarity()
-	var card_choices: Array[Card] = get_faction_cards(faction)
+func find_cards(faction: Card.Faction, rarity: Data.Rarity, allowed_cards: Array[Card]) -> void:
+	var decided_rarity: int = rarity
+	if !decided_rarity:
+		decided_rarity = generate_rarity()
+	var card_choices: Array[Card] = allowed_cards
+	if !card_choices:
+		card_choices = get_faction_cards(faction)
 	var cards: Array[Card] = []
 	var valid_cards_found: bool = false
 	var testing_rarity: int = decided_rarity
@@ -123,4 +127,4 @@ func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 		return
 	button_collider.disabled = true
 	$StaticBody3D/AudioStreamPlayer3D.play()
-	find_cards(reply.hero_class.faction)
+	find_cards(reply.hero_class.faction, reply.game_manager.level_specs.waves[reply.game_manager.wave].station, reply.game_manager.level_specs.allowed_cards)

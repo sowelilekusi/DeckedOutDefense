@@ -33,6 +33,7 @@ var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
 var level_layout: FlowFieldData
+var level_specs: LevelSpecs
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -196,13 +197,22 @@ func set_wave_to_spawners(wave_thing: Wave, wave_number: int) -> void:
 
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
-		var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
-		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		#var new_wave: Wave = WaveManager.get_test_wave(level.enemy_pool)
-		set_wave_to_spawners(new_wave, wave)
-		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
-		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
+		if level_specs.waves.size() == 0:
+			var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
+			#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+			var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+			set_wave_to_spawners(new_wave, wave)
+			temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
+			#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
+		else:
+			var new_wave: Wave = Wave.new()
+			for enemy: Enemy in level_specs.waves[wave - 1].enemies.keys():
+				var enemy_card: EnemyCard = EnemyCard.new()
+				enemy_card.enemy = enemy
+				enemy_card.count = level_specs.waves[wave - 1].enemies[enemy]
+				new_wave.enemy_groups.append(enemy_card)
+			set_wave_to_spawners(new_wave, wave)
+			temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 
 
 func temp_set_upcoming_wave(new_wave: Wave, coins: int) -> void:
@@ -267,7 +277,9 @@ func end_wave() -> void:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
+		player.currency += level_specs.waves[wave - 1].bonus_cash
 		player.energy = Data.player_energy
+		player.blank_cassettes += 1 if level_specs.waves[wave - 1].rewards_blank_cassette else 0
 		#if wave % 2 == 0:
 		#	player.blank_cassettes += 1
 		if card_gameplay:
@@ -281,11 +293,13 @@ func end_wave() -> void:
 			#tower_base.enable_duration_sprites()
 			tower_base.iterate_duration()
 	if is_multiplayer_authority():
-		if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
+		if level_specs.waves[wave - 1].new_shop:
 			networked_spawn_shop.rpc()
-			shop_chance = 0.0
-		else:
-			shop_chance += 0.09
+		#if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
+			#networked_spawn_shop.rpc()
+			#shop_chance = 0.0
+		#else:
+			#shop_chance += 0.09
 	wave_finished.emit()
 	set_upcoming_wave()
 
@@ -319,6 +333,7 @@ func setup() -> void:
 	objective_health = Data.starting_lives
 	wave = 1
 	stats = RoundStats.new()
+	wave_limit = level_specs.waves.size()
 	game_setup.emit()
 
 
@@ -352,7 +367,7 @@ func start() -> void:
 	#Start game
 	game_active = true
 	chatbox.append_message("SERVER", Color.TOMATO, "Started with seed: " + str(NoiseRandom.noise.seed))
-	networked_spawn_shop.rpc()
+	#networked_spawn_shop.rpc()
 	game_started.emit()
 
 

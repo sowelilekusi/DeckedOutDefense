@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="4_uh5sr"]
 [ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="5_g08yk"]
 [ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="6_asmpj"]
+[ext_resource type="PackedScene" uid="uid://d1gauy86jxpnj" path="res://BrickPile/brick_pile.tscn" id="7_6tcu8"]
 [ext_resource type="PackedScene" uid="uid://1b2ikdanl66b" path="res://Scenes/CardPrinter/card_printer.tscn" id="9_r25gu"]
 [ext_resource type="Script" uid="uid://cxwtuxytavfu5" path="res://Scripts/enemy_goal.gd" id="9_s3rd7"]
 [ext_resource type="Script" uid="uid://yk54owkf7pgj" path="res://Scripts/cinema_cam.gd" id="9_xuyhn"]
@@ -247,7 +248,7 @@ size = Vector2(7.84, 3.69)
 
 [node name="Bridge" type="Node3D" unique_id=1906077552 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "cinematic_cam", "printer", "shop")]
 script = ExtResource("1_ws6nn")
-enemy_pool = Array[ExtResource("2_ks6qx")]([ExtResource("3_6tcu8"), ExtResource("4_uh5sr"), ExtResource("5_g08yk"), ExtResource("6_asmpj")])
+enemy_pool = Array[ExtResource("2_ks6qx")]([ExtResource("3_6tcu8"), ExtResource("6_asmpj"), ExtResource("5_g08yk"), ExtResource("4_uh5sr")])
 tower_path = NodePath("Towers")
 player_spawns = [NodePath("PlayerSpawnLocations/PlayerSpawn1"), NodePath("PlayerSpawnLocations/PlayerSpawn2"), NodePath("PlayerSpawnLocations/PlayerSpawn3"), NodePath("PlayerSpawnLocations/PlayerSpawn4")]
 enemy_spawns = [NodePath("GroundSpawn"), NodePath("GroundSpawn2"), NodePath("GroundSpawn3"), NodePath("GroundSpawn4"), NodePath("GroundSpawn5"), NodePath("AirSpawn")]
@@ -256,6 +257,7 @@ corpses = NodePath("Corpses")
 cinematic_cam = NodePath("CinemaCam")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")
+obstacles = Array[PackedScene]([ExtResource("7_6tcu8")])
 metadata/_custom_type_script = "uid://cvejbo3srx8py"
 metadata/_editor_floor_ = Vector3(4, -10, 8)
 

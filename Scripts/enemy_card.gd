@@ -3,4 +3,4 @@ extends RefCounted
 
 
 var enemy: Enemy = null
-var rarity: Data.Rarity = Data.Rarity.COMMON
+var count: int
