@@ -4,11 +4,11 @@ extends Node3D
 signal path_updated()
 
 @export var data_file: FlowFieldData
-@export var flow_node_scene: PackedScene
 @export var start_points: Array[Node3D]
 @export var goal_points: Array[Node3D]
 @export var nodes_visible: bool = false
 
+var flow_node_scene: PackedScene = preload("res://Scenes/FlowField/flow_node.tscn")
 var nodes: Array[FlowNode] = []
 var start_nodes: Array[FlowNode] = []
 var goal_nodes: Array[FlowNode] = []
@@ -29,6 +29,9 @@ func load_from_data(data: FlowFieldData = data_file) -> void:
 	var dict: Dictionary[FlowNodeData, FlowNode] = {}
 	for node_data: FlowNodeData in data_file.nodes:
 		var new_flow_node: FlowNode = create_node(node_data.position)
+		new_flow_node.grid_id = node_data.grid_id
+		new_flow_node.grid_x = node_data.grid_x
+		new_flow_node.grid_y = node_data.grid_y
 		new_flow_node.buildable = node_data.buildable
 		dict[node_data] = new_flow_node
 		nodes.append(new_flow_node)
@@ -186,8 +189,11 @@ func toggle_buildable(node: FlowNode) -> void:
 	node.buildable = !node.buildable
 
 
-func create_node(pos: Vector3 = Vector3.ZERO) -> FlowNode:
+func create_node(pos: Vector3 = Vector3.ZERO, grid_id: int = -1, grid_x: int = 0, grid_y: int = 0) -> FlowNode:
 	var node: FlowNode = flow_node_scene.instantiate()
+	node.grid_id = grid_id
+	node.grid_x = grid_x
+	node.grid_y = grid_y
 	node.position = pos
 	node.set_color(Color.WEB_GRAY)
 	nodes.append(node)
@@ -216,6 +222,8 @@ func disconnect_nodes(node1: FlowNode, node2: FlowNode) -> void:
 
 
 func create_grid(x_size: int, y_size: int, gap: float) -> void:
+	data_file.grids += 1
+	var grid_id: int = data_file.grids
 	var grid: Array[Array] = []
 	for x: int in x_size:
 		var row: Array[FlowNode] = []
@@ -224,7 +232,7 @@ func create_grid(x_size: int, y_size: int, gap: float) -> void:
 			var point_position: Vector3 = Vector3((x - floori(x_size / 2.0)) * gap, 0, (y - floori(y_size / 2.0)) * gap)
 			#point_position += global_position
 			#row.append(create_node(start_pos + Vector3(gap * x, 0, gap * y)))
-			row.append(create_node(point_position))
+			row.append(create_node(point_position, grid_id, x, y))
 		grid.append(row)
 	for x: int in grid.size():
 		for y: int in grid[x].size():

@@ -7,6 +7,9 @@ extends StaticBody3D
 @export var buildable: bool = true
 
 var visual_scene: PackedScene = preload("res://Scenes/FlowField/cube2.tscn")
+var grid_id: int = -1
+var grid_x: int = 0
+var grid_y: int = 0
 var best_path: FlowNode : 
 	get():
 		return best_path

@@ -1,6 +1,11 @@
 class_name FlowFieldTool
 extends Node
 
+@export_group("Basic Function")
+@export var zone_list: Array[PackedScene]
+@export var zone_holder: Node3D
+
+@export_group("Flow Field Editor")
 @export var flow_field: FlowField
 @export var raycast: RayCast3D
 @export var project_raycast: RayCast3D
@@ -18,26 +23,72 @@ extends Node
 var hover: FlowNode = null
 var selected: Array[FlowNode] = []
 var vector_dirty: bool = false
+var editing: bool = false
+var selected_zone: int = -1
+var level: Level
+var radius: float = 0
+var up_angle: float = 0
+var rotate_held: bool = false
 
 
 func _ready() -> void:
+	var i: int = 0
+	for zone: PackedScene in zone_list:
+		i += 1
+		$VBoxContainer2/OptionButton.add_item("Zone " + str(i))
+	$VBoxContainer2/OptionButton.select(0)
+	$VBoxContainer2/OptionButton.item_selected.connect(select_zone)
+	_on_trash_button_pressed()
+
+
+func select_zone(zone_index: int) -> void:
+	selected_zone = zone_index
+
+
+func load_zone() -> void:
+	_on_trash_button_pressed()
+	if level:
+		level.queue_free()
+	level = zone_list[selected_zone].instantiate() as Level
+	zone_holder.add_child(level)
 	camera.make_current()
+	editing = true
+	print("set editing true")
 
 
 func _process(delta: float) -> void:
-	if raycast.is_colliding() and (!hover or hover != raycast.get_collider()):
-		hover = raycast.get_collider()
-	if hover and !raycast.is_colliding():
-		hover = null
-	if selected.size() == 1 and vector_dirty:
-		position_field.visible = true
-		x_field.text = str(selected[0].global_position.x)
-		y_field.text = str(selected[0].global_position.y)
-		z_field.text = str(selected[0].global_position.z)
-		vector_dirty = false
-	elif selected.size() != 1:
-		position_field.visible = false
-	
+	if editing:
+		if raycast.is_colliding() and (!hover or hover != raycast.get_collider()):
+			hover = raycast.get_collider()
+		if hover and !raycast.is_colliding():
+			hover = null
+		if selected.size() == 1 and vector_dirty:
+			position_field.visible = true
+			x_field.text = str(selected[0].global_position.x)
+			y_field.text = str(selected[0].global_position.y)
+			z_field.text = str(selected[0].global_position.z)
+			vector_dirty = false
+		elif selected.size() != 1:
+			position_field.visible = false
+		
+		set_node_colors()
+		
+		if Input.is_action_just_pressed("Secondary Fire"):
+			rotate_held = true
+		if Input.is_action_just_released("Secondary Fire"):
+			rotate_held = false
+		
+		var y: float = Input.get_axis("Move Forward", "Move Backward")
+		var x: float = Input.get_axis("Move Left", "Move Right")
+		var input_vector: Vector2 = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
+		#camera_pivot.position += Vector3(x, 0, y) * delta * 30
+		#set_cam_position()
+		var movement: Vector3 = ((camera_pivot.transform.basis.z * input_vector.y) + (camera_pivot.transform.basis.x * input_vector.x))
+		var vec2: Vector2 = Vector2(movement.x, movement.z).normalized()
+		camera_pivot.position += Vector3(vec2.x, 0.0, vec2.y) * delta * 30.0
+
+
+func set_node_colors() -> void:
 	for node: FlowNode in flow_field.nodes:
 		if node.traversable and node.buildable:
 			node.set_color(Color.WEB_GRAY)
@@ -53,10 +104,6 @@ func _process(delta: float) -> void:
 			node.set_color(Color.GREEN)
 		if node == hover:
 			node.set_color(Color.RED)
-	
-	var y: float = Input.get_axis("Move Forward", "Move Backward")
-	var x: float = Input.get_axis("Move Left", "Move Right")
-	camera_pivot.position += Vector3(x, 0, y) * delta * 10
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -71,14 +118,26 @@ func _unhandled_input(event: InputEvent) -> void:
 			vector_dirty = true
 	if event is InputEventMouseButton and event.button_index == 2 and selected.size() > 0:
 		selected = []
-	if event is InputEventKey and event.keycode == KEY_UP:
-		var vector: Vector3 = camera.position - camera_pivot.position
-		vector = vector.normalized()
-		camera.position += vector
-	if event is InputEventKey and event.keycode == KEY_DOWN:
-		var vector: Vector3 = camera.position - camera_pivot.position
-		vector = vector.normalized()
-		camera.position -= vector
+	
+	if event is InputEventMouseButton and event.button_index == 5:
+		zoom_in()
+	
+	if event is InputEventMouseButton and event.button_index == 4:
+		zoom_out()
+	
+	if event is InputEventMouseMotion and rotate_held:
+		camera_pivot.rotation.y -= (event.relative.x * get_viewport().get_final_transform().x.x) * (Data.preferences.mouse_sens / 10000.0) * (-1 if Data.preferences.invert_lookY else 1)
+		up_angle -= (event.relative.y * get_viewport().get_final_transform().y.y) * (Data.preferences.mouse_sens / 10000.0) * (-1 if Data.preferences.invert_lookY else 1)
+		up_angle = clamp(up_angle, deg_to_rad(-90), deg_to_rad(90))
+		camera_pivot.rotation.x = up_angle
+
+
+func zoom_out() -> void:
+	camera.position.z -= 0.3
+
+
+func zoom_in() -> void:
+	camera.position.z += 0.3
 
 
 func _on_x_field_changed(text: String) -> void:
@@ -165,6 +224,9 @@ func _on_save_button_pressed() -> void:
 	var dict: Dictionary[FlowNode, FlowNodeData] = {}
 	for node: FlowNode in flow_field.nodes:
 		var new_flow_node_data: FlowNodeData = FlowNodeData.new()
+		new_flow_node_data.grid_id = node.grid_id
+		new_flow_node_data.grid_x = node.grid_x
+		new_flow_node_data.grid_y = node.grid_y
 		new_flow_node_data.position = node.global_position
 		new_flow_node_data.buildable = node.buildable
 		if flow_field.start_nodes.has(node):
@@ -187,3 +249,10 @@ func _on_load_button_pressed() -> void:
 		var resource: Resource = ResourceLoader.load(save_path.text)
 		if resource is FlowFieldData:
 			flow_field.load_from_data(resource)
+
+
+func _on_trash_button_pressed() -> void:
+	if flow_field:
+		flow_field.queue_free()
+	flow_field = FlowField.new()
+	add_child(flow_field)

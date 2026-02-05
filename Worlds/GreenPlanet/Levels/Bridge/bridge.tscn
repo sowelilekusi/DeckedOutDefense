@@ -246,7 +246,7 @@ albedo_color = Color(0, 0, 0, 0.88400006)
 material = SubResource("StandardMaterial3D_fi8e6")
 size = Vector2(7.84, 3.69)
 
-[node name="Bridge" type="Node3D" unique_id=1906077552 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "flow_field", "cinematic_cam", "printer", "shop")]
+[node name="Bridge" type="Node3D" unique_id=1906077552 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "cinematic_cam", "printer", "shop")]
 script = ExtResource("1_ws6nn")
 enemy_pool = Array[ExtResource("2_ks6qx")]([ExtResource("3_6tcu8"), ExtResource("4_uh5sr"), ExtResource("5_g08yk"), ExtResource("6_asmpj")])
 tower_path = NodePath("Towers")
@@ -254,7 +254,6 @@ player_spawns = [NodePath("PlayerSpawnLocations/PlayerSpawn1"), NodePath("Player
 enemy_spawns = [NodePath("GroundSpawn"), NodePath("GroundSpawn2"), NodePath("GroundSpawn3"), NodePath("GroundSpawn4"), NodePath("GroundSpawn5"), NodePath("AirSpawn")]
 enemy_goals = [NodePath("EnemyGoal")]
 corpses = NodePath("Corpses")
-flow_field = NodePath("FlowField2")
 cinematic_cam = NodePath("CinemaCam")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")

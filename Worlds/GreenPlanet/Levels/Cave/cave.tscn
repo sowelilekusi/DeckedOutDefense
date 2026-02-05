@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://csq7if8wojp4g"]
+
+[ext_resource type="Script" uid="uid://cvejbo3srx8py" path="res://Scripts/level.gd" id="1_li03l"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="2_1sih4"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="3_y5pxn"]
+[ext_resource type="PackedScene" uid="uid://bhroqr4s1qso5" path="res://Worlds/GreenPlanet/Levels/Cave/cave_level.glb" id="4_x53u6"]
+[ext_resource type="Script" uid="uid://dkuxg6ek5us4f" path="res://Scripts/enemy_spawner.gd" id="5_e8b6i"]
+[ext_resource type="Script" uid="uid://cxwtuxytavfu5" path="res://Scripts/enemy_goal.gd" id="6_n26ay"]
+[ext_resource type="PackedScene" uid="uid://1b2ikdanl66b" path="res://Scenes/CardPrinter/card_printer.tscn" id="7_y5pxn"]
+[ext_resource type="PackedScene" uid="uid://7g3jev3v6d3l" path="res://Scenes/ShopStand/shop_stand.tscn" id="8_x53u6"]
+
+[node name="Node3D" type="Node3D" unique_id=1915460305 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "printer", "shop")]
+script = ExtResource("1_li03l")
+enemy_pool = Array[ExtResource("2_1sih4")]([ExtResource("3_y5pxn")])
+tower_path = NodePath("Parents/Towers")
+player_spawns = [NodePath("PlayerSpawn")]
+enemy_spawns = [NodePath("EnemySpawner")]
+enemy_goals = [NodePath("EnemyGoal")]
+corpses = NodePath("Parents/Corpses")
+printer = NodePath("CardPrinter")
+shop = NodePath("ShopStand")
+metadata/_custom_type_script = "uid://cvejbo3srx8py"
+
+[node name="Parents" type="Node3D" parent="." unique_id=447416055]
+
+[node name="Towers" type="Node3D" parent="Parents" unique_id=401225440]
+
+[node name="Corpses" type="Node3D" parent="Parents" unique_id=1858487493]
+
+[node name="cave_level" parent="." unique_id=430935043 instance=ExtResource("4_x53u6")]
+
+[node name="PlayerSpawn" type="Node3D" parent="." unique_id=2082895124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7781315, 0)
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1276116196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93684864, -30.9888)
+script = ExtResource("5_e8b6i")
+metadata/_custom_type_script = "uid://dkuxg6ek5us4f"
+
+[node name="EnemyGoal" type="Node3D" parent="." unique_id=1902271599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93684864, -11.24234)
+script = ExtResource("6_n26ay")
+metadata/_custom_type_script = "uid://cxwtuxytavfu5"
+
+[node name="CardPrinter" parent="." unique_id=459800869 instance=ExtResource("7_y5pxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.507948, 0.03549701, 5.868264)
+
+[node name="ShopStand" parent="." unique_id=1287436541 instance=ExtResource("8_x53u6")]
+transform = Transform3D(-1, 0, 6.976922e-05, 0, 1, 0, -6.976922e-05, 0, -1, 4.381688, 0.5, 7.0162544)

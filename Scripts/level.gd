@@ -7,20 +7,21 @@ extends Node3D
 @export var enemy_spawns: Array[EnemySpawner]
 @export var enemy_goals: Array[Node3D]
 @export var corpses: Node
-@export var flow_field: FlowField
 @export var cinematic_cam: CinematicCamManager
 @export var printer: CardPrinter
 @export var shop: ShopStand
 @export var obstacle_scenes: Array[PackedScene]
+
 var walls: Dictionary[FlowNode, TowerBase] = {}
 var wall_id: int = 0
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
 var tower_frame_scene: PackedScene = load("res://Scenes/tower_frame.tscn")
 var tower_frames: Dictionary[FlowNode, Node3D] = {}
 var game_manager: GameManager
+var flow_field: FlowField
 
 
-func _ready() -> void:
+func load_flow_field() -> void:
 	flow_field.path_updated.connect(enemy_spawns[0].update_path)
 	for node: FlowNode in flow_field.nodes:
 		if node.buildable:

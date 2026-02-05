@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://b4epkbabvkqjs"]
+
+[ext_resource type="Script" uid="uid://cjhqfh1vmwvg6" path="res://sphericalcoordtest.gd" id="1_verwr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qypuf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ve5w1"]
+sky_material = SubResource("ProceduralSkyMaterial_qypuf")
+
+[sub_resource type="Environment" id="Environment_t066q"]
+background_mode = 2
+sky = SubResource("Sky_ve5w1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jip7"]
+transparency = 1
+albedo_color = Color(0.1680183, 0.6636825, 0.79655224, 0.314)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xeyl"]
+transparency = 1
+albedo_color = Color(0.8112079, 0.23061386, 0.22009245, 1)
+
+[node name="Node3D" type="Node3D" unique_id=375811937]
+script = ExtResource("1_verwr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1621176706]
+environment = SubResource("Environment_t066q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=116451807]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=182013821]
+radius = 3.0
+radial_segments = 20
+rings = 20
+material = SubResource("StandardMaterial3D_0jip7")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=56518371]
+transform = Transform3D(0.87987083, -0.13671899, 0.45512098, 0.012009842, 0.963812, 0.2663122, -0.475061, -0.22885446, 0.8496721, 6.076455, 2.9432085, 5.15343)
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="." unique_id=888461488]
+material = SubResource("StandardMaterial3D_1xeyl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=5360877]
+anchors_preset = -1
+anchor_left = 0.875
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_bottom = 56.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1663359182]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1797054401]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Radius"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer" unique_id=128652701]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=233001209]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.51
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1898159364]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1807937574]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Inclination"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer2" unique_id=850210140]
+layout_mode = 2
+max_value = 400.0
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2" unique_id=201433473]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.51
+max_value = 400.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=365357689]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=691657505]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Azimuth"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer3" unique_id=74971746]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer3" unique_id=685802544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.51
+
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/SpinBox" to="." method="change_radius"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="change_radius"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/SpinBox" to="." method="change_inclination"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/HSlider" to="." method="change_inclination"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/SpinBox" to="." method="change_azimuth"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/HSlider" to="." method="change_azimuth"]

@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://cccowrgelgswj"]
 
-[ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scripts/flow_field_tool.gd" id="1_e7pmn"]
+[ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scenes/FlowField/flow_field_tool.gd" id="1_e7pmn"]
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn" id="2_030xf"]
+[ext_resource type="PackedScene" uid="uid://csq7if8wojp4g" path="res://Worlds/GreenPlanet/Levels/Cave/cave.tscn" id="3_xar7e"]
 
 [sub_resource type="Environment" id="Environment_e7pmn"]
 ambient_light_source = 2
 ambient_light_color = Color(0.728822, 0.728822, 0.728822, 1)
 
-
-[node name="FlowFieldTool" type="Node" node_paths=PackedStringArray("raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field", "save_path")]
+[node name="FlowFieldTool" type="Node" unique_id=897052359 node_paths=PackedStringArray("zone_holder", "raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field", "save_path")]
 script = ExtResource("1_e7pmn")
+zone_list = Array[PackedScene]([ExtResource("2_030xf"), ExtResource("3_xar7e")])
+zone_holder = NodePath("ZoneHolder")
 raycast = NodePath("CameraFocus/Camera3D/RayCast3D")
 project_raycast = NodePath("RayCast3D")
 camera = NodePath("CameraFocus/Camera3D")
@@ -24,8 +27,16 @@ save_path = NodePath("VBoxContainer/FileNameInput")
 metadata/_custom_type_script = "uid://05c5q1v2nv8p"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1159336300]
-offset_right = 296.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -173.0
 offset_bottom = 572.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1948996218]
+layout_mode = 2
+text = "Trash FlowField"
 
 [node name="Create" type="Button" parent="VBoxContainer" unique_id=1093532280]
 layout_mode = 2
@@ -89,24 +100,24 @@ text = "Extrude"
 layout_mode = 2
 text = "Calculate"
 
-<<<<<<< HEAD
 [node name="Finalize" type="Button" parent="VBoxContainer" unique_id=1604655281]
-=======
-[node name="FileNameInput" type="LineEdit" parent="VBoxContainer"]
->>>>>>> 48b1add (first flow field resource draft)
+layout_mode = 2
+text = "Finalize"
+
+[node name="FileNameInput" type="LineEdit" parent="VBoxContainer" unique_id=1302446264]
 layout_mode = 2
 placeholder_text = "level title"
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=426824804]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=128915038]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=397086630]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Load"
@@ -135,14 +146,30 @@ size_flags_horizontal = 3
 [node name="CameraFocus" type="Node3D" parent="." unique_id=1567712529]
 
 [node name="Camera3D" type="Camera3D" parent="CameraFocus" unique_id=1970273041]
-transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 8.50452, 3.40739)
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0, 3)
 environment = SubResource("Environment_e7pmn")
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraFocus/Camera3D" unique_id=1801773920]
 collision_mask = 64
 
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CameraFocus" unique_id=275568945]
+
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=431196612]
 
+[node name="ZoneHolder" type="Node3D" parent="." unique_id=1127890663]
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="." unique_id=1656150952]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer2" unique_id=298744483]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer2" unique_id=1468940506]
+layout_mode = 2
+text = "Load zone"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Delete" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GenerateGrid" to="." method="_on_generate_grid_button_pressed"]
@@ -159,3 +186,4 @@ collision_mask = 64
 [connection signal="text_changed" from="Position/x" to="." method="_on_x_field_changed"]
 [connection signal="text_changed" from="Position/y" to="." method="_on_y_field_changed"]
 [connection signal="text_changed" from="Position/z" to="." method="_on_z_field_changed"]
+[connection signal="pressed" from="VBoxContainer2/Button" to="." method="load_zone"]
