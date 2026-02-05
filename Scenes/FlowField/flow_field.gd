@@ -12,6 +12,7 @@ var flow_node_scene: PackedScene = preload("res://Scenes/FlowField/flow_node.tsc
 var nodes: Array[FlowNode] = []
 var start_nodes: Array[FlowNode] = []
 var goal_nodes: Array[FlowNode] = []
+var created_nodes: int = 0
 
 
 func _ready() -> void:
@@ -21,20 +22,22 @@ func _ready() -> void:
 
 
 func load_from_data(data: FlowFieldData = data_file) -> void:
+	data_file = data
 	for node: FlowNode in nodes:
 		delete_node(node)
 	nodes = []
 	start_nodes = []
 	goal_nodes = []
 	var dict: Dictionary[FlowNodeData, FlowNode] = {}
+	created_nodes = 0
 	for node_data: FlowNodeData in data_file.nodes:
 		var new_flow_node: FlowNode = create_node(node_data.position)
+		new_flow_node.node_id = node_data.node_id
 		new_flow_node.grid_id = node_data.grid_id
 		new_flow_node.grid_x = node_data.grid_x
 		new_flow_node.grid_y = node_data.grid_y
 		new_flow_node.buildable = node_data.buildable
 		dict[node_data] = new_flow_node
-		nodes.append(new_flow_node)
 		if node_data.type == FlowNodeData.NodeType.START:
 			start_nodes.append(new_flow_node)
 		elif node_data.type == FlowNodeData.NodeType.GOAL:
@@ -191,6 +194,7 @@ func toggle_buildable(node: FlowNode) -> void:
 
 func create_node(pos: Vector3 = Vector3.ZERO, grid_id: int = -1, grid_x: int = 0, grid_y: int = 0) -> FlowNode:
 	var node: FlowNode = flow_node_scene.instantiate()
+	node.node_id = created_nodes
 	node.grid_id = grid_id
 	node.grid_x = grid_x
 	node.grid_y = grid_y
@@ -199,6 +203,7 @@ func create_node(pos: Vector3 = Vector3.ZERO, grid_id: int = -1, grid_x: int = 0
 	nodes.append(node)
 	add_child(node)
 	node.owner = self
+	created_nodes += 1
 	return node
 
 

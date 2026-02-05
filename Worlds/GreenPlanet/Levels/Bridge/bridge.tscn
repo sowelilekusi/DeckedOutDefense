@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cmneu5o0m02l8" path="res://Worlds/GreenPlanet/Enemies/leaping_enemy.tscn" id="20_ttr7n"]
 [ext_resource type="PackedScene" uid="uid://c8ecof4oeng1f" path="res://BigTree1/big_tree.tscn" id="21_6tcu8"]
 [ext_resource type="PackedScene" uid="uid://c6isprnkaliqr" path="res://Scenes/MixingTable/remix_table.tscn" id="21_ks6qx"]
-[ext_resource type="PackedScene" uid="uid://2vv6mrxiwibf" path="res://Scenes/FlowField/flow_field_tool_output.tscn" id="24_sbix1"]
 [ext_resource type="Script" uid="uid://cy6oj2hr8q8br" path="res://Scripts/killbox.gd" id="26_tuncf"]
 [ext_resource type="PackedScene" uid="uid://c2avjln5vmr0y" path="res://Scenes/Shredder/shredder.tscn" id="27_gppb4"]
 [ext_resource type="Texture2D" uid="uid://dqrfgw65d0sq8" path="res://Assets/Textures/bridge_map.png" id="28_6od8s"]
@@ -323,54 +322,48 @@ shape = SubResource("BoxShape3D_awjk1")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="EnemyGoal" unique_id=1838624313]
 stream = ExtResource("11_l537x")
 
-[node name="GroundSpawn" parent="." unique_id=185953135 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn" parent="." unique_id=185953135 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4011, 0.5, 0)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 type = 1
 dest = NodePath("../EnemyGoal")
 enemy_path = NodePath("../Enemies")
 
-[node name="GroundSpawn2" parent="." unique_id=1956318080 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn2" parent="." unique_id=1956318080 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.9011, 0.5, -5)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 own_id = 1
 type = 1
 dest = NodePath("../EnemyGoal")
 enemy_path = NodePath("../Enemies")
 
-[node name="GroundSpawn3" parent="." unique_id=1447527413 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn3" parent="." unique_id=1447527413 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.9011, 0.5, 5)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 own_id = 2
 type = 1
 dest = NodePath("../EnemyGoal")
 enemy_path = NodePath("../Enemies")
 
-[node name="GroundSpawn4" parent="." unique_id=623589346 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn4" parent="." unique_id=623589346 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4011, 0.5, 10)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 own_id = 3
 type = 1
 dest = NodePath("../EnemyGoal")
 enemy_path = NodePath("../Enemies")
 
-[node name="GroundSpawn5" parent="." unique_id=29660902 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="GroundSpawn5" parent="." unique_id=29660902 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4011, 0.5, -10)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 own_id = 4
 type = 1
 dest = NodePath("../EnemyGoal")
 enemy_path = NodePath("../Enemies")
 
-[node name="AirSpawn" parent="." unique_id=727755035 node_paths=PackedStringArray("flow_field", "dest", "enemy_path") instance=ExtResource("3_5imwp")]
+[node name="AirSpawn" parent="." unique_id=727755035 node_paths=PackedStringArray("dest", "enemy_path") instance=ExtResource("3_5imwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.3737, 19.0055, 0)
 leap_enemy_scene = ExtResource("20_ttr7n")
-flow_field = NodePath("../FlowField2")
 own_id = 5
 type = 2
 dest = NodePath("../EnemyGoal")
@@ -422,9 +415,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5
 transform = Transform3D(-3.62805e-07, -8.3, -3.62805e-07, 0, -3.62805e-07, 8.3, -8.3, 3.62805e-07, 1.58587e-14, 2.93077, -74.4698, -10.0351)
 layers = 4
 texture = ExtResource("28_6od8s")
-
-[node name="FlowField2" parent="." unique_id=1588891010 instance=ExtResource("24_sbix1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.215, 1.56, 0)
 
 [node name="Node3D" parent="." unique_id=126006136 instance=ExtResource("21_ks6qx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.507853, 1.00142, 15.890633)

@@ -22,13 +22,16 @@ var flow_field: FlowField
 
 
 func load_flow_field() -> void:
-	flow_field.path_updated.connect(enemy_spawns[0].update_path)
+	var x: int = 0
+	for spawn: EnemySpawner in enemy_spawns:
+		flow_field.path_updated.connect(spawn.update_path)
 	for node: FlowNode in flow_field.nodes:
 		if node.buildable:
+			x += 1
 			var frame: Node3D = tower_frame_scene.instantiate()
 			tower_frames[node] = frame
 			add_child(frame)
-			frame.global_position = node.global_position
+			frame.position = node.position
 
 
 func disable_all_tower_frames() -> void:

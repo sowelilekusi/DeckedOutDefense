@@ -15,6 +15,7 @@ signal switch_to_main_menu
 
 var root_scene: Node
 var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn")
+var level_2_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Cave/cave.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
 var game_end_scene: PackedScene = load("res://UI/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
@@ -31,6 +32,7 @@ var wave_limit: int = 20
 var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
+var level_layout: FlowFieldData
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -89,14 +91,23 @@ func networked_set_wave(wave_number: int) -> void:
 
 
 func spawn_level() -> void:
-	level = level_scene.instantiate() as Level
+	level = level_2_scene.instantiate() as Level
+	var flow_field: FlowField = FlowField.new()
+	level.flow_field = flow_field
+	level.add_child(flow_field)
+	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc("user://pathing_graphs/level3.json"))
+	flow_field.calculate()
+	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
+		x.flow_field = flow_field
 		x.game_manager = self
 		x.enemy_died_callback = enemy_died
 		x.enemy_reached_goal_callback = damage_goal
 		x.enemy_spawned.connect(increase_enemy_count)
 	root_scene.add_child(level)
+	for spawner: EnemySpawner in level.enemy_spawns:
+		spawner.create_path()
 
 
 func spawn_players() -> void:
@@ -174,11 +185,13 @@ func set_wave_to_spawners(wave_thing: Wave, wave_number: int) -> void:
 			ground_spawners.append(spawner)
 		else:
 			air_spawners.append(spawner)
+	var assignment_salt: int = 0
 	for card: EnemyCard in wave_thing.enemy_groups:
+		assignment_salt += 1
 		if card.enemy.target_type == Data.EnemyType.LAND:
-			ground_spawners[NoiseRandom.randi_in_range(wave_number, 0, ground_spawners.size() - 1)].add_card(card)
+			ground_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) - assignment_salt, 0, ground_spawners.size() - 1)].add_card(card)
 		else:
-			air_spawners[NoiseRandom.randi_in_range(wave_number, 0, air_spawners.size() - 1)].add_card(card)
+			air_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) + assignment_salt, 0, air_spawners.size() - 1)].add_card(card)
 
 
 func set_upcoming_wave() -> void:
@@ -186,6 +199,7 @@ func set_upcoming_wave() -> void:
 		var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
 		#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
 		var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+		#var new_wave: Wave = WaveManager.get_test_wave(level.enemy_pool)
 		set_wave_to_spawners(new_wave, wave)
 		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 		#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))

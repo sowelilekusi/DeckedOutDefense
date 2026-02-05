@@ -22,6 +22,16 @@ static func calculate_pot(wave_number: int, number_of_players: int) -> int:
 	return ceili((3.0 * number_of_players) + (2.5 * wave_number))
 
 
+static func get_test_wave(spawn_pool: Array[Enemy]) -> Wave:
+	var wave: Wave = Wave.new()
+	for x: int in 3:
+		var new_card: EnemyCard = EnemyCard.new()
+		new_card.enemy = spawn_pool[0]
+		new_card.rarity = Data.Rarity.COMMON
+		wave.enemy_groups.append(new_card)
+	return wave
+
+
 ## Uses a spawn power budget to "buy" cards of enemies at random selection from
 ## the given spawn pool, returns the resulting wave but also assigns the cards
 ## among the given set of enemy spawners

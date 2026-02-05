@@ -5,10 +5,11 @@ extends HeroState
 
 
 func enter_state() -> void:
+	if hero.game_manager:
+		hero.game_manager.level.disable_all_tower_frames()
 	hero.left_hand_model.visible = true
 	hero.gauntlet_model.visible = true
 	hero.set_card_elements_visibility(true)
-	#hero.left_hand.visible = true
 	hero.carding_tool.enabled = true
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)

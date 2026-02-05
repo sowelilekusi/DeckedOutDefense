@@ -5,7 +5,7 @@ extends Node3D
 @export var cameras: Array[Camera3D]
 @export var pan_speed: float = 1.0
 var current_cam: int = 0
-@export var does_its_thing: bool = true
+@export var does_its_thing: bool = false
 
 
 func _ready() -> void:

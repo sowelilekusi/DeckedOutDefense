@@ -68,6 +68,10 @@ layout_mode = 2
 text = "2.5"
 placeholder_text = "gap"
 
+[node name="SelectAll" type="Button" parent="VBoxContainer" unique_id=1460776735]
+layout_mode = 2
+text = "Select All Nodes"
+
 [node name="Connect" type="Button" parent="VBoxContainer" unique_id=330867073]
 layout_mode = 2
 text = "Connect Nodes"
@@ -123,13 +127,10 @@ size_flags_horizontal = 3
 text = "Load"
 
 [node name="Position" type="HBoxContainer" parent="." unique_id=1194117729]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -323.0
-offset_bottom = 41.0
-grow_horizontal = 0
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+grow_horizontal = 2
 
 [node name="x" type="LineEdit" parent="Position" unique_id=1634710518]
 layout_mode = 2
@@ -142,6 +143,14 @@ size_flags_horizontal = 3
 [node name="z" type="LineEdit" parent="Position" unique_id=1899083093]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Position" unique_id=362195148]
+layout_mode = 2
+text = "Set Position"
+
+[node name="Button2" type="Button" parent="Position" unique_id=1670413853]
+layout_mode = 2
+text = "Add Offset"
 
 [node name="CameraFocus" type="Node3D" parent="." unique_id=1567712529]
 
@@ -169,10 +178,19 @@ layout_mode = 2
 layout_mode = 2
 text = "Load zone"
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=179301019]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Create" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Delete" to="." method="_on_create_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GenerateGrid" to="." method="_on_generate_grid_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SelectAll" to="." method="_on_select_all_pressed"]
 [connection signal="pressed" from="VBoxContainer/Connect" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ProjectDownwards" to="." method="_on_project_downwards_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarkGoal" to="." method="_on_mark_goal_button_pressed"]
@@ -183,7 +201,6 @@ text = "Load zone"
 [connection signal="pressed" from="VBoxContainer/Calculate" to="." method="_on_calculate_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Save" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_load_button_pressed"]
-[connection signal="text_changed" from="Position/x" to="." method="_on_x_field_changed"]
-[connection signal="text_changed" from="Position/y" to="." method="_on_y_field_changed"]
-[connection signal="text_changed" from="Position/z" to="." method="_on_z_field_changed"]
+[connection signal="pressed" from="Position/Button" to="." method="set_position"]
+[connection signal="pressed" from="Position/Button2" to="." method="offset_position"]
 [connection signal="pressed" from="VBoxContainer2/Button" to="." method="load_zone"]

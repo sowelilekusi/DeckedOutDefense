@@ -29,6 +29,7 @@ var level: Level
 var radius: float = 0
 var up_angle: float = 0
 var rotate_held: bool = false
+var flow_field_data: FlowFieldData
 
 
 func _ready() -> void:
@@ -50,10 +51,10 @@ func load_zone() -> void:
 	if level:
 		level.queue_free()
 	level = zone_list[selected_zone].instantiate() as Level
+	level.flow_field = flow_field
 	zone_holder.add_child(level)
 	camera.make_current()
 	editing = true
-	print("set editing true")
 
 
 func _process(delta: float) -> void:
@@ -63,12 +64,16 @@ func _process(delta: float) -> void:
 		if hover and !raycast.is_colliding():
 			hover = null
 		if selected.size() == 1 and vector_dirty:
+			$Position/Button.visible = true
 			position_field.visible = true
 			x_field.text = str(selected[0].global_position.x)
 			y_field.text = str(selected[0].global_position.y)
 			z_field.text = str(selected[0].global_position.z)
 			vector_dirty = false
-		elif selected.size() != 1:
+		elif selected.size() > 1:
+			$Position/Button.visible = false
+			position_field.visible = true
+		elif selected.size() < 1:
 			position_field.visible = false
 		
 		set_node_colors()
@@ -152,6 +157,16 @@ func _on_z_field_changed(text: String) -> void:
 	selected[0].global_position.z = float(text)
 
 
+func set_position() -> void:
+	for node: FlowNode in selected:
+		node.global_position = Vector3(float($Position/x.text), float($Position/y.text), float($Position/z.text))
+
+
+func offset_position() -> void:
+	for node: FlowNode in selected:
+		node.global_position += Vector3(float($Position/x.text), float($Position/y.text), float($Position/z.text))
+
+
 func _on_create_button_pressed() -> void:
 	flow_field.create_node()
 
@@ -159,6 +174,14 @@ func _on_create_button_pressed() -> void:
 func _on_generate_grid_button_pressed() -> void:
 	flow_field.create_grid(int(x_size_field.text), int(y_size_field.text), float(gap_field.text))
 	selected.append_array(flow_field.nodes)
+	create_grid_select_button(flow_field.data_file.grids)
+
+
+func create_grid_select_button(grid: int) -> void:
+	var button: Button = Button.new()
+	button.text = "Grid " + str(grid)
+	button.pressed.connect(select_in_grid.bind(grid))
+	$VBoxContainer3.add_child(button)
 
 
 func _on_calculate_button_pressed() -> void:
@@ -222,9 +245,13 @@ func _on_project_downwards_button_pressed() -> void:
 func _on_save_button_pressed() -> void:
 	var new_flow_field_data: FlowFieldData = FlowFieldData.new()
 	var dict: Dictionary[FlowNode, FlowNodeData] = {}
+	var grid_num: int = -1
 	for node: FlowNode in flow_field.nodes:
 		var new_flow_node_data: FlowNodeData = FlowNodeData.new()
+		new_flow_node_data.node_id = node.node_id
 		new_flow_node_data.grid_id = node.grid_id
+		if node.grid_id > grid_num:
+			grid_num += 1
 		new_flow_node_data.grid_x = node.grid_x
 		new_flow_node_data.grid_y = node.grid_y
 		new_flow_node_data.position = node.global_position
@@ -241,18 +268,77 @@ func _on_save_button_pressed() -> void:
 		for neighbor: FlowNode in node.connections:
 			flow_node_data.connected_nodes.append(dict[neighbor])
 		new_flow_field_data.nodes.append(flow_node_data)
-	ResourceSaver.save(new_flow_field_data, save_path.text)
+	new_flow_field_data.grids = grid_num
+	
+	var string: String = JSON.stringify(new_flow_field_data.to_dict())
+	var path: String = save_path.text + ".json"
+	var dir: DirAccess = DirAccess.open("user://")
+	if !dir.dir_exists("pathing_graphs"):
+		dir.make_dir("pathing_graphs")
+	dir.change_dir("pathing_graphs")
+	var save_file: FileAccess = FileAccess.open("user://pathing_graphs/" + path, FileAccess.WRITE)
+	save_file.store_line(string)
+
+
+static func load_flow_field_from_disc(path: String) -> FlowFieldData:
+	if FileAccess.file_exists(path):
+		var save_file: FileAccess = FileAccess.open(path, FileAccess.READ)
+		var json_string: String = save_file.get_line()
+		var json: JSON = JSON.new()
+		var parse_result: Error = json.parse(json_string)
+		if parse_result == OK:
+			var dict: Dictionary = json.data
+			var flow_field_data: FlowFieldData = FlowFieldData.from_dict(dict)
+			return flow_field_data
+	return FlowFieldData.new()
 
 
 func _on_load_button_pressed() -> void:
-	if ResourceLoader.exists(save_path.text):
-		var resource: Resource = ResourceLoader.load(save_path.text)
-		if resource is FlowFieldData:
-			flow_field.load_from_data(resource)
+	if FileAccess.file_exists("user://pathing_graphs/" + save_path.text + ".json"):
+		var save_file: FileAccess = FileAccess.open("user://pathing_graphs/" + save_path.text + ".json", FileAccess.READ)
+		var json_string: String = save_file.get_line()
+		var json: JSON = JSON.new()
+		var parse_result: Error = json.parse(json_string)
+		if parse_result == OK:
+			var dict: Dictionary = json.data
+			var flow_field_data: FlowFieldData = FlowFieldData.from_dict(dict)
+			flow_field.load_from_data(flow_field_data)
+			for grid: int in flow_field_data.grids:
+				create_grid_select_button(grid + 1)
+
+
+#func _on_load_button_pressed() -> void:
+	#if ResourceLoader.exists(save_path.text + ".res"):
+		#print("file exists")
+		#var resource: Resource = ResourceLoader.load(save_path.text + ".res", "", ResourceLoader.CACHE_MODE_IGNORE)
+		#if resource is FlowFieldData:
+			#flow_field.load_from_data(resource)
+			#print("loaded some data")
+		#else:
+			#print("some error loading!")
 
 
 func _on_trash_button_pressed() -> void:
 	if flow_field:
 		flow_field.queue_free()
+	for child: Node in $VBoxContainer3.get_children():
+		child.queue_free()
 	flow_field = FlowField.new()
+	flow_field_data = FlowFieldData.new()
+	flow_field.data_file = flow_field_data
 	add_child(flow_field)
+	if level:
+		level.flow_field = flow_field
+
+
+func _on_select_all_pressed() -> void:
+	selected = []
+	for node: FlowNode in flow_field.nodes:
+		selected.append(node)
+
+
+func select_in_grid(grid: int) -> void:
+	selected = []
+	for node: FlowNode in flow_field.nodes:
+		if node.grid_id == grid:
+			selected.append(node)

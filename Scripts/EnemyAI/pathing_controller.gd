@@ -26,6 +26,10 @@ func _ready() -> void:
 	super._ready()
 	if flow_field:
 		next_node = flow_field.get_closest_traversable_point(character.global_position)
+		#We skip one node so the "start" nodes placed near
+		#spawners are just usefull for "catching" enemies that are looking
+		#for a way into the pathfinding graph
+		next_node = next_node.best_path
 		distance_remaining += calculate_distance_to_goal(next_node)
 
 

@@ -26,10 +26,6 @@ var path_polygon: PackedScene = preload("res://path_polygon.tscn")
 var game_manager: GameManager
 
 
-func _ready() -> void:
-	create_path()
-
-
 func _process(delta: float) -> void:
 	if enemies_to_spawn == 0:
 		done_spawning = true
