@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://cwy6wxuujgqbq"]
+
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_b6olw"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_b51i4"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_frc10"]
+
+[resource]
+script = ExtResource("3_frc10")
+enemies = Dictionary[ExtResource("1_b6olw"), int]({
+ExtResource("2_b51i4"): 5
+})
+rewards_blank_cassette = true
+bonus_cash = 3
+metadata/_custom_type_script = "uid://bp6q371iypd06"

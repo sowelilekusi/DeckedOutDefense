@@ -14,8 +14,6 @@ signal switch_to_multi_player
 signal switch_to_main_menu
 
 var root_scene: Node
-var level_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn")
-var level_2_scene: PackedScene = load("res://Worlds/GreenPlanet/Levels/Cave/cave.tscn")
 var player_scene: PackedScene = load("res://PCs/hero.tscn")
 var game_end_scene: PackedScene = load("res://UI/Menus/GameEndScreen/game_end_screen.tscn")
 var connected_players_nodes: Dictionary = {}
@@ -91,13 +89,12 @@ func networked_set_wave(wave_number: int) -> void:
 	set_upcoming_wave()
 
 
-func spawn_level() -> void:
-	level = level_2_scene.instantiate() as Level
+func spawn_level(scene: PackedScene, path: String) -> void:
+	level = scene.instantiate() as Level
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
 	level.add_child(flow_field)
-	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc("user://pathing_graphs/level3.json"))
-	flow_field.calculate()
+	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(path))
 	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
@@ -252,7 +249,7 @@ func enemy_died(enemy: Enemy) -> void:
 			return
 	if enemies == 0:
 		end_wave()
-		if !gamemode.endless and wave >= wave_limit:
+		if !gamemode.endless and wave > wave_limit:
 			end(true)
 
 
@@ -267,7 +264,7 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 		end(false)
 	elif enemies == 0:
 		end_wave()
-		if !gamemode.endless and wave >= wave_limit:
+		if !gamemode.endless and wave > wave_limit:
 			end(true)
 
 
@@ -277,9 +274,9 @@ func end_wave() -> void:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
-		player.currency += level_specs.waves[wave - 1].bonus_cash
+		player.currency += level_specs.waves[wave - 2].bonus_cash
 		player.energy = Data.player_energy
-		player.blank_cassettes += 1 if level_specs.waves[wave - 1].rewards_blank_cassette else 0
+		player.blank_cassettes += 1 if level_specs.waves[wave - 2].rewards_blank_cassette else 0
 		#if wave % 2 == 0:
 		#	player.blank_cassettes += 1
 		if card_gameplay:
@@ -293,7 +290,7 @@ func end_wave() -> void:
 			#tower_base.enable_duration_sprites()
 			tower_base.iterate_duration()
 	if is_multiplayer_authority():
-		if level_specs.waves[wave - 1].new_shop:
+		if level_specs.waves[wave - 2].new_shop:
 			networked_spawn_shop.rpc()
 		#if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			#networked_spawn_shop.rpc()
@@ -325,7 +322,7 @@ func setup() -> void:
 	connected_players_nodes.clear()
 	
 	#Spawn new stuff
-	spawn_level()
+	spawn_level(level_specs.zone_scene, level_specs.data_path)
 	
 	#Set starting parameters
 	game_active = false

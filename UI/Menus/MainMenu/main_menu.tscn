@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dalgif6huggwg" path="res://Scripts/Resources/level_specs.gd" id="9_nt3t4"]
 [ext_resource type="Resource" uid="uid://b67b70x1uf2el" path="res://Level1/specs.tres" id="10_kjkav"]
 [ext_resource type="Resource" uid="uid://dffoufw4bnfn7" path="res://Level2/specs.tres" id="11_kjkav"]
+[ext_resource type="Resource" uid="uid://dgrcneuv4fut" path="res://Level3/specs.tres" id="12_eonxx"]
 [ext_resource type="Texture2D" uid="uid://cr1ucbuw3iotp" path="res://Assets/Textures/first_win_achievements.png" id="15_74epv"]
 [ext_resource type="Script" uid="uid://cjr0pbqisd51v" path="res://UI/Menus/MainMenu/achievements_menu.gd" id="15_sv1gy"]
 [ext_resource type="Texture2D" uid="uid://cpa1hl36xfplg" path="res://Assets/Textures/first_scroll_seen.png" id="16_sv1gy"]
@@ -442,7 +443,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_qshe4")
-levels = Array[ExtResource("9_nt3t4")]([ExtResource("10_kjkav"), ExtResource("11_kjkav")])
+levels = Array[ExtResource("9_nt3t4")]([ExtResource("10_kjkav"), ExtResource("11_kjkav"), ExtResource("12_eonxx")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=507718308]
 layout_mode = 2

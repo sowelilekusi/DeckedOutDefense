@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://11e6ak5jg2pn" path="res://Level2/wave6.tres" id="12_p0fmg"]
 [ext_resource type="Resource" uid="uid://cvtuui3grpslm" path="res://Level2/wave7.tres" id="13_alfsy"]
 [ext_resource type="Resource" uid="uid://7t61us4e01bb" path="res://Level2/wave8.tres" id="14_jyonc"]
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn" id="15_xdjpy"]
 
 [resource]
 script = ExtResource("2_y3kr2")
@@ -21,4 +22,6 @@ hero_class = ExtResource("4_ldc6i")
 allowed_cards = Array[ExtResource("1_rchhl")]([ExtResource("2_geygk"), ExtResource("3_xdjpy")])
 waves = Array[ExtResource("3_05rhi")]([ExtResource("7_siv73"), ExtResource("8_kee6w"), ExtResource("9_k6fmx"), ExtResource("10_dd7gv"), ExtResource("11_nmbqu"), ExtResource("12_p0fmg"), ExtResource("13_alfsy"), ExtResource("14_jyonc")])
 points_blocked = Array[int]([40, 41, 42])
+zone_scene = ExtResource("15_xdjpy")
+data_path = "res://Worlds/GreenPlanet/Levels/Bridge/level1.json"
 metadata/_custom_type_script = "uid://dalgif6huggwg"

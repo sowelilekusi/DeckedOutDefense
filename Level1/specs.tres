@@ -11,10 +11,13 @@
 [ext_resource type="Resource" uid="uid://c0ln1sfxmvhaf" path="res://Level1/wave4.tres" id="9_5mf8a"]
 [ext_resource type="Resource" uid="uid://b8e1xvwr2f4pf" path="res://Level1/wave5.tres" id="10_skwnu"]
 [ext_resource type="Resource" uid="uid://bsmpkojn7bmqq" path="res://Level1/wave6.tres" id="11_rusuq"]
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn" id="12_ksxj8"]
 
 [resource]
 script = ExtResource("2_52rgn")
 hero_class = ExtResource("3_ksxj8")
 allowed_cards = Array[ExtResource("1_yuhm2")]([ExtResource("2_vvycy")])
 waves = Array[ExtResource("3_5cjqa")]([ExtResource("6_xm2iu"), ExtResource("7_ginir"), ExtResource("8_heo8u"), ExtResource("9_5mf8a"), ExtResource("10_skwnu"), ExtResource("11_rusuq")])
+zone_scene = ExtResource("12_ksxj8")
+data_path = "res://Worlds/GreenPlanet/Levels/Bridge/level1.json"
 metadata/_custom_type_script = "uid://dalgif6huggwg"
