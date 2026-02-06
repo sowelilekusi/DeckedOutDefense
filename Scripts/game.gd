@@ -31,7 +31,7 @@ var shop_chance: float = 0.0
 var stats: RoundStats
 var card_gameplay: bool = false
 var level_layout: FlowFieldData
-var level_specs: LevelSpecs
+var level_config: LevelConfig
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -92,23 +92,14 @@ func networked_set_wave(wave_number: int) -> void:
 
 
 ##wave_count is number of upcoming waves this function should return
-func get_upcoming_waves(wave_count: int) -> Array[Wave]:
-	var waves: Array[Wave] = []
-	var i: int = -1
-	for wave_config: WaveConfig in level_specs.waves.slice(wave - 1):
-		i += 1
-		var new_wave: Wave = Wave.new()
-		for enemy: Enemy in level_specs.waves[wave - 1 + i].enemies.keys():
-			var enemy_card: EnemyCard = EnemyCard.new()
-			enemy_card.enemy = enemy
-			enemy_card.count = level_specs.waves[wave - 1 + i].enemies[enemy]
-			new_wave.enemy_groups.append(enemy_card)
-		waves.append(new_wave)
+func get_upcoming_waves(wave_count: int) -> Array[WaveConfig]:
+	var waves: Array[WaveConfig] = []
+	waves.append_array(level_config.waves.slice(wave - 1))
 	if waves.size() < wave_count:
 		var starting_wave: int = wave
 		for x: int in wave_count - waves.size():
 			var spawn_power: int = WaveManager.calculate_spawn_power(starting_wave + x, connected_players_nodes.size())
-			var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+			var new_wave: WaveConfig = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns.size())
 			waves.append(new_wave)
 	return waves
 
@@ -118,7 +109,7 @@ func spawn_level(scene: PackedScene) -> void:
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
 	level.add_child(flow_field)
-	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level_specs.zone.flow_field_data_path))
+	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level_config.zone.flow_field_data_path))
 	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
@@ -130,7 +121,7 @@ func spawn_level(scene: PackedScene) -> void:
 	root_scene.add_child(level)
 	for spawner: EnemySpawner in level.enemy_spawns:
 		spawner.create_path()
-	level.generate_obstacle(level_specs.points_blocked)
+	level.generate_obstacle(level_config.points_blocked)
 
 
 func spawn_players() -> void:
@@ -186,16 +177,7 @@ func spawn_enemy_wave() -> void:
 	wave_started.emit()
 
 
-func pre_generate_waves() -> Array[Wave]:
-	var wave_list: Array[Wave] = []
-	for i: int in range(wave, wave_limit + 1):
-		var spawn_power: int = WaveManager.calculate_spawn_power(i, connected_players_nodes.size())
-		var generated_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-		wave_list.append(generated_wave)
-	return wave_list
-
-
-func set_wave_to_spawners(wave_thing: Wave, wave_number: int) -> void:
+func set_wave_to_spawners(wave_thing: WaveConfig, wave_number: int) -> void:
 	var spawners: Array[EnemySpawner] = level.enemy_spawns
 	var ground_spawners: Array[EnemySpawner] = []
 	var air_spawners: Array[EnemySpawner] = []
@@ -205,37 +187,35 @@ func set_wave_to_spawners(wave_thing: Wave, wave_number: int) -> void:
 		else:
 			air_spawners.append(spawner)
 	var assignment_salt: int = 0
-	for card: EnemyCard in wave_thing.enemy_groups:
+	for enemy_group: EnemyGroup in wave_thing.enemy_groups.keys():
 		assignment_salt += 1
-		if card.enemy.target_type == Data.EnemyType.LAND:
-			ground_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) - assignment_salt, 0, ground_spawners.size() - 1)].add_card(card)
+		if enemy_group.enemy.target_type == Data.EnemyType.LAND:
+			ground_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) - assignment_salt, 0, ground_spawners.size() - 1)].add_card(enemy_group)
 		else:
-			air_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) + assignment_salt, 0, air_spawners.size() - 1)].add_card(card)
+			air_spawners[NoiseRandom.randi_in_range((wave_number * assignment_salt) + assignment_salt, 0, air_spawners.size() - 1)].add_card(enemy_group)
 
 
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
-		if level_specs.waves.size() == 0:
+		if level_config.waves.size() == 0:
 			var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
 			#var new_wave: Dictionary = WaveManager.generate_wave(spawn_power, level.enemy_pool)
-			var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+			var new_wave: WaveConfig = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns.size())
 			set_wave_to_spawners(new_wave, wave)
 			temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 			#networked_set_upcoming_wave.rpc(new_wave, 6 + floori(spawn_power / 70.0))
 		else:
-			var new_wave: Wave = Wave.new()
-			for enemy: Enemy in level_specs.waves[wave - 1].enemies.keys():
-				var enemy_card: EnemyCard = EnemyCard.new()
-				enemy_card.enemy = enemy
-				enemy_card.count = level_specs.waves[wave - 1].enemies[enemy]
-				new_wave.enemy_groups.append(enemy_card)
+			var new_wave: WaveConfig = get_upcoming_waves(1)[0]
 			set_wave_to_spawners(new_wave, wave)
 			temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 
 
-func temp_set_upcoming_wave(new_wave: Wave, coins: int) -> void:
+func temp_set_upcoming_wave(new_wave: WaveConfig, coins: int) -> void:
 	pot = coins
-	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(new_wave.to_dict())
+	var dict: Dictionary[String, int] = {}
+	for enemy_group: EnemyGroup in new_wave.enemy_groups.keys():
+		dict[enemy_group.enemy.title] = enemy_group.count
+	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(dict)
 
 
 @rpc("reliable", "call_local")
@@ -285,9 +265,9 @@ func end_wave() -> void:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
-		player.currency += level_specs.waves[wave - 2].bonus_cash
+		player.currency += level_config.waves[wave - 2].bonus_cash
 		player.energy = Data.player_energy
-		player.blank_cassettes += 1 if level_specs.waves[wave - 2].rewards_blank_cassette else 0
+		player.blank_cassettes += 1 if level_config.waves[wave - 2].rewards_blank_cassette else 0
 		#if wave % 2 == 0:
 		#	player.blank_cassettes += 1
 		if card_gameplay:
@@ -301,7 +281,7 @@ func end_wave() -> void:
 			#tower_base.enable_duration_sprites()
 			tower_base.iterate_duration()
 	if is_multiplayer_authority():
-		if level_specs.waves[wave - 2].new_shop:
+		if level_config.waves[wave - 2].new_shop:
 			networked_spawn_shop.rpc()
 		#if NoiseRandom.randf_in_range(23 * wave, 0.0, 1.0) <= shop_chance:
 			#networked_spawn_shop.rpc()
@@ -334,7 +314,7 @@ func setup() -> void:
 	connected_players_nodes.clear()
 	
 	#Spawn new stuff
-	spawn_level(level_specs.zone.scene)
+	spawn_level(level_config.zone.scene)
 	
 	#Set starting parameters
 	game_active = false
@@ -342,7 +322,7 @@ func setup() -> void:
 	objective_health = Data.starting_lives
 	wave = 1
 	stats = RoundStats.new()
-	wave_limit = level_specs.waves.size()
+	wave_limit = level_config.waves.size()
 	game_setup.emit()
 
 
@@ -407,8 +387,10 @@ func continue_with_game() -> void:
 	gamemode.endless = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	connected_players_nodes[multiplayer.get_unique_id()].unpause()
-	#TODO: This shouldn't happen. instead, the wave generator should generate level_specs waves
-	level_specs.waves = []
+	#TODO: This shouldn't happen. instead, the wave generator should generate level_config waves
+	#FIXME: this really needs to be changed because otherwise endless mode cant have shit like
+	#stations and shop respawns. it all needs to be part of the one system u know
+	level_config.waves = []
 	set_upcoming_wave()
 
 

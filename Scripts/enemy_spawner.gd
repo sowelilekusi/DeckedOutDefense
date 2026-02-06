@@ -14,7 +14,7 @@ signal enemy_spawned()
 
 var enemy_died_callback: Callable
 var enemy_reached_goal_callback: Callable
-var current_wave: Array[EnemyCard]
+var current_wave: Array[EnemyGroup]
 var enemy_types_to_spawn: Dictionary = {}
 var enemy_spawn_timers: Dictionary = {}
 var enemies_spawned: Dictionary = {}
@@ -125,7 +125,7 @@ func networked_spawn_air_enemy(enemy_num: int, pos: Vector3, id1: int, id2: int)
 func spawn_wave() -> void:
 	enemies_to_spawn = 0
 	enemy_spawn_timers = {}
-	for card: EnemyCard in current_wave:
+	for card: EnemyGroup in current_wave:
 		enemy_types_to_spawn[card.enemy] += card.count
 		enemies_to_spawn += card.count
 		#print(card.enemy.title + ": " + str(card.count))
@@ -135,6 +135,6 @@ func spawn_wave() -> void:
 	done_spawning = false
 
 
-func add_card(new_card: EnemyCard) -> void:
+func add_card(new_card: EnemyGroup) -> void:
 	current_wave.append(new_card)
 	enemy_types_to_spawn[new_card.enemy] = 0

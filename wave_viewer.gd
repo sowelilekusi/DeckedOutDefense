@@ -10,9 +10,9 @@ signal closed()
 @export var enemy_desc_label: RichTextLabel
 
 
-func set_waves(waves: Array[Wave], starting_wave_number: int) -> void:
+func set_waves(waves: Array[WaveConfig], starting_wave_number: int) -> void:
 	var i: int = starting_wave_number
-	for wave: Wave in waves:
+	for wave: WaveConfig in waves:
 		var enemy_row: EnemyRow = enemy_row_scene.instantiate() as EnemyRow
 		enemy_row.enemy_clicked.connect(set_enemy_desc)
 		wave_vbox.add_child(enemy_row)
@@ -21,21 +21,14 @@ func set_waves(waves: Array[Wave], starting_wave_number: int) -> void:
 		
 		var enemy_dict: Dictionary[Enemy, int] = {}
 		
-		for group: EnemyCard in wave.enemy_groups:
-			if enemy_dict.has(group.enemy):
-				enemy_dict[group.enemy] += group_to_count(group)
-			else:
-				enemy_dict[group.enemy] = group_to_count(group)
+		for enemy_group: EnemyGroup in wave.enemy_groups:
+			if !enemy_dict.has(enemy_group.enemy):
+				enemy_dict[enemy_group.enemy] = 0
+			enemy_dict[enemy_group.enemy] += enemy_group.count
 		
 		for enemy: Enemy in enemy_dict.keys():
 			enemy_row.add_enemy_tag(enemy, enemy_dict[enemy])
-	set_enemy_desc(waves[0].enemy_groups[0].enemy)
-
-
-func group_to_count(group: EnemyCard) -> int:
-	var count: int = 0
-	count = group.count
-	return count
+	set_enemy_desc(waves[0].enemy_groups.keys()[0].enemy)
 
 
 func set_enemy_desc(enemy: Enemy) -> void:

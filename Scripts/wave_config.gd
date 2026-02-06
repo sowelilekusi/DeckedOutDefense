@@ -1,6 +1,7 @@
-class_name WaveConfig extends Resource
+class_name WaveConfig
+extends Resource
 
-@export var enemies: Dictionary[Enemy, int]
+@export var enemy_groups: Dictionary[EnemyGroup, int]
 @export var station: Data.Rarity
 @export var new_shop: bool
 @export var rewards_blank_cassette: bool

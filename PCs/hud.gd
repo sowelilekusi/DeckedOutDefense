@@ -36,7 +36,6 @@ extends CanvasLayer
 var last_lives_count: int = Data.starting_lives
 var enemy_names: Array[String]
 var map_anchor: Node3D
-var cards: Array[EnemyCardUI] = []
 var feature_preview_tween: Tween
 var enemy_count: int = 0
 
@@ -88,38 +87,6 @@ func set_secondary_button(card: Card) -> void:
 
 func set_blank_cassette_count(value: int) -> void:
 	blank_cassette_label.text = str(value)
-
-
-func show_wave_generation_anim(wave: Wave) -> void:
-	for card: EnemyCardUI in cards:
-		card.queue_free()
-	cards = []
-	var x: int = 0
-	var final_x_coords: Array[int] = [-550, -275, 0, 275, 550]
-	for card: EnemyCard in wave.enemy_groups:
-		var card_ui: EnemyCardUI = enemy_card_scene.instantiate()
-		card_ui.set_enemy(card)
-		add_child(card_ui)
-		cards.append(card_ui)
-		#$Control.add_child(card_ui)
-		card_ui.position = $Control2.position
-	var i: int = 0
-	var j: int = 0
-	for card: EnemyCardUI in cards:
-		var anchor: Vector2 = $Control3.position
-		anchor -= Vector2(int(card.get_child(0).size.x / 2.0), int(card.get_child(0).size.y / 2.0))
-		anchor.x += final_x_coords[i]
-		var tween: Tween = create_tween()
-		tween.tween_interval((0.3 * j) + (1.4 * int(j / 5.0)))
-		tween.tween_property(card, "position", anchor, 0.3)
-		tween.tween_interval(3.0)
-		tween.tween_property(card, "position", anchor + Vector2.UP * 700, 0.5)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.set_trans(Tween.TRANS_QUINT)
-		i += 1
-		if i >= final_x_coords.size():
-			i = 0
-		j += 1
 
 
 func set_energy_visible(value: bool) -> void:
@@ -222,7 +189,8 @@ func enemy_count_down(enemy: Enemy) -> void:
 	enemy_count_label.text = str(enemy_count)
 
 
-func set_upcoming_wave(value: Dictionary) -> void:
+#the value dictionary should be enemy titles matched to how many of that enemy
+func set_upcoming_wave(value: Dictionary[String, int]) -> void:
 	enemy_count = 0
 	var frame_count: int = 0
 	enemy_names = []

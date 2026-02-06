@@ -128,9 +128,9 @@ func _on_static_body_3d_button_interacted(_value: int, reply: Hero) -> void:
 	button_collider.disabled = true
 	$StaticBody3D/AudioStreamPlayer3D.play()
 	#print("button pressed")
-	#print(reply.game_manager.level_specs.waves)
-	#print(reply.game_manager.level_specs.waves[0].station)
-	#print(reply.game_manager.level_specs.waves[1].station)
-	#for spec: WaveConfig in reply.game_manager.level_specs.waves:
+	#print(reply.game_manager.level_config.waves)
+	#print(reply.game_manager.level_config.waves[0].station)
+	#print(reply.game_manager.level_config.waves[1].station)
+	#for spec: WaveConfig in reply.game_manager.level_config.waves:
 	#	print(Data.Rarity.keys()[spec.station])
-	find_cards(reply.hero_class.faction, reply.game_manager.level_specs.waves[reply.game_manager.wave - 1].station, reply.game_manager.level_specs.allowed_cards)
+	find_cards(reply.hero_class.faction, reply.game_manager.level_config.waves[reply.game_manager.wave - 1].station, reply.game_manager.level_config.allowed_cards)

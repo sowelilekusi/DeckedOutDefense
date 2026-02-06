@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ci8vq73u23viy" path="res://UI/Menus/MainMenu/main_menu.gd" id="2_ivytu"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="5_cwn2i"]
 [ext_resource type="Script" uid="uid://bwsw4oq150v3p" path="res://UI/Menus/MainMenu/level_selecter_main_menu.gd" id="8_qshe4"]
-[ext_resource type="Script" uid="uid://dalgif6huggwg" path="res://Scripts/Resources/level_specs.gd" id="9_nt3t4"]
+[ext_resource type="Script" uid="uid://dalgif6huggwg" path="res://Scripts/Resources/level_config.gd" id="9_nt3t4"]
 [ext_resource type="Resource" uid="uid://b67b70x1uf2el" path="res://Levels/Level1/specs.tres" id="10_kjkav"]
 [ext_resource type="Resource" uid="uid://dffoufw4bnfn7" path="res://Levels/Level2/specs.tres" id="11_kjkav"]
 [ext_resource type="Resource" uid="uid://dgrcneuv4fut" path="res://Levels/Level3/specs.tres" id="12_eonxx"]

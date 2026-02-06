@@ -23,28 +23,26 @@ static func calculate_pot(wave_number: int, number_of_players: int) -> int:
 	return ceili((3.0 * number_of_players) + (2.5 * wave_number))
 
 
-static func get_test_wave(spawn_pool: Array[Enemy]) -> Wave:
-	var wave: Wave = Wave.new()
+static func get_test_wave(spawn_pool: Array[Enemy]) -> WaveConfig:
+	var wave: WaveConfig = WaveConfig.new()
 	for x: int in 3:
-		var new_card: EnemyCard = EnemyCard.new()
-		new_card.enemy = spawn_pool[0]
-		new_card.rarity = Data.Rarity.COMMON
-		wave.enemy_groups.append(new_card)
+		wave.enemies[spawn_pool[0]] = 1
 	return wave
 
 
 ## Uses a spawn power budget to "buy" cards of enemies at random selection from
 ## the given spawn pool, returns the resulting wave but also assigns the cards
 ## among the given set of enemy spawners
-static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy]) -> Wave:
-	var wave: Wave = Wave.new()
+static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: int) -> WaveConfig:
+	var wave: WaveConfig = WaveConfig.new()
 	
 	#print("Generating wave with " + str(points) + " points to spend")
 	while spawn_power > 0:
-		var new_card: EnemyCard = EnemyCard.new()
 		
 		#First, choose an enemy at random
-		new_card.enemy = spawn_pool[NoiseRandom.randi_in_range(spawn_power, 0, spawn_pool.size() - 1)]
+		var enemy: Enemy = spawn_pool[NoiseRandom.randi_in_range(spawn_power, 0, spawn_pool.size() - 1)]
+		var enemy_group: EnemyGroup = EnemyGroup.new()
+		enemy_group.enemy = enemy
 		
 		#Next, we have to figure out if we can actually buy that enemy
 		#and, if not, then we have to pick a different enemy, repeat until
@@ -54,29 +52,29 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy]) -> Wave:
 		var first_enemy_id: int = -1
 		while !enemy_chosen:
 			#Next, determine what is the most groups we can afford
-			most_enemies_afforded = int(spawn_power / new_card.enemy.spawn_power)
+			most_enemies_afforded = int(spawn_power / enemy.spawn_power)
 			if most_enemies_afforded > 0:
 				enemy_chosen = true
 			else:
 				#Even 1 group was too expensive, so we have to choose
 				#a different enemy and try this process again
-				var enemy_id: int = spawn_pool.find(new_card.enemy)
+				var enemy_id: int = spawn_pool.find(enemy)
 				enemy_id -= 1
 				if first_enemy_id == -1:
 					first_enemy_id = enemy_id
 				if enemy_id < 0:
-					new_card.enemy = spawn_pool[spawn_pool.size() - 1]
+					enemy = spawn_pool[spawn_pool.size() - 1]
 				else:
-					new_card.enemy = spawn_pool[enemy_id]
+					enemy = spawn_pool[enemy_id]
 				most_enemies_afforded = 0
 				if enemy_id == first_enemy_id:
 					return wave
 		#Now that we know how many we could afford, lets just choose a
 		#random number of groups
 		var chosen_groups: int = NoiseRandom.randi_in_range(spawn_power, 1, most_enemies_afforded)
-		new_card.count = chosen_groups * new_card.enemy.group_size
 		
 		#Add that new enemy to the wave and spend the points!
-		wave.enemy_groups.append(new_card)
-		spawn_power -= chosen_groups * new_card.enemy.spawn_power
+		enemy_group.count = chosen_groups * enemy.group_size
+		wave.enemy_groups[enemy_group] = NoiseRandom.randi_in_range(spawn_power, 0, spawners - 1)
+		spawn_power -= chosen_groups * enemy.spawn_power
 	return wave

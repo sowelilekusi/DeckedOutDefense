@@ -1,10 +1,10 @@
 class_name MainMenuLevelSelector extends PanelContainer
 
-signal level_selected(specs: LevelSpecs, side_chosen: int)
+signal level_selected(specs: LevelConfig, side_chosen: int)
 
 var side: int = 0
 
-@export var levels: Array[LevelSpecs] = []
+@export var levels: Array[LevelConfig] = []
 
 func _on_button_pressed() -> void:
 	side = 0
@@ -18,7 +18,7 @@ func _on_button_2_pressed() -> void:
 
 func _ready() -> void:
 	var i: int = 0
-	for level: LevelSpecs in levels:
+	for level: LevelConfig in levels:
 		i += 1
 		var button: Button = Button.new()
 		button.text = "Level " + str(i)

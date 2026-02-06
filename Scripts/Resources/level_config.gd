@@ -1,4 +1,5 @@
-class_name LevelSpecs extends Resource
+class_name LevelConfig
+extends Resource
 
 @export var hero_class: HeroClass
 @export var allowed_cards: Array[Card]
