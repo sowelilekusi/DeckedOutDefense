@@ -608,3 +608,9 @@ msgstr ""
 
 msgid "BUTTON_CLOSE"
 msgstr ""
+
+msgid "LABEL_CAMPAIGN_DESC"
+msgstr ""
+
+msgid "LABEL_ENDLESS_DESC"
+msgstr ""

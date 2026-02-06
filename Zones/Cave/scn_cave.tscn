@@ -216,7 +216,6 @@ corpses = NodePath("Parents/Corpses")
 cinematic_cam = NodePath("CinematicCamManager")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")
-data_path = "res://Worlds/GreenPlanet/Levels/Cave/level3.json"
 metadata/_custom_type_script = "uid://cvejbo3srx8py"
 
 [node name="Parents" type="Node3D" parent="." unique_id=447416055]

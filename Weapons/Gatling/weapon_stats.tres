@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CardText" format=3 uid="uid://cj2x1jvo8l4ot"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_vn048"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_t6xv0"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_y36gr"]
 
 [resource]
@@ -14,4 +15,5 @@ attributes = Dictionary[String, float]({
 "Speed Multiplier": 3.0,
 "Speed Time": 4.0
 })
+features = Array[ExtResource("1_vn048")]([ExtResource("2_t6xv0")])
 text = "DESC_WEAPON_ACCEL"

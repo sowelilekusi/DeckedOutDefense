@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://8yv7excojcg0"]
 
+[ext_resource type="Texture2D" uid="uid://mt6liu1hi15j" path="res://ingame_logo.png" id="2_14tm0"]
 [ext_resource type="Script" uid="uid://ci8vq73u23viy" path="res://UI/Menus/MainMenu/main_menu.gd" id="2_ivytu"]
 [ext_resource type="AudioStream" uid="uid://cp6ph4ra7u5rk" path="res://UI/drop_003.ogg" id="5_cwn2i"]
 [ext_resource type="Script" uid="uid://bwsw4oq150v3p" path="res://UI/Menus/MainMenu/level_selecter_main_menu.gd" id="8_qshe4"]
@@ -53,15 +54,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.5176471, 0.60784316, 0.89411765, 1)
 
-[node name="TitleLabel" type="Label" parent="." unique_id=1731106766]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=57227105]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 grow_horizontal = 2
-text = "TITLE_GAME_NAME"
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_14tm0")
+stretch_mode = 5
 
 [node name="MainControls" type="VBoxContainer" parent="." unique_id=923552840]
 custom_minimum_size = Vector2(80, 0)
@@ -455,7 +457,7 @@ text = "BUTTON_BACK"
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=654891125]
 layout_mode = 2
-text = "Standard Campaign Mode"
+text = "LABEL_CAMPAIGN_DESC"
 horizontal_alignment = 1
 vertical_alignment = 1
 

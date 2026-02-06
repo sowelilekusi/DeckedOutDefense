@@ -46,8 +46,8 @@ _subresources={
 },
 "Material.003": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Props/BigTree1/big_tree_bark.tres",
-"use_external/path": "uid://bo8hb5kchxsaj"
+"use_external/fallback_path": "res://Materials/wood1/wood1.tres",
+"use_external/path": "uid://c21fh4gsnunfg"
 }
 },
 "meshes": {

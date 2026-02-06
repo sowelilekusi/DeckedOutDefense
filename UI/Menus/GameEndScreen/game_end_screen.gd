@@ -1,5 +1,7 @@
 class_name GameEndScreen extends PanelContainer
 
+signal pressed_continue()
+
 @export var box: PackedScene
 
 @export var outcome_label: Label
@@ -10,6 +12,11 @@ class_name GameEndScreen extends PanelContainer
 @export var undefeated_enemies: VBoxContainer
 
 var game_manager: GameManager
+
+
+func won_game() -> void:
+	$VBoxContainer/Buttons/ContinueButton.visible = true
+	$VBoxContainer/Buttons/PlayButton.visible = false
 
 
 func _ready() -> void:
@@ -49,3 +56,8 @@ func _on_play_button_pressed() -> void:
 
 func _on_button_mouse_entered() -> void:
 	$AudioStreamPlayer.play()
+
+
+func _on_continue_button_pressed() -> void:
+	pressed_continue.emit()
+	queue_free()

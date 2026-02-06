@@ -651,6 +651,12 @@ msgstr "Wave Preview"
 msgid "BUTTON_CLOSE"
 msgstr "Close"
 
+msgid "LABEL_CAMPAIGN_DESC"
+msgstr "Standard Campaign Mode"
+
+msgid "LABEL_ENDLESS_DESC"
+msgstr "Endless Mode with random waves and all unlocked equipment"
+
 #, fuzzy
 #~| msgid "LABEL_DISPLAY_NAME"
 #~ msgid "LABEL_CARD_NAME"

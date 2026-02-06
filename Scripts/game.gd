@@ -87,6 +87,30 @@ func networked_set_wave(wave_number: int) -> void:
 		connected_players_nodes[player].hud.set_wave_count(wave_number)
 	wave = wave_number
 	set_upcoming_wave()
+	
+	
+
+
+##wave_count is number of upcoming waves this function should return
+func get_upcoming_waves(wave_count: int) -> Array[Wave]:
+	var waves: Array[Wave] = []
+	var i: int = -1
+	for wave_config: WaveConfig in level_specs.waves.slice(wave - 1):
+		i += 1
+		var new_wave: Wave = Wave.new()
+		for enemy: Enemy in level_specs.waves[wave - 1 + i].enemies.keys():
+			var enemy_card: EnemyCard = EnemyCard.new()
+			enemy_card.enemy = enemy
+			enemy_card.count = level_specs.waves[wave - 1 + i].enemies[enemy]
+			new_wave.enemy_groups.append(enemy_card)
+		waves.append(new_wave)
+	if waves.size() < wave_count:
+		var starting_wave: int = wave
+		for x: int in wave_count - waves.size():
+			var spawn_power: int = WaveManager.calculate_spawn_power(starting_wave + x, connected_players_nodes.size())
+			var new_wave: Wave = WaveManager.generate_wave(spawn_power, level.enemy_pool)
+			waves.append(new_wave)
+	return waves
 
 
 func spawn_level(scene: PackedScene) -> void:
@@ -154,15 +178,11 @@ func ready_player(player_ready_true: bool) -> void:
 
 
 func spawn_enemy_wave() -> void:
-	#level.shop.close()
-	#wave += 1
 	level.disable_all_tower_frames()
 	level.flow_field.calculate()
 	for spawn: EnemySpawner in level.enemy_spawns:
 		spawn.visible = false
 		spawn.spawn_wave()
-	#for tower_base: TowerBase in level.walls.values():
-		#tower_base.disable_duration_sprites()
 	wave_started.emit()
 
 
@@ -215,17 +235,7 @@ func set_upcoming_wave() -> void:
 
 func temp_set_upcoming_wave(new_wave: Wave, coins: int) -> void:
 	pot = coins
-	#connected_players_nodes[multiplayer.get_unique_id()].hud.show_wave_generation_anim(new_wave)
 	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(new_wave.to_dict())
-
-#TODO: You'll probably have to write a to_dict function for the new wave system 
-#before any of this shit works in multiplayer
-#@rpc("reliable", "call_local")
-#func networked_set_upcoming_wave(wave_dict: Dictionary, coins: int) -> void:
-	#upcoming_wave = wave_dict
-	#pot = coins
-	#for key: int in connected_players_nodes:
-		#connected_players_nodes[key].hud.set_upcoming_wave(upcoming_wave)
 
 
 @rpc("reliable", "call_local")
@@ -299,7 +309,7 @@ func end_wave() -> void:
 		#else:
 			#shop_chance += 0.09
 	wave_finished.emit()
-	if wave < wave_limit:
+	if wave <= wave_limit:
 		set_upcoming_wave()
 
 
@@ -383,11 +393,23 @@ func end(outcome: bool) -> void:
 			menu.set_outcome_message("You lost...")
 			lost_game.emit()
 		true:
+			menu.won_game()
 			menu.set_outcome_message("You win!")
 			won_game.emit()
+			menu.pressed_continue.connect(continue_with_game)
 	UILayer.add_child(menu)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	connected_players_nodes[multiplayer.get_unique_id()].pause()
+
+
+func continue_with_game() -> void:
+	game_active = true
+	gamemode.endless = true
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	connected_players_nodes[multiplayer.get_unique_id()].unpause()
+	#TODO: This shouldn't happen. instead, the wave generator should generate level_specs waves
+	level_specs.waves = []
+	set_upcoming_wave()
 
 
 func quit_to_desktop() -> void:

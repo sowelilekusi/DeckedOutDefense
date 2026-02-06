@@ -4,4 +4,4 @@
 
 [node name="Node3D" type="Node3D" unique_id=924363235]
 
-[node name="big_tree" parent="." unique_id=1005968396 instance=ExtResource("1_jd860")]
+[node name="big_tree" parent="." unique_id=1374218049 instance=ExtResource("1_jd860")]

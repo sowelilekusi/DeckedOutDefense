@@ -118,9 +118,9 @@ func generate_seed() -> void:
 		gamemode.rng_seed = randi()
 
 
-func level_selected(level: LevelSpecs) -> void:
+func level_selected(level: LevelSpecs, side: int) -> void:
 	generate_seed()
-	gamemode.endless = false
+	gamemode.endless = true if side == 1 else false
 	gamemode.daily = false
 	game.level_specs = level
 	start_game()

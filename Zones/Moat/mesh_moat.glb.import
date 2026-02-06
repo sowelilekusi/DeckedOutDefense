@@ -39,25 +39,25 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Dirt": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Materials/dirt1/dirt1.tres",
-"use_external/path": "uid://vu21wvwrmhlj"
-},
-"Grass": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Materials/grass1/grass1.tres",
-"use_external/path": "uid://c4qub458rqpt2"
-},
-"Material": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Materials/bricks1/bricks1.tres",
-"use_external/path": "uid://b7wnk32j3acfr"
-},
 "Material.002": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Materials/cobblestone1/cobblestone1.tres",
 "use_external/path": "uid://ci2m26g6b7ao5"
+},
+"bricks1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/bricks1/bricks1.tres",
+"use_external/path": "uid://b7wnk32j3acfr"
+},
+"dirt1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/dirt1/dirt1.tres",
+"use_external/path": "uid://vu21wvwrmhlj"
+},
+"grass1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/grass1/grass1.tres",
+"use_external/path": "uid://c4qub458rqpt2"
 }
 }
 }

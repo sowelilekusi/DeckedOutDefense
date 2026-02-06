@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://c8ecof4oeng1f" path="res://Props/BigTree1/big_tree.tscn" id="21_6tcu8"]
 [ext_resource type="PackedScene" uid="uid://c6isprnkaliqr" path="res://Scenes/MixingTable/remix_table.tscn" id="21_ks6qx"]
 [ext_resource type="Script" uid="uid://cy6oj2hr8q8br" path="res://Scripts/killbox.gd" id="26_tuncf"]
-[ext_resource type="PackedScene" uid="uid://c2avjln5vmr0y" path="res://Scenes/Shredder/shredder.tscn" id="27_gppb4"]
 [ext_resource type="Texture2D" uid="uid://dqrfgw65d0sq8" path="res://Assets/Textures/bridge_map.png" id="28_6od8s"]
 [ext_resource type="PackedScene" uid="uid://ca174636iktc6" path="res://Zones/Moat/mesh_moat.glb" id="30_ttr7n"]
 
@@ -236,7 +235,7 @@ fog_depth_end = 200.0
 size = Vector3(3.6270146, 6.87512, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_134um"]
-size = Vector3(70.0478, 1, 73.4615)
+size = Vector3(260.6662, 18.99414, 318.20755)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi8e6"]
 transparency = 1
@@ -258,7 +257,6 @@ cinematic_cam = NodePath("CinemaCam")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")
 obstacles = Array[PackedScene]([ExtResource("7_6tcu8")])
-data_path = "res://Worlds/GreenPlanet/Levels/Bridge/level1.json"
 metadata/_custom_type_script = "uid://cvejbo3srx8py"
 metadata/_editor_floor_ = Vector3(4, -10, 8)
 
@@ -404,13 +402,10 @@ collision_mask = 2
 script = ExtResource("26_tuncf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox" unique_id=1079628314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0668106, -6.8471, 0.829394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.947075, -15.84417, 71.8072)
 shape = SubResource("BoxShape3D_134um")
 
-[node name="Shredder" parent="." unique_id=964733986 instance=ExtResource("27_gppb4")]
-transform = Transform3D(0.748886, 0, 0.662699, 0, 1, 0, -0.662699, 0, 0.748886, 34.8662, 0.5, 16.6183)
-
-[node name="bridge" parent="." unique_id=142248090 instance=ExtResource("30_ttr7n")]
+[node name="bridge" parent="." unique_id=1818123169 instance=ExtResource("30_ttr7n")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1926664882]

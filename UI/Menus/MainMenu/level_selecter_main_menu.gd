@@ -1,6 +1,6 @@
 class_name MainMenuLevelSelector extends PanelContainer
 
-signal level_selected(specs: LevelSpecs)
+signal level_selected(specs: LevelSpecs, side_chosen: int)
 
 var side: int = 0
 
@@ -8,12 +8,12 @@ var side: int = 0
 
 func _on_button_pressed() -> void:
 	side = 0
-	$VBoxContainer/Label.text = "Standard Campaign Mode"
+	$VBoxContainer/Label.text = tr("LABEL_CAMPAIGN_DESC")
 
 
 func _on_button_2_pressed() -> void:
 	side = 1
-	$VBoxContainer/Label.text = "Endless Mode with random waves and all unlocked equipment"
+	$VBoxContainer/Label.text = tr("LABEL_ENDLESS_DESC")
 
 
 func _ready() -> void:
@@ -27,4 +27,4 @@ func _ready() -> void:
 
 
 func start_level(level: int) -> void:
-	level_selected.emit(levels[level])
+	level_selected.emit(levels[level], side)
