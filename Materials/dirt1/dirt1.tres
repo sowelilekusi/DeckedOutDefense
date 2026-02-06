@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://vu21wvwrmhlj"]
+
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_lp0jk"]
+[ext_resource type="Texture2D" uid="uid://cnvndwp3q7rke" path="res://Materials/dirt1/dirt1.png" id="2_pspnn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lp0jk")
+shader_parameter/albedo = ExtResource("2_pspnn")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0

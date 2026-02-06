@@ -525,16 +525,28 @@ msgstr ""
 msgid "ENEMY_FAST_BABY"
 msgstr ""
 
+msgid "ENEMY_DESC_FAST_BABY"
+msgstr ""
+
 #: Enemies/Crystalisk/crystalisk.tres
 msgid "ENEMY_FLYING_CRYSTAL"
+msgstr ""
+
+msgid "ENEMY_DESC_FLYING_CRYSTAL"
 msgstr ""
 
 #: Enemies/ElderEyeDog/elder_eye_dog.tres
 msgid "ENEMY_HEAVY_WALKER"
 msgstr ""
 
+msgid "ENEMY_DESC_HEAVY_WALKER"
+msgstr ""
+
 #: Enemies/EyeDog/eye_dog.tres
 msgid "ENEMY_DOG"
+msgstr ""
+
+msgid "ENEMY_DESC_DOG"
 msgstr ""
 
 #: Scenes/CardPrinter/card_printer.gd
@@ -589,4 +601,10 @@ msgid "LABEL_REMIX_CURRENCY"
 msgstr ""
 
 msgid "PROMPT_QUIT"
+msgstr ""
+
+msgid "TITLE_WAVE_VIEWER"
+msgstr ""
+
+msgid "BUTTON_CLOSE"
 msgstr ""

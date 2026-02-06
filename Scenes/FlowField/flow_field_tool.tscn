@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cccowrgelgswj"]
 
 [ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scenes/FlowField/flow_field_tool.gd" id="1_e7pmn"]
-[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.tscn" id="2_030xf"]
-[ext_resource type="PackedScene" uid="uid://csq7if8wojp4g" path="res://Worlds/GreenPlanet/Levels/Cave/cave.tscn" id="3_xar7e"]
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Zones/Moat/scn_moat.tscn" id="2_030xf"]
+[ext_resource type="PackedScene" uid="uid://csq7if8wojp4g" path="res://Zones/Cave/scn_cave.tscn" id="3_xar7e"]
 
 [sub_resource type="Environment" id="Environment_e7pmn"]
 ambient_light_source = 2

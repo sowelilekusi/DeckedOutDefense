@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("4_x2l2n")
 title = "ENEMY_FLYING_CRYSTAL"
+description = "ENEMY_DESC_FLYING_CRYSTAL"
 target_type = 2
 icon = ExtResource("2_idym2")
 scene = ExtResource("3_fmkhl")
@@ -18,13 +19,3 @@ spawn_power = 6
 health = 120
 penalty = 7
 movement_speed = 1.0
-common_group = 5
-common_cost = 2
-uncommon_group = 10
-uncommon_cost = 3
-rare_group = 18
-rare_cost = 4
-epic_group = 26
-epic_cost = 6
-legendary_group = 36
-legendary_cost = 8

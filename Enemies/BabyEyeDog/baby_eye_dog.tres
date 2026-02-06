@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_k5sd1")
 title = "ENEMY_FAST_BABY"
+description = "ENEMY_DESC_FAST_BABY"
 target_type = 1
 icon = ExtResource("1_xgen5")
 scene = ExtResource("3_otbdk")

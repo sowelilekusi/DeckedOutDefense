@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_q48il")
 title = "ENEMY_HEAVY_WALKER"
+description = "ENEMY_DESC_HEAVY_WALKER"
 target_type = 1
 icon = ExtResource("1_lck53")
 scene = ExtResource("3_m808b")

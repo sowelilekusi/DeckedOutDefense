@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b2ta3p7n7g1dx" path="res://level_magec.gd" id="1_w3kbw"]
 [ext_resource type="PackedScene" uid="uid://cxarqns8onckw" path="res://crt.glb" id="2_75n78"]
-[ext_resource type="PackedScene" uid="uid://ca174636iktc6" path="res://Worlds/GreenPlanet/Levels/Bridge/bridge.glb" id="2_kfofo"]
+[ext_resource type="PackedScene" uid="uid://ca174636iktc6" path="res://Zones/Moat/mesh_moat.glb" id="2_kfofo"]
 [ext_resource type="PackedScene" uid="uid://dse6msy2hrctc" path="res://wire_frame.tscn" id="3_kfofo"]
 
 [node name="MainMenu" type="Node3D" unique_id=984017026 node_paths=PackedStringArray("level_parent", "widget_parent")]

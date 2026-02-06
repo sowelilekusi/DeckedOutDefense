@@ -97,7 +97,7 @@ func create_path() -> void:
 
 
 func update_path() -> void:
-	if type != Data.EnemyType.LAND:
+	if type != Data.EnemyType.LAND or !flow_field.nodes:
 		return
 	path.curve = Curve3D.new()
 	var node: FlowNode = flow_field.get_closest_traversable_point(global_position)

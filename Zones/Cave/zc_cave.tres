@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ZoneConfig" format=3 uid="uid://dicfpbrig37m8"]
+
+[ext_resource type="PackedScene" uid="uid://csq7if8wojp4g" path="res://Zones/Cave/scn_cave.tscn" id="1_h1vei"]
+[ext_resource type="Script" uid="uid://q0vwwqs066g8" path="res://zone_config.gd" id="2_65j5w"]
+
+[resource]
+script = ExtResource("2_65j5w")
+zone_name = "Cave"
+scene = ExtResource("1_h1vei")
+flow_field_data_path = "res://Zones/Cave/ffd_cave.json"
+metadata/_custom_type_script = "uid://q0vwwqs066g8"

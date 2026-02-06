@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelSpecs" format=3 uid="uid://dgrcneuv4fut"]
+
+[ext_resource type="Script" uid="uid://d40isem6w5d8" path="res://Scripts/Resources/card.gd" id="1_ldkvi"]
+[ext_resource type="Resource" uid="uid://deer0awg4d18o" path="res://Cards/assault.tres" id="2_0atj5"]
+[ext_resource type="Resource" uid="uid://cucdevshmdohf" path="res://Cards/overclock.tres" id="3_wfxcl"]
+[ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="4_5rrxx"]
+[ext_resource type="Script" uid="uid://dalgif6huggwg" path="res://Scripts/Resources/level_specs.gd" id="5_kje1i"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="6_gmv8c"]
+[ext_resource type="Resource" uid="uid://cwy6wxuujgqbq" path="res://Levels/Level3/wave1.tres" id="7_43tyk"]
+[ext_resource type="Resource" uid="uid://c0jg2k4igwt7y" path="res://Levels/Level3/wave2.tres" id="8_mblpn"]
+[ext_resource type="Resource" uid="uid://dicfpbrig37m8" path="res://Zones/Cave/zc_cave.tres" id="9_sbxeq"]
+
+[resource]
+script = ExtResource("5_kje1i")
+hero_class = ExtResource("4_5rrxx")
+allowed_cards = Array[ExtResource("1_ldkvi")]([ExtResource("2_0atj5"), ExtResource("3_wfxcl")])
+waves = Array[ExtResource("6_gmv8c")]([ExtResource("7_43tyk"), ExtResource("8_mblpn")])
+zone = ExtResource("9_sbxeq")
+metadata/_custom_type_script = "uid://dalgif6huggwg"

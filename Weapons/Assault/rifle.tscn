@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bp3o5klntwmhd" path="res://Scripts/Weapons/hitscan_weapon.gd" id="1_yvp43"]
 [ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://Weapons/Assault/weapon_stats.tres" id="2_2k4c7"]
 [ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="2_5wfsb"]
-[ext_resource type="PackedScene" uid="uid://6qv8uwwuoiys" path="res://Gun Thing.glb" id="3_2k4c7"]
+[ext_resource type="PackedScene" uid="uid://bjjlhmhfytbvm" path="res://Weapons/Assault/BoltGun.glb" id="4_5wfsb"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1hdrg"]
 random_pitch = 1.1
@@ -30,11 +30,7 @@ one_shot = true
 stream = SubResource("AudioStreamRandomizer_1hdrg")
 bus = &"SFX"
 
-[node name="Gun Thing" parent="." unique_id=1024288520 instance=ExtResource("3_2k4c7")]
-
-[node name="Cube_001" parent="Gun Thing" index="0" unique_id=1455961016]
-layers = 2
+[node name="BoltGun" parent="." unique_id=566167059 instance=ExtResource("4_5wfsb")]
+transform = Transform3D(-0.07, 0, -1.0569706e-08, 0, 0.07, 0, 1.0569706e-08, 0, -0.07, 0, 0.15755616, -0.10932771)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
-[editable path="Gun Thing"]

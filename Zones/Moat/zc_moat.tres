@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ZoneConfig" format=3 uid="uid://cqm54pu03l510"]
+
+[ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Zones/Moat/scn_moat.tscn" id="1_i6w1j"]
+[ext_resource type="Script" uid="uid://q0vwwqs066g8" path="res://zone_config.gd" id="2_5ugqa"]
+
+[resource]
+script = ExtResource("2_5ugqa")
+zone_name = "Moat"
+scene = ExtResource("1_i6w1j")
+flow_field_data_path = "res://Zones/Moat/ffd_moat.json"
+metadata/_custom_type_script = "uid://q0vwwqs066g8"

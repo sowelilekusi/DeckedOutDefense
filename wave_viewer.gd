@@ -29,6 +29,7 @@ func set_waves(waves: Array[Wave], starting_wave_number: int) -> void:
 		
 		for enemy: Enemy in enemy_dict.keys():
 			enemy_row.add_enemy_tag(enemy, enemy_dict[enemy])
+	set_enemy_desc(waves[0].enemy_groups[0].enemy)
 
 
 func group_to_count(group: EnemyCard) -> int:

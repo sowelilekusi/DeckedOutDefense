@@ -94,7 +94,7 @@ func spawn_level(scene: PackedScene) -> void:
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
 	level.add_child(flow_field)
-	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level.data_path))
+	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level_specs.zone.flow_field_data_path))
 	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
@@ -324,7 +324,7 @@ func setup() -> void:
 	connected_players_nodes.clear()
 	
 	#Spawn new stuff
-	spawn_level(level_specs.zone_scene)
+	spawn_level(level_specs.zone.scene)
 	
 	#Set starting parameters
 	game_active = false

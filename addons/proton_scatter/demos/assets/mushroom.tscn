@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bodkixm8bubes"]
-
-[ext_resource type="PackedScene" uid="uid://c38uugpgw7hjm" path="res://addons/proton_scatter/demos/assets/models/mushrooms.glb" id="1_spmys"]
-
-[node name="mushrooms" unique_id=1694844136 instance=ExtResource("1_spmys")]

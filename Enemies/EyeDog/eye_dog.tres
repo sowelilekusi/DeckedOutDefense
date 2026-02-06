@@ -15,6 +15,7 @@ region = Rect2(0, 0, 32, 32)
 resource_local_to_scene = true
 script = ExtResource("1_ivs7a")
 title = "ENEMY_DOG"
+description = "ENEMY_DESC_DOG"
 target_type = 1
 icon = ExtResource("2_tyyee")
 scene = ExtResource("3_mxg1o")
