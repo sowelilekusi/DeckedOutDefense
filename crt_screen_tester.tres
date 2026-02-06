@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://co725vuobwshh"]
+
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_4l81e"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4l81e")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dse6msy2hrctc"]
+
+[ext_resource type="Script" uid="uid://b151rww6qt0nj" path="res://wire_frame.gd" id="1_54sar"]
+[ext_resource type="ArrayMesh" uid="uid://dqu02w1dgudyq" path="res://brdigett.obj" id="2_se1r1"]
+[ext_resource type="Material" uid="uid://wr1vi6yfhxhg" path="res://Shaders/wireframe1.tres" id="3_0233w"]
+[ext_resource type="ArrayMesh" uid="uid://bfmuypokxn5la" path="res://cube.obj" id="4_d7s2u"]
+[ext_resource type="Material" uid="uid://dvvs2q42dl4od" path="res://Shaders/wireframe2.tres" id="5_mv1ww"]
+
+[node name="WireFrame" type="Node3D" unique_id=2007807907 node_paths=PackedStringArray("level_mesh", "blocker_mesh")]
+script = ExtResource("1_54sar")
+level_mesh = NodePath("CSGMesh3D")
+blocker_mesh = NodePath("CSGMesh3D2")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1190322190]
+visible = false
+mesh = ExtResource("2_se1r1")
+material = ExtResource("3_0233w")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="." unique_id=1566640748]
+visible = false
+mesh = ExtResource("4_d7s2u")
+material = ExtResource("5_mv1ww")
