@@ -19,5 +19,4 @@ hero_class = ExtResource("3_ksxj8")
 allowed_cards = Array[ExtResource("1_yuhm2")]([ExtResource("2_vvycy")])
 waves = Array[ExtResource("3_5cjqa")]([ExtResource("6_xm2iu"), ExtResource("7_ginir"), ExtResource("8_heo8u"), ExtResource("9_5mf8a"), ExtResource("10_skwnu"), ExtResource("11_rusuq")])
 zone_scene = ExtResource("12_ksxj8")
-data_path = "res://Worlds/GreenPlanet/Levels/Bridge/level1.json"
 metadata/_custom_type_script = "uid://dalgif6huggwg"

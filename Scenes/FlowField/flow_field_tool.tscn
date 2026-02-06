@@ -126,6 +126,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Load"
 
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1458001763]
+layout_mode = 2
+text = "Print Node_IDS"
+
 [node name="Position" type="HBoxContainer" parent="." unique_id=1194117729]
 anchors_preset = -1
 anchor_left = 0.4
@@ -201,6 +205,7 @@ grow_vertical = 0
 [connection signal="pressed" from="VBoxContainer/Calculate" to="." method="_on_calculate_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Save" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_print_ids_pressed"]
 [connection signal="pressed" from="Position/Button" to="." method="set_position"]
 [connection signal="pressed" from="Position/Button2" to="." method="offset_position"]
 [connection signal="pressed" from="VBoxContainer2/Button" to="." method="load_zone"]

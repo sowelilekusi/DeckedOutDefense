@@ -12,6 +12,7 @@ extends Node3D
 @export var shop: ShopStand
 @export var obstacle_scenes: Array[PackedScene]
 @export var obstacles: Array[PackedScene]
+@export var data_path: String
 var walls: Dictionary[FlowNode, TowerBase] = {}
 var wall_id: int = 0
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
@@ -82,6 +83,20 @@ func spawn_wall(point: FlowNode, name_id: int, caller_id: int) -> void:
 	walls[point] = base
 	tower_path.add_child(base)
 	disable_path_tower_frames()
+
+
+func generate_obstacle(ids: Array[int]) -> void:
+	var points: Array[FlowNode] = []
+	for node: FlowNode in flow_field.nodes:
+		if ids.has(node.node_id):
+			points.append(node)
+	for node: FlowNode in points:
+		var obstacle: Node3D = obstacles[0].instantiate()
+		obstacle.position = node.position
+		flow_field.toggle_buildable(node)
+		if node.traversable:
+			flow_field.toggle_traversable(node)
+		add_child(obstacle)
 
 
 func generate_obstacles() -> void:

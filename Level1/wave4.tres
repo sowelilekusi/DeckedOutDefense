@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_6kjfn")
 enemies = Dictionary[ExtResource("1_k10uy"), int]({
-ExtResource("2_htd28"): 10
+ExtResource("2_htd28"): 40
 })
 new_shop = true
 bonus_cash = 20

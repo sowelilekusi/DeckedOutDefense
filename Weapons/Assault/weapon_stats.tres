@@ -8,9 +8,9 @@
 script = ExtResource("2_k26ta")
 energy_type = 2
 attributes = Dictionary[String, float]({
-"Damage": 3.0,
+"Damage": 6.0,
 "Energy": 20.0,
-"Fire Delay": 0.2,
+"Fire Delay": 0.468,
 "Range": 15.0
 })
 features = Array[ExtResource("1_vqq5l")]([ExtResource("2_prves")])

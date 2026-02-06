@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("2_mvtl1")
 enemies = Dictionary[ExtResource("1_8j1mh"), int]({
-ExtResource("2_cyr3d"): 5,
-ExtResource("3_6mlj7"): 2
+ExtResource("2_cyr3d"): 15,
+ExtResource("3_6mlj7"): 5
 })
 rewards_blank_cassette = true
 metadata/_custom_type_script = "uid://bp6q371iypd06"

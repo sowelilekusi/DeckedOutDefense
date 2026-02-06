@@ -258,6 +258,7 @@ cinematic_cam = NodePath("CinemaCam")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")
 obstacles = Array[PackedScene]([ExtResource("7_6tcu8")])
+data_path = "res://Worlds/GreenPlanet/Levels/Bridge/level1.json"
 metadata/_custom_type_script = "uid://cvejbo3srx8py"
 metadata/_editor_floor_ = Vector3(4, -10, 8)
 
@@ -266,7 +267,6 @@ script = ExtResource("9_xuyhn")
 path_follows = [NodePath("Path3D/PathFollow3D"), NodePath("Path3D2/PathFollow3D2"), NodePath("Path3D3/PathFollow3D2")]
 cameras = [NodePath("Path3D/PathFollow3D/Camera3D"), NodePath("Path3D2/PathFollow3D2/Camera3D2"), NodePath("Path3D3/PathFollow3D2/Camera3D2")]
 pan_speed = 0.1
-does_its_thing = false
 
 [node name="Path3D" type="Path3D" parent="CinemaCam" unique_id=869538998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.63136, 4.35346, 7.28324)

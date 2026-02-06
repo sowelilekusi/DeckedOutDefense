@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_tihwe")
 enemies = Dictionary[ExtResource("1_ijigs"), int]({
-ExtResource("2_ywnes"): 4
+ExtResource("2_ywnes"): 10
 })
 rewards_blank_cassette = true
 metadata/_custom_type_script = "uid://bp6q371iypd06"

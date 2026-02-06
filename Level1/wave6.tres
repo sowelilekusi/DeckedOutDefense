@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("2_ltlqs")
 enemies = Dictionary[ExtResource("1_asx4x"), int]({
-ExtResource("2_u1tse"): 25
+ExtResource("2_u1tse"): 40
 })
 metadata/_custom_type_script = "uid://bp6q371iypd06"

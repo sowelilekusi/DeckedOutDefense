@@ -342,3 +342,8 @@ func select_in_grid(grid: int) -> void:
 	for node: FlowNode in flow_field.nodes:
 		if node.grid_id == grid:
 			selected.append(node)
+
+
+func _on_print_ids_pressed() -> void:
+	for node: FlowNode in selected:
+		print(node.node_id)

@@ -89,12 +89,12 @@ func networked_set_wave(wave_number: int) -> void:
 	set_upcoming_wave()
 
 
-func spawn_level(scene: PackedScene, path: String) -> void:
+func spawn_level(scene: PackedScene) -> void:
 	level = scene.instantiate() as Level
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
 	level.add_child(flow_field)
-	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(path))
+	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level.data_path))
 	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
@@ -106,6 +106,7 @@ func spawn_level(scene: PackedScene, path: String) -> void:
 	root_scene.add_child(level)
 	for spawner: EnemySpawner in level.enemy_spawns:
 		spawner.create_path()
+	level.generate_obstacle(level_specs.points_blocked)
 
 
 func spawn_players() -> void:
@@ -298,7 +299,8 @@ func end_wave() -> void:
 		#else:
 			#shop_chance += 0.09
 	wave_finished.emit()
-	set_upcoming_wave()
+	if wave < wave_limit:
+		set_upcoming_wave()
 
 
 @rpc("reliable", "call_local")
@@ -322,7 +324,7 @@ func setup() -> void:
 	connected_players_nodes.clear()
 	
 	#Spawn new stuff
-	spawn_level(level_specs.zone_scene, level_specs.data_path)
+	spawn_level(level_specs.zone_scene)
 	
 	#Set starting parameters
 	game_active = false
