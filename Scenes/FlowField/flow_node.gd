@@ -1,17 +1,11 @@
-class_name FlowNode
+class_name FlowNodeVisualiser
 extends StaticBody3D
 
-@export var connections: Array[FlowNode]
-@export var visualisers: Array[Node3D]
-@export var traversable: bool = true
-@export var buildable: bool = true
-
+var data: FlowNodeData
+var connections: Array[FlowNodeVisualiser]
+var visualisers: Array[Node3D]
 var visual_scene: PackedScene = preload("res://Scenes/FlowField/cube2.tscn")
-var node_id: int = 0
-var grid_id: int = -1
-var grid_x: int = 0
-var grid_y: int = 0
-var best_path: FlowNode : 
+var best_path: FlowNodeVisualiser : 
 	get():
 		return best_path
 	set(value):
@@ -20,9 +14,9 @@ var best_path: FlowNode :
 		set_connector_color(best_path, Color.DARK_GREEN)
 
 
-func _ready() -> void:
+func setup_connection_visualisers() -> void:
 	visualisers = []
-	for node: FlowNode in connections:
+	for node: FlowNodeVisualiser in connections:
 		var visual: Node3D = visual_scene.instantiate()
 		add_child(visual)
 		visual.owner = self
@@ -45,13 +39,13 @@ func set_color(new_color: Color) -> void:
 	$flow_node/Sphere.material_override.albedo_color = new_color
 
 
-func set_connector_color(node: FlowNode, new_color: Color) -> void:
+func set_connector_color(node: FlowNodeVisualiser, new_color: Color) -> void:
 	if visible:
 		var i: int = connections.find(node)
 		visualisers[i].get_child(0).material_override.albedo_color = new_color
 
 
-func add_connection(node: FlowNode) -> void:
+func add_connection(node: FlowNodeVisualiser) -> void:
 	if !connections.has(node):
 		var visual: Node3D = visual_scene.instantiate()
 		add_child(visual)
@@ -61,7 +55,7 @@ func add_connection(node: FlowNode) -> void:
 		set_connector_color(node, Color.WEB_GRAY)
 
 
-func remove_connection(node: FlowNode) -> void:
+func remove_connection(node: FlowNodeVisualiser) -> void:
 	if connections.has(node):
 		var i: int = connections.find(node)
 		visualisers.pop_at(i).queue_free()

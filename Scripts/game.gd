@@ -109,7 +109,7 @@ func spawn_level(scene: PackedScene) -> void:
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
 	level.add_child(flow_field)
-	flow_field.load_from_data(FlowFieldTool.load_flow_field_from_disc(level_config.zone.flow_field_data_path))
+	flow_field.data = FlowFieldTool.load_flow_field_from_disc(level_config.zone.flow_field_data_path)
 	level.load_flow_field()
 	level.game_manager = self
 	for x: EnemySpawner in level.enemy_spawns:
@@ -121,7 +121,7 @@ func spawn_level(scene: PackedScene) -> void:
 	root_scene.add_child(level)
 	for spawner: EnemySpawner in level.enemy_spawns:
 		spawner.create_path()
-	level.generate_obstacle(level_config.points_blocked)
+	level.generate_obstacles(level_config.points_blocked)
 
 
 func spawn_players() -> void:
@@ -214,7 +214,9 @@ func temp_set_upcoming_wave(new_wave: WaveConfig, coins: int) -> void:
 	pot = coins
 	var dict: Dictionary[String, int] = {}
 	for enemy_group: EnemyGroup in new_wave.enemy_groups.keys():
-		dict[enemy_group.enemy.title] = enemy_group.count
+		if !dict.has(enemy_group.enemy.title):
+			dict[enemy_group.enemy.title] = 0
+		dict[enemy_group.enemy.title] += enemy_group.count
 	connected_players_nodes[multiplayer.get_unique_id()].hud.set_upcoming_wave(dict)
 
 
@@ -351,7 +353,6 @@ func start() -> void:
 	set_upcoming_wave()
 	level.flow_field.calculate()
 	level.enemy_spawns[0].update_path()
-	level.generate_obstacles()
 	
 	#Start game
 	game_active = true

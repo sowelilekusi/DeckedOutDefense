@@ -4,14 +4,17 @@ extends Node
 @export_group("Basic Function")
 @export var zone_list: Array[PackedScene]
 @export var zone_holder: Node3D
+@export var visualiser_scene: PackedScene
 
 @export_group("Flow Field Editor")
-@export var flow_field: FlowField
 @export var raycast: RayCast3D
 @export var project_raycast: RayCast3D
 @export var camera: Camera3D
 @export var camera_pivot: Node3D
 @export var position_field: HBoxContainer
+@export var position_x: LineEdit
+@export var position_y: LineEdit
+@export var position_z: LineEdit
 @export var x_field: LineEdit
 @export var y_field: LineEdit
 @export var z_field: LineEdit
@@ -20,8 +23,10 @@ extends Node
 @export var gap_field: LineEdit
 @export var save_path: LineEdit
 
-var hover: FlowNode = null
-var selected: Array[FlowNode] = []
+var flow_field: FlowField
+var visualisers: Dictionary[FlowNodeData, FlowNodeVisualiser]
+var hover: FlowNodeVisualiser = null
+var selected: Array[FlowNodeVisualiser] = []
 var vector_dirty: bool = false
 var editing: bool = false
 var selected_zone: int = -1
@@ -29,10 +34,13 @@ var level: Level
 var radius: float = 0
 var up_angle: float = 0
 var rotate_held: bool = false
-var flow_field_data: FlowFieldData
+var flow_field_editor: FlowFieldEditor
+var path_vfx: PathVFX
 
 
 func _ready() -> void:
+	flow_field_editor = FlowFieldEditor.new()
+	add_child(flow_field_editor)
 	var i: int = 0
 	for zone: PackedScene in zone_list:
 		i += 1
@@ -40,6 +48,36 @@ func _ready() -> void:
 	$VBoxContainer2/OptionButton.select(0)
 	$VBoxContainer2/OptionButton.item_selected.connect(select_zone)
 	_on_trash_button_pressed()
+	path_vfx = PathVFX.new()
+	path_vfx.line_width = 0.4
+	path_vfx.material = load("res://path_material.tres")
+	add_child(path_vfx)
+
+
+func setup_visualisers_from_flow_field_data(data: FlowFieldData) -> void:
+	for visualiser: FlowNodeVisualiser in visualisers.keys():
+		visualiser.queue_free()
+	visualisers = {}
+	for node: FlowNodeData in data.nodes:
+		add_visual(node)
+	for node: FlowNodeData in visualisers.keys():
+		add_visual_connections(node)
+
+
+func add_visual(data: FlowNodeData) -> void:
+	var visual: FlowNodeVisualiser = visualiser_scene.instantiate() as FlowNodeVisualiser
+	visual.data = data
+	visual.position = data.position
+	add_child(visual)
+	visualisers[data] = visual
+
+
+func add_visual_connections(data: FlowNodeData) -> void:
+	var connections: Array[FlowNodeVisualiser] = []
+	for node: FlowNodeData in data.connected_nodes:
+		connections.append(visualisers[node])
+	visualisers[data].connections = connections
+	visualisers[data].setup_connection_visualisers()
 
 
 func select_zone(zone_index: int) -> void:
@@ -86,24 +124,23 @@ func _process(delta: float) -> void:
 		var y: float = Input.get_axis("Move Forward", "Move Backward")
 		var x: float = Input.get_axis("Move Left", "Move Right")
 		var input_vector: Vector2 = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
-		#camera_pivot.position += Vector3(x, 0, y) * delta * 30
-		#set_cam_position()
+
 		var movement: Vector3 = ((camera_pivot.transform.basis.z * input_vector.y) + (camera_pivot.transform.basis.x * input_vector.x))
 		var vec2: Vector2 = Vector2(movement.x, movement.z).normalized()
 		camera_pivot.position += Vector3(vec2.x, 0.0, vec2.y) * delta * 30.0
 
 
 func set_node_colors() -> void:
-	for node: FlowNode in flow_field.nodes:
-		if node.traversable and node.buildable:
+	for node: FlowNodeVisualiser in visualisers.values():
+		if node.data.traversable and node.data.buildable:
 			node.set_color(Color.WEB_GRAY)
-		elif node.traversable and !node.buildable:
+		elif node.data.traversable and !node.data.buildable:
 			node.set_color(Color.CORAL)
 		else:
 			node.set_color(Color.BLACK)
-		if flow_field.goal_nodes.has(node):
+		if flow_field.goal_nodes.has(node.data):
 			node.set_color(Color.BLUE)
-		if flow_field.start_nodes.has(node):
+		if flow_field.start_nodes.has(node.data):
 			node.set_color(Color.PINK)
 		if selected.has(node):
 			node.set_color(Color.GREEN)
@@ -157,24 +194,39 @@ func _on_z_field_changed(text: String) -> void:
 	selected[0].global_position.z = float(text)
 
 
+## Connects many nodes to a single single node, if any connections already
+## exist, this function disconnects them instead
+func connect_many_nodes(common_node: FlowNodeData, child_nodes: Array[FlowNodeData]) -> void:
+	for node: FlowNodeData in child_nodes:
+		if common_node.connections.has(node):
+			flow_field_editor.disconnect_nodes(common_node, node)
+		else:
+			flow_field_editor.connect_nodes(common_node, node)
+
+
 func set_position() -> void:
-	for node: FlowNode in selected:
-		node.global_position = Vector3(float($Position/x.text), float($Position/y.text), float($Position/z.text))
+	for node: FlowNodeVisualiser in selected:
+		var vector: Vector3 = Vector3(float(position_x.text), float(position_y.text), float(position_z.text))
+		node.data.position = vector
+		node.global_position = vector
 
 
 func offset_position() -> void:
-	for node: FlowNode in selected:
-		node.global_position += Vector3(float($Position/x.text), float($Position/y.text), float($Position/z.text))
+	for node: FlowNodeVisualiser in selected:
+		var vector: Vector3 = Vector3(float(position_x.text), float(position_y.text), float(position_z.text))
+		node.data.position += vector
+		node.global_position += vector
 
 
 func _on_create_button_pressed() -> void:
-	flow_field.create_node()
+	add_visual(flow_field_editor.create_node())
 
 
 func _on_generate_grid_button_pressed() -> void:
-	flow_field.create_grid(int(x_size_field.text), int(y_size_field.text), float(gap_field.text))
-	selected.append_array(flow_field.nodes)
-	create_grid_select_button(flow_field.data_file.grids)
+	for node: FlowNodeData in flow_field_editor.create_grid(int(x_size_field.text), int(y_size_field.text), float(gap_field.text)):
+		add_visual(node)
+		selected.append(node)
+	create_grid_select_button(flow_field.data.grids)
 
 
 func create_grid_select_button(grid: int) -> void:
@@ -186,6 +238,13 @@ func create_grid_select_button(grid: int) -> void:
 
 func _on_calculate_button_pressed() -> void:
 	flow_field.calculate()
+	var points: Array[Vector3] = []
+	var node: FlowNodeData = flow_field.get_closest_point(flow_field.start_nodes[0].position, true, false)
+	points.append(node.position + Vector3(0, 0.1, 0))
+	while node.best_path:
+		node = node.best_path
+		points.append(node.position + Vector3(0, 0.1, 0))
+	path_vfx.path(points)
 
 
 func _on_connect_button_pressed() -> void:
@@ -193,20 +252,24 @@ func _on_connect_button_pressed() -> void:
 
 
 func _on_mark_goal_button_pressed() -> void:
-	flow_field.toggle_goal(selected)
+	for node: FlowNodeVisualiser in selected:
+		flow_field.toggle_goal([node.data])
 	selected = []
 	vector_dirty = true
 
 
 func _on_mark_start_button_pressed() -> void:
-	flow_field.toggle_start(selected)
+	for node: FlowNodeVisualiser in selected:
+		flow_field.toggle_start([node.data])
 	selected = []
 	vector_dirty = true
 
 
 func _on_extrude_button_pressed() -> void:
 	if selected.size() == 1:
-		var node: FlowNode = flow_field.create_node(selected[0].position)
+		var node: FlowNodeVisualiser = visualiser_scene.instantiate() as FlowNodeVisualiser
+		add_child(node)
+		node.data = flow_field.create_node(selected[0].position)
 		node.add_connection(selected[0])
 		selected[0].add_connection(node)
 		selected[0].set_color(Color.WEB_GRAY)
@@ -216,61 +279,35 @@ func _on_extrude_button_pressed() -> void:
 
 
 func _on_toggle_traversable_button_pressed() -> void:
-	for node: FlowNode in selected:
-		if !flow_field.toggle_traversable(node):
-			flow_field.toggle_traversable(node)
+	for node: FlowNodeVisualiser in selected:
+		if !flow_field.toggle_traversable(node.data):
+			flow_field.toggle_traversable(node.data)
 			selected = []
 			return
 	selected = []
 
 
 func _on_toggle_buildable_button_pressed() -> void:
-	for node: FlowNode in selected:
-		flow_field.toggle_buildable(node)
+	for node: FlowNodeVisualiser in selected:
+		flow_field.toggle_buildable(node.data)
 
 
 #TODO: This doesnt work as you'd expect because of physics frames
 func _on_project_downwards_button_pressed() -> void:
-	for node: FlowNode in selected: 
-		project_raycast.global_position = node.global_position + Vector3.UP
+	for node: FlowNodeVisualiser in selected: 
+		project_raycast.position = node.position + Vector3.UP
 		project_raycast.target_position = Vector3.DOWN * 100.0
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		if project_raycast.is_colliding():
-			node.global_position = project_raycast.get_collision_point()
+			node.position = project_raycast.get_collision_point()
+			node.data.position = node.position
 
 
 func _on_save_button_pressed() -> void:
-	var new_flow_field_data: FlowFieldData = FlowFieldData.new()
-	var dict: Dictionary[FlowNode, FlowNodeData] = {}
-	var grid_num: int = -1
-	for node: FlowNode in flow_field.nodes:
-		var new_flow_node_data: FlowNodeData = FlowNodeData.new()
-		new_flow_node_data.node_id = node.node_id
-		new_flow_node_data.grid_id = node.grid_id
-		if node.grid_id > grid_num:
-			grid_num += 1
-		new_flow_node_data.grid_x = node.grid_x
-		new_flow_node_data.grid_y = node.grid_y
-		new_flow_node_data.position = node.global_position
-		new_flow_node_data.buildable = node.buildable
-		if flow_field.start_nodes.has(node):
-			new_flow_node_data.type = FlowNodeData.NodeType.START
-		elif flow_field.goal_nodes.has(node):
-			new_flow_node_data.type = FlowNodeData.NodeType.GOAL
-		else:
-			new_flow_node_data.type = FlowNodeData.NodeType.STANDARD
-		dict[node] = new_flow_node_data
-	for node: FlowNode in flow_field.nodes:
-		var flow_node_data: FlowNodeData = dict[node]
-		for neighbor: FlowNode in node.connections:
-			flow_node_data.connected_nodes.append(dict[neighbor])
-		new_flow_field_data.nodes.append(flow_node_data)
-	new_flow_field_data.grids = grid_num
-	
-	var string: String = JSON.stringify(new_flow_field_data.to_dict())
+	var string: String = JSON.stringify(flow_field.data.to_dict())
 	var path: String = save_path.text + ".json"
 	var dir: DirAccess = DirAccess.open("user://")
 	if !dir.dir_exists("pathing_graphs"):
@@ -302,48 +339,41 @@ func _on_load_button_pressed() -> void:
 		if parse_result == OK:
 			var dict: Dictionary = json.data
 			var flow_field_data: FlowFieldData = FlowFieldData.from_dict(dict)
-			flow_field.load_from_data(flow_field_data)
+			flow_field.data = flow_field_data
 			for grid: int in flow_field_data.grids:
 				create_grid_select_button(grid + 1)
-
-
-#func _on_load_button_pressed() -> void:
-	#if ResourceLoader.exists(save_path.text + ".res"):
-		#print("file exists")
-		#var resource: Resource = ResourceLoader.load(save_path.text + ".res", "", ResourceLoader.CACHE_MODE_IGNORE)
-		#if resource is FlowFieldData:
-			#flow_field.load_from_data(resource)
-			#print("loaded some data")
-		#else:
-			#print("some error loading!")
+			setup_visualisers_from_flow_field_data(flow_field_data)
 
 
 func _on_trash_button_pressed() -> void:
 	if flow_field:
 		flow_field.queue_free()
+	for visualiser: FlowNodeVisualiser in visualisers.values():
+		visualiser.queue_free()
+	visualisers = {}
 	for child: Node in $VBoxContainer3.get_children():
 		child.queue_free()
 	flow_field = FlowField.new()
-	flow_field_data = FlowFieldData.new()
-	flow_field.data_file = flow_field_data
+	flow_field.data = FlowFieldData.new()
 	add_child(flow_field)
+	flow_field_editor.flow_field = flow_field
 	if level:
 		level.flow_field = flow_field
 
 
 func _on_select_all_pressed() -> void:
 	selected = []
-	for node: FlowNode in flow_field.nodes:
+	for node: FlowNodeVisualiser in flow_field.nodes:
 		selected.append(node)
 
 
 func select_in_grid(grid: int) -> void:
 	selected = []
-	for node: FlowNode in flow_field.nodes:
-		if node.grid_id == grid:
+	for node: FlowNodeVisualiser in flow_field.nodes:
+		if node.data.grid_id == grid:
 			selected.append(node)
 
 
 func _on_print_ids_pressed() -> void:
-	for node: FlowNode in selected:
-		print(node.node_id)
+	for node: FlowNodeVisualiser in selected:
+		print(node.data.node_id)

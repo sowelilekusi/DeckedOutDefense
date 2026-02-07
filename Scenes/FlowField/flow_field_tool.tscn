@@ -3,20 +3,25 @@
 [ext_resource type="Script" uid="uid://05c5q1v2nv8p" path="res://Scenes/FlowField/flow_field_tool.gd" id="1_e7pmn"]
 [ext_resource type="PackedScene" uid="uid://y1qa1g3ic8sp" path="res://Zones/Moat/scn_moat.tscn" id="2_030xf"]
 [ext_resource type="PackedScene" uid="uid://csq7if8wojp4g" path="res://Zones/Cave/scn_cave.tscn" id="3_xar7e"]
+[ext_resource type="PackedScene" uid="uid://bssfvyxv5uo1f" path="res://Scenes/FlowField/flow_node.tscn" id="4_50p2d"]
 
 [sub_resource type="Environment" id="Environment_e7pmn"]
 ambient_light_source = 2
 ambient_light_color = Color(0.728822, 0.728822, 0.728822, 1)
 
-[node name="FlowFieldTool" type="Node" unique_id=897052359 node_paths=PackedStringArray("zone_holder", "raycast", "project_raycast", "camera", "camera_pivot", "position_field", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field", "save_path")]
+[node name="FlowFieldTool" type="Node" unique_id=897052359 node_paths=PackedStringArray("zone_holder", "raycast", "project_raycast", "camera", "camera_pivot", "position_field", "position_x", "position_y", "position_z", "x_field", "y_field", "z_field", "x_size_field", "y_size_field", "gap_field", "save_path")]
 script = ExtResource("1_e7pmn")
 zone_list = Array[PackedScene]([ExtResource("2_030xf"), ExtResource("3_xar7e")])
 zone_holder = NodePath("ZoneHolder")
+visualiser_scene = ExtResource("4_50p2d")
 raycast = NodePath("CameraFocus/Camera3D/RayCast3D")
 project_raycast = NodePath("RayCast3D")
 camera = NodePath("CameraFocus/Camera3D")
 camera_pivot = NodePath("CameraFocus")
 position_field = NodePath("Position")
+position_x = NodePath("Position/x")
+position_y = NodePath("Position/y")
+position_z = NodePath("Position/z")
 x_field = NodePath("Position/x")
 y_field = NodePath("Position/y")
 z_field = NodePath("Position/z")

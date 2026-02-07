@@ -52,7 +52,8 @@ static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: 
 		var first_enemy_id: int = -1
 		while !enemy_chosen:
 			#Next, determine what is the most groups we can afford
-			most_enemies_afforded = int(spawn_power / enemy.spawn_power)
+			@warning_ignore("integer_division")
+			most_enemies_afforded = spawn_power / enemy.spawn_power
 			if most_enemies_afforded > 0:
 				enemy_chosen = true
 			else:

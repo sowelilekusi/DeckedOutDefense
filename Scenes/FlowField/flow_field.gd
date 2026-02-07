@@ -3,101 +3,38 @@ extends Node3D
 
 signal path_updated()
 
-@export var data_file: FlowFieldData
 @export var start_points: Array[Node3D]
 @export var goal_points: Array[Node3D]
-@export var nodes_visible: bool = false
 
-var flow_node_scene: PackedScene = preload("res://Scenes/FlowField/flow_node.tscn")
-var nodes: Array[FlowNode] = []
-var start_nodes: Array[FlowNode] = []
-var goal_nodes: Array[FlowNode] = []
-var created_nodes: int = 0
-
-
-func _ready() -> void:
-	if !nodes_visible:
-		for node: FlowNode in nodes:
-			node.visible = false
-
-
-func load_from_data(data: FlowFieldData = data_file) -> void:
-	data_file = data
-	for node: FlowNode in nodes:
-		delete_node(node)
-	nodes = []
-	start_nodes = []
-	goal_nodes = []
-	var dict: Dictionary[FlowNodeData, FlowNode] = {}
-	created_nodes = 0
-	for node_data: FlowNodeData in data_file.nodes:
-		var new_flow_node: FlowNode = create_node(node_data.position)
-		new_flow_node.node_id = node_data.node_id
-		new_flow_node.grid_id = node_data.grid_id
-		new_flow_node.grid_x = node_data.grid_x
-		new_flow_node.grid_y = node_data.grid_y
-		new_flow_node.buildable = node_data.buildable
-		dict[node_data] = new_flow_node
-		if node_data.type == FlowNodeData.NodeType.START:
-			start_nodes.append(new_flow_node)
-		elif node_data.type == FlowNodeData.NodeType.GOAL:
-			goal_nodes.append(new_flow_node)
-	for node_data: FlowNodeData in dict.keys():
-		for neighbor: FlowNodeData in node_data.connected_nodes:
-			dict[node_data].add_connection(dict[neighbor])
+var start_nodes: Array[FlowNodeData]
+var goal_nodes: Array[FlowNodeData]
+var magic_node: FlowNodeData
+var data: FlowFieldData :
+	get():
+		return data
+	set(value):
+		data = value
+		for node: FlowNodeData in data.nodes:
+			if node.type == FlowNodeData.NodeType.START:
+				start_nodes.append(node)
+			if node.type == FlowNodeData.NodeType.GOAL:
+				goal_nodes.append(node)
 
 
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
-	if !nodes_visible:
-		return
-	for node: FlowNode in nodes:
-		if node.traversable and node.buildable:
-			node.set_color(Color.WEB_GRAY)
-		elif node.traversable and !node.buildable:
-			node.set_color(Color.CORAL)
-		else:
-			node.set_color(Color.BLACK)
-		if goal_nodes.has(node):
-			node.set_color(Color.BLUE)
-		if start_nodes.has(node):
-			node.set_color(Color.PINK)
-		if magic_node:
-			magic_node.set_color(Color.DEEP_PINK)
-
-
-func get_closest_traversable_point(pos: Vector3) -> FlowNode:
-	var closest_point: FlowNode = null
+func get_closest_point(pos: Vector3, traversable_required: bool = false, buildable_required: bool = false) -> FlowNodeData:
+	var closest_point: FlowNodeData = null
 	var closest_dist: float = 100000.0
-	for node: FlowNode in nodes:
-		if node.traversable and node.global_position.distance_to(pos) < closest_dist:
-			closest_dist = node.global_position.distance_to(pos)
-			closest_point = node
-	return closest_point
-
-
-func get_closest_point_point(pos: Vector3) -> FlowNode:
-	var closest_point: FlowNode = null
-	var closest_dist: float = 100000.0
-	for node: FlowNode in nodes:
-		if node.global_position.distance_to(pos) < closest_dist:
-			closest_dist = node.global_position.distance_to(pos)
-			closest_point = node
-	return closest_point
-
-
-func get_closest_buildable_point(pos: Vector3) -> FlowNode:
-	var closest_point: FlowNode = null
-	var closest_dist: float = 100000.0
-	for node: FlowNode in nodes:
-		if node.buildable and node.global_position.distance_to(pos) < closest_dist:
-			closest_dist = node.global_position.distance_to(pos)
-			closest_point = node
+	for node: FlowNodeData in data.nodes:
+		if node.position.distance_to(pos) < closest_dist:
+			if !traversable_required or node.traversable:
+				if !buildable_required or node.buildable:
+					closest_dist = node.position.distance_to(pos)
+					closest_point = node
 	return closest_point
 
 
 func test_traversability() -> bool:
-	for node: FlowNode in start_nodes:
+	for node: FlowNodeData in start_nodes:
 		while node.best_path != null:
 			if node.best_path.traversable:
 				node = node.best_path
@@ -106,9 +43,9 @@ func test_traversability() -> bool:
 	return true
 
 
-func iterate_search(search_frontier: Array[FlowNode], reached: Array[FlowNode]) -> void:
-	var current: FlowNode = search_frontier.pop_front()
-	for node: FlowNode in current.connections:
+func iterate_search(search_frontier: Array[FlowNodeData], reached: Array[FlowNodeData]) -> void:
+	var current: FlowNodeData = search_frontier.pop_front()
+	for node: FlowNodeData in current.connected_nodes:
 		if !reached.has(node):
 			reached.append(node)
 			if node.traversable:
@@ -117,9 +54,9 @@ func iterate_search(search_frontier: Array[FlowNode], reached: Array[FlowNode]) 
 
 
 func calculate() -> void:
-	var reached: Array[FlowNode] = []
-	var search_frontier: Array[FlowNode] = []
-	for node: FlowNode in goal_nodes:
+	var reached: Array[FlowNodeData] = []
+	var search_frontier: Array[FlowNodeData] = []
+	for node: FlowNodeData in goal_nodes:
 		node.best_path = null
 		reached.append(node)
 		search_frontier.append(node)
@@ -127,20 +64,19 @@ func calculate() -> void:
 		iterate_search(search_frontier, reached)
 
 
-var magic_node: FlowNode = null
-func traversable_after_blocking_point(point: FlowNode) -> bool:
+func traversable_after_blocking_point(point: FlowNodeData) -> bool:
 	magic_node = null
-	var reached: Array[FlowNode] = [point]
-	var search_frontier: Array[FlowNode] = []
-	for node: FlowNode in point.connections:
+	var reached: Array[FlowNodeData] = [point]
+	var search_frontier: Array[FlowNodeData] = []
+	for node: FlowNodeData in point.connected_nodes:
 		if node.best_path == point and node.traversable:
 			reached.append(node)
 			search_frontier.append(node)
 	if search_frontier.size() == 0: # if no neighbors rely on this node, then we're all good
 		return true
 	while search_frontier.size() > 0:
-		var current: FlowNode = search_frontier.pop_front()
-		for node: FlowNode in current.connections:
+		var current: FlowNodeData = search_frontier.pop_front()
+		for node: FlowNodeData in current.connected_nodes:
 			if !reached.has(node):
 				if node.traversable and node.best_path != node and !reached.has(node.best_path):
 					#if we havent already seen the node this neighbor goes to,
@@ -154,33 +90,23 @@ func traversable_after_blocking_point(point: FlowNode) -> bool:
 	return false
 
 
-## Connects many nodes to a single single node, if any connections already
-## exist, this function disconnects them instead
-func connect_many_nodes(common_node: FlowNode, child_nodes: Array[FlowNode]) -> void:
-	for node: FlowNode in child_nodes:
-		if common_node.connections.has(node):
-			disconnect_nodes(common_node, node)
-		else:
-			connect_nodes(common_node, node)
-
-
-func toggle_goal(nodes_to_toggle: Array[FlowNode]) -> void:
-	for node: FlowNode in nodes_to_toggle:
+func toggle_goal(nodes_to_toggle: Array[FlowNodeData]) -> void:
+	for node: FlowNodeData in nodes_to_toggle:
 		if goal_nodes.has(node):
 			goal_nodes.erase(node)
 		else:
 			goal_nodes.append(node)
 
 
-func toggle_start(nodes_to_toggle: Array[FlowNode]) -> void:
-	for node: FlowNode in nodes_to_toggle:
+func toggle_start(nodes_to_toggle: Array[FlowNodeData]) -> void:
+	for node: FlowNodeData in nodes_to_toggle:
 		if start_nodes.has(node):
 			start_nodes.erase(node)
 		else:
 			start_nodes.append(node)
 
 
-func toggle_traversable(node: FlowNode) -> bool:
+func toggle_traversable(node: FlowNodeData) -> bool:
 	node.traversable = !node.traversable
 	calculate()
 	#TODO: technically the path only changed if the new path IS traversable
@@ -188,64 +114,5 @@ func toggle_traversable(node: FlowNode) -> bool:
 	return test_traversability()
 
 
-func toggle_buildable(node: FlowNode) -> void:
+func toggle_buildable(node: FlowNodeData) -> void:
 	node.buildable = !node.buildable
-
-
-func create_node(pos: Vector3 = Vector3.ZERO, grid_id: int = -1, grid_x: int = 0, grid_y: int = 0) -> FlowNode:
-	var node: FlowNode = flow_node_scene.instantiate()
-	node.node_id = created_nodes
-	node.grid_id = grid_id
-	node.grid_x = grid_x
-	node.grid_y = grid_y
-	node.position = pos
-	node.set_color(Color.WEB_GRAY)
-	nodes.append(node)
-	add_child(node)
-	node.owner = self
-	created_nodes += 1
-	return node
-
-
-func delete_node(node: FlowNode) -> void:
-	for neighbor: FlowNode in node.connections:
-		node.remove_connection(neighbor)
-	nodes.erase(node)
-	node.queue_free()
-
-
-func connect_nodes(node1: FlowNode, node2: FlowNode) -> void:
-	if node1 != node2:
-		node1.add_connection(node2)
-		node2.add_connection(node1)
-
-
-func disconnect_nodes(node1: FlowNode, node2: FlowNode) -> void:
-	if node1 != node2:
-		node1.remove_connection(node2)
-		node2.remove_connection(node1)
-
-
-func create_grid(x_size: int, y_size: int, gap: float) -> void:
-	data_file.grids += 1
-	var grid_id: int = data_file.grids
-	var grid: Array[Array] = []
-	for x: int in x_size:
-		var row: Array[FlowNode] = []
-		for y: int in y_size:
-			#var start_pos: Vector3 = Vector3.ZERO - (Vector3(gap * x_size, 0, gap * y_size) / 2.0)
-			var point_position: Vector3 = Vector3((x - floori(x_size / 2.0)) * gap, 0, (y - floori(y_size / 2.0)) * gap)
-			#point_position += global_position
-			#row.append(create_node(start_pos + Vector3(gap * x, 0, gap * y)))
-			row.append(create_node(point_position, grid_id, x, y))
-		grid.append(row)
-	for x: int in grid.size():
-		for y: int in grid[x].size():
-			if y > 0:
-				connect_nodes(grid[x][y], grid[x][y - 1])
-			if x > 0:
-				connect_nodes(grid[x][y], grid[x - 1][y])
-			if y < grid[x].size() - 1:
-				connect_nodes(grid[x][y], grid[x][y + 1])
-			if x < grid.size() - 1:
-				connect_nodes(grid[x][y], grid[x + 1][y])

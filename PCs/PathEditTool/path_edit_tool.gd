@@ -8,12 +8,12 @@ extends Node3D
 
 var enabled: bool = false
 var level: Level
-var point: FlowNode
+var point: FlowNodeData
 var obstacle_last_point: int = -1
 var valid_point: bool = false # a point is valid if the path would still be traversable overall if this point was made untraversable
 var ray_collider: Object
 var ray_point: Vector3
-var last_point: FlowNode
+var last_point: FlowNodeData
 var last_tower_base: TowerBase
 var interact_key_held: bool = false
 var interacted_once: bool = false
@@ -78,7 +78,7 @@ func _process(delta: float) -> void:
 	if !valid_point:
 		wall_preview.set_visible(false)
 	if point:
-		wall_preview.global_position = point.global_position
+		wall_preview.global_position = point.position
 		wall_preview.global_rotation = Vector3.ZERO
 
 
@@ -92,8 +92,8 @@ func reset() -> void:
 
 
 func process_looking_at_level() -> void:
-	point = level.flow_field.get_closest_buildable_point(ray_point)
-	if level.walls.has(point) or !point.buildable or hero.currency < Data.wall_cost:
+	point = level.flow_field.get_closest_point(ray_point, false, true)
+	if level.walls.has(point) or hero.currency < Data.wall_cost:
 		wall_preview.set_visible(false)
 		valid_point = false
 		clear_previous_point()

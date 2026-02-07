@@ -4,7 +4,7 @@ extends EnemyMovement
 #var path: Curve3D
 #var path_progress: float = 0.0
 var flow_field: FlowField
-var next_node: FlowNode : 
+var next_node: FlowNodeData : 
 	get():
 		return next_node
 	set(value):
@@ -16,16 +16,16 @@ var next_node: FlowNode :
 			#TODO: make deterministic random
 			var x: float = randf_range(-1, 1)
 			var y: float = randf_range(-1, 1)
-			if Vector3(next_node.global_position.x + x, next_node.global_position.y, next_node.global_position.z + y).distance_to(next_node.global_position) <= 1.0:
+			if Vector3(next_node.position.x + x, next_node.position.y, next_node.position.z + y).distance_to(next_node.position) <= 1.0:
 				found_point = true
-				next_pos = Vector3(next_node.global_position.x + x, next_node.global_position.y, next_node.global_position.z + y)
+				next_pos = Vector3(next_node.position.x + x, next_node.position.y, next_node.position.z + y)
 var next_pos: Vector3
 
 
 func _ready() -> void:
 	super._ready()
 	if flow_field:
-		next_node = flow_field.get_closest_traversable_point(character.global_position)
+		next_node = flow_field.get_closest_point(character.global_position, true, false)
 		#We skip one node so the "start" nodes placed near
 		#spawners are just usefull for "catching" enemies that are looking
 		#for a way into the pathfinding graph
@@ -33,14 +33,14 @@ func _ready() -> void:
 		distance_remaining += calculate_distance_to_goal(next_node)
 
 
-func calculate_distance_to_goal(node: FlowNode) -> float:
+func calculate_distance_to_goal(node: FlowNodeData) -> float:
 	var distance: float = 0.0
-	distance += character.global_position.distance_to(node.global_position)
+	distance += character.global_position.distance_to(node.position)
 	if node.best_path:
-		var then_next_node: FlowNode = node.best_path
-		distance += node.global_position.distance_to(then_next_node.global_position)
+		var then_next_node: FlowNodeData = node.best_path
+		distance += node.position.distance_to(then_next_node.position)
 		while then_next_node.best_path:
-			distance += then_next_node.global_position.distance_to(then_next_node.best_path.global_position)
+			distance += then_next_node.position.distance_to(then_next_node.best_path.position)
 			then_next_node = then_next_node.best_path
 	return distance
 

@@ -21,9 +21,8 @@ var enemies_spawned: Dictionary = {}
 var enemies_to_spawn: int = 0
 var done_spawning: bool = true
 var enemy_id: int = 0
-var path: Path3D
-var path_polygon: PackedScene = preload("res://path_polygon.tscn")
 var game_manager: GameManager
+var path_vfx: PathVFX
 
 
 func _process(delta: float) -> void:
@@ -84,27 +83,27 @@ func networked_spawn_land_enemy(enemy_num: int, id1: int, id2: int) -> void:
 func create_path() -> void:
 	if type != Data.EnemyType.LAND:
 		return
-	path = Path3D.new()
-	path.curve = Curve3D.new()
-	add_child(path)
-	var polygon: CSGPolygon3D = path_polygon.instantiate()
-	path.add_child(polygon)
-	polygon.mode = CSGPolygon3D.MODE_PATH
-	polygon.path_node = path.get_path()
-	path.global_position = Vector3.ZERO
+	if path_vfx:
+		path_vfx.queue_free()
+	path_vfx = PathVFX.new()
+	path_vfx.line_width = 0.2
+	path_vfx.material = load("res://path_material.tres")
+	add_child(path_vfx)
+	path_vfx.global_position = Vector3.ZERO
 	update_path()
 
 
 
 func update_path() -> void:
-	if type != Data.EnemyType.LAND or !flow_field.nodes:
+	if type != Data.EnemyType.LAND or !flow_field.data.nodes:
 		return
-	path.curve = Curve3D.new()
-	var node: FlowNode = flow_field.get_closest_traversable_point(global_position)
-	path.curve.add_point(node.global_position + Vector3(0, 0.5, 0))
+	var points: Array[Vector3] = []
+	var node: FlowNodeData = flow_field.get_closest_point(flow_field.start_nodes[0].position, true, false)
+	points.append(node.position + Vector3(0, 0.15, 0))
 	while node.best_path:
 		node = node.best_path
-		path.curve.add_point(node.global_position + Vector3(0, 0.5, 0))
+		points.append(node.position + Vector3(0, 0.15, 0))
+	path_vfx.path(points)
 
 
 

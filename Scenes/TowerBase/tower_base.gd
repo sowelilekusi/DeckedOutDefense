@@ -9,7 +9,7 @@ class_name TowerBase extends StaticBody3D
 
 var game_manager: GameManager
 var owner_id: int
-var point: FlowNode
+var point: FlowNodeData
 var tower: Tower = null
 var has_card: bool :
 	set(_value):

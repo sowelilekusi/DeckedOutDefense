@@ -1,8 +1,8 @@
 class_name FlowFieldData
-extends Resource
+extends RefCounted
 
-@export var nodes: Array[FlowNodeData]
-@export var grids: int = 0
+var nodes: Array[FlowNodeData]
+var grids: int = 0
 
 
 func to_dict() -> Dictionary:

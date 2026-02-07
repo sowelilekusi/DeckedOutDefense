@@ -11,22 +11,22 @@ extends Node3D
 @export var printer: CardPrinter
 @export var shop: ShopStand
 @export var obstacles: Array[PackedScene]
-var walls: Dictionary[FlowNode, TowerBase] = {}
+
+var walls: Dictionary[FlowNodeData, TowerBase] = {}
 var wall_id: int = 0
 var tower_base_scene: PackedScene = load("res://Scenes/TowerBase/tower_base.tscn")
 var tower_frame_scene: PackedScene = load("res://Scenes/tower_frame.tscn")
-var tower_frames: Dictionary[FlowNode, Node3D] = {}
+var tower_frames: Dictionary[FlowNodeData, Node3D] = {}
 var game_manager: GameManager
 var flow_field: FlowField
 
 
 func load_flow_field() -> void:
-	var x: int = 0
 	for spawn: EnemySpawner in enemy_spawns:
 		flow_field.path_updated.connect(spawn.update_path)
-	for node: FlowNode in flow_field.nodes:
+	
+	for node: FlowNodeData in flow_field.data.nodes:
 		if node.buildable:
-			x += 1
 			var frame: Node3D = tower_frame_scene.instantiate()
 			tower_frames[node] = frame
 			add_child(frame)
@@ -34,23 +34,23 @@ func load_flow_field() -> void:
 
 
 func disable_all_tower_frames() -> void:
-	for node: FlowNode in tower_frames:
+	for node: FlowNodeData in tower_frames:
 		tower_frames[node].visible = false
 
 
 func enable_non_path_tower_frames() -> void:
-	for node: FlowNode in tower_frames:
+	for node: FlowNodeData in tower_frames:
 		tower_frames[node].visible = true
 	disable_path_tower_frames()
 
 
 func disable_path_tower_frames() -> void:
-	for node: FlowNode in tower_frames:
+	for node: FlowNodeData in tower_frames:
 		if node.traversable and !flow_field.traversable_after_blocking_point(node):
 			tower_frames[node].visible = false
 
 
-func set_wall(point: FlowNode, caller_id: int) -> void:
+func set_wall(point: FlowNodeData, caller_id: int) -> void:
 	point.traversable = false
 	flow_field.calculate()
 	flow_field.path_updated.emit()
@@ -59,7 +59,7 @@ func set_wall(point: FlowNode, caller_id: int) -> void:
 		wall_id += 1
 
 
-func remove_wall(point: FlowNode) -> void:
+func remove_wall(point: FlowNodeData) -> void:
 	var wall: TowerBase = walls[point]
 	#game_manager.connected_players_nodes[wall.owner_id].currency += Data.wall_cost
 	game_manager.connected_players_nodes[wall.owner_id].unready_self()
@@ -71,10 +71,10 @@ func remove_wall(point: FlowNode) -> void:
 	enable_non_path_tower_frames()
 
 
-func spawn_wall(point: FlowNode, name_id: int, caller_id: int) -> void:
+func spawn_wall(point: FlowNodeData, name_id: int, caller_id: int) -> void:
 	var base: TowerBase = tower_base_scene.instantiate() as TowerBase
 	base.game_manager = game_manager
-	base.position = point.global_position
+	base.position = point.position
 	base.name = "Wall" + str(name_id)
 	base.owner_id = caller_id
 	base.point = point
@@ -83,59 +83,15 @@ func spawn_wall(point: FlowNode, name_id: int, caller_id: int) -> void:
 	disable_path_tower_frames()
 
 
-func generate_obstacle(ids: Array[int]) -> void:
-	var points: Array[FlowNode] = []
-	for node: FlowNode in flow_field.nodes:
+func generate_obstacles(ids: Array[int]) -> void:
+	var points: Array[FlowNodeData] = []
+	for node: FlowNodeData in flow_field.data.nodes:
 		if ids.has(node.node_id):
 			points.append(node)
-	for node: FlowNode in points:
+	for node: FlowNodeData in points:
 		var obstacle: Node3D = obstacles[0].instantiate()
 		obstacle.position = node.position
 		flow_field.toggle_buildable(node)
 		if node.traversable:
 			flow_field.toggle_traversable(node)
 		add_child(obstacle)
-
-
-func generate_obstacles() -> void:
-	pass
-	#print(str(multiplayer.get_unique_id()) + " spawning obstacles with seed: " + str(Game.rng.seed))
-	#var obstacle_count: int = NoiseRandom.randi_in_range(1, 0, 5)
-	#obstacle_count = 0
-#	for index: int in obstacle_count:
-#		#var x: int = Game.randi_in_range(10 * index, 1 - a_star_graph_3d.grid_size.x, a_star_graph_3d.grid_size.x - 1)
-		#var y: int = Game.randi_in_range(32 * index, 1 - a_star_graph_3d.grid_size.y, a_star_graph_3d.grid_size.y - 1)
-#		var chosen_obstacle: int = Game.randi_in_range(4 * index, 0, obstacle_scenes.size() - 1)
-#		var obstacle: GridMap = obstacle_scenes[chosen_obstacle].instantiate() as GridMap
-#		var orientations: Array[int] = [0, 90, 180, 270]
-#		var chosen_orientation: int = Game.randi_in_range(15 * index, 0, orientations.size() - 1)
-#		#obstacle.position = Vector3(x, 0, y)
-#		obstacle.set_rotation_degrees(Vector3(0, chosen_orientation, 0))
-#		add_child(obstacle)
-#		for cell: Vector3i in obstacle.get_used_cells():
-#			var cell_coord: Vector3 = obstacle.to_global(obstacle.map_to_local(cell))
-#			remove_world_tile(round(cell_coord.x), round(cell_coord.z))
-#		obstacle.queue_free()
-
-
-#func cell_coord_to_astar_point(x: int, y: int) -> int:
-#	var center_point_x: int = floori(a_star_graph_3d.grid_size.x / 2.0) * a_star_graph_3d.grid_size.y
-#	var center_point_y: int = floori(a_star_graph_3d.grid_size.y / 2.0)
-#	return (center_point_x + (int(x / 2.0) * a_star_graph_3d.grid_size.y)) + (center_point_y + int(y / 2.0))
-
-
-#func remove_world_tile(x: int, y: int) -> void:
-#	if get_cell_item(Vector3i(x, 0, y)) != 1 or abs(x) >= a_star_graph_3d.grid_size.x or abs(y) >= a_star_graph_3d.grid_size.y:
-#		return
-#	set_cell_item(Vector3i(x, 0, y), INVALID_CELL_ITEM)
-#	var point: int = cell_coord_to_astar_point(x, y)
-#	var north_point: int = cell_coord_to_astar_point(x - 1, y)
-#	var south_point: int = cell_coord_to_astar_point(x + 1, y)
-#	var east_point: int = cell_coord_to_astar_point(x, y + 1)
-#	var west_point: int = cell_coord_to_astar_point(x, y - 1)
-#	if x % 2 == 0 and y % 2 == 0: #If the tile is on a point on the pathfinding grid
-#		a_star_graph_3d.astar.set_point_disabled(point)
-#	if x % 2 == 1 and y % 2 == 0: #If the cell breaks a north-south link
-#		a_star_graph_3d.astar.disconnect_points(north_point, south_point)
-#	if x % 2 == 0 and y % 2 == 1: #If the cell breaks a east-west link
-#		a_star_graph_3d.astar.disconnect_points(east_point, west_point)

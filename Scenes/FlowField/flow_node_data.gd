@@ -1,21 +1,25 @@
 class_name FlowNodeData
-extends Resource
+extends RefCounted
 
 enum NodeType {
 	STANDARD = 0,
 	START = 1,
 	GOAL = 2,
+	OBSTACLE = 3,
 }
 
-@export var node_id: int = -1
-@export var position: Vector3 = Vector3.ZERO
-@export var type: NodeType = NodeType.STANDARD
-@export var buildable: bool = true
-@export var connected_nodes: Array[FlowNodeData]
-@export var in_grid: bool = false
-@export var grid_id: int = -1
-@export var grid_x: int = 0
-@export var grid_y: int = 0
+
+var node_id: int = -1
+var position: Vector3 = Vector3.ZERO
+var type: NodeType = NodeType.STANDARD
+var buildable: bool = true
+var traversable: bool = true
+var connected_nodes: Array[FlowNodeData]
+var best_path: FlowNodeData
+var in_grid: bool = false
+var grid_id: int = -1
+var grid_x: int = 0
+var grid_y: int = 0
 
 
 #This function cannot fill in the connection information until a complete set
@@ -32,6 +36,10 @@ static func from_dict(dict: Dictionary) -> FlowNodeData:
 	data.grid_id = dict["grid_id"]
 	data.grid_x = dict["grid_x"]
 	data.grid_y = dict["grid_y"]
+
+	if data.type == NodeType.OBSTACLE:
+		data.buildable = false
+		data.traversable = false
 	return data
 
 

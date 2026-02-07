@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 
 
 func consider_leap(direction: Vector3) -> void:
-	var node: FlowNode = check_jump(character.global_position + (direction * jump_distance))
+	var node: FlowNodeData = check_jump(character.global_position + (direction * jump_distance))
 	if node:
 		var expected_distance_remaining: float = calculate_distance_to_goal(node)
 		expected_distance_remaining += (character.global_position + (direction * jump_distance)).distance_to(node.global_position)
@@ -153,8 +153,8 @@ func finish_jump() -> void:
 	jumping = false
 
 
-func check_jump(destination: Vector3) -> FlowNode:
-	var closest_point: FlowNode = flow_field.get_closest_traversable_point(destination)
+func check_jump(destination: Vector3) -> FlowNodeData:
+	var closest_point: FlowNodeData = flow_field.get_closest_point(destination, true, false)
 	if !closest_point.best_path or closest_point.global_position.distance_to(destination) > 1.2:
 		return null
 	return closest_point.best_path
