@@ -1,6 +1,8 @@
 class_name LevelConfig
 extends Resource
 
+@export var author: String
+@export var display_title: String
 @export var hero_class: HeroClass
 @export var allowed_cards: Array[Card]
 @export var waves: Array[WaveConfig]

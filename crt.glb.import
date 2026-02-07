@@ -39,6 +39,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"Metal": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/steel1/steel1.tres",
+"use_external/path": "uid://qq11jacogcec"
+},
 "Screen": {
 "use_external/enabled": false,
 "use_external/fallback_path": "res://crt_screen.tres",
@@ -46,8 +51,8 @@ _subresources={
 },
 "Wood": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://generic_wood.tres",
-"use_external/path": "uid://bdlgg2ei0yrvd"
+"use_external/fallback_path": "res://Materials/wood1/wood1.tres",
+"use_external/path": "uid://c21fh4gsnunfg"
 }
 }
 }

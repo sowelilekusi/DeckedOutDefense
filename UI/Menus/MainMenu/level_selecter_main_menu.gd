@@ -24,6 +24,28 @@ func _ready() -> void:
 		button.text = "Level " + str(i)
 		$VBoxContainer.add_child(button)
 		button.pressed.connect(start_level.bind(i - 1))
+		button.mouse_entered.connect(hover_config.bind(i - 1))
+
+
+func hover_config(level: int) -> void:
+	if !side:
+		var high_score: int = 0
+		if Data.save_data.level_high_scores.has(levels[level].display_title):
+			high_score = Data.save_data.level_high_scores[levels[level].display_title]
+	
+		if high_score > 0:
+			$VBoxContainer/HighScoreLabel.text = "Highest Wave: " + str(high_score)
+		else:
+			$VBoxContainer/HighScoreLabel.text = "Never attempted!"
+	else:
+		var high_score: int = 0
+		if Data.save_data.endless_high_scores.has(levels[level].display_title):
+			high_score = Data.save_data.endless_high_scores[levels[level].display_title]
+	
+		if high_score > 0:
+			$VBoxContainer/HighScoreLabel.text = "Highest B-SIDE Wave: " + str(high_score)
+		else:
+			$VBoxContainer/HighScoreLabel.text = "Never attempted!"
 
 
 func start_level(level: int) -> void:

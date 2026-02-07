@@ -6,12 +6,21 @@
 [ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_5cjqa"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="3_ksxj8"]
 [ext_resource type="Resource" uid="uid://cygfdfqhk2vhw" path="res://Levels/Level1/wave1.tres" id="6_xm2iu"]
+[ext_resource type="Resource" uid="uid://dfmwdshr7k10t" path="res://Levels/Level1/wave2.tres" id="7_mqq1f"]
+[ext_resource type="Resource" uid="uid://gi2aci5co4i0" path="res://Levels/Level1/wave3.tres" id="8_4p7s7"]
+[ext_resource type="Resource" uid="uid://b60npeapn8f82" path="res://Levels/Level1/wave4.tres" id="9_vtpjo"]
+[ext_resource type="Resource" uid="uid://ckadophirmra5" path="res://Levels/Level1/wave5.tres" id="10_2qu5l"]
+[ext_resource type="Resource" uid="uid://bdskawdb7174i" path="res://Levels/Level1/wave6.tres" id="11_varur"]
 [ext_resource type="Resource" uid="uid://cqm54pu03l510" path="res://Zones/Moat/zc_moat.tres" id="12_qh4uj"]
+[ext_resource type="Resource" uid="uid://bwe8kjkht7fcm" path="res://Levels/Level1/wave7.tres" id="12_r8d1f"]
+[ext_resource type="Resource" uid="uid://dgf3pxomo7pqs" path="res://Levels/Level1/wave8.tres" id="13_jadtx"]
 
 [resource]
 script = ExtResource("2_52rgn")
+author = "PuppyFruitGames"
+display_title = "Moat"
 hero_class = ExtResource("3_ksxj8")
 allowed_cards = Array[ExtResource("1_yuhm2")]([ExtResource("2_vvycy")])
-waves = Array[ExtResource("3_5cjqa")]([ExtResource("6_xm2iu")])
+waves = Array[ExtResource("3_5cjqa")]([ExtResource("6_xm2iu"), ExtResource("7_mqq1f"), ExtResource("8_4p7s7"), ExtResource("9_vtpjo"), ExtResource("10_2qu5l"), ExtResource("11_varur"), ExtResource("12_r8d1f"), ExtResource("13_jadtx")])
 zone = ExtResource("12_qh4uj")
 metadata/_custom_type_script = "uid://dalgif6huggwg"

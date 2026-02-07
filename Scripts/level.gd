@@ -7,7 +7,6 @@ extends Node3D
 @export var enemy_spawns: Array[EnemySpawner]
 @export var enemy_goals: Array[Node3D]
 @export var corpses: Node
-@export var cinematic_cam: CinematicCamManager
 @export var printer: CardPrinter
 @export var shop: ShopStand
 @export var obstacles: Array[PackedScene]

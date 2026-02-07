@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://cxntgjir527jj"]
+
+[ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_p03je"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_tjn8k"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="3_sex8u"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="4_6ef1c"]
+
+[sub_resource type="Resource" id="Resource_wug4u"]
+script = ExtResource("1_p03je")
+enemy = ExtResource("2_tjn8k")
+count = 10
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_1qdvn"]
+script = ExtResource("1_p03je")
+enemy = ExtResource("2_tjn8k")
+count = 13
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_pwamm"]
+script = ExtResource("1_p03je")
+enemy = ExtResource("2_tjn8k")
+count = 12
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_b1t41"]
+script = ExtResource("1_p03je")
+enemy = ExtResource("3_sex8u")
+count = 10
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[resource]
+script = ExtResource("4_6ef1c")
+enemy_groups = Dictionary[ExtResource("1_p03je"), int]({
+SubResource("Resource_wug4u"): 2,
+SubResource("Resource_1qdvn"): 1,
+SubResource("Resource_pwamm"): 3,
+SubResource("Resource_b1t41"): 1
+})
+new_shop = true
+rewards_blank_cassette = true
+bonus_cash = 20
+metadata/_custom_type_script = "uid://bp6q371iypd06"

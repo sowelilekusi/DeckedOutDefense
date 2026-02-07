@@ -205,7 +205,7 @@ fog_density = 1.0
 fog_depth_begin = 50.0
 fog_depth_end = 200.0
 
-[node name="Node3D" type="Node3D" unique_id=1915460305 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "cinematic_cam", "printer", "shop")]
+[node name="Node3D" type="Node3D" unique_id=1915460305 node_paths=PackedStringArray("tower_path", "player_spawns", "enemy_spawns", "enemy_goals", "corpses", "printer", "shop")]
 script = ExtResource("1_li03l")
 enemy_pool = Array[ExtResource("2_1sih4")]([ExtResource("3_y5pxn"), ExtResource("4_gow2y"), ExtResource("5_y23i6")])
 tower_path = NodePath("Parents/Towers")
@@ -213,7 +213,6 @@ player_spawns = [NodePath("PlayerSpawn")]
 enemy_spawns = [NodePath("EnemySpawner"), NodePath("EnemySpawner2"), NodePath("EnemySpawner3")]
 enemy_goals = [NodePath("EnemyGoal")]
 corpses = NodePath("Parents/Corpses")
-cinematic_cam = NodePath("CinematicCamManager")
 printer = NodePath("CardPrinter")
 shop = NodePath("ShopStand")
 metadata/_custom_type_script = "uid://cvejbo3srx8py"
@@ -225,6 +224,8 @@ metadata/_custom_type_script = "uid://cvejbo3srx8py"
 [node name="Corpses" type="Node3D" parent="Parents" unique_id=1858487493]
 
 [node name="cave_level" parent="." unique_id=430935043 instance=ExtResource("4_x53u6")]
+
+[node name="Plane " parent="cave_level" index="1" unique_id=113877087 groups=["dirt"]]
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=2082895124]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7781315, 0)
@@ -287,3 +288,5 @@ metadata/_custom_type_script = "uid://yk54owkf7pgj"
 environment = SubResource("Environment_y23i6")
 
 [connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]
+
+[editable path="cave_level"]

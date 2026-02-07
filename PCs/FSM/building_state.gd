@@ -31,7 +31,8 @@ func exit_state() -> void:
 	hero.edit_tool.interact_key_held = false
 	hero.edit_tool.enabled = false
 	hero.cassette.visible = true
-	hero.game_manager.level.disable_all_tower_frames()
+	if hero.game_manager:
+		hero.game_manager.level.disable_all_tower_frames()
 
 
 func process_state(_delta: float) -> void:

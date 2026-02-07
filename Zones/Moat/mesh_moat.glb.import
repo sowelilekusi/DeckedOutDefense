@@ -49,6 +49,11 @@ _subresources={
 "use_external/fallback_path": "res://Materials/bricks1/bricks1.tres",
 "use_external/path": "uid://b7wnk32j3acfr"
 },
+"cobblestone1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/cobblestone1/cobblestone1.tres",
+"use_external/path": "uid://ci2m26g6b7ao5"
+},
 "dirt1": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Materials/dirt1/dirt1.tres",
@@ -58,6 +63,16 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Materials/grass1/grass1.tres",
 "use_external/path": "uid://c4qub458rqpt2"
+},
+"steel1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/steel1/steel1.tres",
+"use_external/path": "uid://qq11jacogcec"
+},
+"wood1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/wood1/wood1.tres",
+"use_external/path": "uid://c21fh4gsnunfg"
 }
 }
 }

@@ -7,12 +7,19 @@
 [ext_resource type="Script" uid="uid://dalgif6huggwg" path="res://Scripts/Resources/level_config.gd" id="5_kje1i"]
 [ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="6_gmv8c"]
 [ext_resource type="Resource" uid="uid://cwy6wxuujgqbq" path="res://Levels/Level3/wave1.tres" id="7_43tyk"]
+[ext_resource type="Resource" uid="uid://bohdufnm1dks5" path="res://Levels/Level3/wave2.tres" id="8_2vql2"]
+[ext_resource type="Resource" uid="uid://bhr8y5kgxmuvv" path="res://Levels/Level3/wave3.tres" id="9_e67hj"]
 [ext_resource type="Resource" uid="uid://dicfpbrig37m8" path="res://Zones/Cave/zc_cave.tres" id="9_sbxeq"]
+[ext_resource type="Resource" uid="uid://ucqn45ycymph" path="res://Levels/Level3/wave4.tres" id="10_vhtpf"]
+[ext_resource type="Resource" uid="uid://dj46tpmwm4l7b" path="res://Levels/Level3/wave5.tres" id="11_j5x11"]
+[ext_resource type="Resource" uid="uid://wvhye2e1qwlj" path="res://Levels/Level3/wave6.tres" id="12_eb1oa"]
+[ext_resource type="Resource" uid="uid://cxntgjir527jj" path="res://Levels/Level3/wave7.tres" id="13_j6jup"]
+[ext_resource type="Resource" uid="uid://bi3gucreumocq" path="res://Levels/Level3/wave8.tres" id="14_xhn8o"]
 
 [resource]
 script = ExtResource("5_kje1i")
 hero_class = ExtResource("4_5rrxx")
 allowed_cards = Array[ExtResource("1_ldkvi")]([ExtResource("2_0atj5"), ExtResource("3_sbxeq")])
-waves = Array[ExtResource("6_gmv8c")]([ExtResource("7_43tyk")])
+waves = Array[ExtResource("6_gmv8c")]([ExtResource("7_43tyk"), ExtResource("8_2vql2"), ExtResource("9_e67hj"), ExtResource("10_vhtpf"), ExtResource("11_j5x11"), ExtResource("12_eb1oa"), ExtResource("13_j6jup"), ExtResource("14_xhn8o")])
 zone = ExtResource("9_sbxeq")
 metadata/_custom_type_script = "uid://dalgif6huggwg"

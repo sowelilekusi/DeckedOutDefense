@@ -7,13 +7,20 @@
 [ext_resource type="Resource" uid="uid://b37r54q84vqoi" path="res://Cards/rocket_launcher.tres" id="3_xdjpy"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="4_ldc6i"]
 [ext_resource type="Resource" uid="uid://7dqtd1owl7g3" path="res://Levels/Level2/wave1.tres" id="7_siv73"]
+[ext_resource type="Resource" uid="uid://bkujvdsbyiinu" path="res://Levels/Level2/wave2.tres" id="8_movdo"]
+[ext_resource type="Resource" uid="uid://oxlng6hm84g5" path="res://Levels/Level2/wave3.tres" id="9_w257w"]
+[ext_resource type="Resource" uid="uid://oxtyfouk3iwy" path="res://Levels/Level2/wave4.tres" id="10_pdy4r"]
+[ext_resource type="Resource" uid="uid://dwujwl2lje0eo" path="res://Levels/Level2/wave5.tres" id="11_526a4"]
+[ext_resource type="Resource" uid="uid://c3nuewoyytuub" path="res://Levels/Level2/wave6.tres" id="12_ebu2p"]
+[ext_resource type="Resource" uid="uid://djt4ejnd84et5" path="res://Levels/Level2/wave7.tres" id="13_o6362"]
+[ext_resource type="Resource" uid="uid://qujnsxov3vwj" path="res://Levels/Level2/wave8.tres" id="14_41aj4"]
 [ext_resource type="Resource" uid="uid://cqm54pu03l510" path="res://Zones/Moat/zc_moat.tres" id="15_movdo"]
 
 [resource]
 script = ExtResource("2_y3kr2")
 hero_class = ExtResource("4_ldc6i")
 allowed_cards = Array[ExtResource("1_rchhl")]([ExtResource("2_geygk"), ExtResource("3_xdjpy")])
-waves = Array[ExtResource("3_05rhi")]([ExtResource("7_siv73")])
+waves = Array[ExtResource("3_05rhi")]([ExtResource("7_siv73"), ExtResource("8_movdo"), ExtResource("9_w257w"), ExtResource("10_pdy4r"), ExtResource("11_526a4"), ExtResource("12_ebu2p"), ExtResource("13_o6362"), ExtResource("14_41aj4")])
 points_blocked = Array[int]([34, 33, 41, 40, 39, 47, 79, 86, 85, 78, 91, 84])
 zone = ExtResource("15_movdo")
 metadata/_custom_type_script = "uid://dalgif6huggwg"

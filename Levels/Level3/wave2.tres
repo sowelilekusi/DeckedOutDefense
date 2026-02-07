@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://bohdufnm1dks5"]
+
+[ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_gvxxv"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_i33id"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_ix4r4"]
+
+[sub_resource type="Resource" id="Resource_wug4u"]
+script = ExtResource("1_gvxxv")
+enemy = ExtResource("2_i33id")
+count = 4
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_1qdvn"]
+script = ExtResource("1_gvxxv")
+enemy = ExtResource("2_i33id")
+count = 4
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_pwamm"]
+script = ExtResource("1_gvxxv")
+enemy = ExtResource("2_i33id")
+count = 2
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[resource]
+script = ExtResource("3_ix4r4")
+enemy_groups = Dictionary[ExtResource("1_gvxxv"), int]({
+SubResource("Resource_wug4u"): 0,
+SubResource("Resource_1qdvn"): 1,
+SubResource("Resource_pwamm"): 4
+})
+metadata/_custom_type_script = "uid://bp6q371iypd06"

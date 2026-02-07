@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://ckadophirmra5"]
+
+[ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_0u7gc"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="2_0u7gc"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_qm0wt"]
+
+[sub_resource type="Resource" id="Resource_tab3n"]
+script = ExtResource("1_0u7gc")
+enemy = ExtResource("2_0u7gc")
+count = 30
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_qm0wt"]
+script = ExtResource("1_0u7gc")
+enemy = ExtResource("2_0u7gc")
+count = 10
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[resource]
+script = ExtResource("3_qm0wt")
+enemy_groups = Dictionary[ExtResource("1_0u7gc"), int]({
+SubResource("Resource_tab3n"): 0,
+SubResource("Resource_qm0wt"): 3
+})
+metadata/_custom_type_script = "uid://bp6q371iypd06"

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://bdskawdb7174i"]
+
+[ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_njap1"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="2_1ll4s"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_o06hi"]
+[ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_1ll4s"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="3_i4lde"]
+
+[sub_resource type="Resource" id="Resource_wug4u"]
+script = ExtResource("1_njap1")
+enemy = ExtResource("2_1ll4s")
+count = 12
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_5qvn6"]
+script = ExtResource("1_njap1")
+enemy = ExtResource("2_1ll4s")
+count = 6
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_ssahj"]
+script = ExtResource("1_njap1")
+enemy = ExtResource("3_i4lde")
+count = 15
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[sub_resource type="Resource" id="Resource_nyjet"]
+script = ExtResource("1_njap1")
+enemy = ExtResource("2_o06hi")
+count = 8
+metadata/_custom_type_script = "uid://3grc2j4bjrnw"
+
+[resource]
+script = ExtResource("3_1ll4s")
+enemy_groups = Dictionary[ExtResource("1_njap1"), int]({
+SubResource("Resource_wug4u"): 0,
+SubResource("Resource_5qvn6"): 2,
+SubResource("Resource_ssahj"): 2,
+SubResource("Resource_nyjet"): 1
+})
+metadata/_custom_type_script = "uid://bp6q371iypd06"

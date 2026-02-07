@@ -13,6 +13,10 @@ var winrate: int :
 	set(_value):
 		return
 
+
+var level_high_scores: Dictionary = {}
+var endless_high_scores: Dictionary = {}
+
 #Engineer
 var engineer_cards_bought: int = 0
 
@@ -21,6 +25,13 @@ var engineer_cards_bought: int = 0
 var mage_card_seen_in_shop: bool = false
 var mage_cards_bought: int = 0
 var mage_unlocked: bool = 0
+
+
+func check_high_score(level_title: String, wave_reached: int, endless: bool) -> void:
+	if endless:
+		endless_high_scores[level_title] = wave_reached
+	else:
+		level_high_scores[level_title] = wave_reached
 
 
 func add_game_outcome(outcome: bool) -> void:
@@ -71,6 +82,8 @@ func save_to_disc() -> void:
 		"mage_card_seen_in_shop" = mage_card_seen_in_shop,
 		"mage_cards_bought" = mage_cards_bought,
 		"mage_unlocked" = mage_unlocked,
+		"level_high_scores" = level_high_scores,
+		"endless_high_scores" = endless_high_scores
 	}
 	var json_string: String = JSON.stringify(dict)
 	save_file.store_line(json_string)
@@ -86,12 +99,23 @@ static func load_from_disk(slot: int) -> SaveData:
 			var dict: Dictionary = json.data
 			var stats: SaveData = SaveData.new()
 			stats.save_slot = slot
-			stats.wins = dict["wins"]
-			stats.losses = dict["losses"]
-			stats.twenty_game_history.append_array(dict["twenty_game_history"])
-			stats.engineer_cards_bought = dict["engineer_cards_bought"]
-			stats.mage_card_seen_in_shop = dict["mage_card_seen_in_shop"]
-			stats.mage_cards_bought = dict["mage_cards_bought"]
-			stats.mage_unlocked = dict["mage_unlocked"]
+			if dict.has("wins"):
+				stats.wins = dict["wins"]
+			if dict.has("losses"):
+				stats.losses = dict["losses"]
+			if dict.has("twenty_game_history"):
+				stats.twenty_game_history.append_array(dict["twenty_game_history"])
+			if dict.has("engineer_cards_bought"):
+				stats.engineer_cards_bought = dict["engineer_cards_bought"]
+			if dict.has("mage_card_seen_in_shop"):
+				stats.mage_card_seen_in_shop = dict["mage_card_seen_in_shop"]
+			if dict.has("mage_cards_bought"):
+				stats.mage_cards_bought = dict["mage_cards_bought"]
+			if dict.has("mage_unlocked"):
+				stats.mage_unlocked = dict["mage_unlocked"]
+			if dict.has("level_high_scores"):
+				stats.level_high_scores = dict["level_high_scores"]
+			if dict.has("endless_high_scores"):
+				stats.endless_high_scores = dict["endless_high_scores"]
 			return stats
 	return SaveData.new()

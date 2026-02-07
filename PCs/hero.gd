@@ -89,6 +89,11 @@ var selected_card: Card :
 		return hand.item_at(hand_selected_index) if hand.size > 0 else null
 
 
+@export var distance_between_steps: float = 2.2
+var distance_travelled: float = 0.0
+var foot_stepping: bool = false
+
+
 func set_zoom_factor(value: float) -> void:
 	movement.zoom_factor = value
 
@@ -168,6 +173,31 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("View Map"):
 		hud.minimize_minimap()
 		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if is_on_floor() and $RayCast3D.is_colliding() and $RayCast3D.get_collider() is StaticBody3D:
+		distance_travelled += get_real_velocity().length() * delta
+		if distance_travelled >= distance_between_steps:
+			var floor: StaticBody3D = $RayCast3D.get_collider()
+			distance_travelled -= distance_between_steps
+			if foot_stepping:
+				if floor.is_in_group("grass"):
+					$GrassFootSteps.play()
+				if floor.is_in_group("dirt"):
+					$DirtFootSteps.play()
+				if floor.is_in_group("stone"):
+					$StoneFootSteps.play()
+				if floor.is_in_group("brick"):
+					$BrickFootSteps.play()
+			else:
+				if floor.is_in_group("grass"):
+					$GrassFootSteps2.play()
+				if floor.is_in_group("dirt"):
+					$DirtFootSteps2.play()
+				if floor.is_in_group("stone"):
+					$StoneFootSteps2.play()
+				if floor.is_in_group("brick"):
+					$BrickFootSteps2.play()
+			foot_stepping = !foot_stepping
 
 
 func check_world_button() -> void:

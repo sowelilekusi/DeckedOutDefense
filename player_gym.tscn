@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://x28s850nha2e"]
+
+[ext_resource type="Texture2D" uid="uid://b8lj1l8gqpftn" path="res://Materials/grass1/bridge_grass.png" id="1_i36mq"]
+[ext_resource type="PackedScene" uid="uid://dxgxbtf68lcv5" path="res://PCs/hero.tscn" id="2_6o6pr"]
+[ext_resource type="Texture2D" uid="uid://bct2kqajrdfxl" path="res://Materials/bricks1/bricks1.png" id="3_lefvv"]
+[ext_resource type="Texture2D" uid="uid://b2prrul2qc8j2" path="res://Materials/cobblestone1/cobblestone1.png" id="4_ygwa6"]
+[ext_resource type="Texture2D" uid="uid://cnvndwp3q7rke" path="res://Materials/dirt1/dirt1.png" id="5_h6d8o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lefvv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ygwa6"]
+sky_material = SubResource("ProceduralSkyMaterial_lefvv")
+
+[sub_resource type="Environment" id="Environment_h6d8o"]
+background_mode = 2
+sky = SubResource("Sky_ygwa6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o6pr"]
+albedo_texture = ExtResource("1_i36mq")
+uv1_scale = Vector3(100, 100, 100)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_go40d"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10hvj"]
+albedo_texture = ExtResource("3_lefvv")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6o6pr"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t6mq"]
+albedo_texture = ExtResource("4_ygwa6")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74ojh"]
+albedo_texture = ExtResource("5_h6d8o")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 2
+
+[node name="PlayerGym" type="StaticBody3D" unique_id=176934332 groups=["grass"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1918125291]
+environment = SubResource("Environment_h6d8o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1727151783]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=759785048]
+material_override = SubResource("StandardMaterial3D_6o6pr")
+size = Vector3(100, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1299417691]
+shape = SubResource("BoxShape3D_go40d")
+
+[node name="Hero" parent="." unique_id=1918171232 instance=ExtResource("2_6o6pr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5280364, 1.5, 4.8029237)
+distance_between_steps = 2.24
+
+[node name="BrickPatch" type="StaticBody3D" parent="." unique_id=1894734481 groups=["brick"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3429985, 0.1293261, -11.509013)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="BrickPatch" unique_id=945450498]
+material_override = SubResource("StandardMaterial3D_10hvj")
+size = Vector3(10, 1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BrickPatch" unique_id=644869891]
+shape = SubResource("BoxShape3D_6o6pr")
+
+[node name="StonePatch" type="StaticBody3D" parent="." unique_id=1476807524 groups=["stone"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1293261, -11.509013)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StonePatch" unique_id=904894407]
+material_override = SubResource("StandardMaterial3D_1t6mq")
+size = Vector3(10, 1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StonePatch" unique_id=718575302]
+shape = SubResource("BoxShape3D_6o6pr")
+
+[node name="DirtPatch" type="StaticBody3D" parent="." unique_id=1237912036 groups=["dirt"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.842609, 0.1293261, -11.509013)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DirtPatch" unique_id=1262674818]
+material_override = SubResource("StandardMaterial3D_74ojh")
+size = Vector3(10, 1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DirtPatch" unique_id=1840066499]
+shape = SubResource("BoxShape3D_6o6pr")

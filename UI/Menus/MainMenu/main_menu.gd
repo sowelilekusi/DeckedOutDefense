@@ -18,6 +18,7 @@ var text_input_popup_scene: PackedScene = preload("res://Scenes/Menus/text_input
 var multiplayer_lobby_scene_path: String = "res://Scenes/multiplayer_lobby.tscn"
 var options_menu_scene: PackedScene = preload("res://UI/Menus/OptionsMenu/options_menu.tscn")
 var temp_data: SaveData
+var hovered_level_config: LevelConfig
 
 
 func _ready() -> void:
@@ -122,6 +123,9 @@ func level_selected(level: LevelConfig, side: int) -> void:
 	generate_seed()
 	gamemode.endless = true if side == 1 else false
 	gamemode.daily = false
+	if gamemode.endless:
+		level.allowed_cards = level.hero_class.deck
+		level.waves = []
 	game.level_config = level
 	start_game()
 
@@ -181,7 +185,7 @@ func _on_profile_manager_confirm_pressed() -> void:
 	if $ProfileManager/VBoxContainer/DisplayName/LineEdit.text != "":
 		change_profile_display_name($ProfileManager/VBoxContainer/DisplayName/LineEdit.text)
 		$ProfileManager/VBoxContainer/DisplayName/LineEdit.text = ""
-	Data.save_data = temp_data
+	#Data.save_data = temp_data
 	Data.save_data.save_to_disc()
 
 

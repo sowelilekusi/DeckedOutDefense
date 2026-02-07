@@ -56,6 +56,26 @@
 [ext_resource type="Script" uid="uid://cf7m4yyiqhhru" path="res://PCs/FSM/fighting_state.gd" id="49_60hic"]
 [ext_resource type="PackedScene" uid="uid://bg4pmewlvshu8" path="res://coin/Coin.glb" id="51_w13oc"]
 [ext_resource type="Script" uid="uid://dq0yemhxscvtm" path="res://rotate.gd" id="52_rim6q"]
+[ext_resource type="AudioStream" uid="uid://cbuhhp3eg0j8r" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_01.wav" id="57_f7seo"]
+[ext_resource type="AudioStream" uid="uid://dxttsjturv45i" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_02.wav" id="58_egbuc"]
+[ext_resource type="AudioStream" uid="uid://b4dwmhsjqi0jm" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_03.wav" id="59_f7c7s"]
+[ext_resource type="AudioStream" uid="uid://bhe7v86non1jq" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_04.wav" id="60_26ktb"]
+[ext_resource type="AudioStream" uid="uid://dq1ld0incvi5q" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_05.wav" id="61_i3cq1"]
+[ext_resource type="AudioStream" uid="uid://bancudsvntimw" path="res://Audio/MGWSoundDesign/Plastic_001.wav" id="62_0wscq"]
+[ext_resource type="AudioStream" uid="uid://cj2tj25whpqxv" path="res://Audio/MGWSoundDesign/Plastic_002.wav" id="63_qgggr"]
+[ext_resource type="AudioStream" uid="uid://dp3fjjakcsdvo" path="res://Audio/MGWSoundDesign/Plastic_003.wav" id="64_c5gvc"]
+[ext_resource type="AudioStream" uid="uid://cuygfkrxi3mdm" path="res://Audio/MGWSoundDesign/Plastic_004.wav" id="65_sewk0"]
+[ext_resource type="AudioStream" uid="uid://dkjvdt5kxgt88" path="res://Audio/MGWSoundDesign/Plastic_005.wav" id="66_n0bvw"]
+[ext_resource type="AudioStream" uid="uid://b43o1fji5ym74" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_01.wav" id="67_0wscq"]
+[ext_resource type="AudioStream" uid="uid://cou1boml8uq0w" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_01.wav" id="67_r3lbl"]
+[ext_resource type="AudioStream" uid="uid://de6cbvkaijorm" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_02.wav" id="68_0ehim"]
+[ext_resource type="AudioStream" uid="uid://c23b57cr4w1jo" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_02.wav" id="68_qgggr"]
+[ext_resource type="AudioStream" uid="uid://b4sp4n6bmrkx8" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_03.wav" id="69_c5gvc"]
+[ext_resource type="AudioStream" uid="uid://covlxc6h65yvr" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_03.wav" id="69_vkt85"]
+[ext_resource type="AudioStream" uid="uid://cwxnkmylk2823" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_04.wav" id="70_dyah2"]
+[ext_resource type="AudioStream" uid="uid://hyyngwod6wke" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_04.wav" id="70_sewk0"]
+[ext_resource type="AudioStream" uid="uid://b2p1egvjy6w1b" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_05.wav" id="71_dx4x6"]
+[ext_resource type="AudioStream" uid="uid://dbpecjrivtwav" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_05.wav" id="71_n0bvw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
 radius = 0.3
@@ -107,7 +127,7 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation 2", &"Ble
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hueaw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3lbl"]
 resource_local_to_scene = true
 atlas = ExtResource("6_yyp8i")
 region = Rect2(0, 0, 96, 96)
@@ -157,6 +177,46 @@ stream_0/stream = ExtResource("36_lsvj8")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pc8yw"]
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r3lbl"]
+random_pitch = 1.0116194
+random_volume_offset_db = 0.1
+streams_count = 5
+stream_0/stream = ExtResource("57_f7seo")
+stream_1/stream = ExtResource("58_egbuc")
+stream_2/stream = ExtResource("59_f7c7s")
+stream_3/stream = ExtResource("60_26ktb")
+stream_4/stream = ExtResource("61_i3cq1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0ehim"]
+random_pitch = 1.0116194
+random_volume_offset_db = 0.1
+streams_count = 5
+stream_0/stream = ExtResource("62_0wscq")
+stream_1/stream = ExtResource("63_qgggr")
+stream_2/stream = ExtResource("64_c5gvc")
+stream_3/stream = ExtResource("65_sewk0")
+stream_4/stream = ExtResource("66_n0bvw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2rve"]
+random_pitch = 1.0116194
+random_volume_offset_db = 0.1
+streams_count = 5
+stream_0/stream = ExtResource("67_r3lbl")
+stream_1/stream = ExtResource("68_0ehim")
+stream_2/stream = ExtResource("69_vkt85")
+stream_3/stream = ExtResource("70_dyah2")
+stream_4/stream = ExtResource("71_dx4x6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vkt85"]
+random_pitch = 1.0116194
+random_volume_offset_db = 0.1
+streams_count = 5
+stream_0/stream = ExtResource("67_0wscq")
+stream_1/stream = ExtResource("68_qgggr")
+stream_2/stream = ExtResource("69_c5gvc")
+stream_3/stream = ExtResource("70_sewk0")
+stream_4/stream = ExtResource("71_n0bvw")
 
 [node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
 collision_layer = 2
@@ -214,6 +274,8 @@ script = ExtResource("4_mhexa")
 player = NodePath("..")
 camera = NodePath("Head")
 focus_raycast = NodePath("Head/RayCast3D")
+head_bob_amplitude = 0.09
+head_bob_frequency = 7.0
 enable_strafe_tilt = true
 tilt_amount_x = 0.8
 
@@ -252,9 +314,9 @@ clone_camera = NodePath("../../ViewMovement/Head")
 script = ExtResource("7_14ugt")
 player = NodePath("../../..")
 enable_strafe_tilt = true
-tilt_amount_x = 4.0
+tilt_amount_x = 2.0
 tilt_amount_y = 1.0
-weapon_rotation_amount = 0.15
+weapon_rotation_amount = 0.3
 
 [node name="gauntlet" parent="FirstPersonViewport/Head2/RightHand" unique_id=75711217 instance=ExtResource("11_h1yfy")]
 
@@ -378,7 +440,7 @@ vertical_alignment = 1
 
 [node name="EightDirectionSprite" parent="." unique_id=438977751 instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_hueaw")
+texture = SubResource("AtlasTexture_r3lbl")
 
 [node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1797025603]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
@@ -412,7 +474,9 @@ head = NodePath("../ViewMovement")
 toggle_sprint = true
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
+air_control = 0.3
 enable_jumping = true
+time_to_floor = 0.27
 weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=499382586 node_paths=PackedStringArray("player", "wave_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_text", "swap_text", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel", "shield_ui", "currencies", "energy_pips", "enemy_count_label", "primary_button", "secondary_button", "slots")]
@@ -949,6 +1013,34 @@ transform = Transform3D(1, 0, 0, 0, 0.74214, 0.670245, 0, -0.670245, 0.74214, 0,
 cull_mask = 1047560
 projection = 1
 size = 2.243
+
+[node name="GrassFootSteps" type="AudioStreamPlayer" parent="." unique_id=1334135194]
+stream = SubResource("AudioStreamRandomizer_r3lbl")
+
+[node name="GrassFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1888481320]
+stream = SubResource("AudioStreamRandomizer_r3lbl")
+
+[node name="BrickFootSteps" type="AudioStreamPlayer" parent="." unique_id=1472210643]
+stream = SubResource("AudioStreamRandomizer_0ehim")
+
+[node name="BrickFootSteps2" type="AudioStreamPlayer" parent="." unique_id=584609189]
+stream = SubResource("AudioStreamRandomizer_0ehim")
+
+[node name="StoneFootSteps" type="AudioStreamPlayer" parent="." unique_id=1254189615]
+stream = SubResource("AudioStreamRandomizer_u2rve")
+
+[node name="StoneFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1184202084]
+stream = SubResource("AudioStreamRandomizer_u2rve")
+
+[node name="DirtFootSteps" type="AudioStreamPlayer" parent="." unique_id=1056313659]
+stream = SubResource("AudioStreamRandomizer_vkt85")
+
+[node name="DirtFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1806375267]
+stream = SubResource("AudioStreamRandomizer_vkt85")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1935479077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43043494, 0)
+target_position = Vector3(0, -11.465, 0)
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 

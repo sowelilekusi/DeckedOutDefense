@@ -99,7 +99,7 @@ func update_path() -> void:
 		return
 	var points: Array[Vector3] = []
 	var node: FlowNodeData = flow_field.get_closest_point(flow_field.start_nodes[0].position, true, false)
-	points.append(node.position + Vector3(0, 0.15, 0))
+	points.append(global_position + Vector3(0, 0.15, 0))
 	while node.best_path:
 		node = node.best_path
 		points.append(node.position + Vector3(0, 0.15, 0))

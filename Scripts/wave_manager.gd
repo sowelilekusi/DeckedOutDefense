@@ -35,6 +35,9 @@ static func get_test_wave(spawn_pool: Array[Enemy]) -> WaveConfig:
 ## among the given set of enemy spawners
 static func generate_wave(spawn_power: int, spawn_pool: Array[Enemy], spawners: int) -> WaveConfig:
 	var wave: WaveConfig = WaveConfig.new()
+	wave.station = Data.Rarity.COMMON
+	wave.new_shop = true if NoiseRandom.randf_in_range(spawn_power * 13, 0.0, 1.0) < 0.2 else false
+	wave.rewards_blank_cassette = true if NoiseRandom.randf_in_range(spawn_power * 4, 0.0, 1.0) < 0.15 else false
 	
 	#print("Generating wave with " + str(points) + " points to spend")
 	while spawn_power > 0:
