@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7euohgr24npi"
-path.s3tc="res://.godot/imported/gauntlet_cassette_tex.png-e9c09eb8277eaea99bb6a0798e69a42d.s3tc.ctex"
+uid="uid://dm0b3amlvatr2"
+path.s3tc="res://.godot/imported/metal3.png-0cfca017b843cba9d7bf57296f81cfac.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "8ffcdbb0faa5691927b8256d695d090b"
-}
 
 [deps]
 
-source_file="res://Gauntlet/gauntlet_cassette_tex.png"
-dest_files=["res://.godot/imported/gauntlet_cassette_tex.png-e9c09eb8277eaea99bb6a0798e69a42d.s3tc.ctex"]
+source_file="res://Materials/metal3/metal3.png"
+dest_files=["res://.godot/imported/metal3.png-0cfca017b843cba9d7bf57296f81cfac.s3tc.ctex"]
 
 [params]
 

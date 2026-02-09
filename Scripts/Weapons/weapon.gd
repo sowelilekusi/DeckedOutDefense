@@ -4,11 +4,13 @@ extends Node3D
 signal energy_spent(energy: int, type: Data.EnergyType)
 signal energy_recharged(energy: int, type: Data.EnergyType)
 signal energy_changed(energy: float)
+signal fired()
 
 @export var stats: CardText
 @export var animator: AnimationPlayer
 @export var audio_player: AudioStreamPlayer3D
 @export var recharge_timer: Timer
+@export var particle_emitter: GPUParticles3D
 
 var hero: Hero
 var trigger_held: bool = false
@@ -98,6 +100,7 @@ func shoot() -> void:
 	recharging = false
 	recharge_speed = 0.0
 	recharge_timer.stop()
+	fired.emit()
 
 
 @rpc

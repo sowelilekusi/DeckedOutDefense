@@ -5,6 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bct2kqajrdfxl" path="res://Materials/bricks1/bricks1.png" id="3_lefvv"]
 [ext_resource type="Texture2D" uid="uid://b2prrul2qc8j2" path="res://Materials/cobblestone1/cobblestone1.png" id="4_ygwa6"]
 [ext_resource type="Texture2D" uid="uid://cnvndwp3q7rke" path="res://Materials/dirt1/dirt1.png" id="5_h6d8o"]
+[ext_resource type="Script" uid="uid://1cqp2ke7peqt" path="res://hit_detector.gd" id="6_h6d8o"]
+[ext_resource type="Resource" uid="uid://bdkcwve6d35gl" path="res://Worlds/TestingRange/Enemies/dummy.tres" id="7_1t6mq"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="7_10hvj"]
+[ext_resource type="Material" uid="uid://bxmmwv17kc3uw" path="res://Materials/wood2/wood2.tres" id="8_fxx58"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="9_1t6mq"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="10_74ojh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lefvv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,6 +50,9 @@ texture_filter = 2
 albedo_texture = ExtResource("5_h6d8o")
 uv1_scale = Vector3(10, 10, 10)
 texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1t6mq"]
+size = Vector3(3, 3, 3)
 
 [node name="PlayerGym" type="StaticBody3D" unique_id=176934332 groups=["grass"]]
 
@@ -95,3 +104,29 @@ size = Vector3(10, 1, 10)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DirtPatch" unique_id=1840066499]
 shape = SubResource("BoxShape3D_6o6pr")
+
+[node name="StaticBody3D" type="CharacterBody3D" parent="." unique_id=1736737125 node_paths=PackedStringArray("status_manager", "health_bar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.146767, 2.0000002, 1.4915252)
+collision_layer = 4
+script = ExtResource("6_h6d8o")
+stats = ExtResource("7_1t6mq")
+status_manager = NodePath("StatusEffector")
+health_bar = NodePath("HealthBar")
+metadata/_custom_type_script = "uid://1cqp2ke7peqt"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D" unique_id=612131976]
+material_override = ExtResource("8_fxx58")
+size = Vector3(3, 3, 3)
+
+[node name="Hitbox" type="CollisionShape3D" parent="StaticBody3D" unique_id=656436221]
+shape = SubResource("BoxShape3D_1t6mq")
+script = ExtResource("7_10hvj")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="HealthBar" parent="StaticBody3D" unique_id=411371062 instance=ExtResource("9_1t6mq")]
+
+[node name="StatusEffector" type="Node" parent="StaticBody3D" unique_id=1768631767]
+script = ExtResource("10_74ojh")
+metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[connection signal="took_damage" from="StaticBody3D/Hitbox" to="StaticBody3D" method="_on_hitbox_took_damage"]

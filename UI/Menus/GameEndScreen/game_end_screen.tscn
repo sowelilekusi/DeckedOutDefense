@@ -138,6 +138,7 @@ text = "BUTTON_MAIN_MENU"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1265670542]
 stream = SubResource("AudioStreamRandomizer_dram5")
+volume_db = -10.599
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="VBoxContainer/Buttons/ContinueButton" to="." method="_on_button_mouse_entered"]

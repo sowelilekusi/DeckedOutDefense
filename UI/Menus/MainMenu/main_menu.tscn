@@ -100,6 +100,7 @@ text = "BUTTON_QUIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=422058960]
 stream = SubResource("AudioStreamRandomizer_2jyua")
+volume_db = -10.599
 bus = &"SFX"
 
 [node name="GameSelectMenu" type="PanelContainer" parent="." unique_id=1604474538]

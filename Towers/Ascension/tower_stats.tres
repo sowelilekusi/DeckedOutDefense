@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_tiqmf"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_bpl71"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_imnjp"]
 
 [resource]
 script = ExtResource("2_bpl71")
@@ -10,5 +11,6 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 9999.0,
 "Range": 1.0
 })
+features = Array[ExtResource("1_tiqmf")]([ExtResource("2_imnjp")])
 text = "DESC_TOWER_PLATFORM_DASH"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

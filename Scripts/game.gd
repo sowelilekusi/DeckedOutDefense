@@ -33,6 +33,7 @@ var card_gameplay: bool = false
 var level_layout: FlowFieldData
 var level_config: LevelConfig
 var starting_endless: bool = false
+var rhythm_notifier: RhythmNotifier
 
 
 #TODO: Create a reference to some generic Lobby object that wraps the multiplayer players list stuff
@@ -107,6 +108,10 @@ func get_upcoming_waves(wave_count: int) -> Array[WaveConfig]:
 	return waves
 
 
+func connect_tower_to_music(tower: Tower) -> void:
+	rhythm_notifier.beats(1).connect(tower.shoot)
+
+
 func spawn_level(scene: PackedScene) -> void:
 	level = scene.instantiate() as Level
 	var flow_field: FlowField = FlowField.new()
@@ -133,6 +138,7 @@ func spawn_players() -> void:
 	player_array.sort()
 	for peer_id: int in player_array:
 		var player: Hero = player_scene.instantiate() as Hero
+		player.placed_tower.connect(connect_tower_to_music)
 		player.name = str(peer_id)
 		player.game_manager = self
 		player.edit_tool.level = level
@@ -199,16 +205,16 @@ func set_wave_to_spawners(wave_thing: WaveConfig, wave_number: int) -> void:
 
 func set_upcoming_wave() -> void:
 	if is_multiplayer_authority():
-		print(wave)
-		print(level_config.waves.size())
+		#print(wave)
+		#print(level_config.waves.size())
 		if wave > level_config.waves.size():
-			print("added new wave on top")
+			#print("added new wave on top")
 			var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
 			var new_wave: WaveConfig = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns.size())
 			level_config.waves.append(new_wave)
 		
 		var new_wave: WaveConfig = get_upcoming_waves(1)[0]
-		print(new_wave)
+		#print(new_wave)
 		set_wave_to_spawners(new_wave, wave)
 		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 
@@ -265,7 +271,7 @@ func damage_goal(enemy: Enemy, penalty: int) -> void:
 
 
 func end_wave() -> void:
-	print("wave endedZ")
+	#print("wave endedZ")
 	wave += 1
 	Data.save_data.check_high_score(level_config.display_title, wave, starting_endless)
 	for peer_id: int in connected_players_nodes:
@@ -329,6 +335,10 @@ func setup() -> void:
 	wave = 1
 	stats = RoundStats.new()
 	wave_limit = level_config.waves.size()
+	rhythm_notifier = RhythmNotifier.new()
+	add_child(rhythm_notifier)
+	rhythm_notifier.bpm = 120
+	rhythm_notifier.running = true
 	game_setup.emit()
 
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_0swcp"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_fax6y"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_v0e26"]
 
 [resource]
 script = ExtResource("2_fax6y")
@@ -10,5 +11,6 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 0.0,
 "Range": 4.0
 })
+features = Array[ExtResource("1_0swcp")]([ExtResource("2_v0e26")])
 text = "DESC_TOWER_SPEED_INCREASER"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

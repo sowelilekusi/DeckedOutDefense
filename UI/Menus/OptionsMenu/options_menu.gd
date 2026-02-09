@@ -20,6 +20,11 @@ func set_tab_locale() -> void:
 	audio.name = tr("OPTIONS_TAB_AUDIO")
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Pause"):
+		queue_free()
+
+
 func _on_cancel_pressed() -> void:
 	queue_free()
 

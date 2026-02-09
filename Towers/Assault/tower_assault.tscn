@@ -5,9 +5,16 @@
 [ext_resource type="Script" uid="uid://djp7tepdsda8w" path="res://Scripts/effect.gd" id="3_75shm"]
 [ext_resource type="ArrayMesh" uid="uid://oxjhqfwlcx5l" path="res://Towers/Assault/assaultmod.res" id="4_1d5pl"]
 [ext_resource type="Script" uid="uid://chy7bx8dlwgs0" path="res://Scripts/StatusEffects/status_effect.gd" id="4_lkplr"]
+[ext_resource type="AudioStream" uid="uid://ciyphup4n1sbi" path="res://click.wav" id="6_g00m4"]
 
 [sub_resource type="Resource" id="Resource_c6gqc"]
 script = ExtResource("3_75shm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q14kf"]
+random_pitch = 1.005793
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("6_g00m4")
 
 [node name="DirectAffectTower" unique_id=252570832 instance=ExtResource("1_cn3qe")]
 stats = ExtResource("2_gg1gn")
@@ -19,3 +26,6 @@ visible = false
 [node name="Yaw" parent="." index="2" unique_id=36855242]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.2058, 0)
 mesh = ExtResource("4_1d5pl")
+
+[node name="AudioStreamPlayer3D" parent="Yaw" index="0" unique_id=1877101855]
+stream = SubResource("AudioStreamRandomizer_q14kf")

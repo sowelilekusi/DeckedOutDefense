@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_2higs"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_ahbcx"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_h1dig"]
 
 [resource]
 script = ExtResource("2_ahbcx")
@@ -12,4 +13,5 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 0.5,
 "Range": 3.0
 })
+features = Array[ExtResource("1_2higs")]([ExtResource("2_h1dig")])
 text = "DESC_WEAPON_RADIATION"

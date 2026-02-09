@@ -10,6 +10,12 @@ signal closed()
 @export var enemy_desc_label: RichTextLabel
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Pause"):
+		queue_free()
+		closed.emit()
+
+
 func set_waves(waves: Array[WaveConfig], starting_wave_number: int) -> void:
 	var i: int = starting_wave_number
 	for wave: WaveConfig in waves:

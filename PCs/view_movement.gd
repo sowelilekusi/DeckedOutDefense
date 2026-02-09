@@ -4,7 +4,7 @@ extends Node3D
 @export var player: CharacterBody3D
 
 @export_category("Bobbing")
-@export var camera: Camera3D
+@export var camera: Node3D
 @export var focus_raycast: RayCast3D
 @export var enable_head_bob: bool = true
 @export var head_bob_max_effect_speed: float = 4.317

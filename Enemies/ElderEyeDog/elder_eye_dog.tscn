@@ -18,7 +18,7 @@ radius = 0.269705
 [sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
 viewport_path = NodePath("SubViewport")
 
-[node name="ElderEyeDog" type="CharacterBody3D" unique_id=1106613653 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+[node name="ElderEyeDog" type="CharacterBody3D" unique_id=1106613653 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_17xxt")
@@ -26,6 +26,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_lirjc")
+health_bar = NodePath("SubViewport/HealthBar")
 metadata/_custom_type_script = "uid://ejqql2660u6h"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=542685682]

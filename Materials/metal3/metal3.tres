@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bte8u8o37f5mf"]
+
+[ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_2d3p0"]
+[ext_resource type="Texture2D" uid="uid://dm0b3amlvatr2" path="res://Materials/metal3/metal3.png" id="2_p4hyf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2d3p0")
+shader_parameter/albedo = ExtResource("2_p4hyf")
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/alpha_scissor = 1.0

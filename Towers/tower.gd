@@ -61,7 +61,8 @@ func _physics_process(_delta: float) -> void:
 		if time_since_firing >= time_between_shots:
 			time_since_firing -= time_between_shots
 			if affector:
-				shoot()
+				pass
+				#shoot()
 
 
 func aim() -> void:
@@ -70,14 +71,15 @@ func aim() -> void:
 	pitch_model.rotation.x = 0.0
 
 
-func shoot() -> void:
-	affector.apply_effect(effect, target_finder.targets)
-	animator.play("shoot")
-	audio_player.play()
-	if is_multiplayer_authority():
-		networked_shoot.rpc()
+func shoot(count: int) -> void:
+	if target_finder.targets.size() > 0 and affector:
+		affector.apply_effect(effect, target_finder.targets)
+		animator.play("shoot")
+		audio_player.play()
+		if is_multiplayer_authority():
+			networked_shoot.rpc()
 
 
 @rpc("reliable")
 func networked_shoot() -> void:
-	shoot()
+	shoot(0)

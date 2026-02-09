@@ -37,7 +37,7 @@ viewport_path = NodePath("SubViewport5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_5u3uw"]
 viewport_path = NodePath("SubViewport6")
 
-[node name="LeapingEnemy" type="CharacterBody3D" unique_id=1033726948 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+[node name="LeapingEnemy" type="CharacterBody3D" unique_id=1033726948 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_joiuq")
@@ -45,6 +45,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("LeapingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_ssgps")
+health_bar = NodePath("SubViewport/HealthBar")
 
 [node name="Health" type="Node" parent="." unique_id=1287231964]
 script = ExtResource("3_dhcpw")

@@ -9,6 +9,7 @@ const SAVE_PATH: String = "user://graphics_settings.tres"
 @export var windowed_mode: int = 0
 @export var vertex_jitter: float = 0.2
 @export var affine_warping: float = 1.0
+@export var resolution_scaling: float = 1.0
 
 
 func apply_graphical_settings(viewport: Viewport) -> void:

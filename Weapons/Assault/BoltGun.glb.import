@@ -22,7 +22,7 @@ nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=true
+meshes/generate_lods=false
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
@@ -39,10 +39,15 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"steel1": {
+"metal3": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Materials/steel1/steel1.tres",
-"use_external/path": "uid://qq11jacogcec"
+"use_external/fallback_path": "res://Materials/metal3/metal3.tres",
+"use_external/path": "uid://bte8u8o37f5mf"
+},
+"metal4": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/metal4/metal4.tres",
+"use_external/path": "uid://dse5i3rqndtrf"
 },
 "wood1": {
 "use_external/enabled": true,

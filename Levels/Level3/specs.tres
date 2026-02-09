@@ -18,6 +18,8 @@
 
 [resource]
 script = ExtResource("5_kje1i")
+author = "PuppyFruitGames"
+display_title = "Cave"
 hero_class = ExtResource("4_5rrxx")
 allowed_cards = Array[ExtResource("1_ldkvi")]([ExtResource("2_0atj5"), ExtResource("3_sbxeq")])
 waves = Array[ExtResource("6_gmv8c")]([ExtResource("7_43tyk"), ExtResource("8_2vql2"), ExtResource("9_e67hj"), ExtResource("10_vhtpf"), ExtResource("11_j5x11"), ExtResource("12_eb1oa"), ExtResource("13_j6jup"), ExtResource("14_xhn8o")])

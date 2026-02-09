@@ -48,7 +48,8 @@ void fragment() {
 	uv /= (VERTEX.z);
 	uv = mix(perspective_uv, uv, affine_amount);
 
-	ALBEDO = texture(albedo, uv).rgb;
+	ALBEDO = texture(albedo, uv).rgb * COLOR.rgb;
+	//ALBEDO = texture(albedo, uv).rgb;
 	ALPHA = texture(albedo, uv).a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor;
 }

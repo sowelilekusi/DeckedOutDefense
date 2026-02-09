@@ -21,7 +21,7 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4tj6k"]
 viewport_path = NodePath("SubViewport")
 
-[node name="WalkingEnemy" type="CharacterBody3D" unique_id=180331738 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n") groups=["Enemies"]]
+[node name="WalkingEnemy" type="CharacterBody3D" unique_id=180331738 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_fwsjt")
@@ -29,6 +29,7 @@ status_manager = NodePath("StatusEffector")
 movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_y7h25")
+health_bar = NodePath("SubViewport/HealthBar")
 
 [node name="DirectionSprite" parent="." unique_id=447693926 instance=ExtResource("2_o7jmg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585, 0)

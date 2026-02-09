@@ -2,7 +2,10 @@ class_name Hero
 extends CharacterBody3D
 
 signal ready_state_changed(state: bool)
+signal placed_tower(tower: Tower)
 
+@export var subviewport1: SubViewport
+@export var subviewport2: SubViewport
 @export var wave_preview_scene: PackedScene
 @export var hero_class: HeroClass
 @export var camera: Camera3D
@@ -94,11 +97,18 @@ var distance_travelled: float = 0.0
 var foot_stepping: bool = false
 
 
+func set_resolution(size: Vector2) -> void:
+	$FirstPersonViewport.size = size
+	$SubViewport.size = size
+
+
 func set_zoom_factor(value: float) -> void:
 	movement.zoom_factor = value
 
 
 func _ready() -> void:
+	Data.resolution_changed.connect(set_resolution)
+	set_resolution(Vector2(1920, 1080) * Data.graphics.resolution_scaling)
 	hud.disable_card_gameplay_ui()
 	if game_manager:
 		if game_manager.card_gameplay:
@@ -362,15 +372,15 @@ func draw_to_hand_size() -> void:
 func equip_weapon(slot: int = 0) -> void:
 	if weapons[slot] != null:
 		unequip_weapon(slot)
-		if !game_manager.card_gameplay or hand.size == 1:
+		if hand.size == 1 or (!game_manager or !game_manager.card_gameplay):
 			return
 	if hand.size == 0:
 		return
 	var energy_cost: int = selected_card.cost
-	if game_manager.card_gameplay and energy < energy_cost:
+	if game_manager and game_manager.card_gameplay and energy < energy_cost:
 		return
 	if hand.size > 0:
-		if game_manager.card_gameplay:
+		if game_manager and game_manager.card_gameplay:
 			energy -= energy_cost
 		place_card_audio.play()
 		cards[slot] = hand.remove_at(hand.contents.find(selected_card))
@@ -378,7 +388,7 @@ func equip_weapon(slot: int = 0) -> void:
 		hud.hot_wheel.update_cassettes(get_wheel_cards())
 		#card_sprites[hand_selected_index].queue_free()
 		#card_sprites.remove_at(hand_selected_index)
-		if game_manager.card_gameplay:
+		if game_manager and game_manager.card_gameplay:
 			discard_pile.add(cards[slot])
 		#TODO: Alternate thing to do with the hand i guess
 		#if !inventory.contents.has(cards[slot]):
@@ -387,6 +397,7 @@ func equip_weapon(slot: int = 0) -> void:
 		weapons[slot].stats = cards[slot].weapon_stats
 		weapons[slot].name = str(weapons_spawn_count)
 		weapons[slot].duration = 1
+		weapons[slot].fired.connect(fighting_state.play_shoot_animation)
 		weapons_spawn_count += 1
 		weapons[slot].set_multiplayer_authority(multiplayer.get_unique_id())
 		if slot == 0:
@@ -442,8 +453,12 @@ func unequip_weapon(slot: int = 0) -> void:
 		hud.set_secondary_button(null)
 	weapons[slot].queue_free()
 	weapons[slot] = null
-	if !game_manager.card_gameplay:
+	if !game_manager or !game_manager.card_gameplay:
 		add_card(cards[slot])
 	cards[slot] = null
 	place_card_audio.play()
 	hud.hot_wheel.update_cassettes(get_wheel_cards())
+
+
+func _on_hitbox_took_damage(amount: int, damage_type: int, pos: Vector3) -> void:
+	pass # Replace with function body.

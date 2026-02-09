@@ -1,5 +1,7 @@
 extends Node
 
+signal resolution_changed(size: Vector2)
+
 var characters: Array[HeroClass]
 var cards: Array[Card]
 #var keymaps: Array[PlayerKeymap]

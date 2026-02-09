@@ -10,6 +10,8 @@ extends VBoxContainer
 @export var vertex_jitter_slider: HSlider
 @export var affine_warping_input: SpinBox
 @export var affine_warping_slider: HSlider
+@export var resolution_scaling_input: SpinBox
+@export var resolution_scaling_slider: HSlider
 
 
 func _ready() -> void:
@@ -22,6 +24,8 @@ func _ready() -> void:
 	vertex_jitter_slider.value = Data.graphics.vertex_jitter
 	affine_warping_input.value = Data.graphics.affine_warping
 	affine_warping_slider.value = Data.graphics.affine_warping
+	resolution_scaling_slider.value = Data.graphics.resolution_scaling
+	resolution_scaling_input.value = Data.graphics.resolution_scaling
 
 
 func save() -> void:
@@ -31,6 +35,7 @@ func save() -> void:
 	Data.graphics.windowed_mode = window_dropdown.selected
 	Data.graphics.vertex_jitter = vertex_jitter_slider.value
 	Data.graphics.affine_warping = affine_warping_slider.value
+	Data.graphics.resolution_scaling = resolution_scaling_slider.value
 
 
 func _on_fov_spin_box_value_changed(value: float) -> void:
@@ -73,3 +78,17 @@ func _on_affine_warping_spin_box_value_changed(value: float) -> void:
 func _on_affine_warping_h_slider_value_changed(value: float) -> void:
 	affine_warping_input.value = value
 	Data.graphics.affine_warping = value
+
+
+func _on_resolution_scaling_spin_box_value_changed(value: float) -> void:
+	if value < 0.0:
+		value = 0.0
+	if value > 1.0:
+		value = 1.0
+	resolution_scaling_slider.value = value
+	Data.resolution_changed.emit(Vector2(1920, 1080) * value)
+
+
+func _on_resolution_scaling_h_slider_value_changed(value: float) -> void:
+	resolution_scaling_input.value = value
+	Data.resolution_changed.emit(Vector2(1920, 1080) * value)

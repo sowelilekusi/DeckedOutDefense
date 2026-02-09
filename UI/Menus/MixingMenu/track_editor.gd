@@ -86,12 +86,19 @@ func select_card(option: int) -> void:
 	tower_feature_uis = []
 	for feature_ui: FeatureUI in weapon_feature_uis:
 		feature_ui.queue_free()
+	for price_panel: PricePanel in tower_prices:
+		price_panel.visible = true
+	for price_panel: PricePanel in weapon_prices:
+		price_panel.visible = true
+	cost = 0
+	price_label.text = tr(PRICE_STR) + str(cost)
+	confirm_button.disabled = false
 	weapon_feature_uis = []
 	card_selected = cards[option]
 	temp_card = card_selected.duplicate()
 	temp_card.tower_stats = temp_card.tower_stats.get_duplicate()
 	temp_card.weapon_stats = temp_card.weapon_stats.get_duplicate()
-	card_desc.set_card(temp_card, check_button_pressed)
+	press_check_button(check_button_pressed)
 	for feature: Feature in temp_card.tower_stats.features:
 		add_feature(feature, 0, false)
 	for feature: Feature in temp_card.weapon_stats.features:

@@ -4,7 +4,7 @@
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 
-[node name="Graphics" type="VBoxContainer" unique_id=1842224615 node_paths=PackedStringArray("fov_input", "fov_slider", "vsync_dropdown", "aa_dropdown", "window_dropdown", "vertex_jitter_input", "vertex_jitter_slider", "affine_warping_input", "affine_warping_slider")]
+[node name="Graphics" type="VBoxContainer" unique_id=1842224615 node_paths=PackedStringArray("fov_input", "fov_slider", "vsync_dropdown", "aa_dropdown", "window_dropdown", "vertex_jitter_input", "vertex_jitter_slider", "affine_warping_input", "affine_warping_slider", "resolution_scaling_input", "resolution_scaling_slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +20,43 @@ vertex_jitter_input = NodePath("VextexJitter/HBoxContainer/SpinBox")
 vertex_jitter_slider = NodePath("VextexJitter/HBoxContainer/HSlider")
 affine_warping_input = NodePath("AffineWarping/HBoxContainer/SpinBox")
 affine_warping_slider = NodePath("AffineWarping/HBoxContainer/HSlider")
+resolution_scaling_input = NodePath("ResolutionScaling/HBoxContainer/SpinBox")
+resolution_scaling_slider = NodePath("ResolutionScaling/HBoxContainer/HSlider")
+
+[node name="ResolutionScaling" type="HBoxContainer" parent="." unique_id=1230619872]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ResolutionScaling" unique_id=550655132]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_RESOLUTION_SCALING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResolutionScaling" unique_id=1042104415]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="ResolutionScaling/HBoxContainer" unique_id=3787654]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_03x6q")
+max_value = 1.0
+step = 0.01
+value = 0.2
+allow_greater = true
+allow_lesser = true
+alignment = 1
+update_on_text_changed = true
+
+[node name="HSlider" type="HSlider" parent="ResolutionScaling/HBoxContainer" unique_id=608837003]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 0.2
+scrollable = false
 
 [node name="FOV" type="HBoxContainer" parent="." unique_id=693078328]
 layout_mode = 2
@@ -194,6 +231,8 @@ step = 0.01
 value = 1.0
 scrollable = false
 
+[connection signal="value_changed" from="ResolutionScaling/HBoxContainer/SpinBox" to="." method="_on_resolution_scaling_spin_box_value_changed"]
+[connection signal="value_changed" from="ResolutionScaling/HBoxContainer/HSlider" to="." method="_on_resolution_scaling_h_slider_value_changed"]
 [connection signal="value_changed" from="FOV/HBoxContainer/SpinBox" to="." method="_on_fov_spin_box_value_changed"]
 [connection signal="value_changed" from="FOV/HBoxContainer/HSlider" to="." method="_on_fov_h_slider_value_changed"]
 [connection signal="value_changed" from="VextexJitter/HBoxContainer/SpinBox" to="." method="_on_vertex_jitter_spin_box_value_changed"]

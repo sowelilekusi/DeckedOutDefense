@@ -16,7 +16,7 @@ func enter_state() -> void:
 		hero.weapons[hero.equipped_weapon].current_energy = hero.weapons[hero.equipped_weapon].max_energy
 		#this had to be commented out coz the new energy bar thinks "energy changed" is "energy used"
 		#weapons[equipped_weapon].energy_changed.emit(weapons[equipped_weapon].current_energy)
-	if hero.game_manager.card_gameplay:
+	if hero.game_manager and hero.game_manager.card_gameplay:
 		for x: int in hero.hand.contents.size():
 			hero.discard_pile.add(hero.hand.remove_at(hero.hand.contents.size() - 1))
 	hero.weapon_swap_timer.start()
@@ -43,8 +43,12 @@ func exit_state() -> void:
 	hero.hud.grow_wave_start_label()
 	#hero.hud.primary_duration.visible = true
 	#hero.hud.secondary_duration.visible = true
-	if hero.game_manager.card_gameplay:
+	if hero.game_manager and hero.game_manager.card_gameplay:
 		hero.hud.energy_label.visible = true
+
+
+func play_shoot_animation() -> void:
+	hero.anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
 func process_state(_delta: float) -> void:
@@ -70,3 +74,5 @@ func process_state(_delta: float) -> void:
 	if Input.is_action_just_pressed("Swap Weapons"):
 		if hero.weapons[0] and hero.weapons[1]:
 			hero.swap_weapons()
+	if !hero.game_manager and Input.is_action_just_pressed("Ready"):
+		hero.exit_fighting_state()

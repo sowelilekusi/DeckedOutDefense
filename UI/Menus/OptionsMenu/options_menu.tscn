@@ -69,6 +69,8 @@ text = "BUTTON_CONFIRM"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=103920719]
 stream = SubResource("AudioStreamRandomizer_5otwj")
+volume_db = -9.937
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_button_hovered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

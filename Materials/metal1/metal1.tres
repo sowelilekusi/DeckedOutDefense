@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://qq11jacogcec"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_raav3"]
-[ext_resource type="Texture2D" uid="uid://d02g31nntdjmw" path="res://Materials/steel1/steel1.png" id="2_r3yqm"]
+[ext_resource type="Texture2D" uid="uid://d02g31nntdjmw" path="res://Materials/metal1/metal1.png" id="2_r3yqm"]
 
 [resource]
 render_priority = 0

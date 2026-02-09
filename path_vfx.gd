@@ -29,7 +29,7 @@ func path(path_points: Array[Vector3]) -> void:
 			if path_points.size() > 2:
 				vertices.append_array(get_quad(path_points[x], path_points[x + 1], Vector3.ZERO, path_points[x + 2]))
 			else:
-				print("go1")
+				#print("go1")
 				vertices.append_array(get_quad(path_points[x], path_points[x + 1], Vector3.ZERO, Vector3.ZERO))
 	
 	#Add UVs
@@ -108,7 +108,6 @@ func get_quad(start_point: Vector3, end_point: Vector3, head_point: Vector3, tai
 	if head_point != Vector3.ZERO:
 		head_to_start = Vector2(start_point.x, start_point.z) - Vector2(head_point.x, head_point.z)
 	var start_to_end: Vector2 = Vector2(end_point.x, end_point.z) - Vector2(start_point.x, start_point.z)
-	var end_to_start: Vector2 = Vector2(start_point.x, start_point.z) - Vector2(end_point.x, end_point.z)
 	var end_to_tail: Vector2
 	if tail_point != Vector3.ZERO:
 		end_to_tail = Vector2(tail_point.x, tail_point.z) - Vector2(end_point.x, end_point.z)

@@ -2,20 +2,27 @@
 
 [ext_resource type="Script" uid="uid://bp3o5klntwmhd" path="res://Scripts/Weapons/hitscan_weapon.gd" id="1_yvp43"]
 [ext_resource type="Resource" uid="uid://smctw4ogm4rx" path="res://Weapons/Assault/weapon_stats.tres" id="2_2k4c7"]
-[ext_resource type="AudioStream" uid="uid://dknygn5eyuhxt" path="res://Audio/shot1.wav" id="2_5wfsb"]
+[ext_resource type="AudioStream" uid="uid://gojj0xkvjwvm" path="res://Weapons/Assault/gun_shot.wav" id="3_5wfsb"]
 [ext_resource type="PackedScene" uid="uid://bjjlhmhfytbvm" path="res://Weapons/Assault/BoltGun.glb" id="4_5wfsb"]
+[ext_resource type="Material" uid="uid://3m464q2bkdkm" path="res://Towers/Assault/PipePistolBullets.tres" id="5_1hdrg"]
+[ext_resource type="Material" uid="uid://cj14tx36js7n2" path="res://boombox_mat.tres" id="6_1hdrg"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1hdrg"]
-random_pitch = 1.1
+random_pitch = 1.0832878
 streams_count = 1
-stream_0/stream = ExtResource("2_5wfsb")
+stream_0/stream = ExtResource("3_5wfsb")
 
-[node name="Rifle" type="Node3D" unique_id=1518167828 node_paths=PackedStringArray("raycast", "audio_player", "recharge_timer")]
+[sub_resource type="QuadMesh" id="QuadMesh_jw2fc"]
+material = ExtResource("6_1hdrg")
+size = Vector2(0.125, 0.125)
+
+[node name="Rifle" type="Node3D" unique_id=1518167828 node_paths=PackedStringArray("raycast", "audio_player", "recharge_timer", "particle_emitter")]
 script = ExtResource("1_yvp43")
 raycast = NodePath("RayCast3D")
 stats = ExtResource("2_2k4c7")
 audio_player = NodePath("AudioStreamPlayer3D")
 recharge_timer = NodePath("Timer")
+particle_emitter = NodePath("HitParticle")
 metadata/_custom_type_script = "uid://bp3o5klntwmhd"
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1349784403]
@@ -30,7 +37,22 @@ one_shot = true
 stream = SubResource("AudioStreamRandomizer_1hdrg")
 bus = &"SFX"
 
-[node name="BoltGun" parent="." unique_id=566167059 instance=ExtResource("4_5wfsb")]
-transform = Transform3D(-0.07, 0, -1.0569706e-08, 0, 0.07, 0, 1.0569706e-08, 0, -0.07, 0, 0.15755616, -0.10932771)
+[node name="BoltGun" parent="." unique_id=1115474442 instance=ExtResource("4_5wfsb")]
+
+[node name="Cube_001" parent="BoltGun" index="0" unique_id=1262514348]
+layers = 2
+
+[node name="HitParticle" type="GPUParticles3D" parent="." unique_id=76894935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.086717755, -1.0784638)
+emitting = false
+amount = 5
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+transform_align = 3
+process_material = ExtResource("5_1hdrg")
+draw_pass_1 = SubResource("QuadMesh_jw2fc")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="BoltGun"]

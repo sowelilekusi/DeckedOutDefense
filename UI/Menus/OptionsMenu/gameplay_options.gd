@@ -52,15 +52,15 @@ func _on_mouse_sens_h_slider_value_changed(value: float) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
-	print(index)
+	#print(index)
 	if index == 0:
 		get_tree().root.size = Vector2i(320, 240)
 		#DisplayServer.window_set_size(Vector2i(320, 240))
-		print(get_tree().root.size)
+		#print(get_tree().root.size)
 	if index == 1:
 		get_tree().root.size = Vector2i(1920, 1080)
 		#DisplayServer.window_set_size(Vector2i(1920, 1080))
-		print(get_tree().root.size)
+		#print(get_tree().root.size)
 
 
 func _on_spin_box_value_changed(value: float) -> void:

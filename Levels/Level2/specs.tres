@@ -18,6 +18,8 @@
 
 [resource]
 script = ExtResource("2_y3kr2")
+author = "PuppyFruitGames"
+display_title = "Air Supply"
 hero_class = ExtResource("4_ldc6i")
 allowed_cards = Array[ExtResource("1_rchhl")]([ExtResource("2_geygk"), ExtResource("3_xdjpy")])
 waves = Array[ExtResource("3_05rhi")]([ExtResource("7_siv73"), ExtResource("8_movdo"), ExtResource("9_w257w"), ExtResource("10_pdy4r"), ExtResource("11_526a4"), ExtResource("12_ebu2p"), ExtResource("13_o6362"), ExtResource("14_41aj4")])

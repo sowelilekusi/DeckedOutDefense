@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://ckkioruqgbs8p" path="res://Scripts/minimap_cam.gd" id="12_3hpi3"]
 [ext_resource type="PackedScene" uid="uid://clgbmveluyewe" path="res://card_hand.glb" id="12_r2yb6"]
 [ext_resource type="PackedScene" uid="uid://4g0vatb73duj" path="res://Scenes/Cassette/cassette.glb" id="13_7immr"]
+[ext_resource type="Environment" uid="uid://cpn2no3e8s361" path="res://cam_environment.tres" id="13_vkt85"]
+[ext_resource type="Script" uid="uid://dkhl8u8p6gmlu" path="res://PCs/spring.gd" id="15_0ehim"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
@@ -77,33 +79,38 @@
 [ext_resource type="AudioStream" uid="uid://b2p1egvjy6w1b" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_05.wav" id="71_dx4x6"]
 [ext_resource type="AudioStream" uid="uid://dbpecjrivtwav" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_05.wav" id="71_n0bvw"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
-radius = 0.3
-height = 1.8
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o55s8"]
 animation = &"read"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h1yfy"]
 animation = &"hold_gun"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ehim"]
+animation = &"shoot"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2yb6"]
 animation = &"point"
 
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_o55s8"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vkt85"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hueaw"]
-graph_offset = Vector2(-378.649, 125.099)
-nodes/output/position = Vector2(460, 140)
+graph_offset = Vector2(-111.22443, 243.4039)
+nodes/output/position = Vector2(640, 240)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_r2yb6")
 nodes/Animation/position = Vector2(-80, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_o55s8")
 "nodes/Animation 2/position" = Vector2(-180, 300)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_h1yfy")
-"nodes/Animation 3/position" = Vector2(0, 400)
+"nodes/Animation 3/position" = Vector2(20, 420)
 nodes/Blend3/node = SubResource("AnimationNodeBlend3_o55s8")
 nodes/Blend3/position = Vector2(200, 140)
-node_connections = [&"output", 0, &"Blend3", &"Blend3", 0, &"Animation", &"Blend3", 1, &"Animation 2", &"Blend3", 2, &"Animation 3"]
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_vkt85")
+nodes/OneShot/position = Vector2(420, 300)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0ehim")
+"nodes/Animation 4/position" = Vector2(180, 620)
+node_connections = [&"output", 0, &"OneShot", &"Blend3", 0, &"Animation", &"Blend3", 1, &"Animation 2", &"Blend3", 2, &"Animation 3", &"OneShot", 0, &"Blend3", &"OneShot", 1, &"Animation 4"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hueaw"]
 animation = &"card_hand_read"
@@ -114,7 +121,7 @@ animation = &"card_hand_away"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_4eel5"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xav2s"]
-graph_offset = Vector2(-384.382, 132.11)
+graph_offset = Vector2(-526.5509, 82.68187)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_p46gp")
 nodes/Animation/position = Vector2(-147.04, 210.816)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hueaw")
@@ -123,17 +130,24 @@ nodes/Blend2/node = SubResource("AnimationNodeBlend2_4eel5")
 nodes/Blend2/position = Vector2(120, 200)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jbu13"]
+radius = 0.3
+height = 1.8
+
 [sub_resource type="Environment" id="Environment_cilxe"]
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3lbl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkt85"]
 resource_local_to_scene = true
 atlas = ExtResource("6_yyp8i")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m3ots"]
 viewport_path = NodePath("NametagViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r3lbl"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mk87g"]
 viewport_path = NodePath("FirstPersonViewport")
@@ -218,20 +232,21 @@ stream_2/stream = ExtResource("69_c5gvc")
 stream_3/stream = ExtResource("70_sewk0")
 stream_4/stream = ExtResource("71_n0bvw")
 
-[node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
+[node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("subviewport1", "camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
+subviewport1 = NodePath("FirstPersonViewport")
 wave_preview_scene = ExtResource("2_o55s8")
 hero_class = ExtResource("2_dbyo0")
-camera = NodePath("ViewMovement/Head")
+camera = NodePath("SubViewport/Head")
 gun_camera = NodePath("FirstPersonViewport/Head2")
-left_hand = NodePath("FirstPersonViewport/Head2/RightHand/card_hand")
-right_hand = NodePath("FirstPersonViewport/Head2/RightHand")
-edit_tool = NodePath("ViewMovement/Head/EditTool")
-carding_tool = NodePath("ViewMovement/Head/CardPlacingTool")
+left_hand = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand")
+right_hand = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand")
+edit_tool = NodePath("SubViewport/Head/EditTool")
+carding_tool = NodePath("SubViewport/Head/CardPlacingTool")
 sprite = NodePath("EightDirectionSprite")
-interaction_raycast = NodePath("ViewMovement/Head/RayCast3D")
+interaction_raycast = NodePath("SubViewport/Head/RayCast3D")
 draw_pile = NodePath("DrawPile")
 hand = NodePath("Hand")
 discard_pile = NodePath("DiscardPile")
@@ -254,73 +269,46 @@ fullpower_audio = NodePath("FullPowerAudio")
 zeropower_audio = NodePath("ZeroPowerAudio")
 swap_off_audio = NodePath("SwapOffAudio")
 swap_on_audio = NodePath("SwapOnAudio")
-anim_tree = NodePath("FirstPersonViewport/Head2/RightHand/AnimationTree")
-anim_tree2 = NodePath("FirstPersonViewport/Head2/RightHand/AnimationTree2")
-weapon_pivot = NodePath("FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D/Node3D")
-cassette = NodePath("FirstPersonViewport/Head2/RightHand/card_hand/Empty_001")
-left_hand_model = NodePath("FirstPersonViewport/Head2/RightHand/card_hand")
-gauntlet_model = NodePath("FirstPersonViewport/Head2/RightHand/gauntlet")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1396328287]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1279010072]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_jbu13")
-
-[node name="ViewMovement" type="Node3D" parent="." unique_id=2029540853 node_paths=PackedStringArray("player", "camera", "focus_raycast")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
-script = ExtResource("4_mhexa")
-player = NodePath("..")
-camera = NodePath("Head")
-focus_raycast = NodePath("Head/RayCast3D")
-head_bob_amplitude = 0.09
-head_bob_frequency = 7.0
-enable_strafe_tilt = true
-tilt_amount_x = 0.8
-
-[node name="Head" type="Camera3D" parent="ViewMovement" unique_id=614493089]
-keep_aspect = 0
-cull_mask = 1048569
-fov = 100.0
-
-[node name="EditTool" parent="ViewMovement/Head" unique_id=899304678 node_paths=PackedStringArray("hero") instance=ExtResource("5_jlxb3")]
-hero = NodePath("../../..")
-
-[node name="RayCast3D" type="RayCast3D" parent="ViewMovement/Head" unique_id=302302801]
-target_position = Vector3(0, 0, -2)
-collision_mask = 24
-
-[node name="CardPlacingTool" parent="ViewMovement/Head" unique_id=1227455090 node_paths=PackedStringArray("hero") instance=ExtResource("8_7d213")]
-hero = NodePath("../../..")
-
-[node name="RayCast3D" type="RayCast3D" parent="ViewMovement" unique_id=522176621]
-target_position = Vector3(0, 0, -100)
-collision_mask = 65535
+anim_tree = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/AnimationTree")
+anim_tree2 = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/AnimationTree2")
+weapon_pivot = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet/Skeleton3D/BoneAttachment3D")
+cassette = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Empty_001")
+left_hand_model = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand")
+gauntlet_model = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet")
+distance_between_steps = 1.9
 
 [node name="FirstPersonViewport" type="SubViewport" parent="." unique_id=785328163]
 transparent_bg = true
-size = Vector2i(640, 360)
+audio_listener_enable_3d = true
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Head2" type="Camera3D" parent="FirstPersonViewport" unique_id=1933686603 node_paths=PackedStringArray("clone_camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 cull_mask = 2
+environment = ExtResource("13_vkt85")
 fov = 60.0
 script = ExtResource("11_4sdwe")
-clone_camera = NodePath("../../ViewMovement/Head")
+clone_camera = NodePath("../../SubViewport/Head")
 
-[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2" unique_id=729288273 node_paths=PackedStringArray("player")]
-script = ExtResource("7_14ugt")
+[node name="ViewMovement" type="Node3D" parent="FirstPersonViewport/Head2" unique_id=1191655688 node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("4_mhexa")
 player = NodePath("../../..")
+camera = NodePath("RightHand")
+head_bob_amplitude = 0.01
+metadata/_custom_type_script = "uid://cij76at0nbs1v"
+
+[node name="RightHand" type="Node3D" parent="FirstPersonViewport/Head2/ViewMovement" unique_id=729288273 node_paths=PackedStringArray("player")]
+script = ExtResource("7_14ugt")
+player = NodePath("../../../..")
 enable_strafe_tilt = true
 tilt_amount_x = 2.0
 tilt_amount_y = 1.0
-weapon_rotation_amount = 0.3
+weapon_rotation_amount = 0.4
 
-[node name="gauntlet" parent="FirstPersonViewport/Head2/RightHand" unique_id=75711217 instance=ExtResource("11_h1yfy")]
+[node name="gauntlet" parent="FirstPersonViewport/Head2/ViewMovement/RightHand" unique_id=681208948 instance=ExtResource("11_h1yfy")]
 
-[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet" parent_id_path=PackedInt32Array(75711217, 838866754) index="0" unique_id=1318948419]
+[node name="Skeleton3D" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet" parent_id_path=PackedInt32Array(681208948, 1347385208) index="0" unique_id=1920539554]
 bones/0/position = Vector3(0.28492117, -0.2668743, 0.1757814)
 bones/0/rotation = Quaternion(-0.4969382, -0.50358063, 0.49639297, 0.5030438)
 bones/5/rotation = Quaternion(-0.38194385, -0.19379175, 0.8146388, -0.39105925)
@@ -339,21 +327,23 @@ bones/20/rotation = Quaternion(0.41824344, 0.0010558192, 0.0022930033, 0.9083314
 bones/21/rotation = Quaternion(0.61313385, -0.33047637, -0.34370533, 0.6298563)
 bones/22/rotation = Quaternion(-0.002244999, 0.0020464794, 0.6736945, 0.7390037)
 
-[node name="Cube" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="0" unique_id=403437350]
+[node name="Cube" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet/Skeleton3D" index="0" unique_id=463690888]
 layers = 2
 
-[node name="door" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="1" unique_id=1100068149]
+[node name="door" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet/Skeleton3D" index="1" unique_id=853695899]
 layers = 2
 
-[node name="door_001" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="2" unique_id=1162616444]
+[node name="door_001" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet/Skeleton3D" index="2" unique_id=51292188]
 layers = 2
 
-[node name="Node3D" type="Node3D" parent="FirstPersonViewport/Head2/RightHand/gauntlet/Gauntlet/Skeleton3D" index="3" unique_id=1528034935]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257481, -0.237301, -0.452066)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet/Gauntlet/Skeleton3D" index="3" unique_id=1916743669]
+transform = Transform3D(0.9996732, 0.002340883, 0.02545051, -0.0023422316, 0.999997, 2.1509419e-05, -0.025450272, -8.0959755e-05, 0.99967617, 0.22945356, -0.23003688, -0.4849847)
+bone_name = "Plane"
+bone_idx = 23
 
-[node name="card_hand" parent="FirstPersonViewport/Head2/RightHand" unique_id=1949070143 instance=ExtResource("12_r2yb6")]
+[node name="card_hand" parent="FirstPersonViewport/Head2/ViewMovement/RightHand" unique_id=1949070143 instance=ExtResource("12_r2yb6")]
 
-[node name="Skeleton3D" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature" parent_id_path=PackedInt32Array(1949070143, 779813012) index="0" unique_id=1687711431]
+[node name="Skeleton3D" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Armature" parent_id_path=PackedInt32Array(1949070143, 779813012) index="0" unique_id=1687711431]
 bones/0/position = Vector3(0.003709482, 0.14446077, 0.042393185)
 bones/0/rotation = Quaternion(-0.03916115, -0.009479229, 0.7379919, 0.67360556)
 bones/1/rotation = Quaternion(0.033827104, 0.020153234, -0.037197568, 0.99853194)
@@ -386,28 +376,84 @@ bones/23/rotation = Quaternion(-0.04489054, -0.044890743, 0.70568043, 0.7056804)
 bones/24/position = Vector3(-2.8036966, 0.39121616, -0.41559562)
 bones/24/rotation = Quaternion(-0.084565006, -0.08456521, 0.70203185, 0.7020319)
 
-[node name="Body_004" parent="FirstPersonViewport/Head2/RightHand/card_hand/Armature/Skeleton3D" index="0" unique_id=330536477]
+[node name="Body_004" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Armature/Skeleton3D" index="0" unique_id=330536477]
 layers = 2
 
-[node name="Empty_001" parent="FirstPersonViewport/Head2/RightHand/card_hand" index="1" unique_id=124279582]
+[node name="Empty_001" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand" index="1" unique_id=124279582]
 transform = Transform3D(0.996286, -0.0860546, -0.00298578, -0.00927826, -0.0728151, -0.997302, 0.0856051, 0.993626, -0.0733431, -0.086853, -0.100784, -0.288736)
 
-[node name="cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001" index="0" unique_id=1368647028 instance=ExtResource("13_7immr")]
+[node name="cassette" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Empty_001" index="0" unique_id=1368647028 instance=ExtResource("13_7immr")]
 
-[node name="Cassette" parent="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001/cassette" index="0" unique_id=360288089]
+[node name="Cassette" parent="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Empty_001/cassette" index="0" unique_id=360288089]
 layers = 2
 
-[node name="AnimationTree" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand" unique_id=1068524091]
+[node name="AnimationTree" type="AnimationTree" parent="FirstPersonViewport/Head2/ViewMovement/RightHand" unique_id=1068524091]
 root_node = NodePath("../gauntlet")
 tree_root = SubResource("AnimationNodeBlendTree_hueaw")
 anim_player = NodePath("../gauntlet/AnimationPlayer")
 parameters/Blend3/blend_amount = 1.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
 
-[node name="AnimationTree2" type="AnimationTree" parent="FirstPersonViewport/Head2/RightHand" unique_id=2004934987]
+[node name="AnimationTree2" type="AnimationTree" parent="FirstPersonViewport/Head2/ViewMovement/RightHand" unique_id=2004934987]
 root_node = NodePath("../card_hand")
 tree_root = SubResource("AnimationNodeBlendTree_xav2s")
 anim_player = NodePath("../card_hand/AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=615109350]
+size = Vector2i(1920, 1080)
+
+[node name="Head" type="Camera3D" parent="SubViewport" unique_id=614493089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+keep_aspect = 0
+cull_mask = 1048569
+environment = ExtResource("13_vkt85")
+fov = 100.0
+
+[node name="EditTool" parent="SubViewport/Head" unique_id=899304678 node_paths=PackedStringArray("hero") instance=ExtResource("5_jlxb3")]
+hero = NodePath("../../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="SubViewport/Head" unique_id=302302801]
+target_position = Vector3(0, 0, -2)
+collision_mask = 24
+
+[node name="CardPlacingTool" parent="SubViewport/Head" unique_id=1227455090 node_paths=PackedStringArray("hero") instance=ExtResource("8_7d213")]
+hero = NodePath("../../..")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1396328287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1279010072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_jbu13")
+
+[node name="ViewMovement" type="Node3D" parent="." unique_id=2029540853 node_paths=PackedStringArray("player", "camera", "focus_raycast")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+script = ExtResource("4_mhexa")
+player = NodePath("..")
+camera = NodePath("Node3D")
+focus_raycast = NodePath("../SubViewport/Head/RayCast3D")
+head_bob_max_effect_speed = 4.5
+head_bob_amplitude = 0.09
+head_bob_frequency = 7.0
+enable_strafe_tilt = true
+tilt_amount_x = 0.8
+
+[node name="RayCast3D" type="RayCast3D" parent="ViewMovement" unique_id=522176621]
+target_position = Vector3(0, 0, -100)
+collision_mask = 65535
+
+[node name="Node3D" type="Node3D" parent="ViewMovement" unique_id=2137069228 node_paths=PackedStringArray("hero", "hud")]
+script = ExtResource("15_0ehim")
+hero = NodePath("../..")
+hud = NodePath("../../HUD")
+hud_affect = 40.0
+Damping = 20.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="ViewMovement/Node3D" unique_id=1038602523]
+remote_path = NodePath("../../../SubViewport/Head")
 
 [node name="MiniMapViewport" type="SubViewport" parent="." unique_id=384727742]
 size = Vector2i(256, 256)
@@ -440,7 +486,7 @@ vertical_alignment = 1
 
 [node name="EightDirectionSprite" parent="." unique_id=438977751 instance=ExtResource("2_ib0t5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_r3lbl")
+texture = SubResource("AtlasTexture_vkt85")
 
 [node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1797025603]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
@@ -471,13 +517,35 @@ script = ExtResource("6_cf5ap")
 script = ExtResource("20_cfhw8")
 player = NodePath("..")
 head = NodePath("../ViewMovement")
+hard_speed_limit = 4.5
 toggle_sprint = true
 max_look_down_angle = 80.0
 max_look_up_angle = 80.0
-air_control = 0.3
+air_control = 0.6
 enable_jumping = true
-time_to_floor = 0.27
-weapon_holder = NodePath("../FirstPersonViewport/Head2/RightHand")
+time_to_peak = 0.34
+time_to_floor = 0.28
+weapon_holder = NodePath("../FirstPersonViewport/Head2/ViewMovement/RightHand")
+
+[node name="PostFx" type="CanvasLayer" parent="." unique_id=589280060]
+
+[node name="TextureRect" type="TextureRect" parent="PostFx" unique_id=1140046628]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_r3lbl")
+
+[node name="FirstPersonCam" type="TextureRect" parent="PostFx" unique_id=1345632904]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_mk87g")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=499382586 node_paths=PackedStringArray("player", "wave_count", "currency_count", "minimap_outline", "minimap", "minimap_cam", "minimap_viewport", "fps_label", "hover_text", "enemy_sprites", "enemy_counts", "wave_start_label", "place_text", "swap_text", "energy_label", "blank_cassette_label", "feature_preview", "hot_wheel", "shield_ui", "currencies", "energy_pips", "enemy_count_label", "primary_button", "secondary_button", "slots")]
 script = ExtResource("8_yl6ka")
@@ -508,15 +576,6 @@ primary_button = NodePath("VBoxContainer2/HBoxContainer/Button")
 secondary_button = NodePath("VBoxContainer2/HBoxContainer2/Button2")
 null_icon = ExtResource("22_o55s8")
 slots = NodePath("VBoxContainer2")
-
-[node name="FirstPersonCam" type="TextureRect" parent="HUD" unique_id=1345632904]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("ViewportTexture_mk87g")
 
 [node name="Minimap" type="TextureRect" parent="HUD" unique_id=614380579]
 visible = false
@@ -948,34 +1007,42 @@ replication_config = SubResource("SceneReplicationConfig_tsiqi")
 
 [node name="PlaceCardAudio" type="AudioStreamPlayer" parent="." unique_id=1230517992]
 stream = SubResource("AudioStreamRandomizer_wyb7c")
+volume_db = -9.936
 bus = &"SFX"
 
 [node name="SwapCardAudio" type="AudioStreamPlayer" parent="." unique_id=382203637]
 stream = SubResource("AudioStreamRandomizer_0lyoo")
+volume_db = -9.936
 bus = &"SFX"
 
 [node name="ReadyAudio" type="AudioStreamPlayer" parent="." unique_id=1512085855]
 stream = SubResource("AudioStreamRandomizer_evsqr")
+volume_db = -12.0
 bus = &"SFX"
 
 [node name="UnreadyAudio" type="AudioStreamPlayer" parent="." unique_id=12065125]
 stream = SubResource("AudioStreamRandomizer_pc8yw")
+volume_db = -11.989
 bus = &"SFX"
 
 [node name="FullPowerAudio" type="AudioStreamPlayer" parent="." unique_id=204432375]
 stream = ExtResource("37_sa2xu")
+volume_db = -21.86
 bus = &"SFX"
 
 [node name="ZeroPowerAudio" type="AudioStreamPlayer" parent="." unique_id=842811877]
 stream = ExtResource("36_cd8og")
+volume_db = -13.911
 bus = &"SFX"
 
 [node name="SwapOffAudio" type="AudioStreamPlayer" parent="." unique_id=2115799468]
 stream = ExtResource("40_pnv0q")
+volume_db = -13.679
 bus = &"SFX"
 
 [node name="SwapOnAudio" type="AudioStreamPlayer" parent="." unique_id=1891077839]
 stream = ExtResource("41_hussy")
+volume_db = -10.599
 bus = &"SFX"
 
 [node name="BuildingState" type="Node" parent="." unique_id=744789457 node_paths=PackedStringArray("swap_state", "hero")]
@@ -1016,27 +1083,43 @@ size = 2.243
 
 [node name="GrassFootSteps" type="AudioStreamPlayer" parent="." unique_id=1334135194]
 stream = SubResource("AudioStreamRandomizer_r3lbl")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="GrassFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1888481320]
 stream = SubResource("AudioStreamRandomizer_r3lbl")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="BrickFootSteps" type="AudioStreamPlayer" parent="." unique_id=1472210643]
 stream = SubResource("AudioStreamRandomizer_0ehim")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="BrickFootSteps2" type="AudioStreamPlayer" parent="." unique_id=584609189]
 stream = SubResource("AudioStreamRandomizer_0ehim")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="StoneFootSteps" type="AudioStreamPlayer" parent="." unique_id=1254189615]
 stream = SubResource("AudioStreamRandomizer_u2rve")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="StoneFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1184202084]
 stream = SubResource("AudioStreamRandomizer_u2rve")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="DirtFootSteps" type="AudioStreamPlayer" parent="." unique_id=1056313659]
 stream = SubResource("AudioStreamRandomizer_vkt85")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="DirtFootSteps2" type="AudioStreamPlayer" parent="." unique_id=1806375267]
 stream = SubResource("AudioStreamRandomizer_vkt85")
+volume_db = -12.0
+bus = &"SFX"
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=1935479077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43043494, 0)
@@ -1044,7 +1127,7 @@ target_position = Vector3(0, -11.465, 0)
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 
-[editable path="FirstPersonViewport/Head2/RightHand/gauntlet"]
-[editable path="FirstPersonViewport/Head2/RightHand/card_hand"]
-[editable path="FirstPersonViewport/Head2/RightHand/card_hand/Empty_001/cassette"]
+[editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet"]
+[editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand"]
+[editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Empty_001/cassette"]
 [editable path="CoinViewport/Coin"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_73lec"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_1vuma"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_yown4"]
 
 [resource]
 script = ExtResource("2_1vuma")
@@ -11,4 +12,5 @@ attributes = Dictionary[String, float]({
 "Fire Delay": 4.0,
 "Range": 8.0
 })
+features = Array[ExtResource("1_73lec")]([ExtResource("2_yown4")])
 text = "DESC_TOWER_BOMB"

@@ -31,4 +31,4 @@ func _physics_process(delta: float) -> void:
 		current_time_between_shots = lerpf(time_between_shots, final_time_between_shots, progress)
 		if time_since_firing >= current_time_between_shots:
 			time_since_firing -= current_time_between_shots
-			shoot()
+			#shoot(0)

@@ -37,6 +37,11 @@ func _ready() -> void:
 	#	spawn.spawn_wave()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Pause"):
+		return_to_main_menu()
+
+
 #these exist purely to make the enemies that spawn on the main menu happy
 func enemy_died(_some_arg: Enemy) -> void:
 	pass
@@ -105,7 +110,13 @@ func open_game_menu() -> void:
 func _on_back_button_pressed() -> void:
 	main_controls.visible = true
 	game_select_menu.visible = false
-	
+
+
+func return_to_main_menu() -> void:
+	main_controls.visible = true
+	game_select_menu.visible = false
+	profile_controls.visible = false
+	mods_controls.visible = false
 
 
 func generate_seed() -> void:

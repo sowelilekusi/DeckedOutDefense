@@ -43,6 +43,11 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Gauntlet/gauntlet_mat.tres",
 "use_external/path": "uid://b2rsi4vlkfpp1"
+},
+"steel1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Materials/metal2/metal2.tres",
+"use_external/path": "uid://cjvmf0bl70x6q"
 }
 },
 "meshes": {
@@ -65,15 +70,6 @@ _subresources={
 "save_to_file/path": ""
 },
 "gauntlet_Cube_008": {
-"generate/lightmap_uv": 0,
-"generate/lods": 2,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": false,
-"save_to_file/fallback_path": "",
-"save_to_file/path": ""
-},
-"gauntlet_Plane_005": {
 "generate/lightmap_uv": 0,
 "generate/lods": 2,
 "generate/shadow_meshes": 0,

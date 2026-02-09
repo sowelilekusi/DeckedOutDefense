@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CardText" format=3 uid="uid://do05i1xtdwfqk"]
 
 [ext_resource type="Script" uid="uid://bsuinotkvh7eu" path="res://Scripts/Resources/feature.gd" id="1_c5ghd"]
+[ext_resource type="Resource" uid="uid://dfup264h2pun7" path="res://Scripts/Features/HeavyRounds/heavy_rounds_feature.tres" id="2_5pac0"]
 [ext_resource type="Script" uid="uid://dg7gxxqfqxcmc" path="res://Scripts/Resources/card_text.gd" id="2_hwijr"]
 
 [resource]
@@ -11,5 +12,6 @@ attributes = Dictionary[String, float]({
 "Energy": 5.0,
 "Fire Delay": 2.0
 })
+features = Array[ExtResource("1_c5ghd")]([ExtResource("2_5pac0")])
 text = "DESC_WEAPON_PLATFORM_DASH"
 metadata/_custom_type_script = "uid://dg7gxxqfqxcmc"

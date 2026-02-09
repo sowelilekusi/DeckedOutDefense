@@ -61,6 +61,7 @@ text = "BUTTON_QUIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1218417780]
 stream = SubResource("AudioStreamRandomizer_n6ixr")
+volume_db = -11.261
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_button_mouse_entered"]

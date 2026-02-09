@@ -74,6 +74,8 @@ func process_state(_delta: float) -> void:
 			hero.unready_self()
 		else:
 			hero.ready_self()
+	if !hero.game_manager and Input.is_action_just_pressed("Ready"):
+		hero.enter_fighting_state()
 
 
 func swap_to_slot(num: int) -> void:

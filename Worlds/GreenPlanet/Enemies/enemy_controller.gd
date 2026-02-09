@@ -11,6 +11,7 @@ signal health_changed(health: int)
 @export var d_n: Node3D
 #@export var sprite: Sprite3D
 @export var corpse_scene: PackedScene
+@export var health_bar: HealthBar
 
 var damage_particle_scene: PackedScene = preload("res://UI/DamageParticle/damage_particle.tscn")
 var current_health: int
@@ -23,8 +24,8 @@ var alive: bool = true
 func _ready() -> void:
 	max_health = stats.health
 	current_health = stats.health
-	health_changed.connect($SubViewport/HealthBar.on_health_changed)
-	$SubViewport/HealthBar.setup(stats.health)
+	health_changed.connect(health_bar.on_health_changed)
+	health_bar.setup(stats.health)
 	movement_speed = stats.movement_speed
 	status_manager.enemy = self
 

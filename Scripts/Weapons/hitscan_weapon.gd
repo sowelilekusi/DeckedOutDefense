@@ -10,9 +10,12 @@ var attack_range: float = 0.0
 func _ready() -> void:
 	super._ready()
 	attack_range = stats.get_attribute("Range")
-	raycast.target_position = Vector3(0, 0, -attack_range)
-	#range_debug_indicator.radius = attack_range
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
 	raycast.global_position = hero.camera.global_position
+	raycast.target_position = Vector3(0, 0, -attack_range)
 
 
 func shoot() -> void:
@@ -23,6 +26,11 @@ func shoot() -> void:
 			var hitbox: Hitbox = target.shape_owner_get_owner(raycast.get_collider_shape())
 			hit(hitbox, raycast.get_collision_point())
 			networked_hit.rpc(get_tree().root.get_path_to(hitbox), raycast.get_collision_point())
+			if particle_emitter:
+				particle_emitter.global_position = raycast.get_collision_point()
+				particle_emitter.process_material.direction = raycast.get_collision_normal()
+				particle_emitter.restart()
+				particle_emitter.emitting = true
 
 
 func hit(hitbox: Hitbox, hit_pos: Vector3) -> void:

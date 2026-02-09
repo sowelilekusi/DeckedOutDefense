@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5es3jtoiurk0"
-path.s3tc="res://.godot/imported/gauntlet_gauntlet_test_sprite.png-467bd17e9c858b14d9a4801c21138a65.s3tc.ctex"
+uid="uid://dtdp1y7dvcook"
+path.s3tc="res://.godot/imported/boombox_road_02.png-b793a6d4d8e2715bc0ef964756a97946.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ca126739c083c78c7d5305887ee9d27b"
+"md5": "77c6adf66e10f09a997e096353d67627"
 }
 
 [deps]
 
-source_file="res://Gauntlet/gauntlet_gauntlet_test_sprite.png"
-dest_files=["res://.godot/imported/gauntlet_gauntlet_test_sprite.png-467bd17e9c858b14d9a4801c21138a65.s3tc.ctex"]
+source_file="res://boombox_road_02.png"
+dest_files=["res://.godot/imported/boombox_road_02.png-b793a6d4d8e2715bc0ef964756a97946.s3tc.ctex"]
 
 [params]
 

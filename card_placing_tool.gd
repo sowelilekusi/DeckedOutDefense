@@ -55,6 +55,7 @@ func place_card(tower_base: TowerBase) -> void:
 	hero.decrement_selected()
 	hero.hud.hot_wheel.update_cassettes(hero.get_wheel_cards())
 	tower_base.add_card(card, multiplayer.get_unique_id())
+	hero.placed_tower.emit(tower_base.tower)
 	hero.place_card_audio.play()
 	if hero.game_manager.card_gameplay:
 		hero.discard_pile.add(card)

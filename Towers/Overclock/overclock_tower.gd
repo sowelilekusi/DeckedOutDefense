@@ -1,7 +1,7 @@
 class_name OverclockTower
 extends Tower
 
-func shoot() -> void:
+func shoot(count: int) -> void:
 	#affector.apply_effect(effect, target_finder.targets)
 	for tower: TowerBase in get_tree().get_nodes_in_group("TowerBases"):
 		if tower.tower and tower.tower.stats != stats:
