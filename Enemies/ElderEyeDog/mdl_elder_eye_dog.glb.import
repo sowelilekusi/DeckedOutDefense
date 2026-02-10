@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://r2s4pd42y0ma"
-path="res://.godot/imported/elder_eyedog.glb-783079ff3d8c9e21679649baf7fc5dfa.scn"
+path="res://.godot/imported/mdl_elder_eye_dog.glb-ec782481e3f4b9764a3965a49b43744c.scn"
 
 [deps]
 
-source_file="res://Enemies/ElderEyeDog/elder_eyedog.glb"
-dest_files=["res://.godot/imported/elder_eyedog.glb-783079ff3d8c9e21679649baf7fc5dfa.scn"]
+source_file="res://Enemies/ElderEyeDog/mdl_elder_eye_dog.glb"
+dest_files=["res://.godot/imported/mdl_elder_eye_dog.glb-ec782481e3f4b9764a3965a49b43744c.scn"]
 
 [params]
 
@@ -2099,7 +2099,7 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Enemies/ElderEyeDog/elder_eye_dog_mat.tres",
+"use_external/fallback_path": "res://Enemies/ElderEyeDog/mat_elder_eye_dog.tres",
 "use_external/path": "uid://gyrbycd3icjr"
 }
 }

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://dmmdh16m22yqm"]
+
+[ext_resource type="Texture2D" uid="uid://ta47gpiwloxm" path="res://Assets/Textures/dead_bubble.png" id="1_85py1"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_wa2rs"]
+[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Enemies/Driftling/icon_driftling.png" id="2_4yf64"]
+[ext_resource type="PackedScene" uid="uid://ctoqd0fe65ofr" path="res://Enemies/Driftling/scn_driftling.tscn" id="3_pyef7"]
+
+[resource]
+script = ExtResource("1_wa2rs")
+title = "ENEMY_FLOATING_FRUIT"
+description = "ENEMY_DESC_FLOATING_FRUIT"
+target_type = 2
+icon = ExtResource("2_4yf64")
+scene = ExtResource("3_pyef7")
+death_sprite = ExtResource("1_85py1")
+spawn_power = 3
+group_size = 8
+health = 25
+penalty = 4
+movement_speed = 1.3
+spawn_cooldown = 0.4
+metadata/_custom_type_script = "uid://cbwxa2a4hfcy4"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://dsgkwh3opyqtx"]
 
-[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="1_57rr1"]
+[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Enemies/Driftling/icon_driftling.png" id="1_57rr1"]
 [ext_resource type="Texture2D" uid="uid://ta47gpiwloxm" path="res://Assets/Textures/dead_bubble.png" id="1_ioqxi"]
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="1_wjbfx"]
 [ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="3_86skx"]

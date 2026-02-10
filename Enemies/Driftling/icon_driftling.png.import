@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chhmkmlfrobhu"
-path="res://.godot/imported/bubble.png-c2f885e19b7eb3ae809aa20e6bf51aa3.ctex"
+path="res://.godot/imported/icon_driftling.png-1789c848cd61e99bbb7fe7f67d3e59d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/bubble.png"
-dest_files=["res://.godot/imported/bubble.png-c2f885e19b7eb3ae809aa20e6bf51aa3.ctex"]
+source_file="res://Enemies/Driftling/icon_driftling.png"
+dest_files=["res://.godot/imported/icon_driftling.png-1789c848cd61e99bbb7fe7f67d3e59d7.ctex"]
 
 [params]
 

@@ -24,13 +24,13 @@ func enemy_entered_shield_range(body: Node3D) -> void:
 		body.reached_goal.connect(enemy_reached_goal)
 
 
-func enemy_died(enemy: Enemy) -> void:
+func enemy_died(_enemy: Enemy) -> void:
 	enemies_inside -= 1
 	if enemies_inside == 0:
 		goal_cleared.emit()
 
 
-func enemy_reached_goal(enemy: Enemy, penalty: int) -> void:
+func enemy_reached_goal(_enemy: Enemy, _penalty: int) -> void:
 	enemies_inside -= 1
 	if enemies_inside == 0:
 		goal_cleared.emit()

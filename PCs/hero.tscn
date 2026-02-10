@@ -22,7 +22,7 @@
 [ext_resource type="Environment" uid="uid://cpn2no3e8s361" path="res://cam_environment.tres" id="13_vkt85"]
 [ext_resource type="Script" uid="uid://dkhl8u8p6gmlu" path="res://PCs/spring.gd" id="15_0ehim"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
-[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="15_q3yot"]
+[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Enemies/Driftling/icon_driftling.png" id="15_q3yot"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
 [ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://UI/pickup_notification.tscn" id="17_oyeww"]
 [ext_resource type="Script" uid="uid://b5wle8f6rv3e7" path="res://PCs/player_movement.gd" id="20_cfhw8"]

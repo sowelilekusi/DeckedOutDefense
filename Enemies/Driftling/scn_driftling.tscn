@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://ctoqd0fe65ofr"]
+
+[ext_resource type="PackedScene" uid="uid://bjo2q6vca5qlv" path="res://Worlds/GreenPlanet/Enemies/air_enemy.tscn" id="1_8yn7v"]
+[ext_resource type="PackedScene" uid="uid://cwgv4x1lemw60" path="res://Enemies/Driftling/mdl_driftling.glb" id="3_8yn7v"]
+[ext_resource type="Script" uid="uid://cxu1voan64i5g" path="res://Scripts/driftling_drippler.gd" id="3_j6vnr"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_w6hpp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jw1s4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5uwa"]
+radius = 0.98339844
+height = 1.977041
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7aub"]
+radius = 0.133503
+height = 2.1241307
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w6hpp"]
+animation = &"Deflated"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lgos0"]
+animation = &"Bloated"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s1mj6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bw4p2"]
+graph_offset = Vector2(-290, 122)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_s1mj6")
+nodes/Blend2/position = Vector2(138, 208)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_lgos0")
+nodes/Animation/position = Vector2(-94, 177)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_w6hpp")
+"nodes/Animation 2/position" = Vector2(-66, 358)
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
+
+[node name="Driftling" unique_id=1355419805 instance=ExtResource("1_8yn7v")]
+
+[node name="Sprite3D" parent="." index="0" unique_id=2020998819]
+texture = SubResource("ViewportTexture_jw1s4")
+
+[node name="MainHitbox" type="CollisionShape3D" parent="." index="6" unique_id=1521729609]
+transform = Transform3D(0.025398083, 0, 0, 0, 0.025398083, 0, 0, 0, 0.025398083, 0, 0.23003143, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_c5uwa")
+script = ExtResource("3_w6hpp")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="MiniHitbox" type="CollisionShape3D" parent="." index="7" unique_id=1324997842]
+transform = Transform3D(0.025398083, 0, 0, 0, 0.025398083, 0, 0, 0, 0.025398083, 0, 0.23003143, 0)
+shape = SubResource("CapsuleShape3D_d7aub")
+script = ExtResource("3_w6hpp")
+critical_zone = true
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="8" unique_id=1384808804]
+root_node = NodePath("../Model/mdl_driftling")
+tree_root = SubResource("AnimationNodeBlendTree_bw4p2")
+anim_player = NodePath("../Model/mdl_driftling/AnimationPlayer")
+parameters/Blend2/blend_amount = 1.0
+
+[node name="DriftlingDrippler" type="Node" parent="." index="9" unique_id=1556854131 node_paths=PackedStringArray("driftling", "animator", "model", "bloat_hitbox", "croak_hitbox")]
+script = ExtResource("3_j6vnr")
+driftling = NodePath("..")
+animator = NodePath("../AnimationTree")
+model = NodePath("../Model")
+bloat_hitbox = NodePath("../MainHitbox")
+croak_hitbox = NodePath("../MiniHitbox")
+metadata/_custom_type_script = "uid://cxu1voan64i5g"
+
+[node name="Model" type="Node3D" parent="." index="10" unique_id=1556851526]
+
+[node name="mdl_driftling" parent="Model" index="0" unique_id=2080841843 instance=ExtResource("3_8yn7v")]
+transform = Transform3D(0.025398083, 0, 0, 0, 0.025398083, 0, 0, 0, 0.025398083, 0, 0.23003143, 0)
+
+[node name="Skeleton3D" parent="Model/mdl_driftling/Armature" parent_id_path=PackedInt32Array(2080841843, 1116308214) index="0" unique_id=754562592]
+bones/0/position = Vector3(0, -7.9475665, 0)
+bones/0/scale = Vector3(1.0113525, 1.0113525, 1.0113525)
+bones/1/position = Vector3(0, 67.987755, 0)
+bones/1/scale = Vector3(0.6716861, 0.6716861, 0.6716861)
+bones/2/position = Vector3(-1.6946578e-06, 44.271133, -2.1119783e-06)
+bones/2/scale = Vector3(0.40565705, 0.40565705, 0.40565705)
+bones/3/position = Vector3(-3.765092e-07, 44.27113, 1.1673371e-06)
+bones/3/scale = Vector3(0.4056571, 0.40565705, 0.40565717)
+bones/4/position = Vector3(7.770317e-07, 44.27113, -1.5014622e-07)
+bones/4/rotation = Quaternion(0.5317831, 0.7070258, 0.46605453, -0.010696763)
+bones/4/scale = Vector3(0.4056571, 0.40565705, 0.40565705)
+bones/5/position = Vector3(-1.4425112e-06, 44.271122, -1.8969426e-06)
+bones/5/rotation = Quaternion(-0.537099, 0.70709294, 0.45991817, -0.0044176164)
+bones/5/scale = Vector3(0.40565705, 0.4056571, 0.40565717)
+bones/6/position = Vector3(4.4186196, 2.4544883, 0.70625716)
+bones/6/rotation = Quaternion(-0.064180955, -0.75551605, -0.054375976, 0.6497073)
+bones/7/rotation = Quaternion(-0.27142996, 0.5448384, 0.14401576, 0.78021556)
+bones/8/rotation = Quaternion(0.14881423, -0.7253057, -0.009013298, 0.6720898)
+bones/9/position = Vector3(-4.8646164, 3.1215818, -1.4573387)
+bones/9/rotation = Quaternion(-0.22782737, 0.6727271, -0.011520631, 0.7038467)
+bones/10/rotation = Quaternion(-0.10566461, -0.019764336, 0.2930021, 0.9500496)
+bones/11/rotation = Quaternion(0.022023587, -0.23883471, -0.0027645533, 0.97080654)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Model/mdl_driftling" index="2" unique_id=2128131942]
+remote_path = NodePath("../../../MainHitbox")
+
+[node name="RemoteTransform3D2" type="RemoteTransform3D" parent="Model/mdl_driftling" index="3" unique_id=1585476146]
+remote_path = NodePath("../../../MiniHitbox")
+
+[connection signal="recieved_effect" from="MainHitbox" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="MainHitbox" to="." method="take_damage"]
+[connection signal="recieved_effect" from="MiniHitbox" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="MiniHitbox" to="." method="take_damage"]
+
+[editable path="Model/mdl_driftling"]

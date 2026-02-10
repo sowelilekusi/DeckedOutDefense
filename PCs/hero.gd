@@ -460,5 +460,5 @@ func unequip_weapon(slot: int = 0) -> void:
 	hud.hot_wheel.update_cassettes(get_wheel_cards())
 
 
-func _on_hitbox_took_damage(amount: int, damage_type: int, pos: Vector3) -> void:
+func _on_hitbox_took_damage(_amount: int, _damage_type: int, _pos: Vector3) -> void:
 	pass # Replace with function body.

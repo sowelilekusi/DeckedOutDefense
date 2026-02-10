@@ -1,6 +1,6 @@
 [gd_resource type="AtlasTexture" format=3 uid="uid://d0vafwv4lhjji"]
 
-[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Assets/Textures/bubble.png" id="1_bkvds"]
+[ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Enemies/Driftling/icon_driftling.png" id="1_bkvds"]
 
 [resource]
 atlas = ExtResource("1_bkvds")

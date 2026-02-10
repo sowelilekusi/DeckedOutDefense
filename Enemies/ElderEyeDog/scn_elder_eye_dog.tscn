@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dl3rwqwbgrq2m"]
+
+[ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_7wwbi"]
+[ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_k8w4y"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_bwjh5"]
+[ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="4_lo02o"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="5_vh4kk"]
+[ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="6_fulai"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="7_h8ie4"]
+[ext_resource type="PackedScene" uid="uid://r2s4pd42y0ma" path="res://Enemies/ElderEyeDog/mdl_elder_eye_dog.glb" id="8_fil5h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cavbv"]
+radius = 0.499268
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h25mw"]
+radius = 0.325
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ElderEyeDog" type="CharacterBody3D" unique_id=1106613653 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_7wwbi")
+status_manager = NodePath("StatusEffector")
+movement_controller = NodePath("PathingController")
+d_n = NodePath("Node3D")
+corpse_scene = ExtResource("2_k8w4y")
+health_bar = NodePath("SubViewport/HealthBar")
+metadata/_custom_type_script = "uid://ejqql2660u6h"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=542685682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33811, -0.0104714)
+shape = SubResource("SphereShape3D_cavbv")
+script = ExtResource("3_bwjh5")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="Hitbox2" type="CollisionShape3D" parent="." unique_id=545828870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.836113, -0.6853672)
+shape = SubResource("SphereShape3D_h25mw")
+script = ExtResource("3_bwjh5")
+critical_zone = true
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=1730396808]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
+sorting_offset = 1.0
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_1kwxq")
+
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=956248833]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("4_lo02o")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1820335802]
+transparent_bg = true
+size = Vector2i(200, 55)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport" unique_id=1158834855]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthBar" parent="SubViewport" unique_id=1387963011 instance=ExtResource("5_vh4kk")]
+visible = false
+offset_top = 36.0
+offset_bottom = 236.0
+
+[node name="PathingController" type="Node" parent="." unique_id=1624393903 node_paths=PackedStringArray("character")]
+script = ExtResource("6_fulai")
+character = NodePath("..")
+
+[node name="StatusEffector" type="Node" parent="." unique_id=1475993690 node_paths=PackedStringArray("sprite_container")]
+script = ExtResource("7_h8ie4")
+sprite_container = NodePath("../SubViewport/HBoxContainer")
+metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1193172733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
+
+[node name="elder_eyedog" parent="." unique_id=1512230579 instance=ExtResource("8_fil5h")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="elder_eyedog" index="1" unique_id=562572224]
+autoplay = &"Walk"
+
+[connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="Hitbox" to="." method="take_damage"]
+[connection signal="recieved_effect" from="Hitbox2" to="StatusEffector" method="add_effect"]
+[connection signal="took_damage" from="Hitbox2" to="." method="take_damage"]
+
+[editable path="elder_eyedog"]

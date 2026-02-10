@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd1hlqvfpaxy0"
-path="res://.godot/imported/elder_eyedog_tex.png-e84d9931073744a1cd754d9c856dc8df.ctex"
+path="res://.godot/imported/tex_elder_eyedog.png-87da95f97dbc2fc4f37595d0daf5db98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/ElderEyeDog/elder_eyedog_tex.png"
-dest_files=["res://.godot/imported/elder_eyedog_tex.png-e84d9931073744a1cd754d9c856dc8df.ctex"]
+source_file="res://Enemies/ElderEyeDog/tex_elder_eyedog.png"
+dest_files=["res://.godot/imported/tex_elder_eyedog.png-87da95f97dbc2fc4f37595d0daf5db98.ctex"]
 
 [params]
 
