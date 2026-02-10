@@ -614,3 +614,27 @@ msgstr ""
 
 msgid "LABEL_ENDLESS_DESC"
 msgstr ""
+
+msgid "BUTTON_MULTIPLAYER"
+msgstr ""
+
+msgid "OPTION_ALWAYS_SHOW_SHIELD"
+msgstr ""
+
+msgid "OPTION_RESOLUTION_SCALING"
+msgstr ""
+
+msgid "OPTION_VERTEX_JITTER"
+msgstr ""
+
+msgid "OPTION_AFFINE_WARPING"
+msgstr ""
+
+msgid "TARGET_TYPE_ALL"
+msgstr ""
+
+msgid "TARGET_TYPE_LAND"
+msgstr ""
+
+msgid "TARGET_TYPE_FLYING"
+msgstr ""
