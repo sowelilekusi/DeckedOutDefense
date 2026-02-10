@@ -55,7 +55,7 @@
 [ext_resource type="Script" uid="uid://b5h7jfwkyokes" path="res://PCs/FSM/building_state.gd" id="47_d8pnf"]
 [ext_resource type="Script" uid="uid://cjdv1onyfej0m" path="res://PCs/FSM/carding_state.gd" id="48_7d213"]
 [ext_resource type="Script" uid="uid://cf7m4yyiqhhru" path="res://PCs/FSM/fighting_state.gd" id="49_60hic"]
-[ext_resource type="PackedScene" uid="uid://bg4pmewlvshu8" path="res://coin/Coin.glb" id="51_w13oc"]
+[ext_resource type="PackedScene" uid="uid://bg4pmewlvshu8" path="res://coin/mdl_coin.glb" id="51_w13oc"]
 [ext_resource type="Script" uid="uid://dq0yemhxscvtm" path="res://rotate.gd" id="52_rim6q"]
 [ext_resource type="AudioStream" uid="uid://cbuhhp3eg0j8r" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_01.wav" id="57_f7seo"]
 [ext_resource type="AudioStream" uid="uid://dxttsjturv45i" path="res://Audio/MGWSoundDesign/Tall_Grass_Mono_02.wav" id="58_egbuc"]
@@ -150,8 +150,11 @@ viewport_path = NodePath("FirstPersonViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_574jy"]
 viewport_path = NodePath("MiniMapViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w13oc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vkt85"]
 viewport_path = NodePath("CoinViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dyah2"]
+viewport_path = NodePath("CassetteViewport")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyb7c"]
 streams_count = 4
@@ -178,6 +181,10 @@ stream_0/stream = ExtResource("36_lsvj8")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pc8yw"]
 streams_count = 1
 stream_0/stream = ExtResource("37_kv1mg")
+
+[sub_resource type="Environment" id="Environment_vkt85"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r3lbl"]
 random_pitch = 1.0116194
@@ -451,12 +458,12 @@ bones/15/rotation = Quaternion(-0.2017903, 0.015379741, -0.03813146, 0.97856534)
 bones/16/rotation = Quaternion(-0.0048455074, 0.003865697, 0.59440565, 0.8041415)
 bones/18/rotation = Quaternion(-0.2272016, 0.019839177, 0.4623247, 0.856879)
 bones/23/rotation = Quaternion(-0.045133274, -0.11772486, 0.9614004, -0.24456768)
-bones/24/rotation = Quaternion(-0.03303061, -0.005903939, -0.221179, 0.9746559)
-bones/25/rotation = Quaternion(0.049654786, 0.0001291396, 0.019066628, 0.9985845)
-bones/26/rotation = Quaternion(-0.68533796, 0.002092736, -0.0037087626, 0.7282128)
-bones/28/rotation = Quaternion(-0.20499752, -0.0437259, 0.21891265, 0.9529646)
-bones/29/rotation = Quaternion(0.586818, 0.04117671, -0.017359266, 0.8084849)
-bones/30/rotation = Quaternion(-0.41481006, 0.02057148, 0.021915937, 0.9094114)
+bones/24/rotation = Quaternion(-0.34049714, 0.083202966, -0.21178892, 0.9122963)
+bones/25/rotation = Quaternion(0.70575047, -0.05055478, 0.015847947, 0.7064767)
+bones/26/rotation = Quaternion(-0.691201, 0.0026601239, -0.0032455332, 0.7226505)
+bones/28/rotation = Quaternion(-0.032278296, 0.0061198906, 0.22117302, 0.974681)
+bones/29/rotation = Quaternion(0.038822703, -0.0009491462, -0.019037528, 0.9990643)
+bones/30/rotation = Quaternion(-0.69215286, -0.0027526554, 0.0031699617, 0.7217388)
 
 [node name="AnimationPlayer" parent="Model/doe_girl" parent_id_path=PackedInt32Array(1269374108, 1532649165) index="1" unique_id=126187206]
 autoplay = &"HoldGun"
@@ -601,7 +608,7 @@ wave_start_label = NodePath("StartWaveLabel")
 place_text = NodePath("VBoxContainer2/HBoxContainer/RichTextLabel")
 swap_text = NodePath("VBoxContainer2/HBoxContainer2/RichTextLabel")
 energy_label = NodePath("Currencies/HBoxContainer/EnergyLabel")
-blank_cassette_label = NodePath("Currencies/BlankCassetteLabel")
+blank_cassette_label = NodePath("Currencies/HBoxContainer2/BlankCassetteLabel")
 feature_preview = NodePath("FeaturePreview")
 hot_wheel = NodePath("HotWheel")
 shield_ui = NodePath("ShieldUI")
@@ -894,8 +901,9 @@ layout_mode = 2
 
 [node name="CoinTexture" type="TextureRect" parent="HUD/Currencies/CoinCounter" unique_id=2027246245]
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
-texture = SubResource("ViewportTexture_w13oc")
+texture = SubResource("ViewportTexture_vkt85")
 
 [node name="CurrencyCount" type="Label" parent="HUD/Currencies/CoinCounter" unique_id=173450556]
 layout_mode = 2
@@ -921,8 +929,18 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BlankCassetteLabel" type="Label" parent="HUD/Currencies" unique_id=1251931345]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Currencies" unique_id=1472120772]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Currencies/HBoxContainer2" unique_id=1742363286]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = SubResource("ViewportTexture_dyah2")
+
+[node name="BlankCassetteLabel" type="Label" parent="HUD/Currencies/HBoxContainer2" unique_id=1251931345]
+layout_mode = 2
+size_flags_horizontal = 3
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -1100,18 +1118,40 @@ transparent_bg = true
 size = Vector2i(32, 32)
 
 [node name="Coin" parent="CoinViewport" unique_id=1538763687 instance=ExtResource("51_w13oc")]
-visible = false
 
-[node name="Cylinder" parent="CoinViewport/Coin" index="0" unique_id=109227366]
+[node name="Cylinder" parent="CoinViewport/Coin" index="0" unique_id=1826137300]
 layers = 8
 
 [node name="Node3D" type="Node3D" parent="CoinViewport" unique_id=1150784365]
 script = ExtResource("52_rim6q")
-speed = 70.0
+speed = -75.0
 
 [node name="Camera3D" type="Camera3D" parent="CoinViewport/Node3D" unique_id=811908859]
 transform = Transform3D(1, 0, 0, 0, 0.74214, 0.670245, 0, -0.670245, 0.74214, 0, 0.977616, 1.08572)
 cull_mask = 1047560
+environment = SubResource("Environment_vkt85")
+projection = 1
+size = 2.243
+
+[node name="CassetteViewport" type="SubViewport" parent="." unique_id=1963385302]
+transparent_bg = true
+size = Vector2i(32, 32)
+
+[node name="cassette" parent="CassetteViewport" unique_id=507681547 instance=ExtResource("13_7immr")]
+transform = Transform3D(20.878672, -1.0596485, 0.9020732, 1.3043611, 19.62867, -7.132282, -0.48500767, 7.172724, 19.651266, 0, 0, 0)
+
+[node name="Cassette" parent="CassetteViewport/cassette" index="0" unique_id=360288089]
+transform = Transform3D(0.9999, 0.007972874, 0.01168015, -0.010257761, 0.977448, 0.21092665, -0.009735057, -0.21102542, 0.9774322, 0, 0, 0)
+layers = 512
+
+[node name="Node3D" type="Node3D" parent="CassetteViewport" unique_id=846737961]
+script = ExtResource("52_rim6q")
+speed = 60.0
+
+[node name="Camera3D" type="Camera3D" parent="CassetteViewport/Node3D" unique_id=886724578]
+transform = Transform3D(1, 0, 0, 0, 0.74214, 0.670245, 0, -0.670245, 0.74214, 0, 0.977616, 1.08572)
+cull_mask = 1048064
+environment = SubResource("Environment_vkt85")
 projection = 1
 size = 2.243
 
@@ -1182,3 +1222,4 @@ parameters/Add2/add_amount = 1.0
 [editable path="Model"]
 [editable path="Model/doe_girl"]
 [editable path="CoinViewport/Coin"]
+[editable path="CassetteViewport/cassette"]

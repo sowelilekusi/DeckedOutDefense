@@ -160,7 +160,8 @@ func level_selected(level: LevelConfig, side: int) -> void:
 		level.allowed_cards = level.hero_class.deck
 		level.waves = []
 	game.level_config = level
-	#start_game()
+	if !gamemode.multiplayer:
+		start_game()
 
 
 func _on_standard_button_pressed() -> void:

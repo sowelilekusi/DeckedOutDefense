@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bayjketjls0lt"
-path.s3tc="res://.godot/imported/Coin_coin.png-130d4e26928a415246fa81206a49adee.s3tc.ctex"
+uid="uid://ctjkfe23t6crn"
+path.s3tc="res://.godot/imported/tex_coin.png-d348296543f118926f64962d4a31e70b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "bb4a8a7e338539895ead7701c1dd8cd9"
-}
 
 [deps]
 
-source_file="res://coin/Coin_coin.png"
-dest_files=["res://.godot/imported/Coin_coin.png-130d4e26928a415246fa81206a49adee.s3tc.ctex"]
+source_file="res://coin/tex_coin.png"
+dest_files=["res://.godot/imported/tex_coin.png-d348296543f118926f64962d4a31e70b.s3tc.ctex"]
 
 [params]
 

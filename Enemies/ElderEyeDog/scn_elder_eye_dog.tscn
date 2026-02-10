@@ -85,11 +85,36 @@ metadata/_custom_type_script = "uid://cojjgevmbhwal"
 [node name="Node3D" type="Node3D" parent="." unique_id=1193172733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
 
-[node name="elder_eyedog" parent="." unique_id=1512230579 instance=ExtResource("8_fil5h")]
+[node name="elder_eyedog" parent="." unique_id=1528468919 instance=ExtResource("8_fil5h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="AnimationPlayer" parent="elder_eyedog" index="1" unique_id=562572224]
-autoplay = &"Walk"
+[node name="Skeleton3D" parent="elder_eyedog/Armature" parent_id_path=PackedInt32Array(1528468919, 1628745338) index="0" unique_id=1532207150]
+bones/1/rotation = Quaternion(-0.43930408, -1.0709028e-07, 5.2369117e-08, 0.89833844)
+bones/3/rotation = Quaternion(0.23378512, 0.3248512, 0.54275554, 0.7383987)
+bones/4/rotation = Quaternion(0.20259592, 0.73083645, 0.1334472, 0.637985)
+bones/5/rotation = Quaternion(0.08071684, 0.113793895, 0.10338807, 0.9848079)
+bones/6/rotation = Quaternion(0.18970051, 0.045550458, -0.014727582, 0.98067427)
+bones/7/rotation = Quaternion(0.21259236, -0.040924765, -0.7761468, 0.59222114)
+bones/8/rotation = Quaternion(0.14559563, -0.673764, -0.22377315, 0.68903524)
+bones/9/rotation = Quaternion(0.21457948, -0.06795216, -0.27383053, 0.9350695)
+bones/10/rotation = Quaternion(0.36169598, -0.022981055, -0.07378152, 0.9290878)
+bones/11/position = Vector3(-0.18218139, 0.024974564, -0.29701275)
+bones/13/rotation = Quaternion(-0.19031386, -0.3437138, 0.6673053, 0.6327283)
+bones/14/rotation = Quaternion(-0.3159462, -0.57630664, -0.23705919, 0.7154381)
+bones/15/rotation = Quaternion(0.36767015, -0.03635547, 0.34470242, 0.86294687)
+bones/16/rotation = Quaternion(0.39200988, 0.014128344, 0.1034986, 0.91401124)
+bones/17/rotation = Quaternion(-0.4156433, 0.23491892, -0.8066817, 0.34830815)
+bones/18/rotation = Quaternion(-0.1550715, 0.546436, 0.03793802, 0.8221443)
+bones/19/rotation = Quaternion(0.16323958, -0.017942397, -0.1540662, 0.9743175)
+bones/20/rotation = Quaternion(0.20094733, -0.0385468, -0.0018878259, 0.9788416)
+bones/22/position = Vector3(-0.1285572, 0.015959304, 0.5192608)
+bones/22/scale = Vector3(0.89347196, 1, 1)
+bones/23/position = Vector3(0.25597548, 0.022818465, 0.20058686)
+bones/23/scale = Vector3(0.89347196, 1, 1)
+bones/24/position = Vector3(0.08454189, 0.014853473, 0.12984678)
+
+[node name="AnimationPlayer" parent="elder_eyedog" index="1" unique_id=1165387739]
+autoplay = &"ArmatureAction"
 
 [connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
 [connection signal="took_damage" from="Hitbox" to="." method="take_damage"]
