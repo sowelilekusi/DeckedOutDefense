@@ -9,7 +9,6 @@ streams_count = 1
 stream_0/stream = ExtResource("2_hirre")
 
 [node name="ServerForm" type="PanelContainer" unique_id=1145091654 node_paths=PackedStringArray("ip_entry", "port_entry", "host_button", "join_button", "ip_field", "port_field", "players_field", "start_button")]
-custom_minimum_size = Vector2(500, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

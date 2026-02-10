@@ -14,7 +14,7 @@ signal placed_tower(tower: Tower)
 @export var right_hand: Node3D
 @export var edit_tool: PathEditTool
 @export var carding_tool: CardPlacingTool
-@export var sprite: EightDirectionSprite3D
+@export var model: Node3D
 @export var interaction_raycast: RayCast3D
 @export var draw_pile: Inventory
 @export var hand: Inventory
@@ -117,7 +117,7 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		ears.make_current()
 		camera.make_current()
-		sprite.queue_free()
+		model.queue_free()
 		player_name_tag.queue_free()
 		for card: Card in hero_class.deck:
 			if game_manager and game_manager.card_gameplay:
@@ -128,6 +128,7 @@ func _ready() -> void:
 		camera.set_visible(false)
 		gun_camera.set_visible(false)
 		hud.set_visible(false)
+		$PostFx.visible = false
 	
 	for state: HeroState in editing_states:
 		state.state_changed.connect(update_state)
@@ -137,7 +138,7 @@ func _ready() -> void:
 	
 	if weapons[equipped_weapon] != null:
 		weapons[equipped_weapon].set_raycast_origin(camera)
-	sprite.texture.atlas = hero_class.texture
+	#TODO: ADD A LINE HERE THAT SETS THE MODEL MESH BASED ON THE PLAYERS CLASS
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 

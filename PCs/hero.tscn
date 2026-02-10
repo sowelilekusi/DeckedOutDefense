@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://1fqpoegbdm6n" path="res://PCs/hero.gd" id="1_pihpe"]
 [ext_resource type="Resource" uid="uid://b5pc3frhx467q" path="res://Classes/Engineer/class.tres" id="2_dbyo0"]
-[ext_resource type="PackedScene" uid="uid://ri8r03wqy80t" path="res://Scenes/8_direction_sprite.tscn" id="2_ib0t5"]
 [ext_resource type="PackedScene" uid="uid://ct6gic4shy5qw" path="res://wave_viewer.tscn" id="2_o55s8"]
 [ext_resource type="PackedScene" uid="uid://buvgdem68wtev" path="res://UI/Menus/PauseMenu/pause_menu.tscn" id="3_avnsx"]
 [ext_resource type="PackedScene" uid="uid://n8ab1cy7ordc" path="res://card_model/3d_card.tscn" id="4_2mqvj"]
@@ -10,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://gdd1xupf4oxx" path="res://UI/CardSelectionBox/card_selection_box.tscn" id="5_h82f6"]
 [ext_resource type="PackedScene" uid="uid://dqt1ggtkpkuhs" path="res://PCs/PathEditTool/path_edit_tool.tscn" id="5_jlxb3"]
 [ext_resource type="Script" uid="uid://do24iuot0j7d7" path="res://Scripts/inventory.gd" id="6_cf5ap"]
-[ext_resource type="Texture2D" uid="uid://cjqxkraykhxxk" path="res://Classes/Engineer/red.png" id="6_yyp8i"]
 [ext_resource type="Script" uid="uid://3wvxl8jo4uis" path="res://PCs/weapon_movement.gd" id="7_14ugt"]
 [ext_resource type="PackedScene" uid="uid://bj2q72ch8nkek" path="res://card_placing_tool.tscn" id="8_7d213"]
 [ext_resource type="Script" uid="uid://b6kjrl7ae1mi0" path="res://PCs/hud.gd" id="8_yl6ka"]
@@ -23,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dkhl8u8p6gmlu" path="res://PCs/spring.gd" id="15_0ehim"]
 [ext_resource type="Texture2D" uid="uid://c60fh34ttgcvh" path="res://Assets/Textures/minimap_player.png" id="15_nhlam"]
 [ext_resource type="Texture2D" uid="uid://chhmkmlfrobhu" path="res://Enemies/Driftling/icon_driftling.png" id="15_q3yot"]
+[ext_resource type="PackedScene" uid="uid://djx385r2csro4" path="res://DoeEyedGirl/scn_doe_eyed_girl.tscn" id="16_0ehim"]
 [ext_resource type="Texture2D" uid="uid://cqnapc8cscl7i" path="res://Assets/Textures/border.png" id="16_x1xjr"]
 [ext_resource type="PackedScene" uid="uid://chnj376d3lcjd" path="res://UI/pickup_notification.tscn" id="17_oyeww"]
 [ext_resource type="Script" uid="uid://b5wle8f6rv3e7" path="res://PCs/player_movement.gd" id="20_cfhw8"]
@@ -78,6 +77,7 @@
 [ext_resource type="AudioStream" uid="uid://hyyngwod6wke" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_04.wav" id="70_sewk0"]
 [ext_resource type="AudioStream" uid="uid://b2p1egvjy6w1b" path="res://Audio/MGWSoundDesign/PavementTiles_Mono_05.wav" id="71_dx4x6"]
 [ext_resource type="AudioStream" uid="uid://dbpecjrivtwav" path="res://Audio/MGWSoundDesign/DirtRoad_Mono_05.wav" id="71_n0bvw"]
+[ext_resource type="Script" uid="uid://dbyaxum1l8dn4" path="res://network_puppeteer.gd" id="78_vkt85"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o55s8"]
 animation = &"read"
@@ -138,11 +138,6 @@ height = 1.8
 background_mode = 1
 background_color = Color(0.282353, 0.615686, 0.278431, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vkt85"]
-resource_local_to_scene = true
-atlas = ExtResource("6_yyp8i")
-region = Rect2(0, 0, 96, 96)
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_m3ots"]
 viewport_path = NodePath("NametagViewport")
 
@@ -157,14 +152,6 @@ viewport_path = NodePath("MiniMapViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_w13oc"]
 viewport_path = NodePath("CoinViewport")
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tsiqi"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 2
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 2
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyb7c"]
 streams_count = 4
@@ -232,7 +219,7 @@ stream_2/stream = ExtResource("69_c5gvc")
 stream_3/stream = ExtResource("70_sewk0")
 stream_4/stream = ExtResource("71_n0bvw")
 
-[node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("subviewport1", "camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "sprite", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
+[node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("subviewport1", "camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "model", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
 collision_layer = 2
 collision_mask = 37
 script = ExtResource("1_pihpe")
@@ -245,7 +232,7 @@ left_hand = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand
 right_hand = NodePath("FirstPersonViewport/Head2/ViewMovement/RightHand")
 edit_tool = NodePath("SubViewport/Head/EditTool")
 carding_tool = NodePath("SubViewport/Head/CardPlacingTool")
-sprite = NodePath("EightDirectionSprite")
+model = NodePath("Model")
 interaction_raycast = NodePath("SubViewport/Head/RayCast3D")
 draw_pile = NodePath("DrawPile")
 hand = NodePath("Hand")
@@ -422,6 +409,24 @@ collision_mask = 24
 [node name="CardPlacingTool" parent="SubViewport/Head" unique_id=1227455090 node_paths=PackedStringArray("hero") instance=ExtResource("8_7d213")]
 hero = NodePath("../../..")
 
+[node name="Model" parent="." unique_id=1269374108 instance=ExtResource("16_0ehim")]
+
+[node name="Skeleton3D" parent="Model/doe_girl/Armature" parent_id_path=PackedInt32Array(1269374108, 1532649165, 851796479) index="0" unique_id=24687068]
+bones/4/rotation = Quaternion(0.332303, -0.18204916, -0.5890503, 0.71375954)
+bones/5/rotation = Quaternion(-0.906193, -0.05188831, 0.023806162, 0.41899294)
+bones/7/rotation = Quaternion(-0.007778301, -0.004357032, -0.48717895, 0.8732566)
+bones/9/rotation = Quaternion(0.103601396, 0.0787555, -0.60002625, 0.78932434)
+bones/10/rotation = Quaternion(-0.35265866, -0.18703236, -0.4295865, 0.8100038)
+bones/11/rotation = Quaternion(-0.020328829, -0.007425959, -0.34303707, 0.9390725)
+bones/14/rotation = Quaternion(-0.39763534, -0.26168856, 0.626134, 0.61754483)
+bones/15/rotation = Quaternion(-0.2017903, 0.01537974, -0.038131464, 0.97856534)
+bones/16/rotation = Quaternion(-0.0048455084, 0.0038656965, 0.59440565, 0.8041415)
+bones/18/rotation = Quaternion(-0.22720158, 0.019839184, 0.4623247, 0.856879)
+bones/23/rotation = Quaternion(-0.045133278, -0.11772485, 0.9614003, -0.24456768)
+
+[node name="AnimationPlayer" parent="Model/doe_girl" parent_id_path=PackedInt32Array(1269374108, 1532649165) index="1" unique_id=478945409]
+autoplay = &"HoldGun"
+
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1396328287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -470,7 +475,7 @@ anchor = NodePath("../..")
 
 [node name="NametagViewport" type="SubViewport" parent="." unique_id=1829906785]
 transparent_bg = true
-size = Vector2i(1000, 40)
+size = Vector2i(166, 21)
 render_target_update_mode = 4
 
 [node name="Label" type="Label" parent="NametagViewport" unique_id=1265368101]
@@ -484,10 +489,6 @@ text = "xXx_TransgenderHyena_xXx"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EightDirectionSprite" parent="." unique_id=438977751 instance=ExtResource("2_ib0t5")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.915529, 0)
-texture = SubResource("AtlasTexture_vkt85")
-
 [node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1797025603]
 transform = Transform3D(4, 0, 0, 0, 0.0698095, 3.99939, 0, -3.99939, 0.0698095, 0, 2.86288, 0)
 layers = 4
@@ -498,10 +499,11 @@ texture = ExtResource("15_nhlam")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 layers = 5
 sorting_offset = 500.0
-pixel_size = 0.002
+pixel_size = 0.005
 billboard = 1
 no_depth_test = true
 fixed_size = true
+texture_filter = 2
 texture = SubResource("ViewportTexture_m3ots")
 
 [node name="Hand" type="Node" parent="." unique_id=326433039]
@@ -1002,9 +1004,6 @@ expand_icon = true
 wait_time = 0.4
 one_shot = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1897693906]
-replication_config = SubResource("SceneReplicationConfig_tsiqi")
-
 [node name="PlaceCardAudio" type="AudioStreamPlayer" parent="." unique_id=1230517992]
 stream = SubResource("AudioStreamRandomizer_wyb7c")
 volume_db = -9.936
@@ -1125,9 +1124,18 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43043494, 0)
 target_position = Vector3(0, -11.465, 0)
 
+[node name="NetworkPuppeteer" type="Node" parent="." unique_id=1492136381 node_paths=PackedStringArray("player", "player_movement", "skeleton")]
+script = ExtResource("78_vkt85")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+skeleton = NodePath("../Model/doe_girl/Armature/Skeleton3D")
+metadata/_custom_type_script = "uid://dbyaxum1l8dn4"
+
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 
 [editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/gauntlet"]
 [editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand"]
 [editable path="FirstPersonViewport/Head2/ViewMovement/RightHand/card_hand/Empty_001/cassette"]
+[editable path="Model"]
+[editable path="Model/doe_girl"]
 [editable path="CoinViewport/Coin"]

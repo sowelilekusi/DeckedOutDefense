@@ -89,6 +89,7 @@ func start_game() -> void:
 	if !gamemode.multiplayer:
 		singleplayer_game_requested.emit()
 	else:
+		level_selected($PanelContainer.levels[0], 0)
 		multiplayer_game_requested.emit()
 
 
@@ -97,9 +98,28 @@ func _on_play_button_pressed() -> void:
 	open_game_menu()
 
 
+
+#TODO: Clearn this part up
+#TODO: new lobby system >>
+
+#var lobby_panel: PanelContainer
 func _on_multiplayer_button_pressed() -> void:
 	gamemode.multiplayer = true
-	open_game_menu()
+	start_game()
+	#if !lobby_panel:
+		#lobby_panel = PanelContainer.new()
+		#add_child(lobby_panel)
+	#lobby_panel.visible = true
+	#lobby_panel.anchor_top = 0.1
+	#lobby_panel.anchor_left = 0.3
+	#lobby_panel.anchor_right = 0.7
+	#lobby_panel.anchor_bottom = 0.9
+	#gamemode.multiplayer = true
+	#open_game_menu()
+
+
+
+
 
 
 func open_game_menu() -> void:
@@ -140,7 +160,7 @@ func level_selected(level: LevelConfig, side: int) -> void:
 		level.allowed_cards = level.hero_class.deck
 		level.waves = []
 	game.level_config = level
-	start_game()
+	#start_game()
 
 
 func _on_standard_button_pressed() -> void:

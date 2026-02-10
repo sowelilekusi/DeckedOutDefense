@@ -12,11 +12,13 @@ var loadout_editor: CharacterSelect = null
 var connected_players_profiles: Dictionary = {}
 var enet_peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 
+
 func setup_the_ui() -> void:
 	chatbox = chatbox_scene.instantiate()
 	game_manager.UILayer.add_child(chatbox)
 	chatbox.set_visible(true)
 	chatbox.game_manager = game_manager
+	game_manager.chatbox = chatbox
 	chatbox.anchor_bottom = 0.98
 	chatbox.anchor_left = 0.02
 	chatbox.anchor_top = 0.7

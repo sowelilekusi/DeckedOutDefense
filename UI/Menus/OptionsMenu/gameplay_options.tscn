@@ -203,6 +203,7 @@ size_flags_horizontal = 3
 
 [node name="CheckButton" type="CheckButton" parent="AlwaysShowShield/CenterContainer" unique_id=263220323]
 layout_mode = 2
+flat = true
 
 [connection signal="item_selected" from="Resolution/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="value_changed" from="MouseSens/HBoxContainer/SpinBox" to="." method="_on_mouse_sens_spin_box_value_changed"]

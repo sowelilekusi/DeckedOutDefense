@@ -278,6 +278,8 @@ func end_wave() -> void:
 	Data.save_data.check_high_score(level_config.display_title, wave, starting_endless)
 	for peer_id: int in connected_players_nodes:
 		var player: Hero = connected_players_nodes[peer_id] as Hero
+		if player.hud.enemy_count < 0:
+			print(level_config.waves[wave - 2])
 		player.hud.set_wave_count(wave)
 		player.currency += ceili(pot / connected_players_nodes.size())
 		player.currency += level_config.waves[wave - 2].bonus_cash

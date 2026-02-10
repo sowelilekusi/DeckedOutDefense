@@ -71,7 +71,7 @@ func aim() -> void:
 	pitch_model.rotation.x = 0.0
 
 
-func shoot(count: int) -> void:
+func shoot(_count: int) -> void:
 	if target_finder.targets.size() > 0 and affector:
 		affector.apply_effect(effect, target_finder.targets)
 		animator.play("shoot")

@@ -12,7 +12,6 @@ func setup_game() -> void:
 	loadout_editor = character_select_screen.instantiate() as CharacterSelect
 	loadout_editor.hero_confirmed.connect(start_game)
 	add_child(loadout_editor)
-	game_manager.chatbox = chatbox
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
 	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)

@@ -81,6 +81,10 @@ alignment = 2
 layout_mode = 2
 text = "BUTTON_PLAY"
 
+[node name="MulitplayerButton" type="Button" parent="MainControls" unique_id=1241426994]
+layout_mode = 2
+text = "BUTTON_MULTIPLAYER"
+
 [node name="ModsButton" type="Button" parent="MainControls" unique_id=868836389]
 layout_mode = 2
 text = "BUTTON_MODS"
@@ -481,6 +485,8 @@ vertical_alignment = 1
 
 [connection signal="mouse_entered" from="MainControls/PlayButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="MainControls/MulitplayerButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="MainControls/MulitplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="mouse_entered" from="MainControls/ModsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="MainControls/ModsButton" to="." method="_on_mods_button_pressed"]
 [connection signal="pressed" from="MainControls/StatsButton" to="." method="_on_stats_button_pressed"]

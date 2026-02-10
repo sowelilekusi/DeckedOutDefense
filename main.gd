@@ -67,6 +67,8 @@ func load_multiplayer() -> void:
 	await loaded_scene
 	var multi_player_lobby: MultiplayerLobby = scene.get_child(0) as MultiplayerLobby
 	multi_player_lobby.game_manager = game_manager
+	multi_player_lobby.setup_the_ui()
+	multi_player_lobby.player_disconnected.connect(game_manager.remove_player)
 
 
 func load_scene(scene_path: String) -> void:

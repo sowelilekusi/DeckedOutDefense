@@ -7,6 +7,9 @@ signal disconnected_from_server
 
 @export var server_form: ServerForm
 
+var player_ready_boxes: Dictionary[PlayerProfile, CheckBox]
+var player_character_selected_states: Dictionary[PlayerProfile, bool]
+
 var alert_popup_scene: PackedScene = preload("res://Scenes/Menus/alert_popup.tscn")
 
 
@@ -30,7 +33,10 @@ func _on_player_disconnected(peer_id: int) -> void:
 
 
 func _on_connection_succeeded() -> void:
-	setup_game(multiplayer.get_unique_id())
+	#setup_game(multiplayer.get_unique_id())
+	connected_players_profiles[multiplayer.get_unique_id()] = Data.player_profile
+	add_player_entry(Data.player_profile)
+	$PanelContainer.visible = true
 
 
 func _on_connection_failed() -> void:
@@ -48,22 +54,21 @@ func _on_server_disconnected() -> void:
 func create_server() -> void:
 	enet_peer.create_server(server_form.port, server_form.max_players)
 	multiplayer.multiplayer_peer = enet_peer
-	setup_game(1)
+	add_player_entry(Data.player_profile)
+	connected_players_profiles[1] = Data.player_profile
+	$PanelContainer.visible = true
+	#setup_game(1)
 
 
-func setup_game(peer_id: int) -> void:
+func setup_game() -> void:
 	loadout_editor = character_select_screen.instantiate() as CharacterSelect
 	add_child(loadout_editor)
-	player_disconnected.connect(game_manager.remove_player)
-	#scoreboard.all_players_ready.connect(start_game)
-	game_manager.chatbox = chatbox
+	loadout_editor.hero_confirmed.connect(select_class)
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
-	loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
-	loadout_editor.hero_selected.connect(edit_player_profile)
-	connected_players_profiles[peer_id] = Data.player_profile
-	player_connected.emit(peer_id, Data.player_profile)
-	setup_the_ui()
+	#loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
+	#loadout_editor.hero_selected.connect(edit_player_profile)
+	#player_connected.emit(peer_id, Data.player_profile)
 
 
 func connect_to_server() -> void:
@@ -71,15 +76,68 @@ func connect_to_server() -> void:
 	multiplayer.multiplayer_peer = enet_peer
 
 
-func ready_player() -> void:
-	pass
-	#var peer_id: int = multiplayer.get_unique_id()
-	#networked_ready_player.rpc(peer_id)
+@rpc("any_peer", "reliable")
+func networked_ready_player(peer_id: int) -> void:
+	player_ready_boxes[connected_players_profiles[peer_id]].button_pressed = true
+	var start_game: bool = true
+	for box: CheckBox in player_ready_boxes.values():
+		if !box.button_pressed:
+			start_game = false
+	if start_game:
+		setup_game()
+
+
+func ready_player(peer_id: int = multiplayer.get_unique_id()) -> void:
+	networked_ready_player.rpc(peer_id)
+	$PanelContainer/VBoxContainer/ReadyButton.visible = false
+	player_ready_boxes[connected_players_profiles[peer_id]].button_pressed = true
+	var start_game: bool = true
+	for box: CheckBox in player_ready_boxes.values():
+		if !box.button_pressed:
+			start_game = false
+	if start_game:
+		setup_game()
+
+
+@rpc("any_peer", "reliable")
+func networked_select_class(peer_id: int) -> void:
+	player_character_selected_states[connected_players_profiles[peer_id]] = true
+	var start_game: bool = true
+	for state: bool in player_character_selected_states.values():
+		if !state:
+			start_game = false
+	if start_game:
+		start_game()
+
+
+func select_class(peer_id: int = multiplayer.get_unique_id()) -> void:
+	networked_select_class.rpc(peer_id)
+	player_character_selected_states[connected_players_profiles[peer_id]] = true
+	var start_game: bool = true
+	for state: bool in player_character_selected_states.values():
+		if !state:
+			start_game = false
+	if start_game:
+		start_game()
 
 
 func start_game() -> void:
 	enet_peer.refuse_new_connections = true
+	visible = false
 	super.start_game()
+
+
+func add_player_entry(profile: PlayerProfile) -> void:
+	print("added player: " + str(profile.display_name))
+	var entry: HBoxContainer = HBoxContainer.new()
+	var label: Label = Label.new()
+	var check: CheckBox = CheckBox.new()
+	check.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.text = profile.display_name
+	entry.add_child(label)
+	entry.add_child(check)
+	$PanelContainer/VBoxContainer.add_child(entry)
+	player_ready_boxes[profile] = check
 
 
 #TODO: what the fuck is this doing lol
@@ -102,8 +160,4 @@ func add_player(new_player_profile_dict: Dictionary) -> void:
 		chatbox.append_message("SERVER", Color.TOMATO, new_player_profile.display_name + " has connected!")
 	connected_players_profiles[new_player_peer_id] = new_player_profile
 	player_connected.emit(new_player_peer_id, new_player_profile)
-
-
-#@rpc("any_peer", "reliable", "call_local")
-#func networked_ready_player(peer_id: int) -> void:
-	#scoreboard.set_player_ready_state(peer_id, true)
+	add_player_entry(new_player_profile)
