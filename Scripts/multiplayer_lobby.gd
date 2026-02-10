@@ -66,6 +66,8 @@ func setup_game() -> void:
 	loadout_editor.hero_confirmed.connect(select_class)
 	chatbox.username = Data.player_profile.display_name
 	Data.player_profile.display_name_changed.connect(chatbox.change_username)
+	for player: PlayerProfile in connected_players_profiles.values():
+		player_character_selected_states[player] = false
 	#loadout_editor.hero_selected.connect(Data.player_profile.set_preferred_class)
 	#loadout_editor.hero_selected.connect(edit_player_profile)
 	#player_connected.emit(peer_id, Data.player_profile)

@@ -3,6 +3,7 @@ class_name NetworkPuppeteer extends Node
 @export var player: CharacterBody3D
 @export var player_movement: PlayerMovement
 @export var skeleton: Skeleton3D
+@export var animation_tree: AnimationTree
 
 
 func _process(delta: float) -> void:
@@ -13,6 +14,10 @@ func _process(delta: float) -> void:
 
 @rpc("unreliable", "call_remote")
 func set_position(position: Vector3) -> void:
+	if player.global_position != position:
+		animation_tree.set("parameters/Blend2/blend_amount", 1.0)
+	else:
+		animation_tree.set("parameters/Blend2/blend_amount", 0.0)
 	player.global_position = position
 
 

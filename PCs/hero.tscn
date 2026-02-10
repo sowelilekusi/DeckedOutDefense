@@ -219,6 +219,34 @@ stream_2/stream = ExtResource("69_c5gvc")
 stream_3/stream = ExtResource("70_sewk0")
 stream_4/stream = ExtResource("71_n0bvw")
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_vkt85"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vkt85"]
+animation = &"Stand"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dyah2"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dx4x6"]
+animation = &"HoldGun"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dx4x6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u2rve"]
+graph_offset = Vector2(-548.98816, 68.51785)
+nodes/output/position = Vector2(400, 80)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_dx4x6")
+nodes/Blend2/position = Vector2(0, 280)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_vkt85")
+"nodes/Animation 2/position" = Vector2(-180, 320)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_dyah2")
+"nodes/Animation 3/position" = Vector2(-260, 540)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_vkt85")
+nodes/Add2/position = Vector2(200, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dx4x6")
+nodes/Animation/position = Vector2(-154.88535, 110.967896)
+node_connections = [&"output", 0, &"Add2", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation 3", &"Add2", 0, &"Animation", &"Add2", 1, &"Blend2"]
+
 [node name="Hero" type="CharacterBody3D" unique_id=1918171232 node_paths=PackedStringArray("subviewport1", "camera", "gun_camera", "left_hand", "right_hand", "edit_tool", "carding_tool", "model", "interaction_raycast", "draw_pile", "hand", "discard_pile", "hud", "movement", "player_name_tag", "weapon_swap_timer", "editing_states", "fighting_state", "default_state", "ears", "place_card_audio", "swap_card_audio", "ready_audio", "unready_audio", "fullpower_audio", "zeropower_audio", "swap_off_audio", "swap_on_audio", "anim_tree", "anim_tree2", "weapon_pivot", "cassette", "left_hand_model", "gauntlet_model")]
 collision_layer = 2
 collision_mask = 37
@@ -411,20 +439,26 @@ hero = NodePath("../../..")
 
 [node name="Model" parent="." unique_id=1269374108 instance=ExtResource("16_0ehim")]
 
-[node name="Skeleton3D" parent="Model/doe_girl/Armature" parent_id_path=PackedInt32Array(1269374108, 1532649165, 851796479) index="0" unique_id=24687068]
+[node name="Skeleton3D" parent="Model/doe_girl/Armature" parent_id_path=PackedInt32Array(1269374108, 1532649165, 75656979) index="0" unique_id=1520596520]
 bones/4/rotation = Quaternion(0.332303, -0.18204916, -0.5890503, 0.71375954)
-bones/5/rotation = Quaternion(-0.906193, -0.05188831, 0.023806162, 0.41899294)
-bones/7/rotation = Quaternion(-0.007778301, -0.004357032, -0.48717895, 0.8732566)
-bones/9/rotation = Quaternion(0.103601396, 0.0787555, -0.60002625, 0.78932434)
+bones/5/rotation = Quaternion(-0.906193, -0.05188832, 0.023806157, 0.41899294)
+bones/7/rotation = Quaternion(-0.0077783004, -0.0043570334, -0.487179, 0.87325674)
+bones/9/rotation = Quaternion(0.10360141, 0.07875549, -0.60002625, 0.78932434)
 bones/10/rotation = Quaternion(-0.35265866, -0.18703236, -0.4295865, 0.8100038)
-bones/11/rotation = Quaternion(-0.020328829, -0.007425959, -0.34303707, 0.9390725)
+bones/11/rotation = Quaternion(-0.020328823, -0.007425961, -0.34303707, 0.9390725)
 bones/14/rotation = Quaternion(-0.39763534, -0.26168856, 0.626134, 0.61754483)
-bones/15/rotation = Quaternion(-0.2017903, 0.01537974, -0.038131464, 0.97856534)
-bones/16/rotation = Quaternion(-0.0048455084, 0.0038656965, 0.59440565, 0.8041415)
-bones/18/rotation = Quaternion(-0.22720158, 0.019839184, 0.4623247, 0.856879)
-bones/23/rotation = Quaternion(-0.045133278, -0.11772485, 0.9614003, -0.24456768)
+bones/15/rotation = Quaternion(-0.2017903, 0.015379741, -0.03813146, 0.97856534)
+bones/16/rotation = Quaternion(-0.0048455074, 0.003865697, 0.59440565, 0.8041415)
+bones/18/rotation = Quaternion(-0.2272016, 0.019839177, 0.4623247, 0.856879)
+bones/23/rotation = Quaternion(-0.045133274, -0.11772486, 0.9614004, -0.24456768)
+bones/24/rotation = Quaternion(-0.31305715, 0.075180076, -0.21363969, 0.92233473)
+bones/25/rotation = Quaternion(0.5710469, -0.039941728, 0.017517319, 0.819758)
+bones/26/rotation = Quaternion(-0.69202226, 0.0027399438, -0.003180337, 0.721864)
+bones/28/rotation = Quaternion(0.056880478, 0.03165418, 0.2195195, 0.97343403)
+bones/29/rotation = Quaternion(0.038734946, -0.00095578696, -0.019037286, 0.9990678)
+bones/30/rotation = Quaternion(-0.67850786, -0.0014370738, 0.0042436896, 0.73457956)
 
-[node name="AnimationPlayer" parent="Model/doe_girl" parent_id_path=PackedInt32Array(1269374108, 1532649165) index="1" unique_id=478945409]
+[node name="AnimationPlayer" parent="Model/doe_girl" parent_id_path=PackedInt32Array(1269374108, 1532649165) index="1" unique_id=126187206]
 autoplay = &"HoldGun"
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1396328287]
@@ -1066,6 +1100,7 @@ transparent_bg = true
 size = Vector2i(32, 32)
 
 [node name="Coin" parent="CoinViewport" unique_id=1538763687 instance=ExtResource("51_w13oc")]
+visible = false
 
 [node name="Cylinder" parent="CoinViewport/Coin" index="0" unique_id=109227366]
 layers = 8
@@ -1124,12 +1159,20 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43043494, 0)
 target_position = Vector3(0, -11.465, 0)
 
-[node name="NetworkPuppeteer" type="Node" parent="." unique_id=1492136381 node_paths=PackedStringArray("player", "player_movement", "skeleton")]
+[node name="NetworkPuppeteer" type="Node" parent="." unique_id=1492136381 node_paths=PackedStringArray("player", "player_movement", "skeleton", "animation_tree")]
 script = ExtResource("78_vkt85")
 player = NodePath("..")
 player_movement = NodePath("../PlayerMovement")
 skeleton = NodePath("../Model/doe_girl/Armature/Skeleton3D")
+animation_tree = NodePath("../AnimationTree")
 metadata/_custom_type_script = "uid://dbyaxum1l8dn4"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=571587235]
+root_node = NodePath("../Model/doe_girl")
+tree_root = SubResource("AnimationNodeBlendTree_u2rve")
+anim_player = NodePath("../Model/doe_girl/AnimationPlayer")
+parameters/Blend2/blend_amount = 1.0
+parameters/Add2/add_amount = 1.0
 
 [connection signal="timeout" from="WeaponSwapTimer" to="." method="_on_timer_timeout"]
 
