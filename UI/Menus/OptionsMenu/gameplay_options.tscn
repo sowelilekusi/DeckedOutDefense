@@ -4,7 +4,7 @@
 
 [sub_resource type="ImageTexture" id="ImageTexture_03x6q"]
 
-[node name="Gameplay" type="VBoxContainer" unique_id=9533751 node_paths=PackedStringArray("resolution_drop_down", "look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "invert_lookY", "invert_lookX", "fixed_minimap", "tower_damage", "self_damage", "party_damage", "status_damage")]
+[node name="Gameplay" type="VBoxContainer" unique_id=9533751 node_paths=PackedStringArray("resolution_drop_down", "look_sens_slider", "look_sens_input", "toggle_sprint_checkbox", "invert_lookY", "invert_lookX", "fixed_minimap", "tower_damage", "self_damage", "party_damage", "status_damage", "show_shield")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,6 +22,7 @@ tower_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/
 self_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/SelfDamage")
 party_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/PartyDamage")
 status_damage = NodePath("FloatingDamageIndicators/CenterContainer/HBoxContainer/StatusDamage")
+show_shield = NodePath("AlwaysShowShield/CenterContainer/CheckButton")
 
 [node name="Resolution" type="HBoxContainer" parent="." unique_id=1996706644]
 layout_mode = 2
@@ -185,6 +186,23 @@ layout_mode = 2
 toggle_mode = true
 button_pressed = true
 text = "OPTION_STATUS_DAMAGE"
+
+[node name="AlwaysShowShield" type="HBoxContainer" parent="." unique_id=745573840]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AlwaysShowShield" unique_id=856331565]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OPTION_ALWAYS_SHOW_SHIELD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="AlwaysShowShield" unique_id=726349358]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="AlwaysShowShield/CenterContainer" unique_id=263220323]
+layout_mode = 2
 
 [connection signal="item_selected" from="Resolution/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="value_changed" from="MouseSens/HBoxContainer/SpinBox" to="." method="_on_mouse_sens_spin_box_value_changed"]

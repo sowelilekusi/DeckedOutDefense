@@ -12,6 +12,7 @@ extends VBoxContainer
 @export var self_damage: Button
 @export var party_damage: Button
 @export var status_damage: Button
+@export var show_shield: Button
 
 
 func _ready() -> void:
@@ -29,6 +30,7 @@ func _ready() -> void:
 	self_damage.button_pressed = Data.preferences.display_self_damage_indicators
 	party_damage.button_pressed = Data.preferences.display_party_damage_indicators
 	status_damage.button_pressed = Data.preferences.display_status_effect_damage_indicators
+	show_shield.button_pressed = Data.preferences.always_show_shield_ui
 
 
 func save() -> void:
@@ -41,6 +43,7 @@ func save() -> void:
 	Data.preferences.display_self_damage_indicators = self_damage.button_pressed
 	Data.preferences.display_party_damage_indicators = party_damage.button_pressed
 	Data.preferences.display_status_effect_damage_indicators = status_damage.button_pressed
+	Data.preferences.always_show_shield_ui = show_shield.button_pressed
 
 
 func _on_mouse_sens_spin_box_value_changed(value: float) -> void:

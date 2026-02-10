@@ -23,6 +23,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_awjk1"]
 size = Vector3(3.6270146, 6.87512, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s81wy"]
+size = Vector3(24.37746, 16.368866, 32.543457)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_134um"]
 size = Vector3(260.6662, 2.4995117, 318.20755)
 
@@ -45,12 +48,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.123978, 0.5, 0)
 script = ExtResource("9_s3rd7")
 audio_player = NodePath("AudioStreamPlayer3D")
 
-[node name="Area3D" type="Area3D" parent="EnemyGoal" unique_id=80277049]
+[node name="DeathArea" type="Area3D" parent="EnemyGoal" unique_id=80277049]
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyGoal/Area3D" unique_id=1234164927]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyGoal/DeathArea" unique_id=1234164927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40402222, 3.43756, 0)
 shape = SubResource("BoxShape3D_awjk1")
+
+[node name="ShieldArea" type="Area3D" parent="EnemyGoal" unique_id=1344850092]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyGoal/ShieldArea" unique_id=1341930873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.271231, 7.8232956, -0.27661133)
+shape = SubResource("BoxShape3D_s81wy")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="EnemyGoal" unique_id=1838624313]
 stream = ExtResource("11_l537x")
@@ -433,7 +444,8 @@ transform = Transform3D(-0.7581457, 0, 0.6520852, 0, 1, 0, -0.6520852, 0, -0.758
 [node name="Node3D50" parent="." unique_id=293622677 instance=ExtResource("21_6tcu8")]
 transform = Transform3D(-0.7581457, 0, 0.6520852, 0, 1, 0, -0.6520852, 0, -0.7581457, -35.033936, 0.422287, -72.41817)
 
-[connection signal="body_entered" from="EnemyGoal/Area3D" to="EnemyGoal" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="EnemyGoal/DeathArea" to="EnemyGoal" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="EnemyGoal/ShieldArea" to="EnemyGoal" method="enemy_entered_shield_range"]
 [connection signal="body_entered" from="Killbox" to="Killbox" method="_on_body_entered"]
 
 [editable path="bridge"]

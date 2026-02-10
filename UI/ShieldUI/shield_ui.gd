@@ -17,14 +17,23 @@ var cell_tweens: Array[Tween] = []
 func _ready() -> void:
 	for x: int in cells.size():
 		cell_tweens.append(null)
-	fade_timer.start()
+	fade_ui()
 
 
-func take_damage(damage: int) -> void:
+func show_ui() -> void:
 	if fade_tween:
 		fade_tween.kill()
 		fade_tween = null
 	modulate = Color.WHITE
+
+
+func fade_ui() -> void:
+	if !Data.preferences.always_show_shield_ui:
+		fade_timer.start()
+
+
+func take_damage(damage: int) -> void:
+	show_ui()
 	var damage_to_deal_with: int = min(damage, current_cell_health)
 	var remaining_damage: int = damage - damage_to_deal_with
 	var current_cell: int = ceili(float(health) / CELL_HEALTH)
@@ -60,7 +69,6 @@ func take_damage(damage: int) -> void:
 	cell_tweens[current_cell - 1].tween_callback(change_cell_color.bind(current_cell - 1, cell_level))
 	cell_tweens[current_cell - 1].tween_interval(0.07)
 	cell_tweens[current_cell - 1].tween_callback(func() -> void: hit_glow.visible = false)
-	fade_timer.start()
 
 
 func change_cell_color(cell: int, color: int) -> void:

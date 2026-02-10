@@ -12,6 +12,7 @@ const SAVE_PATH: String = "user://preferences.tres"
 @export var display_self_damage_indicators: bool = true
 @export var display_party_damage_indicators: bool = true
 @export var display_status_effect_damage_indicators: bool = true
+@export var always_show_shield_ui: bool = false
 
 
 func save_profile_to_disk() -> void:

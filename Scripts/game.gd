@@ -140,6 +140,8 @@ func spawn_players() -> void:
 		var player: Hero = player_scene.instantiate() as Hero
 		player.placed_tower.connect(connect_tower_to_music)
 		player.name = str(peer_id)
+		level.enemy_goals[0].goal_cleared.connect(player.hud.shield_ui.fade_ui)
+		level.enemy_goals[0].goal_occupied.connect(player.hud.shield_ui.show_ui)
 		player.game_manager = self
 		player.edit_tool.level = level
 		player.hud.map_anchor = level
@@ -159,8 +161,6 @@ func spawn_players() -> void:
 		base_took_damage.connect(player.hud.set_lives_count)
 		root_scene.add_child(player)
 		p_i += 1
-		print("objective health: " + str(objective_health))
-		print("player ui health: " + str(player.hud.shield_ui.health))
 
 
 func ready_player(player_ready_true: bool) -> void:
