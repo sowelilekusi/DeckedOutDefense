@@ -27,3 +27,7 @@ func hit() -> void:
 	shield.take_damage(damage)
 	for x: int in damage:
 		lives_bar.take_life()
+
+
+func _on_button_2_pressed() -> void:
+	pass # Replace with function body.

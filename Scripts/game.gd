@@ -159,6 +159,8 @@ func spawn_players() -> void:
 		base_took_damage.connect(player.hud.set_lives_count)
 		root_scene.add_child(player)
 		p_i += 1
+		print("objective health: " + str(objective_health))
+		print("player ui health: " + str(player.hud.shield_ui.health))
 
 
 func ready_player(player_ready_true: bool) -> void:

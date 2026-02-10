@@ -28,9 +28,9 @@ var mage_unlocked: bool = 0
 
 
 func check_high_score(level_title: String, wave_reached: int, endless: bool) -> void:
-	if endless:
+	if endless and endless_high_scores[level_title] < wave_reached:
 		endless_high_scores[level_title] = wave_reached
-	else:
+	elif level_high_scores[level_title] < wave_reached:
 		level_high_scores[level_title] = wave_reached
 
 

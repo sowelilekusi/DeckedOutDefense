@@ -6,70 +6,87 @@
 [ext_resource type="Texture2D" uid="uid://bifqfvhsu4c2f" path="res://UI/ShieldUI/health_hit-Sheet.png" id="4_yanml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5gv4u"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 0, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ye2cs"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 66, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmtb0"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 132, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylmjw"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 198, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulao6"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 264, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usluy"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 330, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgv6k"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 396, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymret"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 462, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d35xv"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 528, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyjyl"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 594, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3fdm"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 660, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xxhe"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 726, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cwn3"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 792, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q14re"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 858, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmmm8"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 924, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vp71v"]
+resource_local_to_scene = true
 atlas = ExtResource("3_uoync")
 region = Rect2(0, 990, 66, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_slxus"]
+resource_local_to_scene = true
 atlas = ExtResource("4_yanml")
 region = Rect2(0, 0, 66, 66)
 

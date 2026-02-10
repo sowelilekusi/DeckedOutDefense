@@ -42,6 +42,10 @@ text = ">"
 layout_mode = 2
 text = "hit"
 
+[node name="Button2" type="Button" parent="Controls" unique_id=1570558672]
+layout_mode = 2
+text = "reset"
+
 [node name="ShieldUI" parent="." unique_id=591084228 instance=ExtResource("2_iketu")]
 layout_mode = 0
 offset_left = 130.0
@@ -59,3 +63,4 @@ offset_bottom = 115.0
 [connection signal="pressed" from="Controls/VBoxContainer/Button" to="." method="decrease_damage"]
 [connection signal="pressed" from="Controls/VBoxContainer/Button2" to="." method="increase_damage"]
 [connection signal="pressed" from="Controls/Button" to="." method="hit"]
+[connection signal="pressed" from="Controls/Button2" to="." method="_on_button_2_pressed"]
