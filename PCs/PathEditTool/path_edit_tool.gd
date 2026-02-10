@@ -129,8 +129,13 @@ func process_looking_at_tower() -> void:
 func build_wall() -> void:
 	if point and valid_point and hero.currency >= Data.wall_cost:
 		hero.currency -= Data.wall_cost
-		level.set_wall(point, multiplayer.get_unique_id())
+		networked_set_wall.rpc(point.node_id, multiplayer.get_unique_id())
 	wall_preview.visible = false
+
+
+@rpc("reliable", "call_local")
+func networked_set_wall(node_id: int, peer_id: int) -> void:
+	level.set_wall(node_id, peer_id)
 
 
 func refund_wall(wall: TowerBase) -> void:

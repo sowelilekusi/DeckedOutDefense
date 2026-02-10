@@ -116,6 +116,7 @@ func spawn_level(scene: PackedScene) -> void:
 	level = scene.instantiate() as Level
 	var flow_field: FlowField = FlowField.new()
 	level.flow_field = flow_field
+	level.name = "level"
 	level.add_child(flow_field)
 	flow_field.data = FlowFieldTool.load_flow_field_from_disc(level_config.zone.flow_field_data_path)
 	level.load_flow_field()

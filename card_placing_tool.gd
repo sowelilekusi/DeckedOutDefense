@@ -54,7 +54,7 @@ func place_card(tower_base: TowerBase) -> void:
 	hero.hand.remove_at(hero.hand.contents.find(card))
 	hero.decrement_selected()
 	hero.hud.hot_wheel.update_cassettes(hero.get_wheel_cards())
-	tower_base.add_card(card, multiplayer.get_unique_id())
+	tower_base.networked_spawn_tower.rpc(Data.cards.find(card), multiplayer.get_unique_id())
 	hero.placed_tower.emit(tower_base.tower)
 	hero.place_card_audio.play()
 	if hero.game_manager.card_gameplay:
@@ -64,7 +64,7 @@ func place_card(tower_base: TowerBase) -> void:
 
 func remove_card(tower_base: TowerBase) -> void:
 	if tower_base.has_card:
-		tower_base.remove_card()
+		tower_base.networked_remove_tower.rpc()
 
 
 func spawn_tower_preview() -> void:

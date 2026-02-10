@@ -49,13 +49,16 @@ func disable_path_tower_frames() -> void:
 			tower_frames[node].visible = false
 
 
-func set_wall(point: FlowNodeData, caller_id: int) -> void:
+func set_wall(node_id: int, caller_id: int) -> void:
+	var point: FlowNodeData
+	for node: FlowNodeData in flow_field.data.nodes:
+		if node.node_id == node_id:
+			point = node
 	point.traversable = false
 	flow_field.calculate()
 	flow_field.path_updated.emit()
-	if is_multiplayer_authority():
-		spawn_wall(point, wall_id, caller_id)
-		wall_id += 1
+	spawn_wall(point, wall_id, caller_id)
+	wall_id += 1
 
 
 func remove_wall(point: FlowNodeData) -> void:
