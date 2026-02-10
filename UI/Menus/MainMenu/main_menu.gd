@@ -119,20 +119,22 @@ func return_to_main_menu() -> void:
 	mods_controls.visible = false
 
 
-func generate_seed() -> void:
+func generate_seed() -> int:
+	var seed_generated: int = 0
 	if seed_entry.text != "":
 		if seed_entry.text.is_valid_int():
-			gamemode.rng_seed = int(seed_entry.text)
+			seed_generated = int(seed_entry.text)
 		else:
-			gamemode.rng_seed = hash(seed_entry.text)
+			seed_generated = hash(seed_entry.text)
 		gamemode.seeded = true
 	else:
-		gamemode.rng_seed = randi()
+		seed_generated = randi()
+	return seed_generated
 
 
 func level_selected(level: LevelConfig, side: int) -> void:
-	generate_seed()
 	gamemode.endless = true if side == 1 else false
+	gamemode.rng_seed = generate_seed() if gamemode.endless else level.game_seed
 	gamemode.daily = false
 	if gamemode.endless:
 		level.allowed_cards = level.hero_class.deck
