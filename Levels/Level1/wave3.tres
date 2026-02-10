@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://gi2aci5co4i0"]
 
 [ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_p2cct"]
-[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/eye_dog.tres" id="2_manrb"]
+[ext_resource type="Resource" uid="uid://8eba45hql7bo" path="res://Enemies/EyeDog/ene_eye_dog.tres" id="2_manrb"]
 [ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_flldk"]
-[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="3_manrb"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/ene_elder_eye_dog.tres" id="3_manrb"]
 
 [sub_resource type="Resource" id="Resource_wug4u"]
 script = ExtResource("1_p2cct")

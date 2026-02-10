@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cde0voyrwnqkl"
-path="res://.godot/imported/icon_eye_dog_boss.png-2e375a379507be43f07a5b78a57627eb.ctex"
+uid="uid://bic78xsdnr8qy"
+path="res://.godot/imported/icon_crystalisk.png-4c70a2107210c8d3df52e85a38aff5c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/icon_eye_dog_boss.png"
-dest_files=["res://.godot/imported/icon_eye_dog_boss.png-2e375a379507be43f07a5b78a57627eb.ctex"]
+source_file="res://Enemies/Crystalisk/icon_crystalisk.png"
+dest_files=["res://.godot/imported/icon_crystalisk.png-4c70a2107210c8d3df52e85a38aff5c9.ctex"]
 
 [params]
 

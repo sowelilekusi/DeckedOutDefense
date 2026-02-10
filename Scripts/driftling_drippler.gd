@@ -18,7 +18,6 @@ var time_to_bloat: float = 1.5
 var time_to_float: float = 3.0
 var time_to_choak: float = 0.8
 var time_to_croak: float = 0.4
-var state: DriftlingDrippleState = DriftlingDrippleState.BLOATING
 
 
 func _ready() -> void:

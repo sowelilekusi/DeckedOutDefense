@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://bffhb5krs5elm"]
+
+[ext_resource type="Texture2D" uid="uid://b1lwaxw62yp3p" path="res://Assets/Textures/dead_spike.png" id="1_oypxu"]
+[ext_resource type="Texture2D" uid="uid://bic78xsdnr8qy" path="res://Enemies/Crystalisk/icon_crystalisk.png" id="2_p71wu"]
+[ext_resource type="PackedScene" uid="uid://cveiaa0y66gln" path="res://Enemies/Crystalisk/scn_crystalisk.tscn" id="3_1ao04"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_5kn4m"]
+
+[resource]
+script = ExtResource("4_5kn4m")
+title = "ENEMY_FLYING_CRYSTAL"
+description = "ENEMY_DESC_FLYING_CRYSTAL"
+target_type = 2
+icon = ExtResource("2_p71wu")
+scene = ExtResource("3_1ao04")
+death_sprite = ExtResource("1_oypxu")
+spawn_power = 6
+group_size = 6
+health = 90
+penalty = 7
+movement_speed = 1.0

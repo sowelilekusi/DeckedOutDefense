@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://8eba45hql7bo"]
+
+[ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="1_rbfn2"]
+[ext_resource type="Texture2D" uid="uid://chmxo0rj26cxh" path="res://Enemies/EyeDog/icon_eye_dog.png" id="2_nef0e"]
+[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/scn_eye_dog.tscn" id="3_fa8t4"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_gobb7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_gobb7")
+title = "ENEMY_DOG"
+description = "ENEMY_DESC_DOG"
+target_type = 1
+icon = ExtResource("2_nef0e")
+scene = ExtResource("3_fa8t4")
+death_sprite = ExtResource("1_rbfn2")
+spawn_power = 3
+health = 60
+movement_speed = 1.6
+spawn_cooldown = 1.2

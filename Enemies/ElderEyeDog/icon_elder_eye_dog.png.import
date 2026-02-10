@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv5p03aw78vwd"
-path="res://.godot/imported/icon_eye_dog_fast.png-0a08e5ef41b3ff60b195f0e078e24ab8.ctex"
+uid="uid://h5svpdvo6tcd"
+path="res://.godot/imported/icon_elder_eye_dog.png-d36b691ba4537e426e29a310609ed540.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/icon_eye_dog_fast.png"
-dest_files=["res://.godot/imported/icon_eye_dog_fast.png-0a08e5ef41b3ff60b195f0e078e24ab8.ctex"]
+source_file="res://Enemies/ElderEyeDog/icon_elder_eye_dog.png"
+dest_files=["res://.godot/imported/icon_elder_eye_dog.png-d36b691ba4537e426e29a310609ed540.ctex"]
 
 [params]
 

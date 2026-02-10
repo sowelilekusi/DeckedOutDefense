@@ -7,7 +7,6 @@ extends Resource
 @export var icon: Texture
 @export var scene: PackedScene
 @export var death_sprite: Texture
-@export var sprite: AtlasTexture
 @export var spawn_power: int = 10
 @export var group_size: int = 5
 @export var health: int = 100

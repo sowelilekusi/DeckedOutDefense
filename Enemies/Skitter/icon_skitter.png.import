@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj13g1w14mekw"
-path="res://.godot/imported/eye_dog.png-2b08e774f06f7b23a123081bdacd558a.ctex"
+uid="uid://cn0177otlyej"
+path="res://.godot/imported/icon_skitter.png-8da13ce62049f7057228ee569f9d30bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/eye_dog.png"
-dest_files=["res://.godot/imported/eye_dog.png-2b08e774f06f7b23a123081bdacd558a.ctex"]
+source_file="res://Enemies/Skitter/icon_skitter.png"
+dest_files=["res://.godot/imported/icon_skitter.png-8da13ce62049f7057228ee569f9d30bf.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

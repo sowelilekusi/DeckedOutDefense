@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgxr27by7jruo"
-path="res://.godot/imported/baby_eyedog.glb-a187781f666218849f29856d9c82f6de.scn"
+uid="uid://bqxa663yfj6ne"
+path="res://.godot/imported/mdl_skitter.glb-ae894e5411f5d23fd2ef5941f66110cb.scn"
 
 [deps]
 
-source_file="res://Enemies/BabyEyeDog/baby_eyedog.glb"
-dest_files=["res://.godot/imported/baby_eyedog.glb-a187781f666218849f29856d9c82f6de.scn"]
+source_file="res://Enemies/Skitter/mdl_skitter.glb"
+dest_files=["res://.godot/imported/mdl_skitter.glb-ae894e5411f5d23fd2ef5941f66110cb.scn"]
 
 [params]
 
@@ -2099,10 +2099,10 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Enemies/BabyEyeDog/baby_eye_dog_mat.tres",
-"use_external/path": "uid://bm7wkdbbvgscq"
+"use_external/fallback_path": "res://Enemies/Skitter/mat_skitter.tres",
+"use_external/path": "uid://sit74yglb7lx"
 }
 }
 }
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1

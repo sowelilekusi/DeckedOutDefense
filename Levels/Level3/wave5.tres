@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://dj46tpmwm4l7b"]
 
 [ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_pmka2"]
-[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="2_x60v4"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/Skitter/ene_skitter.tres" id="2_x60v4"]
 [ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_4nd0q"]
 
 [sub_resource type="Resource" id="Resource_tab3n"]

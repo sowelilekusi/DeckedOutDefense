@@ -9,11 +9,11 @@
 [ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="7_bf6dr"]
 [ext_resource type="Texture2D" uid="uid://cdnhe2mi5c5ln" path="res://Assets/Textures/dead_eye_dog.png" id="8_5e5s6"]
 [ext_resource type="Texture2D" uid="uid://g00wwrlxxdc5" path="res://Assets/Textures/icon_eye_dog.png" id="9_s3gio"]
-[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/eye_dog.tscn" id="10_tlmxb"]
+[ext_resource type="PackedScene" uid="uid://bvq6tbkuv2mfp" path="res://Enemies/EyeDog/scn_eye_dog.tscn" id="10_tlmxb"]
 [ext_resource type="Texture2D" uid="uid://dj13g1w14mekw" path="res://Assets/Textures/eye_dog.png" id="11_xnj0i"]
-[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="12_b1o6b"]
-[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/BabyEyeDog/baby_eye_dog.tres" id="13_wnrwu"]
-[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/crystalisk.tres" id="14_yipjp"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/ene_elder_eye_dog.tres" id="12_b1o6b"]
+[ext_resource type="Resource" uid="uid://cvehqh4tt28g7" path="res://Enemies/Skitter/ene_skitter.tres" id="13_wnrwu"]
+[ext_resource type="Resource" uid="uid://bffhb5krs5elm" path="res://Enemies/Crystalisk/ene_crystalisk.tres" id="14_yipjp"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_345c2"]
 viewport_path = NodePath("GreenWireframe")

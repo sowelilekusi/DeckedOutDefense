@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://cwy6wxuujgqbq"]
 
 [ext_resource type="Script" uid="uid://3grc2j4bjrnw" path="res://enemy_group.gd" id="1_6ssfe"]
-[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/elder_eye_dog.tres" id="2_lvtoc"]
+[ext_resource type="Resource" uid="uid://dxi17xvdlhkvc" path="res://Enemies/ElderEyeDog/ene_elder_eye_dog.tres" id="2_lvtoc"]
 [ext_resource type="Script" uid="uid://bp6q371iypd06" path="res://Scripts/wave_config.gd" id="3_frc10"]
 
 [sub_resource type="Resource" id="Resource_hrsx4"]

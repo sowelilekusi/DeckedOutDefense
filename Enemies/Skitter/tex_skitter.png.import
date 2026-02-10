@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://54qqmcwcnsun"
-path="res://.godot/imported/eye_dog_heavy.png-661153760342e712ba1555603a9dd9b8.ctex"
+uid="uid://c2oua8elqp1q4"
+path.s3tc="res://.godot/imported/tex_skitter.png-f536e411e9f4816e87f5726ae45cdd3e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Assets/Textures/eye_dog_heavy.png"
-dest_files=["res://.godot/imported/eye_dog_heavy.png-661153760342e712ba1555603a9dd9b8.ctex"]
+source_file="res://Enemies/Skitter/tex_skitter.png"
+dest_files=["res://.godot/imported/tex_skitter.png-f536e411e9f4816e87f5726ae45cdd3e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

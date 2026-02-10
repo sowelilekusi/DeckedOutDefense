@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://cvehqh4tt28g7"]
+
+[ext_resource type="Texture2D" uid="uid://dgdofekr7ow73" path="res://Assets/Textures/dead_eye_dog_fast.png" id="1_c7x0f"]
+[ext_resource type="Texture2D" uid="uid://cn0177otlyej" path="res://Enemies/Skitter/icon_skitter.png" id="2_1jb1p"]
+[ext_resource type="PackedScene" uid="uid://dtahuv0kpxx03" path="res://Enemies/Skitter/scn_skitter.tscn" id="3_8atvu"]
+[ext_resource type="Script" uid="uid://cbwxa2a4hfcy4" path="res://Scripts/Resources/enemy.gd" id="4_5c3g2"]
+
+[resource]
+script = ExtResource("4_5c3g2")
+title = "ENEMY_FAST_BABY"
+description = "ENEMY_DESC_FAST_BABY"
+target_type = 1
+icon = ExtResource("2_1jb1p")
+scene = ExtResource("3_8atvu")
+death_sprite = ExtResource("1_c7x0f")
+spawn_power = 6
+group_size = 10
+health = 15
+penalty = 4
+movement_speed = 3.5
+spawn_cooldown = 0.6

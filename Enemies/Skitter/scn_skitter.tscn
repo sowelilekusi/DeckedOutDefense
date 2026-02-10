@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dtahuv0kpxx03"]
+
+[ext_resource type="Script" uid="uid://ejqql2660u6h" path="res://Worlds/GreenPlanet/Enemies/enemy_controller.gd" id="1_8k5ts"]
+[ext_resource type="PackedScene" uid="uid://canrxnpxcugc2" path="res://Scenes/corpse.tscn" id="2_vl30x"]
+[ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="5_f7xim"]
+[ext_resource type="Texture2D" uid="uid://b1fn60m6xfcsq" path="res://Assets/Textures/minimap_enemy.png" id="6_lbm5h"]
+[ext_resource type="PackedScene" uid="uid://hjq3nrnumklp" path="res://UI/EnemyHealthBar/health_bar.tscn" id="7_o1784"]
+[ext_resource type="PackedScene" uid="uid://bqxa663yfj6ne" path="res://Enemies/Skitter/mdl_skitter.glb" id="7_pxxbh"]
+[ext_resource type="Script" uid="uid://b62xnsbki8axa" path="res://Scripts/EnemyAI/pathing_controller.gd" id="8_1fak8"]
+[ext_resource type="Script" uid="uid://cojjgevmbhwal" path="res://Scripts/status_effector.gd" id="9_yrbee"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8v4n0"]
+size = Vector3(1, 0.25274658, 1.2819824)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbvg7"]
+radius = 0.19042969
+height = 0.7624512
+
+[node name="Skitter" type="CharacterBody3D" unique_id=1710427344 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_8k5ts")
+status_manager = NodePath("StatusEffector")
+movement_controller = NodePath("PathingController")
+d_n = NodePath("Node3D")
+corpse_scene = ExtResource("2_vl30x")
+health_bar = NodePath("SubViewport/HealthBar")
+metadata/_custom_type_script = "uid://ejqql2660u6h"
+
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=395203513]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.20821, 0)
+sorting_offset = 1.0
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_1kwxq")
+
+[node name="MinimapIcon" type="Sprite3D" parent="." unique_id=1801259501]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 1.40824, 0)
+layers = 4
+texture_filter = 0
+texture = ExtResource("6_lbm5h")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1822622469]
+transparent_bg = true
+size = Vector2i(200, 55)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport" unique_id=656248491]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HealthBar" parent="SubViewport" unique_id=1254019741 instance=ExtResource("7_o1784")]
+visible = false
+offset_top = 36.0
+offset_bottom = 236.0
+
+[node name="PathingController" type="Node" parent="." unique_id=1152836344 node_paths=PackedStringArray("character")]
+script = ExtResource("8_1fak8")
+character = NodePath("..")
+
+[node name="StatusEffector" type="Node" parent="." unique_id=543205992 node_paths=PackedStringArray("sprite_container")]
+script = ExtResource("9_yrbee")
+sprite_container = NodePath("../SubViewport/HBoxContainer")
+metadata/_custom_type_script = "uid://cojjgevmbhwal"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=2075469733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
+
+[node name="mdl_skitter" parent="." unique_id=1753143851 instance=ExtResource("7_pxxbh")]
+
+[node name="Skeleton3D" parent="mdl_skitter/Armature" parent_id_path=PackedInt32Array(1753143851, 1635157965) index="0" unique_id=1089123257]
+bones/1/rotation = Quaternion(-0.32276848, -0.08836041, 0.37510455, 0.86447066)
+bones/3/rotation = Quaternion(0.05774434, -0.027616108, 0.8835519, 0.46393853)
+bones/5/rotation = Quaternion(0.27334806, -0.034516517, 0.89473575, 0.3514789)
+bones/7/rotation = Quaternion(-0.34224942, 0.09999892, -0.3036359, 0.8835558)
+bones/9/rotation = Quaternion(-0.19445433, 0.17105538, -0.5590174, 0.7876719)
+bones/11/rotation = Quaternion(-0.28836852, -0.021420462, 0.89958346, -0.32731378)
+
+[node name="AnimationPlayer" parent="mdl_skitter" index="1" unique_id=966022087]
+autoplay = &"Walk"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=438909712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28146362, 0.047973633)
+shape = SubResource("BoxShape3D_8v4n0")
+script = ExtResource("5_f7xim")
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[node name="Hitbox2" type="CollisionShape3D" parent="." unique_id=287967142]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.36764592, 0.061401367)
+shape = SubResource("CapsuleShape3D_cbvg7")
+script = ExtResource("5_f7xim")
+critical_zone = true
+metadata/_custom_type_script = "uid://cummt2be3r1gq"
+
+[editable path="mdl_skitter"]

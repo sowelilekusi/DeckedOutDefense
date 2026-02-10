@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dylmoyx1tasat"]
 
 [ext_resource type="Shader" uid="uid://dq04j2s5foo2f" path="res://Shaders/mightyduke_ps1.gdshader" id="1_13w0y"]
-[ext_resource type="Texture2D" uid="uid://d01y8kogfuayr" path="res://Enemies/Crystalisk/crystal_enemy.png" id="2_l5awy"]
+[ext_resource type="Texture2D" uid="uid://d01y8kogfuayr" path="res://Enemies/Crystalisk/tex_crystalisk.png" id="2_l5awy"]
 
 [resource]
 render_priority = 0
