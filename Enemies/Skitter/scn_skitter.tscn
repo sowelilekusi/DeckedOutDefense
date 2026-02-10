@@ -19,7 +19,7 @@ size = Vector3(1, 0.25274658, 1.2819824)
 radius = 0.19042969
 height = 0.7624512
 
-[node name="Skitter" type="CharacterBody3D" unique_id=1710427344 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
+[node name="Skitter" type="CharacterBody3D" unique_id=1710427344 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar", "model") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_8k5ts")
@@ -28,6 +28,7 @@ movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_vl30x")
 health_bar = NodePath("SubViewport/HealthBar")
+model = NodePath("mdl_skitter")
 metadata/_custom_type_script = "uid://ejqql2660u6h"
 
 [node name="HealthBar" type="Sprite3D" parent="." unique_id=395203513]
@@ -75,15 +76,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
 
 [node name="mdl_skitter" parent="." unique_id=1753143851 instance=ExtResource("7_pxxbh")]
 
-[node name="Skeleton3D" parent="mdl_skitter/Armature" parent_id_path=PackedInt32Array(1753143851, 1635157965) index="0" unique_id=1089123257]
+[node name="Skeleton3D" parent="mdl_skitter/Armature" parent_id_path=PackedInt32Array(1753143851, 181874703) index="0" unique_id=1683908579]
 bones/1/rotation = Quaternion(-0.32276848, -0.08836041, 0.37510455, 0.86447066)
-bones/3/rotation = Quaternion(0.05774434, -0.027616108, 0.8835519, 0.46393853)
-bones/5/rotation = Quaternion(0.27334806, -0.034516517, 0.89473575, 0.3514789)
-bones/7/rotation = Quaternion(-0.34224942, 0.09999892, -0.3036359, 0.8835558)
-bones/9/rotation = Quaternion(-0.19445433, 0.17105538, -0.5590174, 0.7876719)
-bones/11/rotation = Quaternion(-0.28836852, -0.021420462, 0.89958346, -0.32731378)
+bones/3/rotation = Quaternion(0.06005325, -0.026217883, 0.88538456, 0.46021783)
+bones/5/rotation = Quaternion(0.27340084, -0.034470994, 0.8947543, 0.35139534)
+bones/7/rotation = Quaternion(-0.34211865, 0.09991861, -0.3041486, 0.8834392)
+bones/9/rotation = Quaternion(-0.19451223, 0.17108603, -0.55891204, 0.7877258)
+bones/11/rotation = Quaternion(-0.29005635, -0.019931562, 0.90007704, -0.32454818)
 
-[node name="AnimationPlayer" parent="mdl_skitter" index="1" unique_id=966022087]
+[node name="AnimationPlayer" parent="mdl_skitter" index="1" unique_id=1337990875]
 autoplay = &"Walk"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=438909712]

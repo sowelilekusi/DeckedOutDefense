@@ -12,7 +12,7 @@ func apply_effect(effect: Effect, targets: Array[EnemyController]) -> void:
 	for target: EnemyController in targets:
 		var projectile: Projectile = spawn_scene.instantiate() as Projectile
 		if projectile is HomingProjectile:
-			projectile.target = target
+			projectile.target = target.model
 		projectile.position = tower.yaw_model.global_position
 		projectile.effect = effect
 		projectile.direction = -tower.yaw_model.global_transform.basis.z

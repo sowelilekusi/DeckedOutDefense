@@ -18,7 +18,7 @@ radius = 0.25
 [sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
 viewport_path = NodePath("SubViewport")
 
-[node name="EyeDog" type="CharacterBody3D" unique_id=1016179251 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
+[node name="EyeDog" type="CharacterBody3D" unique_id=1016179251 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar", "model") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_1dh2f")
@@ -27,6 +27,7 @@ movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_1dh2f")
 health_bar = NodePath("SubViewport/HealthBar")
+model = NodePath("eyedog")
 metadata/_custom_type_script = "uid://ejqql2660u6h"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1815903905]
@@ -88,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
 [node name="eyedog" parent="." unique_id=588577646 instance=ExtResource("10_h25mw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="eyedog/Armature" parent_id_path=PackedInt32Array(588577646, 473381473) index="0" unique_id=323158019]
+[node name="Skeleton3D" parent="eyedog/Armature" parent_id_path=PackedInt32Array(588577646, 675643400) index="0" unique_id=28344697]
 bones/1/rotation = Quaternion(-0.43930408, -1.0709029e-07, 5.2369124e-08, 0.89833844)
 bones/3/rotation = Quaternion(0.23378512, 0.32485124, 0.5427555, 0.7383988)
 bones/4/rotation = Quaternion(0.2025959, 0.7308365, 0.13344719, 0.637985)
@@ -113,7 +114,7 @@ bones/23/position = Vector3(0.25597548, 0.022818465, 0.20058686)
 bones/23/scale = Vector3(0.89347196, 1, 1)
 bones/24/position = Vector3(0.08454189, 0.014853473, 0.12984678)
 
-[node name="AnimationPlayer" parent="eyedog" index="1" unique_id=993841819]
+[node name="AnimationPlayer" parent="eyedog" index="1" unique_id=815829767]
 autoplay = &"ArmatureAction"
 
 [connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]
