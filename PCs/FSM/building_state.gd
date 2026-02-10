@@ -43,7 +43,7 @@ func process_state(_delta: float) -> void:
 		hero.edit_tool.interact_key_held = false
 	if Input.is_action_just_pressed("Swap Weapons"):
 		state_changed.emit(swap_state)
-	if Input.is_action_pressed("Ready"):
+	if Input.is_action_just_pressed("Ready"):
 		if hero.ready_state:
 			hero.unready_self()
 		else:

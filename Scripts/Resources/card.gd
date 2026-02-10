@@ -5,7 +5,7 @@ enum Faction {
 	GENERIC = 0,
 	ENGINEER = 1,
 	MAGE = 2,
-	}
+}
 
 @export var cost: int
 @export var rarity: Data.Rarity

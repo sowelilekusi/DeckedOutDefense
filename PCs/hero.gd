@@ -158,12 +158,12 @@ func exit_fighting_state() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if !is_multiplayer_authority() or paused:
+	if paused or !is_multiplayer_authority():
 		return
 
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority() or paused:
+	if paused or !is_multiplayer_authority():
 		return
 	if !movement.sprinting:
 		movement.zoom_factor += sprint_zoom_speed * 2.0 * delta

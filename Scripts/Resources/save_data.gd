@@ -27,6 +27,17 @@ var mage_cards_bought: int = 0
 var mage_unlocked: bool = 0
 
 
+func get_unlocked_classes() -> Array[HeroClass]:
+	var arr: Array[HeroClass] = []
+	for character: HeroClass in Data.characters:
+		if character.faction == Card.Faction.ENGINEER:
+			arr.append(Data.characters)
+		#TODO: When mage cards are good to show up in the shop, replace false with mage_unlocked
+		if false and character.faction == Card.Faction.MAGE:
+			arr.append(Data.characters)
+	return arr
+
+
 func check_high_score(level_title: String, wave_reached: int, endless: bool) -> void:
 	if !endless_high_scores.has(level_title):
 		endless_high_scores[level_title] = 0

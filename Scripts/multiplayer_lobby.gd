@@ -87,6 +87,7 @@ func networked_ready_player(peer_id: int) -> void:
 			start_game = false
 	if start_game:
 		setup_game()
+		visible = false
 
 
 func ready_player(peer_id: int = multiplayer.get_unique_id()) -> void:
@@ -99,11 +100,14 @@ func ready_player(peer_id: int = multiplayer.get_unique_id()) -> void:
 			start_game = false
 	if start_game:
 		setup_game()
+		visible = false
 
 
 @rpc("any_peer", "reliable")
 func networked_select_class(peer_id: int) -> void:
 	player_character_selected_states[connected_players_profiles[peer_id]] = true
+	if chatbox:
+		chatbox.append_message("SERVER", Color.TOMATO, connected_players_profiles[peer_id].display_name + " has chosen a class!")
 	var start_game: bool = true
 	for state: bool in player_character_selected_states.values():
 		if !state:
@@ -125,7 +129,6 @@ func select_class(peer_id: int = multiplayer.get_unique_id()) -> void:
 
 func start_game() -> void:
 	enet_peer.refuse_new_connections = true
-	visible = false
 	super.start_game()
 
 

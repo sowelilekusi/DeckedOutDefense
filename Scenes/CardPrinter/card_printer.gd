@@ -4,8 +4,6 @@ class_name CardPrinter extends StaticBody3D
 @export var button_collider: CollisionShape3D
 @export var card_selection_menu: PackedScene
 
-#TODO: use faction enum
-var base_faction: int = 1
 var cards_generated: int = 0
 var reply_player: Hero
 var spawned_cards: Array[CardItem] = []
@@ -41,9 +39,9 @@ func generate_rarity() -> int:
 
 
 func randomize_cards(faction: Card.Faction) -> void:
-	#TODO: no magic numbers, asshole! 3 = cards to spawn
+	var cards_to_spawn: int = 3
 	var pos_x: float = 0.0
-	for x: int in 3:
+	for x: int in cards_to_spawn:
 		var decided_rarity: int = generate_rarity()
 		var card_choices: Array[Card] = get_faction_cards(faction)
 		var card_array: Array = []

@@ -206,19 +206,14 @@ func set_wave_to_spawners(wave_thing: WaveConfig, wave_number: int) -> void:
 
 
 func set_upcoming_wave() -> void:
-	if is_multiplayer_authority():
-		#print(wave)
-		#print(level_config.waves.size())
-		if wave > level_config.waves.size():
-			#print("added new wave on top")
-			var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
-			var new_wave: WaveConfig = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns.size())
-			level_config.waves.append(new_wave)
+	if wave > level_config.waves.size():
+		var spawn_power: int = WaveManager.calculate_spawn_power(wave, connected_players_nodes.size())
+		var new_wave: WaveConfig = WaveManager.generate_wave(spawn_power, level.enemy_pool, level.enemy_spawns.size())
+		level_config.waves.append(new_wave)
 		
-		var new_wave: WaveConfig = get_upcoming_waves(1)[0]
-		#print(new_wave)
-		set_wave_to_spawners(new_wave, wave)
-		temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
+	var new_wave: WaveConfig = get_upcoming_waves(1)[0]
+	set_wave_to_spawners(new_wave, wave)
+	temp_set_upcoming_wave(new_wave, WaveManager.calculate_pot(wave, connected_players_nodes.size()))
 
 
 func temp_set_upcoming_wave(new_wave: WaveConfig, coins: int) -> void:
@@ -407,15 +402,14 @@ func continue_with_game() -> void:
 	gamemode.endless = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	connected_players_nodes[multiplayer.get_unique_id()].unpause()
-	#TODO: This shouldn't happen. instead, the wave generator should generate level_config waves
-	#FIXME: this really needs to be changed because otherwise endless mode cant have shit like
-	#stations and shop respawns. it all needs to be part of the one system u know
 	set_upcoming_wave()
 
 
 func quit_to_desktop() -> void:
-	multiplayer.multiplayer_peer.close()
-	multiplayer.multiplayer_peer = null
+	#for player: Hero in connected_players_nodes.values():
+	#	player.queue_free()
+	#multiplayer.multiplayer_peer.close()
+	#multiplayer.multiplayer_peer = null
 	get_tree().quit()
 
 
@@ -424,8 +418,10 @@ func scene_switch_main_menu() -> void:
 		node.queue_free()
 	level = null
 	connected_players_nodes.clear()
-	multiplayer.multiplayer_peer.close()
-	multiplayer.multiplayer_peer = null
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	switch_to_main_menu.emit()
 
 

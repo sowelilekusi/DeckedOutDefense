@@ -1,8 +1,7 @@
 class_name PathingController
 extends EnemyMovement
 
-#var path: Curve3D
-#var path_progress: float = 0.0
+var random_points_generated: int
 var flow_field: FlowField
 var next_node: FlowNodeData : 
 	get():
@@ -13,9 +12,12 @@ var next_node: FlowNodeData :
 			return
 		var found_point: bool = false
 		while !found_point:
-			#TODO: make deterministic random
-			var x: float = randf_range(-1, 1)
-			var y: float = randf_range(-1, 1)
+			random_points_generated += 1
+			var sample: int = random_points_generated + character.name.to_int()
+			var r: float = 1.0 * sqrt(NoiseRandom.randf_in_range(sample, 0.0, 1.0))
+			var theta: float = NoiseRandom.randf_in_range(sample * 4, 0.0, 1.0) * 2.0 * PI
+			var x: float = r * cos(theta)
+			var y: float = r * sin(theta)
 			if Vector3(next_node.position.x + x, next_node.position.y, next_node.position.z + y).distance_to(next_node.position) <= 1.0:
 				found_point = true
 				next_pos = Vector3(next_node.position.x + x, next_node.position.y, next_node.position.z + y)

@@ -1,9 +1,14 @@
 class_name NetworkPuppeteer extends Node
 
-@export var player: CharacterBody3D
+@export var player: Hero
 @export var player_movement: PlayerMovement
 @export var skeleton: Skeleton3D
 @export var animation_tree: AnimationTree
+
+
+func _ready() -> void:
+	if is_multiplayer_authority():
+		player.ready_state_changed.connect(func x(state: bool) -> void: set_ready_state.rpc(state))
 
 
 func _process(delta: float) -> void:
@@ -28,3 +33,11 @@ func set_rotation(x: float, y: float) -> void:
 	var bone: int = skeleton.find_bone("Head")
 	var pos: Quaternion = skeleton.get_bone_pose_rotation(bone)
 	skeleton.set_bone_pose_rotation(bone, Quaternion.from_euler(Vector3(x, 0, 0)))
+
+
+@rpc("reliable", "call_remote")
+func set_ready_state(state: bool) -> void:
+	if state:
+		player.ready_self()
+	else:
+		player.unready_self()

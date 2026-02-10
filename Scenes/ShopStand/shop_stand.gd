@@ -21,6 +21,7 @@ var blanks_available: int = 5
 var blank_cost: int = 20
 var buy_blank_prompt: String = "PROMPT_BUY_BLANK"
 var buy_card_prompt: String = "PROMPT_BUY_CARD"
+var shops_generated: int = 0
 
 
 func close() -> void:
@@ -34,9 +35,14 @@ func close() -> void:
 
 
 func randomize_cards() -> void:
-	#TODO: use seeded randomness
 	blanks_available = 5
-	var random_faction: int = randi_range(1, Card.Faction.values().size() - 1)
+	var unlocked_classes: Array[HeroClass] = Data.save_data.get_unlocked_classes()
+	var faction_choices: Array[Card.Faction]
+	for hero: HeroClass in unlocked_classes:
+		if !faction_choices.has(hero.faction):
+			faction_choices.append(hero.faction)
+	var random_faction: int = NoiseRandom.randi_in_range(shops_generated, 0, faction_choices.size() - 1)
+	shops_generated += 1
 	var cheap_cards: Array[Card] = []
 	var medium_cards: Array[Card] = []
 	var pricey_cards: Array[Card] = []

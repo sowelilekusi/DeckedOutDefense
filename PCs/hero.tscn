@@ -451,12 +451,12 @@ bones/15/rotation = Quaternion(-0.2017903, 0.015379741, -0.03813146, 0.97856534)
 bones/16/rotation = Quaternion(-0.0048455074, 0.003865697, 0.59440565, 0.8041415)
 bones/18/rotation = Quaternion(-0.2272016, 0.019839177, 0.4623247, 0.856879)
 bones/23/rotation = Quaternion(-0.045133274, -0.11772486, 0.9614004, -0.24456768)
-bones/24/rotation = Quaternion(-0.31305715, 0.075180076, -0.21363969, 0.92233473)
-bones/25/rotation = Quaternion(0.5710469, -0.039941728, 0.017517319, 0.819758)
-bones/26/rotation = Quaternion(-0.69202226, 0.0027399438, -0.003180337, 0.721864)
-bones/28/rotation = Quaternion(0.056880478, 0.03165418, 0.2195195, 0.97343403)
-bones/29/rotation = Quaternion(0.038734946, -0.00095578696, -0.019037286, 0.9990678)
-bones/30/rotation = Quaternion(-0.67850786, -0.0014370738, 0.0042436896, 0.73457956)
+bones/24/rotation = Quaternion(-0.03303061, -0.005903939, -0.221179, 0.9746559)
+bones/25/rotation = Quaternion(0.049654786, 0.0001291396, 0.019066628, 0.9985845)
+bones/26/rotation = Quaternion(-0.68533796, 0.002092736, -0.0037087626, 0.7282128)
+bones/28/rotation = Quaternion(-0.20499752, -0.0437259, 0.21891265, 0.9529646)
+bones/29/rotation = Quaternion(0.586818, 0.04117671, -0.017359266, 0.8084849)
+bones/30/rotation = Quaternion(-0.41481006, 0.02057148, 0.021915937, 0.9094114)
 
 [node name="AnimationPlayer" parent="Model/doe_girl" parent_id_path=PackedInt32Array(1269374108, 1532649165) index="1" unique_id=126187206]
 autoplay = &"HoldGun"

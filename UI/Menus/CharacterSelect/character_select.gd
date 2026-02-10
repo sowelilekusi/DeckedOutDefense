@@ -76,4 +76,5 @@ func advance_selector() -> void:
 
 
 func _on_confirm_button_pressed() -> void:
+	$Controls.visible = false
 	hero_confirmed.emit()
