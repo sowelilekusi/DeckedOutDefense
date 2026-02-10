@@ -38,7 +38,6 @@ var cards: Array[Card]
 var card_selected: Card
 var temp_card: Card
 var cost: int = 0
-var check_button_pressed: bool = false
 
 
 func _ready() -> void:
@@ -57,12 +56,12 @@ func set_money(money: int) -> void:
 
 
 func press_check_button(value: bool) -> void:
-	check_button_pressed = value
-	if check_button_pressed:
-		switch_button.text = tr(SIDE_B_STR)
-	else:
+	switch_button.button_pressed = value
+	if !value:
 		switch_button.text = tr(SIDE_A_STR)
-	card_desc.set_card(temp_card, !check_button_pressed)
+	else:
+		switch_button.text = tr(SIDE_B_STR)
+	card_desc.set_card(temp_card, switch_button.button_pressed)
 
 
 func _process(_delta: float) -> void:
@@ -98,11 +97,19 @@ func select_card(option: int) -> void:
 	temp_card = card_selected.duplicate()
 	temp_card.tower_stats = temp_card.tower_stats.get_duplicate()
 	temp_card.weapon_stats = temp_card.weapon_stats.get_duplicate()
-	press_check_button(check_button_pressed)
+	press_check_button(switch_button.button_pressed)
+	var x: int = 0
 	for feature: Feature in temp_card.tower_stats.features:
+		if x > 0:
+			tower_prices[x - 1].visible = false
 		add_feature(feature, 0, false)
+		x += 1
+	x = 0
 	for feature: Feature in temp_card.weapon_stats.features:
+		if x > 0:
+			weapon_prices[x - 1].visible = false
 		add_feature(feature, 1, false)
+		x += 1
 
 
 func add_option(card_options: Array[Card]) -> void:
@@ -186,7 +193,8 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 				tower_prices[tower_feature_uis.size() - 2].visible = false
 				cost += Data.slot_prices[tower_feature_uis.size() - 2]
 				price_label.text = tr(PRICE_STR) + str(cost)
-				card_desc.set_card(temp_card, check_button_pressed)
+				press_check_button(false)
+				card_desc.set_card(temp_card, switch_button.button_pressed)
 				if cost > hero.currency:
 					confirm_button.disabled = true
 	elif track == 1:
@@ -202,7 +210,8 @@ func add_feature(feature: Feature, track: int, modify_resource: bool = true) -> 
 				weapon_prices[weapon_feature_uis.size() - 2].visible = false
 				cost += Data.slot_prices[weapon_feature_uis.size() - 2]
 				price_label.text = tr(PRICE_STR) + str(cost)
-				card_desc.set_card(temp_card, check_button_pressed)
+				press_check_button(true)
+				card_desc.set_card(temp_card, switch_button.button_pressed)
 				if cost > hero.currency:
 					confirm_button.disabled = true
 
@@ -215,7 +224,7 @@ func change_feature(existing_feature: FeatureUI, new_feature: Feature, track: in
 	elif track == 1:
 		var i: int = weapon_feature_uis.find(existing_feature)
 		temp_card.weapon_stats.features[i] = new_feature
-	card_desc.set_card(temp_card, check_button_pressed)
+	card_desc.set_card(temp_card, switch_button.button_pressed)
 
 
 func attach_feat_to_mouse(feature: Feature) -> void:

@@ -5,16 +5,16 @@
 [ext_resource type="Script" uid="uid://cxu1voan64i5g" path="res://Scripts/driftling_drippler.gd" id="3_j6vnr"]
 [ext_resource type="Script" uid="uid://cummt2be3r1gq" path="res://Scripts/hitbox.gd" id="3_w6hpp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jw1s4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_j6vnr"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c5uwa"]
-radius = 0.98339844
-height = 1.977041
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6vnr"]
+radius = 9.576172
+height = 80.757
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d7aub"]
-radius = 0.133503
-height = 2.1241307
+radius = 39.50537
+height = 83.97125
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w6hpp"]
 animation = &"Deflated"
@@ -25,7 +25,7 @@ animation = &"Bloated"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s1mj6"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bw4p2"]
-graph_offset = Vector2(-290, 122)
+graph_offset = Vector2(-280, 253.70001)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_s1mj6")
 nodes/Blend2/position = Vector2(138, 208)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_lgos0")
@@ -34,15 +34,16 @@ nodes/Animation/position = Vector2(-94, 177)
 "nodes/Animation 2/position" = Vector2(-66, 358)
 node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
 
-[node name="Driftling" unique_id=1355419805 instance=ExtResource("1_8yn7v")]
+[node name="Driftling" unique_id=1355419805 node_paths=PackedStringArray("model") instance=ExtResource("1_8yn7v")]
+collision_mask = 0
+model = NodePath("Model")
 
 [node name="Sprite3D" parent="." index="0" unique_id=2020998819]
-texture = SubResource("ViewportTexture_jw1s4")
+texture = SubResource("ViewportTexture_j6vnr")
 
 [node name="MainHitbox" type="CollisionShape3D" parent="." index="6" unique_id=1521729609]
 transform = Transform3D(0.025398083, 0, 0, 0, 0.025398083, 0, 0, 0, 0.025398083, 0, 0.23003143, 0)
-visible = false
-shape = SubResource("CapsuleShape3D_c5uwa")
+shape = SubResource("CapsuleShape3D_j6vnr")
 script = ExtResource("3_w6hpp")
 metadata/_custom_type_script = "uid://cummt2be3r1gq"
 

@@ -18,7 +18,7 @@ radius = 0.325
 [sub_resource type="ViewportTexture" id="ViewportTexture_1kwxq"]
 viewport_path = NodePath("SubViewport")
 
-[node name="ElderEyeDog" type="CharacterBody3D" unique_id=1106613653 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar") groups=["Enemies"]]
+[node name="ElderEyeDog" type="CharacterBody3D" unique_id=1106613653 node_paths=PackedStringArray("status_manager", "movement_controller", "d_n", "health_bar", "model") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_7wwbi")
@@ -27,6 +27,7 @@ movement_controller = NodePath("PathingController")
 d_n = NodePath("Node3D")
 corpse_scene = ExtResource("2_k8w4y")
 health_bar = NodePath("SubViewport/HealthBar")
+model = NodePath("elder_eyedog")
 metadata/_custom_type_script = "uid://ejqql2660u6h"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=542685682]
@@ -88,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39813, 0)
 [node name="elder_eyedog" parent="." unique_id=1528468919 instance=ExtResource("8_fil5h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="elder_eyedog/Armature" parent_id_path=PackedInt32Array(1528468919, 1628745338) index="0" unique_id=1532207150]
+[node name="Skeleton3D" parent="elder_eyedog/Armature" parent_id_path=PackedInt32Array(1528468919, 2081899383) index="0" unique_id=7671726]
 bones/1/rotation = Quaternion(-0.43930408, -1.0709028e-07, 5.2369117e-08, 0.89833844)
 bones/3/rotation = Quaternion(0.23378512, 0.3248512, 0.54275554, 0.7383987)
 bones/4/rotation = Quaternion(0.20259592, 0.73083645, 0.1334472, 0.637985)
@@ -113,7 +114,7 @@ bones/23/position = Vector3(0.25597548, 0.022818465, 0.20058686)
 bones/23/scale = Vector3(0.89347196, 1, 1)
 bones/24/position = Vector3(0.08454189, 0.014853473, 0.12984678)
 
-[node name="AnimationPlayer" parent="elder_eyedog" index="1" unique_id=1165387739]
+[node name="AnimationPlayer" parent="elder_eyedog" index="1" unique_id=1439920918]
 autoplay = &"ArmatureAction"
 
 [connection signal="recieved_effect" from="Hitbox" to="StatusEffector" method="add_effect"]

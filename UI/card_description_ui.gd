@@ -21,7 +21,7 @@ func hide_card_name() -> void:
 
 func set_card(new_card: Card, side: bool) -> void:
 	card = new_card
-	side_a = side
+	side_a = !side
 	card_name_label.text = tr(card.display_name)
 	card_description_label.text = process_card_text(card.tower_stats.tower_features_applied()) if side_a else process_card_text(card.weapon_stats.weapon_features_applied())
 	populate_features()

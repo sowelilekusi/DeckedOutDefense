@@ -657,6 +657,30 @@ msgstr "Standard Campaign Mode"
 msgid "LABEL_ENDLESS_DESC"
 msgstr "Endless Mode with random waves and all unlocked equipment"
 
+msgid "BUTTON_MULTIPLAYER"
+msgstr "Multiplayer"
+
+msgid "OPTION_ALWAYS_SHOW_SHIELD"
+msgstr "Always show objective health"
+
+msgid "OPTION_RESOLUTION_SCALING"
+msgstr "Resolution Scaling"
+
+msgid "OPTION_VERTEX_JITTER"
+msgstr "Vertex Jitter"
+
+msgid "OPTION_AFFINE_WARPING"
+msgstr "Affine Texture Warping"
+
+msgid "TARGET_TYPE_ALL"
+msgstr "ALL"
+
+msgid "TARGET_TYPE_LAND"
+msgstr "Walking"
+
+msgid "TARGET_TYPE_FLYING"
+msgstr "Flying"
+
 #, fuzzy
 #~| msgid "LABEL_DISPLAY_NAME"
 #~ msgid "LABEL_CARD_NAME"

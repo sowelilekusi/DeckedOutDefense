@@ -47,6 +47,7 @@ shape = SubResource("BoxShape3D_ikdwj")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D" unique_id=2125771228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578748, -0.587001)
 stream = SubResource("AudioStreamRandomizer_73g2w")
+volume_db = -6.5
 bus = &"SFX"
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1739651585]
